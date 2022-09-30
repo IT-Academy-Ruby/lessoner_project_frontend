@@ -1,0 +1,33 @@
+@import "../constants.scss";
+
+.EmailWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.EmailLabel {
+    font-weight: bold;
+    margin-bottom: 5px;
+    @include fieldsFont;
+} 
+
+.EmailInput {
+    line-height: 40px;
+    border: 2px solid $borderColor;
+    border-radius: 4px;
+    width: 270px;
+    @include fieldsFont;
+    &:focus {
+        border: 3px solid $borderColor;
+    }
+}
+
+.invalidEmailInput {
+    border: 2px solid $warningColor;
+}
+
+.errorMessage {
+    color: $warningColor;
+    @include fieldsFont;
+}
