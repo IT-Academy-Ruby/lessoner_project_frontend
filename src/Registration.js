@@ -1,6 +1,7 @@
 import Title from "./Title";
 import FormInput from "./FormInput";
 import Button from "./Button";
+import Birthday from "./Birthday";
 
 const Registration = () => {
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Z\d]{6,256}$/i;
@@ -17,6 +18,7 @@ const Registration = () => {
       <form style={{margin: '20px 0'}}>
         <FormInput label={'Password'} validation={passwordRegex} name={'hidden'} type={'password'} required={'required'}/>
         <FormInput label={'Confirm password'} type={'password'} required={'required'} name={'hidden'}/>
+        <Birthday/>
         <Button type={'submit'} textButton={'Next'}/>
       </form>
     </div>
