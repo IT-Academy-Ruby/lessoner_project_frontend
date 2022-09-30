@@ -4,12 +4,12 @@ import Button from "./Button";
 import Birthday from "./Birthday";
 
 const Registration = () => {
-  const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Z\d]{6,256}$/i;
+  const passwordRegex = /^[-/\\=!#$%&'*+?^_`{|}~.A-Z\d]{6,256}$/i;
   return (
     <div style={{
       width: '25%',
       fontSize: '0.8rem',
-      border: '1px solid blue',
+      border: '1px solid #0747a6',
       padding: '30px',
       marginLeft: 'auto',
       marginRight: 'auto'

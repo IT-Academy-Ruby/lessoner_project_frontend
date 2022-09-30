@@ -20,7 +20,7 @@ const FormInput = ({label, type, required, name, validation}) => {
     } else {
       setFieldError(false);
       // e.target.style.outlineColor = 'black';
-      e.target.style.borderColor = 'blue';
+      e.target.style.borderColor = '#0747a6';
     }
   }
 
@@ -58,7 +58,7 @@ const FormInput = ({label, type, required, name, validation}) => {
                width: '100%',
                boxSizing: 'border-box',
                padding: '0.5em',
-               border: '1px solid blue',
+               border: '1px solid #0747a6',
                borderRadius: '0.2em'
              }}/>
       {name === 'hidden' && <img alt='' src={close_eye} style={{
