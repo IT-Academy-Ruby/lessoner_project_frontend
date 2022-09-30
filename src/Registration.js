@@ -5,6 +5,7 @@ import Birthday from "./Birthday";
 
 const Registration = () => {
   const passwordRegex = /^[-/\\=!#$%&'*+?^_`{|}~.A-Z\d]{6,256}$/i;
+  const userNameRegex = /^[._*()<>A-Z\d]{3,50}$/i;
   return (
     <div style={{
       width: '25%',
@@ -16,6 +17,7 @@ const Registration = () => {
     }}>
       <Title textTitle={'Registration'}/>
       <form style={{margin: '20px 0'}}>
+        <FormInput label={'User name'} validation={userNameRegex} type={'text'} required={'required'}/>
         <FormInput label={'Password'} validation={passwordRegex} name={'hidden'} type={'password'} required={'required'}/>
         <FormInput label={'Confirm password'} type={'password'} required={'required'} name={'hidden'}/>
         <Birthday/>

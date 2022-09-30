@@ -10,10 +10,8 @@ const FormInput = ({label, type, required, name, validation}) => {
 
   const fieldHandler = (e) => {
     setField(e.target.value);
-    if (e.target.name === 'Password') {
-      password = e.target.value;
-    }
-    if (e.target.name === 'Password' ? !validation.test(e.target.value) : password !== e.target.value) {
+    console.log(e.target.name)
+    if (e.target.name !== 'Confirm password' ? !validation.test(e.target.value) : password !== e.target.value) {
       setFieldError(true);
       // e.target.style.outlineColor = 'red';
       e.target.style.borderColor = 'red';
@@ -30,6 +28,9 @@ const FormInput = ({label, type, required, name, validation}) => {
       // if(fieldError ===true){
       //   e.target.style.outlineColor = 'red';
       // }
+    }
+    if (e.target.name === 'Password') {
+      password = e.target.value;
     }
   }
   const showPassword = (e) => {
