@@ -9,25 +9,25 @@ const FormInput = ({label, type, required, name, validation}) => {
   const [fieldBlur, setFieldBlur] = useState(false);
 
   const fieldHandler = (e) => {
-    setField(e.target.value);
-    console.log(e.target.name)
-    if (e.target.name !== 'Confirm password' ? !validation.test(e.target.value) : password !== e.target.value) {
-      setFieldError(true);
-      // e.target.style.outlineColor = 'red';
-      e.target.style.borderColor = 'red';
+    if (e.target.name !== 'Phone number') {
+      if (e.target.name !== 'Confirm password' ? !validation.test(e.target.value) : password !== e.target.value) {
+        setFieldError(true);
+        e.target.style.borderColor = 'red';
+      } else {
+        setFieldError(false);
+        e.target.style.borderColor = '#0747a6';
+      }
+      setField(e.target.value);
     } else {
-      setFieldError(false);
-      // e.target.style.outlineColor = 'black';
-      e.target.style.borderColor = '#0747a6';
+      if (!(/[^\d]$/).test(e.target.value)) {
+        setField(e.target.value)
+      }
     }
   }
 
   const blurHandler = (e) => {
     if (e.target.name === label) {
       setFieldBlur(true);
-      // if(fieldError ===true){
-      //   e.target.style.outlineColor = 'red';
-      // }
     }
     if (e.target.name === 'Password') {
       password = e.target.value;
@@ -52,7 +52,8 @@ const FormInput = ({label, type, required, name, validation}) => {
       <label style={{display: 'block', fontWeight: 'bold', margin: '5px 0'}}>{label}</label>
       <input onChange={e => fieldHandler(e)}
              onBlur={e => blurHandler(e)}
-             name={label} value={field}
+             name={label}
+             value={field}
              type={type}
              required={required}
              style={{
@@ -64,8 +65,8 @@ const FormInput = ({label, type, required, name, validation}) => {
              }}/>
       {name === 'hidden' && <img alt='' src={close_eye} style={{
         display: 'inline-block',
-        position:'relative',
-        marginBottom:'-0.5em',
+        position: 'relative',
+        marginBottom: '-0.5em',
         width: '1.5em',
         height: '1.5em',
         borderRadius: '50%',
