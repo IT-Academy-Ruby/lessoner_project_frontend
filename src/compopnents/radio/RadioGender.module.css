@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.gender__wrapper {
+    margin: 10px;
+}
+
+.radio__title {
+    font-size: 1em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.radio__wrapper {
+    display: flex;
+}
+
+.radio__item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.radio__inner {
+    margin-right: 10px;
+}
+
+.radio__text {
+    font-size: 1.2em;
+    font-weight: 700;
+}

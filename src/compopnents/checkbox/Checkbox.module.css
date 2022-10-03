@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.checkbox__wrapper {
+    margin: 10px;
+}
+
+.checkbox__label {
+    display: flex;
+    align-items: center;
+}
+.checkbox__input {
+    margin-right: 10px;
+}
