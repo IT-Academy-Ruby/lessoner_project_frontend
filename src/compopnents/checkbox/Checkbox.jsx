@@ -15,7 +15,7 @@ const Checkbox = (props) => {
                     {...props}
                 />
                 <p>
-                    I agree to the processing of my personal data in accordance with the Terms
+                    I agree to the processing of my personal data in accordance with the <a href='#'>Terms</a> 
                 </p>
             </label>
         </div>
