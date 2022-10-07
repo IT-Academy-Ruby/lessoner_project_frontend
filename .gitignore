@@ -4,14 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-/public
-package-lock.json
-package.json
-README.md
-./src/App.tsx
-./src/index.scss
-./src/imdex.tsx
-.gitignore
 
 # testing
 /coverage
