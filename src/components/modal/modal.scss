@@ -1,0 +1,57 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  position: absolute;
+  width: 95%;
+  height: 95%;
+}
+
+.modal {
+  position: relative;
+  width: 50vw;
+  height: 50vh;
+  margin: auto;
+  border: 2px solid #0747a6;
+  visibility: hidden;
+}
+
+.close {
+  position: absolute;
+  width: 2rem;
+  height: 0.2rem;
+  right: 10px;
+  opacity: 0.3;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  width: 2rem;
+  height: 0.2rem;
+  right: 0.5rem;
+  top: 1.5rem;
+  background: black;
+  content: '';
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
+}
+
+.button {
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.show {
+  visibility: visible;
+}
