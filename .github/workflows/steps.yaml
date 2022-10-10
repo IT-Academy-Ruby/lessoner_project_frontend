@@ -1,0 +1,31 @@
+name: "deploy workflow"
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: echo versions
+        run: |
+          node --version
+          npm --version
+
+      - name: install
+        run: npm install --frozen-lockfile --no-progress --non-interactive
+
+      - name: build
+        run: npm run build
+
+      - name: deploy to gh-pages
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

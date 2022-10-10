@@ -1,0 +1,46 @@
+.birthday {
+  margin: 20px 0;
+}
+
+.birthdayLabel {
+  display: block;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.birthdayInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #0747a6;
+  border-radius: 0.2em;
+}
+
+.errorInput {
+  border-color: red;
+  color: red;
+}
+
+.error {
+  color: red;
+  display: block;
+  margin-top: 0.5em;
+}
+
+.react-datepicker__current-month{
+  visibility: hidden;
+}
+
+.react-datepicker__header__dropdown {
+  position: relative;
+  top: -1rem;
+  font-weight: bold;
+}
+
+.react-datepicker__month-dropdown-container {
+  margin-right: 1.5rem;
+}
+
+.react-datepicker__triangle {
+  visibility: hidden;
+}
