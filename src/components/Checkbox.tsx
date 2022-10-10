@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import classes from './Checkbox.module.scss';
-import '../index.scss'; 
+import classes from './Checkbox.module.scss'; 
 
 const Checkbox = (props) => {
     const [isChecked, setIsChecked] = useState(false);
