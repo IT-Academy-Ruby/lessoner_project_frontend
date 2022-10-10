@@ -1,0 +1,13 @@
+$borderColor: #0B456F;
+$warningColor: #FF0000;
+$font: 'Inter';
+
+
+@mixin fieldsFont {
+    & {
+        font-family: $font;
+        font-size: 17px;
+        letter-spacing: -0.022em;
+        font-style: normal;
+    }
+}

@@ -1,0 +1,28 @@
+.phoneNumber {
+  margin: 20px 0;
+}
+
+.phoneNumberLabel {
+  display: block;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.phoneNumberInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #0747a6;
+  border-radius: 0.2em;
+}
+
+.errorInput {
+  border-color: red;
+  color: red;
+}
+
+.error {
+  color: red;
+  display: block;
+  margin-top: 0.5em;
+}
