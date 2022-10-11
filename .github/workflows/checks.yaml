@@ -1,0 +1,23 @@
+name: checks before merge
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: echo versions
+        run: |
+          node --version
+          npm --version
+
+      - name: install
+        run: npm install --frozen-lockfile --no-progress --non-interactive
+
+      - name: build
+        run: npm run build
