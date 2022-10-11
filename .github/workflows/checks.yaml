@@ -1,14 +1,12 @@
-name: "deploy workflow"
+name: checks before merge
 
-on:
-  push:
-    branches:
-      - develop
+on: 
+  pull_request:
     paths-ignore:
       - 'github/**'
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,11 +31,3 @@ jobs:
 
       - name: build
         run: npm run build
-
-      - name: deploy to gh-pages
-        uses: crazy-max/ghaction-github-pages@v1
-        with:
-          target_branch: gh-pages
-          build_dir: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
