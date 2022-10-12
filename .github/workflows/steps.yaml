@@ -17,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -33,6 +35,8 @@ jobs:
 
       - name: build
         run: npm run build
+        env:
+          PUBLIC_URL: https://it-academy-ruby.github.io/lessoner_project_frontend
 
       - name: deploy to gh-pages
         uses: crazy-max/ghaction-github-pages@v1
