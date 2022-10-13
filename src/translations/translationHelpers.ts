@@ -1,27 +1,27 @@
-import LANGS from './constants'
+import LANGUAGES from './constants'
 
-function getCurrentLanguageValue(){
+// Returns language code in terms of current pathname in the URL
+function getCurrentLanguageCode() {
     const pathName = window?.location?.pathname
      if (typeof pathName === "string"){
        let parsedValue = pathName.match(/^\/(\w{2,})\//g)?.[0].replaceAll("/","")
-       return getLangByValue(parsedValue)?.value || getDefaultLang().value
+       return getLanguageByCode(parsedValue)?.code || getDefaultLanguage().code
      }
-     return getDefaultLang().value
+     return getDefaultLanguage().code
 }
 
-function getDefaultLang() {
-    return LANGS.find(lang => lang.isDefault) || LANGS[0]
+function getDefaultLanguage() {
+    return LANGUAGES.find(lang => lang.isDefault) || LANGUAGES[0]
 }
 
-function getLangMessages(value: string) {
-    return getLangByValue(value)?.messages
+function getLanguageMessages(code: string) {
+    return getLanguageByCode(code)?.messages
 }
 
-function getLangByValue(value: string | undefined) {
-    return LANGS.find(lang => lang.value === value)
+function getLanguageByCode(code: string | undefined) {
+    return LANGUAGES.find(lang => lang.code === code?.toLowerCase())
 }
 
-const TranslationHelpers = {getLangMessages, getCurrentLanguageValue}
+const TranslationHelpers = {getLanguageMessages, getCurrentLanguageCode}
 
 export default TranslationHelpers
-

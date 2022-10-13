@@ -1,21 +1,17 @@
-import { useState} from 'react'
+import { useState } from 'react'
 import logo from './logo.svg';
 import './App.css';
-import {FormattedMessage} from 'react-intl';
-import { IntlProvider } from 'react-intl'; 
+import {FormattedMessage } from 'react-intl';
+import {IntlProvider } from 'react-intl'; 
 import TranslationHelpers from './translations/translationHelpers'
-import  LANGS  from './translations/constants';
-
-
-
-
+import  LANGUAGES  from './translations/constants';
 
 function App() {
-  const [selectedLang, setSelectedLang] = useState(TranslationHelpers.getCurrentLanguageValue())
-  const messages = TranslationHelpers.getLangMessages(selectedLang)
+  const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode())
+  const messages = TranslationHelpers.getLanguageMessages(languageCode)
   
   return (
-    <IntlProvider locale={selectedLang} messages={messages}>
+    <IntlProvider locale={languageCode} messages={messages}>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -36,15 +32,16 @@ function App() {
           >
             <FormattedMessage id="app.learn-react-link" />
           </a>
-          <select onChange={event => setSelectedLang(event.target.value)}>
-              <option hidden value=''><FormattedMessage id="app.choose-lang" /></option>
-              {LANGS.map(lang => {
-                return <option value={lang.value} key={lang.value}>{lang.label}</option>
-              })}
-            </select>
+          <select onChange={event => setLanguageCode(event.target.value)}>
+            <option hidden value=''><FormattedMessage id="app.choose-lang" /></option>
+            {LANGUAGES.map(lang => {
+              return <option value={lang.code} key={lang.code}>{lang.label}</option>
+            })}
+          </select>
         </header>
       </div>
     </IntlProvider>
   );
 }
+
 export default App;
