@@ -98,7 +98,10 @@ $main-color: #2467a3;
     border: none;
     background: $main-color;
     color: #fff;
-    &:hover {
-        cursor: pointer;
-    }
+    cursor: pointer;
+}
+
+[disabled] {
+    cursor: default;
+    background: rgba(128, 128, 128, 0.5);
 }
