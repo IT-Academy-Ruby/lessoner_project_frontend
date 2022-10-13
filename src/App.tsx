@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ModalEnterPhone from './components/ModalEnterPhone';
+import './components/ModalEnterPhone'
 
 function App() {
+  const [modalActive, setModalActive] = useState<boolean>(true);
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <phone>src/App.tsx</phone> and save to reload.
         </p>
         <a
           className="App-link"
@@ -18,7 +21,14 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <button 
+        className='open-btn' 
+        onClick={() => setModalActive(true)}
+      >
+        Open modal
+      </button>
+      <ModalEnterPhone active={modalActive} setActive={setModalActive}/>
     </div>
   );
 }
