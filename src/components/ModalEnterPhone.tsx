@@ -27,7 +27,6 @@ const ModalEnterPhone: FC<CardProps> =
   }, [phoneError])
 
   const sendphone = () => {
-    console.log(phone);
     Phone('');
     setActive(false);
   }
@@ -37,9 +36,9 @@ const ModalEnterPhone: FC<CardProps> =
   }
 
   const phoneHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const re = /^\+375 \((17|29|33|44)\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+    const re = /^(\+375|80)(29|25|44|33)(\d{3})(\d{2})(\d{2})$/;
 
-    if (re.test(e.target.value)) {
+    if (!re.test(e.target.value)) {
       PhoneError('Phone number incorrect');
       if (!e.target.value) {
         PhoneError('The input field must be filled');
@@ -62,7 +61,7 @@ const ModalEnterPhone: FC<CardProps> =
           <h1 className="enterphone__title">
             Enter your phone number
           </h1>
-           <form>
+           <form method='get'>
             <label  className="enterphone__label">
               <span className="enterphone__label-text">
                 Phone number
@@ -76,13 +75,14 @@ const ModalEnterPhone: FC<CardProps> =
                 }}
                 onBlur={blurHandler} 
                 type="tel" 
+                placeholder='+375000000000'
                 className="enterphone__input" 
               />
-              {(phoneDirty && phoneError) && <div style={{color: 'red'}}>{phoneError}</div>}
+              {(phoneDirty && phoneError) && <div className='error' style={{color: 'red'}}>{phoneError}</div>}
             </label>
             <button
               type='submit'
-
+              onClick={sendphone}
 
               
               className="enterphone__submit"
