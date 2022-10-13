@@ -1,4 +1,4 @@
-{
+export let messages_en={
     "app.text": "Edit <code>src/App.js</code> and save to restart. Now with {what}!",
     "app.learn-react-link": "Learn React",
     "app.choose-lang": "Choose your language"

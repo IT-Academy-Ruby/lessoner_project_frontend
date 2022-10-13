@@ -1,7 +1,7 @@
-import messages_ru from './ru.json'
-import messages_en from './en.json'
+import {messages_ru} from './ru.js'
+import {messages_en} from './en.js'
 
-export const LANGS = [
+ const LANGS = [
     {
         value: 'en',
         messages: messages_en,
@@ -14,3 +14,4 @@ export const LANGS = [
         label: 'Русский',
     },
 ]
+export default LANGS

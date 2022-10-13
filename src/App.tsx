@@ -4,7 +4,7 @@ import './App.css';
 import {FormattedMessage} from 'react-intl';
 import { IntlProvider } from 'react-intl'; 
 import TranslationHelpers from './translations/translationHelpers'
-import { LANGS } from './translations/constants.js';
+import  LANGS  from './translations/constants';
 
 
 

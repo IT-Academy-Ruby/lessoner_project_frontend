@@ -1,4 +1,4 @@
-{
+export let messages_ru={
     "app.text": "Редактируйте <code>src/App.js</code> и сохраните, чтобы рестартануть. Теперь с {what}!",
     "app.learn-react-link": "Изучай Реакт",
     "app.choose-lang": "Выберите язык"
