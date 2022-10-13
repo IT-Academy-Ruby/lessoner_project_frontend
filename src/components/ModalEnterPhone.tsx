@@ -27,7 +27,6 @@ const ModalEnterPhone: FC<CardProps> =
   }, [phoneError])
 
   const sendphone = () => {
-    Phone('');
     setActive(false);
   }
 
@@ -82,9 +81,8 @@ const ModalEnterPhone: FC<CardProps> =
             </label>
             <button
               type='submit'
+              disabled={!formValid}
               onClick={sendphone}
-
-              
               className="enterphone__submit"
             >
               Submit code
