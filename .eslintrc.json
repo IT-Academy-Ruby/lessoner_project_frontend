@@ -33,7 +33,7 @@
         "ignoreMemberSort":false,
         "memberSyntaxSortOrder":["none","all","multiple","single"],
         "allowSeparatedGroups":false
-    }]
-
+    }],
+    "import/extensions": ["never", { "css": "always" }]
   }
 }
