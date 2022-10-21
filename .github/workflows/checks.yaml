@@ -1,0 +1,35 @@
+name: checks before merge
+
+on: 
+  pull_request:
+    paths-ignore:
+      - 'github/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: echo versions
+        run: |
+          node --version
+          npm --version
+
+      - name: install
+        run: npm install --frozen-lockfile --no-progress --non-interactive
+
+      - name: build
+        run: npm run build

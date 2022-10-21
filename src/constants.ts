@@ -1,0 +1,1 @@
+export const BACKEND_URL: string = 'https://lessoner.herokuapp.com/en';

@@ -1,0 +1,47 @@
+name: "deploy workflow"
+
+on:
+  push:
+    branches:
+      - develop
+    paths-ignore:
+      - 'github/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: echo versions
+        run: |
+          node --version
+          npm --version
+
+      - name: install
+        run: npm install --frozen-lockfile --no-progress --non-interactive
+
+      - name: build
+        run: npm run build
+        env:
+          PUBLIC_URL: https://it-academy-ruby.github.io/lessoner_project_frontend
+
+      - name: deploy to gh-pages
+        uses: crazy-max/ghaction-github-pages@v1
+        with:
+          target_branch: gh-pages
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
