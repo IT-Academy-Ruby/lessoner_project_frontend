@@ -3,9 +3,35 @@ import Plyr from "plyr-react";
 // import Vimeo from '@u-wave/react-vimeo';
 import "plyr-react/plyr.css";
 
-import './index';
+import './index.scss';
 
-const videoSrc = {
+const videoSrc: {
+  type: string;
+  title: string;
+  sources: [{
+    src: string;
+    type: string;
+    size: number
+  }],
+  poster: string;
+  tracks: [{
+    kind: string;
+      label: string;
+      srclang: string;
+      src: string;
+      default: boolean;
+  }],
+  previewThumbnails: {
+    enabled: boolean;
+    src: string[];
+  },
+  tooltips: {
+    controls: boolean;
+  },
+
+} = 
+
+{
 
   type: "video",
   title: "Elephants",
@@ -200,9 +226,9 @@ export default function App() {
   );
 }
 
-export const VideoPlayer = () => {
+export const VideoPlayer: React.FC = () => {
   return (
-    <div className="player">
+    <div className ="player">
       <Plyr options={optionsVideoplayer}
         source={videoSrc}
       />
