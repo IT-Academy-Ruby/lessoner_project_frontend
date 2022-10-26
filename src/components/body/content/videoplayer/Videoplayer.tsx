@@ -5,35 +5,8 @@ import "plyr-react/plyr.css";
 
 import './index.scss';
 
-const videoSrc: {
-  type: string;
-  title: string;
-  sources: [{
-    src: string;
-    type: string;
-    size: number
-  }],
-  poster: string;
-  tracks: [{
-    kind: string;
-      label: string;
-      srclang: string;
-      src: string;
-      default: boolean;
-  }],
-  previewThumbnails: {
-    enabled: boolean;
-    src: string[];
-  },
-  tooltips: {
-    controls: boolean;
-  },
-
-} = 
-
-{
-
-  type: "video",
+const videoSrc  = {
+  type: "video" as const,
   title: "Elephants",
   sources: [
     {
@@ -59,21 +32,21 @@ const videoSrc: {
   poster: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Elephants_Dream_cover.jpg/1200px-Elephants_Dream_cover.jpg?20060831021346',
   tracks: [
     {
-      kind: "captions",
+      kind: "captions" as const,
       label: "Russian",
       srclang: "ru",
       src: "../subtitles/subtitles-ru.vtt",
       default: true
     },
     {
-      kind: "captions",
+      kind: "captions" as const,
       label: "English",
       srclang: "en",
       src: "../subtitles/subtitles-en.vtt",
       default: true
     },
     {
-      kind: "captions",
+      kind: "captions" as const,
       label: "Ukraine",
       srclang: "ua",
       src: "../subtitles/subtitles-ua.vtt",
@@ -171,7 +144,7 @@ const optionsVideoplayer = {
     // The options to display in the UI, if available for the source media
     options: [1080, 720, 576, 480, 360, 240],
     forced: true,
-    onChange: null,
+    
   },
 
   markers: {
@@ -191,7 +164,6 @@ const optionsVideoplayer = {
       },
     ],
   },
-
   controls: [
     'play-large', // The large play button in the center
     'restart', // Restart playback
