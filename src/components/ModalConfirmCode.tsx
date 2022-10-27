@@ -1,4 +1,3 @@
-import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import "./modal/modal.scss";
 import Button from "./Button";

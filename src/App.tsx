@@ -7,8 +7,7 @@ import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ModalConfirmCode from "./components/ModalConfirmCode";
 import {useState} from "react";
 
-function App(): any {
-  const [isActive, setIsActive] = useState(true);
+function App(){
   return (
     <BrowserRouter>
       <div className="App">
