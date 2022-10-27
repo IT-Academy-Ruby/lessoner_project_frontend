@@ -1,102 +1,73 @@
-import React,  {FC, useEffect, useState} from 'react';
-import './ModalConfirmCode.scss';
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
+import "./modal/modal.scss";
+import Button from "./Button";
+import Code from "./Code";
+import {Formik, Field, Form} from "formik";
+import {CODE} from "../constants";
 
-interface CardProps {
-  isActive: boolean;
-  setIsActive: (bool: boolean) => void;
+interface FormErrors {
+  [key: string]: string;
 }
 
-const ModalConfirmCode: FC<CardProps> = 
-  ({
-    isActive, 
-    setIsActive,
-  }) => {
-  
-  const [code, setCode] = useState('');
-  const [codeIsDirty, setCodeISDirty] = useState(false);
-  const [codeError, setCodeError] = useState('The input field must be filled');
-  const [isFormValid, setIsFormValid] = useState(false);
+interface FormValue {
+  code: string;
+}
 
-  useEffect(() => {
-    setIsFormValid(!codeError);
-  }, [codeError])
+const CodeRegex = new RegExp('^[0-9A-Z]', 'i');
 
-  const sendCode = () => {
-    setIsActive(false);
+const validate = async (values: FormValue) => {
+  let errors: FormErrors = {};
+  if (!CodeRegex.test(values.code)) {
+    errors.code = 'An invalid character is present in the Code';
   }
-
-  const blurHandler = () => {
-    setCodeISDirty(true);
+  if (values.code.length < CODE.maxLength) {
+    errors.code = 'Code should be 5 characters';
   }
-
-  const codeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setCode(value)
-    if (value.length !== 5) {
-      setCodeError('Code must contain 5 characters');
-      if (!value) {
-        setCodeError('The input field must be filled');
-      }
-    } else {
-      setCodeError('');
-    }
-  }
+  return errors;
+}
+const ModalConfirmCode = () => {
 
   return (
-    <div 
-      className={isActive ? 'modal active' : 'modal'}
-      onClick={() => setIsActive(false)}  
-    >
-      <div 
-        className={isActive ? 'modal__content active' : 'modal__content'}
-        onClick={e => e.stopPropagation()}
-      >
-        <div className="confirmcode__content">
-          <h1 className="confirmcode__title">
-            Enter the code
-          </h1>
-          <p className="confirmcode__text">
-            Now a code will come to your phone. Enter it in a line.   
-            <span> 
-              <a href="#!" className="confirmcode__link-change">
+    <div className='field'>
+      <Formik
+        initialValues={{
+          code: ''
+        }}
+        validate={validate}
+        onSubmit={(values) => {
+          console.log(values) //for example that working
+        }}>
+        {({errors, touched}) => {
+          return (
+
+            <Form>
+              <div className='modal'>
+                <Link to='/users/sign_in'>
+                  <span className='close'>
+                  </span>
+                </Link>
+                <h2 className='title'>Enter the code</h2>
+                <p className='modalText'>
+                  Now a code will come to your phone. Enter it in a line.
+                  <span>
+              <Link to='/users/sign_in/phone_number' className='link'>
                 To change number
-              </a>
+              </Link>
             </span>
-          </p>
-          <form>
-            <label  className="confirmcode__label">
-              <span className="confirmcode__label-text">
-                Code
-              </span> 
-              <input
-                name='code'
-                value={code}
-                onChange={e => {
-                  setCode(e.target.value);
-                  codeHandler(e);
-                }}
-                onBlur={blurHandler} 
-                type="text"
-                placeholder='Enter code' 
-                className="confirmcode__input" 
-              />
-              {(codeIsDirty && codeError) && <div className='error'>{codeError}</div>}
-            </label>
-            
-            <a href="#!" className="confirmcode__link-resend">
-                Resend code
-            </a>
-            <button
-              type='submit'
-              disabled={!isFormValid}
-              onClick={sendCode}
-              className="confirmcode__finish"
-            >
-              Finish
-            </button>
-          </form>
-        </div>
-      </div>  
+                </p>
+                <Field name='code'
+                       component={Code}
+                       error={touched.code ? errors.code : undefined}/>
+                <button type='button' className='link resendCode'>
+                  Resend code
+                </button>
+                <Button buttonType={'submit'} buttonText={'Finish'} className={'button'}/>
+              </div>
+            </Form>
+          )
+        }}
+      </Formik>
     </div>
   )
 }

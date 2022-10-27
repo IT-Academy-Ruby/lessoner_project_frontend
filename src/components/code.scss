@@ -1,17 +1,17 @@
 @import "../constants.scss";
 
-.Email-Wrapper {
+.code {
   margin: 20px 0 0;
 }
 
-.Email-Label {
+.codeLabel {
   display: block;
   @include fieldsFont;
   margin: 5px 0;
   font-weight: bold;
 }
 
-.Email-Input {
+.codeInput {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
@@ -24,12 +24,12 @@
   }
 }
 
-.invalid-Email-Input {
+.errorInput {
   border: 2px solid $warningColor;
   color: $warningColor;
 }
 
-.error-Message {
+.error {
   color: $warningColor;
   display: block;
   margin-top: 0.5em;

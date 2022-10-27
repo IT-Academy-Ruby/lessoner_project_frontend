@@ -58,8 +58,14 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  color: $borderColor;
+
   margin: 1rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.link{
+  color: $borderColor;
   font-weight: bold;
   font-size: 0.8rem;
   text-decoration: none;
@@ -91,4 +97,43 @@
 .labelCheckbox {
   font-weight: bold;
   margin-left: 0.5rem;
+}
+.buttonLink{
+  width: 100%;
+  padding: 0.8rem;
+  border:2px solid $borderColor;
+  display: inline-block;
+  margin: 0.3rem 0;
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.buttonLink:hover{
+  background: lightgray;
+}
+.text{
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.signLink{
+  color:$borderColor;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+.signLink:hover{
+  text-decoration: underline;
+}
+.modalText {
+  text-align: left;
+  margin-bottom: 60px;
+}
+.resendCode{
+  border:none;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, 0px);
 }

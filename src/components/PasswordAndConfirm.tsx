@@ -7,7 +7,7 @@ type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
   isConfirm: boolean;
-  field: {
+  field?: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
     onChange: React.ChangeEventHandler<HTMLInputElement>,

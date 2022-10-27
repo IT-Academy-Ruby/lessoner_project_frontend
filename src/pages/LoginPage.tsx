@@ -1,13 +1,13 @@
 import "../components/modal/modal.scss";
 import Email from "../components/Email";
 import Password from "../components/PasswordAndConfirm";
-import { Formik, Field, Form } from "formik";
+import {Formik, Field, Form} from "formik";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useAppDispatch } from "../store/hooks";
-import { getLogin } from "../store/loginName/loginSlice";
-import { PASSWORD } from "../constants";
+import {Link} from "react-router-dom";
+import {useState} from "react";
+import {useAppDispatch} from "../store/hooks";
+import {getLogin} from "../store/loginName/loginSlice";
+import {PASSWORD} from "../constants";
 
 interface FormValues {
   email: string;
@@ -66,7 +66,7 @@ const LoginPage = () => {
           dispatch(getLogin(values))
           console.log(values); //for example that working
         }}>
-        {({ errors, touched }) => {
+        {({errors, touched}) => {
           return (
             <Form>
               <div className='modal'>
@@ -75,43 +75,58 @@ const LoginPage = () => {
                   </span>
                 </Link>
                 <h2 className='title'>Login to the Lessoner</h2>
-                <Field
-                  name='email'
-                  component={Email}
-                  error={touched.email ? errors.email : undefined}
-                />
-                <Field
-                  name='password'
-                  component={Password}
-                  minSymbol={PASSWORD.minLength}
-                  maxSymbol={PASSWORD.maxLength}
-                  isConfirm={false}
-                  error={touched.password ? errors.password : undefined}
-                />
+                <Field name='email'
+                       component={Email}
+                       error={touched.email ? errors.email : undefined}/>
+                <Field name='password'
+                       component={Password}
+                       minSymbol={PASSWORD.minLength}
+                       maxSymbol={PASSWORD.maxLength}
+                       isConfirm={false}
+                       error={touched.password ? errors.password : undefined}/>
                 <div className='checkbox'>
-                  <Field
-                    name='remember'
-                    type='checkbox'
-                    id='remember'
-                    onClick={() => {
-                      setIsChecked(!isChecked)
-                    }}
-                    className={isChecked ? 'checked' : 'unchecked'}
-                  />
-                  <label
-                    htmlFor='remember'
-                    className='labelCheckbox'
-                  >
+                  <Field name='remember'
+                         type='checkbox'
+                         id='remember'
+                         onClick={() => {
+                           setIsChecked(!isChecked)
+                         }}
+                         className={isChecked ? 'checked' : 'unchecked'}/>
+                  <label htmlFor='remember'
+                         className='labelCheckbox'>
                     Stay logged in
                   </label>
                 </div>
-                <Button
-                  buttonType={'submit'}
-                  buttonText={'Sign in'}
-                />
-                <Link to={'/forgotPassword'} className='passwordLink'>
+                <Button buttonType={'submit'}
+                        buttonText={'Sign in'}
+                        className={'button'}/>
+                <Link to={'/forgotPassword'}
+                      className='passwordLink link'>
                   Forgot your password?
                 </Link>
+                <Link to={'/users/sign_in/phone_number'}
+                      className='buttonLink'>
+                  Continue by phone number
+                </Link>
+                <a href='https://google.ru'
+                   className='buttonLink'>
+                  Continue with Google
+                </a>
+                <a href='https://facebook.com'
+                   className='buttonLink'>
+                  Continue with Facebook
+                </a>
+                <a href='https://vk.ru'
+                   className='buttonLink'>
+                  Continue with VK
+                </a>
+                <p className='text'>
+                  Don't you have an account?
+                  <Link to={'/users/sign_up'}
+                        className='signLink'>
+                    Sign up
+                  </Link>
+                </p>
               </div>
             </Form>
           )
