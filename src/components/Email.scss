@@ -1,34 +1,39 @@
 @import "../constants.scss";
 
 .Email-Wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0 0;
 }
 
 .Email-Label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    @include fieldsFont;
+  font-weight: bold;
+  margin-bottom: 5px;
+  @include fieldsFont;
 }
 
 .Email-Input {
-    line-height: 40px;
-    border: 2px solid $borderColor;
-    border-radius: 4px;
-    width: 270px;
-    @include fieldsFont;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 2px solid $borderColor;
+  border-radius: 0.2em;
+  @include fieldsFont;
 
-    &:focus {
-        border: 3px solid $borderColor;
-    }
+  &:focus {
+    border: 2px solid $borderColor;
+  }
 }
 
 .invalid-Email-Input {
-    border: 2px solid $warningColor;
+  border: 2px solid $warningColor;
+  color: $warningColor;
 }
 
 .error-Message {
-    color: $warningColor;
-    @include fieldsFont;
+  color: $warningColor;
+  display: block;
+  margin-top: 0.5em;
+  font-weight: normal;
 }

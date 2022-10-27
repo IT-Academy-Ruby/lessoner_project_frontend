@@ -23,6 +23,9 @@ const Header = () => {
       <Link to="/users/sign_in">
         <button>LogIn</button>
       </Link>
+      <Link to="/users/sign_up">
+        <button>Register</button>
+      </Link>
     </div>
   );
 };
