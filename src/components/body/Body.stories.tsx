@@ -1,9 +1,9 @@
-import  About  from "./About"
+import  Body from "./Body"
 import {Meta, Story} from "@storybook/react";
 
 export default {
-  title: "body/content/About",
-  component: About,
+  title: "body/Body",
+  component: Body,
   argTypes: {
     sizes: {
         options: ["small", "default", "large"],
@@ -20,7 +20,6 @@ export default {
 }
 } as Meta;
 
-const Template: Story = (args) => <About {...args} />;
+const Template: Story = (args) => <Body {...args} />;
 export const Default = Template.bind({});
-
 
