@@ -1,11 +1,10 @@
 import "./App.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Body from "./components/body/Body";
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/LoginPage';
 import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ModalConfirmCode from "./components/ModalConfirmCode";
-import {useState} from "react";
 
 function App(){
   return (
