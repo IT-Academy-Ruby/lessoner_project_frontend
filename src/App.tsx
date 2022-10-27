@@ -4,7 +4,7 @@ import Body from "./components/body/Body";
 import LoginPage from './pages/LoginPage';
 import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
-import ModalConfirmCode from "./components/ModalConfirmCode";
+import CodePage from "./pages/CodePage";
 
 function App(){
   return (
@@ -15,7 +15,7 @@ function App(){
           <Route path='/users/sign_in' element={<LoginPage/>}/>
           <Route path='/users/sign_up' element={<FirstRegistrationForm/>}/>
           <Route path='/users/sign_in/phone_number' element={<PhoneNumberPage/>}/>
-          <Route path='/users/sign_in/phone_number/code' element={<ModalConfirmCode/>}/>
+          <Route path='/users/sign_in/phone_number/code' element={<CodePage/>}/>
         </Routes>
       </div>
     </BrowserRouter>

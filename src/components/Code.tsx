@@ -4,8 +4,8 @@ import "./code.scss";
 type CodeProps = {
   field?: {
     name: string,
-    onBlur: React.FocusEventHandler<HTMLInputElement>,
-    onChange: React.ChangeEventHandler<HTMLInputElement>,
+    onBlur: ()=>{},
+    onChange: ()=>{},
     value: string,
   };
   error?: string;

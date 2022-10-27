@@ -14,10 +14,11 @@
 .codeInput {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.5em;
+  padding: 0.1em;
   border: 2px solid $borderColor;
-  border-radius: 0.2em;
-  @include fieldsFont;
+  border-radius: 0.1em;
+  font-size: 30px;
+  text-align: center;
 
   &:focus {
     border: 2px solid $borderColor;

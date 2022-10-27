@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import "./modal/modal.scss";
-import Button from "./Button";
-import Code from "./Code";
+import "../components/modal/modal.scss";
+import Button from "../components/Button";
+import Code from "../components/Code";
 import {Formik, Field, Form} from "formik";
 import {CODE} from "../constants";
 
@@ -13,19 +13,19 @@ interface FormValue {
   code: string;
 }
 
-const CodeRegex = new RegExp('^[0-9A-Z]', 'i');
+const CodeRegex = new RegExp('[0-9a-z]{5}', 'i');
 
 const validate = async (values: FormValue) => {
-  let errors: FormErrors = {};
+  let errors: FormErrors = {code: ''};
   if (!CodeRegex.test(values.code)) {
-    errors.code = 'An invalid character is present in the Code';
+    errors.code += 'An invalid character is present in the Code. ';
   }
   if (values.code.length < CODE.maxLength) {
-    errors.code = 'Code should be 5 characters';
+    errors.code += 'Code should be 5 characters. ';
   }
   return errors;
 }
-const ModalConfirmCode = () => {
+const CodePage = () => {
 
   return (
     <div className='field'>
@@ -39,7 +39,6 @@ const ModalConfirmCode = () => {
         }}>
         {({errors, touched}) => {
           return (
-
             <Form>
               <div className='modal'>
                 <Link to='/users/sign_in'>
@@ -71,4 +70,4 @@ const ModalConfirmCode = () => {
   )
 }
 
-export default ModalConfirmCode;
+export default CodePage;

@@ -2,17 +2,19 @@ import "../components/modal/modal.scss";
 import Button from "../components/Button";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const PhoneNumberPage = () => {
   const [error, setError] = useState('Phone number incorrect');
   const [phoneNumber, setPhoneNumber] = useState('375');
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
+
 
   const sendPhoneNumber = () => {
-    error ? setIsError(true) : setIsError(false);
+    error ? setIsError(!!error) : setIsError(!error);
     if (!error) {
-      window.location.href = '/users/sign_in/phone_number/code';
+      (() => navigate('/users/sign_in/phone_number/code'))();
     }
   }
   return (

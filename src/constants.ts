@@ -11,7 +11,7 @@ const USERNAME = {
   min: 3,
   max: 256,
 };
-const CODE={
+const CODE = {
   maxLength: 5,
 }
-export {BACKEND_URL, EMAIL, PASSWORD, USERNAME,CODE};
+export {BACKEND_URL, EMAIL, PASSWORD, USERNAME, CODE};
