@@ -45,13 +45,6 @@ const videoSrc  = {
       src: "../subtitles/subtitles-en.vtt",
       default: true
     },
-    {
-      kind: "captions" as const,
-      label: "Ukraine",
-      srclang: "ua",
-      src: "../subtitles/subtitles-ua.vtt",
-      default: true
-    },
   ],
   previewThumbnails: {
     enabled: true,
@@ -191,10 +184,9 @@ const optionsVideoplayer = {
 
 export default function App() {
   return (
-    <div className="wrapper">
-      <h1>PLYR</h1>
+    <>
       <VideoPlayer />
-    </div>
+    </>
   );
 }
 
