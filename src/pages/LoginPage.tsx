@@ -108,15 +108,15 @@ const LoginPage = () => {
                       className='buttonLink'>
                   Continue by phone number
                 </Link>
-                <a href='#'
+                <a href='/'
                    className='buttonLink'>
                   Continue with Google
                 </a>
-                <a href='#'
+                <a href='/'
                    className='buttonLink'>
                   Continue with Facebook
                 </a>
-                <a href='#'
+                <a href='/'
                    className='buttonLink'>
                   Continue with VK
                 </a>
