@@ -3,6 +3,9 @@ import "./phoneNumber.scss";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
+const countries = 'us';
+const deleteCountru = ['ke'];
+
 type PhoneNumberProps = {
   error: string;
   setError: (str: string) => void;
@@ -14,25 +17,28 @@ type PhoneNumberProps = {
 const PhoneNumber = ({setError, error, phoneNumber, setPhoneNumber, isError}: PhoneNumberProps) => {
   const [isBlur, setIsBlur] = useState(false);
 
+  const checkNumber = (value: string, country: any, e: React.ChangeEvent<HTMLInputElement>, formattedValue: string) => {
+    if (formattedValue.length !== country.format.length) {
+      setError('Phone number incorrect');
+    } else {
+      setError('');
+    }
+    setPhoneNumber(value);
+  }
+
   return (
     <div className='phone Number'>
       <label className='phoneNumberLabel'>Phone number
         <PhoneInput
-          onChange={(value: string, country: any, e: React.ChangeEvent<HTMLInputElement>, formattedValue: string) => {
-            if (formattedValue.length !== country.format.length) {
-              setError('Phone number incorrect');
-            } else {
-              setError('')
-            }
-            setPhoneNumber(value);
-          }}
+          onChange={checkNumber}
           onBlur={() => {
             setIsBlur(true);
           }}
           inputStyle={{width: '100%', borderColor: '#0B456F'}}
           buttonStyle={{borderColor: '#0B456F'}}
           dropdownStyle={{width: 'auto', border: '1px solid #0B456F', borderRadius: '3px'}}
-          country='us'
+          country={countries}
+          excludeCountries={deleteCountru}
           value={phoneNumber}
           inputProps={{
             required: true,

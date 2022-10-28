@@ -3,10 +3,11 @@ import Button from "../components/Button";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {DEFAULT_COUNTRY} from "../constants";
 
 const PhoneNumberPage = () => {
   const [error, setError] = useState('Phone number incorrect');
-  const [phoneNumber, setPhoneNumber] = useState('375');
+  const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
