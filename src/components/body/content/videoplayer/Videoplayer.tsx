@@ -1,8 +1,7 @@
 import React from "react";
 import Plyr from "plyr-react";
-// import Vimeo from '@u-wave/react-vimeo';
-import "plyr-react/plyr.css";
 
+import "plyr-react/plyr.css";
 import './index.scss';
 
 const videoSrc  = {
@@ -46,6 +45,7 @@ const videoSrc  = {
       default: true
     },
   ],
+  // Preview example
   previewThumbnails: {
     enabled: true,
     src: ['https://cdn.plyr.io/static/demo/thumbs/100p.vtt', 'https://cdn.plyr.io/static/demo/thumbs/240p.vtt'],
@@ -53,82 +53,6 @@ const videoSrc  = {
   tooltips: {
     controls: true,
   },
-  //Another exemple  a videoplayer
-  // type: 'video',
-  // title: 'View From A Blue Moon',
-  // sources: [
-  //   {
-  //     src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
-  //     type: 'video/mp4',
-  //     size: 576,
-  //   },
-  //   {
-  //     src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4',
-  //     type: 'video/mp4',
-  //     size: 720,
-  //   },
-  //   {
-  //     src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4',
-  //     type: 'video/mp4',
-  //     size: 1080,
-  //   },
-  //   {
-  //     src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4',
-  //     type: 'video/mp4',
-  //     size: 1440,
-  //   },
-  // ],
-  // poster: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg',
-  // tracks: [
-  //   {
-  //     kind: 'captions',
-  //     label: 'English',
-  //     srclang: 'en',
-  //     src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt',
-  //     default: true,
-  //   },
-  //   {
-  //     kind: 'captions',
-  //     label: 'French',
-  //     srclang: 'fr',
-  //     src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt',
-  //   },
-  // ],
-  // previewThumbnails: {
-  //   src: ['https://cdn.plyr.io/static/demo/thumbs/100p.vtt', 'https://cdn.plyr.io/static/demo/thumbs/240p.vtt'],
-  // },
-
-  //AUDIO
-  // type: 'audio',
-  // title: 'Kishi Bashi &ndash; &ldquo;It All Began With A Burst&rdquo;',
-  // sources: [
-  //   {
-  //     src: 'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.mp3',
-  //     type: 'audio/mp3',
-  //   },
-  //   {
-  //     src: 'https://cdn.plyr.io/static/demo/Kishi_Bashi_-_It_All_Began_With_a_Burst.ogg',
-  //     type: 'audio/ogg',
-  //   },
-  // ],
-
-  //YOUTUBE
-  // type: 'video',
-  // sources: [
-  //   {
-  //     src: 'https://youtube.com/watch?v=bTqVqk7FSmY',
-  //     provider: 'youtube',
-  //   },
-  // ],
-
-  //VIMEO
-  // type: 'video',
-  // sources: [
-  //   {
-  //     src: 'https://vimeo.com/40648169',
-  //     provider: 'vimeo',
-  //   },
-  // ],
 };
 
 const optionsVideoplayer = {
@@ -180,8 +104,6 @@ const optionsVideoplayer = {
   seekTime: 10,
 };
 
-// learn more https://github.com/sampotts/plyr#the-source-setter
-
 export default function App() {
   return (
     <>
@@ -196,11 +118,6 @@ export const VideoPlayer: React.FC = () => {
       <Plyr options={optionsVideoplayer}
         source={videoSrc}
       />
-      {/* <Vimeo options={optionsVideoplayer} 
-      source={videoSrc} 
-       /> */}
     </div>
   );
 };
-
-console.log(Plyr);
