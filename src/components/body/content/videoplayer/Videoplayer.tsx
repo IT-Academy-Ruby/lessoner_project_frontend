@@ -63,7 +63,6 @@ const optionsVideoplayer = {
     forced: true,
     
   },
-
   markers: {
     enabled: true,
     points: [
