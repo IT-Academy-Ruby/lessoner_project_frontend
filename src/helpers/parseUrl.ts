@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 const getVKCode = (url: string) => {
   const urlParams = url.match(/\?.*/);
   if (urlParams) {

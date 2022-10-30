@@ -1,7 +1,5 @@
 import FacebookLogin from 'react-facebook-login';
-import { FACEBOOK_APP } from "./constants";
-import './buttonStyle.scss';
-
+import { FACEBOOK_APP } from "../constants";
 
 const FacebookButton = () => {
   const responseFacebook = (response: any) => {
@@ -16,7 +14,7 @@ const FacebookButton = () => {
         scope="public_profile,user_friends"
         callback={responseFacebook}
         textButton="Continue with Facebook"
-        cssClass="Button-Style"
+        cssClass=""
       />
     </div>
   );
