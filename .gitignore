@@ -24,5 +24,6 @@ yarn-error.log*
 
 # omit to make PR-s easier to merge
 package-lock.json
+yarn.lock
 
 .idea

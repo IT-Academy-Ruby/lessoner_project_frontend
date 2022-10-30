@@ -1,13 +1,26 @@
 $borderColor: #0B456F;
 $warningColor: #FF0000;
 $font: 'Inter';
+$formWidth: 270px;
 
 
 @mixin fieldsFont {
-    & {
-        font-family: $font;
-        font-size: 17px;
-        letter-spacing: -0.022em;
-        font-style: normal;
-    }
+  & {
+    font-family: $font;
+    font-size: 17px;
+    letter-spacing: -0.022em;
+    font-style: normal;
+  }
+}
+
+@mixin textFieldInput {
+  line-height: 40px;
+  border: 2px solid $borderColor;
+  border-radius: 4px;
+  width: 262px;
+  @include fieldsFont;
+
+  &:focus {
+    border: 3px solid $borderColor;
+  }
 }
