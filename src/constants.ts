@@ -1,5 +1,5 @@
 const BACKEND_URL = 'https://lessoner.herokuapp.com'
-const CB_SOCIAL_MEDIA = `http://localhost:3000/any`;
+const REDIRECT_URL = `https://thelessoner-frontend-pr-40.onrender.com/users/sign_up`;
 const EMAIL = {
   minLength: 3,
   maxLength: 256,
@@ -13,13 +13,12 @@ const USERNAME = {
   max: 256,
 };
 const VK_APP = {
-  id: 51452614,
+  id: 51463254,
 };
 const GOOGLE_APP = {
-  id: '527493320440-ogbb1ipqeaumqldec6or829aq4p630e9.apps.googleusercontent.com',
-  client_secret: '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'
+  id: '1055699025819-ebrdnj83l419b2hfj4j4l34joh83he25.apps.googleusercontent.com',
 }
 const FACEBOOK_APP = {
-  id: '1326888044715885'
+  id: '680825793391734'
 }
-export { BACKEND_URL, EMAIL, PASSWORD, USERNAME, CB_SOCIAL_MEDIA, VK_APP, GOOGLE_APP, FACEBOOK_APP };
+export { BACKEND_URL, EMAIL, PASSWORD, USERNAME, REDIRECT_URL, VK_APP, GOOGLE_APP, FACEBOOK_APP };

@@ -10,8 +10,8 @@ const FacebookButton = () => {
     <div>
       <FacebookLogin
         appId={FACEBOOK_APP.id}
-        fields="name,email,picture"
-        scope="public_profile,user_friends"
+        fields="name,email,picture, user_birthday"
+        scope="public_profile,user_friends, email, user_birthday"
         callback={responseFacebook}
         textButton="Continue with Facebook"
         cssClass=""
