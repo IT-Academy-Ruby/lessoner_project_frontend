@@ -4,7 +4,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 const countries = 'us';
-const deleteCountry = ['ke'];
+const deleteCountry: [string] = ['ke'];
 
 type PhoneNumberProps = {
   error: string;
