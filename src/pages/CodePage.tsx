@@ -26,7 +26,6 @@ const validate = async (values: FormValue) => {
   return errors;
 }
 const CodePage = () => {
-
   return (
     <div className='field'>
       <Formik
@@ -49,10 +48,10 @@ const CodePage = () => {
                 <p className='modalText'>
                   Now a code will come to your phone. Enter it in a line.
                   <span>
-              <Link to='/users/sign_in/phone_number' className='link'>
-                To change number
-              </Link>
-            </span>
+                    <Link to='/users/sign_in/phone_number' className='link'>
+                      To change number
+                    </Link>
+                  </span>
                 </p>
                 <Field name='code'
                        component={Code}

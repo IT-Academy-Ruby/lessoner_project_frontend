@@ -58,13 +58,13 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-
   margin: 1rem;
   font-weight: bold;
   font-size: 0.8rem;
   text-decoration: none;
 }
-.link{
+
+.link {
   color: $borderColor;
   font-weight: bold;
   font-size: 0.8rem;
@@ -98,10 +98,11 @@
   font-weight: bold;
   margin-left: 0.5rem;
 }
-.buttonLink{
+
+.buttonLink {
   width: 100%;
   padding: 0.8rem;
-  border:2px solid $borderColor;
+  border: 2px solid $borderColor;
   display: inline-block;
   margin: 0.3rem 0;
   border-radius: 5px;
@@ -111,28 +112,34 @@
   font-weight: bold;
   font-size: 0.8rem;
 }
-.buttonLink:hover{
+
+.buttonLink:hover {
   background: lightgray;
 }
-.text{
+
+.text {
   text-align: center;
   font-weight: bold;
   font-size: 0.8rem;
 }
-.signLink{
-  color:$borderColor;
+
+.signLink {
+  color: $borderColor;
   text-decoration: none;
   font-size: 0.8rem;
 }
-.signLink:hover{
+
+.signLink:hover {
   text-decoration: underline;
 }
+
 .modalText {
   text-align: left;
   margin-bottom: 60px;
 }
-.resendCode{
-  border:none;
+
+.resendCode {
+  border: none;
   left: 50%;
   position: relative;
   transform: translate(-50%, 0px);

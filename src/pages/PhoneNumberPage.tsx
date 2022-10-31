@@ -13,9 +13,9 @@ const PhoneNumberPage = () => {
 
 
   const sendPhoneNumber = () => {
-    error ? setIsError(!!error) : setIsError(!error);
+    error ? setIsError(!!error) : setIsError(!!error);
     if (!error) {
-      (() => navigate('/users/sign_in/phone_number/code'))();
+     navigate('/users/sign_in/phone_number/code');
     }
   }
   return (

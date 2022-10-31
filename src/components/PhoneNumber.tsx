@@ -4,7 +4,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 const countries = 'us';
-const deleteCountru = ['ke'];
+const deleteCountry = ['ke'];
 
 type PhoneNumberProps = {
   error: string;
@@ -38,7 +38,7 @@ const PhoneNumber = ({setError, error, phoneNumber, setPhoneNumber, isError}: Ph
           buttonStyle={{borderColor: '#0B456F'}}
           dropdownStyle={{width: 'auto', border: '1px solid #0B456F', borderRadius: '3px'}}
           country={countries}
-          excludeCountries={deleteCountru}
+          excludeCountries={deleteCountry}
           value={phoneNumber}
           inputProps={{
             required: true,

@@ -4,8 +4,8 @@ import "./code.scss";
 type CodeProps = {
   field?: {
     name: string,
-    onBlur: ()=>{},
-    onChange: ()=>{},
+    onBlur: ()=>void,
+    onChange: ()=>void,
     value: string,
   };
   error?: string;
