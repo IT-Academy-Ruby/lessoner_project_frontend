@@ -6,7 +6,7 @@ import {Formik, Field, Form} from "formik";
 import {CODE} from "../constants";
 
 interface FormErrors {
-  [key: string]: string;
+  code: string;
 }
 
 interface FormValue {
