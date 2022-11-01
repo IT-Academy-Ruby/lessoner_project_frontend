@@ -4,21 +4,18 @@ import { useTheme } from "../../../hooks/useTheme/useTheme";
 
 const Header = () => {
   let { theme, setTheme } = useTheme();
-  const darkTheme = () => {
-    setTheme("dark");
-  };
-  const lightTheme = () => {
-    setTheme("light");
+  const changeTheme = () => {
+    const selectTheme = localStorage.getItem("selectTheme");
+    if (selectTheme === "dark") {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
   };
   return (
     <div className="nav-bar">
       <div className="change-themes">
-      <button className="change_theme" onClick={darkTheme}>
-        Dark
-      </button>
-      <button className="change_theme" onClick={lightTheme}>
-        Light
-      </button>
+        <button onClick={changeTheme}>change theme</button>
       </div>
       <Link to="/">
         <div>Lessoner</div>
