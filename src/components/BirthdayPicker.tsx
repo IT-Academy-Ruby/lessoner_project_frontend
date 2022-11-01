@@ -3,10 +3,24 @@ import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import "./birthday.scss";
 
-const BirthdayPicker = () => {
-  const [value, setValue] = useState<Date | null>(null);
+
+type BirthdayPickerProps = {
+  field: {
+    name: string,
+    onBlur: () => {},
+    onChange: () => {},
+    value: any,
+  };
+  error: string;
+}
+
+const BirthdayPicker = ({field, error}: BirthdayPickerProps): JSX.Element => {
+  const [birthday, setBirthday] = useState<Date | null>(null);
+
   const fieldHandler = (date: Date) => {
-    setValue(date);
+    setBirthday(date);
+    field.value = date
+    console.log('lo')
   }
   const minYear = new Date((new Date()).getTime() -
     120 * 365.2 * 86400000 - 6 * 86400000 + 29.7 * 60000); // this date 120 years ago
@@ -14,18 +28,22 @@ const BirthdayPicker = () => {
   return (
     <div className='birthday'>
       <label className='birthdaylabel'>When is your birthday?
-        <DatePicker onChange={(e: Date) => fieldHandler(e)}
-                    selected={value}
-                    placeholderText='--.--.----'
-                    dateFormat='dd.MM.yyyy'
-                    maxDate={new Date()}
-                    minDate={minYear}
-                    showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    className='birthdayInput'
-                    required/>
+        <DatePicker
+          selected={birthday}
+          placeholderText='--.--.----'
+          dateFormat='dd.MM.yyyy'
+          maxDate={new Date()}
+          minDate={minYear}
+          showMonthDropdown
+          showYearDropdown
+          dropdownMode="select"
+          className='birthdayInput'
+          {...field}
+          onChange={(e: Date) => fieldHandler(e)}
+        />
       </label>
+      {error && <span className='error'>{error}</span>}
+
     </div>
   )
 }

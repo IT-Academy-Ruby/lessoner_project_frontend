@@ -8,7 +8,7 @@ const PASSWORD = {
   maxLength: 256,
 };
 const USERNAME = {
-  min: 3,
-  max: 256,
+  minLength: 3,
+  maxLength: 256,
 };
 export {BACKEND_URL, EMAIL, PASSWORD, USERNAME};
