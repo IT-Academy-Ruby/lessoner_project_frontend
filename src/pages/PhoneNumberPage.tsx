@@ -11,11 +11,11 @@ const PhoneNumberPage = () => {
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
-
   const sendPhoneNumber = () => {
-    error ? setIsError(!!error) : setIsError(!!error);
     if (!error) {
-     navigate('/users/sign_in/phone_number/code');
+      navigate('/users/sign_in/phone_number/code');
+    } else {
+      setIsError(!!error)
     }
   }
   return (
