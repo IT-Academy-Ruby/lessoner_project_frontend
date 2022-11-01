@@ -27,8 +27,8 @@ const PhoneNumber = ({setError, error, phoneNumber, setPhoneNumber, isError}: Ph
   }
 
   return (
-    <div className='phone Number'>
-      <label className='phoneNumberLabel'>Phone number
+    <div className='phone-number'>
+      <label className='phone-number-label'>Phone number
         <PhoneInput
           onChange={checkNumber}
           onBlur={() => {

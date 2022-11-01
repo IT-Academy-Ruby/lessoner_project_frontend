@@ -4,14 +4,14 @@
   margin: 20px 0 0;
 }
 
-.codeLabel {
+.code-label {
   display: block;
   @include fieldsFont;
   margin: 5px 0;
   font-weight: bold;
 }
 
-.codeInput {
+.code-input {
   width: 100%;
   box-sizing: border-box;
   padding: 0.1em;
@@ -23,11 +23,6 @@
   &:focus {
     border: 2px solid $borderColor;
   }
-}
-
-.errorInput {
-  border: 2px solid $warningColor;
-  color: $warningColor;
 }
 
 .error {

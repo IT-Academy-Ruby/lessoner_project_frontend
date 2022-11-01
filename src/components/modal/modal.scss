@@ -54,7 +54,7 @@
   font-size: 1.8rem;
 }
 
-.passwordLink {
+.password-link {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -94,12 +94,12 @@
   top: -5px;
 }
 
-.labelCheckbox {
+.label-checkbox {
   font-weight: bold;
   margin-left: 0.5rem;
 }
 
-.buttonLink {
+.button-link {
   width: 100%;
   padding: 0.8rem;
   border: 2px solid $borderColor;
@@ -113,7 +113,7 @@
   font-size: 0.8rem;
 }
 
-.buttonLink:hover {
+.button-link:hover {
   background: lightgray;
 }
 
@@ -123,22 +123,22 @@
   font-size: 0.8rem;
 }
 
-.signLink {
+.sign-link {
   color: $borderColor;
   text-decoration: none;
   font-size: 0.8rem;
 }
 
-.signLink:hover {
+.sign-link:hover {
   text-decoration: underline;
 }
 
-.modalText {
+.modal-text {
   text-align: left;
   margin-bottom: 60px;
 }
 
-.resendCode {
+.resend-code {
   border: none;
   left: 50%;
   position: relative;

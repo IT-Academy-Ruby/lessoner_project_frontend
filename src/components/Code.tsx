@@ -14,9 +14,9 @@ type CodeProps = {
 const Code = ({field, error}: CodeProps) => {
   return (
     <div className='code'>
-      <label className='codeLabel'> Code
+      <label className='code-label'> Code
         <input type='text'
-               className='codeInput'
+               className='code-input'
                maxLength={CODE.maxLength}
                {...field}
         />

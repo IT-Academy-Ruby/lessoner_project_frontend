@@ -93,7 +93,7 @@ const LoginPage = () => {
                          }}
                          className={isChecked ? 'checked' : 'unchecked'}/>
                   <label htmlFor='remember'
-                         className='labelCheckbox'>
+                         className='label-checkbox'>
                     Stay logged in
                   </label>
                 </div>
@@ -101,29 +101,29 @@ const LoginPage = () => {
                         buttonText={'Sign in'}
                         className={'button'}/>
                 <Link to={'/forgotPassword'}
-                      className='passwordLink link'>
+                      className='password-lLink link'>
                   Forgot your password?
                 </Link>
                 <Link to={'/users/sign_in/phone_number'}
-                      className='buttonLink'>
+                      className='button-link'>
                   Continue by phone number
                 </Link>
                 <a href='/'
-                   className='buttonLink'>
+                   className='button-link'>
                   Continue with Google
                 </a>
                 <a href='/'
-                   className='buttonLink'>
+                   className='button-link'>
                   Continue with Facebook
                 </a>
                 <a href='/'
-                   className='buttonLink'>
+                   className='button-link'>
                   Continue with VK
                 </a>
                 <p className='text'>
                   Don't you have an account?
                   <Link to={'/users/sign_up'}
-                        className='signLink'>
+                        className='sign-link'>
                     Sign up
                   </Link>
                 </p>

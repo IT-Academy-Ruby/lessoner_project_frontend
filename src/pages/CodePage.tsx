@@ -45,7 +45,7 @@ const CodePage = () => {
                   </span>
                 </Link>
                 <h2 className='title'>Enter the code</h2>
-                <p className='modalText'>
+                <p className='modal-text'>
                   Now a code will come to your phone. Enter it in a line.
                   <span>
                     <Link to='/users/sign_in/phone_number' className='link'>
@@ -56,7 +56,7 @@ const CodePage = () => {
                 <Field name='code'
                        component={Code}
                        error={touched.code ? errors.code : undefined}/>
-                <button type='button' className='link resendCode'>
+                <button type='button' className='link resend-code'>
                   Resend code
                 </button>
                 <Button buttonType={'submit'} buttonText={'Finish'} className={'button'}/>
