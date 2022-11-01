@@ -1,7 +1,7 @@
 import "./button.scss"
 import {MouseEventHandler} from "react";
 
-type ButtonProps = {
+export type ButtonProps = {
   buttonType: 'button' | 'submit' | 'reset';
   buttonText: string;
   onClick?: MouseEventHandler <HTMLButtonElement>;

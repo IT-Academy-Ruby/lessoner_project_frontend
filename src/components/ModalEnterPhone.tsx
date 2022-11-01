@@ -1,7 +1,7 @@
 import React,  {FC, useEffect, useState} from 'react';
 import './ModalEnterPhone.scss';
 
-interface CardProps {
+export interface CardProps {
   isActive: boolean;
   setIsActive: (bool: boolean) => void;
 }
