@@ -8,13 +8,13 @@ const Header = () => {
         <div>Lessoner</div>
       </Link>
       <Link to="/categories">
-        <div >Categories</div>
+        <div>Categories</div>
       </Link>
       <Link to="/lessons">
-        <div >Lessons</div>
+        <div>Lessons</div>
       </Link>
       <Link to="/about">
-        <div >About</div>
+        <div>About</div>
       </Link>
       <div>
         <button>English</button>
