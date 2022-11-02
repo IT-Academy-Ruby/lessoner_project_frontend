@@ -13,12 +13,10 @@ type PhoneNumberProps = {
   setPhoneNumber: (str: string) => void;
   isError: boolean;
 }
-
 const PhoneNumber = ({setError, error, phoneNumber, setPhoneNumber, isError}: PhoneNumberProps) => {
   const [isBlur, setIsBlur] = useState(false);
-
   const checkNumber = (value: string, country: any, e: React.ChangeEvent<HTMLInputElement>, formattedValue: string) => {
-    if (formattedValue.length !== country.format.length) {
+    if (formattedValue.split(' ').join('').length !== country.format.split(' ').join('').length) {
       setError('Phone number incorrect');
     } else {
       setError('');
@@ -40,6 +38,7 @@ const PhoneNumber = ({setError, error, phoneNumber, setPhoneNumber, isError}: Ph
           country={countries}
           excludeCountries={deleteCountry}
           value={phoneNumber}
+          enableLongNumbers={true}
           inputProps={{
             required: true,
           }}
