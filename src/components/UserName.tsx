@@ -10,7 +10,6 @@ type UserNameProps = {
   maxSymbol: number;
   field: {
     name: string,
-    onBlur: () => {},
     onChange: () => {},
     value: string
   };
@@ -21,7 +20,6 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
   // const userNameRegex = new RegExp('^[A-Z\d]{' + minSymbol + ',' + maxSymbol + '}$', 'i');
 
   const [value, setValue] = useState('');
-  const [isBlur, setIsBlur] = useState(false);
   const [extraStyle, setExtraStyle] = useState('');
   const [busyName, setBusyName] = useState('');
 
@@ -41,20 +39,16 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
     }
   }, [userStatus]);
 
-  const blurHandle = () => {
-    setIsBlur(true);
-  }
-
   return (
     <div className='userName'>
       <label className='userNameLabel'>Username
         <input type='text'
-               className={classNames('userNameInput', {[`${extraStyle}`]: (isBlur && error)})}
+               className={classNames('userNameInput', {[`${extraStyle}`]: error})}
                onKeyUp={fieldHandler}
                {...field}
-               onBlur={blurHandle}/>
+               />
       </label>
-      {(error && isBlur) && <span className='error'>{error}</span>}
+      {(error) && <span className='error'>{error}</span>}
     </div>
   )
 }

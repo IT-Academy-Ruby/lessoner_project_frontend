@@ -5,23 +5,17 @@ type GenderProps = {
   options: [];
   field: {
     name: string;
-    onBlur: () => {};
     onChange: () => {};
     value: string;
     label: boolean;
   };
   error: string;
-  setFieldValue: any;
   label: string;
 }
 
 const GenderSelector = ({field, error, options, label}: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    console.log(event.currentTarget.value)
-    field.value = event.currentTarget.value
-    console.log(field.name)
-    console.log(label)
-    // setFieldValue(field.name, event.currentTarget.value);
+    field.value=event.currentTarget.value;
   }
   return (
     <div>
@@ -33,7 +27,7 @@ const GenderSelector = ({field, error, options, label}: GenderProps) => {
             {...field}
             type='radio'
             value={option.label}
-            onChange={handleChange}
+            onClick={handleChange}
             checked={field.label}
             name={option.name}
           />{option.label}
@@ -48,8 +42,8 @@ const GenderSelector = ({field, error, options, label}: GenderProps) => {
               type='radio'/>{label}
           </label>
         </div>
-      )
-      }
+      )}
+      {(error) && <span className='error'>{error}</span>}
     </div>
   )
 }
