@@ -5,8 +5,7 @@ import { useTheme } from "../../../hooks/useTheme/useTheme";
 const Header = () => {
   let { theme, setTheme } = useTheme();
   const changeTheme = () => {
-    const selectTheme = localStorage.getItem("selectTheme");
-    if (selectTheme === "dark") {
+    if (theme === "dark") {
       setTheme("light");
     } else {
       setTheme("dark");
