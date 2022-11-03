@@ -26,19 +26,16 @@
     ],
     "rules": {
         "max-len": ["error",{"code":100}],
-        "react/jsx-filename-extension":[1,{"extension":[".js",".jsx",".tsx"]}],
         "indent": ["error",2],
-        "linebreak-style":["error","window"],
         "quotes":["error","double"],
         "semi":["error","always"],
         "object-curly-newline":["error",{"minProperties":3}],
-        "sort-imports":["error",{
-            "ignoreCase":false,
-            "ignoreDeclarationSort":false,
-            "ignorMemberSort":false,
-            "memberSyntaxSortOrder":["none","all","multiple","single"],
-            "allowSeparatedGroups":false,
-            "import/extensions":["never",{"css":"aleays"}]
+        "sort-imports": ["error", {
+            "ignoreCase": false,
+            "ignoreDeclarationSort": false,
+            "ignoreMemberSort": false,
+            "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+            "allowSeparatedGroups": false
         }]
        }
 }
