@@ -83,13 +83,13 @@ const FirstRegistrationForm = () => {
       >
         {({ errors, touched }) => {
           return (
-            <div className="First-Registration-Form">
+            <div className="first-registration-form">
               <Form>
                 <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
                 <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
                 <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
                 <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
-                <button className='Registration-Form-Submit-Button' type="submit">Next</button>
+                <button className='registration-form-submit-button' type="submit">Next</button>
               </Form>
               <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
               <FacebookButton />

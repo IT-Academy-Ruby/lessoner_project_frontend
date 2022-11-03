@@ -1,6 +1,6 @@
 @import "../constants.scss";
 
-.First-Registration-Form {
+.first-registration-form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -19,7 +19,7 @@
     margin: 5px 0;
   }
 
-  .Registration-Form-Submit-Button {
+  .registration-form-submit-button {
     line-height: 50px;
     background-color: $borderColor;
     color: white;
