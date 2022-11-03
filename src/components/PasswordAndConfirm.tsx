@@ -3,7 +3,7 @@ import open_eye from "./icons/open_eye.svg";
 import close_eye from "./icons/close_eye.svg";
 import "./passwordAndConfirm.scss";
 
-type PasswordProps = {
+export type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
   isConfirm: boolean;

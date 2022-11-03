@@ -5,7 +5,7 @@ import {getUser} from "../store/loginName/userSlice";
 import {AnyAction, Dispatch} from "redux";
 import classNames from 'classnames';
 
-type UserNameProps = {
+export type UserNameProps = {
   minSymbol: number;
   maxSymbol: number;
 }
