@@ -1,8 +1,8 @@
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
 import Body from "./components/body/Body";
+import { BrowserRouter } from "react-router-dom";
 
-function App(): any {
+function App() {
   return (
     <BrowserRouter>
       <div className="App">

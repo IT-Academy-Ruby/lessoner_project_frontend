@@ -1,6 +1,6 @@
-import React from "react";
 import './Email.scss';
 import { EMAIL } from "../constants";
+import React from "react";
 
 type EmailProps = {
   field: {
@@ -27,7 +27,7 @@ const Email = ({ field, error }: EmailProps): JSX.Element => {
         {error && <div><span className='error-Message'>{error}</span></div>}
       </label>
     </div>
-  )
+  );
 };
 
 export default Email;

@@ -20,13 +20,14 @@ const Checkbox = ({ field, error }: CheckboxProps): JSX.Element => {
             {...field}
           />
           <p>
-            I agree to the processing of my personal data in accordance with the <a href='#!'>Terms</a>
+            I agree to the processing of my personal data in accordance with the
+            <a href='#!'>Terms</a>
           </p>
         </div>
         {error && <div><span className='error-Message'>{error}</span></div>}
       </label>
     </div>
   );
-}
+};
 
 export default Checkbox;

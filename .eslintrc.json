@@ -30,12 +30,14 @@
         "quotes":["error","double"],
         "semi":["error","always"],
         "object-curly-newline":["error",{"minProperties":3}],
+        "import/no-unresolved": [2, { "commonjs": true, "amd": true }],
         "sort-imports": ["error", {
             "ignoreCase": false,
             "ignoreDeclarationSort": false,
             "ignoreMemberSort": false,
             "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
             "allowSeparatedGroups": false
+            // "import/extensions":["never",{"css":"always"}]
         }]
        }
 }
