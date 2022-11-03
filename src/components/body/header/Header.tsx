@@ -1,32 +1,59 @@
 import { Link } from "react-router-dom";
 import "./Header.css";
+import LANGUAGES from '../../translations/constants';
+import {FormattedMessage } from 'react-intl';
 
-const Header = () => {
+type HeaderProps = {
+  onLanguageSwitch: (arg: string) => void
+}
+
+const Header = (props: HeaderProps) => {
+  const { onLanguageSwitch } = props
+  
   return (
     <div className="nav-bar">
       <Link to="/">
-        <div>Lessoner</div>
+        <div>
+          <FormattedMessage id="app.name"/> 
+      </div>
       </Link>
       <Link to="/categories">
-        <div >Categories</div>
+        <div>
+        <FormattedMessage id="app.categories"/> 
+        </div>
       </Link>
       <Link to="/lessons">
-        <div >Lessons</div>
+        <div>
+          <FormattedMessage id="app.lessons" />
+        </div>
       </Link>
       <Link to="/about">
-        <div >About</div>
+        <div>
+          <FormattedMessage id="app.about" />
+        </div>
       </Link>
       <div>
-        <button>English</button>
-        <button>Русский</button>
+        {LANGUAGES.map(languageObj => {
+          const { code, label } = languageObj
+          
+          return (
+            <button onClick={() => onLanguageSwitch(code)}>{label}</button>
+         )
+       })}
       </div>
       <Link to="/users/sign_in">
-        <button>LogIn</button>
+        <button>
+          <FormattedMessage id="app.login" />
+        </button>
       </Link>
       <Link to="/users/sign_up">
-        <button>Register</button>
+        <button>
+          <FormattedMessage id="app.registration" />
+        </button>
       </Link>
     </div>
   );
 };
 export default Header;
+
+
