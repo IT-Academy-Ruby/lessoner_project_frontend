@@ -6,7 +6,7 @@ import {Formik, Field, Form} from "formik";
 import {CODE} from "../constants";
 
 interface FormErrors {
-  code: string;
+  [key: string]: string
 }
 
 interface FormValue {
@@ -16,25 +16,27 @@ interface FormValue {
 const CodeRegex = new RegExp('[0-9a-z]{5}', 'i');
 
 const validate = async (values: FormValue) => {
-  let errors: FormErrors = {code: ''};
+  let errors: FormErrors = {};
   if (!CodeRegex.test(values.code)) {
-    errors.code += 'An invalid character is present in the Code. ';
+    errors.code = 'An invalid character is present in the Code. ';
   }
   if (values.code.length < CODE.maxLength) {
     errors.code += 'Code should be 5 characters. ';
   }
   return errors;
 }
+
 const CodePage = () => {
+  const initialValue: FormValue = {
+    code: '',
+  }
   return (
     <div className='field'>
       <Formik
-        initialValues={{
-          code: ''
-        }}
+        initialValues={initialValue}
         validate={validate}
-        onSubmit={(values) => {
-          console.log(values) //for example that working
+        onSubmit={(values: object) => {
+          console.log(values); //for example that working
         }}>
         {({errors, touched}) => {
           return (

@@ -43,6 +43,7 @@ const validate = async (values: FormValues) => {
   if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
     errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
   }
+  console.log(errors)
   return errors;
 }
 
