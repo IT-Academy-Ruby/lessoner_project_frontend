@@ -1,4 +1,4 @@
-import "./button.scss"
+import "./button.scss";
 import {MouseEventHandler} from "react";
 
 type ButtonProps = {

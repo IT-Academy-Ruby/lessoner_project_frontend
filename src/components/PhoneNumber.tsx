@@ -19,7 +19,7 @@ const PhoneNumber = ({setError, error, phoneNumber, setPhoneNumber, isError}: Ph
     if (formattedValue.split(' ').join('').length !== country.format.split(' ').join('').length) {
       setError('Phone number incorrect');
     } else {
-      console.log(country.format)
+      console.log('format',country.format);
       setError('');
     }
     setPhoneNumber(value);

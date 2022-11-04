@@ -98,11 +98,12 @@ const LoginPage = () => {
                     Stay logged in
                   </label>
                 </div>
-                <Button buttonType={'submit'}
-                        buttonText={'Sign in'}
-                        className={'button'}/>
-                <Link to={'/forgotPassword'}
-                      className='password-lLink link'>
+                <Button
+                  buttonType='submit'
+                  buttonText='Sign in'
+                  className='button'
+                />
+                <Link to={'/forgotPassword'} className='password-link'>
                   Forgot your password?
                 </Link>
                 <Link to={'/users/sign_in/phone_number'}
