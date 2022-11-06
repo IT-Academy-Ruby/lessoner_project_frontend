@@ -32,7 +32,7 @@ const PhoneNumberPage = () => {
                      setPhoneNumber={setPhoneNumber}
                      isError={isError}/>
         <Button buttonType={'submit'}
-                buttonText={'Submit cod'}
+                buttonText={'Submit code'}
                 onClick={sendPhoneNumber}
                 className={'button'}/>
       </div>
