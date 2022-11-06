@@ -1,7 +1,7 @@
 import "./App.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Body from "./components/body/Body";
-import LoginPage from './pages/LoginPage';
+import PhoneNumberPage from "./pages/PhoneNumberPage";
 import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import CodePage from "./pages/CodePage";
@@ -12,7 +12,6 @@ import TranslationHelpers from './components/translations/translationHelpers';
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
-
   return (
   <IntlProvider locale={languageCode} messages={messages}>
     <BrowserRouter>
@@ -29,5 +28,4 @@ function App(): JSX.Element {
    </IntlProvider>
   );
 }
-
 export default App;

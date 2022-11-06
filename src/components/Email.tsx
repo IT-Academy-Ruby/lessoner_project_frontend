@@ -24,7 +24,7 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
                placeholder="username@gmail.com"
                {...field}
         />
-        {error && <div><span className='error-message'>{error}</span></div>}
+        {error && <span className='error-message'>{error}</span>}
       </label>
     </div>
   )
