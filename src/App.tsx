@@ -7,7 +7,7 @@ import CodePage from "./pages/CodePage";
 import {useState} from "react";
 import {IntlProvider} from 'react-intl';
 import TranslationHelpers from "./components/translations/translationHelpers";
-import {useAppDispatch, useAppSelector} from "./store/hooks";
+import {useAppDispatch} from "./store/hooks";
 import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
 import Search from "./components/Search";
 
@@ -15,7 +15,6 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
-  let isDefaultPage = useAppSelector(state => state.login.login);
 
   const exit = () => {
     dispatch(showDefaultPage());

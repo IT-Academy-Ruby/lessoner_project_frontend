@@ -5,7 +5,6 @@ import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useState, useEffect} from "react";
 import {changeEvent} from "../store/loginName/loginSlice";
 
-
 type EmailProps = {
   field: {
     name: string,
@@ -18,9 +17,9 @@ type EmailProps = {
 
 const Email = ({field, error}: EmailProps): JSX.Element => {
   const dispatch = useAppDispatch();
+  const loginEvent = useAppSelector(state => state.login.event);
   const JWT = useAppSelector(state => state.login.login);
-  let loginEvent = useAppSelector(state => state.login.event);
-  let lookButton = useAppSelector(state => state.login.lookButton);
+  const lookButton = useAppSelector(state => state.login.lookButton);
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
@@ -30,7 +29,8 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
     } else {
       setIsUser(false);
     }
-  }, [JWT, field.value, lookButton]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JWT, dispatch, field.value, lookButton]);
 
   return (
     <div className="email-wrapper">
