@@ -22,6 +22,7 @@ const Header = () => {
       navigate('');
       dispatch(showStudentPage());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDefaultPage, localJWT]);
 
   return (
