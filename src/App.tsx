@@ -3,7 +3,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Body from "./components/body/Body";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import FirstRegistrationForm from "./components/FirstRegistrationForm";
-import PhoneNumberPage from "./pages/PhoneNumberPage";
 import CodePage from "./pages/CodePage";
 import { useState } from 'react';
 import { IntlProvider } from 'react-intl'; 
