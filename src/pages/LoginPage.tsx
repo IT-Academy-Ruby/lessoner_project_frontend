@@ -5,8 +5,8 @@ import {Formik, Field, Form} from "formik";
 import Button from "../components/Button";
 import {Link} from "react-router-dom";
 import {useState} from "react";
-import {useAppDispatch} from "../store/hooks";
-import {getLogin} from "../store/loginName/loginSlice";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {getLogin, buttonEvent, lookEvent} from "../store/loginName/loginSlice";
 import {PASSWORD} from "../constants";
 
 interface FormValues {
@@ -16,7 +16,7 @@ interface FormValues {
 }
 
 interface FormErrors {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const emailInvalidationRules = [
@@ -32,23 +32,9 @@ const emailInvalidationRules = [
 
 const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
 
-const validate = async (values: FormValues) => {
-  let errors: FormErrors = {};
-  if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-    errors.email = 'Please enter a valid email address';
-  }
-  if (!passwordRegex.test(values.password)) {
-    errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
-  }
-  if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-    errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
-  }
-  console.log(errors)
-  return errors;
-}
-
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
+  let loading = useAppSelector(state => state.login.loading);
 
   const dispatch = useAppDispatch();
 
@@ -56,16 +42,34 @@ const LoginPage = () => {
     email: '',
     password: '',
     remember: isChecked,
-  }
+  };
 
   return (
     <div className='field'>
+      {loading &&
+        <h1 style={{position: 'fixed', left: '50%', transform: 'translate(-50%, -40%)', color: 'grey'}}>Loading
+          ...</h1>}
       <Formik
         initialValues={initialValues}
-        validate={validate}
-        onSubmit={(values: object) => {
-          dispatch(getLogin(values))
+        validate={async (values: FormValues) => {
+          let errors: FormErrors = {};
+          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+            errors.email = 'Please enter a valid email address';
+          }
+          if (!passwordRegex.test(values.password)) {
+            errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+          }
+          if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
+            errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
+          }
+          return errors;
+        }}
+        onSubmit={(values: FormValues) => {
+          dispatch(getLogin(values));
+          dispatch(buttonEvent());
+          dispatch(lookEvent());
           console.log(values); //for example that working
+
         }}>
         {({errors, touched}) => {
           return (

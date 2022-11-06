@@ -4,10 +4,10 @@ import Body from "./components/body/Body";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import LoginPage from "./pages/LoginPage";
 import CodePage from "./pages/CodePage";
-import {useState} from 'react';
+import {useState} from "react";
 import {IntlProvider} from 'react-intl';
-import TranslationHelpers from './components/translations/translationHelpers';
-import {useAppDispatch} from "./store/hooks";
+import TranslationHelpers from "./components/translations/translationHelpers";
+import {useAppDispatch, useAppSelector} from "./store/hooks";
 import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
 import Search from "./components/Search";
 
@@ -15,6 +15,12 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+  let isDefaultPage = useAppSelector(state => state.login.login);
+
+  const exit = () => {
+    dispatch(showDefaultPage());
+    localStorage.setItem('JWT', '');
+  }
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -29,7 +35,7 @@ function App(): JSX.Element {
           </Routes>
 
           <div style={{display: 'flex', flexDirection: 'column'}}>
-            <button onClick={() => dispatch(showDefaultPage())}>Not authorized</button>
+            <button onClick={exit}>Not authorized</button>
             <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
             <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>
             <button onClick={() => dispatch(showMyPage())}>Authorized creator in my studio section</button>

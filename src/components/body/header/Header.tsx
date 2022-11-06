@@ -1,16 +1,28 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./Header.css";
 import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
 import Bell from "../../icons/Bell.svg";
 import Avatar from "../../icons/Avatar.svg";
-import {useAppSelector} from "../../../store/hooks";
+import {useAppSelector, useAppDispatch} from "../../../store/hooks";
 import Magnifier from "../../icons/blackMagnifier.svg";
+import {useEffect} from "react";
+import {showStudentPage} from "../../../store/header/headerSlice";
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const isDefaultPage = useAppSelector(state => state.value.isDefaultHeader);
   const page = useAppSelector(state => state.value.page);
-  const userButtonText = page === 'sectionPage' ? 'My studio' : 'Go study'
+  const localJWT = useAppSelector(state => state.login.login);
+  const userButtonText = page === 'sectionPage' ? 'My studio' : 'Go study';
+
+  useEffect(() => {
+    if (localStorage.getItem('JWT')) {
+      navigate('');
+      dispatch(showStudentPage());
+    }
+  }, [isDefaultPage, localJWT]);
 
   return (
     <div className="side-bar">
