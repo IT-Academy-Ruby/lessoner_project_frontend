@@ -9,9 +9,9 @@ type BodyProps = {
 const Body = ({onLanguageSwitch}: BodyProps) => {
   return (
     <>
-      <Header onLanguageSwitch={onLanguageSwitch} />
+      <Header />
       <Main />
-      <Footer />
+      <Footer onLanguageSwitch={onLanguageSwitch} />
     </>
   );
 };

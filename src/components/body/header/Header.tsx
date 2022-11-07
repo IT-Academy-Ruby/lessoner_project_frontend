@@ -1,56 +1,49 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./Header.css";
-import LANGUAGES from '../../translations/constants';
-import {FormattedMessage } from 'react-intl';
+import Button from "../../Button";
+import Logo from "../../icons/Logo.svg";
+import Bell from "../../icons/Bell.svg";
+import Avatar from "../../icons/Avatar.svg";
+import {useAppSelector} from "../../../store/hooks";
+import Magnifier from "../../icons/blackMagnifier.svg";
 
-type HeaderProps = {
-  onLanguageSwitch: (arg: string) => void
-}
+const Header = () => {
+  const isDefaultPage = useAppSelector(state => state.value.isDefaultHeader);
+  const page = useAppSelector(state => state.value.page);
+  const userButtonText = page === 'sectionPage' ? 'My studio' : 'Go study'
 
-const Header = (props: HeaderProps) => {
-  const { onLanguageSwitch } = props
-  
   return (
-    <div className="nav-bar">
-      <Link to="/">
-        <div>
-          <FormattedMessage id="app.name"/> 
+    <div className="side-bar">
+      <div className='menu'>
+        <span className='menu-active'></span>
       </div>
-      </Link>
-      <Link to="/categories">
-        <div>
-        <FormattedMessage id="app.categories"/> 
+      <div className='header'>
+        <Link to='/n' className='logo-name'>
+          <img className='logo' src={Logo} alt='Logo'/>
+          <h4 className='title-header'>The lessoner</h4>
+          {(page === 'myPage' && isDefaultPage) && <Link to={'/myStudio'} className='my-studio'>My studio</Link>}
+        </Link>
+        <div className='search-button'>
+          <Link to='/search' className='magnifier'>
+            <img src={Magnifier} alt='search'/>
+          </Link>
+          <input className='search' type='text' placeholder='Search'/>
+          {isDefaultPage ?
+            <div className='user-item'>
+              {page &&
+                <Link to='/' className='section-button'>
+                  <Button buttonType='button' buttonText={userButtonText} className='user-button'/>
+                </Link>}
+              <img src={Bell} alt='Bell' className='bell'/>
+              <img src={Avatar} alt='Avatar' className='avatar'/>
+            </div>
+            :
+            <Link to="/users/sign_in" className='login-link'>
+              <img src={Avatar} alt='Avatar' className='avatar-login'/>
+              <Button buttonType='button' buttonText='Log in' className='button-login'/>
+            </Link>}
         </div>
-      </Link>
-      <Link to="/lessons">
-        <div>
-          <FormattedMessage id="app.lessons" />
-        </div>
-      </Link>
-      <Link to="/about">
-        <div>
-          <FormattedMessage id="app.about" />
-        </div>
-      </Link>
-      <div>
-        {LANGUAGES.map(languageObj => {
-          const { code, label } = languageObj
-          
-          return (
-            <button onClick={() => onLanguageSwitch(code)}>{label}</button>
-         )
-       })}
       </div>
-      <Link to="/users/sign_in">
-        <button>
-          <FormattedMessage id="app.login" />
-        </button>
-      </Link>
-      <Link to="/users/sign_up">
-        <button>
-          <FormattedMessage id="app.registration" />
-        </button>
-      </Link>
     </div>
   );
 };
