@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../store/hooks";
 import { getLogin } from "../store/loginName/loginSlice";
 import { PASSWORD } from "../constants";
+import { emailInvalidationRules, passwordRegex } from "../validationRules";
 
 interface FormValues {
   email: string;
@@ -18,19 +19,6 @@ interface FormValues {
 interface FormErrors {
   [key: string]: string
 }
-
-const emailInvalidationRules = [
-  /^\s*$/, // check string not empty
-  /^[^@]+$/, // @ should exist
-  /@[^@]*@/, // onle one @ is admissible
-  /^\./, // '.' can't be first symbol
-  /\.{2,}.+(?=@)/, // '.' can't repeat more than once in a row
-  /\.(?=@)/, // '.' can't be before @
-  /[^A-Za-z0-9_!#$%&'.*+\-/=?^`{|}~].*(?=@)/, // include only valid symbols before @
-  /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
-];
-
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
 
 const validate = async (values: FormValues) => {
   let errors: FormErrors = {};
@@ -110,7 +98,7 @@ const LoginPage = () => {
                   buttonText='Sign in'
                   className='button'
                 />
-                <Link to={'/forgotPassword'} className='passwordLink'>
+                <Link to={'/users/sign_in/reset_password'} className='passwordLink'>
                   Forgot your password?
                 </Link>
               </div>
