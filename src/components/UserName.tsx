@@ -16,8 +16,6 @@ type UserNameProps = {
 }
 const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Element => {
 
-  // const userNameRegex = new RegExp('^[A-Z\d]{' + minSymbol + ',' + maxSymbol + '}$', 'i');
-
   const [extraStyle, setExtraStyle] = useState('');
   const [busyName, setBusyName] = useState('');
 
@@ -45,6 +43,7 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
         />
       </label>
       {(error) && <span className='error'>{error}</span>}
+      {(busyName) && <span className='error'>{busyName}</span>}
     </div>
   )
 }

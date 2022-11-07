@@ -2,29 +2,28 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import "./birthday.scss";
-import { registerLocale} from  "react-datepicker";
-import {enGB} from 'date-fns/locale';
+import {registerLocale} from "react-datepicker";
+import {enGB} from "date-fns/locale";
+import {FieldInputProps, FormikProps} from "formik";
+
 registerLocale('enGB', enGB)
 
-type BirthdayPickerProps = {
-  field: {
-    name: string,
-    onChange: ()=>{},
-    // onBlur:React.FocusEventHandler<HTMLInputElement>,
-    value: string,
-  };
-  error: any;
+type BirthdayPickerProps<V = any, FormValues = any> = {
+  field: FieldInputProps<V>;
+  form: FormikProps<FormValues>;
+  error: string;
 }
 
-const BirthdayPicker = ({field, error}: BirthdayPickerProps): JSX.Element => {
+const BirthdayPicker = ({form, field, error}: BirthdayPickerProps): JSX.Element => {
 
-  const [birthday, setBirthday] = useState<Date>(new Date());
-  const [value, setValue] = useState('');
+  const [birthday, setBirthday] = useState<Date | null>(null);
 
-  const fieldHandler = (date: Date) => {
-    setValue(JSON.parse(JSON.stringify(date)))
-    setBirthday(date)
-    // field.value=value
+  const handleChange = (selectedDate: Date) => {
+    const {setFieldValue} = form;
+    const {name: fieldName} = field;
+
+    setBirthday(selectedDate);
+    setFieldValue(fieldName, selectedDate, true);
   }
 
   const minYear = new Date((new Date()).getTime() -
@@ -43,10 +42,8 @@ const BirthdayPicker = ({field, error}: BirthdayPickerProps): JSX.Element => {
           dropdownMode="select"
           className='birthdayInput'
           locale='enGB'
-          // selected={birthday}
-          {...field}
-          onChange={(value:Date) => fieldHandler(value)}
-          value={value}
+          selected={birthday}
+          onChange={(value: Date) => handleChange(value)}
         />
       </label>
       {error && <span className='error'>{error}</span>}

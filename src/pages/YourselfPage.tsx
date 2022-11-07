@@ -35,9 +35,9 @@ const validate = async (values: FormValues) => {
   if (values.userName.length > USERNAME.maxLength) {
     errors.userName = `UserName should be less ${USERNAME.maxLength}`;
   }
-  // if (!values.birthday) {
-  //   errors.birthday = 'Select Date';
-  // }
+  if (!values.birthday) {
+    errors.birthday = 'Select Date';
+  }
   if (!values.gender) {
     errors.gender = 'Select Gender';
   }
