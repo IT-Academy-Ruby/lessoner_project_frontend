@@ -2,7 +2,6 @@ import {useState, useEffect} from "react";
 import "./userName.scss";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {getUser} from "../store/loginName/userSlice";
-import {AnyAction, Dispatch} from "redux";
 import classNames from 'classnames';
 
 type UserNameProps = {
@@ -10,7 +9,7 @@ type UserNameProps = {
   maxSymbol: number;
   field: {
     name: string,
-    onChange: () => {},
+    onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string
   };
   error?: string;
@@ -19,7 +18,6 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
 
   // const userNameRegex = new RegExp('^[A-Z\d]{' + minSymbol + ',' + maxSymbol + '}$', 'i');
 
-  const [value, setValue] = useState('');
   const [extraStyle, setExtraStyle] = useState('');
   const [busyName, setBusyName] = useState('');
 
@@ -27,9 +25,7 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
   const userStatus = useAppSelector((state) => state.user.isLogged);
 
   const fieldHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    setValue(value);
-    dispatch(getUser(value));
+    dispatch(getUser(e.currentTarget.value));
   }
 
   useEffect(() => {
@@ -46,7 +42,7 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
                className={classNames('userNameInput', {[`${extraStyle}`]: error})}
                onKeyUp={fieldHandler}
                {...field}
-               />
+        />
       </label>
       {(error) && <span className='error'>{error}</span>}
     </div>

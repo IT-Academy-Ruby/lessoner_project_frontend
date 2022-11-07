@@ -14,7 +14,7 @@ const gender=[
 
 interface FormValues {
   userName: string;
-  birthday: any;
+  birthday: string;
   gender: string;
 }
 
@@ -35,12 +35,11 @@ const validate = async (values: FormValues) => {
   if (values.userName.length > USERNAME.maxLength) {
     errors.userName = `UserName should be less ${USERNAME.maxLength}`;
   }
-  if (!values.birthday) {
-    errors.birthday = 'Select Date';
-  }
+  // if (!values.birthday) {
+  //   errors.birthday = 'Select Date';
+  // }
   if (!values.gender) {
     errors.gender = 'Select Gender';
-    console.log(values.birthday)
   }
   return errors;
 }
@@ -51,11 +50,12 @@ const YourselfPage = () => {
       <Formik
         initialValues={{
           userName: '',
-          birthday: {},
+          birthday: '',
           gender: '',
         }}
-        onSubmit={() => {
-          alert('Hello word!')
+        onSubmit={(values) => {
+          console.log(values)
+          // alert('Hello word!')
         }}
         validate={validate}
       >

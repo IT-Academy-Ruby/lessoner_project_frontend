@@ -2,23 +2,29 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import "./birthday.scss";
-
+import { registerLocale} from  "react-datepicker";
+import {enGB} from 'date-fns/locale';
+registerLocale('enGB', enGB)
 
 type BirthdayPickerProps = {
   field: {
     name: string,
-    onChange:React.ChangeEventHandler<HTMLInputElement>,
-    // value: string,
+    onChange: ()=>{},
+    // onBlur:React.FocusEventHandler<HTMLInputElement>,
+    value: string,
   };
-  error: string;
+  error: any;
 }
 
 const BirthdayPicker = ({field, error}: BirthdayPickerProps): JSX.Element => {
-  const [birthday, setBirthday] = useState<Date | undefined>();
+
+  const [birthday, setBirthday] = useState<Date>(new Date());
   const [value, setValue] = useState('');
 
   const fieldHandler = (date: Date) => {
+    setValue(JSON.parse(JSON.stringify(date)))
     setBirthday(date)
+    // field.value=value
   }
 
   const minYear = new Date((new Date()).getTime() -
@@ -36,10 +42,11 @@ const BirthdayPicker = ({field, error}: BirthdayPickerProps): JSX.Element => {
           showYearDropdown
           dropdownMode="select"
           className='birthdayInput'
-          selected={birthday}
+          locale='enGB'
+          // selected={birthday}
           {...field}
-          name='birthday'
-          onChange={(e: Date) => fieldHandler(e)}
+          onChange={(value:Date) => fieldHandler(value)}
+          value={value}
         />
       </label>
       {error && <span className='error'>{error}</span>}

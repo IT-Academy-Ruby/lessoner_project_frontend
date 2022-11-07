@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import classes from './GenderSelector.module.scss';
+import './GenderSelector.module.scss';
 
 type GenderProps = {
   options: [];
   field: {
     name: string;
-    onChange: () => {};
+    onChange: React.ChangeEventHandler<HTMLInputElement>;
     value: string;
     label: boolean;
   };
@@ -15,7 +14,7 @@ type GenderProps = {
 
 const GenderSelector = ({field, error, options, label}: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
-    field.value=event.currentTarget.value;
+    field.value = event.currentTarget.value;
   }
   return (
     <div>
