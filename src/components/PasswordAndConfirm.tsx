@@ -34,8 +34,8 @@ const PasswordAndConfirm = ({ minSymbol, maxSymbol, isConfirm, field, error }: P
           className={`passwordInput ${error ? `errorInput` : ``}`}
           minLength={minSymbol}
           maxLength={maxSymbol}
-          placeholder={(!isConfirm) ? "At least 6 characters" : undefined}
           {...field}
+          placeholder={(!isConfirm) ? `At least ${minSymbol} characters` : undefined}
           required />
         <img className='image' alt='eye' src={visiblePassword ? open_eye : close_eye} onClick={showPassword} />
         {error && <span className='error'>{error}</span>}
