@@ -59,7 +59,7 @@ const LoginPage = () => {
           if (!passwordRegex.test(values.password)) {
             errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
           }
-          if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
+          if (values.password.length > PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
             errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
           }
           return errors;

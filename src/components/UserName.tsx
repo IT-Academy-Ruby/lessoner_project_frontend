@@ -10,7 +10,7 @@ type UserNameProps = {
   maxSymbol: number;
 }
 const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
-  const userNameRegex = new RegExp('^[A-Z\d]{' + minSymbol + ',' + maxSymbol + '}$', 'i');
+  const userNameRegex = new RegExp('^[A-Z0-9]{' + minSymbol + ',' + maxSymbol + '}$', 'i');
   const [value, setValue] = useState('');
   const [isBlur, setIsBlur] = useState(false);
   const [extraStyle, setExtraStyle] = useState('');

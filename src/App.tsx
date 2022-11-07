@@ -16,7 +16,7 @@ function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
 
-  const exit = () => {
+  const signOut = () => {
     dispatch(showDefaultPage());
     localStorage.setItem('JWT', '');
   }
@@ -34,7 +34,7 @@ function App(): JSX.Element {
           </Routes>
 
           <div style={{display: 'flex', flexDirection: 'column'}}>
-            <button onClick={exit}>Not authorized</button>
+            <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
             <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>
             <button onClick={() => dispatch(showMyPage())}>Authorized creator in my studio section</button>

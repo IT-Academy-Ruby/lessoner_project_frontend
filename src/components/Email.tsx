@@ -4,6 +4,7 @@ import {EMAIL} from "../constants";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useState, useEffect} from "react";
 import {changeEvent} from "../store/loginName/loginSlice";
+import classNames from 'classnames';
 
 type EmailProps = {
   field: {
@@ -23,7 +24,7 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
-    if ((!JWT && loginEvent) && (field.value.length > 0)) {
+    if (!JWT && loginEvent && field.value.length) {
       setIsUser(true);
       dispatch(changeEvent());
     } else {
@@ -38,13 +39,13 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
         <input type="text"
                minLength={EMAIL.minLength}
                maxLength={EMAIL.maxLength}
-               className={"email-input" + (error ? " invalid-email-input" : "")}
+               className={classNames("email-input",{" invalid-email-input":error})}
                placeholder="username@gmail.com"
                {...field}
                required
         />
         {error && <span className='error-message'>{error}</span>}
-        {isUser && <span className='error-message'>you entered invalid</span>}
+        {isUser && <span className='error-message'>Incorrect Email address or password</span>}
       </label>
     </div>
   )

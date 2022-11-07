@@ -13,7 +13,7 @@ interface FormValue {
   code: string;
 }
 
-const CodeRegex = new RegExp('[0-9a-z]{5}', 'i');
+const CodeRegex = new RegExp('[0-9a-z]{'+CODE.maxLength+'}', 'i');
 
 const validate = async (values: FormValue) => {
   let errors: FormErrors = {};
@@ -21,7 +21,7 @@ const validate = async (values: FormValue) => {
     errors.code = 'An invalid character is present in the Code. ';
   }
   if (values.code.length < CODE.maxLength) {
-    errors.code += 'Code should be 5 characters. ';
+    errors.code += `Code should be ${CODE.maxLength} characters. `;
   }
   return errors;
 }
