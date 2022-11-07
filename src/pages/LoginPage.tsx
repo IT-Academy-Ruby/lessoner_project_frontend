@@ -106,8 +106,9 @@ const LoginPage = () => {
                   </label>
                 </div>
                 <Button
-                  buttonType={'submit'}
-                  buttonText={'Sign in'}
+                  buttonType='submit'
+                  buttonText='Sign in'
+                  className='button'
                 />
                 <Link to={'/forgotPassword'} className='passwordLink'>
                   Forgot your password?

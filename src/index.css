@@ -64,6 +64,7 @@ code {
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
 }
+
 *,
 *::before,
 *::after {
@@ -83,3 +84,4 @@ html[data-theme="light"] {
   background:var(--bg-color);
   color:var(--text-color);
 }
+

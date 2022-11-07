@@ -17,14 +17,14 @@ const Email = ({ field, error }: EmailProps): JSX.Element => {
     <div className="Email-Wrapper">
       <label className="Email-Label">Email
         <input type="text"
-          required
           minLength={EMAIL.minLength}
           maxLength={EMAIL.maxLength}
           className={"Email-Input" + (error ? " invalid-Email-Input" : "")}
           placeholder="username@gmail.com"
           {...field}
+          required
         />
-        {error && <div><span className='error-Message'>{error}</span></div>}
+        {error && <span className='error-Message'>{error}</span>}
       </label>
     </div>
   )

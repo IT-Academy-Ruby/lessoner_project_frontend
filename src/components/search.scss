@@ -1,0 +1,42 @@
+.search-component {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+.search-arrow {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  padding-left: 23px;
+  top: 0;
+  bottom: 0;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+.search-input {
+  font-family: 'Apercu Pro';
+  font-weight: 600;
+  font-size: 16px;
+  width: 100%;
+  height: 64px;
+  padding-left: 56px;
+  border: none;
+}
+
+.search-input::placeholder {
+  color: #E3E1EC;
+}
+
+.search-cross {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  right: 0;
+  top: 0;
+}
