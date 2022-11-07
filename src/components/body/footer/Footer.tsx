@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom";
-import "./Header.css";
 import LANGUAGES from '../../translations/constants';
 import {FormattedMessage } from 'react-intl';
 
@@ -10,7 +9,7 @@ const Footer = (props: FooterProps) => {
   const { onLanguageSwitch } = props
 
   return (
-    <div className="nav-bar">
+    <div style={{display:'flex'}}>
       <Link to="/">
         <div>
           <FormattedMessage id="app.name"/>
