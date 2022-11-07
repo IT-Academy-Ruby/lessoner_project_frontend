@@ -80,7 +80,7 @@ const YourselfPage = () => {
                        options={gender}
                        component={GenderSelector}
                        error={touched.gender ? errors.gender : undefined}/>
-                <Button buttonType='submit' buttonText='Finish'/>
+                <Button buttonType='submit' buttonText='Finish' className='button'/>
               </div>
             </Form>
           )

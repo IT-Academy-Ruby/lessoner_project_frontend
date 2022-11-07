@@ -22,9 +22,10 @@ const PhoneNumberPage = () => {
                      phoneNumber={phoneNumber}
                      setPhoneNumber={setPhoneNumber}/>
         <Button buttonType='submit'
-                buttonText='Submit code'/>
+                buttonText='Submit code'
+                className='button'/>
       </div>
     </div>
-  )
+)
 }
 export default PhoneNumberPage;
