@@ -1,4 +1,4 @@
-import './GenderSelector.module.scss';
+import './GenderSelector.scss';
 
 type GenderProps = {
   options: [];
@@ -18,6 +18,7 @@ const GenderSelector = ({field, error, options, label}: GenderProps) => {
   }
   return (
     <div>
+      <span className='gender-title'>Select your gender</span>
       {options ? (
         options.map((option: { value: string; label: string; name: string; genderValue: string }) => (
           <span key={option.genderValue}>
