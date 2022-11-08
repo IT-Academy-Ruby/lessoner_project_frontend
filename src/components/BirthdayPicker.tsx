@@ -1,20 +1,17 @@
-import DatePicker from "react-datepicker";
+import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import "./birthday.scss";
-import {registerLocale} from "react-datepicker";
 import {enGB} from "date-fns/locale";
 import {FieldInputProps, FormikProps} from "formik";
-
-registerLocale('enGB', enGB)
 
 type BirthdayPickerProps<V = any, FormValues = any> = {
   field: FieldInputProps<V>;
   form: FormikProps<FormValues>;
   error: string;
 }
-
 const BirthdayPicker = ({form, field, error}: BirthdayPickerProps): JSX.Element => {
+  registerLocale('enGB', enGB);
 
   const [birthday, setBirthday] = useState<Date | null>(null);
 
