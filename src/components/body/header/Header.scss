@@ -1,3 +1,7 @@
+@import "../../../constants.scss";
+
+@include ApercuPro;
+
 .side-bar {
   position: relative;
   display: flex;
@@ -5,7 +9,7 @@
   justify-content: space-between;
   height: 64px;
   background: #FFFFFF;
-  border: 1px solid gray; /*for exam after delete border*/
+  border: 1px solid gray;
 }
 
 .menu {
@@ -18,7 +22,7 @@
   display: inline-block;
   width: 18px;
   top: 25%;
-  border: 2px solid #0F1C2A;
+  border: 2px solid $blueDarkColor;
   position: relative;
 }
 
@@ -26,7 +30,7 @@
   content: '';
   position: absolute;
   width: 18px;
-  border: 2px solid #0F1C2A;
+  border: 2px solid $blueDarkColor;
   left: -2px;
 }
 
@@ -64,7 +68,7 @@
   min-width: 230px;
   margin-left: 24px;
   text-decoration: none;
-  color: #0F1C2A;
+  color: $blueDarkColor;
 }
 
 .title-header {
@@ -73,10 +77,9 @@
 }
 
 .my-studio {
-  color: #455FCE;
+  color: $blueLightColor;
   padding-left: 16px;
   margin-left: 16px;
-  font-family: 'Apercu Pro';
   font-style: normal;
   font-weight: 600;
   border-left: 1px solid #E3E1EC;
@@ -84,6 +87,8 @@
   line-height: 150%;
   letter-spacing: 0.15px;
   text-decoration: none;
+  font-family: 'ApercuPro', sans-serif;
+
 }
 
 .search-button {
@@ -102,7 +107,7 @@
 .search {
   width: 100%;
   height: 32px;
-  border: 1px solid #E3E1EC;
+  border: 1px solid $greySearchColor;
   border-radius: 8px;
   background: #FFFFFF;
   margin-right: 16px;
@@ -114,7 +119,7 @@
   background-repeat: no-repeat;
   background-position: left;
   text-indent: 20px;
-  color: #E3E1EC;
+  color: $greySearchColor;
 }
 
 .login-link {
@@ -138,8 +143,8 @@
 .button-login {
   width: 115px;
   height: 32px;
-  font-family: 'Apercu Pro';
-  background: #455FCE;
+  font-family: 'ApercuPro', sans-serif;
+  background: $blueLightColor;
   color: #EAEAEA;
   border: none;
   border-radius: 28px;
@@ -155,12 +160,12 @@
 
 .user-button {
   width: 141px;
-  border: 1px solid #455FCE;
+  border: 1px solid $blueLightColor;
   border-radius: 28px;
-  font-family: 'Apercu Pro';
+  font-family: 'ApercuPro', sans-serif;
   font-weight: 600;
   font-size: 16px;
-  color: #455FCE;
+  color: $blueLightColor;
   padding: 6px 16px;
   background: white;
 }
@@ -187,15 +192,15 @@
   .title-header, .section-button {
     display: none;
   }
-  
+
   .header {
     grid-template-columns: repeat(6, 1fr);
   }
-  
+
   .logo-name {
     min-width: 170px;
   }
-  
+
   .search-button {
     grid-column-start: 4;
     grid-column-end: 7;
@@ -209,52 +214,52 @@
     grid-template-columns: 50px 122px 1fr 90px;
     gap: 16px;
   }
-  
+
   .menu {
     grid-column-start: 1;
     grid-column-end: 2;
     max-width: 50px;
   }
-  
+
   .header {
     display: grid;
     grid-template-columns: 122px 1fr 80px;
     grid-column-start: 2;
     grid-column-end: 5;
   }
-  
+
   .logo-name {
     grid-column-start: 1;
     grid-column-end: 2;
     margin-left: 0;
   }
-  
+
   .search-button {
     margin-right: 16px;
     grid-column-start: 3;
     grid-column-end: 4;
     min-width: 70px;
   }
-  
+
   .search {
     display: none;
   }
-  
+
   .magnifier {
     display: flex;
     margin-right: 29px;
   }
-  
+
   .bell {
     display: none;
   }
-  
+
   .avatar-login {
     display: flex;
     width: 32px;
     border-radius: 50%;
   }
-  
+
   .button-login {
     display: none;
   }

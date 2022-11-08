@@ -2,6 +2,7 @@ import {useState} from "react";
 import open_eye from "./icons/open_eye.svg";
 import close_eye from "./icons/close_eye.svg";
 import "./passwordAndConfirm.scss";
+import classNames from 'classnames';
 
 type PasswordProps = {
   minSymbol: number;
@@ -31,7 +32,7 @@ const PasswordAndConfirm = ({minSymbol, maxSymbol, isConfirm, field, error}: Pas
     <div className='password'>
       <label className='password-label'>{isConfirm ? 'Confirm password' : 'Password'}
         <input type={visiblePassword ? 'text' : 'password'}
-               className={`password-input ${error ? `error-input` : ``}`}
+               className={classNames('password-input', {'error-input': error})}
                minLength={minSymbol}
                maxLength={maxSymbol}
                {...field}

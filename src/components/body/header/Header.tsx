@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import "./Header.css";
+import "./Header.scss";
 import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
 import Bell from "../../icons/Bell.svg";
