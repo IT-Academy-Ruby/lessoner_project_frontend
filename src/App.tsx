@@ -10,6 +10,7 @@ import {useAppDispatch} from "./store/hooks";
 import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
 import Search from "./components/Search";
 
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());

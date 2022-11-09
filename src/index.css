@@ -62,8 +62,19 @@ code {
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
+  background-color:var(--background-color);
+  color:var(--color);
 
 }
 /**, *::before, *::after {*/
 /*  box-sizing: border-box;*/
 /*}*/
+
+html[data-theme="dark"]{
+  background-color: #1B1B1F;
+  color:#E4E1E6;
+}
+html[data-theme="light"]{
+  background-color:#E4E1E6 ;
+  color:#1B1B1F;
+}
