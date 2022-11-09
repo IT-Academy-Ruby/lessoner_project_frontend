@@ -1,4 +1,5 @@
 import "./App.css";
+
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Body from "./components/body/Body";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
@@ -15,6 +16,7 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+
 
   return (
    <IntlProvider locale={languageCode} messages={messages}>
