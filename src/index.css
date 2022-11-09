@@ -1,8 +1,8 @@
 @font-face {
   font-family: ApercuPro;
-  src: url("./fonts/font/ApercuPro.woff2"),
-  url("./fonts/font/ApercuPro.woff"),
-  url("./fonts/font/ApercuPro.ttf");
+  src: url("./fonts/ApercuPro/ApercuPro.woff2"),
+  url("./fonts/ApercuPro/ApercuPro.woff"),
+  url("./fonts/ApercuPro/ApercuPro.ttf");
 }
 
 body {
