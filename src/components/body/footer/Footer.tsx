@@ -11,7 +11,7 @@ const Footer = (props: FooterProps) => {
   const dark="dark";
   const light="light";
   const { onLanguageSwitch } = props;
-  let {theme, setTheme}=useTheme();
+  const {theme, setTheme}=useTheme();
   const changeTheme=()=>{
     if(theme===dark){
       setTheme(light);
@@ -21,7 +21,7 @@ const Footer = (props: FooterProps) => {
   };
 
   return (
-    <div style={{display:'flex'}}>
+    <div style={{display:"flex"}}>
       <button id="change-theme" onClick={changeTheme}>change Theme</button>
 
       <Link to="/">

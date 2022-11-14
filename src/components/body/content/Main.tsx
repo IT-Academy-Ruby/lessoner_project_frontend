@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./about/About";
 import Categories from "./categories/Categories";
+import FirstRegistrationForm from "../../FirstRegistrationForm";
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
-import About from "./about/About";
 import LoginPage from "../../../pages/LoginPage";
-import FirstRegistrationForm from "../../FirstRegistrationForm";
 
 const Content = () => {
   return (
