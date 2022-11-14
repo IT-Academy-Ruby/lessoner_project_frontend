@@ -1,13 +1,15 @@
 import "../components/modal/modal.scss";
-import Email from "../components/Email";
-import Password from "../components/PasswordAndConfirm";
-import { Formik, Field, Form } from "formik";
+import {
+  Field, Form, Formik 
+} from "formik";
 import Button from "../components/Button";
+import Email from "../components/Email";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useAppDispatch } from "../store/hooks";
-import { getLogin } from "../store/loginName/loginSlice";
 import { PASSWORD } from "../constants";
+import Password from "../components/PasswordAndConfirm";
+import { getLogin } from "../store/loginName/loginSlice";
+import { useAppDispatch } from "../store/hooks";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
@@ -30,21 +32,26 @@ const emailInvalidationRules = [
   /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
 ];
 
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
+ "," + PASSWORD.maxLength + "}$", "i");
 
 const validate = async (values: FormValues) => {
-  let errors: FormErrors = {};
+  const errors: FormErrors = {};
   if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-    errors.email = 'Please enter a valid email address';
+    errors.email = "Please enter a valid email address";
   }
   if (!passwordRegex.test(values.password)) {
-    errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+    errors.password = `An invalid character is present in the password. Password must be between 
+    ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters;
+     upper or lower case Latin letters (a–z, A–Z);
+      numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
   }
   if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-    errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
+    errors.password = `Password must be between 
+    ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
   }
   return errors;
-}
+};
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -52,18 +59,18 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: isChecked,
-  }
+  };
 
   return (
     <div className='field'>
       <Formik
         initialValues={initialValues}
         validate={validate}
-        onSubmit={(values: object) => {
-          dispatch(getLogin(values))
+        onSubmit={(values: {email: string, password: string}) => {
+          dispatch(getLogin(values));
           console.log(values); //for example that working
         }}>
         {({ errors, touched }) => {
@@ -94,9 +101,9 @@ const LoginPage = () => {
                     type='checkbox'
                     id='remember'
                     onClick={() => {
-                      setIsChecked(!isChecked)
+                      setIsChecked(!isChecked);
                     }}
-                    className={isChecked ? 'checked' : 'unchecked'}
+                    className={isChecked ? "checked" : "unchecked"}
                   />
                   <label
                     htmlFor='remember'
@@ -110,15 +117,15 @@ const LoginPage = () => {
                   buttonText='Sign in'
                   className='button'
                 />
-                <Link to={'/forgotPassword'} className='passwordLink'>
+                <Link to={"/forgotPassword"} className='passwordLink'>
                   Forgot your password?
                 </Link>
               </div>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
-  )
-}
+  );
+};
 export default LoginPage;
