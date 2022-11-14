@@ -1,13 +1,14 @@
 import "../components/modal/modal.scss";
+import { FormattedMessage , useIntl } from "react-intl";
 import Button from "../components/Button";
+import {Link} from "react-router-dom";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
-import {Link} from "react-router-dom";
 
-const defaultCountry = '375';
-
+const defaultCountry = "375";
 const PhoneNumberPage = () => {
-  const [error, setError] = useState('');
+  const intl = useIntl();
+  const [error, setError] = useState("");
   const [phoneNumber, setPhoneNumber] = useState(defaultCountry);
 
   return (
@@ -16,15 +17,17 @@ const PhoneNumberPage = () => {
         <Link to='/'>
           <span className='close'></span>
         </Link>
-        <h2 className='title'>Enter your phone number</h2>
+        <h2 className='title'>
+          <FormattedMessage id="app.phoneNumberPage.title" />
+        </h2>
         <PhoneNumber setError={setError}
-                     error={error}
-                     phoneNumber={phoneNumber}
-                     setPhoneNumber={setPhoneNumber}/>
+          error={error}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}/>
         <Button buttonType='submit'
-                buttonText='Submit code'/>
+          buttonText={intl.formatMessage({ id: "app.phoneNumberPage.submit" })} />
       </div>
     </div>
-  )
-}
+  );
+};
 export default PhoneNumberPage;

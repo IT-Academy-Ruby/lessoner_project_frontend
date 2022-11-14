@@ -5,4 +5,11 @@ export let messages_ru= {
     "app.about": "О нас",
     "app.login": "Авторизация",
     "app.registration": "Регистрация",
+    "app.navbarStudyStudio.home": "Дом",
+    "app.navbarStudyStudio.categories": "Категории",
+    "app.navbarStudyStudio.subscription": "Подписка",
+    "app.navbarStudyStudio.myLessons": "Мои уроки",
+    "app.navbarStudyStudio.watchLater": "Смотреть позже",
+    "app.navbarStudyStudio.myLesson": "Мой урок",
+    "app.navbarStudyStudio.management": "Управление",
 }

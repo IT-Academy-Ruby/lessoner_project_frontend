@@ -1,4 +1,10 @@
+import { FormattedMessage } from "react-intl";
+
 const Lessoner = () => {
-  return <div>Lesonner</div>;
+  return (
+    <div>
+      <FormattedMessage id="app.lessoner" />
+    </div>
+  );
 };
 export default Lessoner;

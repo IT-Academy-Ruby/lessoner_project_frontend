@@ -5,4 +5,11 @@ export let messages_en= {
     "app.about": "About",
     "app.login": "LogIn",
     "app.registration": "Register",
+    "app.navbarStudyStudio.home": "Home",
+    "app.navbarStudyStudio.categories": "Categories",
+    "app.navbarStudyStudio.subscription": "Subscription",
+    "app.navbarStudyStudio.myLessons": "My lessons",
+    "app.navbarStudyStudio.watchLater": "Watch later",
+    "app.navbarStudyStudio.myLesson": "My lesson",
+    "app.navbarStudyStudio.management": "Management",
 }

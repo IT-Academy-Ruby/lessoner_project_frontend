@@ -11,4 +11,5 @@ export const emailInvalidationRules = [
   /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
 ];
 
-export const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+export const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" +
+  PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
