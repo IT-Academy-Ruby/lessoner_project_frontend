@@ -36,4 +36,5 @@ export const messages_en = {
   "app.loginPage.password": "Forgot your password?",
   "app.header.placeholder": "Search",
   "app.phoneNumber.err": "Phone number incorrect",
+  "app.theme": "change theme",
 };

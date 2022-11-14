@@ -36,4 +36,5 @@ export const messages_ru = {
   "app.loginPage.password": "Забыли пароль?",
   "app.header.placeholder": "Поиск",
   "app.phoneNumber.err": "Некорректный номер телефона",
+  "app.theme": "сменить тему",
 };

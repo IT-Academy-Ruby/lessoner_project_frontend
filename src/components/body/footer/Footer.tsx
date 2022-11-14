@@ -1,15 +1,25 @@
-import {FormattedMessage } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import LANGUAGES from "../../../translations/constants";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useTheme } from "../../../services/hooks/use-theme";
 
 type FooterProps = {
   onLanguageSwitch: (arg: string) => void
 }
 const Footer = (props: FooterProps) => {
   const { onLanguageSwitch } = props;
+  const {theme,setTheme}=useTheme();
+  const changeTheme=()=>{
+    const dark="dark";
+    const light="light";
+    {theme === dark ? setTheme( light ) : setTheme( dark );}
+  };
 
   return (
     <div style={{display:"flex"}}>
+      <button onClick={ changeTheme }>
+        <FormattedMessage id="app.theme"/>
+      </button>
       <Link to="/">
         <div>
           <FormattedMessage id="app.name"/>
