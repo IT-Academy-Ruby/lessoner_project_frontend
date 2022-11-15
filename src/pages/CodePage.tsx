@@ -16,7 +16,7 @@ interface FormValue {
 const CodeRegex = new RegExp('[0-9a-z]{5}', 'i');
 
 const validate = async (values: FormValue) => {
-  let errors: FormErrors = {};
+  const errors: FormErrors = {};
   if (!CodeRegex.test(values.code)) {
     errors.code = 'An invalid character is present in the Code. ';
   }

@@ -1,13 +1,17 @@
-import Main from "./content/Main";
-import Header from "./header/Header";
 import Footer from "./footer/Footer";
+import Header from "./header/Header";
+import Main from "./content/Main";
 
-const Body = (props: any) => {
+type BodyProps = {
+  onLanguageSwitch: (arg: string) => void
+}
+
+const Body = ({onLanguageSwitch}: BodyProps) => {
   return (
     <>
       <Header />
       <Main />
-      <Footer />
+      <Footer onLanguageSwitch={onLanguageSwitch} />
     </>
   );
 };

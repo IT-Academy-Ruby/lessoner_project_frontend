@@ -1,7 +1,7 @@
-const BACKEND_URL = 'https://lessoner.herokuapp.com';
+const BACKEND_URL = "https://lessoner.herokuapp.com";
 const EMAIL = {
   minLength: 3,
-  maxLength: 256,
+  maxLength: 256
 };
 const PASSWORD = {
   minLength: 6,
@@ -16,3 +16,4 @@ const CODE = {
 }
 const DEFAULT_COUNTRY = '375';
 export {BACKEND_URL, EMAIL, PASSWORD, USERNAME, CODE, DEFAULT_COUNTRY};
+

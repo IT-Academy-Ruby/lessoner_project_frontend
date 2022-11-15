@@ -1,13 +1,13 @@
 import "../components/modal/modal.scss";
-import Email from "../components/Email";
-import Password from "../components/PasswordAndConfirm";
-import {Formik, Field, Form} from "formik";
+import {Field, Form, Formik} from "formik";
 import Button from "../components/Button";
+import Email from "../components/Email";
 import {Link} from "react-router-dom";
-import {useState} from "react";
-import {useAppDispatch} from "../store/hooks";
-import {getLogin} from "../store/loginName/loginSlice";
 import {PASSWORD} from "../constants";
+import Password from "../components/PasswordAndConfirm";
+import {getLogin} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
+import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -30,22 +30,27 @@ const emailInvalidationRules = [
   /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
 ];
 
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
+  "," + PASSWORD.maxLength + "}$", "i");
 
 const validate = async (values: FormValues) => {
-  let errors: FormErrors = {};
+  const errors: FormErrors = {};
   if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-    errors.email = 'Please enter a valid email address';
+    errors.email = "Please enter a valid email address";
   }
   if (!passwordRegex.test(values.password)) {
-    errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+    errors.password = `An invalid character is present in the password. Password must be between 
+    ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters;
+     upper or lower case Latin letters (a–z, A–Z);
+      numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
   }
   if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-    errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
+    errors.password = `Password must be between 
+    ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
   }
   console.log(errors)
   return errors;
-}
+};
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -53,87 +58,92 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: isChecked,
-  }
+  };
 
   return (
     <div className='field'>
       <Formik
         initialValues={initialValues}
         validate={validate}
-        onSubmit={(values: object) => {
-          dispatch(getLogin(values))
+        onSubmit={(values: { email: string, password: string }) => {
+          dispatch(getLogin(values));
           console.log(values); //for example that working
         }}>
         {({errors, touched}) => {
           return (
             <Form>
-              <div className='modal'>
-                <Link to='/'>
-                  <span className='close'>
+              <div className="modal">
+                <Link to="/">
+                  <span className="close">
                   </span>
                 </Link>
-                <h2 className='title'>Login to the Lessoner</h2>
-                <Field name='email'
+                <h2 className="title">Login to the Lessoner</h2>
+                <Field name="email"
                        component={Email}
                        error={touched.email ? errors.email : undefined}/>
-                <Field name='password'
+                <Field name="password"
                        component={Password}
                        minSymbol={PASSWORD.minLength}
                        maxSymbol={PASSWORD.maxLength}
                        isConfirm={false}
                        error={touched.password ? errors.password : undefined}/>
-                <div className='checkbox'>
-                  <Field name='remember'
-                         type='checkbox'
-                         id='remember'
-                         onClick={() => {
-                           setIsChecked(!isChecked)
-                         }}
-                         className={isChecked ? 'checked' : 'unchecked'}/>
-                  <label htmlFor='remember'
-                         className='label-checkbox'>
+                <div className="checkbox">
+                  <Field
+                    name="remember"
+                    type="checkbox"
+                    id="remember"
+                    onClick={() => {
+                      setIsChecked(!isChecked);
+                    }}
+                    className={isChecked ? "checked" : "unchecked"}
+                  />
+                  <label
+                    htmlFor="remember"
+                    className="label-checkbox"
+                  >
                     Stay logged in
                   </label>
                 </div>
-                <Button buttonType={'submit'}
-                        buttonText={'Sign in'}
-                        className={'button'}/>
-                <Link to={'/forgotPassword'}
-                      className='password-lLink link'>
+                <Button
+                  buttonType="submit"
+                  buttonText="Sign in"
+                  className="button"
+                />
+                <Link to={"/forgotPassword"} className="password-link">
                   Forgot your password?
                 </Link>
-                <Link to={'/users/sign_in/phone_number'}
-                      className='button-link'>
+                <Link to={"/users/sign_in/phone_number"}
+                      className="button-link">
                   Continue by phone number
                 </Link>
-                <a href='/'
-                   className='button-link'>
+                <a href="/"
+                   className="button-link">
                   Continue with Google
                 </a>
                 <a href='/'
-                   className='button-link'>
+                   className="button-link">
                   Continue with Facebook
                 </a>
-                <a href='/'
-                   className='button-link'>
+                <a href="/"
+                   className="button-link">
                   Continue with VK
                 </a>
-                <p className='text'>
-                  Don't you have an account?
-                  <Link to={'/users/sign_up'}
-                        className='sign-link'>
+                <p className="text">
+                  Don`t you have an account?
+                  <Link to={"/users/sign_up"}
+                        className="sign-link">
                     Sign up
                   </Link>
                 </p>
               </div>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
-  )
-}
+  );
+};
 export default LoginPage;
