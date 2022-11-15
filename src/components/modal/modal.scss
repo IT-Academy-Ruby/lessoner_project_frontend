@@ -1,20 +1,22 @@
-.field {
+@import "./src/constants";
+
+#root {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: auto;
-  position: absolute;
-  width: 95%;
-  height: 95%;
+}
+
+.field {
+  width: 30%;
+  padding: 1rem;
+  background: whitesmoke;
+  margin: auto;
 }
 
 .modal {
   position: relative;
-  width: 50vw;
-  height: 50vh;
-  margin: auto;
-  border: 2px solid #0747a6;
-  visibility: hidden;
+  padding: 0 1rem;
+  border: 2px solid $borderColor;
+  text-align: initial;
 }
 
 .close {
@@ -31,8 +33,8 @@
 
 .close:before, .close:after {
   position: absolute;
-  width: 2rem;
-  height: 0.2rem;
+  width: 1rem;
+  height: 0.3rem;
   right: 0.5rem;
   top: 1.5rem;
   background: black;
@@ -47,11 +49,46 @@
   transform: rotate(-45deg);
 }
 
-.button {
-  padding: 1rem;
-  margin: 2rem;
+.title {
+  margin-top: 2rem;
+  font-size: 1.8rem;
 }
 
-.show {
-  visibility: visible;
+.passwordLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: $borderColor;
+  margin: 1rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.unchecked, .checked {
+  appearance: none;
+  height: 1rem;
+  width: 1rem;
+  border: 2px solid $borderColor;
+  box-sizing: border-box;
+  margin: 3px 3px 3px 4px;
+}
+
+.checked::before {
+  content: "\2714";
+  font-size: 1rem;
+  color: #000;
+  position: relative;
+  right: 1px;
+  top: -5px;
+}
+
+.labelCheckbox {
+  font-weight: bold;
+  margin-left: 0.5rem;
 }

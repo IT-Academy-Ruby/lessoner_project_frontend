@@ -1,7 +1,6 @@
 import {useState} from "react";
 import requestApi from "./services/request";
 
-
 function App() {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
