@@ -2,7 +2,7 @@ import "./NavbarStudyStudio.scss";
 import {FC, useState} from "react";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
-import {useIntl} from "react-intl";
+import { useIntl } from "react-intl";
 
 interface NavbarStudyStudioProps {
   menuType: string;
@@ -21,31 +21,31 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
       id: 2, value: "Close", href: "#!", icon: "close", place: "openclose"
     }, 
     {
-      id: 3, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.home"})}`,
+      id: 3, value: intl.formatMessage({ id: " app.navbarStudyStudio.home" }),
       href: "#!", icon: "home", place: "study"
     }, 
     {
-      id: 4, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.categories"})}`, 
+      id: 4, value: intl.formatMessage({id: "app.navbarStudyStudio.categories"}), 
       href: "#!", icon: "categories", place: "study"
     }, 
     {
-      id: 5, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.subscription"})}`,
+      id: 5, value: intl.formatMessage({id: "app.navbarStudyStudio.subscription"}),
       href: "#!", icon: "subscription", place: "study"
     }, 
     {
-      id: 6, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.myLessons"})}`,
+      id: 6, value: intl.formatMessage({id: "app.navbarStudyStudio.myLessons"}),
       href: "#!", icon: "hat_mylesson", place: "study"
     }, 
     {
-      id: 7, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.watchLater"})}`,
+      id: 7, value: intl.formatMessage({id: "app.navbarStudyStudio.watchLater"}),
       href: "#!", icon: "watch_later", place: "study"
     }, 
     {
-      id: 8, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.myLesson"})}`,
+      id: 8, value: intl.formatMessage({id: "app.navbarStudyStudio.myLesson"}),
       href: "#!", icon: "my_lesson", place: "studio"
     }, 
     {
-      id: 9, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.management"})}`,
+      id: 9, value: intl.formatMessage({id: "app.navbarStudyStudio.management"}),
       href: "#!", icon: "management", place: "studio"
     }, 
   ];
