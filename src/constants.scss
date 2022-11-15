@@ -1,24 +1,27 @@
-$borderColor: #0B456F;
+$borderColor: #9A9AA3;
 $warningColor: #FF0000;
-$font: 'Inter';
-$formWidth: 270px;
+$font: 'Apercu Pro', sans-serif;
+$formWidth: 373px;
 
 
 @mixin fieldsFont {
   & {
     font-family: $font;
-    font-size: 17px;
-    letter-spacing: -0.022em;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
     font-style: normal;
+    color: #1B1B1F;
   }
 }
 
 @mixin textFieldInput {
   line-height: 40px;
-  border: 2px solid $borderColor;
-  border-radius: 4px;
-  width: 262px;
+  border: 1px solid $borderColor;
+  border-radius: 8px;
+  width: 373px;
   @include fieldsFont;
+  margin-top: 5px;
 
   &:focus {
     border: 3px solid $borderColor;

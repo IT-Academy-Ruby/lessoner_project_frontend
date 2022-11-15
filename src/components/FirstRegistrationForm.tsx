@@ -3,11 +3,12 @@ import "./FirstRegistrationForm.scss";
 import {
   Field, Form, Formik 
 } from "formik";
-import { FormattedMessage , useIntl } from "react-intl";
+import Button from "./Button";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
 import PasswordAndConfirm from "./PasswordAndConfirm";
 import { isEmailExists } from "../services/api/isEmailExists";
+import { useIntl } from "react-intl";
 
 interface FormValues {
   email: string;
@@ -86,14 +87,17 @@ const FirstRegistrationForm = () => {
       >
         {({ errors, touched }) => {
           return (
-            <Form className="First-Registration-Form">
+            <Form className="first-registration-form">
+              <h1 className="first-registration-form__title">
+                {intl.formatMessage({ id: "app.firstRegistrationForm.title" })}
+              </h1>
               <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
               <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
               <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
               <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
-              <button type="submit">
-                <FormattedMessage id="app.firstRegistrationForm.button" />
-              </button>
+              <Button buttonType='submit' 
+                buttonText={intl.formatMessage({ id: "app.firstRegistrationForm.button" })} 
+                className="button-reg"/>
             </Form>
           );
         }}

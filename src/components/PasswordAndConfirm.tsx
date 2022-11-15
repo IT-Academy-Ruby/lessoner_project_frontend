@@ -41,7 +41,8 @@ const PasswordAndConfirm = ({
         minLength={minSymbol}
         maxLength={maxSymbol}
         {...field}
-        required />
+        required 
+        placeholder= {intl.formatMessage({ id: "app.passwordAndConfirm.placeholder" })} />
       <img className='image' alt='eye' 
         src={visiblePassword ? open_eye : close_eye} onClick={showPassword} />
       {error && <span className='error'>{error}</span>}

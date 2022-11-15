@@ -4,11 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
   margin: 20px 0 0;
 }
 
 .Email-Label {
   font-weight: bold;
+  width: 100%;
   margin-bottom: 5px;
   @include fieldsFont;
 }
@@ -18,8 +20,8 @@
   box-sizing: border-box;
   padding: 0.5em;
   border: 2px solid $borderColor;
-  border-radius: 0.2em;
   @include fieldsFont;
+  @include textFieldInput;
 
   &:focus {
     border: 2px solid $borderColor;
