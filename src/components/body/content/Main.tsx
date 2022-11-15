@@ -3,6 +3,7 @@ import About from "./about/About";
 import Categories from "./categories/Categories";
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
+import MyStudio from "./my_studio/MyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
 
@@ -10,6 +11,7 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
+        <Route path="/myStudio" element={<MyStudio />} />
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/lessons" element={<Lessons />} />
