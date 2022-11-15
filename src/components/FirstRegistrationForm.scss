@@ -1,0 +1,21 @@
+@import "../constants.scss";
+
+.First-Registration-Form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: $formWidth;
+
+  button {
+    line-height: 40px;
+    border: 2px solid $borderColor;
+    border-radius: 4px;
+    width: $formWidth;
+    @include fieldsFont;
+    background-color: $borderColor;
+    color: white;
+    @include fieldsFont;
+    margin-top: 20px;
+  }
+}
