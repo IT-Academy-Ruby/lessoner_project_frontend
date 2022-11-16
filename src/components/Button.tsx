@@ -8,7 +8,9 @@ type ButtonProps = {
   className?: string;
 }
 
-const Button = ({buttonType, buttonText, onClick, className}: ButtonProps) => {
+const Button = ({
+  buttonType, buttonText, onClick, className
+}: ButtonProps) => {
   return (
     <div>
       <button type={buttonType} className={className} onClick={onClick}>{buttonText}</button>

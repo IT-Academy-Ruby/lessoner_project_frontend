@@ -1,5 +1,5 @@
-import {CODE} from "../constants";
 import "./code.scss";
+import {CODE} from "../constants";
 
 type CodeProps = {
   field?: {
@@ -13,16 +13,18 @@ type CodeProps = {
 
 const Code = ({field, error}: CodeProps) => {
   return (
-    <div className='code'>
-      <label className='code-label'> Code
-        <input type='text'
-               className='code-input'
-               maxLength={CODE.maxLength}
-               {...field}
+    <div className="code">
+      <label className="code-label"> Code
+        <input
+          type="text"
+          className="code-input"
+          maxLength={CODE.maxLength}
+          {...field}
         />
-        {error && <span className='error'>{error}</span>}
+        {error && <span className="error">{error}</span>}
       </label>
     </div>
-  )
-}
+  );
+};
+
 export default Code;

@@ -1,5 +1,7 @@
 import "../components/modal/modal.scss";
-import {Field, Form, Formik} from "formik";
+import {
+  Field, Form, Formik
+} from "formik";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import {Link} from "react-router-dom";
@@ -48,7 +50,6 @@ const validate = async (values: FormValues) => {
     errors.password = `Password must be between 
     ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
   }
-  console.log(errors)
   return errors;
 };
 
@@ -81,15 +82,19 @@ const LoginPage = () => {
                   </span>
                 </Link>
                 <h2 className="title">Login to the Lessoner</h2>
-                <Field name="email"
-                       component={Email}
-                       error={touched.email ? errors.email : undefined}/>
-                <Field name="password"
-                       component={Password}
-                       minSymbol={PASSWORD.minLength}
-                       maxSymbol={PASSWORD.maxLength}
-                       isConfirm={false}
-                       error={touched.password ? errors.password : undefined}/>
+                <Field
+                  name="email"
+                  component={Email}
+                  error={touched.email ? errors.email : undefined}
+                />
+                <Field
+                  name="password"
+                  component={Password}
+                  minSymbol={PASSWORD.minLength}
+                  maxSymbol={PASSWORD.maxLength}
+                  isConfirm={false}
+                  error={touched.password ? errors.password : undefined}
+                />
                 <div className="checkbox">
                   <Field
                     name="remember"
@@ -112,29 +117,42 @@ const LoginPage = () => {
                   buttonText="Sign in"
                   className="button"
                 />
-                <Link to={"/forgotPassword"} className="password-link">
+                <Link
+                  to={"/forgotPassword"}
+                  className="password-link"
+                >
                   Forgot your password?
                 </Link>
-                <Link to={"/users/sign_in/phone_number"}
-                      className="button-link">
+                <Link
+                  to={"/users/sign_in/phone_number"}
+                  className="button-link"
+                >
                   Continue by phone number
                 </Link>
-                <a href="/"
-                   className="button-link">
+                <a
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Google
                 </a>
-                <a href='/'
-                   className="button-link">
+                <a
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Facebook
                 </a>
-                <a href="/"
-                   className="button-link">
+                <a
+                  href="/"
+                  className="button-link"
+                >
                   Continue with VK
                 </a>
                 <p className="text">
                   Don`t you have an account?
-                  <Link to={"/users/sign_up"}
-                        className="sign-link">
+                  <Link
+                    to={"/users/sign_up"}
+                    className="sign-link"
+                  >
                     Sign up
                   </Link>
                 </p>

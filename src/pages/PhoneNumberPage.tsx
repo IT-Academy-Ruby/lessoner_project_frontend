@@ -1,10 +1,11 @@
 import "../components/modal/modal.scss";
 import {FormattedMessage, useIntl} from "react-intl";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";
+import {DEFAULT_COUNTRY} from "../constants";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {DEFAULT_COUNTRY} from "../constants";
+
 
 const PhoneNumberPage = () => {
   const intl = useIntl();

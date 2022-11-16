@@ -1,12 +1,16 @@
 import "./App.css";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {
+  BrowserRouter, Route, Routes
+} from "react-router-dom";
+import {
+  showDefaultPage, showMyPage, showSectionPage, showStudentPage
+} from "./store/header/headerSlice";
 import Body from "./components/body/Body";
-import LoginPage from './pages/LoginPage';
-import FirstRegistrationForm from "./components/FirstRegistrationForm";
-import PhoneNumberPage from "./pages/PhoneNumberPage";
 import CodePage from "./pages/CodePage";
-import {showDefaultPage, showMyPage, showSectionPage, showStudentPage} from "./store/header/headerSlice";
+import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import {IntlProvider} from "react-intl";
+import LoginPage from "./pages/LoginPage";
+import PhoneNumberPage from "./pages/PhoneNumberPage";
 import Search from "./components/Search";
 import TranslationHelpers from "./translations/translationHelpers";
 import {useAppDispatch} from "./store/hooks";
