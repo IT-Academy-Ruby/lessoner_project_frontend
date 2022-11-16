@@ -36,4 +36,11 @@ export const messages_ru = {
   "app.loginPage.password": "Забыли пароль?",
   "app.header.placeholder": "Поиск",
   "app.phoneNumber.err": "Некорректный номер телефона",
+  "app.navbarStudyStudio.home": "Дом",
+  "app.navbarStudyStudio.categories": "Категории",
+  "app.navbarStudyStudio.subscription": "Подписка",
+  "app.navbarStudyStudio.myLessons": "Мои уроки",
+  "app.navbarStudyStudio.watchLater": "Смотреть позже",
+  "app.navbarStudyStudio.myLesson": "Мой урок",
+  "app.navbarStudyStudio.management": "Управление",
 };

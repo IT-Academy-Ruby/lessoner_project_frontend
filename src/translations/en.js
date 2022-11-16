@@ -36,4 +36,11 @@ export const messages_en = {
   "app.loginPage.password": "Forgot your password?",
   "app.header.placeholder": "Search",
   "app.phoneNumber.err": "Phone number incorrect",
+  "app.navbarStudyStudio.home": "Home",
+  "app.navbarStudyStudio.categories": "Categories",
+  "app.navbarStudyStudio.subscription": "Subscription",
+  "app.navbarStudyStudio.myLessons": "My lessons",
+  "app.navbarStudyStudio.watchLater": "Watch later",
+  "app.navbarStudyStudio.myLesson": "My lesson",
+  "app.navbarStudyStudio.management": "Management",
 };
