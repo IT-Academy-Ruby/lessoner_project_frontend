@@ -2,7 +2,9 @@ $borderColor: #0B456F;
 $warningColor: #FF0000;
 $font: 'Inter';
 $formWidth: 270px;
-
+$blueDarkColor: #0F1C2A;
+$blueLightColor: #455FCE;
+$greySearchColor: #9A9AA3;
 
 @mixin fieldsFont {
   & {
