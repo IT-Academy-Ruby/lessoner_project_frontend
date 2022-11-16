@@ -1,19 +1,17 @@
 @import "../constants.scss";
 
-.Email-Wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.email-wrapper {
   margin: 20px 0 0;
 }
 
-.Email-Label {
-  font-weight: bold;
-  margin-bottom: 5px;
+.email-label {
+  display: block;
   @include fieldsFont;
+  margin: 5px 0;
+  font-weight: bold;
 }
 
-.Email-Input {
+.email-input {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
@@ -26,12 +24,12 @@
   }
 }
 
-.invalid-Email-Input {
+.invalid-email-input {
   border: 2px solid $warningColor;
   color: $warningColor;
 }
 
-.error-Message {
+.error-message {
   color: $warningColor;
   display: block;
   margin-top: 0.5em;
