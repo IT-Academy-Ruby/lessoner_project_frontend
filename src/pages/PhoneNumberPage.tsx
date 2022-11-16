@@ -6,7 +6,6 @@ import {DEFAULT_COUNTRY} from "../constants";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
 
-
 const PhoneNumberPage = () => {
   const intl = useIntl();
   const [error, setError] = useState("Phone number incorrect");
