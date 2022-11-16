@@ -1,0 +1,50 @@
+[
+    {
+      "id": 0,
+      "imagePreview": "http://picsum.photos/200/300",
+      "title": "Ruby on rails from scratch. First moves in developmentdddddddddddddddddd",
+      "status": "Published",
+      "duration": "11:24",
+      "published": "2022.10.21",
+      "view": 12,
+      "category": "IT",
+      "rating": "5.0",
+      "totalVotes": "(126)"
+    },
+    {
+      "id": 1,
+      "imagePreview": "https://bs-uploads.toptal.io/blackfish-uploads/components/seo/content/og_image_file/og_image/777655/react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png",
+      "title": "React",
+      "status": "Archived",
+      "duration": "1:11:24",
+      "published": "2022.10.41",
+      "view": 124,
+      "category": "Music",
+      "rating": "3.0",
+      "totalVotes": "(12)"
+    },
+    {
+      "id": 2,
+      "imagePreview": "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg",
+      "title": "JS",
+      "status": "Draft",
+      "duration": "2:11:24",
+      "published": "2021.10.41",
+      "view": 124,
+      "category": "Design",
+      "rating": "1.0",
+      "totalVotes": "(120)"
+    },
+    {
+      "id": 3,
+      "imagePreview": "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg",
+      "title": "JS",
+      "status": "Draft",
+      "duration": "2:11:24",
+      "published": "2021.10.41",
+      "view": 124,
+      "category": "Design",
+      "rating": "1.0",
+      "totalVotes": "(120)"
+    }
+]

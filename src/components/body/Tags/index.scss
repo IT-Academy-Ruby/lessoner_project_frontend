@@ -1,0 +1,35 @@
+.tag {
+    align-items: center;
+    border-radius: 4px;
+    min-width: 8px;
+    height: 23px;
+    padding: 0 8px;
+}
+
+.tag-status {
+    background-color: #455FCE;
+    color: #FFFFFF;
+    font-family: 'ApercuPro';
+    font-size: 12px;
+    line-height: 21px;
+    height: 21px;
+}
+
+.tag-time {
+    background-color: #5A5D72;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 23px;
+    height: 23px;  
+}
+
+.tag-category {
+    background: linear-gradient(0deg, rgba(93, 150, 217, 0.08), rgba(93, 150, 217, 0.08)), #FEFBFF;
+    color: #455FCE;
+    font-family: 'ApercuPro';
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 23px;
+    height: 23px;
+}
