@@ -5,13 +5,11 @@ type Header = {
   page: string;
 }
 
-const initialState: Header = {
-  isDefaultHeader: false,
-  page: '',
-}
+const initialState: Header = {isDefaultHeader: false,
+  page: "",};
 
 const headerSlice = createSlice({
-  name: 'header',
+  name: "header",
   initialState,
   reducers: {
     showDefaultPage: (state) => {
@@ -19,16 +17,18 @@ const headerSlice = createSlice({
     },
     showStudentPage: state => {
       state.isDefaultHeader = true;
-      state.page = '';
+      state.page = "";
     },
     showSectionPage: (state) => {
-      state.page = 'sectionPage';
+      state.page = "sectionPage";
     },
     showMyPage: (state) => {
-      state.page = 'myPage';
+      state.page = "myPage";
     },
 
   }
-})
-export const {showDefaultPage, showStudentPage, showSectionPage, showMyPage} = headerSlice.actions;
+});
+export const {
+  showDefaultPage, showStudentPage, showSectionPage, showMyPage
+} = headerSlice.actions;
 export default headerSlice.reducer;

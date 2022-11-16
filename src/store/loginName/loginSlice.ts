@@ -2,9 +2,10 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {BACKEND_URL} from "../../constants";
 
 export const getLogin = createAsyncThunk(
-  'login/getLoginStatus',
-  async (value: any) => {
-    const response = await fetch(`${BACKEND_URL}/login?email=${value.email}&password=${value.password}`, {method:'POST'});
+  "login/getLoginStatus",
+  async (value: {email: string, password: string}) => {
+    const response = await fetch(`${BACKEND_URL}/login?email=
+    ${value.email}&password=${value.password}`, {method:"POST"});
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
@@ -12,22 +13,20 @@ export const getLogin = createAsyncThunk(
       return null;
     }
   }
-)
+);
 type Login = {
   login: boolean;
 }
-const initialState: Login = {
-  login: false,
-}
+const initialState: Login = {login: false,};
 const loginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder.addCase(getLogin.fulfilled, (state, action) => {
       state.login = action.payload;
-      localStorage.setItem('JWT', `${state.login}`);
-    })
+      localStorage.setItem("JWT", `${state.login}`);
+    });
   }
-})
+});
 export default loginSlice.reducer;

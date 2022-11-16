@@ -1,10 +1,11 @@
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin,
+{ ReactFacebookFailureResponse, ReactFacebookLoginInfo } from "react-facebook-login";
 import { FACEBOOK_APP } from "../constants";
 
 const FacebookButton = () => {
-  const responseFacebook = (response: any) => {
+  const responseFacebook = (response: ReactFacebookFailureResponse | ReactFacebookLoginInfo) => {
     console.log(response);
-  }
+  };
 
   return (
     <div>

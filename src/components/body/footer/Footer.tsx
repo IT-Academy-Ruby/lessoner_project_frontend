@@ -1,15 +1,15 @@
+import {FormattedMessage } from "react-intl";
+import LANGUAGES from "../../../translations/constants";
 import {Link} from "react-router-dom";
-import LANGUAGES from '../../translations/constants';
-import {FormattedMessage } from 'react-intl';
 
 type FooterProps = {
   onLanguageSwitch: (arg: string) => void
 }
 const Footer = (props: FooterProps) => {
-  const { onLanguageSwitch } = props
+  const { onLanguageSwitch } = props;
 
   return (
-    <div style={{display:'flex'}}>
+    <div style={{display:"flex"}}>
       <Link to="/">
         <div>
           <FormattedMessage id="app.name"/>
@@ -32,11 +32,11 @@ const Footer = (props: FooterProps) => {
       </Link>
       <div>
         {LANGUAGES.map(languageObj => {
-          const { code, label } = languageObj
+          const { code, label } = languageObj;
 
           return (
-            <button onClick={() => onLanguageSwitch(code)}>{label}</button>
-          )
+            <button key={code} onClick={() => onLanguageSwitch(code)}>{label}</button>
+          );
         })}
       </div>
       <Link to="/users/sign_in">
