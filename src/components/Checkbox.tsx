@@ -2,7 +2,7 @@ import { FormattedMessage } from "react-intl";
 import classes from "./Checkbox.module.scss";
 
 type CheckboxProps = {
-  field: {
+  field?: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
     onChange: React.ChangeEventHandler<HTMLInputElement>,

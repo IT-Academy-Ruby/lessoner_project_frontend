@@ -1,9 +1,21 @@
-.button {
-  padding: 1rem;
-  width: 100%;
-  background: #0747a6;
-  color: white;
-  border: 0;
-  margin: 1rem 0;
+@import "../constants.scss";
+
+.button__page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $formWidth;
+  height: 46px;
+  padding: 10px;
+  margin: $marginBottomMain;
+  border-radius: 28px;
+  background: #455FCE;
+  border: none;
+  font-family: 'Apercu Pro', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
 }
 

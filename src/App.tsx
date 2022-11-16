@@ -7,8 +7,8 @@ import {
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import { IntlProvider } from "react-intl"; 
+import { Pages } from "./components/Pages";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
-import { RegistrationPage } from "./components/RegistrationPage";
 import Search from "./components/Search";
 import TranslationHelpers from "./translations/translationHelpers";
 import { useAppDispatch } from "./store/hooks";
@@ -26,7 +26,7 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route path='/users/sign_in' element={<PhoneNumberPage/>}/>
-            <Route path='/users/sign_up' element={<RegistrationPage/>}/>
+            <Route path='/users/sign_up' element={<Pages pageType={"registration"}/>}/>
             <Route path='/search' element={<Search/>}/>
           </Routes>
 

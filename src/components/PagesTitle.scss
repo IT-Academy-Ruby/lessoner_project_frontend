@@ -1,0 +1,16 @@
+@import "../constants.scss";
+
+.title__page {
+  width: 373px;
+  text-align: center;
+  font-family: 'Apercu Pro', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 130%;
+  margin: $marginBottomMain; 
+}
+
+.title__confirm {
+  font-size: 28px;
+}

@@ -1,12 +1,23 @@
+@import "../constants.scss";
+
 .wrapper {
   & label {
+    cursor: pointer;
     & div {
       display: flex;
       flex-direction: row;
     }
-
     & input {
+      margin: $marginBottomMain;
       margin-right: 10px;
+    }
+    & p {
+      margin: $marginBottomMain;
+      text-align: left;
+    }
+    & p a {
+      text-decoration: none;
+      color: #455FCE;
     }
   }
 }

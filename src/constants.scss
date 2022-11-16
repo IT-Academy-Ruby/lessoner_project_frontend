@@ -1,7 +1,8 @@
 $borderColor: #9A9AA3;
 $warningColor: #FF0000;
 $font: 'Apercu Pro', sans-serif;
-$formWidth: 373px;
+$formWidth: 100%;
+$marginBottomMain: 0 0 30px 0;
 
 
 @mixin fieldsFont {
@@ -19,7 +20,7 @@ $formWidth: 373px;
   line-height: 40px;
   border: 1px solid $borderColor;
   border-radius: 8px;
-  width: 373px;
+  width: 100%;
   @include fieldsFont;
   margin-top: 5px;
 

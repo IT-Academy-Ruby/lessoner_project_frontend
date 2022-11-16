@@ -1,4 +1,5 @@
 import "./button.scss";
+import { Fragment } from "react";
 import {MouseEventHandler} from "react";
 
 type ButtonProps = {
@@ -12,9 +13,9 @@ const Button = ({
   buttonType, buttonText, onClick, className
 }: ButtonProps) => {
   return (
-    <div>
+    <Fragment>
       <button type={buttonType} className={className} onClick={onClick}>{buttonText}</button>
-    </div>
+    </Fragment>
   );
 };
 export default Button;

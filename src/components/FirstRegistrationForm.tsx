@@ -88,16 +88,13 @@ const FirstRegistrationForm = () => {
         {({ errors, touched }) => {
           return (
             <Form className="first-registration-form">
-              <h1 className="first-registration-form__title">
-                {intl.formatMessage({ id: "app.firstRegistrationForm.title" })}
-              </h1>
               <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
               <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
               <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
               <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
               <Button buttonType='submit' 
-                buttonText={intl.formatMessage({ id: "app.firstRegistrationForm.button" })} 
-                className="button-reg"/>
+                buttonText={intl.formatMessage({ id: "app.button.next"})} 
+                className="button__page"/>
             </Form>
           );
         }}
