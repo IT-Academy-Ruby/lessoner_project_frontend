@@ -8,11 +8,11 @@ type BodyProps = {
 
 const Body = ({onLanguageSwitch}: BodyProps) => {
   return (
-    <>
+    <div>
       <Header />
       <Main />
       <Footer onLanguageSwitch={onLanguageSwitch} />
-    </>
+    </div>
   );
 };
 export default Body;

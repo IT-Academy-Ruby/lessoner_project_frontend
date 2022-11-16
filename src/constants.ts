@@ -1,4 +1,6 @@
 const BACKEND_URL = "https://lessoner.herokuapp.com";
+const CODE = { maxLength: 5, };
+const DEFAULT_COUNTRY = "375";
 const EMAIL = { minLength: 3, maxLength: 256 };
 const FACEBOOK_APP = { id: "680825793391734" };
 const GOOGLE_APP =
@@ -9,5 +11,5 @@ const USERNAME = { min: 3, max: 256 };
 const VK_APP = { id: 51463254 };
 
 export {
-  BACKEND_URL, EMAIL, FACEBOOK_APP, GOOGLE_APP, PASSWORD, REDIRECT_URL, USERNAME, VK_APP
+  BACKEND_URL, CODE, DEFAULT_COUNTRY, EMAIL, FACEBOOK_APP, GOOGLE_APP, PASSWORD, REDIRECT_URL, USERNAME, VK_APP
 };

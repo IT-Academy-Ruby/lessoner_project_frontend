@@ -1,42 +1,28 @@
 @import "../constants.scss";
 
-.password {
+.code {
   margin: 20px 0 0;
 }
 
-.password-label {
+.code-label {
   display: block;
   @include fieldsFont;
   margin: 5px 0;
   font-weight: bold;
 }
 
-.password-input {
+.code-input {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.5em;
+  padding: 0.1em;
   border: 2px solid $borderColor;
-  border-radius: 0.2em;
-  @include fieldsFont;
+  border-radius: 0.1em;
+  font-size: 30px;
+  text-align: center;
 
   &:focus {
     border: 2px solid $borderColor;
   }
-}
-
-.image {
-  display: inline-block;
-  position: relative;
-  margin-bottom: -0.5em;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-  margin-left: -2em;
-}
-
-.error-input {
-  border: 2px solid $warningColor;
-  color: $warningColor;
 }
 
 .error {

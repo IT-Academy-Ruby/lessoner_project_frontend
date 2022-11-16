@@ -1,15 +1,15 @@
 import "../components/modal/modal.scss";
 import {
-  Field, Form, Formik 
+  Field, Form, Formik
 } from "formik";
 import Button from "../components/Button";
 import Email from "../components/Email";
-import { Link } from "react-router-dom";
-import { PASSWORD } from "../constants";
+import {Link} from "react-router-dom";
+import {PASSWORD} from "../constants";
 import Password from "../components/PasswordAndConfirm";
-import { getLogin } from "../store/loginName/loginSlice";
-import { useAppDispatch } from "../store/hooks";
-import { useState } from "react";
+import {getLogin} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
+import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -33,7 +33,7 @@ const emailInvalidationRules = [
 ];
 
 const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
- "," + PASSWORD.maxLength + "}$", "i");
+  "," + PASSWORD.maxLength + "}$", "i");
 
 const validate = async (values: FormValues) => {
   const errors: FormErrors = {};
@@ -69,57 +69,93 @@ const LoginPage = () => {
       <Formik
         initialValues={initialValues}
         validate={validate}
-        onSubmit={(values: {email: string, password: string}) => {
+        onSubmit={(values: { email: string, password: string }) => {
           dispatch(getLogin(values));
           console.log(values); //for example that working
         }}>
-        {({ errors, touched }) => {
+        {({errors, touched}) => {
           return (
             <Form>
-              <div className='modal'>
-                <Link to='/'>
-                  <span className='close'>
+              <div className="modal">
+                <Link to="/">
+                  <span className="close">
                   </span>
                 </Link>
-                <h2 className='title'>Login to the Lessoner</h2>
+                <h2 className="title">Login to the Lessoner</h2>
                 <Field
-                  name='email'
+                  name="email"
                   component={Email}
                   error={touched.email ? errors.email : undefined}
                 />
                 <Field
-                  name='password'
+                  name="password"
                   component={Password}
                   minSymbol={PASSWORD.minLength}
                   maxSymbol={PASSWORD.maxLength}
                   isConfirm={false}
                   error={touched.password ? errors.password : undefined}
                 />
-                <div className='checkbox'>
+                <div className="checkbox">
                   <Field
-                    name='remember'
-                    type='checkbox'
-                    id='remember'
+                    name="remember"
+                    type="checkbox"
+                    id="remember"
                     onClick={() => {
                       setIsChecked(!isChecked);
                     }}
                     className={isChecked ? "checked" : "unchecked"}
                   />
                   <label
-                    htmlFor='remember'
-                    className='labelCheckbox'
+                    htmlFor="remember"
+                    className="label-checkbox"
                   >
                     Stay logged in
                   </label>
                 </div>
                 <Button
-                  buttonType='submit'
-                  buttonText='Sign in'
-                  className='button'
+                  buttonType="submit"
+                  buttonText="Sign in"
+                  className="button"
                 />
-                <Link to={"/forgotPassword"} className='passwordLink'>
+                <Link
+                  to={"/forgotPassword"}
+                  className="password-link"
+                >
                   Forgot your password?
                 </Link>
+                <Link
+                  to={"/users/sign_in/phone_number"}
+                  className="button-link"
+                >
+                  Continue by phone number
+                </Link>
+                <a
+                  href="/"
+                  className="button-link"
+                >
+                  Continue with Google
+                </a>
+                <a
+                  href="/"
+                  className="button-link"
+                >
+                  Continue with Facebook
+                </a>
+                <a
+                  href="/"
+                  className="button-link"
+                >
+                  Continue with VK
+                </a>
+                <p className="text">
+                  Don`t you have an account?
+                  <Link
+                    to={"/users/sign_up"}
+                    className="sign-link"
+                  >
+                    Sign up
+                  </Link>
+                </p>
               </div>
             </Form>
           );
