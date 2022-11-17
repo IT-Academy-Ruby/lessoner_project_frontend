@@ -4,31 +4,31 @@ import { useState } from "react";
 
 
 const MyStudioHead=()=>{
-  const data=[{
-    "id": 1,
-    "title": "1string",
-    "description": "1string",
-    "video_link": "1string",
-    "status": "archived",
-    "author_id": 1,
-    "category_id": "1"
-  },{
-    "id": 2,
-    "title": "2string",
-    "description": "2string",
-    "video_link": "2string",
-    "status": "draft",
-    "author_id": 2,
-    "category_id": "2"
-  },{
-    "id": 3,
-    "title": "3string",
-    "description": "3string",
-    "video_link": "3string",
-    "status": "in review",
-    "author_id": 3,
-    "category_id": "3"
-  }];
+  // const data=[{
+  //   "id": 1,
+  //   "title": "1string",
+  //   "description": "1string",
+  //   "video_link": "1string",
+  //   "status": "archived",
+  //   "author_id": 1,
+  //   "category_id": "1"
+  // },{
+  //   "id": 2,
+  //   "title": "2string",
+  //   "description": "2string",
+  //   "video_link": "2string",
+  //   "status": "draft",
+  //   "author_id": 2,
+  //   "category_id": "2"
+  // },{
+  //   "id": 3,
+  //   "title": "3string",
+  //   "description": "3string",
+  //   "video_link": "3string",
+  //   "status": "in review",
+  //   "author_id": 3,
+  //   "category_id": "3"
+  // }];
   const [statusActive,setStatusActive]=useState("all lessons");
   const [categoryActive,setCategoryActive]=useState("all categories");
 
@@ -38,7 +38,7 @@ const MyStudioHead=()=>{
     // document.getElementById("status-div")?.classList.add("status-active");
   };
 
-  const statusCategory=(event:any)=>{
+  const statusCategory=( event:any )=>{
     setCategoryActive(event.target.classList.value); 
     console.log(event.target.classList.value);
   };
@@ -48,7 +48,7 @@ const MyStudioHead=()=>{
   const elementsStatus=status.map((elem)=>{
     return (
       <div key={elem}  id="status-div" >
-        <span  onClick={ statusElements }  className={ elem+" status_lesson" } >{elem}</span>
+        <span  onClick={ statusElements }  className={ elem+" status_lesson" } >{ elem }</span>
         <span className="status-div"></span>
         
       </div>
@@ -56,7 +56,7 @@ const MyStudioHead=()=>{
   });
   const elementsCategory=category.map((elem)=>{
     return(     
-      <option key={elem} className={elem} onClick={statusCategory}>{elem}</option>
+      <option key={elem} className={elem} onClick={ statusCategory }>{ elem }</option>
     );
   });
   console.log(statusActive,categoryActive);
