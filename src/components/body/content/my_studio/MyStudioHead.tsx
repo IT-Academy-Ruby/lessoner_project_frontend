@@ -1,4 +1,5 @@
 import "./my_studio_head.css";
+import {FormattedMessage} from "react-intl";
 import { useState } from "react"; 
 
 
@@ -68,7 +69,7 @@ const MyStudioHead=()=>{
   
   return(<div className="my-studio-head">
     <div className="my-lesson-head">
-      <div><span id="div-my-lessons">My Lessons</span></div> 
+      <div><span id="div-my-lessons"><FormattedMessage id="app.My lessons" /></span></div> 
       <div><button id="intro"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path d="M12.7142 7.95239H7.9523V12.7143C7.9523 13.2381 7.52373 13.6667 6.99992
@@ -77,7 +78,7 @@ const MyStudioHead=()=>{
           6.04763H6.04754V1.28572C6.04754 0.761915 6.47611 0.333344 6.99992 0.333344C7.52373 
           0.333344 7.9523 0.761915 7.9523 1.28572V6.04763H12.7142C13.238 6.04763 13.6666 6.4762
           13.6666 7.00001C13.6666 7.52382 13.238 7.95239 12.7142 7.95239Z" fill="white"/>
-      </svg>Add new lesson</button></div> 
+      </svg><FormattedMessage id="app.Add new lesson" /></button></div> 
     </div>
     <div className="lessons-nav">
       <div className="my-lessons" >
