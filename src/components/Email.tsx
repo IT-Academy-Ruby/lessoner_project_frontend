@@ -1,7 +1,8 @@
 import "./Email.scss";
-import { EMAIL } from "../constants";
-import { FormattedMessage } from "react-intl";
+import {EMAIL} from "../constants";
+import {FormattedMessage} from "react-intl";
 import React from "react";
+import classNames from "classnames";
 
 type EmailProps = {
   field: {
@@ -13,20 +14,20 @@ type EmailProps = {
   error?: string;
 }
 
-const Email = ({ field, error }: EmailProps): JSX.Element => {
+const Email = ({field, error}: EmailProps): JSX.Element => {
   return (
-    <div className="Email-Wrapper">
-      <label className="Email-Label">
-        <FormattedMessage id="app.email.name" />
-        <input type="text"
+    <div className="email-wrapper">
+      <label className="meail-label">
+        <FormattedMessage id="app.email.name"/>
+        <input
+          type="text"
           minLength={EMAIL.minLength}
           maxLength={EMAIL.maxLength}
-          className={"Email-Input" + (error ? " invalid-Email-Input" : "")}
+          className={classNames("email-input", {" invalid-email-input": error})}
           placeholder="username@gmail.com"
           {...field}
-          required
         />
-        {error && <span className='error-Message'>{error}</span>}
+        {error && <span className="error-message">{error}</span>}
       </label>
     </div>
   );

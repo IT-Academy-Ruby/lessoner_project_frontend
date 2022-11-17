@@ -63,50 +63,83 @@ const LoginPage = () => {
         {({ errors, touched }) => {
           return (
             <Form>
-              <div className='modal'>
-                <Link to='/'>
-                  <span className='close'>
+              <div className="modal">
+                <Link to="/">
+                  <span className="close">
                   </span>
                 </Link>
-                <h2 className='title'>Login to the Lessoner</h2>
+                <h2 className="title">Login to the Lessoner</h2>
                 <Field
-                  name='email'
+                  name="email"
                   component={Email}
                   error={touched.email ? errors.email : undefined}
                 />
                 <Field
-                  name='password'
+                  name="password"
                   component={Password}
                   minSymbol={PASSWORD.minLength}
                   maxSymbol={PASSWORD.maxLength}
                   isConfirm={false}
                   error={touched.password ? errors.password : undefined}
                 />
-                <div className='checkbox'>
+                <div className="checkbox">
                   <Field
-                    name='remember'
-                    type='checkbox'
-                    id='remember'
+                    name="remember"
+                    type="checkbox"
+                    id="remember"
                     onClick={() => {
                       setIsChecked(!isChecked);
                     }}
                     className={isChecked ? "checked" : "unchecked"}
                   />
                   <label
-                    htmlFor='remember'
-                    className='labelCheckbox'
+                    htmlFor="remember"
+                    className="label-checkbox"
                   >
                     Stay logged in
                   </label>
                 </div>
                 <Button
-                  buttonType='submit'
-                  buttonText='Sign in'
-                  className='button'
+                  buttonType="submit"
+                  buttonText="Sign in"
+                  className="button"
                 />
                 <Link to={"/users/sign_in/reset_password"} className='passwordLink'>
                   Forgot your password?
                 </Link>
+                <Link
+                  to={"/users/sign_in/phone_number"}
+                  className="button-link"
+                >
+                  Continue by phone number
+                </Link>
+                <a
+                  href="/"
+                  className="button-link"
+                >
+                  Continue with Google
+                </a>
+                <a
+                  href="/"
+                  className="button-link"
+                >
+                  Continue with Facebook
+                </a>
+                <a
+                  href="/"
+                  className="button-link"
+                >
+                  Continue with VK
+                </a>
+                <p className="text">
+                  Don`t you have an account?
+                  <Link
+                    to={"/users/sign_up"}
+                    className="sign-link"
+                  >
+                    Sign up
+                  </Link>
+                </p>
               </div>
             </Form>
           );

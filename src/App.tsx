@@ -22,7 +22,6 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
-
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
@@ -36,7 +35,7 @@ function App(): JSX.Element {
             <Route path='/users/sign_in/reset_password/new_password'
               element={<SetNewPasswordPage />} />
             <Route path='/search' element={<Search />} />
-          </Routes>
+          </Routes >
 
           <div style={{ display: "flex", flexDirection: "column" }}>
             <button onClick={() => dispatch(showDefaultPage())}>
@@ -52,9 +51,10 @@ function App(): JSX.Element {
               Authorized creator in my studio section
             </button>
           </div>
-        </div>
-      </BrowserRouter>
-    </IntlProvider>
+        </div >
+      </BrowserRouter >
+    </IntlProvider >
   );
 }
+
 export default App;
