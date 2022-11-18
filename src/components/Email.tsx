@@ -21,6 +21,7 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
   const loginEvent = useAppSelector(state => state.login.event);
   const JWT = useAppSelector(state => state.login.login);
   const lookButton = useAppSelector(state => state.login.lookButton);
+  const loading = useAppSelector(state => state.login.loading);
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
@@ -45,7 +46,7 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
                required
         />
         {error && <span className='error-message'>{error}</span>}
-        {isUser && <span className='error-message'>Incorrect Email address or password</span>}
+        {!loading && isUser && <span className='error-message'>Incorrect Email address or password</span>}
       </label>
     </div>
   )

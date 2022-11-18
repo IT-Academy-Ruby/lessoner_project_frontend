@@ -1,15 +1,15 @@
 import "./App.css";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
 import Body from "./components/body/Body";
-import PhoneNumberPage from "./pages/PhoneNumberPage";
-import LoginPage from "./pages/LoginPage";
 import CodePage from "./pages/CodePage";
+import {IntlProvider} from "react-intl";
+import LoginPage from "./pages/LoginPage";
+import PhoneNumberPage from "./pages/PhoneNumberPage";
 import {useState} from "react";
-import {IntlProvider} from 'react-intl';
+import Search from "./components/Search";
 import TranslationHelpers from "./components/translations/translationHelpers";
 import {useAppDispatch} from "./store/hooks";
-import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
-import Search from "./components/Search";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,7 +18,7 @@ function App(): JSX.Element {
 
   const signOut = () => {
     dispatch(showDefaultPage());
-    localStorage.setItem('JWT', '');
+    localStorage.setItem("JWT", "");
   }
 
   return (
@@ -27,13 +27,12 @@ function App(): JSX.Element {
         <div className="App">
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
-            <Route path='/users/sign_in' element={<LoginPage/>}/>
-            <Route path='/users/sign_in/phone_number' element={<PhoneNumberPage/>}/>
-            <Route path='/users/sign_in/phone_number/code' element={<CodePage/>}/>
-            <Route path='/search' element={<Search/>}/>
+            <Route path="/users/sign_in" element={<LoginPage/>}/>
+            <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage/>}/>
+            <Route path="/users/sign_in/phone_number/code" element={<CodePage/>}/>
+            <Route path="/search" element={<Search/>}/>
           </Routes>
-
-          <div style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
             <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>

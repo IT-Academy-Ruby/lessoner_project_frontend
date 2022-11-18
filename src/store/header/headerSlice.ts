@@ -7,11 +7,11 @@ type Header = {
 
 const initialState: Header = {
   isDefaultHeader: false,
-  page: '',
+  page: "",
 }
 
 const headerSlice = createSlice({
-  name: 'header',
+  name: "header",
   initialState,
   reducers: {
     showDefaultPage: (state) => {
@@ -19,13 +19,13 @@ const headerSlice = createSlice({
     },
     showStudentPage: (state) => {
       state.isDefaultHeader = true;
-      state.page = '';
+      state.page = "";
     },
     showSectionPage: (state) => {
-      state.page = 'sectionPage';
+      state.page = "sectionPage";
     },
     showMyPage: (state) => {
-      state.page = 'myPage';
+      state.page = "myPage";
     },
 
   }

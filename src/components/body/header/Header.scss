@@ -106,7 +106,6 @@
   letter-spacing: 0.15px;
   text-decoration: none;
   font-family: 'ApercuPro', sans-serif;
-
 }
 
 .search-button {
@@ -154,10 +153,6 @@
   align-items: center;
 }
 
-.avatar-login {
-  display: none;
-}
-
 .button-login {
   width: 115px;
   height: 32px;
@@ -197,7 +192,15 @@
 .avatar {
   width: 32px;
   height: 32px;
+  border: 2px solid $blueLightColor;
   border-radius: 50%;
+}
+
+.first-letters {
+  margin: 0;
+  color: $blueLightColor;
+  font-weight: bold;
+  line-height: 32px;
 }
 
 @media (max-width: 1536px) {
@@ -270,12 +273,6 @@
 
   .bell {
     display: none;
-  }
-
-  .avatar-login {
-    display: flex;
-    width: 32px;
-    border-radius: 50%;
   }
 
   .button-login {
