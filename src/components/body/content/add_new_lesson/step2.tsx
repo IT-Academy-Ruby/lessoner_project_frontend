@@ -20,7 +20,7 @@ const Step2 = () => {
           <label htmlFor="category">Categorys</label>
           <select id="category" name="category" className="color-grey"  
             onChange={formik.handleChange} value={formik.values.category} >
-            <option value="" disabled selected hidden >
+            <option value="Choose a category" disabled selected  >
         Choose a category
             </option>
             <option value="IT">IT</option>
