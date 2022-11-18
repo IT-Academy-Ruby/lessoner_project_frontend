@@ -100,6 +100,7 @@ color:#B9D1FF
 font-family: Apercu Pro;
 }
 #file{
+    border-radius: 8px;
     border:1px grey dashed;
     width: 100%;
     height: 216px;
