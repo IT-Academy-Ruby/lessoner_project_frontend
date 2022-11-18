@@ -1,7 +1,7 @@
 @import "../constants.scss";
 
 .title__page {
-  width: 373px;
+  width: 100%;
   text-align: center;
   font-family: 'Apercu Pro', sans-serif;
   font-style: normal;
@@ -13,4 +13,22 @@
 
 .title__confirm {
   font-size: 28px;
+}
+
+@media (max-width: $max-width-2) {
+  @media (max-height: $max-Height-2) {
+    .title__page {
+      font-size: 28px;
+      line-height: 36px;
+      margin-bottom: 14px;
+    }
+  }
+}
+
+@media (max-width: $max-width-3) {
+  .title__page {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 14px;
+  }
 }

@@ -49,6 +49,32 @@ export const Pages: FC<PagesProps> = ({pageType}) => {
       buttonText: intl.formatMessage({ id: "app.button.finish" })
     },
   ];
+  const imageClasses = [
+    {
+      id: 1,
+      classIMG: "reg__image1440",
+      classBG: "reg__svg-bacground1440",
+      classLogo: "reg__svg-logo1440",
+      srcBG: Bacground1440,
+      srcLogo: Logo1440
+    },
+    {
+      id: 2,
+      classIMG: "reg__image744",
+      classBG: "reg__svg-bacground744",
+      classLogo: "reg__svg-logo744",
+      srcBG: Bacground744,
+      srcLogo: Logo744
+    },
+    {
+      id: 3,
+      classIMG: "reg__image360",
+      classBG: "reg__svg-bacground360",
+      classLogo: "reg__svg-logo360",
+      srcBG: Bacground360,
+      srcLogo: Logo360
+    },
+  ];
   return (
     <div className="reg__wrapper">
       <div className="reg__inner">
@@ -56,10 +82,16 @@ export const Pages: FC<PagesProps> = ({pageType}) => {
           <img className="reg__svg-close" src={Close} alt="Close"/>
         </Link>
         <div className="reg__picture">
-          <div className="reg__image">
-            <img className="reg__svg-bacground" src={Bacground1440} alt="Background"/>
-            <img className="reg__svg-logo" src={Logo1440} alt="Logo"/>
-          </div>
+          {imageClasses.map((imageClass: {
+            id: number; classIMG: string; classBG: string; classLogo: string; 
+            srcBG: string; srcLogo: string;
+          }) => 
+            <div className={imageClass.classIMG} key={imageClass.id}>
+              <img className={imageClass.classBG}
+                src={imageClass.srcBG} alt="Background"/>
+              <img className={imageClass.classLogo} src={imageClass.srcLogo} alt="Logo"/>
+            </div>
+          )}
         </div>
         <div className="reg__content">
           {pages.map((page: {

@@ -21,3 +21,25 @@
     }
   }
 }
+
+@media (max-width: $max-width-2) {
+  @media (max-height: $max-Height-2) {
+    .wrapper label p,
+    .wrapper label input {
+      margin-bottom: 14px;
+    }
+  
+    .wrapper label p {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: $max-width-3) {
+  .wrapper label p, .wrapper label input {
+    margin-bottom: 14px;
+  }
+  .wrapper label p {
+    font-size: 12px;
+  }
+}

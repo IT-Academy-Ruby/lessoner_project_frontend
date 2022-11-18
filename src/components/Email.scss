@@ -38,3 +38,23 @@
   margin-top: 0.5em;
   font-weight: normal;
 }
+
+@media (max-width: $max-width-2) {
+  @media (max-height: $max-Height-2) {
+    .Email-Wrapper {
+      margin-bottom: 14px;
+    }
+    .Email-Input{
+      font-size: 14px;
+    }
+  }
+}
+
+@media (max-width: $max-width-3) {
+  .Email-Wrapper {
+    margin-bottom: 14px;
+  }
+  .Email-Input {
+    font-size: 14px;
+  }
+}
