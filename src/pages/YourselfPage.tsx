@@ -29,6 +29,9 @@ const validate = async (values: FormValues) => {
   if (!userRegex.test(values.userName)) {
     errors.userName = 'UserName is incorrect';
   }
+  if (values.userName.length===0){
+    errors.userName = "The field must not be empty";
+  }
   if (values.userName.length < USERNAME.minLength) {
     errors.userName = `UserName should be more ${USERNAME.minLength}`;
   }
@@ -36,10 +39,10 @@ const validate = async (values: FormValues) => {
     errors.userName = `UserName should be less ${USERNAME.maxLength}`;
   }
   if (!values.birthday) {
-    errors.birthday = 'Select Date';
+    errors.birthday = "The field must not be empty";
   }
   if (!values.gender) {
-    errors.gender = 'Select Gender';
+    errors.gender = "The field must not be empty";
   }
   return errors;
 }
