@@ -1,4 +1,5 @@
-import './GenderSelector.scss';
+import "./GenderSelector.scss";
+import { FormattedMessage } from "react-intl";
 
 type GenderProps = {
   options: [];
@@ -18,14 +19,16 @@ const GenderSelector = ({field, error, options, label}: GenderProps) => {
   }
   return (
     <div>
-      <span className='gender-title'>Select your gender</span>
+      <span className="gender-title">
+        <FormattedMessage id="app.genderSelector.gender"/>
+      </span>
       {options ? (
         options.map((option: { value: string; label: string; name: string; genderValue: string }) => (
           <span key={option.genderValue}>
           <label>
           <input
             {...field}
-            type='radio'
+            type="radio"
             value={option.label}
             onClick={handleChange}
             checked={field.label}
@@ -39,14 +42,13 @@ const GenderSelector = ({field, error, options, label}: GenderProps) => {
           <label>
             <input
               {...field}
-              type='radio'/>{label}
+              type="radio"/>{label}
           </label>
         </div>
       )}
-      {(error) && <span className='error'>{error}</span>}
+      {(error) && <span className="error">{error}</span>}
     </div>
   )
 }
 
 export default GenderSelector;
-

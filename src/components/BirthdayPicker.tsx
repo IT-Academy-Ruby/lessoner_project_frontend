@@ -1,5 +1,6 @@
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { FormattedMessage } from "react-intl";
 import {useState} from "react";
 import "./birthday.scss";
 import {enGB} from "date-fns/locale";
@@ -28,7 +29,8 @@ const BirthdayPicker = ({form, field, error}: BirthdayPickerProps): JSX.Element 
 
   return (
     <div className='birthday'>
-      <label className='birthdaylabel'>When is your birthday?
+      <label className='birthdaylabel'>
+      <FormattedMessage id="app.studio" />
         <DatePicker
           placeholderText='--.--.----'
           dateFormat='dd.MM.yyyy'
@@ -45,6 +47,6 @@ const BirthdayPicker = ({form, field, error}: BirthdayPickerProps): JSX.Element 
       </label>
       {error && <span className='error'>{error}</span>}
     </div>
-  )
-}
+  );
+};
 export default BirthdayPicker;
