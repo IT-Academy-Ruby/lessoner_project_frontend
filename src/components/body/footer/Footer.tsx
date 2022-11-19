@@ -1,16 +1,32 @@
 import {Link} from "react-router-dom";
 import LANGUAGES from '../../translations/constants';
 import {FormattedMessage} from 'react-intl';
+import {useAppSelector, useAppDispatch} from "../../../store/hooks";
+import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
+import {useEffect} from "react";
+import {lessonerLink, startLink} from "../../../store/links/linksSlise";
 
 type FooterProps = {
   onLanguageSwitch: (arg: string) => void
 }
 const Footer = (props: FooterProps) => {
   const {onLanguageSwitch} = props
+  const decodeUserName = useAppSelector(state => state.userDecodeName.name);
+  const lessoner = useAppSelector(state => state.link.link);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(nameDecodeUser());
+    if (decodeUserName) {
+      dispatch(lessonerLink());
+    } else {
+      startLink();
+    }
+  }, [decodeUserName]);
 
   return (
-    <div style={{display: 'flex'}}>
-      <Link to="/">
+    <div style={{display: "flex"}}>
+      <Link to={lessoner}>
         <div>
           <FormattedMessage id="app.name"/>
         </div>

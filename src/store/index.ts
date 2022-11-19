@@ -3,6 +3,7 @@ import loginReducer from "./loginName/loginSlice";
 import useReducer from "./loginName/userSlice";
 import headerReducer from "./header/headerSlice";
 import decodeReducer from "./header/decodeJwtSlice";
+import linksReducer from "./links/linksSlise";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     value: headerReducer,
     userDecodeName: decodeReducer,
     userDecodeExp:decodeReducer,
+    link: linksReducer,
   }
 })
 export default store;

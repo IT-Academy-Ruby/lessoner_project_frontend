@@ -37,6 +37,7 @@ function App(): JSX.Element {
             <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
             <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>
             <button onClick={() => dispatch(showMyPage())}>Authorized creator in my studio section</button>
+            <h3>if you are not logged in, you cannot log in lessoner</h3>
           </div>
         </div>
       </BrowserRouter>
