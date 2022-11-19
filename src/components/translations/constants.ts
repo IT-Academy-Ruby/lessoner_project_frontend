@@ -1,18 +1,18 @@
-import {messages_ru} from './ru.js'
-import {messages_en} from './en.js'
+import {messages_ru} from "./ru.js";
+import {messages_en} from "./en.js";
 
  const LANGUAGES = [
     {
-        code: 'en',
+        code: "en",
         messages: messages_en,
-        label: 'English',
+        label: "English",
         isDefault: true,
     },
     {
-        code: 'ru',
+        code: "ru",
         messages: messages_ru,
-        label: 'Русский',
+        label: "Русский",
     },
 ]
 
-export default LANGUAGES
+export default LANGUAGES;
