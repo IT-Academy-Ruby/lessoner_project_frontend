@@ -39,6 +39,7 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
         <input type='text'
                className={classNames('userNameInput', {[`${extraStyle}`]: error})}
                onKeyUp={fieldHandler}
+               placeholder="3 to 50 characters"
                {...field}
         />
       </label>
