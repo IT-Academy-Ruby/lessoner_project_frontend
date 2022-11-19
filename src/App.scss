@@ -1,3 +1,10 @@
+@import "./components/styles/light-dark-theme";
+body {
+  background-color: var(--bgThemeColor1);
+  color: var(--textThemeColor1);
+  text-align: center;
+  transition: background-color 0.5s ease;
+}
 .App {
   text-align: center;
 }
