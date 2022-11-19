@@ -8,7 +8,7 @@ import SignUp from "./lessoner/SignUp/SignUp";
 import {useAppSelector} from "../../../store/hooks";
 
 const Content = () => {
-  const lessoner = useAppSelector(state => state.link.link);
+  const lessoner = useAppSelector(state => state.link.lessoner);
   return (
     <div className="main">
       <Routes>

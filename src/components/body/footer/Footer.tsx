@@ -12,7 +12,7 @@ type FooterProps = {
 const Footer = (props: FooterProps) => {
   const {onLanguageSwitch} = props
   const decodeUserName = useAppSelector(state => state.userDecodeName.name);
-  const lessoner = useAppSelector(state => state.link.link);
+  const lessoner = useAppSelector(state => state.link.lessoner);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Footer = (props: FooterProps) => {
     if (decodeUserName) {
       dispatch(lessonerLink());
     } else {
-      startLink();
+      dispatch(startLink());
     }
   }, [decodeUserName]);
 

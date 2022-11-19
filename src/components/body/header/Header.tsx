@@ -22,11 +22,10 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(nameDecodeUser())
-    console.log(decodeUserName)
     if (decodeUserName) {
       navigate('');
       dispatch(showStudentPage());
-    }else{
+    } else {
       navigate('');
       dispatch(showDefaultPage());
     }

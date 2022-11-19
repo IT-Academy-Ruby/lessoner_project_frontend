@@ -1,17 +1,17 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-  link: "",
+  lessoner: "",
 }
 const linksSlise = createSlice({
   name: "links",
   initialState,
   reducers: {
     lessonerLink: state => {
-      state.link = "/lessoner";
+      state.lessoner = "/lessoner";
     },
     startLink: state => {
-      state.link = "";
+      state.lessoner = "";
     }
   }
 })
