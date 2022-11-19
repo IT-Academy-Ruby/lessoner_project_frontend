@@ -1,7 +1,7 @@
-
-const AllLessons:any=()=>{
-  return(
-    <div>all lessons!!!!!!!!!!!</div>
+const AllLessons: React.FC = () => {
+  return (
+    <div>all lessons</div>
   );
 };
+
 export default AllLessons;

@@ -1,9 +1,7 @@
-
-const MyStudioContent=()=>{
-  return (<div>
-   
-    
-  </div> 
+const MyStudioContent = () => {
+  return (
+    <div />
   );
 };
+
 export default MyStudioContent;

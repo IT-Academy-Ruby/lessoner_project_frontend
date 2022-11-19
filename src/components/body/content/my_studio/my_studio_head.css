@@ -116,9 +116,7 @@ div.status_lesson{
     margin: 10px 10px 10px 10px;
 }
 
-span.status_lesson:hover{
-    border-bottom:#455FCE 2px solid;  
-}
+
 #intro{
     cursor:pointer;
     position: relative;
@@ -141,25 +139,16 @@ span.status_lesson:hover{
     justify-content: space-evenly;
 }
 
-.div-sorting-methods{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
-    
-}
-.div-sorting-methods :last-child{
-    padding-bottom: 2px;
-}
-.div-sorting-methods div{
-    cursor:pointer
-}
-
-.div-sorting-methods div{
-    margin-right:  5px;
-}
 .status_lesson{
     cursor:pointer;
+    
+    
+}
+.status-div{
+    height: 2px;
+    background-color:#455FCE;
+    width: 100%; 
+}
+#status-div{
     margin: 0px 20px;
 }
