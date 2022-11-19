@@ -6,10 +6,10 @@ import GenderSelector from "../components/GenderSelector";
 import Button from "../components/Button";
 import {Formik, Field, Form} from "formik";
 
-const gender=[
-{name:'gender',label:'Male',genderValue:'male'},
-{name:'gender',label:'Female',genderValue:'female'},
-{name:'gender',label:'Other',genderValue:'other'},
+const gender = [
+  {name: 'gender', label: 'Male', genderValue: 'male'},
+  {name: 'gender', label: 'Female', genderValue: 'female'},
+  {name: 'gender', label: 'Other', genderValue: 'other'},
 ];
 
 interface FormValues {
@@ -29,10 +29,10 @@ const validate = async (values: FormValues) => {
   if (!userRegex.test(values.userName)) {
     errors.userName = 'UserName is incorrect';
   }
-  if (values.userName.length===0){
+  if (values.userName.length === 0) {
     errors.userName = "The field must not be empty";
   }
-  if (values.userName.length < USERNAME.minLength) {
+  if (values.userName.length < USERNAME.minLength && values.userName.length > 0) {
     errors.userName = `UserName should be more ${USERNAME.minLength}`;
   }
   if (values.userName.length > USERNAME.maxLength) {
