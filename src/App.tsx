@@ -35,12 +35,6 @@ function App(): JSX.Element {
         </Routes>
         <YourselfPage/>
         <div style={{display: "flex", flexDirection: "column"}}>
-          <button onClick={() => dispatch(showDefaultPage())}>Not authorized</button>
-          <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
-          <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>
-          <button onClick={() => dispatch(showMyPage())}>Authorized creator in my studio section</button>
-        </div>
-        <div style={{display: "flex", flexDirection: "column"}}>
           <button onClick={() => dispatch(showDefaultPage())}>
             Not authorized
           </button>
@@ -54,6 +48,7 @@ function App(): JSX.Element {
             Authorized creator in my studio section
           </button>
         </div>
+      </div>
       </BrowserRouter>
     </IntlProvider>
   );
