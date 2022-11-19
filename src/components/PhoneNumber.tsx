@@ -7,9 +7,6 @@ import {useState} from "react";
 const countries = "us";
 const deleteCountry: [string] = ["ke"];
 
-const countries = 'us';
-const deleteCountry: [string] = ['ke'];
-
 type PhoneNumberProps = {
   error: string;
   setError: (str: string) => void;
