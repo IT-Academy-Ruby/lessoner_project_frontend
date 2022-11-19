@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 
 const Step1 = () => {
-  const change=(event:any)=>{
-    const val=event?.target.value;
-    console.log(val);
-  };
+  // const change=(event:React.FormEvent)=>{
+  //   const val=event?.target as HTMLInputElement;
+  //   console.log(val.value);
+  // };
   const formik = useFormik({initialValues: {
     name: "",
     link: "",
@@ -19,7 +19,7 @@ const Step1 = () => {
         <div className="form-step-1">
           <div className="input-name">
             <label htmlFor="name">Name</label>
-            <input onBlur={change}
+            <input 
               placeholder="Lesson name"
               id="name"
               name="name"
@@ -34,7 +34,7 @@ const Step1 = () => {
               placeholder="http://"
               id="link"
               name="link"
-              type="text"
+              type="url"
               onChange={formik.handleChange}
               value={formik.values.link}
             />
@@ -43,14 +43,14 @@ const Step1 = () => {
           <label htmlFor="link">Upload video from computer</label>
           <input
             id="file"
-            name="fole"
+            name="file"
             type="file"
             onChange={formik.handleChange}
             value={formik.values.file}
           />
-          <div>
+          {/* <div>
             <button type="submit">Submit</button>
-          </div>
+          </div> */}
         </div>
       </form>
     

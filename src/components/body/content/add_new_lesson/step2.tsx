@@ -1,6 +1,5 @@
 import { useFormik } from "formik";
 
-
 const Step2 = () => {
   <div>
     
@@ -15,38 +14,46 @@ const Step2 = () => {
   },});
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
         <div className="form-step-2">
-          <label htmlFor="category">Categorys</label>
-          <select id="category" name="category" className="color-grey"  
-            onChange={formik.handleChange} value={formik.values.category} >
-            <option value="Choose a category" disabled selected  >
+          <div className="input-category">
+            <label htmlFor="category">Category</label>
+            <select id="category" name="category" className="color-grey"  
+              onChange={formik.handleChange} value={formik.values.category} >
+              <option value="Choose a category" disabled selected  >
         Choose a category
-            </option>
-            <option value="IT">IT</option>
-            <option value="Music">Music</option>
-            <option value="Design">Design</option>
-          </select>
-          <label htmlFor="description">Description</label>
-          <input
-            id="description"
-            name="description"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.description}
-          />
+              </option>
+              <option value="IT">IT</option>
+              <option value="Music">Music</option>
+              <option value="Design">Design</option>
+            </select>
+          </div>
+          <div className="input-description">
+            <label htmlFor="description">Description</label>
+            <input
+              id="description"
+              name="description"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.description}
+            />
+          </div>
+         
           <label htmlFor="subtitles">Subtitles</label>
           <span>Add subtitles to reach bigger audience</span>
-          <input 
+          <input
             id="subtitles"
             name="subtitles"
             type="button"
             onChange={formik.handleChange}
             value={formik.values.subtitles}
           />
+          {/* <div>
+            <button type="submit">Submit</button>
+          </div> */}
         </div>
-        <button type="submit">Submit</button>
       </form>
+    
     </div>
   );
 };
