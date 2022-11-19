@@ -28,13 +28,13 @@ jobs:
       - name: echo versions
         run: |
           node --version
-          npm --version
+          yarn --version
 
       - name: install
-        run: npm install --frozen-lockfile --no-progress --non-interactive
+        run: yarn install --frozen-lockfile --no-progress --non-interactive
 
       - name: build
-        run: npm run build
+        run: yarn run build
         env:
           PUBLIC_URL: https://it-academy-ruby.github.io/lessoner_project_frontend
 

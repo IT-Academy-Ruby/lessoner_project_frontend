@@ -1,9 +1,18 @@
-import { Formik, Form, Field } from 'formik';
+/* eslint-disable max-len */
+import "./FirstRegistrationForm.scss";
+import {
+  Field, Form, Formik
+} from "formik";
+import Checkbox from "./Checkbox";
 import Email from "./Email";
-import PasswordAndConfirm from './PasswordAndConfirm';
-import Checkbox from './Checkbox';
-import './FirstRegistrationForm.scss';
-import { isEmailExists } from '../services/api/isEmailExists';
+import FacebookButton from "./FacebookButton";
+import { GOOGLE_APP } from "../constants";
+import GoogleButton from "./GoogleButton";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import PasswordAndConfirm from "./PasswordAndConfirm";
+import VKButton from "./VKButton";
+import { isEmailExists } from "../services/api/isEmailExists";
+import { useIntl } from "react-intl";
 
 interface FormValues {
   email: string;
@@ -29,43 +38,47 @@ const emailInvalidationRules = [
 
 const minSymbol = 6;
 const maxSymbol = 256;
+const allowPasswordSymbols = "! # $ % & ' * + - / = ? ^ _  { | } ~";
 const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + minSymbol + "," + maxSymbol + "}$", "i");
-
 const FirstRegistrationForm = () => {
+  const intl = useIntl();
   const initialValues: FormValues = {
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    password: "",
+    confirmPassword: "",
     hasTermsAndConditions: false
-  }
+  };
 
   const validate = async (values: FormValues) => {
     const isEmailExistsInDB = await isEmailExists(values.email);
 
-    let errors: FormErrors = {};
+    const errors: FormErrors = {};
     if (isEmailExistsInDB) {
-      errors.email = 'This email address is already registered';
+
+      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.existsInDb" });
     }
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-      errors.email = 'Please enter a valid email address';
+      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
     }
     if (!passwordRegex.test(values.password)) {
-      errors.password = `An invalid character is present in the password. Password must be between ${minSymbol} and ${maxSymbol} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordRegEx" }, {
+        minSymbol, maxSymbol, symbols: allowPasswordSymbols
+      });
     }
-    if (values.password.length >= maxSymbol || values.password.length < minSymbol) {
-      errors.password = `Password must be between ${minSymbol} and ${maxSymbol} characters`;
+    if (values.password.length > maxSymbol || values.password.length < minSymbol) {
+      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordLength" }, { minSymbol, maxSymbol });
     }
     if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = 'Passwords do not match';
+      errors.confirmPassword = intl.formatMessage({ id: "app.firstRegistrationForm.passwordConfrim" });
     }
     if (!(values.hasTermsAndConditions)) {
-      errors.hasTermsAndConditions = 'You must consent to the processing of your personal data, in accordance with the Terms';
+      errors.hasTermsAndConditions = intl.formatMessage({ id: "app.firstRegistrationForm.termsAndConditions" });
     }
     return errors;
-  }
+  };
 
   const submitFirstStepForm = (values: FormValues) => {
-    console.log('all values are correct');
+    console.log("all values are correct", values);
   };
 
   return (
@@ -78,18 +91,23 @@ const FirstRegistrationForm = () => {
       >
         {({ errors, touched }) => {
           return (
-            <Form className="First-Registration-Form">
-              <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
-              <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
-              <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
-              <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
-              <button type="submit">Next</button>
-            </Form>
-          )
+            <div className="first-registration-form">
+              <Form>
+                <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
+                <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
+                <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
+                <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
+                <button className='registration-form-submit-button' type="submit">Next</button>
+              </Form>
+              <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
+              <FacebookButton />
+              <VKButton />
+            </div>
+          );
         }}
       </Formik>
     </div>
-  )
+  );
 };
 
 export default FirstRegistrationForm;
