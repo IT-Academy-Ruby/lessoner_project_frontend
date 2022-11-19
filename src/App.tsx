@@ -1,15 +1,20 @@
 import "./App.css";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
+import {
+  BrowserRouter, Route, Routes
+} from "react-router-dom";
+import {
+  showDefaultPage, showMyPage, showSectionPage, showStudentPage
+} from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
+import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import {IntlProvider} from "react-intl";
 import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
-import {useState} from "react";
 import Search from "./components/Search";
-import TranslationHelpers from "./components/translations/translationHelpers";
+import TranslationHelpers from "./translations/translationHelpers";
 import {useAppDispatch} from "./store/hooks";
+import {useState} from "react";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,6 +33,7 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage/>}/>
+            <Route path="/users/sign_up" element={<FirstRegistrationForm/>}/>
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage/>}/>
             <Route path="/users/sign_in/phone_number/code" element={<CodePage/>}/>
             <Route path="/search" element={<Search/>}/>

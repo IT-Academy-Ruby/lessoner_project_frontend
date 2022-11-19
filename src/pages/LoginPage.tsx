@@ -1,6 +1,8 @@
 import "../components/modal/modal.scss";
 import {getLogin, buttonEvent, lookEvent} from "../store/loginName/loginSlice";
-import {Formik, Field, Form} from "formik";
+import {
+  Formik, Field, Form
+} from "formik";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
@@ -30,7 +32,8 @@ const emailInvalidationRules = [
   /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
 ];
 
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
+  "," + PASSWORD.maxLength + "}$", "i");
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -75,7 +78,7 @@ const LoginPage = () => {
           return (
             <Form>
               <div className="modal">
-                <Link to='/'>
+                <Link to="/">
                   <span className="close">
                   </span>
                 </Link>
@@ -99,11 +102,14 @@ const LoginPage = () => {
                     type="checkbox"
                     id="remember"
                     onClick={() => {
-                      setIsChecked(!isChecked)
+                      setIsChecked(!isChecked);
                     }}
                     className={isChecked ? "checked" : "unchecked"}
                   />
-                  <label htmlFor="remember" className="label-checkbox">
+                  <label
+                    htmlFor="remember"
+                    className="label-checkbox"
+                  >
                     Stay logged in
                   </label>
                 </div>
@@ -112,39 +118,52 @@ const LoginPage = () => {
                   buttonText="Sign in"
                   className="button"
                 />
-                <Link to={"/forgotPassword"} className="password-link">
+                <Link
+                  to={"/forgotPassword"}
+                  className="password-link"
+                >
                   Forgot your password?
                 </Link>
-                <Link to={"/users/sign_in/phone_number"} className="button-link">
+                <Link
+                  to={"/users/sign_in/phone_number"}
+                  className="button-link"
+                >
                   Continue by phone number
                 </Link>
                 <a
-                  href="/google"
-                  className="button-link">
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Google
                 </a>
                 <a
-                  href="/facebook"
-                  className="button-link">
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Facebook
                 </a>
                 <a
-                  href="/vk"
-                  className="button-link">
+                  href="/"
+                  className="button-link"
+                >
                   Continue with VK
                 </a>
                 <p className="text">
-                  Don't you have an account?
-                  <Link to={"/users/sign_up"} className="sign-link">
+                  Don`t you have an account?
+                  <Link
+                    to={"/users/sign_up"}
+                    className="sign-link"
+                  >
                     Sign up
                   </Link>
                 </p>
               </div>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
-  )
-}
+  );
+};
+
 export default LoginPage;
