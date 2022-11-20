@@ -4,11 +4,12 @@ import {
   Field, Form, Formik
 } from "formik";
 import { FormattedMessage, useIntl } from "react-intl";
+import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
+import { PASSWORD } from "../constants";
 import PasswordAndConfirm from "./PasswordAndConfirm";
 import { isEmailExists } from "../services/api/isEmailExists";
-import { PASSWORD } from "../constants";
 
 interface FormValues {
   email: string;
