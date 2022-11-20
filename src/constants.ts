@@ -10,7 +10,7 @@ const GOOGLE_APP =
 const REDIRECT_URL = "https://lessoner.herokuapp.com/users/sign_up";
 const VK_APP = { id: 51463254 };
  
- export {
+export {
   BACKEND_URL, EMAIL, PASSWORD, USERNAME, CODE, DEFAULT_COUNTRY_CODE,
   FACEBOOK_APP, GOOGLE_APP, REDIRECT_URL, VK_APP
 };
