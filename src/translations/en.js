@@ -43,4 +43,6 @@ export const messages_en = {
   "app.navbarStudyStudio.watchLater": "Watch later",
   "app.navbarStudyStudio.myLesson": "My lesson",
   "app.navbarStudyStudio.management": "Management",
+  "app.My lessons": "My lessons",
+  "app.Add new lesson": "Add new lesson",
 };

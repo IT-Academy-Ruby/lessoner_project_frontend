@@ -43,4 +43,6 @@ export const messages_ru = {
   "app.navbarStudyStudio.watchLater": "Смотреть позже",
   "app.navbarStudyStudio.myLesson": "Мой урок",
   "app.navbarStudyStudio.management": "Управление",
+  "app.My lessons": "Мои уроки",
+  "app.Add new lesson": "Добавить новый урок",
 };
