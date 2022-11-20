@@ -5,6 +5,8 @@ import {
 import { Link } from "react-router-dom";
 import { PASSWORD } from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import { changePassword } from "../services/api/changePassword";
+import getParameterValue from "../helpers/parseUrl";
 import { passwordRegex } from "../validationRules";
 
 interface FormValues {
@@ -19,6 +21,8 @@ interface FormErrors {
 const SetNewPasswordPage = () => {
 
   const initialValues: FormValues = { password: "", confirmPassword: "" };
+  const email = getParameterValue(window.location.href, "email");
+  const token = getParameterValue(window.location.href, "token");
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
@@ -39,8 +43,11 @@ const SetNewPasswordPage = () => {
     return errors;
   };
 
-  const submitFirstStepForm = (values: FormValues) => {
-    console.log(values.password);
+  const submitFirstStepForm = async (values: FormValues) => {
+    if (token) {
+      const isStatusSended = await changePassword(token, values.password);
+      console.log(isStatusSended);
+    }
   };
 
   return (
@@ -51,7 +58,7 @@ const SetNewPasswordPage = () => {
           </span>
         </Link>
         <div>
-          <h2 className='title'>Login as username</h2>
+          <h2 className='title'>Login as {email}</h2>
           <Formik
             initialValues={initialValues}
             validateOnChange={false}
