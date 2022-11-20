@@ -1,12 +1,16 @@
 import "../components/modal/modal.scss";
-import {getLogin, buttonEvent, lookEvent} from "../store/loginName/loginSlice";
-import {Formik, Field, Form} from "formik";
+import {
+  Field, Form, Formik,
+} from "formik";
+import {
+  buttonEvent, getLogin, lookEvent
+} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import {Link} from "react-router-dom";
-import Password from "../components/PasswordAndConfirm";
 import {PASSWORD} from "../constants";
+import Password from "../components/PasswordAndConfirm";
 import {useState} from "react";
 
 interface FormValues {
@@ -30,7 +34,8 @@ const emailInvalidationRules = [
   /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
 ];
 
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{"
+  + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -47,21 +52,29 @@ const LoginPage = () => {
   return (
     <div className="field">
       {loading &&
-        <h1 style={{position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"}}>
+        <h1 style={{
+          position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
+        }}>
           Loading...
         </h1>}
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
-          let errors: FormErrors = {};
+          const errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
             errors.email = "Please enter a valid email address";
           }
           if (!passwordRegex.test(values.password)) {
-            errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+            errors.password =
+              `An invalid character is present in the password. Password must be between 
+            ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin
+             letters (a–z, A–Z); numbers from 0 to 9; symbols 
+             ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
           }
-          if (values.password.length > PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-            errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
+          if (values.password.length > PASSWORD.maxLength
+            || values.password.length < PASSWORD.minLength) {
+            errors.password = `Password must be between ${PASSWORD.minLength}
+             and ${PASSWORD.maxLength} characters`;
           }
           return errors;
         }}
@@ -99,7 +112,7 @@ const LoginPage = () => {
                     type="checkbox"
                     id="remember"
                     onClick={() => {
-                      setIsChecked(!isChecked)
+                      setIsChecked(!isChecked);
                     }}
                     className={isChecked ? "checked" : "unchecked"}
                   />
@@ -134,17 +147,17 @@ const LoginPage = () => {
                   Continue with VK
                 </a>
                 <p className="text">
-                  Don't you have an account?
+                  Don`t you have an account?
                   <Link to={"/users/sign_up"} className="sign-link">
                     Sign up
                   </Link>
                 </p>
               </div>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
-  )
-}
+  );
+};
 export default LoginPage;

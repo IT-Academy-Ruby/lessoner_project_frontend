@@ -2,17 +2,19 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {BACKEND_URL} from "../../constants";
 
 export const getLogin = createAsyncThunk(
-  'login/getLoginStatus',
-  async (value: any) => {
-    const response = await fetch(`${BACKEND_URL}/login?email=${value.email}&password=${value.password}`, {method: 'POST'});
+  "login/getLoginStatus",
+  async (value: {email: string, password: string}) => {
+    const response = await fetch(
+      `${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
+      {method: "POST"});
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
     } else {
-      return '';
+      return "";
     }
   }
-)
+);
 type Login = {
   login: string;
   event: boolean;
@@ -20,13 +22,13 @@ type Login = {
   loading: boolean;
 }
 const initialState: Login = {
-  login: '',
+  login: "",
   event: false,
   lookButton: false,
   loading: false,
-}
+};
 const loginSlice = createSlice({
-  name: 'login',
+  name: "login",
   initialState,
   reducers: {
     buttonEvent: (state) => {
@@ -36,7 +38,7 @@ const loginSlice = createSlice({
       state.event = false;
     },
     lookEvent: (state) => {
-      state.lookButton = !state.lookButton
+      state.lookButton = !state.lookButton;
     }
   },
   extraReducers: (builder) => {
@@ -44,13 +46,15 @@ const loginSlice = createSlice({
       state.login = action.payload;
       state.loading = false;
       if (state.login) {
-        localStorage.setItem('JWT', `${state.login}`);
+        localStorage.setItem("JWT", `${state.login}`);
       }
-    })
-    builder.addCase(getLogin.pending, (state, action) => {
+    });
+    builder.addCase(getLogin.pending, (state) => {
       state.loading = true;
-    })
+    });
   }
-})
-export const {buttonEvent, changeEvent, lookEvent} = loginSlice.actions;
+});
+export const {
+  buttonEvent, changeEvent, lookEvent
+} = loginSlice.actions;
 export default loginSlice.reducer;

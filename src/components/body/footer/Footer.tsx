@@ -1,16 +1,17 @@
+import {lessonerLink, startLink} from "../../../store/links/linksSlise";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
+import {FormattedMessage} from "react-intl";
+import LANGUAGES from "../../translations/constants";
 import {Link} from "react-router-dom";
-import LANGUAGES from '../../translations/constants';
-import {FormattedMessage} from 'react-intl';
-import {useAppSelector, useAppDispatch} from "../../../store/hooks";
 import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
 import {useEffect} from "react";
-import {lessonerLink, startLink} from "../../../store/links/linksSlise";
+
 
 type FooterProps = {
   onLanguageSwitch: (arg: string) => void
 }
 const Footer = (props: FooterProps) => {
-  const {onLanguageSwitch} = props
+  const {onLanguageSwitch} = props;
   const decodeUserName = useAppSelector(state => state.userDecodeName.name);
   const lessoner = useAppSelector(state => state.link.lessoner);
   const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ const Footer = (props: FooterProps) => {
     } else {
       dispatch(startLink());
     }
-  }, [decodeUserName]);
+  }, [decodeUserName,dispatch]);
 
   return (
     <div style={{display: "flex"}}>
@@ -48,11 +49,11 @@ const Footer = (props: FooterProps) => {
       </Link>
       <div>
         {LANGUAGES.map(languageObj => {
-          const {code, label} = languageObj
+          const {code, label} = languageObj;
 
           return (
-            <button onClick={() => onLanguageSwitch(code)}>{label}</button>
-          )
+            <button key={code} onClick={() => onLanguageSwitch(code)}>{label}</button>
+          );
         })}
       </div>
       <Link to="/users/sign_in">

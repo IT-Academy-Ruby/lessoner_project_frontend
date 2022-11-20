@@ -1,8 +1,8 @@
-import {useState} from "react";
-import open_eye from "./icons/open_eye.svg";
-import close_eye from "./icons/close_eye.svg";
 import "./passwordAndConfirm.scss";
-import classNames from 'classnames';
+import classNames from "classnames";
+import close_eye from "./icons/close_eye.svg";
+import open_eye from "./icons/open_eye.svg";
+import {useState} from "react";
 
 type PasswordProps = {
   minSymbol: number;
@@ -17,7 +17,9 @@ type PasswordProps = {
   error?: string;
 }
 
-const PasswordAndConfirm = ({minSymbol, maxSymbol, isConfirm, field, error}: PasswordProps): JSX.Element => {
+const PasswordAndConfirm = ({
+  minSymbol, maxSymbol, isConfirm, field, error
+}: PasswordProps): JSX.Element => {
   const [visiblePassword, setVisiblePassword] = useState(false);
 
   const showPassword = (): void => {
@@ -26,22 +28,28 @@ const PasswordAndConfirm = ({minSymbol, maxSymbol, isConfirm, field, error}: Pas
     } else {
       setVisiblePassword(true);
     }
-  }
+  };
 
   return (
-    <div className='password'>
-      <label className='password-label'>{isConfirm ? 'Confirm password' : 'Password'}
-        <input type={visiblePassword ? 'text' : 'password'}
-               className={classNames('password-input', {'error-input': error})}
-               minLength={minSymbol}
-               maxLength={maxSymbol}
-               {...field}
-               placeholder={`At least ${minSymbol} characters`}/>
-        <img className='image' alt='eye' src={visiblePassword ? open_eye : close_eye} onClick={showPassword}/>
-        {error && <span className='error'>{error}</span>}
+    <div className="password">
+      <label className="password-label">{isConfirm ? "Confirm password" : "Password"}
+        <input
+          type={visiblePassword ? "text" : "password"}
+          className={classNames("password-input", {"error-input": error})}
+          minLength={minSymbol}
+          maxLength={maxSymbol}
+          {...field}
+          placeholder={`At least ${minSymbol} characters`}/>
+        <img
+          className="image"
+          alt="eye"
+          src={visiblePassword ? open_eye : close_eye}
+          onClick={showPassword}
+        />
+        {error && <span className="error">{error}</span>}
       </label>
     </div>
-  )
-}
+  );
+};
 
 export default PasswordAndConfirm;

@@ -1,8 +1,8 @@
 import {Route, Routes} from "react-router-dom";
-import Lessoner from "./lessoner/Lessoner";
-import Categories from "./categories/Categories";
-import Lessons from "./lessons/Lessons";
 import About from "./about/About";
+import Categories from "./categories/Categories";
+import Lessoner from "./lessoner/Lessoner";
+import Lessons from "./lessons/Lessons";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
 import {useAppSelector} from "../../../store/hooks";

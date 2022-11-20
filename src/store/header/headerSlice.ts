@@ -5,10 +5,7 @@ type Header = {
   page: string;
 }
 
-const initialState: Header = {
-  isDefaultHeader: false,
-  page: "",
-}
+const initialState: Header = {isDefaultHeader: false, page: ""};
 
 const headerSlice = createSlice({
   name: "header",
@@ -29,6 +26,8 @@ const headerSlice = createSlice({
     },
 
   }
-})
-export const {showDefaultPage, showStudentPage, showSectionPage, showMyPage} = headerSlice.actions;
+});
+export const {
+  showDefaultPage, showStudentPage, showSectionPage, showMyPage
+} = headerSlice.actions;
 export default headerSlice.reducer;

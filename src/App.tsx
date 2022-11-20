@@ -1,15 +1,19 @@
 import "./App.css";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {showDefaultPage, showStudentPage, showSectionPage, showMyPage} from "./store/header/headerSlice";
+import {
+  BrowserRouter, Route, Routes
+} from "react-router-dom";
+import {
+  showDefaultPage, showMyPage, showSectionPage, showStudentPage
+} from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
 import {IntlProvider} from "react-intl";
 import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
-import {useState} from "react";
 import Search from "./components/Search";
 import TranslationHelpers from "./components/translations/translationHelpers";
 import {useAppDispatch} from "./store/hooks";
+import {useState} from "react";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -19,7 +23,7 @@ function App(): JSX.Element {
   const signOut = () => {
     dispatch(showDefaultPage());
     localStorage.setItem("JWT", "");
-  }
+  };
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -34,15 +38,21 @@ function App(): JSX.Element {
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
-            <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
-            <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>
-            <button onClick={() => dispatch(showMyPage())}>Authorized creator in my studio section</button>
+            <button onClick={() => dispatch(showStudentPage())}>
+              Authorized student in study section
+            </button>
+            <button onClick={() => dispatch(showSectionPage())}>
+              Authorized student/creator in study section
+            </button>
+            <button onClick={() => dispatch(showMyPage())}>
+              Authorized creator in my studio section
+            </button>
             <h3>if you are not logged in, you cannot log in lessoner</h3>
           </div>
         </div>
       </BrowserRouter>
     </IntlProvider>
   );
-}
+};
 
 export default App;
