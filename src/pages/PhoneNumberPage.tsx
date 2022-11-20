@@ -2,14 +2,15 @@ import "../components/modal/modal.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";
-import {DEFAULT_COUNTRY} from "../constants";
+import {DEFAULT_COUNTRY_CODE} from "../constants";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
 
 const PhoneNumberPage = () => {
   const intl = useIntl();
   const [error, setError] = useState("Phone number incorrect");
-  const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY);
+  const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
+
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
@@ -27,18 +28,20 @@ const PhoneNumberPage = () => {
           <span className="close">
           </span>
         </Link>
-        <h2 className='title'>
-       <FormattedMessage id="app.phoneNumberPage.title"/>
+        <h2 className="title">
+          <FormattedMessage id="app.phoneNumberPage.title"/>
         </h2>
         <PhoneNumber
           setError={setError}
           error={error}
           phoneNumber={phoneNumber}
           setPhoneNumber={setPhoneNumber}
+          isError={isError}/>
         <Button
-          buttonType="submit"
+          buttonType={"submit"}
           buttonText={intl.formatMessage({id: "app.phoneNumberPage.submit"})}
-          className="button"/>
+          onClick={sendPhoneNumber}
+          className={"button"}/>
       </div>
     </div>
   );

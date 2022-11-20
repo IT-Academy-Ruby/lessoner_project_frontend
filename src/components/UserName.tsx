@@ -1,7 +1,6 @@
 import "./userName.scss";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
-import {AnyAction} from "redux";
 import classNames from "classnames";
 import {getUser} from "../store/loginName/userSlice";
 
@@ -15,7 +14,9 @@ type UserNameProps = {
   };
   error?: string;
 }
-const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Element => {
+const UserName = ({
+  minSymbol, maxSymbol, field, error
+}: UserNameProps): JSX.Element => {
   const [extraStyle, setExtraStyle] = useState("");
   const [busyName, setBusyName] = useState("");
   const dispatch = useAppDispatch();
@@ -23,28 +24,28 @@ const UserName = ({minSymbol, maxSymbol, field, error}: UserNameProps): JSX.Elem
 
   const fieldHandler = (e: React.FormEvent<HTMLInputElement>) => {
     dispatch(getUser(e.currentTarget.value));
-  }
+  };
 
   useEffect(() => {
     if (userStatus) {
       setBusyName("User already exists. Please enter a different username");
-      setExtraStyle("redBorder")
+      setExtraStyle("redBorder");
     }
   }, [userStatus]);
 
   return (
     <div className="userName">
       <label className="userNameLabel">Username
-        <input type="text"
-               className={classNames("userNameInput", {[`${extraStyle}`]: error})}
-               onKeyUp={fieldHandler}
-               placeholder="3 to 50 characters"
-               {...field}
+        <input
+          type="text"
+          className={classNames("userNameInput", {[`${extraStyle}`]: error})}
+          onKeyUp={fieldHandler}
+          placeholder={`${minSymbol} to ${maxSymbol} characters`}
+          {...field}
         />
       </label>
       {(error) && <span className="error">{error}</span>}
       {(busyName) && <span className="error">{busyName}</span>}
-
     </div>
   );
 };

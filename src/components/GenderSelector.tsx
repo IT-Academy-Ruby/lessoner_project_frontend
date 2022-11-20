@@ -1,5 +1,5 @@
 import "./GenderSelector.scss";
-import { FormattedMessage } from "react-intl";
+import {FormattedMessage} from "react-intl";
 
 type GenderProps = {
   options: [];
@@ -13,29 +13,33 @@ type GenderProps = {
   label: string;
 }
 
-const GenderSelector = ({field, error, options, label}: GenderProps) => {
+const GenderSelector = ({
+  field, error, options, label
+}: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     field.value = event.currentTarget.value;
-  }
+  };
   return (
     <div>
       <span className="gender-title">
         <FormattedMessage id="app.genderSelector.gender"/>
       </span>
       {options ? (
-        options.map((option: { value: string; label: string; name: string; genderValue: string }) => (
+        options.map((option: {
+          value: string; label: string; name: string; genderValue: string
+        }) => (
           <span key={option.genderValue}>
-          <label>
-          <input
-            {...field}
-            type="radio"
-            value={option.label}
-            onClick={handleChange}
-            checked={field.label}
-            name={option.name}
-          />{option.label}
+            <label>
+              <input
+                {...field}
+                type="radio"
+                value={option.label}
+                onClick={handleChange}
+                checked={field.label}
+                name={option.name}
+              />{option.label}
             </label>
-        </span>
+          </span>
         ))
       ) : (
         <div>
@@ -48,7 +52,7 @@ const GenderSelector = ({field, error, options, label}: GenderProps) => {
       )}
       {(error) && <span className="error">{error}</span>}
     </div>
-  )
-}
+  );
+};
 
 export default GenderSelector;

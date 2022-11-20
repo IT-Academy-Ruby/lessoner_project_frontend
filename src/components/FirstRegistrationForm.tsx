@@ -5,14 +5,9 @@ import {
 } from "formik";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
-import FacebookButton from "./FacebookButton";
-import { GOOGLE_APP } from "../constants";
-import GoogleButton from "./GoogleButton";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-import VKButton from "./VKButton";
-import { isEmailExists } from "../services/api/isEmailExists";
-import { useIntl } from "react-intl";
+import {isEmailExists} from "../services/api/isEmailExists";
+import {useIntl} from "react-intl";
 
 interface FormValues {
   email: string;
@@ -55,24 +50,24 @@ const FirstRegistrationForm = () => {
     const errors: FormErrors = {};
     if (isEmailExistsInDB) {
 
-      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.existsInDb" });
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
     }
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
     if (!passwordRegex.test(values.password)) {
-      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordRegEx" }, {
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
         minSymbol, maxSymbol, symbols: allowPasswordSymbols
       });
     }
     if (values.password.length > maxSymbol || values.password.length < minSymbol) {
-      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordLength" }, { minSymbol, maxSymbol });
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {minSymbol, maxSymbol});
     }
     if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = intl.formatMessage({ id: "app.firstRegistrationForm.passwordConfrim" });
+      errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
     if (!(values.hasTermsAndConditions)) {
-      errors.hasTermsAndConditions = intl.formatMessage({ id: "app.firstRegistrationForm.termsAndConditions" });
+      errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;
   };
@@ -89,19 +84,22 @@ const FirstRegistrationForm = () => {
         validate={validate}
         onSubmit={submitFirstStepForm}
       >
-        {({ errors, touched }) => {
+        {({errors, touched}) => {
           return (
             <div className="first-registration-form">
               <Form>
-                <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
-                <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
-                <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
-                <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
+                <Field name='email' component={Email} error={touched.email ? errors.email : undefined}/>
+                <Field
+                  name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={false} error={touched.password ? errors.password : undefined}/>
+                <Field
+                  name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
+                <Field
+                  name='hasTermsAndConditions' component={Checkbox}
+                  error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
                 <button className='registration-form-submit-button' type="submit">Next</button>
               </Form>
-              <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
-              <FacebookButton />
-              <VKButton />
             </div>
           );
         }}
