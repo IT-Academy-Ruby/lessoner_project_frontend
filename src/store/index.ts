@@ -4,15 +4,15 @@ import headerReducer from "./header/headerSlice";
 import loginReducer from "./loginName/loginSlice";
 import useReducer from "./loginName/userSlice";
 
-const store = configureStore({
-  reducer: {
+const store = configureStore(
+  { reducer: {
     login: loginReducer,
     user: useReducer,
     value: headerReducer,
     userDecodeName: decodeReducer,
     userDecodeExp: decodeReducer,
-  }
-})
+  }}
+);
 
 export default store;
 

@@ -9,7 +9,7 @@ const PASSWORD = { minLength: 6, maxLength: 256 };
 const REDIRECT_URL = "https://lessoner.herokuapp.com/users/sign_up";
 const USERNAME = { min: 3, max: 256 };
 const VK_APP = { id: 51463254 };
-const DEFAULT_COUNTRY_CODE = '375';
+const DEFAULT_COUNTRY_CODE = "375";
 
 export {
   BACKEND_URL, CODE, DEFAULT_COUNTRY, EMAIL, FACEBOOK_APP, GOOGLE_APP,

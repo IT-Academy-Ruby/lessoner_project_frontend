@@ -19,7 +19,7 @@ const initialState: DecodeJWT = {
   phone: "",
   description: "",
   exp: 0,
-}
+};
 
 const decode = () => {
   const token = localStorage.getItem("JWT");
@@ -34,7 +34,7 @@ const decode = () => {
     }
   }
   return initialState;
-}
+};
 
 const decodeJWTSlice = createSlice({
   name: "decodeJWT",
@@ -63,7 +63,7 @@ const decodeJWTSlice = createSlice({
     },
 
   },
-})
+});
 
 export const {
   nameDecodeUser,

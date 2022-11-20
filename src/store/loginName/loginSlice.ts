@@ -11,7 +11,7 @@ export const getLogin = createAsyncThunk(
     if (response.status === 200) {
       return data.jwt;
     } else {
-      return '';
+      return "";
     }
   }
 );
@@ -22,11 +22,11 @@ type Login = {
   loading: boolean;
 }
 const initialState: Login = {
-  login: '',
+  login: "",
   event: false,
   lookButton: false,
   loading: false,
-}
+};
 const loginSlice = createSlice({
   name: "login",
   initialState,
@@ -38,7 +38,7 @@ const loginSlice = createSlice({
       state.event = false;
     },
     lookEvent: (state) => {
-      state.lookButton = !state.lookButton
+      state.lookButton = !state.lookButton;
     }
   },
   extraReducers: (builder) => {
@@ -46,13 +46,15 @@ const loginSlice = createSlice({
       state.login = action.payload;
       state.loading = false;
       if (state.login) {
-        localStorage.setItem('JWT', `${state.login}`);
+        localStorage.setItem("JWT", `${state.login}`);
       }
-    })
-    builder.addCase(getLogin.pending, (state, action) => {
+    });
+    builder.addCase(getLogin.pending, (state) => {
       state.loading = true;
-    })
+    });
   }
-})
-export const {buttonEvent, changeEvent, lookEvent} = loginSlice.actions;
+});
+export const {
+  buttonEvent, changeEvent, lookEvent
+} = loginSlice.actions;
 export default loginSlice.reducer;

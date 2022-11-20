@@ -1,13 +1,13 @@
 import "./Header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {showStudentPage, showDefaultPage} from "../../../store/header/headerSlice";
+import {Link, useNavigate} from "react-router-dom";
+import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
 import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
-import {Link} from "react-router-dom";
 import Logo from "../../icons/Logo.svg";
 import Magnifier from "../../icons/blackMagnifier.svg";
-import {useAppSelector, useAppDispatch} from "../../../store/hooks";
 import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
 import {useEffect} from "react";
 
@@ -18,17 +18,15 @@ const Header = () => {
   const isDefaultPage = useAppSelector(state => state.value.isDefaultHeader);
   const page = useAppSelector(state => state.value.page);
   const decodeUserName = useAppSelector(state => state.userDecodeName.name);
-  const userButtonText = page === 'sectionPage' ? 'My studio' : 'Go study';
   const loading = useAppSelector(state => state.login.loading);
 
   useEffect(() => {
-    dispatch(nameDecodeUser())
-    console.log(decodeUserName)
+    dispatch(nameDecodeUser());
     if (decodeUserName) {
-      navigate('');
+      navigate("");
       dispatch(showStudentPage());
     }else{
-      navigate('');
+      navigate("");
       dispatch(showDefaultPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

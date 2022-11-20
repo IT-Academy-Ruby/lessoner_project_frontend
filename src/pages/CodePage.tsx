@@ -29,9 +29,7 @@ const validate = async (values: FormValue) => {
 };
 
 const CodePage = () => {
-  const initialValue: FormValue = {
-    code: '',
-  }
+  const initialValue: FormValue = {code: ""};
   return (
     <div className="field">
       <Formik

@@ -1,13 +1,14 @@
 import "../components/modal/modal.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {DEFAULT_COUNTRY_CODE} from "../constants";
 import Button from "../components/Button";
+import {DEFAULT_COUNTRY_CODE} from "../constants";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
 
 const PhoneNumberPage = () => {
-  const [error, setError] = useState('Phone number incorrect');
+  const intl = useIntl();
+  const [error, setError] = useState("Phone number incorrect");
   const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
 
   const [isError, setIsError] = useState(false);

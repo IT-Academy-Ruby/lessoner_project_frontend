@@ -24,7 +24,7 @@ function App(): JSX.Element {
   const signOut = () => {
     dispatch(showDefaultPage());
     localStorage.setItem("JWT", "");
-  }
+  };
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -40,9 +40,15 @@ function App(): JSX.Element {
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
-            <button onClick={() => dispatch(showStudentPage())}>Authorized student in study section</button>
-            <button onClick={() => dispatch(showSectionPage())}>Authorized student/creator in study section</button>
-            <button onClick={() => dispatch(showMyPage())}>Authorized creator in my studio section</button>
+            <button onClick={() => dispatch(showStudentPage())}>
+              Authorized student in study section
+            </button>
+            <button onClick={() => dispatch(showSectionPage())}>
+              Authorized student/creator in study section
+            </button>
+            <button onClick={() => dispatch(showMyPage())}>
+              Authorized creator in my studio section
+            </button>
           </div>
         </div>
       </BrowserRouter>

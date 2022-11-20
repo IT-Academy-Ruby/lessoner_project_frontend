@@ -1,15 +1,18 @@
 import "../components/modal/modal.scss";
-import {getLogin, buttonEvent, lookEvent} from "../store/loginName/loginSlice";
 import {
-  Formik, Field, Form
+  Field, Form, Formik
 } from "formik";
+import {
+  buttonEvent, getLogin, lookEvent
+} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import {Link} from "react-router-dom";
-import Password from "../components/PasswordAndConfirm";
 import {PASSWORD} from "../constants";
+import Password from "../components/PasswordAndConfirm";
 import {useState} from "react";
+
 
 interface FormValues {
   email: string;
@@ -50,21 +53,31 @@ const LoginPage = () => {
   return (
     <div className="field">
       {loading &&
-        <h1 style={{position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"}}>
+        <h1
+          style={{
+            position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
+          }}
+        >
           Loading...
         </h1>}
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
-          let errors: FormErrors = {};
+          const errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
             errors.email = "Please enter a valid email address";
           }
           if (!passwordRegex.test(values.password)) {
-            errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+            errors.password =
+              `An invalid character is present in the password. Password must be between 
+              ${PASSWORD.minLength} and ${PASSWORD.maxLength}
+                characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 
+                to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
           }
-          if (values.password.length > PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-            errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
+          if (values.password.length > PASSWORD.maxLength
+            || values.password.length < PASSWORD.minLength) {
+            errors.password = `Password must be between ${PASSWORD.minLength} 
+            and ${PASSWORD.maxLength} characters`;
           }
           return errors;
         }}
