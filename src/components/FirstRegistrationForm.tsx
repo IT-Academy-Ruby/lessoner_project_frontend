@@ -8,7 +8,6 @@ import Checkbox from "./Checkbox";
 import Email from "./Email";
 import PasswordAndConfirm from "./PasswordAndConfirm";
 import {isEmailExists} from "../services/api/isEmailExists";
-import {useIntl} from "react-intl";
 
 interface FormValues {
   email: string;
