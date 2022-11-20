@@ -99,7 +99,7 @@ const FirstRegistrationForm = () => {
                   name='hasTermsAndConditions' component={Checkbox}
                   error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
                 <button className='registration-form-submit-button' type="submit">
-                <FormattedMessage id="app.firstRegistrationForm.button" />
+                  <FormattedMessage id="app.firstRegistrationForm.button" />
                 </button>
               </Form>
             </div>
