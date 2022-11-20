@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 import "./FirstRegistrationForm.scss";
 import {
-  Field, Form, Formik
+  Field, Form, Formik 
 } from "formik";
+import { FormattedMessage , useIntl } from "react-intl";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
 import PasswordAndConfirm from "./PasswordAndConfirm";
@@ -33,7 +34,7 @@ const emailInvalidationRules = [
 
 const minSymbol = 6;
 const maxSymbol = 256;
-const allowPasswordSymbols = "! # $ % & ' * + - / = ? ^ _  { | } ~";
+const allowPasswordSymbols= "! # $ % & ' * + - / = ? ^ _  { | } ~";
 const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + minSymbol + "," + maxSymbol + "}$", "i");
 const FirstRegistrationForm = () => {
   const intl = useIntl();
@@ -98,7 +99,9 @@ const FirstRegistrationForm = () => {
                 <Field
                   name='hasTermsAndConditions' component={Checkbox}
                   error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
-                <button className='registration-form-submit-button' type="submit">Next</button>
+                <button className='registration-form-submit-button' type="submit">
+                <FormattedMessage id="app.firstRegistrationForm.button" />
+                </button>
               </Form>
             </div>
           );
