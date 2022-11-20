@@ -4,16 +4,11 @@ import {
   Field, Form, Formik
 } from "formik";
 import { FormattedMessage, useIntl } from "react-intl";
-import { GOOGLE_APP, PASSWORD } from "../constants";
-import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
-import FacebookButton from "./FacebookButton";
-import GoogleButton from "./GoogleButton";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-import VKButton from "./VKButton";
 import { isEmailExists } from "../services/api/isEmailExists";
+import { PASSWORD } from "../constants";
 
 interface FormValues {
   email: string;
@@ -55,7 +50,7 @@ const FirstRegistrationForm = () => {
         minSymbol, maxSymbol, symbols: allowPasswordSymbols
       });
     }
-    if (values.password.length > maxSymbol || values.password.length < minSymbol) {
+    if (values.password.length >= maxSymbol || values.password.length < minSymbol) {
       errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordLength" }, { minSymbol, maxSymbol });
     }
     if (values.password !== values.confirmPassword) {
@@ -91,9 +86,6 @@ const FirstRegistrationForm = () => {
                   <FormattedMessage id="app.firstRegistrationForm.button" />
                 </button>
               </Form>
-              <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
-              <FacebookButton />
-              <VKButton />
             </div>
           );
         }}
