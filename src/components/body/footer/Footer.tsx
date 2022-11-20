@@ -10,7 +10,7 @@ const Footer = (props: FooterProps) => {
   const { onLanguageSwitch } = props;
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <Link to="/">
         <div>
           <FormattedMessage id="app.name" />
