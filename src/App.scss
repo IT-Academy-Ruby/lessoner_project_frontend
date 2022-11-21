@@ -25,6 +25,10 @@ a {
 .App-link {
   color: #61dafb;
 }
+.authorization {
+  display: flex;
+  flex-direction: column;
+}
 
 @keyframes App-logo-spin {
   from {

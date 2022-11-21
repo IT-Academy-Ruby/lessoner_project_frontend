@@ -1,7 +1,7 @@
+import "./Footer.scss";
 import { FormattedMessage } from "react-intl";
 import LANGUAGES from "../../../translations/constants";
 import { Link } from "react-router-dom";
-import ThemeBtn from "../../ThemeBtn";
 
 type FooterProps = {
   onLanguageSwitch: (arg: string) => void;
@@ -10,7 +10,7 @@ const Footer = (props: FooterProps) => {
   const { onLanguageSwitch } = props;
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <footer>
       <Link to="/">
         <div>
           <FormattedMessage id="app.name" />
@@ -51,8 +51,7 @@ const Footer = (props: FooterProps) => {
           <FormattedMessage id="app.registration" />
         </button>
       </Link>
-      <ThemeBtn />
-    </div>
+    </footer>
   );
 };
 

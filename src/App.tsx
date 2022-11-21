@@ -1,7 +1,5 @@
 import "./App.scss";
-import {
-  BrowserRouter, Route, Routes
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   showDefaultPage,
   showMyPage,
@@ -66,7 +64,7 @@ function App(): JSX.Element {
             </Routes>
             <YourselfPage />
           </div>
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className="authorization">
             <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showDefaultPage())}>
               Not authorized
