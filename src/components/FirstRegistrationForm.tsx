@@ -4,15 +4,11 @@ import {
   Field, Form, Formik
 } from "formik";
 import { FormattedMessage, useIntl } from "react-intl";
-import { GOOGLE_APP, PASSWORD } from "../constants";
+import { PASSWORD } from "../constants";
 import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
-import FacebookButton from "./FacebookButton";
-import GoogleButton from "./GoogleButton";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-import VKButton from "./VKButton";
 import { isEmailExists } from "../services/api/isEmailExists";
 
 interface FormValues {
@@ -82,18 +78,21 @@ const FirstRegistrationForm = () => {
         {({ errors, touched }) => {
           return (
             <div className="first-registration-form">
-              <Form className="First-Registration-Form">
+              <Form>
                 <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
-                <Field name='password' component={PasswordAndConfirm} minSymbol={PASSWORD.minLength} maxSymbol={PASSWORD.maxLength} isConfirm={false} error={touched.password ? errors.password : undefined} />
-                <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={PASSWORD.minLength} maxSymbol={PASSWORD.maxLength} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
-                <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
-                <button type="submit">
+                <Field
+                  name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={false} error={touched.password ? errors.password : undefined} />
+                <Field
+                  name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
+                <Field
+                  name='hasTermsAndConditions' component={Checkbox}
+                  error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
+                <button className='registration-form-submit-button' type="submit">
                   <FormattedMessage id="app.firstRegistrationForm.button" />
                 </button>
               </Form>
-              <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
-              <FacebookButton />
-              <VKButton />
             </div>
           );
         }}
