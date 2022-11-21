@@ -1,14 +1,14 @@
 import "./Header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
 import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
 import Magnifier from "../../icons/blackMagnifier.svg";
-import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
+import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
+import {showStudentPage} from "../../../store/header/headerSlice";
 import {useEffect} from "react";
 
 const Header = () => {
@@ -17,17 +17,14 @@ const Header = () => {
   const navigate = useNavigate();
   const isDefaultPage = useAppSelector(state => state.value.isDefaultHeader);
   const page = useAppSelector(state => state.value.page);
-  const decodeUserName = useAppSelector(state => state.userDecodeName.name);
+  const decodeUserName = useAppSelector(state => state.userDecodedName.name);
   const loading = useAppSelector(state => state.login.loading);
 
   useEffect(() => {
-    dispatch(nameDecodeUser());
+    dispatch(nameDecodedUser());
     if (decodeUserName) {
       navigate("");
       dispatch(showStudentPage());
-    }else{
-      navigate("");
-      dispatch(showDefaultPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDefaultPage, decodeUserName, loading]);

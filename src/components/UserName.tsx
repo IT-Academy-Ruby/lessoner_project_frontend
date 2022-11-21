@@ -40,7 +40,7 @@ const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
     }
   }, [userStatus]);
 
-  const blurHandle = () => {
+  const handleBlur = () => {
     setIsBlur(true);
   };
 
@@ -51,7 +51,7 @@ const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
         required
         className={classNames("userNameInput", {[`${extraStyle}`]: (isBlur && error)})}
         onChange={fieldHandler}
-        onBlur={blurHandle}/>
+        onBlur={handleBlur}/>
       {(error && isBlur) && <span className="error">{error}</span>}
     </div>
   );

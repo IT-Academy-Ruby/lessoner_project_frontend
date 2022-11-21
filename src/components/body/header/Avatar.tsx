@@ -1,11 +1,11 @@
 import "./Header.scss";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
+import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 
 const Avatar = () => {
   const dispatch = useAppDispatch();
-  const nameDecode = useAppSelector(state => state.userDecodeName.name);
-  dispatch(nameDecodeUser());
+  const nameDecode = useAppSelector(state => state.userDecodedName.name);
+  dispatch(nameDecodedUser());
   const letters = nameDecode.split(" ")
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
 

@@ -46,7 +46,7 @@ const PasswordAndConfirm = ({
         placeholder={`At least ${minSymbol} characters`}
       />
       <img
-        className="mage"
+        className="image"
         alt="eye"
         src={visiblePassword ? open_eye : close_eye}
         onClick={showPassword}

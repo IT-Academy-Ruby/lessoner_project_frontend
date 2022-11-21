@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 
-type DecodeJWT = {
+type UserSession = {
   name: string;
   email: string;
   gender: string;
@@ -11,7 +11,7 @@ type DecodeJWT = {
   exp: number;
 }
 
-const initialState: DecodeJWT = {
+const initialState: UserSession = {
   name: "",
   email: "",
   gender: "",
@@ -25,10 +25,10 @@ const decode = () => {
   const token = localStorage.getItem("JWT");
   const todaySec = new Date().getTime() / 1000;
   if (token) {
-    const decodeJWT: DecodeJWT = jwt_decode(token);
-    const expDecode = decodeJWT.exp;
-    if (todaySec <= expDecode) {
-      return decodeJWT;
+    const sessionJWT: UserSession = jwt_decode(token);
+    const expDecoded = sessionJWT.exp;
+    if (todaySec <= expDecoded) {
+      return sessionJWT;
     } else {
       return initialState;
     }
@@ -36,29 +36,29 @@ const decode = () => {
   return initialState;
 };
 
-const decodeJWTSlice = createSlice({
-  name: "decodeJWT",
+const sessionJWTSlice = createSlice({
+  name: "sessionJWT",
   initialState,
   reducers: {
-    nameDecodeUser: (state) => {
+    nameDecodedUser: (state) => {
       state.name = decode().name;
     },
-    emailDecodeUser: (state) => {
+    emailDecodedUser: (state) => {
       state.email = decode().email;
     },
-    phoneDecodeUser: (state) => {
+    phoneDecodedUser: (state) => {
       state.phone = decode().phone;
     },
-    genderDecodeUser: (state) => {
+    genderDecodedUser: (state) => {
       state.gender = decode().gender;
     },
-    birthdayDecodeUser: (state) => {
+    birthdayDecodedUser: (state) => {
       state.birthday = decode().birthday;
     },
-    descriptionDecodeUser: (state) => {
+    descriptionDecodedUser: (state) => {
       state.description = decode().description;
     },
-    expDecodeUser: (state) => {
+    expDecodedUser: (state) => {
       state.exp = decode().exp;
     },
 
@@ -66,13 +66,12 @@ const decodeJWTSlice = createSlice({
 });
 
 export const {
-  nameDecodeUser,
-  emailDecodeUser,
-  phoneDecodeUser,
-  genderDecodeUser,
-  birthdayDecodeUser,
-  expDecodeUser,
-  descriptionDecodeUser
-} = decodeJWTSlice.actions;
-export default decodeJWTSlice.reducer;
-
+  nameDecodedUser,
+  emailDecodedUser,
+  phoneDecodedUser,
+  genderDecodedUser,
+  birthdayDecodedUser,
+  expDecodedUser,
+  descriptionDecodedUser
+} = sessionJWTSlice.actions;
+export default sessionJWTSlice.reducer;
