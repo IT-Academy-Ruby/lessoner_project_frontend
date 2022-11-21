@@ -1,0 +1,131 @@
+$primary-color: rgb(82, 105, 207);
+$white-color: #fff;
+$content-color: #1B1B1F;
+
+.menu__content {
+    position: fixed;
+    left: 0;
+    top: 66px;
+    width: 64px;
+    height: 794px;
+    background-color: $white-color;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+    transition: .1s;
+}
+
+.menu__content--active {
+    width: 200px;
+    height: 794px;
+    border-radius: 0 15px 15px 0;
+}
+
+.menu__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.menu__item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+    width: 100%;
+    margin: 0 0 30px 13px;
+}
+
+.menu__item-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.menu__item-inner:hover .menu__text {
+    color: $primary-color;
+}
+
+.menu__item-inner:hover .svg__item {
+    fill: $primary-color;
+}
+
+.menu__text {
+    width: 0;
+    text-align: left;
+    font-size: 0;
+    font-weight: 600;
+    color: $content-color;
+    opacity: 0;
+    transition: .1s;
+}
+
+.menu__text--active {
+    width: 140px;
+    font-size: 1em;
+    opacity: 1;
+    transition: .1s;
+}
+
+.menu__text--selected {
+    color: $primary-color;
+}
+
+.image__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.image__wrapper--active:hover {
+    background: $primary-color;
+}
+
+.image__wrapper--active.image__wrapper--selected {
+    background: $primary-color;
+}
+
+.image__wrapper--active:hover .svg__item {
+    fill: $white-color;
+}
+
+.image__wrapper--active:hover .svg__menu {
+    stroke: $white-color;
+}
+
+.svg__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    fill: $content-color;
+}
+
+.svg__item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.svg__menu {
+    stroke: $content-color;
+}
+
+.svg__item--active.svg__item--selected {
+    fill: $primary-color;
+}
+
+.svg__item--selected {
+    fill: $white-color;
+}

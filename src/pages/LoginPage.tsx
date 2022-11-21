@@ -1,13 +1,19 @@
 import "../components/modal/modal.scss";
-import Email from "../components/Email";
-import Password from "../components/PasswordAndConfirm";
-import {Formik, Field, Form} from "formik";
+import {
+  buttonEvent, getLogin, lookEvent
+} from "../store/loginName/loginSlice";
+import {
+  Field, Form, Formik
+} from "formik";
+import {
+  useAppDispatch, useAppSelector
+} from "../store/hooks";
 import Button from "../components/Button";
+import Email from "../components/Email";
 import {Link} from "react-router-dom";
-import {useState} from "react";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
-import {getLogin, buttonEvent, lookEvent} from "../store/loginName/loginSlice";
 import {PASSWORD} from "../constants";
+import Password from "../components/PasswordAndConfirm";
+import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -30,7 +36,8 @@ const emailInvalidationRules = [
   /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
 ];
 
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
+  "," + PASSWORD.maxLength + "}$", "i");
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -39,28 +46,35 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: isChecked,
   };
 
   return (
-    <div className='field'>
+    <div className="field">
       {loading &&
-        <h1 style={{position: 'fixed', left: '50%', transform: 'translate(-50%, -40%)', color: 'grey'}}>Loading
-          ...</h1>}
+        <h1 style={
+          {position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"}
+        }>Loading...</h1>}
       <Formik
         initialValues={initialValues}
+
         validate={async (values: FormValues) => {
           let errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-            errors.email = 'Please enter a valid email address';
+            errors.email = "Please enter a valid email address";
           }
           if (!passwordRegex.test(values.password)) {
-            errors.password = `An invalid character is present in the password. Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+            errors.password = `An invalid character is present in the password. 
+            Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} 
+            characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9;
+             symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
           }
-          if (values.password.length > PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-            errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
+          if (values.password.length > PASSWORD.maxLength
+            || values.password.length < PASSWORD.minLength) {
+            errors.password = `Password must be between ${PASSWORD.minLength} 
+            and ${PASSWORD.maxLength} characters`;
           }
           return errors;
         }}
@@ -69,76 +83,96 @@ const LoginPage = () => {
           dispatch(buttonEvent());
           dispatch(lookEvent());
           console.log(values); //for example that working
-
         }}>
         {({errors, touched}) => {
           return (
             <Form>
-              <div className='modal'>
-                <Link to='/'>
-                  <span className='close'>
+              <div className="modal">
+                <Link to="/">
+                  <span className="close">
                   </span>
                 </Link>
-                <h2 className='title'>Login to the Lessoner</h2>
-                <Field name='email'
-                       component={Email}
-                       error={touched.email ? errors.email : undefined}/>
-                <Field name='password'
-                       component={Password}
-                       minSymbol={PASSWORD.minLength}
-                       maxSymbol={PASSWORD.maxLength}
-                       isConfirm={false}
-                       error={touched.password ? errors.password : undefined}/>
-                <div className='checkbox'>
-                  <Field name='remember'
-                         type='checkbox'
-                         id='remember'
-                         onClick={() => {
-                           setIsChecked(!isChecked)
-                         }}
-                         className={isChecked ? 'checked' : 'unchecked'}/>
-                  <label htmlFor='remember'
-                         className='label-checkbox'>
+                <h2 className="title">Login to the Lessoner</h2>
+                <Field
+                  name="email"
+                  component={Email}
+                  error={touched.email ? errors.email : undefined}
+                />
+                <Field
+                  name="password"
+                  component={Password}
+                  minSymbol={PASSWORD.minLength}
+                  maxSymbol={PASSWORD.maxLength}
+                  isConfirm={false}
+                  error={touched.password ? errors.password : undefined}
+                />
+                <div className="checkbox">
+                  <Field
+                    name="remember"
+                    type="checkbox"
+                    id="remember"
+                    onClick={() => {
+                      setIsChecked(!isChecked);
+                    }}
+                    className={isChecked ? "checked" : "unchecked"}
+                  />
+                  <label
+                    htmlFor="remember"
+                    className="label-checkbox"
+                  >
                     Stay logged in
                   </label>
                 </div>
                 <Button
-                  buttonType='submit'
-                  buttonText='Sign in'
-                  className='button'
+                  buttonType="submit"
+                  buttonText="Sign in"
+                  className="button"
                 />
-                <Link to={'/forgotPassword'} className='password-link'>
+                <Link
+                  to={"/forgotPassword"}
+                  className="password-link"
+                >
                   Forgot your password?
                 </Link>
-                <Link to={'/users/sign_in/phone_number'}
-                      className='button-link'>
+                <Link
+                  to={"/users/sign_in/phone_number"}
+                  className="button-link"
+                >
                   Continue by phone number
                 </Link>
-                <a href='/'
-                   className='button-link'>
+                <a
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Google
                 </a>
-                <a href='/'
-                   className='button-link'>
+                <a
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Facebook
                 </a>
-                <a href='/'
-                   className='button-link'>
+                <a
+                  href="/"
+                  className="button-link"
+                >
                   Continue with VK
                 </a>
-                <p className='text'>
-                  Don't you have an account?
-                  <Link to={'/users/sign_up'}
-                        className='sign-link'>
+                <p className="text">
+                  Don`t you have an account?
+                  <Link
+                    to={"/users/sign_up"}
+                    className="sign-link"
+                  >
                     Sign up
                   </Link>
                 </p>
               </div>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
-  )
-}
+  );
+};
 export default LoginPage;

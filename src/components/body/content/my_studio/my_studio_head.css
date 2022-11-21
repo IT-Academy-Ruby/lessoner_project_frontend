@@ -1,0 +1,154 @@
+.my-lessons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+}
+.my-categories{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.my-lesson-head{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 37px 29px;
+}
+#intro{
+    position: relative;
+    font-family: 'Apercu Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 122%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-feature-settings: 'liga' off;
+    color: #FFFFFF;
+    background: #455FCE;
+    border-radius: 28px;
+    border: none;
+    height: 32px;
+    width: 203px;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+
+}
+#intro img {
+    position: absolute;
+    left: 8.33%;
+    right: 8.33%;
+    top: 8.33%;
+    bottom: 8.33%;
+}
+
+.lessons-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#my_studio_select{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: 40px;
+    background: #FFFFFF;
+    box-shadow: 2px 0px 10px rgb(16 19 45 / 5%);
+    border-radius: 4px;
+    font-family: 'Apercu Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 122%;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    border: none;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.allcategories{
+    font-family: 'Apercu Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 122%;
+    display: flex;
+    align-items: center;
+    font-feature-settings: 'liga' off;
+    color: #1B1B1F;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    }
+
+#div-my-lessons{
+    font-family: 'Apercu Pro';
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 130%;
+    color: #1B1B1F;
+    }
+
+.my-lessons div{
+    font-family: 'Apercu Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    font-feature-settings: 'liga' off;
+    color: #5A5D72;
+}
+
+div.status_lesson{
+    margin: 10px 10px 10px 10px;
+}
+
+
+#intro{
+    cursor:pointer;
+    position: relative;
+    font-family: 'Apercu Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 122%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-feature-settings: 'liga' off;
+    color: #FFFFFF;
+    background: #455FCE;
+    border-radius: 28px;
+    border: none;
+    height: 32px;
+    width: 203px;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.status_lesson{
+    cursor:pointer;
+    
+    
+}
+.status-div{
+    height: 2px;
+    background-color:#455FCE;
+    width: 100%; 
+}
+#status-div{
+    margin: 0px 20px;
+}
