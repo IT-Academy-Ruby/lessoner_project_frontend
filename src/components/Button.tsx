@@ -1,6 +1,5 @@
 import "./button.scss";
-import { Fragment } from "react";
-import {MouseEventHandler} from "react";
+import { Fragment, MouseEventHandler } from "react";
 
 type ButtonProps = {
   buttonType: "button" | "submit" | "reset";
