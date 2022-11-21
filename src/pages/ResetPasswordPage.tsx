@@ -1,4 +1,5 @@
 import "../components/modal/modal.scss";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Fragment, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Email from "../components/Email";
@@ -10,12 +11,13 @@ const ResetPasswordPage = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const intl = useIntl();
 
   const closeLinkPopup = () => navigate("/users/sign_in/");
 
   const checkEmail = () => {
     if (emailInvalidationRules.some(rule => rule.test(email))) {
-      setError("User is not found. Please enter a valid email address");
+      setError(intl.formatMessage({ id: "app.resetPasswordPage.userNotFound" }));
     } else {
       setError("");
     }
@@ -27,16 +29,17 @@ const ResetPasswordPage = () => {
       setError("");
       setIsForm(false);
     } else {
-      setError("User is not found. Please enter a valid email address");
+      setError(intl.formatMessage({ id: "app.resetPasswordPage.userNotFound" }));
       setIsForm(true);
     }
   };
 
   const form =
     <Fragment>
-      <h2 className='title'>Forgot your password?</h2>
-      <h6>Enter the email that you used when register to recover your password.
-        You will receive a password reset link</h6>
+      <h2 className='title'>
+        {intl.formatMessage({ id: "app.resetPasswordPage.forgotPassword" })}
+      </h2>
+      <h6>{intl.formatMessage({ id: "app.resetPasswordPage.enterEmailToRecoverPassword" })}</h6>
       <div className="First-Registration-Form">
         <Email field={{
           name: email,
@@ -45,13 +48,15 @@ const ResetPasswordPage = () => {
           value: email
         }}
         error={error} />
-        <button type="submit" onMouseDown={() => sendLink()}>Password reset</button>
+        <button type="submit" onMouseDown={() => sendLink()}>
+          <FormattedMessage id="app.resetPasswordPage.button" />
+        </button>
       </div>
     </Fragment>;
 
   const confirmationLink =
     <Fragment>
-      <h6>We&apos;ve sent a link to restore access to your account to the address {email}</h6>
+      <h6>{intl.formatMessage({ id: "app.resetPasswordPage.weSentLink" })} {email}</h6>
       <div className="First-Registration-Form">
         <button type="submit" onClick={closeLinkPopup}>OK</button>
       </div>
