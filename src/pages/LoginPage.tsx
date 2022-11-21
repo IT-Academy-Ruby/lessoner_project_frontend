@@ -1,13 +1,11 @@
 import "../components/modal/modal.scss";
 import {
-  buttonEvent, getLogin, lookEvent
-} from "../store/loginName/loginSlice";
-import {
   Field, Form, Formik
 } from "formik";
 import {
-  useAppDispatch, useAppSelector
-} from "../store/hooks";
+  buttonEvent, getLogin, lookEvent
+} from "../store/loginName/loginSlice";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import {Link} from "react-router-dom";
@@ -55,7 +53,9 @@ const LoginPage = () => {
     <div className="field">
       {loading &&
         <h1 style={
-          {position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"}
+          {
+            position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
+          }
         }>Loading...</h1>}
       <Formik
         initialValues={initialValues}

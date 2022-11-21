@@ -13,7 +13,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-      setIsValue(!!value.length)
+    setIsValue(!!value.length);
   }, [value]);
 
   return (
