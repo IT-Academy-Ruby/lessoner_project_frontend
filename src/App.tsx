@@ -7,11 +7,13 @@ import {
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
+import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import {IntlProvider} from "react-intl";
 import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import Search from "./components/Search";
-import TranslationHelpers from "./components/translations/translationHelpers";
+import TranslationHelpers from "./translations/translationHelpers";
+import YourselfPage from "./pages/YourselfPage";
 import {useAppDispatch} from "./store/hooks";
 import {useState} from "react";
 
@@ -32,12 +34,14 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage/>}/>
+            <Route path="/users/sign_up" element={<FirstRegistrationForm/>}/>
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage/>}/>
             <Route path="/users/sign_in/phone_number/code" element={<CodePage/>}/>
             <Route path="/search" element={<Search/>}/>
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
+            <YourselfPage/>
             <button onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section
             </button>

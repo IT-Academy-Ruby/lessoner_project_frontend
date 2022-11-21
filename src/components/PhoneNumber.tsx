@@ -1,5 +1,6 @@
 import "./phoneNumber.scss";
 import "react-phone-input-2/lib/style.css";
+import {FormattedMessage, useIntl} from "react-intl";
 import PhoneInput from "react-phone-input-2";
 import {useState} from "react";
 
@@ -13,6 +14,7 @@ type PhoneNumberProps = {
   setPhoneNumber: (str: string) => void;
   isError: boolean;
 }
+
 type countryType = {
   countryCode: string,
   dialCode: string,
@@ -23,21 +25,23 @@ type countryType = {
 const PhoneNumber = ({
   setError, error, phoneNumber, setPhoneNumber, isError
 }: PhoneNumberProps) => {
+  const intl = useIntl();
   const [isBlur, setIsBlur] = useState(false);
-  const checkNumber = (value: string, country: countryType,
-    e: React.ChangeEvent<HTMLInputElement>, formattedValue: string) => {
-    if (formattedValue.split(" ").join("").length !== country.format.split(" ").join("").length) {
-      setError("Phone number incorrect");
-    } else {
-      console.log("format", country.format);
-      setError("");
-    }
-    setPhoneNumber(value);
-  };
+  const checkNumber =
+    (value: string, country: countryType, e: React.ChangeEvent<HTMLInputElement>,
+      formattedValue: string) => {
+      if (formattedValue.split(" ").join("").length !== country.format.split(" ").join("").length) {
+        setError(intl.formatMessage({id: "app.phoneNumber.err"}));
+      } else {
+        setError("");
+      }
+      setPhoneNumber(value);
+    };
 
   return (
     <div className="phone-number">
-      <label className="phone-number-label">Phone number
+      <label className="phone-number-label">
+        <FormattedMessage id="app.phoneNumber.label"/>
         <PhoneInput
           onChange={checkNumber}
           onBlur={() => {
@@ -52,11 +56,14 @@ const PhoneNumber = ({
           excludeCountries={deleteCountry}
           value={phoneNumber}
           enableLongNumbers={true}
-          inputProps={{required: true}}
+          inputProps={
+            {required: true,}
+          }
         />
         {((error && isBlur) || isError) && <span className="error">{error}</span>}
       </label>
     </div>
   );
 };
+
 export default PhoneNumber;

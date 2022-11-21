@@ -1,7 +1,6 @@
 import "../components/modal/modal.scss";
-
 import {
-  Field, Form, Formik,
+  Field, Form, Formik
 } from "formik";
 import Button from "../components/Button";
 import {CODE} from "../constants";
@@ -16,7 +15,7 @@ interface FormValue {
   code: string;
 }
 
-const CodeRegex = new RegExp("[0-9a-z]{" + CODE.maxLength + "}", "i");
+const CodeRegex = new RegExp("[0-9a-z]{"+CODE.maxLength+"}", "i");
 
 const validate = async (values: FormValue) => {
   const errors: FormErrors = {};
@@ -24,13 +23,13 @@ const validate = async (values: FormValue) => {
     errors.code = "An invalid character is present in the Code. ";
   }
   if (values.code.length < CODE.maxLength) {
-    errors.code += `Code should be ${CODE.maxLength} characters. `;
-  }
+    errors.code += "Code should be "+ CODE.maxLength+" characters. ";
+  };
   return errors;
 };
 
 const CodePage = () => {
-  const initialValue: FormValue = {code: ""};
+  const initialValue: FormValue = {code: "",};
   return (
     <div className="field">
       <Formik
@@ -51,7 +50,7 @@ const CodePage = () => {
                 <p className="modal-text">
                   Now a code will come to your phone. Enter it in a line.
                   <span>
-                    <Link to="/users/sign_in/phone_number' className='link">
+                    <Link to="/users/sign_in/phone_number" className="link">
                       To change number
                     </Link>
                   </span>
@@ -59,11 +58,19 @@ const CodePage = () => {
                 <Field
                   name="code"
                   component={Code}
-                  error={touched.code ? errors.code : undefined}/>
-                <button type="button" className="link resend-code">
+                  error={touched.code ? errors.code : undefined}
+                />
+                <button
+                  type="button"
+                  className="link resend-code"
+                >
                   Resend code
                 </button>
-                <Button buttonType={"submit"} buttonText={"Finish"} className={"button"}/>
+                <Button
+                  buttonType="submit"
+                  buttonText="Finish"
+                  className="button"
+                />
               </div>
             </Form>
           );

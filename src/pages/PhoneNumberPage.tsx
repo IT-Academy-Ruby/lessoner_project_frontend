@@ -1,4 +1,5 @@
 import "../components/modal/modal.scss";
+import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";
 import {DEFAULT_COUNTRY_CODE} from "../constants";
@@ -6,8 +7,10 @@ import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
 
 const PhoneNumberPage = () => {
+  const intl = useIntl();
   const [error, setError] = useState("Phone number incorrect");
   const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
+
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
@@ -15,17 +18,19 @@ const PhoneNumberPage = () => {
     if (!error) {
       navigate("/users/sign_in/phone_number/code");
     } else {
-      setIsError(true);
+      setIsError(!!error);
     }
   };
   return (
-    <div className='field'>
-      <div className='modal'>
-        <Link to='/users/sign_in/'>
-          <span className='close'>
+    <div className="field">
+      <div className="modal">
+        <Link to="/users/sign_in/">
+          <span className="close">
           </span>
         </Link>
-        <h2 className='title'>Enter your phone number</h2>
+        <h2 className="title">
+          <FormattedMessage id="app.phoneNumberPage.title"/>
+        </h2>
         <PhoneNumber
           setError={setError}
           error={error}
@@ -33,10 +38,10 @@ const PhoneNumberPage = () => {
           setPhoneNumber={setPhoneNumber}
           isError={isError}/>
         <Button
-          buttonType='submit'
-          buttonText='Submit cod'
+          buttonType={"submit"}
+          buttonText={intl.formatMessage({id: "app.phoneNumberPage.submit"})}
           onClick={sendPhoneNumber}
-          className='button'/>
+          className={"button"}/>
       </div>
     </div>
   );

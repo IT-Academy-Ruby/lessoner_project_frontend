@@ -1,9 +1,10 @@
 import "./Email.scss";
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import {EMAIL} from "../constants";
-import {changeEvent} from "../store/loginName/loginSlice";
 import classNames from "classnames";
+import {changeEvent} from "../store/loginName/loginSlice";
+import {EMAIL} from "../constants";
+import {FormattedMessage} from "react-intl";
 
 type EmailProps = {
   field: {
@@ -35,7 +36,8 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
 
   return (
     <div className="email-wrapper">
-      <label className="email-label">Email
+      <label className="meail-label">
+        <FormattedMessage id="app.email.name"/>
         <input
           type="text"
           minLength={EMAIL.minLength}
@@ -43,7 +45,6 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
           className={classNames("email-input", {" invalid-email-input": error})}
           placeholder="username@gmail.com"
           {...field}
-          required
         />
         {error && <span className="error-message">{error}</span>}
         {!loading && isUser && <span className="error-message">

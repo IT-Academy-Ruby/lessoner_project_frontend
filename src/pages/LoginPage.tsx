@@ -88,7 +88,7 @@ const LoginPage = () => {
           return (
             <Form>
               <div className="modal">
-                <Link to='/'>
+                <Link to="/">
                   <span className="close">
                   </span>
                 </Link>
@@ -116,7 +116,10 @@ const LoginPage = () => {
                     }}
                     className={isChecked ? "checked" : "unchecked"}
                   />
-                  <label htmlFor="remember" className="label-checkbox">
+                  <label
+                    htmlFor="remember"
+                    className="label-checkbox"
+                  >
                     Stay logged in
                   </label>
                 </div>
@@ -125,30 +128,42 @@ const LoginPage = () => {
                   buttonText="Sign in"
                   className="button"
                 />
-                <Link to={"/forgotPassword"} className="password-link">
+                <Link
+                  to={"/forgotPassword"}
+                  className="password-link"
+                >
                   Forgot your password?
                 </Link>
-                <Link to={"/users/sign_in/phone_number"} className="button-link">
+                <Link
+                  to={"/users/sign_in/phone_number"}
+                  className="button-link"
+                >
                   Continue by phone number
                 </Link>
                 <a
-                  href="/google"
-                  className="button-link">
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Google
                 </a>
                 <a
-                  href="/facebook"
-                  className="button-link">
+                  href="/"
+                  className="button-link"
+                >
                   Continue with Facebook
                 </a>
                 <a
-                  href="/vk"
-                  className="button-link">
+                  href="/"
+                  className="button-link"
+                >
                   Continue with VK
                 </a>
                 <p className="text">
                   Don`t you have an account?
-                  <Link to={"/users/sign_up"} className="sign-link">
+                  <Link
+                    to={"/users/sign_up"}
+                    className="sign-link"
+                  >
                     Sign up
                   </Link>
                 </p>

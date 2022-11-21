@@ -1,11 +1,10 @@
 import {lessonerLink, startLink} from "../../../store/links/linksSlise";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";
-import LANGUAGES from "../../translations/constants";
+import LANGUAGES from "../../../translations/constants";
 import {Link} from "react-router-dom";
 import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
 import {useEffect} from "react";
-
 
 type FooterProps = {
   onLanguageSwitch: (arg: string) => void
@@ -28,6 +27,7 @@ const Footer = (props: FooterProps) => {
   return (
     <div style={{display: "flex"}}>
       <Link to={lessoner}>
+
         <div>
           <FormattedMessage id="app.name"/>
         </div>
@@ -50,7 +50,6 @@ const Footer = (props: FooterProps) => {
       <div>
         {LANGUAGES.map(languageObj => {
           const {code, label} = languageObj;
-
           return (
             <button key={code} onClick={() => onLanguageSwitch(code)}>{label}</button>
           );
@@ -69,4 +68,5 @@ const Footer = (props: FooterProps) => {
     </div>
   );
 };
+
 export default Footer;

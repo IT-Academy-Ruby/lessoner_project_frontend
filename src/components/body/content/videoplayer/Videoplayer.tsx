@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import "./index.scss";
 import "plyr-react/plyr.css";
 import Plyr from "plyr-react";

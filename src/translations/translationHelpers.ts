@@ -2,8 +2,8 @@ import LANGUAGES from "./constants";
 
 function getCurrentLanguageCode() {
   const pathName = window?.location?.pathname;
-  if (typeof pathName === "string") {
-    const parsedValue = pathName.match(/^\/(\w{2,})\//g)?.[0].replaceAll("/", "");
+  if (typeof pathName === "string"){
+    const parsedValue = pathName.match(/^\/(\w{2,})\//g)?.[0].replaceAll("/","");
     return getLanguageByCode(parsedValue)?.code || getDefaultLanguage().code;
   }
   return getDefaultLanguage().code;
@@ -19,7 +19,7 @@ function getLanguageMessages(code: string) {
 
 function getLanguageByCode(code: string | undefined) {
   return LANGUAGES.find(lang => lang.code === code?.toLowerCase());
-};
+}
 
 const TranslationHelpers = {getLanguageMessages, getCurrentLanguageCode};
 

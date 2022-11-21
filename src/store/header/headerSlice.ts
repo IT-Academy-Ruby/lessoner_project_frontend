@@ -5,7 +5,8 @@ type Header = {
   page: string;
 }
 
-const initialState: Header = {isDefaultHeader: false, page: ""};
+const initialState: Header = {isDefaultHeader: false,
+  page: "",};
 
 const headerSlice = createSlice({
   name: "header",
