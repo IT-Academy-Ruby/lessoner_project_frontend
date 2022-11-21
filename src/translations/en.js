@@ -51,4 +51,6 @@ export const messages_en = {
   "app.pagesTitle.phoneNumber": "Enter your phone number",
   "app.pagesTitle.enterCode": "Enter the code",
   "app.pagesTitle.aboutYourself": "Tell us about yourself",
+  "app.My lessons": "My lessons",
+  "app.Add new lesson": "Add new lesson",
 };

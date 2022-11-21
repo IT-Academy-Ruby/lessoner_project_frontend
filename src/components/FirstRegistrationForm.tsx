@@ -51,24 +51,24 @@ const FirstRegistrationForm = () => {
     const errors: FormErrors = {};
     if (isEmailExistsInDB) {
 
-      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.existsInDb" });
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
     }
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
     if (!passwordRegex.test(values.password)) {
-      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordRegEx" }, {
-        minSymbol, maxSymbol, symbols: allowPasswordSymbols 
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+        minSymbol, maxSymbol, symbols: allowPasswordSymbols
       });
     }
-    if (values.password.length >= maxSymbol || values.password.length < minSymbol) {
-      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordLength" }, { minSymbol, maxSymbol });
+    if (values.password.length > maxSymbol || values.password.length < minSymbol) {
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {minSymbol, maxSymbol});
     }
     if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = intl.formatMessage({ id: "app.firstRegistrationForm.passwordConfrim" });
+      errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
     if (!(values.hasTermsAndConditions)) {
-      errors.hasTermsAndConditions = intl.formatMessage({ id: "app.firstRegistrationForm.termsAndConditions" });
+      errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;
   };
@@ -85,17 +85,25 @@ const FirstRegistrationForm = () => {
         validate={validate}
         onSubmit={submitFirstStepForm}
       >
-        {({ errors, touched }) => {
+        {({errors, touched}) => {
           return (
-            <Form className="first-registration-form">
-              <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
-              <Field name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={false} error={touched.password ? errors.password : undefined} />
-              <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
-              <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
-              <Button buttonType='submit' 
-                buttonText={intl.formatMessage({ id: "app.button.next"})} 
-                className="button__page"/>
-            </Form>
+            <div className="first-registration-form">
+              <Form>
+                <Field name='email' component={Email} error={touched.email ? errors.email : undefined}/>
+                <Field
+                  name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={false} error={touched.password ? errors.password : undefined}/>
+                <Field
+                  name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
+                <Field
+                  name='hasTermsAndConditions' component={Checkbox}
+                  error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
+                <button className='registration-form-submit-button' type="submit">
+                  <FormattedMessage id="app.firstRegistrationForm.button" />
+                </button>
+              </Form>
+            </div>
           );
         }}
       </Formik>

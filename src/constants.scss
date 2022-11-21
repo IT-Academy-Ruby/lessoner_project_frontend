@@ -11,7 +11,9 @@ $max-width-3: 420px;
 $max-Height-1: 800px;
 $max-Height-2: 720px;
 $max-Height-3: 600px;
-
+$blueDarkColor: #0F1C2A;
+$blueLightColor: #455FCE;
+$greySearchColor: #9A9AA3;
 
 @mixin fieldsFont {
   & {

@@ -3,33 +3,39 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import {
-  showDefaultPage,  showMyPage, showSectionPage,  showStudentPage
+  showDefaultPage, showMyPage, showSectionPage, showStudentPage
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
+import CodePage from "./pages/CodePage";
+import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import { IntlProvider } from "react-intl"; 
 import { Pages } from "./components/Pages";
+import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import Search from "./components/Search";
 import TranslationHelpers from "./translations/translationHelpers";
-import { useAppDispatch } from "./store/hooks";
-import { useState } from "react";
+import YourselfPage from "./pages/YourselfPage";
+import {useAppDispatch} from "./store/hooks";
+import {useState} from "react";
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
-
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
         <div className="App">
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
-            <Route path='/users/sign_in' element={<PhoneNumberPage/>}/>
+            <Route path="/users/sign_in" element={<LoginPage/>}/>
             <Route path='/users/sign_up' element={<Pages pageType={"registration"}/>}/>
-            <Route path='/search' element={<Search/>}/>
+            <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage/>}/>
+            <Route path="/users/sign_in/phone_number/code" element={<CodePage/>}/>
+            <Route path="/search" element={<Search/>}/>
           </Routes>
-
+          <YourselfPage/>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={() => dispatch(showDefaultPage())}>
               Not authorized
@@ -48,5 +54,6 @@ function App(): JSX.Element {
       </BrowserRouter>
     </IntlProvider>
   );
-}
+};
+
 export default App;

@@ -3,6 +3,7 @@ import About from "./about/About";
 import Categories from "./categories/Categories";
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
+import MyStudio from "./my_studio/MyStudio";
 import NavbarStudyStudio from "../../NavbarStudyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
@@ -12,6 +13,7 @@ const Content = () => {
     <div className="main">
       <NavbarStudyStudio menuType={"study"}/>
       <Routes>
+        <Route path="/myStudio" element={<MyStudio />} />
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/lessons" element={<Lessons />} />
@@ -22,4 +24,6 @@ const Content = () => {
     </div>
   );
 };
+
 export default Content;
+
