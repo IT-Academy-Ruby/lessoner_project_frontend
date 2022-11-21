@@ -5,11 +5,15 @@ import {
 } from "formik";
 import { FormattedMessage, useIntl } from "react-intl";
 import { emailInvalidationRules, passwordRegex } from "../validationRules";
+import { GOOGLE_APP, PASSWORD } from "../constants";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
-import { PASSWORD } from "../constants";
+import FacebookButton from "./FacebookButton";
+import GoogleButton from "./GoogleButton";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-import { isEmailExists } from "../services/api/isEmailExists";
+import VKButton from "./VKButton";
+import {isEmailExists} from "../services/api/isEmailExists";
 
 interface FormValues {
   email: string;
@@ -92,6 +96,9 @@ const FirstRegistrationForm = () => {
                 <button className='registration-form-submit-button' type="submit">
                   <FormattedMessage id="app.firstRegistrationForm.button" />
                 </button>
+                <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
+                <FacebookButton />
+                <VKButton />
               </Form>
             </div>
           );
