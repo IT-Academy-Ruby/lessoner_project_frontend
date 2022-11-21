@@ -13,8 +13,10 @@ import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import Search from "./components/Search";
 import TranslationHelpers from "./translations/translationHelpers";
+import YourselfPage from "./pages/YourselfPage";
 import {useAppDispatch} from "./store/hooks";
 import {useState} from "react";
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,30 +28,31 @@ function App(): JSX.Element {
         <div className="App">
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
-            <Route path='/users/sign_in' element={<LoginPage/>}/>
-            <Route path='/users/sign_up' element={<FirstRegistrationForm/>}/>
-            <Route path='/users/sign_in/phone_number' element={<PhoneNumberPage/>}/>
-            <Route path='/users/sign_in/phone_number/code' element={<CodePage/>}/>
-            <Route path='/search' element={<Search/>}/>
+            <Route path="/users/sign_in" element={<LoginPage/>}/>
+            <Route path="/users/sign_up" element={<FirstRegistrationForm/>}/>
+            <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage/>}/>
+            <Route path="/users/sign_in/phone_number/code" element={<CodePage/>}/>
+            <Route path="/search" element={<Search/>}/>
           </Routes>
-        </div>
-        <div style={{display: "flex", flexDirection: "column"}}>
-          <button onClick={() => dispatch(showDefaultPage())}>
-            Not authorized
-          </button>
-          <button onClick={() => dispatch(showStudentPage())}>
-            Authorized student in study section
-          </button>
-          <button onClick={() => dispatch(showSectionPage())}>
-            Authorized student/creator in study section
-          </button>
-          <button onClick={() => dispatch(showMyPage())}>
-            Authorized creator in my studio section
-          </button>
+          <YourselfPage/>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <button onClick={() => dispatch(showDefaultPage())}>
+              Not authorized
+            </button>
+            <button onClick={() => dispatch(showStudentPage())}>
+              Authorized student in study section
+            </button>
+            <button onClick={() => dispatch(showSectionPage())}>
+              Authorized student/creator in study section
+            </button>
+            <button onClick={() => dispatch(showMyPage())}>
+              Authorized creator in my studio section
+            </button>
+          </div>
         </div>
       </BrowserRouter>
     </IntlProvider>
   );
-}
+};
 
 export default App;
