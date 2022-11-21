@@ -25,7 +25,7 @@ const Footer = (props: FooterProps) => {
   }, [decodeUserName,dispatch]);
 
   return (
-    <div style={{display: "flex"}}>
+    <div style={{display: "flex",justifyContent: "center"}}>
       <Link to={lessoner}>
 
         <div>

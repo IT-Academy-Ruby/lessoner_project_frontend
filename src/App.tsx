@@ -13,7 +13,6 @@ import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import Search from "./components/Search";
 import TranslationHelpers from "./translations/translationHelpers";
-import YourselfPage from "./pages/YourselfPage";
 import {useAppDispatch} from "./store/hooks";
 import {useState} from "react";
 
@@ -41,7 +40,6 @@ function App(): JSX.Element {
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
-            <YourselfPage/>
             <button onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section
             </button>

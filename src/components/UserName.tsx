@@ -1,5 +1,4 @@
 import "./userName.scss";
-import {AnyAction, Dispatch} from "redux";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
@@ -11,8 +10,8 @@ type UserNameProps = {
 }
 const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
   // eslint-disable-next-line no-useless-escape
-  const userNameRegex = new RegExp("^[A-Z\d]{" + minSymbol + "," + maxSymbol + "}$", "i");
-  const [value, setValue] = useState("");
+  const userNameRegex = new RegExp("^[A-Z\d]" +
+    "{" + minSymbol + "," + maxSymbol + "}$", "i");
   const [isBlur, setIsBlur] = useState(false);
   const [extraStyle, setExtraStyle] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +21,6 @@ const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
 
   const fieldHandler = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-    setValue(value);
     dispatch(getUser(value));
 
     if (!userNameRegex.test(value)) {
@@ -47,11 +45,12 @@ const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
   return (
     <div className="userName">
       <label className="userNameLabel">Username</label>
-      <input type="text"
-             required
-             className={classNames("userNameInput", {[`${extraStyle}`]: (isBlur && error)})}
-             onChange={fieldHandler}
-             onBlur={blurHandle}/>
+      <input
+        type="text"
+        required
+        className={classNames("userNameInput", {[`${extraStyle}`]: (isBlur && error)})}
+        onChange={fieldHandler}
+        onBlur={blurHandle}/>
       {(error && isBlur) && <span className="error">{error}</span>}
     </div>
   );

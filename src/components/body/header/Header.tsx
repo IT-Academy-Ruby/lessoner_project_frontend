@@ -1,9 +1,9 @@
 import "./Header.scss";
+import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
-import {FormattedMessage, useIntl} from "react-intl";
 import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
@@ -48,7 +48,9 @@ const Header = () => {
             && <Link
               to={"/myStudio"}
               className="my-studio"
-            >My studio</Link>}
+            >
+              <FormattedMessage id="app.studio"/>
+            </Link>}
         </Link>
         <div className="search-button">
           <Link to="/search" className="magnifier">
