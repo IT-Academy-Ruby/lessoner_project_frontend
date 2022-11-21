@@ -6,6 +6,7 @@ import {
   showDefaultPage, showMyPage, showSectionPage, showStudentPage
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
+import CodePage from "./pages/CodePage";
 import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import { IntlProvider } from "react-intl";
 import LoginPage from "./pages/LoginPage";
@@ -17,7 +18,6 @@ import TranslationHelpers from "./translations/translationHelpers";
 import YourselfPage from "./pages/YourselfPage";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
-import CodePage from "./pages/CodePage";
 
 
 function App(): JSX.Element {
