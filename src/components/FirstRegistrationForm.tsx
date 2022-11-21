@@ -4,8 +4,8 @@ import {
   Field, Form, Formik
 } from "formik";
 import { FormattedMessage, useIntl } from "react-intl";
-import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import { GOOGLE_APP, PASSWORD } from "../constants";
+import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
 import FacebookButton from "./FacebookButton";
