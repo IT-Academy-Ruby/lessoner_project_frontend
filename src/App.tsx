@@ -16,6 +16,7 @@ import TranslationHelpers from "./translations/translationHelpers";
 import {useAppDispatch} from "./store/hooks";
 import {useState} from "react";
 
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
@@ -54,6 +55,6 @@ function App(): JSX.Element {
       </BrowserRouter>
     </IntlProvider>
   );
-}
+};
 
 export default App;
