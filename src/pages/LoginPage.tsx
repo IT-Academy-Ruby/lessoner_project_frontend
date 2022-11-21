@@ -41,7 +41,7 @@ const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.min
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
-  let loading = useAppSelector(state => state.login.loading);
+  const loading = useAppSelector(state => state.login.loading);
 
   const dispatch = useAppDispatch();
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
         initialValues={initialValues}
 
         validate={async (values: FormValues) => {
-          let errors: FormErrors = {};
+          const errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
             errors.email = "Please enter a valid email address";
           }
