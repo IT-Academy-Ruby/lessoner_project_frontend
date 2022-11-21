@@ -51,7 +51,7 @@ const FirstRegistrationForm = () => {
         minSymbol, maxSymbol, symbols: allowPasswordSymbols
       });
     }
-    if (values.password.length >= maxSymbol || values.password.length < minSymbol) {
+    if (values.password.length > maxSymbol || values.password.length < minSymbol) {
       errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordLength" }, { minSymbol, maxSymbol });
     }
     if (values.password !== values.confirmPassword) {
@@ -78,12 +78,18 @@ const FirstRegistrationForm = () => {
         {({ errors, touched }) => {
           return (
             <div className="first-registration-form">
-              <Form className="First-Registration-Form">
+              <Form>
                 <Field name='email' component={Email} error={touched.email ? errors.email : undefined} />
-                <Field name='password' component={PasswordAndConfirm} minSymbol={PASSWORD.minLength} maxSymbol={PASSWORD.maxLength} isConfirm={false} error={touched.password ? errors.password : undefined} />
-                <Field name='confirmPassword' component={PasswordAndConfirm} minSymbol={PASSWORD.minLength} maxSymbol={PASSWORD.maxLength} isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
-                <Field name='hasTermsAndConditions' component={Checkbox} error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
-                <button type="submit">
+                <Field
+                  name='password' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={false} error={touched.password ? errors.password : undefined} />
+                <Field
+                  name='confirmPassword' component={PasswordAndConfirm} minSymbol={minSymbol} maxSymbol={maxSymbol}
+                  isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
+                <Field
+                  name='hasTermsAndConditions' component={Checkbox}
+                  error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
+                <button className='registration-form-submit-button' type="submit">
                   <FormattedMessage id="app.firstRegistrationForm.button" />
                 </button>
               </Form>
