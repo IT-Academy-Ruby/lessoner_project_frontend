@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import "./FirstRegistrationForm.scss";
 import {
-  Field, Form, Formik
+  Field, Form, Formik 
 } from "formik";
 import { FormattedMessage , useIntl } from "react-intl";
 import Checkbox from "./Checkbox";

@@ -26,10 +26,10 @@ jobs:
       - name: echo versions
         run: |
           node --version
-          yarn --version
+          npm --version
 
       - name: install
-        run: yarn install --frozen-lockfile --no-progress --non-interactive
+        run: npm install --frozen-lockfile --no-progress --non-interactive
 
       - name: build
-        run: yarn run build
+        run: npm run build
