@@ -15,7 +15,7 @@ const headerSlice = createSlice({
     showDefaultPage: (state) => {
       state.isDefaultHeader = false;
     },
-    showStudentPage: state => {
+    showStudentPage: (state) => {
       state.isDefaultHeader = true;
       state.page = "";
     },

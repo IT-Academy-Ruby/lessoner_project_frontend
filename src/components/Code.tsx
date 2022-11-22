@@ -4,8 +4,8 @@ import {CODE} from "../constants";
 type CodeProps = {
   field?: {
     name: string,
-    onBlur: ()=>void,
-    onChange: ()=>void,
+    onBlur: React.FocusEventHandler<HTMLInputElement>,
+    onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string,
   };
   error?: string;

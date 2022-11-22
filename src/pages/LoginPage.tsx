@@ -2,13 +2,16 @@ import "../components/modal/modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
+import {
+  buttonEvent, getLogin, lookEvent
+} from "../store/loginName/loginSlice";
+import { emailInvalidationRules, passwordRegex } from "../validationRules";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
-import {Link} from "react-router-dom";
-import {PASSWORD} from "../constants";
+import { Link } from "react-router-dom";
+import { PASSWORD } from "../constants";
 import Password from "../components/PasswordAndConfirm";
-import {getLogin} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
 import {useState} from "react";
 
 interface FormValues {
@@ -18,43 +21,12 @@ interface FormValues {
 }
 
 interface FormErrors {
-  [key: string]: string
+  [key: string]: string;
 }
-
-const emailInvalidationRules = [
-  /^\s*$/, // check string not empty
-  /^[^@]+$/, // @ should exist
-  /@[^@]*@/, // onle one @ is admissible
-  /^\./, // '.' can't be first symbol
-  /\.{2,}.+(?=@)/, // '.' can't repeat more than once in a row
-  /\.(?=@)/, // '.' can't be before @
-  /[^A-Za-z0-9_!#$%&'.*+\-/=?^`{|}~].*(?=@)/, // include only valid symbols before @
-  /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
-];
-
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
-  "," + PASSWORD.maxLength + "}$", "i");
-
-const validate = async (values: FormValues) => {
-  const errors: FormErrors = {};
-  if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-    errors.email = "Please enter a valid email address";
-  }
-  if (!passwordRegex.test(values.password)) {
-    errors.password = `An invalid character is present in the password. Password must be between 
-    ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters;
-     upper or lower case Latin letters (a–z, A–Z);
-      numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
-  }
-  if (values.password.length >= PASSWORD.maxLength || values.password.length < PASSWORD.minLength) {
-    errors.password = `Password must be between 
-    ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters`;
-  }
-  return errors;
-};
 
 const LoginPage = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const loading = useAppSelector(state => state.login.loading);
 
   const dispatch = useAppDispatch();
 
@@ -65,15 +37,41 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='field'>
+    <div className="field">
+      {loading &&
+        <h1 style={
+          {
+            position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
+          }
+        }>Loading...</h1>}
       <Formik
         initialValues={initialValues}
-        validate={validate}
-        onSubmit={(values: { email: string, password: string }) => {
+
+        validate={async (values: FormValues) => {
+          const errors: FormErrors = {};
+          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+            errors.email = "Please enter a valid email address";
+          }
+          if (!passwordRegex.test(values.password)) {
+            errors.password = `An invalid character is present in the password. 
+            Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} 
+            characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9;
+             symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+          }
+          if (values.password.length > PASSWORD.maxLength
+            || values.password.length < PASSWORD.minLength) {
+            errors.password = `Password must be between ${PASSWORD.minLength} 
+            and ${PASSWORD.maxLength} characters`;
+          }
+          return errors;
+        }}
+        onSubmit={(values: FormValues) => {
           dispatch(getLogin(values));
+          dispatch(buttonEvent());
+          dispatch(lookEvent());
           console.log(values); //for example that working
         }}>
-        {({errors, touched}) => {
+        {({ errors, touched }) => {
           return (
             <Form>
               <div className="modal">
@@ -117,10 +115,7 @@ const LoginPage = () => {
                   buttonText="Sign in"
                   className="button"
                 />
-                <Link
-                  to={"/forgotPassword"}
-                  className="password-link"
-                >
+                <Link to={"/users/sign_in/reset_password"} className='passwordLink'>
                   Forgot your password?
                 </Link>
                 <Link

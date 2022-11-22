@@ -13,24 +13,21 @@ const Search = () => {
   };
 
   useEffect(() => {
-    if (value.length > 0) {
-      setIsValue(true);
-    } else {
-      setIsValue(false);
-    }
+    setIsValue(!!value.length);
   }, [value]);
 
   return (
-    <div className='search-component'>
-      <Link to='/' className='search-arrow'>
-        <img src={Arrow} alt='arrow'/>
+    <div className="search-component">
+      <Link to="/" className="search-arrow">
+        <img src={Arrow} alt="arrow"/>
       </Link>
-      <input type='text' placeholder='Search' value={value}
-        onChange={fieldHandler} className='search-input'/>
-      {isValue && <div className='search-cross' onClick={() => setValue("")}>
-        <img src={Cross} alt='cross' className='cross'/>
+      <input type="text" placeholder="Search" value={value}
+        onChange={fieldHandler} className="search-input"/>
+      {isValue && <div className="search-cross" onClick={() => setValue("")}>
+        <img src={Cross} alt="cross" className="cross"/>
       </div>}
     </div>
   );
 };
+
 export default Search;
