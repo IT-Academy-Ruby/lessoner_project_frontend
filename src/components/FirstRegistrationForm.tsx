@@ -9,11 +9,7 @@ import { GOOGLE_APP, PASSWORD } from "../constants";
 import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
-import FacebookButton from "./FacebookButton";
-import GoogleButton from "./GoogleButton";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-import VKButton from "./VKButton";
 import {isEmailExists} from "../services/api/isEmailExists";
 
 interface FormValues {
@@ -98,9 +94,6 @@ const FirstRegistrationForm = () => {
                 <Button buttonType='submit' 
                 buttonText={intl.formatMessage({ id: "app.button.next"})} 
                 className="button__page"/>
-                <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
-                <FacebookButton />
-                <VKButton />
               </Form>
             </div>
           );
