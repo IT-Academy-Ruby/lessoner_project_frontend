@@ -64,7 +64,6 @@ function App(): JSX.Element {
                 element={<SetNewPasswordPage />}
               />
             </Routes>
-            <YourselfPage />
           </div>
           <div className="authorization">
             <button onClick={signOut}>Not authorized</button>
