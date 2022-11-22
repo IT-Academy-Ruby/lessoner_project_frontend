@@ -18,8 +18,6 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
-import {useAppDispatch} from "./store/hooks";
-import {useState} from "react";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
 import { useTheme } from "./utils/useTheme";
