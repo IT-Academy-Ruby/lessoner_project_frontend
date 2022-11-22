@@ -7,7 +7,7 @@ const ThemeBtn = () => {
   const theme = useTheme();
   return (
     <button className="btn-theme" type="button" onClick={darkMode.toggle}>
-      {theme === "dark-mode" ? THEME.LIGHT : THEME.DARK}
+      {theme === "Dark-mode" ? THEME.LIGHT : THEME.DARK}
     </button>
   );
 };
