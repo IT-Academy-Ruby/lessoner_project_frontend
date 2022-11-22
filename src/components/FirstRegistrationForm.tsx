@@ -99,9 +99,9 @@ const FirstRegistrationForm = () => {
                 <Field
                   name='hasTermsAndConditions' component={Checkbox}
                   error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
-                <button className='registration-form-submit-button' type="submit">
-                  <FormattedMessage id="app.firstRegistrationForm.button" />
-                </button>
+                <Button buttonType='submit' 
+                buttonText={intl.formatMessage({ id: "app.button.next"})} 
+                className="button__page"/>
               </Form>
             </div>
           );

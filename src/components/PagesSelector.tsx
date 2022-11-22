@@ -1,4 +1,5 @@
 import { FC, Fragment } from "react";
+import YourselfPage from "../pages/YourselfPage";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import FirstRegistrationForm from "./FirstRegistrationForm";
@@ -52,10 +53,7 @@ export const PagesSelector: FC<PagesSelectorProps> = ({
   case "aboutYourself":
     return (
       <Fragment>
-        <PagesTitle pageTitle={pageTitle}/>
-        <Button buttonType="button" 
-          buttonText={buttonText} 
-          className="button__page"/>
+        <YourselfPage/>
       </Fragment>
     );
   default:
