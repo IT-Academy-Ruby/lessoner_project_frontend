@@ -2,14 +2,15 @@ import "../components/modal/modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
+import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Button from "../components/Button";
 import Email from "../components/Email";
-import {Link} from "react-router-dom";
-import {PASSWORD} from "../constants";
+import { Link } from "react-router-dom";
+import { PASSWORD } from "../constants";
 import Password from "../components/PasswordAndConfirm";
-import {getLogin} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
-import {useState} from "react";
+import { getLogin } from "../store/loginName/loginSlice";
+import { useAppDispatch } from "../store/hooks";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
@@ -20,20 +21,6 @@ interface FormValues {
 interface FormErrors {
   [key: string]: string
 }
-
-const emailInvalidationRules = [
-  /^\s*$/, // check string not empty
-  /^[^@]+$/, // @ should exist
-  /@[^@]*@/, // onle one @ is admissible
-  /^\./, // '.' can't be first symbol
-  /\.{2,}.+(?=@)/, // '.' can't repeat more than once in a row
-  /\.(?=@)/, // '.' can't be before @
-  /[^A-Za-z0-9_!#$%&'.*+\-/=?^`{|}~].*(?=@)/, // include only valid symbols before @
-  /(?<=@).*[^a-z0-9\-.]/, // include only valid symbols before @
-];
-
-const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" + PASSWORD.minLength +
-  "," + PASSWORD.maxLength + "}$", "i");
 
 const validate = async (values: FormValues) => {
   const errors: FormErrors = {};
@@ -73,7 +60,7 @@ const LoginPage = () => {
           dispatch(getLogin(values));
           console.log(values); //for example that working
         }}>
-        {({errors, touched}) => {
+        {({ errors, touched }) => {
           return (
             <Form>
               <div className="modal">
@@ -117,10 +104,7 @@ const LoginPage = () => {
                   buttonText="Sign in"
                   className="button"
                 />
-                <Link
-                  to={"/forgotPassword"}
-                  className="password-link"
-                >
+                <Link to={"/users/sign_in/reset_password"} className='passwordLink'>
                   Forgot your password?
                 </Link>
                 <Link
