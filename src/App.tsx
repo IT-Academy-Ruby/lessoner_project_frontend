@@ -31,7 +31,7 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode} />
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage />} />
-            <Route path='/users/sign_up' element={<Pages pageType={"registration"}/>}/>
+            <Route path='/users/sign_up' element={<Pages pageType={"Login"}/>}/>
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage />} />
             <Route path="/users/sign_in/phone_number/code" element={<CodePage />} />
             <Route path="/search" element={<Search />} />
@@ -39,7 +39,6 @@ function App(): JSX.Element {
             <Route path='/users/sign_in/reset_password/new_password'
               element={<SetNewPasswordPage />} />
           </Routes>
-          <YourselfPage />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <button onClick={() => dispatch(showDefaultPage())}>
               Not authorized

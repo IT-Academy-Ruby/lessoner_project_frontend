@@ -1,4 +1,4 @@
-import "../components/modal/modal.scss";
+// import "../components/Pages.scss";
 import {
   Field, Form, Formik
 } from "formik";
@@ -52,7 +52,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className='field'>
+    <div className="reg__content">
       <Formik
         initialValues={initialValues}
         validate={validate}
@@ -63,11 +63,6 @@ const LoginPage = () => {
         {({ errors, touched }) => {
           return (
             <Form>
-              <div className="modal">
-                <Link to="/">
-                  <span className="close">
-                  </span>
-                </Link>
                 <h2 className="title">Login to the Lessoner</h2>
                 <Field
                   name="email"
@@ -102,7 +97,7 @@ const LoginPage = () => {
                 <Button
                   buttonType="submit"
                   buttonText="Sign in"
-                  className="button"
+                  className="button__page"
                 />
                 <Link to={"/users/sign_in/reset_password"} className='passwordLink'>
                   Forgot your password?
@@ -113,24 +108,6 @@ const LoginPage = () => {
                 >
                   Continue by phone number
                 </Link>
-                <a
-                  href="/"
-                  className="button-link"
-                >
-                  Continue with Google
-                </a>
-                <a
-                  href="/"
-                  className="button-link"
-                >
-                  Continue with Facebook
-                </a>
-                <a
-                  href="/"
-                  className="button-link"
-                >
-                  Continue with VK
-                </a>
                 <p className="text">
                   Don`t you have an account?
                   <Link
@@ -140,7 +117,6 @@ const LoginPage = () => {
                     Sign up
                   </Link>
                 </p>
-              </div>
             </Form>
           );
         }}

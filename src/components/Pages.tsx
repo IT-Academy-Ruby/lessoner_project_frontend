@@ -5,6 +5,7 @@ import Bacground744 from "./icons/backgroundPages744.svg";
 import Close from "./icons/close.svg";
 import { FC } from "react";
 import {Link} from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
 import Logo1440 from "./icons/logo1440.svg";
 import Logo360 from "./icons/logo360.svg";
 import Logo744 from "./icons/logo744.svg";
@@ -17,38 +18,12 @@ interface PagesProps {
 
 export const Pages: FC<PagesProps> = ({pageType}) => {
   const intl = useIntl();
-  const pages = [
-    {
-      id: 1, 
-      type: "registration", 
-      pageTitle: pageType,
-      buttonText: ""
-    },
-    {
-      id: 2, 
-      type: "confirm", 
-      pageTitle: pageType,
-      buttonText: intl.formatMessage({ id: "app.button.ok" })
-    },
-    {
-      id: 3, 
-      type: "phoneNumber", 
-      pageTitle: pageType,
-      buttonText: intl.formatMessage({ id: "app.button.next" })
-    },
-    {
-      id: 3, 
-      type: "enterCode", 
-      pageTitle: pageType,
-      buttonText: intl.formatMessage({ id: "app.button.next" })
-    },
-    {
-      id: 4, 
-      type: "aboutYourself", 
-      pageTitle: pageType,
-      buttonText: intl.formatMessage({ id: "app.button.finish" })
-    },
-  ];
+const page =()=>{
+  switch(pageType){
+    case "Login":
+     return <LoginPage/>
+  }
+}
   const imageClasses = [
     {
       id: 1,
@@ -93,18 +68,7 @@ export const Pages: FC<PagesProps> = ({pageType}) => {
             </div>
           )}
         </div>
-        <div className="reg__content">
-          {pages.map((page: {
-            id: number; pageTitle: string; type: string; buttonText:string;  
-          }) => (page.type === pageType) &&
-            <div className="reg__content-inner" key={page.id}>
-              <PagesSelector 
-                pageType={pageType} 
-                pageTitle={page.pageTitle} 
-                buttonText={page.buttonText}/>
-            </div>
-          )}
-        </div>
+        {page()}
       </div>
     </div>  
   );
