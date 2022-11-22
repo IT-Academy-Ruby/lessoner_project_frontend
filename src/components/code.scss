@@ -1,0 +1,33 @@
+@import "../constants.scss";
+
+.code {
+  margin: 20px 0 0;
+}
+
+.code-label {
+  display: block;
+  @include fieldsFont;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.code-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.1em;
+  border: 2px solid $borderColor;
+  border-radius: 0.1em;
+  font-size: 30px;
+  text-align: center;
+
+  &:focus {
+    border: 2px solid $borderColor;
+  }
+}
+
+.error {
+  color: $warningColor;
+  display: block;
+  margin-top: 0.5em;
+  font-weight: normal;
+}

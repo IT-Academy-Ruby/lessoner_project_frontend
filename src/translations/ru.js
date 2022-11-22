@@ -51,4 +51,6 @@ export const messages_ru = {
   "app.pagesTitle.phoneNumber": "Введите свой номер телефона",
   "app.pagesTitle.enterCode": "Введите код",
   "app.pagesTitle.aboutYourself": "Расскажите нам о себе",
+  "app.My lessons": "Мои уроки",
+  "app.Add new lesson": "Добавить новый урок",
 };
