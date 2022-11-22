@@ -13,4 +13,3 @@ export const useTheme = () => {
 
   return theme;
 };
-export const THEME = { DARK: "dark-mode", LIGHT: "light-mode" };
