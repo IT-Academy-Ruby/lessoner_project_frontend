@@ -8,7 +8,6 @@
 .field {
   width: 30%;
   padding: 1rem;
-  background: whitesmoke;
   margin: auto;
 }
 
@@ -31,7 +30,8 @@
   opacity: 1;
 }
 
-.close:before, .close:after {
+.close:before,
+.close:after {
   position: absolute;
   width: 1rem;
   height: 0.3rem;
@@ -76,7 +76,8 @@
   flex-direction: row;
 }
 
-.unchecked, .checked {
+.unchecked,
+.checked {
   appearance: none;
   height: 1rem;
   width: 1rem;
@@ -106,7 +107,6 @@
   display: inline-block;
   margin: 0.3rem 0;
   border-radius: 5px;
-  color: black;
   text-decoration: none;
   text-align: center;
   font-weight: bold;

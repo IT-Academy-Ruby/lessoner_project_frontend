@@ -51,7 +51,7 @@ const PasswordAndConfirm = ({
         src={visiblePassword ? open_eye : close_eye}
         onClick={showPassword}
       />
-      {error && <span className='error'>{error}</span>}
+      {error && <span className="error">{error}</span>}
       </label>
     </div>
   );

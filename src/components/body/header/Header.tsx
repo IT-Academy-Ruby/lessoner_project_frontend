@@ -32,6 +32,14 @@ const Header = () => {
   const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
     : intl.formatMessage({id: "app.header.goStudy"});
 
+  useEffect(() => {
+    if (localStorage.getItem("JWT")) {
+      navigate("");
+      dispatch(showStudentPage());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDefaultPage, localJWT]);
+
   return (
     <div className="side-bar">
       <label className="menu">
@@ -69,9 +77,9 @@ const Header = () => {
             :
             <Link to="/users/sign_in" className="login-link">
               <Button
-                buttonType='button'
+                buttonType="button"
                 buttonText={intl.formatMessage({id: "app.header.login"})}
-                className='button-login'
+                className="button-login"
               />
             </Link>}
         </div>

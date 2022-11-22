@@ -20,13 +20,15 @@ type Login = {
   event: boolean;
   lookButton: boolean;
   loading: boolean;
-}
+};
+
 const initialState: Login = {
   login: "",
   event: false,
   lookButton: false,
   loading: false,
 };
+
 const loginSlice = createSlice({
   name: "login",
   initialState,
@@ -54,6 +56,7 @@ const loginSlice = createSlice({
     });
   }
 });
+
 export const {
   buttonEvent, changeEvent, lookEvent
 } = loginSlice.actions;
