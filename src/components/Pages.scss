@@ -1,35 +1,27 @@
 @import "../constants.scss";
 
 .reg__wrapper {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .reg__inner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+  position: relative;
   display: flex;
-  width: 95%;
+  justify-content: center;
   max-width: 1322px;
-  height: 95%;
   max-height: 843px;
   border-radius: 44px;
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
   background: #fff;
+  margin: 0 20px;
 }
 
 .reg__picture {
   position: relative;
   width: 50%;
-  min-width: 600px;
   border-radius: 44px 0 0 44px;
   overflow: hidden;
 }
@@ -48,7 +40,9 @@
 
 .reg__svg-bacground1440 {
   margin-right: 22px;
+  width: 100%;
   object-fit: cover;
+  object-position: right;
 }
 
 .reg__svg-bacground744 {
@@ -61,8 +55,9 @@
 
 .reg__svg-logo1440 {
   position: absolute;
-  left: 141px;
-  top: 208px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
   width: 320px;
   height: 410px;
@@ -123,23 +118,7 @@
   height: 13px;
 }
 
-@media (width: $max-width-1_1) {
-  @media (height: $max-Height-1) {
-    .reg__svg-bacground1440 {
-      width: 100%;
-    }
-  }
-}
-
-@media (width: $max-width-1_3) {
-  @media (height: $max-Height-3) {
-    .reg__svg-bacground1440 {
-      width: 100%;
-    }
-  }
-}
-
-@media (max-width: $max-width-1_2) {
+@media (max-width: $max-width-1) {
   .reg__picture {
     min-width: 0;
   }
@@ -225,72 +204,6 @@
   .reg__btn-close {
     right: 32px;
     top: 32px;
-  }
-}
-
-@media (max-width: $max-width-2) {
-  @media (max-height: $max-Height-2) {
-    .reg__inner {
-      width: 100%;
-      height: 100%;
-      max-width: 360px;
-      max-height: 640px;
-      border-radius: 0;
-    }
-  
-    .reg__picture {
-      height: 143px;
-      border-radius: 0;
-    }
-  
-    .reg__image360 {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-  
-    .reg__image1440,
-    .reg__image744 {
-      display: none;
-    }
-  
-    .reg__svg-bacground1440,
-    .reg__svg-bacground744 {
-      display: none;
-    }
-  
-    .reg__svg-bacground360 {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  
-    .reg__svg-logo1440,
-    .reg__svg-logo744 {
-      display: none;
-    }
-  
-    .reg__svg-logo360 {
-      display: flex;
-    }
-  
-    .reg__content {
-      height: calc(100% - 143px);
-      border-radius: 0;
-    }
-  
-    .reg__content-inner {
-      max-width: 296px;
-    }
-  
-    .reg__btn-close {
-      right: 20px;
-      top: 20px;
-    }
   }
 }
 

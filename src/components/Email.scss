@@ -40,13 +40,11 @@
 }
 
 @media (max-width: $max-width-2) {
-  @media (max-height: $max-Height-2) {
-    .email-wrapper {
-      margin-bottom: 14px;
-    }
-    .email-input{
-      font-size: 14px;
-    }
+  .email-wrapper {
+    margin-bottom: 14px;
+  }
+  .email-input{
+    font-size: 14px;
   }
 }
 

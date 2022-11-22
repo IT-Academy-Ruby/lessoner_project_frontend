@@ -8,7 +8,8 @@
   font-weight: 600;
   font-size: 45px;
   line-height: 130%;
-  margin: $marginBottomMain; 
+  margin: $marginBottomMain;
+  padding-top: 60px; 
 }
 
 .title__confirm {
@@ -16,12 +17,11 @@
 }
 
 @media (max-width: $max-width-2) {
-  @media (max-height: $max-Height-2) {
-    .title__page {
-      font-size: 28px;
-      line-height: 36px;
-      margin-bottom: 14px;
-    }
+  .title__page {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 14px;
+    padding-top: 0;
   }
 }
 

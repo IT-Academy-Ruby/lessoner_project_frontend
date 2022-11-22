@@ -20,12 +20,10 @@
 }
 
 @media (max-width: $max-width-2) {
-  @media (max-height: $max-Height-2) {
-    .button__page {
-      height: 40px;
-      margin-bottom: 14px;
-      font-size: 16px;
-    }
+  .button__page {
+    height: 40px;
+    margin-bottom: 14px;
+    font-size: 16px;
   }
 }
 

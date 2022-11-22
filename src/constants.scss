@@ -3,15 +3,9 @@ $warningColor: #FF0000;
 $font: 'Apercu Pro', sans-serif;
 $formWidth: 100%;
 $marginBottomMain: 0 0 30px 0;
-$max-width-1_1: 1280px;
-$max-width-1_2: 1100px;
-$max-width-1_3: 1024px;
+$max-width-1: 1100px;
 $max-width-2: 744px;
-$max-width-3: 420px;
-$max-Height-1: 800px;
-$max-Height-2: 720px;
-$max-Height-3: 600px;
-
+$max-width-3: 360px;
 
 @mixin fieldsFont {
   & {
@@ -24,12 +18,10 @@ $max-Height-3: 600px;
   }
 
   @media (max-width: $max-width-2) {
-    @media (max-height: $max-Height-2) {
-      & {
-          font-size: 12px;
-          line-height: 18px;
-        }
-    }
+    & {
+        font-size: 12px;
+        line-height: 18px;
+      }
   }
 
   @media (max-width: $max-width-3) {
