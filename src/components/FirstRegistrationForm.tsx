@@ -3,14 +3,14 @@ import "./FirstRegistrationForm.scss";
 import {
   Field, Form, Formik
 } from "formik";
-import Button from "./Button";
-import { FormattedMessage, useIntl } from "react-intl";
-import { GOOGLE_APP, PASSWORD } from "../constants";
 import { emailInvalidationRules, passwordRegex } from "../validationRules";
+import Button from "./Button";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
+import { PASSWORD } from "../constants";
 import PasswordAndConfirm from "./PasswordAndConfirm";
 import {isEmailExists} from "../services/api/isEmailExists";
+import { useIntl } from "react-intl";
 
 interface FormValues {
   email: string;
@@ -90,10 +90,9 @@ const FirstRegistrationForm = () => {
                 <Field
                   name='hasTermsAndConditions' component={Checkbox}
                   error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
-                
                 <Button buttonType='submit' 
-                buttonText={intl.formatMessage({ id: "app.button.next"})} 
-                className="button__page"/>
+                  buttonText={intl.formatMessage({ id: "app.button.next"})} 
+                  className="button__page"/>
               </Form>
             </div>
           );
