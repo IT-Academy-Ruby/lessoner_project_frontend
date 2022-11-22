@@ -15,15 +15,19 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
-import YourselfPage from "./pages/YourselfPage";
-import { useAppDispatch } from "./store/hooks";
-import { useState } from "react";
-
+import {useAppDispatch} from "./store/hooks";
+import {useState} from "react";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+
+  const signOut = () => {
+    dispatch(showDefaultPage());
+    localStorage.setItem("JWT", "");
+  };
+
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
@@ -39,11 +43,8 @@ function App(): JSX.Element {
             <Route path='/users/sign_in/reset_password/new_password'
               element={<SetNewPasswordPage />} />
           </Routes>
-          <YourselfPage />
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <button onClick={() => dispatch(showDefaultPage())}>
-              Not authorized
-            </button>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section
             </button>

@@ -14,12 +14,14 @@ type PhoneNumberProps = {
   setPhoneNumber: (str: string) => void;
   isError: boolean;
 }
+
 type countryType = {
   countryCode: string,
   dialCode: string,
   format: string,
   name: string
 }
+
 const PhoneNumber = ({
   setError, error, phoneNumber, setPhoneNumber, isError
 }: PhoneNumberProps) => {
@@ -63,4 +65,5 @@ const PhoneNumber = ({
     </div>
   );
 };
+
 export default PhoneNumber;

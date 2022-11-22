@@ -10,23 +10,53 @@ export const getLogin = createAsyncThunk(
     if (response.status === 200) {
       return data.jwt;
     } else {
-      return null;
+      return "";
     }
   }
 );
 type Login = {
-  login: boolean;
-}
-const initialState: Login = {login: false,};
+  login: string;
+  event: boolean;
+  lookButton: boolean;
+  loading: boolean;
+};
+
+const initialState: Login = {
+  login: "",
+  event: false,
+  lookButton: false,
+  loading: false,
+};
+
 const loginSlice = createSlice({
   name: "login",
   initialState,
-  reducers: {},
-  extraReducers(builder) {
+  reducers: {
+    buttonEvent: (state) => {
+      state.event = true;
+    },
+    changeEvent: (state) => {
+      state.event = false;
+    },
+    lookEvent: (state) => {
+      state.lookButton = !state.lookButton;
+    }
+  },
+  extraReducers: (builder) => {
     builder.addCase(getLogin.fulfilled, (state, action) => {
       state.login = action.payload;
-      localStorage.setItem("JWT", `${state.login}`);
+      state.loading = false;
+      if (state.login) {
+        localStorage.setItem("JWT", `${state.login}`);
+      }
+    });
+    builder.addCase(getLogin.pending, (state) => {
+      state.loading = true;
     });
   }
 });
+
+export const {
+  buttonEvent, changeEvent, lookEvent
+} = loginSlice.actions;
 export default loginSlice.reducer;
