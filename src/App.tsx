@@ -72,6 +72,7 @@ function App(): JSX.Element {
             <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showDefaultPage())}>
               Not authorized
+            </button>
             <button onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section
             </button>
