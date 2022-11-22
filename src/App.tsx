@@ -41,7 +41,7 @@ function App(): JSX.Element {
             <Route path="/search" element={<Search />} />
             <Route path='/users/sign_in/reset_password' element={<ResetPasswordPage />} />
             <Route path='/users/sign_in/reset_password/new_password'
-            element={<SetNewPasswordPage />} />
+              element={<SetNewPasswordPage />} />
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
