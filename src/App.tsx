@@ -7,15 +7,13 @@ import {
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
-import {IntlProvider} from 'react-intl';
+import {IntlProvider} from "react-intl";
 import LoginPage from "./pages/LoginPage";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
-import {useAppDispatch} from "./store/hooks";
-import {useState} from "react";
-import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import Search from "./components/Search";
 import TranslationHelpers from "./translations/translationHelpers";
-import YourselfPage from "./pages/YourselfPage";
+import {useAppDispatch} from "./store/hooks";
+import {useState} from "react";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -24,8 +22,8 @@ function App(): JSX.Element {
 
   const signOut = () => {
     dispatch(showDefaultPage());
-    localStorage.setItem('JWT', '');
-  }
+    localStorage.setItem("JWT", "");
+  };
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -33,12 +31,12 @@ function App(): JSX.Element {
         <div className="App">
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
-            <Route path='/users/sign_in' element={<LoginPage/>}/>
-            <Route path='/users/sign_in/phone_number' element={<PhoneNumberPage/>}/>
-            <Route path='/users/sign_in/phone_number/code' element={<CodePage/>}/>
-            <Route path='/search' element={<Search/>}/>
+            <Route path="/users/sign_in" element={<LoginPage/>}/>
+            <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage/>}/>
+            <Route path="/users/sign_in/phone_number/code" element={<CodePage/>}/>
+            <Route path="/search" element={<Search/>}/>
           </Routes>
-          <div style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section

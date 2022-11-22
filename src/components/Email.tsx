@@ -1,11 +1,10 @@
 import "./Email.scss";
-import {EMAIL} from "../constants";
+import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import {useState, useEffect} from "react";
+import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
 import {changeEvent} from "../store/loginName/loginSlice";
-import classNames from 'classnames';
-import React from "react";
+import classNames from "classnames";
 
 type EmailProps = {
   field: {
