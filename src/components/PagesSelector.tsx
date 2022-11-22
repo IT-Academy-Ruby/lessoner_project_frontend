@@ -1,9 +1,9 @@
 import { FC, Fragment } from "react";
-import YourselfPage from "../pages/YourselfPage";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import FirstRegistrationForm from "./FirstRegistrationForm";
 import { PagesTitle } from "./PagesTitle";
+import YourselfPage from "../pages/YourselfPage";
 
 interface PagesSelectorProps {
   pageType: string;

@@ -7,10 +7,9 @@ import {
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
-import FirstRegistrationForm from "./components/FirstRegistrationForm";
 import { IntlProvider } from "react-intl"; 
-import { Pages } from "./components/Pages";
 import LoginPage from "./pages/LoginPage";
+import { Pages } from "./components/Pages";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/Search";
