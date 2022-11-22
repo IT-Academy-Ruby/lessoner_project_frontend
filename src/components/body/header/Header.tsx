@@ -1,7 +1,6 @@
 import "./Header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
 import Bell from "../../icons/Bell.svg";
@@ -9,6 +8,7 @@ import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
 import Magnifier from "../../icons/blackMagnifier.svg";
 import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
+import {showStudentPage} from "../../../store/header/headerSlice";
 import {useEffect} from "react";
 
 const Header = () => {
@@ -27,9 +27,6 @@ const Header = () => {
     if (decodeUserName) {
       navigate("");
       dispatch(showStudentPage());
-    } else {
-      navigate("");
-      dispatch(showDefaultPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDefaultPage, decodeUserName, loading]);

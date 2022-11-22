@@ -2,7 +2,6 @@ import "./Header.scss";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
 
-
 const Avatar = () => {
   const dispatch = useAppDispatch();
   const nameDecode = useAppSelector(state => state.userDecodeName.name);

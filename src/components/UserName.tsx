@@ -12,7 +12,6 @@ const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
   // eslint-disable-next-line no-useless-escape
   const userNameRegex = new RegExp("^[A-Z\d]" +
     "{" + minSymbol + "," + maxSymbol + "}$", "i");
-  const [isBlur, setIsBlur] = useState(false);
   const [extraStyle, setExtraStyle] = useState("");
   const [error, setError] = useState("");
 
@@ -38,20 +37,15 @@ const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
     }
   }, [userStatus]);
 
-  const blurHandle = () => {
-    setIsBlur(true);
-  };
-
   return (
     <div className="userName">
       <label className="userNameLabel">Username</label>
       <input
         type="text"
         required
-        className={classNames("userNameInput", {[`${extraStyle}`]: (isBlur && error)})}
-        onChange={fieldHandler}
-        onBlur={blurHandle}/>
-      {(error && isBlur) && <span className="error">{error}</span>}
+        className={classNames("userNameInput", {[`${extraStyle}`]: (error)})}
+        onChange={fieldHandler}/>
+      {(error) && <span className="error">{error}</span>}
     </div>
   );
 };
