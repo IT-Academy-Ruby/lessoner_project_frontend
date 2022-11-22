@@ -18,6 +18,7 @@ export const messages_en = {
   "app.checkbox": "I agree to the processing of my personal data in accordance with the",
   "app.checkbox.terms": "Terms",
   "app.email.name": "Email",
+  "app.email.error": "Incorrect Email address or password",
   "app.firstRegistrationForm.existsInDb": "This email address is already registered",
   "app.firstRegistrationForm.invalidationRules": "Please enter a valid email address",
   "app.firstRegistrationForm.passwordRegEx": "An invalid character is present in the password. Password must be between {minSymbol} and {maxSymbol} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols {symbols}",

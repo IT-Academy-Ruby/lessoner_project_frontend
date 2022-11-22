@@ -17,7 +17,7 @@ const Header = () => {
   const navigate = useNavigate();
   const isDefaultPage = useAppSelector(state => state.value.isDefaultHeader);
   const page = useAppSelector(state => state.value.page);
-  const decodeUserName = useAppSelector(state => state.userDecodedName.name);
+  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const loading = useAppSelector(state => state.login.loading);
 
   useEffect(() => {

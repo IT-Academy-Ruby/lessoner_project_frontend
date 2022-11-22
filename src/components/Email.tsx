@@ -2,8 +2,10 @@ import "./Email.scss";
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {EMAIL} from "../constants";
+import {FormattedMessage} from "react-intl";
 import {changeEvent} from "../store/loginName/loginSlice";
 import classNames from "classnames";
+
 
 type EmailProps = {
   field: {
@@ -46,7 +48,7 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
         />
         {error && <span className="error-message">{error}</span>}
         {!loading && isUser && <span className="error-message">
-          Incorrect Email address or password
+          <FormattedMessage id= "app.email.error"/>
         </span>}
       </label>
     </div>
