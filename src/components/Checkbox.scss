@@ -2,7 +2,10 @@
 
 
 .checkbox__label {
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  margin: $marginBottomMain;
 }
 
 .checkbox__content {
@@ -11,13 +14,12 @@
 }
 
 .checkbox__input {
-  margin: $marginBottomMain;
   margin-right: 12px;
 }
 
 .checkbox__text {
-  margin: $marginBottomMain;
   text-align: left;
+  margin: 0;
 }
 
 .checkbox__text a {
