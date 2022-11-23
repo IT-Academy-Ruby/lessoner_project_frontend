@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "Apercu Pro";
+  src: url(./fonts/ApercuPro/ApercuPro.ttf);
+  src: url(./fonts/ApercuPro/ApercuPro.woff);
+  src: url(./fonts/ApercuPro/ApercuPro.woff2);
+}
+
 $borderColor: #455FCE;
 $warningColor: #FF0000;
-$font: 'Apercu Pro', sans-serif;
+$font: "Apercu Pro";
 $formWidth: 100%;
 $marginBottomMain: 0 0 30px 0;
 $max-width-1: 1100px;
@@ -19,24 +26,36 @@ $greySearchColor: #9A9AA3;
     font-style: normal;
     color: #1B1B1F;
   }
+  &::placeholder {
+    font-family: $font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
 
   @media (max-width: $max-width-3) {
     & {
       font-size: 12px;
       line-height: 18px;
     }
+    &::placeholder {
+      font-size: 14px;
+      line-height: 150%;
+    }
   }
 }
 
 @mixin textFieldInput {
   line-height: 40px;
-  border: 1px solid $borderColor;
+  border: 1px solid $greySearchColor;
   border-radius: 8px;
   width: 100%;
   @include fieldsFont;
   margin-top: 5px;
 
   &:focus {
+    outline: 0;
     border: 1px solid $borderColor;
   }
 }

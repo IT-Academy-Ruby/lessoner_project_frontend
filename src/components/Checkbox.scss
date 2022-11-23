@@ -1,43 +1,39 @@
 @import "../constants.scss";
 
-.checkbox__wrapper {
-  & .checkbox__label {
-    cursor: pointer;
 
-    & .checkbox__content {
-      display: flex;
-      flex-direction: row;
-    }
-
-    & .checkbox__input {
-      margin: $marginBottomMain;
-      margin-right: 10px;
-    }
-
-    & .checkbox__text {
-      margin: $marginBottomMain;
-      text-align: left;
-    }
-
-    & .checkbox__text a {
-      text-decoration: none;
-      color: #455FCE;
-    }
-  }
+.checkbox__label {
+  cursor: pointer;
 }
 
-.error-message {
-  color: $warningColor;
+.checkbox__content {
+  display: flex;
+  flex-direction: row;
 }
+
+.checkbox__input {
+  margin: $marginBottomMain;
+  margin-right: 12px;
+}
+
+.checkbox__text {
+  margin: $marginBottomMain;
+  text-align: left;
+}
+
+.checkbox__text a {
+  text-decoration: none;
+  color: #455FCE;
+}
+
 
 @media (max-width: $max-width-3) {
 
-  .checkbox__wrapper .checkbox__lcheckbox__abel .checkbox__text,
-  .checkbox__wrapper .checkbox__label .checkbox__input {
-    margin-bottom: 14px;
-  }
+.checkbox__text,
+.checkbox__input {
+  margin-bottom: 14px;
+}
 
-  .checkbox__wracheckbox__pper .checkbox__label .checkbox__text {
-    font-size: 12px;
-  }
+.checkbox__text {
+  font-size: 12px;
+}
 }

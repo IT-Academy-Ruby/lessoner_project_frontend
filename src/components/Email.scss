@@ -18,13 +18,8 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
-  border: 2px solid $borderColor;
   @include fieldsFont;
   @include textFieldInput;
-
-  &:focus {
-    border: 2px solid $borderColor;
-  }
 }
 
 .invalid-email-input {
