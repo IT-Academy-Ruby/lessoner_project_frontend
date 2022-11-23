@@ -1,11 +1,11 @@
 import { REDIRECT_URL, VK_APP } from "../constants";
-import getVKCode from "../helpers/parseUrl";
+import getParameterValue from "../helpers/parseUrl";
 import { useEffect } from "react";
 
 const VKButton = () => {
 
   useEffect(() => {
-    const code = getVKCode(window.location.href);
+    const code = getParameterValue(window.location.href, "code");
 
     if (code) {
       console.log(code);

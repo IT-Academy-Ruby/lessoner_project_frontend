@@ -13,7 +13,7 @@ import GoogleButton from "./GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
 import VKButton from "./VKButton";
-import {isEmailExists} from "../services/api/isEmailExists";
+import { isEmailExists } from "../services/api/isEmailExists";
 
 interface FormValues {
   email: string;
