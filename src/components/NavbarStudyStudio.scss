@@ -128,3 +128,9 @@ $content-color: #1b1b1f;
 .svg__item--selected {
   fill: $white-color;
 }
+
+.all-right{
+  display: flex;
+  position: absolute;
+  bottom:0;
+}

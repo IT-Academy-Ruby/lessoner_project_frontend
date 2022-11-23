@@ -106,6 +106,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
           ) 
           }
         </ul>
+        {isMenuActive ? <div className="all-right">
+          <div className="r-in-circle">&#174;</div>2022. All right reserved</div> :null}
       </div>
     </div>
   );
