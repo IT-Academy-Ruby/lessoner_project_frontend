@@ -5,7 +5,6 @@ import open_eye from "./icons/open_eye.svg";
 import {useIntl} from "react-intl";
 import {useState} from "react";
 
-
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
@@ -47,12 +46,12 @@ const PasswordAndConfirm = ({
         placeholder={`At least ${minSymbol} characters`}
       />
       <img
-        className='image'
-        alt='eye'
+        className="image"
+        alt="eye"
         src={visiblePassword ? open_eye : close_eye}
         onClick={showPassword}
       />
-      {error && <span className='error'>{error}</span>}
+      {error && <span className="error">{error}</span>}
       </label>
     </div>
   );

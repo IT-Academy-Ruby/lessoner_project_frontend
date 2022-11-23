@@ -1,23 +1,35 @@
 @font-face {
-  font-family: ApercuPro;
-  src: url("./fonts/ApercuPro/ApercuPro.woff2"),
-  url("./fonts/ApercuPro/ApercuPro.woff"),
-  url("./fonts/ApercuPro/ApercuPro.ttf");
+  font-family: 'ApercuPro';
+  src: url('./fonts/ApercuPro/ApercuPro.woff2') format('woff2'),
+      url('./fonts/ApercuPro/ApercuPro.woff') format('woff'),
+      url('./fonts/ApercuPro/ApercuPro.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ApercuPro';
+  src: url('./fonts/ApercuPro/ApercuPro-Bold.woff2') format('woff2'),
+      url('./fonts/ApercuPro/ApercuPro-Bold.woff') format('woff'),
+      url('./fonts/ApercuPro/ApercuPro-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
 }
 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -69,8 +81,9 @@ code {
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-
+  
 }
+
 /**, *::before, *::after {*/
 /*  box-sizing: border-box;*/
 /*}*/
