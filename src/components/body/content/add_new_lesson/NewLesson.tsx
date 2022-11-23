@@ -50,9 +50,10 @@ const NewLesson = () => {
           <Link to="/myStudio">
             <input type="button" value="Cansel" className="button-shape cansel" />
           </Link>
-          <input type="button" className="next-step-button active-step button-shape"
+          {step===1 ? <input type="button" className="next-step-button active-step button-shape"
             value={stepStatus} onClick={swapStepForm}>
-          </input>
+          </input> : <input type="button" className="add-new-lesson"></input>}
+          
         </div>
       </div>
     </div>

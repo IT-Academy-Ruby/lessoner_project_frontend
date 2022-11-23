@@ -20,7 +20,7 @@ const Step2 = () => {
             <label htmlFor="category">Category</label>
             <select id="category" name="category" className="color-grey"  
               onChange={formik.handleChange} value={formik.values.category} >
-              <option value="Choose a category" disabled selected  >
+              <option value="Choose a category" selected >
         Choose a category
               </option>
               <option value="IT">IT</option>
@@ -51,6 +51,13 @@ const Step2 = () => {
           {/* <div>
             <button type="submit">Submit</button>
           </div> */}
+          <div>
+            <span>Thumbnail</span>
+            <span>Select or upload a picture that shows whats in your video</span>
+            <div>
+              
+            </div>
+          </div>
         </div>
       </form>
     
