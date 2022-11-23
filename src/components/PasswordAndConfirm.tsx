@@ -35,7 +35,7 @@ const PasswordAndConfirm = ({
 
   return (
     <div className="password">
-      <label className="passwordLabel">{isConfirm ?
+      <label className="password-label">{isConfirm ?
         intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"}) :
         intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
       <input

@@ -39,20 +39,11 @@
   font-weight: normal;
 }
 
-@media (max-width: $max-width-2) {
-  .email-wrapper {
-    margin-bottom: 14px;
-  }
-  .email-input{
-    font-size: 14px;
-  }
-}
-
 @media (max-width: $max-width-3) {
   .email-wrapper {
     margin-bottom: 14px;
   }
-  .email-input {
+  .email-input{
     font-size: 14px;
   }
 }
