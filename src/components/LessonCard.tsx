@@ -1,12 +1,13 @@
 import "./LessonCard.scss";
 import Kebab from "../assets/kebab.png";
+import { LetterSvg } from "../components/svg/LetterSvg";
 import Rating from "./body/content/Rating/Rating";
 import React from "react";
 import Tag from "./body/Tags/Tag";
 
 type ThumbnailImageUrlProps = {
-    imagePreview: string;
-}
+  imagePreview: string;
+};
 
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
@@ -19,8 +20,8 @@ const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
 };
 
 type TitleProps = {
-    title: string;
-}
+  title: string;
+};
 
 const Title: React.FC<TitleProps> = (props) => {
   return (
@@ -41,8 +42,8 @@ const MenuKebab = () => {
 };
 
 type PublishedDataProps = {
-    published: null | string
-}
+  published: null | string;
+};
 
 const Published: React.FC<PublishedDataProps> = (props) => {
   return (
@@ -53,8 +54,8 @@ const Published: React.FC<PublishedDataProps> = (props) => {
 };
 
 type ViewProps = {
-    view: number;
-}
+  view: number;
+};
 
 const View: React.FC<ViewProps> = (props) => {
   return (
@@ -65,17 +66,17 @@ const View: React.FC<ViewProps> = (props) => {
 };
 
 type LessonCardsProps = {
-    id: number;
-    imagePreview: string;
-    status: string;
-    duration: string;
-    title: string;
-    published: string | null;
-    view: number;
-    category: string;
-    rating: string;
-    totalVotes: string;
-}
+  id: number;
+  imagePreview: string;
+  status: string;
+  duration: string;
+  title: string;
+  published: string | null;
+  view: number;
+  category: string;
+  rating: string;
+  totalVotes: string;
+};
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
   return (
@@ -83,7 +84,12 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
       <div className="card">
         <div className="card__icon">
           <ThumbnailImageUrl imagePreview={props.imagePreview} />
-          <Tag type="status" className="video__status" text={props.status} />
+          <Tag
+            type="status"
+            className="video__status"
+            text={props.status}
+            iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
+          />
           <Tag className="video__time" type="time" text={props.duration} />
         </div>
         <div className="card__info">

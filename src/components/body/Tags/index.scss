@@ -1,35 +1,53 @@
 .tag {
-    align-items: center;
-    border-radius: 4px;
-    min-width: 8px;
-    height: 23px;
-    padding: 0 8px;
+  align-items: center;
+  border-radius: 4px;
+  min-width: 8px;
+  height: 23px;
+  padding: 0 8px;
 }
 
 .tag-status {
-    background-color: #455FCE;
-    color: #FFFFFF;
-    font-family: 'ApercuPro';
-    font-size: 12px;
-    line-height: 21px;
-    height: 21px;
+  background-color: #455fce;
+  color: #ffffff;
+  font-family: "ApercuPro";
+  font-size: 12px;
+  line-height: 21px;
+  height: 21px;
+  display: flex;
 }
-
+.draft {
+  background: #9a9aa3;
+  border-radius: 4px;
+}
+.archived {
+  background: #303034;
+  border-radius: 4px;
+}
+.in_review {
+  background: #dde9ff;
+  border-radius: 4px;
+  color: #455FCE;
+}
 .tag-time {
-    background: rgba(0, 0, 0, 0.4);
-    color: #FFFFFF;
-    font-family: 'ApercuPro';
-    font-size: 12px;
-    line-height: 23px;
-    height: 23px;  
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: "ApercuPro";
+  font-size: 12px;
+  line-height: 23px;
+  height: 23px;
 }
 
 .tag-category {
-    background: linear-gradient(0deg, rgba(93, 150, 217, 0.08), rgba(93, 150, 217, 0.08)), #FEFBFF;
-    color: #455FCE;
-    font-family: 'ApercuPro';
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 23px;
-    height: 23px;
+  background: linear-gradient(
+      0deg,
+      rgba(93, 150, 217, 0.08),
+      rgba(93, 150, 217, 0.08)
+    ),
+    #fefbff;
+  color: #455fce;
+  font-family: "ApercuPro";
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 23px;
+  height: 23px;
 }
