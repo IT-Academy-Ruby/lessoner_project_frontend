@@ -48,6 +48,11 @@ const Footer = (props: FooterProps) => {
           <FormattedMessage id="app.registration"/>
         </button>
       </Link>
+      <Link to="/users/test">
+        <button>
+          Test
+        </button>
+      </Link>
     </div>
   );
 };
