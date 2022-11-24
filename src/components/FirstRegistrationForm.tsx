@@ -9,7 +9,7 @@ import Checkbox from "./Checkbox";
 import Email from "./Email";
 import { PASSWORD } from "../constants";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-import {isEmailExists} from "../services/api/isEmailExists";
+//import {isEmailExists} from "../services/api/isEmailExists";
 import { useIntl } from "react-intl";
 
 interface FormValues {
@@ -37,13 +37,13 @@ const FirstRegistrationForm = () => {
   };
 
   const validate = async (values: FormValues) => {
-    const isEmailExistsInDB = await isEmailExists(values.email);
+    /* const isEmailExistsInDB = await isEmailExists(values.email); */
 
     const errors: FormErrors = {};
-    if (isEmailExistsInDB) {
+    /* if (isEmailExistsInDB) {
 
       errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.existsInDb" });
-    }
+    } */
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
       errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
     }
@@ -90,9 +90,9 @@ const FirstRegistrationForm = () => {
                 <Field
                   name='hasTermsAndConditions' component={Checkbox}
                   error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
-                <Button buttonType={"submit"} 
+                <Button buttonType="submit" 
                   buttonText={intl.formatMessage({ id: "app.button.next"})} 
-                  className={"button__page"}/>
+                  className="button__page"/>
               </Form>
             </div>
           );

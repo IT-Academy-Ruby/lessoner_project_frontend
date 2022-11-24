@@ -24,7 +24,7 @@ const Checkbox = ({ field, error }: CheckboxProps): JSX.Element => {
             <FormattedMessage id="app.checkbox.terms" /> </a>
         </p>
       </div>
-      {error && <div><span className="error-message">{error}</span></div>}
+      {error && <span className="error-message">{error}</span>}
     </label>
   );
 };
