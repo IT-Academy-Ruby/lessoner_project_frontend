@@ -20,7 +20,6 @@ import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
-import { useTheme } from "./utils/useTheme";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
