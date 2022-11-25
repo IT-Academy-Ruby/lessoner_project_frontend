@@ -32,7 +32,6 @@ function App(): JSX.Element {
     dispatch(showDefaultPage());
     localStorage.setItem("JWT", "");
   };
-  const theme = useTheme();
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
