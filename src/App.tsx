@@ -31,7 +31,6 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage />} />
             <Route path="/users/sign_up" element={<Pages pageType={"registration"}/>}/>
-            {/* for test */}
             <Route path="/users/test" element={<PhoneNumberPage />}/>
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage />} />
             <Route path="/users/sign_in/phone_number/code" element={<CodePage />} />
