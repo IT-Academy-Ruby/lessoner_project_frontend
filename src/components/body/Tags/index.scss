@@ -12,21 +12,25 @@
   font-family: "ApercuPro";
   font-size: 12px;
   line-height: 21px;
-  height: 21px;
+  height: 24px;
   display: flex;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.tag-wrapper {
+  width: 54px;
+  display: flex;
+  justify-content: space-around;
 }
 .draft {
   background: #9a9aa3;
-  border-radius: 4px;
 }
 .archived {
   background: #303034;
-  border-radius: 4px;
 }
 .in_review {
   background: #dde9ff;
-  border-radius: 4px;
-  color: #455FCE;
+  color: #455fce;
 }
 .tag-time {
   background: rgba(0, 0, 0, 0.4);

@@ -28,8 +28,10 @@ const Tag: React.FC<TagProps> = (props: TagProps) => {
 
   return (
     <div className={tagClassName}>
-      {iconLeft}
-      <span>{text}</span>
+      <div className="tag-wrapper">
+        {iconLeft}
+        <span>{text}</span>
+      </div>
     </div>
   );
 };
