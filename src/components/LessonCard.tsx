@@ -89,6 +89,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
             className="video__status"
             text={props.status}
             iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
+            videoStatus={true}
           />
           <Tag className="video__time" type="time" text={props.duration} />
         </div>

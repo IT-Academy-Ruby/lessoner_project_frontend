@@ -7,11 +7,12 @@ type TagProps = {
   type?: "status" | "time" | "category";
   className?: string;
   iconLeft?: string | ReactElement;
+  videoStatus?:boolean|undefined
 };
 
 const Tag: React.FC<TagProps> = (props: TagProps) => {
   const { 
-    text, type = "category", className = "", iconLeft 
+    text, type = "category", className = "", iconLeft,videoStatus
   } = props;
   const tagClassName = classNames(
     {
@@ -25,14 +26,21 @@ const Tag: React.FC<TagProps> = (props: TagProps) => {
     },
     className
   );
-
-  return (
-    <div className={tagClassName}>
-      <div className="tag-wrapper">
-        {iconLeft}
-        <span>{text}</span>
+  // if (isLoggedIn) {
+  //   return <UserGreeting />;
+  // }
+  if(videoStatus){
+    return (
+      <div className={tagClassName}>
+        <div className="tag-wrapper">
+          {iconLeft}
+          <span>{text}</span>
+        </div>
       </div>
-    </div>
+    );
+  }
+  return (
+    <div className={tagClassName}>{text}</div>
   );
 };
 
