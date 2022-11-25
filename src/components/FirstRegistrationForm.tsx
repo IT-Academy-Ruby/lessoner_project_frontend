@@ -3,13 +3,17 @@ import "./FirstRegistrationForm.scss";
 import {
   Field, Form, Formik
 } from "formik";
+import { GOOGLE_APP, PASSWORD } from "../constants";
 import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
 import Email from "./Email";
-import { PASSWORD } from "../constants";
+import FacebookButton from "./FacebookButton";
+import GoogleButton from "./GoogleButton";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import PasswordAndConfirm from "./PasswordAndConfirm";
-//import {isEmailExists} from "../services/api/isEmailExists";
+import VKButton from "./VKButton";
+import { isEmailExists } from "../services/api/isEmailExists";
 import { useIntl } from "react-intl";
 
 interface FormValues {
@@ -37,13 +41,13 @@ const FirstRegistrationForm = () => {
   };
 
   const validate = async (values: FormValues) => {
-    /* const isEmailExistsInDB = await isEmailExists(values.email); */
+    const isEmailExistsInDB = await isEmailExists(values.email);
 
     const errors: FormErrors = {};
-    /* if (isEmailExistsInDB) {
+    if (isEmailExistsInDB) {
 
       errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.existsInDb" });
-    } */
+    }
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
       errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
     }
@@ -89,10 +93,13 @@ const FirstRegistrationForm = () => {
                   isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined} />
                 <Field
                   name='hasTermsAndConditions' component={Checkbox}
-                  error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}/>
+                  error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined} />
                 <Button buttonType="submit" 
                   buttonText={intl.formatMessage({ id: "app.button.next"})} 
                   className="button__page"/>
+                <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
+                <FacebookButton />
+                <VKButton />
               </Form>
             </div>
           );

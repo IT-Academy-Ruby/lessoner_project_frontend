@@ -1,9 +1,12 @@
-import "./App.css";
+import "./App.scss";
 import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import {
-  showDefaultPage, showMyPage, showSectionPage, showStudentPage
+  showDefaultPage,
+  showMyPage,
+  showSectionPage,
+  showStudentPage,
 } from "./store/header/headerSlice";
 import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
@@ -17,12 +20,19 @@ import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
-
+import { useTheme } from "./utils/useTheme";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  const [languageCode, setLanguageCode] = useState(TranslationHelpers.getCurrentLanguageCode());
+  const [languageCode, setLanguageCode] = useState(
+    TranslationHelpers.getCurrentLanguageCode()
+  );
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+  const signOut = () => {
+    dispatch(showDefaultPage());
+    localStorage.setItem("JWT", "");
+  };
+  const theme = useTheme();
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
@@ -30,8 +40,7 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode} />
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage />} />
-            <Route path="/users/sign_up" element={<Pages pageType={"registration"}/>}/>
-            <Route path="/users/test" element={<PhoneNumberPage />}/>
+            <Route path="/users/sign_up" element={<Pages pageType={"registration"}/>} />
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage />} />
             <Route path="/users/sign_in/phone_number/code" element={<CodePage />} />
             <Route path="/search" element={<Search />} />
@@ -39,8 +48,8 @@ function App(): JSX.Element {
             <Route path='/users/sign_in/reset_password/new_password'
               element={<SetNewPasswordPage />} />
           </Routes>
-          
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div className="authorization">
+            <button onClick={signOut}>Not authorized</button>
             <button onClick={() => dispatch(showDefaultPage())}>
               Not authorized
             </button>
@@ -58,6 +67,6 @@ function App(): JSX.Element {
       </BrowserRouter>
     </IntlProvider>
   );
-};
+}
 
 export default App;
