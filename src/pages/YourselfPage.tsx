@@ -1,25 +1,30 @@
+import {emailInvalidationRules, UserRegex} from "../validationRules";
 import {
   Field, Form, Formik
 } from "formik";
+import {FormattedMessage, useIntl} from "react-intl";
 import BirthdayPicker from "../components/BirthdayPicker";
 import Button from "../components/Button";
 import GenderSelector from "../components/GenderSelector";
+import Email from "../components/Email";
 import {Link} from "react-router-dom";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
+import {useState} from "react";
 
 
 const gender = [{
   name: "gender", label: "Male", genderValue: "male"
 },
-{
-  name: "gender", label: "Female", genderValue: "female"
-},
-{
-  name: "gender", label: "Other", genderValue: "other"
-}];
+  {
+    name: "gender", label: "Female", genderValue: "female"
+  },
+  {
+    name: "gender", label: "Other", genderValue: "other"
+  }];
 
 interface FormValues {
+  email: string;
   userName: string;
   birthday: string;
   gender: string;
@@ -29,36 +34,39 @@ interface FormErrors {
   [key: string]: string
 }
 
-const userRegex = new RegExp("[a-z0-9]", "i");
-
-const validate = async (values: FormValues) => {
-  const errors: FormErrors = {};
-  if (!userRegex.test(values.userName)) {
-    errors.userName = "UserName is incorrect";
-  }
-  if (values.userName.length === 0) {
-    errors.userName = "The field must not be empty";
-  }
-  if (values.userName.length < USERNAME.minLength && values.userName.length > 0) {
-    errors.userName = `UserName should be more ${USERNAME.minLength}`;
-  }
-  if (values.userName.length > USERNAME.maxLength) {
-    errors.userName = `UserName should be less ${USERNAME.maxLength}`;
-  }
-  if (!values.birthday) {
-    errors.birthday = "The field must not be empty";
-  }
-  if (!values.gender) {
-    errors.gender = "The field must not be empty";
-  }
-  return errors;
-};
-
 const YourselfPage = () => {
+  const intl = useIntl();
+  const [isWrapper, setIsWrapper] = useState(false);
+  const validate = async (values: FormValues) => {
+    const errors: FormErrors = {};
+    if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
+    }
+    if (!UserRegex.test(values.userName)) {
+      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
+    }
+    if (values.userName.length === 0) {
+      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
+    }
+    if (values.userName.length < USERNAME.minLength && values.userName.length > 0) {
+      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorSmalName"});
+    }
+    if (values.userName.length > USERNAME.maxLength) {
+      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorBigName"});
+    }
+    if (!values.birthday) {
+      errors.birthday = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
+    }
+    if (!values.gender) {
+      errors.gender = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
+    }
+    return errors;
+  };
   return (
-    <div className="field">
+    <div className="log-content">
       <Formik
         initialValues={{
+          email: "",
           userName: "",
           birthday: "",
           gender: "",
@@ -70,30 +78,33 @@ const YourselfPage = () => {
       >
         {({errors, touched}) => {
           return (
-            <Form>
-              <div className="modal">
-                <Link to="/">
-                  <span className="close">
-                  </span>
-                </Link>
-                <h2 className="title">Tell us about yourself</h2>
-                <Field
-                  name="userName"
-                  component={UserName}
-                  maxSymbol={USERNAME.maxLength}
-                  minSymbol={USERNAME.minLength}
-                  error={touched.userName ? errors.userName : undefined}/>
-                <Field
-                  name="birthday"
-                  component={BirthdayPicker}
-                  error={touched.birthday ? errors.birthday : undefined}/>
-                <Field
-                  name='gender'
-                  options={gender}
-                  component={GenderSelector}
-                  error={touched.gender ? errors.gender : undefined}/>
-                <Button buttonType="submit" buttonText="Finish" className="button"/>
-              </div>
+            <Form className="wrapper-component">
+              <h2 className="title">
+                Tell us about yourself
+              </h2>
+              <Field
+                name="email"
+                component={Email}
+                error={touched.email ? errors.email : undefined}
+              />
+              <Field
+                name="userName"
+                component={UserName}
+                error={touched.userName ? errors.userName : undefined}/>
+              <Field
+                name="birthday"
+                component={BirthdayPicker}
+                error={touched.birthday ? errors.birthday : undefined}
+                setIsWrapper={setIsWrapper}
+                isWrapper={isWrapper}
+              />
+              <Field
+                name="gender"
+                options={gender}
+                component={GenderSelector}
+                error={touched.gender ? errors.gender : undefined}/>
+              <Button buttonType="submit" buttonText="Finish" className="button__page"/>
+              {isWrapper?<div className="date-wrapper"></div>:null}
             </Form>
           );
         }}

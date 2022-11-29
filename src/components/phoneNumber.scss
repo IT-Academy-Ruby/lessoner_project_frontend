@@ -1,15 +1,65 @@
-.phone-number {
-  margin: 20px 0;
+@import "../constants.scss";
+
+.magmagnifying_glas {
+  position: absolute;
+  left: 16px;
+  top: 32px;
+  z-index: 5;
 }
 
-.phone-number-label {
-  display: block;
-  font-weight: bold;
-  margin: 5px 0;
+.react-tel-input {
+  @include fieldsFont;
 }
 
-.error {
-  color: red;
-  display: block;
-  margin-top: 0.5em;
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background: $white;
+  border-radius: 0;
 }
+
+.react-tel-input .country-list {
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+  background-color: $white;
+  border-radius: 0;
+}
+
+.react-tel-input .flag-dropdown {
+  margin-left:46px;
+  background-color: $white;
+  border: none;
+  height: 90%;
+  top: 2px;
+}
+
+.arrow {
+  visibility: hidden;
+}
+
+.react-tel-input > .form-control {
+  padding: 1px 46px 1px 84px;
+  width: 100%;
+  border-color: $blueLightColor;
+  background-color: $white;
+  color:$black;
+}
+
+.symbol {
+  width: 24px;
+  height: 24px;
+  color: $blueLightColor;
+  transform: rotate(90deg);
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  cursor: pointer;
+}
+
+//.react-tel-input >.flag-dropdown{
+//  padding-left: 46px;
+//}
+

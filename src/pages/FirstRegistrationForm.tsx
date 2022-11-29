@@ -1,5 +1,4 @@
-import "../components/modal/checkbox.scss";
-import "../components/modal/NewModal.scss";
+/* eslint-disable max-len */
 import {
   Field, Form, Formik
 } from "formik";
@@ -11,9 +10,7 @@ import Email from "../components/Email";
 import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import {getLogin} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
-import {useState} from "react";
+import {isEmailExists} from "../services/api/isEmailExists";
 import Google from "../components/icons/google.svg";
 import Facebook from "../components/icons/facebook.svg";
 import VK from "../components/icons/vk.svg";
@@ -22,7 +19,8 @@ import Phone from "../components/icons/phone.svg";
 interface FormValues {
   email: string;
   password: string;
-  remember: boolean;
+  confirmPassword: string;
+  hasTermsAndConditions: boolean;
 }
 
 interface FormErrors {
@@ -31,47 +29,60 @@ interface FormErrors {
 
 const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
-const symbols = "! # $ % & ' * + - / = ? ^ _  { | } ~";
 
-const LoginPage = () => {
+const FirstRegistrationForm = () => {
   const intl = useIntl();
-  const [isChecked, setIsChecked] = useState(false);
-
-  const dispatch = useAppDispatch();
-
   const initialValues: FormValues = {
     email: "",
     password: "",
-    remember: isChecked,
+    confirmPassword: "",
+    hasTermsAndConditions: false
+  };
+
+  const validate = async (values: FormValues) => {
+    const isEmailExistsInDB = await isEmailExists(values.email);
+
+    const errors: FormErrors = {};
+    if (isEmailExistsInDB) {
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
+    }
+    if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
+    }
+    if (!passwordRegex.test(values.password)) {
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+        minSymbol, maxSymbol, symbols:  PASSWORD.symbols
+      });
+    }
+    if (values.password.length > maxSymbol || values.password.length < minSymbol) {
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {minSymbol, maxSymbol});
+    }
+    if (values.password !== values.confirmPassword) {
+      errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
+    }
+    if (!(values.hasTermsAndConditions)) {
+      errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
+    }
+    return errors;
+  };
+
+  const submitFirstStepForm = (values: FormValues) => {
+    console.log("all values are correct", values);
   };
 
   return (
     <div className="log-content">
       <Formik
         initialValues={initialValues}
-        validate={async (values: FormValues) => {
-          const errors: FormErrors = {};
-          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-            errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
-          }
-          if (!passwordRegex.test(values.password)) {
-            errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
-          }
-          if (values.password.length > PASSWORD.maxLength
-            || values.password.length < PASSWORD.minLength) {
-            errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
-          }
-          return errors;
-        }}
-        onSubmit={(values: { email: string, password: string }) => {
-          dispatch(getLogin(values));
-          console.log(values); //for example that working
-        }}>
+        validateOnChange={false}
+        validate={validate}
+        onSubmit={submitFirstStepForm}
+      >
         {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.login.title"/>
+                <FormattedMessage id="app.firstRegistrationForm.title"/>
               </h2>
               <Field
                 name="email"
@@ -81,24 +92,30 @@ const LoginPage = () => {
               <Field
                 name="password"
                 component={PasswordAndConfirm}
-                minSymbol={PASSWORD.minLength}
-                maxSymbol={PASSWORD.maxLength}
+                minSymbol={minSymbol}
+                maxSymbol={maxSymbol}
                 isConfirm={false}
                 error={touched.password ? errors.password : undefined}
               />
               <Field
-                name="remember"
+                name="confirmPassword"
+                component={PasswordAndConfirm}
+                minSymbol={minSymbol}
+                maxSymbol={maxSymbol}
+                isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined}
+              />
+              <Field
+                name="hasTermsAndConditions"
                 component={Checkbox}
-                information={intl.formatMessage({id: "app.loginPage.checkbox"})}
+                information={intl.formatMessage({id: "app.checkbox"})}
+                link={intl.formatMessage({id: "app.checkbox.terms"})}
+                error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}
               />
               <Button
                 buttonType="submit"
-                buttonText={intl.formatMessage({id: "app.button.signIn"})}
+                buttonText={intl.formatMessage({id: "app.button.next"})}
                 className="button__page"
               />
-              <Link to={"/users/sign_in/reset_password"} className="password-link">
-                <FormattedMessage id="app.loginPage.password"/>
-              </Link>
               <div className="or">
                 <span className="line-right"></span>
                 <FormattedMessage id="app.or"/>
@@ -119,12 +136,12 @@ const LoginPage = () => {
                 </div>
               </div>
               <p className="text">
-                <FormattedMessage id="app.don'tAccount"/>
+                <FormattedMessage id="app.firstRegistrationForm.haveAccount"/>
                 <Link
-                  to={"/users/sign_up"}
+                  to={"/users/sign_in"}
                   className="link"
                 >
-                  <FormattedMessage id="app.signUp"/>
+                  <FormattedMessage id="app.header.login"/>
                 </Link>
               </p>
             </Form>
@@ -134,4 +151,5 @@ const LoginPage = () => {
     </div>
   );
 };
-export default LoginPage;
+
+export default FirstRegistrationForm;

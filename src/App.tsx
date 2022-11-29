@@ -9,6 +9,7 @@ import Body from "./components/body/Body";
 import CodePage from "./pages/CodePage";
 import { IntlProvider } from "react-intl"; 
 import LoginPage from "./pages/LoginPage";
+import {Link} from "react-router-dom";
 import { Pages } from "./components/Pages";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
@@ -31,7 +32,14 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode} />
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage />} />
-            <Route path='/users/sign_up' element={<Pages pageType={"Login"}/>}/>
+            <Route path="/login" element={<Pages pageType={"Login"}/>}/>
+            <Route path="/code" element={<Pages pageType={"Code"}/>}/>
+            <Route path="/resetPassword" element={<Pages pageType={"ResetPage"}/>}/>
+            <Route path="/setNewPassword" element={<Pages pageType={"SetNewPassword"}/>}/>
+            <Route path="/phoneNumberPage" element={<Pages pageType={"PhoneNumberPage"}/>}/>
+            <Route path="/confirmReg" element={<Pages pageType={"ConfirmReg"}/>}/>
+            <Route path="/firstRegistrationForm" element={<Pages pageType={"FirstRegistrationForm"}/>}/>
+            <Route path="/yourselfPage" element={<Pages pageType={"YourselfPage"}/>}/>
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage />} />
             <Route path="/users/sign_in/phone_number/code" element={<CodePage />} />
             <Route path="/search" element={<Search />} />
@@ -40,18 +48,30 @@ function App(): JSX.Element {
               element={<SetNewPasswordPage />} />
           </Routes>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <button onClick={() => dispatch(showDefaultPage())}>
-              Not authorized
-            </button>
-            <button onClick={() => dispatch(showStudentPage())}>
-              Authorized student in study section
-            </button>
-            <button onClick={() => dispatch(showSectionPage())}>
-              Authorized student/creator in study section
-            </button>
-            <button onClick={() => dispatch(showMyPage())}>
-              Authorized creator in my studio section
-            </button>
+            <Link to={"/login"} >
+            Login
+            </Link>
+            <Link to={"/code"} >
+              Code
+            </Link>
+            <Link to={"/resetPassword"} >
+              ResetPassword
+            </Link>
+            <Link to={"/setNewPassword"} >
+              SetNewPassword
+            </Link>
+            <Link to={"/phoneNumberPage"} >
+              PhoneNumberPage
+            </Link>
+            <Link to={"/firstRegistrationForm"} >
+              FirstRegistrationForm
+            </Link>
+            <Link to={"/yourselfPage"} >
+              YourselfPage
+            </Link>
+            <Link to={"/confirmReg"} >
+              ConfirmReg
+            </Link>
           </div>
         </div>
       </BrowserRouter>

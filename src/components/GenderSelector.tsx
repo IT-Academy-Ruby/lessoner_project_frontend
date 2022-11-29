@@ -1,4 +1,4 @@
-import "./GenderSelector.scss";
+import "./modal/radio.scss"
 import {FormattedMessage} from "react-intl";
 
 type GenderProps = {
@@ -14,43 +14,36 @@ type GenderProps = {
 }
 
 const GenderSelector = ({
-  field, error, options, label
-}: GenderProps) => {
+                          field, error, options, label
+                        }: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     field.value = event.currentTarget.value;
   };
   return (
-    <div>
-      <span className="gender-title">
-        <FormattedMessage id="app.genderSelector.gender"/>
-      </span>
+    <div className="input-label">
+      <FormattedMessage id="app.genderSelector.gender"/>
+      <div className="radio-wrapper">
       {options ? (
         options.map((option: {
           value: string; label: string; name: string; genderValue: string
         }) => (
-          <span key={option.genderValue}>
-            <label>
-              <input
-                {...field}
-                type="radio"
-                value={option.label}
-                onClick={handleChange}
-                checked={field.label}
-                name={option.name}
-              />{option.label}
-            </label>
-          </span>
-        ))
-      ) : (
-        <div>
-          <label>
+          <label
+            key={option.genderValue}
+          className="radio-label">
             <input
               {...field}
-              type="radio"/>{label}
+              type="radio"
+              className="radio"
+              value={option.label}
+              onClick={handleChange}
+              checked={field.label}
+              name={option.name}
+            />{option.label}
           </label>
-        </div>
-      )}
-      {(error) && <span className="error">{error}</span>}
+        ))
+      ) : null}
+      {(error) && <span className="error-message">{error}</span>}
+      </div>
     </div>
   );
 };

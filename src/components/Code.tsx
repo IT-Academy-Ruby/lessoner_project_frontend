@@ -1,5 +1,5 @@
-import "./code.scss";
 import {CODE} from "../constants";
+import {FormattedMessage} from "react-intl";
 
 type CodeProps = {
   field?: {
@@ -13,17 +13,16 @@ type CodeProps = {
 
 const Code = ({field, error}: CodeProps) => {
   return (
-    <div className="code">
-      <label className="code-label"> Code
+      <label className="input-label">
+        <FormattedMessage id="app.code.name"/>
         <input
           type="text"
-          className="code-input"
+          className="input"
           maxLength={CODE.maxLength}
           {...field}
         />
-        {error && <span className="error">{error}</span>}
+        {error && <span className="error-message">{error}</span>}
       </label>
-    </div>
   );
 };
 

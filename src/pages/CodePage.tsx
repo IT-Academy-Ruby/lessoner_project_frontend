@@ -1,11 +1,12 @@
-import "../components/modal/modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
+import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
 import {CODE} from "../constants";
 import Code from "../components/Code";
 import {Link} from "react-router-dom";
+import {CodeRegex} from "../validationRules";
 
 
 interface FormErrors {
@@ -16,63 +17,53 @@ interface FormValue {
   code: string;
 }
 
-const CodeRegex = new RegExp("[0-9a-z]{"+CODE.maxLength+"}", "i");
-
-const validate = async (values: FormValue) => {
-  const errors: FormErrors = {};
-  if (!CodeRegex.test(values.code)) {
-    errors.code = "An invalid character is present in the Code. ";
-  }
-  if (values.code.length < CODE.maxLength) {
-    errors.code += "Code should be "+ CODE.maxLength+" characters. ";
-  };
-  return errors;
-};
-
 const CodePage = () => {
+  const intl = useIntl();
   const initialValue: FormValue = {code: "",};
   return (
-    <div className="field">
+    <div className="log-content">
       <Formik
         initialValues={initialValue}
-        validate={validate}
+        validate={async (values: FormValue) => {
+          const errors: FormErrors = {};
+          if (!CodeRegex.test(values.code)) {
+            errors.code = intl.formatMessage({ id: "app.code.invalidationRules" });
+          }
+          if (values.code.length < CODE.maxLength) {
+            errors.code += intl.formatMessage({ id: "app.code.errorLength" });
+          }
+          return errors;
+        }}
         onSubmit={(values: object) => {
           console.log(values); //for example that working
         }}>
         {({errors, touched}) => {
           return (
-            <Form>
-              <div className="modal">
-                <Link to="/users/sign_in">
-                  <span className="close">
-                  </span>
-                </Link>
-                <h2 className="title">Enter the code</h2>
-                <p className="modal-text">
-                  Now a code will come to your phone. Enter it in a line.
-                  <span>
+            <Form className="wrapper-component">
+                <h2 className="title">
+                  <FormattedMessage id="app.pagesTitle.enterCode"/>
+                </h2>
+                <p className="text">
+                  <FormattedMessage id="app.code.inform"/>
                     <Link to="/users/sign_in/phone_number" className="link">
-                      To change number
+                      <FormattedMessage id="app.code.phoneNumber"/>
                     </Link>
-                  </span>
                 </p>
                 <Field
                   name="code"
                   component={Code}
                   error={touched.code ? errors.code : undefined}
                 />
-                <button
-                  type="button"
-                  className="link resend-code"
-                >
-                  Resend code
-                </button>
                 <Button
-                  buttonType="submit"
-                  buttonText="Finish"
+                  buttonType="button"
+                  buttonText={intl.formatMessage({ id: "app.button.code" })}
                   className="button"
                 />
-              </div>
+                <Button
+                  buttonType="submit"
+                  buttonText={intl.formatMessage({ id: "app.button.finish"})}
+                  className="button__page"
+                />
             </Form>
           );
         }}

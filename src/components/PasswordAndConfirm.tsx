@@ -1,16 +1,15 @@
-import "./passwordAndConfirm.scss";
+import "./modal/input.scss";
 import classNames from "classnames";
 import close_eye from "./icons/close_eye.svg";
 import open_eye from "./icons/open_eye.svg";
 import {useIntl} from "react-intl";
 import {useState} from "react";
 
-
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
   isConfirm: boolean;
-  field?: {
+  field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
@@ -34,28 +33,27 @@ const PasswordAndConfirm = ({
   };
 
   return (
-    <div className="password">
-      <label className="passwordLabel">{isConfirm ?
-        intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"}) :
-        intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
+    <label className="input-label">{isConfirm ?
+      intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"}) :
+      intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
       <input
         type={visiblePassword ? "text" : "password"}
-        className={classNames("password-input", {"error-input": error})}
+        className={classNames("input", {"invalid-input": error},
+          {"success-input": !error && field.value})}
         minLength={minSymbol}
         maxLength={maxSymbol}
         {...field}
         required
-        placeholder={`At least ${minSymbol} characters`}
+        placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"})}
       />
       <img
-        className='image'
-        alt='eye'
+        className="image-input"
+        alt="eye"
         src={visiblePassword ? open_eye : close_eye}
         onClick={showPassword}
       />
-      {error && <span className='error'>{error}</span>}
-      </label>
-    </div>
+      {error && <span className="error-message">{error}</span>}
+    </label>
   );
 };
 

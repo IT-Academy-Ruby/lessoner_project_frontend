@@ -1,6 +1,7 @@
-import "./phoneNumber.scss";
 import "react-phone-input-2/lib/style.css";
+import "./phoneNumber.scss";
 import {FormattedMessage, useIntl} from "react-intl";
+import Magmagnifying from "./icons/magnifying_glass.svg";
 import PhoneInput from "react-phone-input-2";
 import {useState} from "react";
 
@@ -37,18 +38,16 @@ const PhoneNumber = ({
     };
 
   return (
-    <div className="phone-number">
-      <label className="phone-number-label">
+      <label className="input-label">
         <FormattedMessage id="app.phoneNumber.label"/>
+        <img src={Magmagnifying} alt="" className="magmagnifying_glas"/>
         <PhoneInput
           onChange={checkNumber}
           onBlur={() => {
             setIsBlur(true);
           }}
-          inputStyle={{width: "100%", borderColor: "#0B456F"}}
-          buttonStyle={{borderColor: "#0B456F"}}
           dropdownStyle={{
-            width: "auto", border: "1px solid #0B456F", borderRadius: "3px"
+            // width: "auto", border: "1px solid #0B456F", borderRadius: "3px"
           }}
           country={countries}
           excludeCountries={deleteCountry}
@@ -58,9 +57,12 @@ const PhoneNumber = ({
             {required: true,}
           }
         />
-        {((error && isBlur) || isError) && <span className="error">{error}</span>}
+        <div
+          className="symbol"
+          // onClick={showPassword}
+        >&#10095;</div>
+        {((error && isBlur) || isError) && <span className="error-message">{error}</span>}
       </label>
-    </div>
   );
 };
 export default PhoneNumber;
