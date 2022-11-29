@@ -1,3 +1,4 @@
 {
-    "prettier.insertPragma": true
+  "prettier.insertPragma": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
