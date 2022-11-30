@@ -32,14 +32,6 @@ const Header = () => {
   const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
     : intl.formatMessage({id: "app.header.goStudy"});
 
-  useEffect(() => {
-    if (localStorage.getItem("JWT")) {
-      navigate("");
-      dispatch(showStudentPage());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDefaultPage]);
-
   return (
     <div className="side-bar">
       <label className="menu">
@@ -49,7 +41,6 @@ const Header = () => {
       <div className="header">
         <Link to="/n" className="logo-name">
           <img className="logo" src={Logo} alt="Logo"/>
-
           <h4 className="title-header">
             <FormattedMessage id="app.name"/>
           </h4>
@@ -69,7 +60,11 @@ const Header = () => {
             <div className="user-item">
               {page &&
                 <Link to="/" className="section-button">
-                  <Button buttonType="button" buttonText={userButtonText} className="user-button"/>
+                  <Button
+                    buttonType="button"
+                    buttonText={userButtonText}
+                    className="user-button"
+                  />
                 </Link>}
               <img src={Bell} alt="Bell" className="bell"/>
               <Avatar/>

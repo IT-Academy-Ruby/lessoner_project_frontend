@@ -1,6 +1,6 @@
 import "../components/modal/modal.scss";
 import {
-  Field, Form, Formik
+  Field, Form, Formik,
 } from "formik";
 import {
   buttonEvent, getLogin, lookEvent
