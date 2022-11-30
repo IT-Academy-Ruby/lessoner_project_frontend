@@ -31,7 +31,6 @@ const Header = () => {
 
   const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
     : intl.formatMessage({id: "app.header.goStudy"});
-  const loading = useAppSelector(state => state.login.loading);
 
   useEffect(() => {
     dispatch(nameDecodeUser());
