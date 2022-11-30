@@ -38,7 +38,7 @@ const Header = () => {
       dispatch(showStudentPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDefaultPage, localJWT]);
+  }, [isDefaultPage]);
 
   return (
     <div className="side-bar">
