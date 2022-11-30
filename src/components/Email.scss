@@ -1,27 +1,25 @@
 @import "../constants.scss";
 
 .email-wrapper {
-  margin: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .email-label {
-  display: block;
-  @include fieldsFont;
-  margin: 5px 0;
   font-weight: bold;
+  width: 100%;
+  @include fieldsFont;
 }
 
 .email-input {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
-  border: 2px solid $borderColor;
-  border-radius: 0.2em;
   @include fieldsFont;
-
-  &:focus {
-    border: 2px solid $borderColor;
-  }
+  @include textFieldInput;
 }
 
 .invalid-email-input {
@@ -34,4 +32,13 @@
   display: block;
   margin-top: 0.5em;
   font-weight: normal;
+}
+
+@media (max-width: $max-width-3) {
+  .email-wrapper {
+    margin-bottom: 14px;
+  }
+  .email-input{
+    font-size: 14px;
+  }
 }

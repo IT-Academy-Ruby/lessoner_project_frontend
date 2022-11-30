@@ -43,6 +43,7 @@ const PasswordAndConfirm = ({
         minLength={minSymbol}
         maxLength={maxSymbol}
         {...field}
+        required
         placeholder={`At least ${minSymbol} characters`}
       />
       <img
