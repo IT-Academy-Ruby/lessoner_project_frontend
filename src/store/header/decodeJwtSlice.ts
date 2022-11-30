@@ -1,17 +1,19 @@
 import {createSlice} from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
 
-type DecodeJWT = {
-  name: string;
-  email: string;
-  gender: string;
-  birthday: string;
-  phone: string;
-  description: string | null;
-  exp: number;
+type UserSession = {
+  session: {
+    name: string;
+    email: string;
+    gender: string;
+    birthday: string;
+    phone: string;
+    description: string;
+    exp: number;
+  }
 }
 
-const initialState: DecodeJWT = {
+const initialState: UserSession = {session: {
   name: "",
   email: "",
   gender: "",
@@ -19,60 +21,25 @@ const initialState: DecodeJWT = {
   phone: "",
   description: "",
   exp: 0,
-};
+}};
 
 const decode = () => {
   const token = localStorage.getItem("JWT");
-  const todaySec = new Date().getTime() / 1000;
+  const todaySec = Date.now() / 1000;
   if (token) {
-    const decodeJWT: DecodeJWT = jwt_decode(token);
-    const expDecode = decodeJWT.exp;
-    if (todaySec <= expDecode) {
-      return decodeJWT;
-    } else {
-      return initialState;
+    const sessionJWT: UserSession = {session: jwt_decode(token)};
+    if (todaySec <= sessionJWT.session.exp) {
+      return sessionJWT.session;
     }
   }
-  return initialState;
+  return initialState.session;
 };
 
-const decodeJWTSlice = createSlice({
-  name: "decodeJWT",
+const sessionJWTSlice = createSlice({
+  name: "sessionJWT",
   initialState,
-  reducers: {
-    nameDecodeUser: (state) => {
-      state.name = decode().name;
-    },
-    emailDecodeUser: (state) => {
-      state.email = decode().email;
-    },
-    phoneDecodeUser: (state) => {
-      state.phone = decode().phone;
-    },
-    genderDecodeUser: (state) => {
-      state.gender = decode().gender;
-    },
-    birthdayDecodeUser: (state) => {
-      state.birthday = decode().birthday;
-    },
-    descriptionDecodeUser: (state) => {
-      state.description = decode().description;
-    },
-    expDecodeUser: (state) => {
-      state.exp = decode().exp;
-    },
-
-  },
+  reducers: {nameDecodedUser: (state) => {state.session = decode();},},
 });
 
-export const {
-  nameDecodeUser,
-  emailDecodeUser,
-  phoneDecodeUser,
-  genderDecodeUser,
-  birthdayDecodeUser,
-  expDecodeUser,
-  descriptionDecodeUser
-} = decodeJWTSlice.actions;
-export default decodeJWTSlice.reducer;
-
+export const {nameDecodedUser} = sessionJWTSlice.actions;
+export default sessionJWTSlice.reducer;

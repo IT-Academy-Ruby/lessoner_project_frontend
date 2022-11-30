@@ -7,6 +7,7 @@ export const getLogin = createAsyncThunk(
     const response = await fetch(
       `${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
       {method: "POST"});
+
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
@@ -20,7 +21,7 @@ type Login = {
   event: boolean;
   lookButton: boolean;
   loading: boolean;
-}
+};
 
 const initialState: Login = {
   login: "",
@@ -56,8 +57,8 @@ const loginSlice = createSlice({
     });
   }
 });
+
 export const {
   buttonEvent, changeEvent, lookEvent
 } = loginSlice.actions;
-
 export default loginSlice.reducer;

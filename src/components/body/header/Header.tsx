@@ -7,7 +7,7 @@ import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
 import Magnifier from "../../icons/blackMagnifier.svg";
-import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
+import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {showStudentPage} from "../../../store/header/headerSlice";
 import {useEffect} from "react";
 
@@ -17,7 +17,18 @@ const Header = () => {
   const navigate = useNavigate();
   const isDefaultPage = useAppSelector(state => state.value.isDefaultHeader);
   const page = useAppSelector(state => state.value.page);
-  const decodeUserName = useAppSelector(state => state.userDecodeName.name);
+  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
+  const loading = useAppSelector(state => state.login.loading);
+
+  useEffect(() => {
+    dispatch(nameDecodedUser());
+    if (decodeUserName) {
+      navigate("");
+      dispatch(showStudentPage());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDefaultPage, decodeUserName, loading]);
+
   const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
     : intl.formatMessage({id: "app.header.goStudy"});
   const loading = useAppSelector(state => state.login.loading);
@@ -31,6 +42,14 @@ const Header = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDefaultPage, decodeUserName, loading]);
 
+  useEffect(() => {
+    if (localStorage.getItem("JWT")) {
+      navigate("");
+      dispatch(showStudentPage());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDefaultPage]);
+
   return (
     <div className="side-bar">
       <label className="menu">
@@ -40,14 +59,12 @@ const Header = () => {
       <div className="header">
         <Link to="/n" className="logo-name">
           <img className="logo" src={Logo} alt="Logo"/>
-          <h4 className="title-header">The lessoner</h4>
-          {(page === "myPage" && isDefaultPage)
-            && <Link
-              to={"/myStudio"}
-              className="my-studio"
-            >
-              <FormattedMessage id="app.studio"/>
-            </Link>}
+          <h4 className="title-header">
+            <FormattedMessage id="app.name"/>
+          </h4>
+          {(page === "myPage" && isDefaultPage) && <Link to={"/myStudio"} className="my-studio">
+            <FormattedMessage id="app.studio"/>
+          </Link>}
         </Link>
         <div className="search-button">
           <Link to="/search" className="magnifier">
@@ -85,5 +102,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

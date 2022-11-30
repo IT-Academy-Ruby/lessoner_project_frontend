@@ -3,15 +3,15 @@ import decodeReducer from "./header/decodeJwtSlice";
 import headerReducer from "./header/headerSlice";
 import linksReducer from "./links/linksSlise";
 import loginReducer from "./loginName/loginSlice";
-import useReducer from "./loginName/userSlice";
+import userReducer from "./loginName/userSlice";
 
 const store = configureStore(
-  {reducer: {
+  { reducer: {
     login: loginReducer,
-    user: useReducer,
+    user: userReducer,
     value: headerReducer,
-    userDecodeName: decodeReducer,
-    userDecodeExp:decodeReducer,
+    userDecodedName: decodeReducer,
+    userDecodedExp: decodeReducer,
     link: linksReducer,
   }}
 );

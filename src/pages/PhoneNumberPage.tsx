@@ -18,13 +18,13 @@ const PhoneNumberPage = () => {
     if (!error) {
       navigate("/users/sign_in/phone_number/code");
     } else {
-      setIsError(!!error);
+      setIsError(true);
     }
   };
   return (
     <div className="field">
       <div className="modal">
-        <Link to="/users/sign_in/">
+        <Link to="/">
           <span className="close">
           </span>
         </Link>

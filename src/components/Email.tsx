@@ -37,19 +37,19 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
 
   return (
     <div className="email-wrapper">
-      <label className="meail-label">
-        <FormattedMessage id="app.email.name"/>
-        <input
-          type="text"
+      <label className="email-label">
+        <FormattedMessage id="app.email.name" />
+        <input type="text"
           minLength={EMAIL.minLength}
           maxLength={EMAIL.maxLength}
-          className={classNames("email-input", {" invalid-email-input": error})}
+          className= {classNames("email-input", {"invalid-email-input": error})}
           placeholder="username@gmail.com"
           {...field}
+          required
         />
         {error && <span className="error-message">{error}</span>}
         {!loading && isUser && <span className="error-message">
-          Incorrect Email address or password
+          <FormattedMessage id= "app.email.error"/>
         </span>}
       </label>
     </div>

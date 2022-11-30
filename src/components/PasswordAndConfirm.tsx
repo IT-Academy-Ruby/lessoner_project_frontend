@@ -43,10 +43,11 @@ const PasswordAndConfirm = ({
         minLength={minSymbol}
         maxLength={maxSymbol}
         {...field}
+        required
         placeholder={`At least ${minSymbol} characters`}
       />
       <img
-        className='image'
+        className="image"
         alt="eye"
         src={visiblePassword ? open_eye : close_eye}
         onClick={showPassword}

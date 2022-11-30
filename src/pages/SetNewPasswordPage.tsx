@@ -2,9 +2,12 @@ import "../components/modal/modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import { PASSWORD } from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import { changePassword } from "../services/api/changePassword";
+import getParameterValue from "../helpers/parseUrl";
 import { passwordRegex } from "../validationRules";
 
 interface FormValues {
@@ -18,29 +21,31 @@ interface FormErrors {
 
 const SetNewPasswordPage = () => {
 
+  const intl = useIntl();
   const initialValues: FormValues = { password: "", confirmPassword: "" };
+  const token = getParameterValue(window.location.href, "token");
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (!passwordRegex.test(values.password)) {
-      errors.password = `An invalid character is present in the password. 
-      Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} characters;
-        upper or lower case Latin letters (a–z, A–Z);
-        numbers from 0 to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordRegEx" });
     }
     if (values.password.length > PASSWORD.maxLength ||
       values.password.length < PASSWORD.minLength) {
-      errors.password = `Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength}
-       characters`;
+      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordLength" });
     }
     if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
+      errors.confirmPassword =
+        intl.formatMessage({ id: "app.firstRegistrationForm.passwordConfrim" });
     }
     return errors;
   };
 
-  const submitFirstStepForm = (values: FormValues) => {
-    console.log(values.password);
+  const submitFirstStepForm = async (values: FormValues) => {
+    if (token) {
+      const isStatusSended = await changePassword(token, values.password);
+      console.log(isStatusSended);
+    }
   };
 
   return (
@@ -51,7 +56,9 @@ const SetNewPasswordPage = () => {
           </span>
         </Link>
         <div>
-          <h2 className='title'>Login as username</h2>
+          <h2 className='title'>
+            {intl.formatMessage({ id: "app.setNewPasswordPage.resetPassword" })}
+          </h2>
           <Formik
             initialValues={initialValues}
             validateOnChange={false}
@@ -71,7 +78,9 @@ const SetNewPasswordPage = () => {
                     maxSymbol={PASSWORD.maxLength}
                     isConfirm={true}
                     error={touched.confirmPassword ? errors.confirmPassword : undefined} />
-                  <button type="submit">Change password</button>
+                  <button type="submit">
+                    <FormattedMessage id="app.setNewPasswordPage.button" />
+                  </button>
                 </Form>
               );
             }}
