@@ -11,9 +11,15 @@ import SignUp from "./lessoner/SignUp/SignUp";
 const Content = () => {
   return (
     <div className="main">
-      <NavbarStudyStudio menuType={"study"}/>
       <Routes>
-        <Route path="/myStudio" element={<MyStudio />} />
+        <Route path="/myStudio" 
+          element={
+            <>
+              <MyStudio /> 
+              <NavbarStudyStudio menuType={"studio"}/>
+            </>
+          } 
+        />
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/lessons" element={<Lessons />} />

@@ -47,17 +47,17 @@ function App(): JSX.Element {
               element={<SetNewPasswordPage />} />
           </Routes>
           <div className="authorization">
-            <button onClick={signOut}>Not authorized</button>
-            <button onClick={() => dispatch(showDefaultPage())}>
+            <button className="btn__temporary" onClick={signOut}>Not authorized</button>
+            <button className="btn__temporary" onClick={() => dispatch(showDefaultPage())}>
               Not authorized
             </button>
-            <button onClick={() => dispatch(showStudentPage())}>
+            <button className="btn__temporary" onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section
             </button>
-            <button onClick={() => dispatch(showSectionPage())}>
+            <button className="btn__temporary" onClick={() => dispatch(showSectionPage())}>
               Authorized student/creator in study section
             </button>
-            <button onClick={() => dispatch(showMyPage())}>
+            <button className="btn__temporary" onClick={() => dispatch(showMyPage())}>
               Authorized creator in my studio section
             </button>
           </div>

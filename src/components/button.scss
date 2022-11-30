@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.btn__temporary {
+  width: 300px;
+}
+
 @media (max-width: $max-width-3) {
   .button__page {
     height: 40px;
