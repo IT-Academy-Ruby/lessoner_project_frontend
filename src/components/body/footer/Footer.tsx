@@ -26,7 +26,7 @@ const Footer = (props: FooterProps) => {
   }, [decodeUserName,dispatch]);
 
   return (
-    <div style={{display: "flex",justifyContent: "center"}}>
+    <footer style={{display: "flex",justifyContent: "center"}}>
       <Link to={lessoner}>
         <div>
           <FormattedMessage id="app.name" />
