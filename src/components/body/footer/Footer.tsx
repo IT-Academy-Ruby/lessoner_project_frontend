@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import LANGUAGES from "../../../translations/constants";
 import {Link} from "react-router-dom";
-import {nameDecodeUser} from "../../../store/header/decodeJwtSlice";
+import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import ThemeBtn from "../../ThemeBtn";
 import {useEffect} from "react";
 
@@ -12,12 +12,12 @@ type FooterProps = {
 };
 const Footer = (props: FooterProps) => {
   const {onLanguageSwitch} = props;
-  const decodeUserName = useAppSelector(state => state.userDecodeName.name);
+  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const lessoner = useAppSelector(state => state.link.lessoner);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(nameDecodeUser());
+    dispatch(nameDecodedUser());
     if (decodeUserName) {
       dispatch(lessonerLink());
     } else {
