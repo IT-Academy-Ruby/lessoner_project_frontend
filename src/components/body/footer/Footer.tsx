@@ -3,8 +3,8 @@ import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import LANGUAGES from "../../../translations/constants";
 import {Link} from "react-router-dom";
-import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import ThemeBtn from "../../ThemeBtn";
+import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {useEffect} from "react";
 
 type FooterProps = {
