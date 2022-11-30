@@ -27,6 +27,7 @@ function App(): JSX.Element {
     TranslationHelpers.getCurrentLanguageCode()
   );
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+
   const signOut = () => {
     dispatch(showDefaultPage());
     localStorage.setItem("JWT", "");

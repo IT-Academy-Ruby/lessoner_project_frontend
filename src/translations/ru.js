@@ -18,6 +18,7 @@ export const messages_ru = {
   "app.checkbox": "Даю согласие на обработку моих персональных данных в соответствии с",
   "app.checkbox.terms": "Условиями",
   "app.email.name": "Электронная почта",
+  "app.email.error": "Неверный адрес электронной почты или пароль",
   "app.firstRegistrationForm.existsInDb": "Этот адрес электронной почты уже зарегистрирован",
   "app.firstRegistrationForm.invalidationRules": "Пожалуйста, введите корректный адрес электронной почты",
   "app.firstRegistrationForm.passwordRegEx": "В пароле присутствует недопустимый символ. Пароль должен быть от {minSymbol} до {maxSymbol} символов; заглавные или строчные латинские буквы (a–z, A–Z); цифры от 0 до 9; символы {symbols}",

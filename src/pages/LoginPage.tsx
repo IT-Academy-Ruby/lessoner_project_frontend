@@ -39,24 +39,26 @@ const LoginPage = () => {
   return (
     <div className="field">
       {loading &&
-        <h1 style={
-          {
+        <h1
+          style={{
             position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
-          }
-        }>Loading...</h1>}
+          }}
+        >
+          Loading...
+        </h1>}
       <Formik
         initialValues={initialValues}
-
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
             errors.email = "Please enter a valid email address";
           }
           if (!passwordRegex.test(values.password)) {
-            errors.password = `An invalid character is present in the password. 
-            Password must be between ${PASSWORD.minLength} and ${PASSWORD.maxLength} 
-            characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9;
-             symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
+            errors.password =
+              `An invalid character is present in the password. Password must be between 
+              ${PASSWORD.minLength} and ${PASSWORD.maxLength}
+                characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 
+                to 9; symbols ! # $ % & ' * + - / = ? ^ _ \` { | } ~`;
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
@@ -159,4 +161,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;
