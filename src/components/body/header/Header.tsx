@@ -32,23 +32,6 @@ const Header = () => {
   const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
     : intl.formatMessage({id: "app.header.goStudy"});
 
-  useEffect(() => {
-    dispatch(nameDecodeUser());
-    if (decodeUserName) {
-      navigate("");
-      dispatch(showStudentPage());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDefaultPage, decodeUserName, loading]);
-
-  useEffect(() => {
-    if (localStorage.getItem("JWT")) {
-      navigate("");
-      dispatch(showStudentPage());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDefaultPage]);
-
   return (
     <div className="side-bar">
       <label className="menu">
