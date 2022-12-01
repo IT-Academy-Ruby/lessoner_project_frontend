@@ -3,10 +3,10 @@ import { ReactElement } from "react";
 import { isConditionalExpression } from "typescript";
 
 const Step1 = () => {
-  // const change=(event:React.FormEvent)=>{
-  //   const val=event?.target as HTMLInputElement;
-  //   console.log(val.value);
-  // };
+  const change=(event:React.FormEvent)=>{
+    const val=event?.target as HTMLInputElement;
+    console.log(val.value);
+  };
   const formik = useFormik({initialValues: {
     name: "",
     link: "",
@@ -15,9 +15,9 @@ const Step1 = () => {
   onSubmit: (values) => {
     console.log(JSON.stringify(values, null, 2));
   },});
-  const symbolCalc=(event:ReactElement)=>{
-    const e=event.target as HTMLInputElement
-    console.log(e.value)
+  const symbolCalc=(event:React.FormEvent)=>{
+    const e=event?.target as HTMLInputElement;
+    console.log(e.value);
   };
   return (
     <div>
@@ -32,7 +32,7 @@ const Step1 = () => {
                 id="name"
                 name="name"
                 type="text"
-                onChange={formik.handleChange, symbolCalc}
+                onChange={formik.handleChange}
                 value={formik.values.name}
               ></input>
               <div>/64</div>
