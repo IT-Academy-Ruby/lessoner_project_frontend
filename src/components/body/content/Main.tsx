@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import About from "./about/About";
 import Categories from "./categories/Categories";
 import Lessoner from "./lessoner/Lessoner";
@@ -7,14 +7,16 @@ import MyStudio from "./my_studio/MyStudio";
 import NavbarStudyStudio from "../../NavbarStudyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
+import {useAppSelector} from "../../../store/hooks";
 
 const Content = () => {
+  const lessoner = useAppSelector(state => state.link.lessoner);
   return (
     <div className="main">
       <NavbarStudyStudio menuType={"study"}/>
       <Routes>
+        <Route path={lessoner} element={<Lessoner/>}/>
         <Route path="/myStudio" element={<MyStudio />} />
-        <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/about" element={<About />} />

@@ -18,8 +18,8 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
-import { useAppDispatch } from "./store/hooks";
-import { useState } from "react";
+import {useAppDispatch} from "./store/hooks";
+import {useState} from "react";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -27,10 +27,12 @@ function App(): JSX.Element {
     TranslationHelpers.getCurrentLanguageCode()
   );
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+
   const signOut = () => {
     dispatch(showDefaultPage());
     localStorage.setItem("JWT", "");
   };
+
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
@@ -48,9 +50,6 @@ function App(): JSX.Element {
           </Routes>
           <div className="authorization">
             <button onClick={signOut}>Not authorized</button>
-            <button onClick={() => dispatch(showDefaultPage())}>
-              Not authorized
-            </button>
             <button onClick={() => dispatch(showStudentPage())}>
               Authorized student in study section
             </button>
