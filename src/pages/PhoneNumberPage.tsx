@@ -24,7 +24,7 @@ const PhoneNumberPage = () => {
   return (
     <div className="field">
       <div className="modal">
-        <Link to="/users/sign_in/">
+        <Link to="/">
           <span className="close">
           </span>
         </Link>

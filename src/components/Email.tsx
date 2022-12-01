@@ -6,6 +6,7 @@ import {FormattedMessage} from "react-intl";
 import {changeEvent} from "../store/loginName/loginSlice";
 import classNames from "classnames";
 
+
 type EmailProps = {
   field: {
     name: string,
@@ -21,6 +22,7 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
   const loginEvent = useAppSelector(state => state.login.event);
   const JWT = useAppSelector(state => state.login.login);
   const lookButton = useAppSelector(state => state.login.lookButton);
+  const loading = useAppSelector(state => state.login.loading);
   const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
@@ -35,18 +37,20 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
 
   return (
     <div className="email-wrapper">
-      <label className="meail-label">
-        <FormattedMessage id="app.email.name"/>
-        <input
-          type="text"
+      <label className="email-label">
+        <FormattedMessage id="app.email.name" />
+        <input type="text"
           minLength={EMAIL.minLength}
           maxLength={EMAIL.maxLength}
-          className={classNames("email-input", {" invalid-email-input": error})}
+          className= {classNames("email-input", {"invalid-email-input": error})}
           placeholder="username@gmail.com"
           {...field}
+          required
         />
         {error && <span className="error-message">{error}</span>}
-        {isUser && <span className="error-message">Incorrect Email address or password</span>}
+        {!loading && isUser && <span className="error-message">
+          <FormattedMessage id= "app.email.error"/>
+        </span>}
       </label>
     </div>
   );

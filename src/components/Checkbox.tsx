@@ -1,8 +1,8 @@
+import "./Checkbox.scss";
 import { FormattedMessage } from "react-intl";
-import classes from "./Checkbox.module.scss";
 
 type CheckboxProps = {
-  field: {
+  field?: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
@@ -12,22 +12,20 @@ type CheckboxProps = {
 }
 const Checkbox = ({ field, error }: CheckboxProps): JSX.Element => {
   return (
-    <div className={classes.wrapper}>
-      <label className={classes.label}>
-        <div>
-          <input
-            className={classes.input}
-            type='checkbox'
-            {...field}
-          />
-          <p>
-            <FormattedMessage id="app.checkbox" /> <a href='#!'>
-              <FormattedMessage id="app.checkbox.terms" /> </a>
-          </p>
-        </div>
-        {error && <div><span className='error-Message'>{error}</span></div>}
-      </label>
-    </div>
+    <label className="checkbox__label">
+      <div className="checkbox__content">
+        <input
+          className="checkbox__input"
+          type='checkbox'
+          {...field}
+        />
+        <p className="checkbox__text">
+          <FormattedMessage id="app.checkbox" /> <a href='#!'>
+            <FormattedMessage id="app.checkbox.terms" /> </a>
+        </p>
+      </div>
+      {error && <span className="error-message">{error}</span>}
+    </label>
   );
 };
 

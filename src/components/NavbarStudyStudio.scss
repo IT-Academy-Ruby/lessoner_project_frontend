@@ -1,4 +1,5 @@
-$primary-color: rgb(82, 105, 207);
+@import "../constants.scss";
+
 $white-color: #fff;
 $content-color: #1b1b1f;
 
@@ -47,16 +48,17 @@ $content-color: #1b1b1f;
 }
 
 .menu__item-inner:hover .menu__text {
-  color: $primary-color;
+  color: $blueLightColor;
 }
 
 .menu__item-inner:hover .svg__item {
-  fill: $primary-color;
+  fill: $blueLightColor;
 }
 
 .menu__text {
   width: 0;
   text-align: left;
+  font-family: $font;
   font-size: 0;
   font-weight: 600;
   color: $content-color;
@@ -72,7 +74,7 @@ $content-color: #1b1b1f;
 }
 
 .menu__text--selected {
-  color: $primary-color;
+  color: $blueLightColor;
 }
 
 .image__wrapper {
@@ -88,11 +90,11 @@ $content-color: #1b1b1f;
 }
 
 .image__wrapper--active:hover {
-  background: $primary-color;
+  background: $blueLightColor;
 }
 
 .image__wrapper--active.image__wrapper--selected {
-  background: $primary-color;
+  background: $blueLightColor;
 }
 
 .image__wrapper--active:hover .svg__item {
@@ -122,7 +124,7 @@ $content-color: #1b1b1f;
 }
 
 .svg__item--active.svg__item--selected {
-  fill: $primary-color;
+  fill: $blueLightColor;
 }
 
 .svg__item--selected {
