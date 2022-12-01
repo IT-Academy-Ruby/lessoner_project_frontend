@@ -78,8 +78,21 @@ color:#B9D1FF
     justify-content: flex-start;
     align-items: center;
 }
+<<<<<<< HEAD
+=======
+
+.button-shape-2{
+    border:0px;
+    border-radius: 28px;
+    height: 32px;
+    width:142px ;
+    cursor: pointer;
+    margin:0 0 0 5px
+} 
+
+>>>>>>> a71980f (some correct)
 .button-shape{
-    border:#455FCE solid 1px;
+    border:1px solid #455FCE;
     border-radius: 28px;
     height: 32px;
     width:142px ;
@@ -107,4 +120,74 @@ font-family: Apercu Pro;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+<<<<<<< HEAD
+=======
+}
+
+.input-category{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.w100{
+    width: 100%;
+}
+.marg-bot-32{
+    margin-bottom: 32px;
+}
+
+.input-description{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.input-subtitles{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.input-thumbnail{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#description{
+    height: 150px;
+    border: 1px solid grey;
+    border-radius:10px;
+}
+label{
+    font-weight: 600;
+}
+.subtitles{
+    margin-bottom: 10px;
+}
+.div-thumbnail{
+    width: 125px;
+    height: 88px;
+    background-color:#9A9AA3; 
+    border-radius:8px;
+    margin-right: 5px;
+    cursor:pointer;
+}
+
+.all-div-thumbnail{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.subtitle-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+>>>>>>> a71980f (some correct)
 }

@@ -44,8 +44,16 @@ const MyStudioHead = () => {
   return(
     <div className="my-studio-head">
       <div className="my-lesson-head">
+<<<<<<< HEAD
         <div><span id="div-my-lessons">My Lessons</span></div> 
         <div>
+=======
+        <div>
+          <span id="div-my-lessons"><FormattedMessage id="app.My lessons" />
+          </span>
+        </div> 
+        <div className="add-new-lesson-div">
+>>>>>>> a71980f (some correct)
           <Link to="/myStudio/add_new_lesson">
             <button id="intro"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"
               xmlns="http://www.w3.org/2000/svg">

@@ -50,10 +50,21 @@ const NewLesson = () => {
           <Link to="/myStudio">
             <input type="button" value="Cansel" className="button-shape cansel" />
           </Link>
+<<<<<<< HEAD
           {step===1 ? <input type="button" className="next-step-button active-step button-shape"
             value={stepStatus} onClick={swapStepForm}>
           </input> : <input type="button" className="add-new-lesson"></input>}
           
+=======
+          {step===1 ? <input type="button" className="next-step-button active-step button-shape-2"
+            value={stepStatus} onClick={swapStepForm}></input> :
+            // <input type="button" className="add-new-lesson"><PlusSvg/>
+            //   <FormattedMessage id="app.Add new lesson" />
+            // </input>
+            <input type="button" className="next-step-button  button-shape-2"
+              value={"+ Add new lesson"} ></input>
+          }
+>>>>>>> a71980f (some correct)
         </div>
       </div>
     </div>
