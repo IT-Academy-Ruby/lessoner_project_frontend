@@ -107,7 +107,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
           }
         </ul>
         { isMenuActive && <div className = "copyright-wrapper">
-          <div>&#174;</div>2022. All right reserved</div> }
+          <div>&reg;;</div>2022. All right reserved</div> }
       </div>
     </div>
   );
