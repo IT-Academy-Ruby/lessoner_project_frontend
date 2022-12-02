@@ -1,6 +1,6 @@
 const BACKEND_URL = "https://lessoner.herokuapp.com";
 const CODE = { maxLength: 5 };
-const DEFAULT_COUNTRY_CODE = "375";
+const DEFAULT_COUNTRY_CODE = "";
 const EMAIL = { minLength: 3, maxLength: 256 };
 const FACEBOOK_APP = { id: "680825793391734" };
 const GOOGLE_APP =

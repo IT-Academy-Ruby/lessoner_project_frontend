@@ -1,11 +1,16 @@
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";
+import Checkbox from "../components/Checkbox";
 import {DEFAULT_COUNTRY_CODE} from "../constants";
 import PhoneNumber from "../components/PhoneNumber";
 import {useState} from "react";
 
-const PhoneNumberPage = () => {
+type PhoneProps = {
+  registration: boolean | undefined;
+}
+
+const PhoneNumberPage = ({registration}: PhoneProps) => {
   const intl = useIntl();
   const [error, setError] = useState("Phone number incorrect");
   const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
@@ -33,6 +38,10 @@ const PhoneNumberPage = () => {
           setPhoneNumber={setPhoneNumber}
           isError={isError}
         />
+        {registration && <Checkbox
+          information={intl.formatMessage({id: "app.checkbox"})}
+          link={intl.formatMessage({id: "app.checkbox.terms"})}
+        />}
         <Button
           buttonType={"submit"}
           buttonText={intl.formatMessage({id: "app.phoneNumberPage.submit"})}

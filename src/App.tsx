@@ -10,7 +10,7 @@ import CodePage from "./pages/CodePage";
 import { IntlProvider } from "react-intl"; 
 import LoginPage from "./pages/LoginPage";
 import {Link} from "react-router-dom";
-import { Pages } from "./components/Pages";
+import Pages  from "./components/Pages";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/Search";
@@ -36,11 +36,12 @@ function App(): JSX.Element {
             <Route path="/code" element={<Pages pageType={"Code"}/>}/>
             <Route path="/resetPassword" element={<Pages pageType={"ResetPage"}/>}/>
             <Route path="/setNewPassword" element={<Pages pageType={"SetNewPassword"}/>}/>
-            <Route path="/phoneNumberPage" element={<Pages pageType={"PhoneNumberPage"}/>}/>
+            <Route path="/RegPhoneNumberPage" element={<Pages pageType={"PhoneNumberPage"} registration={true}/>}/>
+            <Route path="/AuthPhoneNumberPage" element={<Pages pageType={"PhoneNumberPage"} registration={false}/>}/>
             <Route path="/confirmReg" element={<Pages pageType={"ConfirmReg"}/>}/>
             <Route path="/firstRegistrationForm" element={<Pages pageType={"FirstRegistrationForm"}/>}/>
             <Route path="/yourselfPage" element={<Pages pageType={"YourselfPage"}/>}/>
-            <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage />} />
+            <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage registration={false}/>} />
             <Route path="/users/sign_in/phone_number/code" element={<CodePage />} />
             <Route path="/search" element={<Search />} />
             <Route path='/users/sign_in/reset_password' element={<ResetPasswordPage />} />
@@ -60,9 +61,12 @@ function App(): JSX.Element {
             <Link to={"/setNewPassword"} >
               SetNewPassword
             </Link>
-            <Link to={"/phoneNumberPage"} >
-              PhoneNumberPage
+            <Link to={"/RegPhoneNumberPage"} >
+              PhoneNumberPage with Registration
             </Link>
+            <Link to={"/AuthPhoneNumberPage"}>
+            PhoneNumberPage with Autorization
+          </Link>
             <Link to={"/firstRegistrationForm"} >
               FirstRegistrationForm
             </Link>

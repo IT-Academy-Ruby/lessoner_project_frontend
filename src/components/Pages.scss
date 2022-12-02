@@ -20,14 +20,20 @@
   background: $white;
   margin: 90px 60px;
 }
-//-------------
-.close {
+.close__wrapper{
+  width: 24px;
+  height: 24px;
   position: absolute;
-  width: 16px;
   right: 45px;
   top: 45px;
-  z-index: 3;
   cursor: pointer;
+}
+.close {
+  position: relative;
+  top: 9px;
+  left: -9px;
+  width: 16px;
+  z-index: 3;
 }
 
 .close:before,
@@ -45,7 +51,6 @@
 .close:after {
   transform: rotate(-45deg);
 }
-//-----------
 
 .reg__picture {
   display: flex;
@@ -89,7 +94,7 @@
     background-position-x: center;
   }
 
-  .close {
+  .close__wrapper {
     right: 32px;
     top: 32px;
   }
@@ -123,7 +128,7 @@
     width: 73px;
   }
 
-  .close {
+  .close__wrapper {
     right: 20px;
     top: 20px;
   }

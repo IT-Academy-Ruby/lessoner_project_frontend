@@ -3,9 +3,8 @@ import "./phoneNumber.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import Magmagnifying from "./icons/magnifying_glass.svg";
 import PhoneInput from "react-phone-input-2";
-import {useState} from "react";
+import React, {useState, useEffect} from "react";
 
-const countries = "us";
 const deleteCountry: [string] = ["ke"];
 
 type PhoneNumberProps = {
@@ -21,48 +20,63 @@ type countryType = {
   format: string,
   name: string
 }
-const PhoneNumber = ({
-  setError, error, phoneNumber, setPhoneNumber, isError
-}: PhoneNumberProps) => {
+let f:null|HTMLElement=null
+const PhoneNumber = ({error,setError, phoneNumber, setPhoneNumber, isError}: PhoneNumberProps) => {
   const intl = useIntl();
   const [isBlur, setIsBlur] = useState(false);
+  const [isSelect, setIsSelect] = useState(true);
+  const [flagDropdown, setFlagDropdown] = useState<HTMLElement>()
+
   const checkNumber =
-    (value: string, country: countryType, e: React.ChangeEvent<HTMLInputElement>,
-      formattedValue: string) => {
-      if (formattedValue.split(" ").join("").length !== country.format.split(" ").join("").length) {
-        setError(intl.formatMessage({id: "app.phoneNumber.err"}));
-      } else {
-        setError("");
+    (value: string, country: countryType, e: React.ChangeEvent<HTMLDivElement>,
+     formattedValue: string) => {
+      if (country.format) {
+        if (formattedValue.split(" ").join("").length !== country.format.split(" ").join("").length) {
+          setError(intl.formatMessage({id: "app.phoneNumber.err"}));
+        } else {
+          setError("");
+        }
+        setPhoneNumber(value);
       }
-      setPhoneNumber(value);
     };
 
+  useEffect(() => {
+    const selected = document.getElementsByClassName("selected-flag");
+    selected[0].setAttribute("id", "selected");
+    f = document.getElementById("selected");
+    f ? setFlagDropdown(f) : null;
+    f?.click()
+  }, [])
+
+  const dropDown = () => {
+    console.log(flagDropdown)
+    f?.click();
+  }
+
   return (
-      <label className="input-label">
-        <FormattedMessage id="app.phoneNumber.label"/>
-        <img src={Magmagnifying} alt="" className="magmagnifying_glas"/>
-        <PhoneInput
-          onChange={checkNumber}
-          onBlur={() => {
-            setIsBlur(true);
-          }}
-          dropdownStyle={{
-            // width: "auto", border: "1px solid #0B456F", borderRadius: "3px"
-          }}
-          country={countries}
-          excludeCountries={deleteCountry}
-          value={phoneNumber}
-          enableLongNumbers={true}
-          inputProps={
-            {required: true,}
+    <label className="input-label">
+      <FormattedMessage id="app.phoneNumber.label"/>
+      <img src={Magmagnifying} alt="" className="magmagnifying_glas"/>
+      <PhoneInput
+        onChange={checkNumber}
+        onBlur={() => {
+          setIsBlur(true);
+        }}
+        excludeCountries={deleteCountry}
+        value={phoneNumber}
+        placeholder=""
+        enableLongNumbers={true}
+
+        inputProps={
+          {
+            required: true,
           }
-        />
-        <div
-          className="symbol"
-          // onClick={showPassword}
-        >&#10095;</div>
-        {((error && isBlur) || isError) && <span className="error-message">{error}</span>}
-      </label>
+        }
+      />
+      <div className="symbol" onClick={dropDown}>&#10095;</div>
+      {((error && isBlur) || isError) && <span className="error-message">{error}</span>}
+    </label>
   );
 };
+
 export default PhoneNumber;
