@@ -25,9 +25,11 @@ a {
 .App-link {
   color: #61dafb;
 }
-.authorization {
-  display: flex;
-  flex-direction: column;
+
+.body-page{
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  grid-auto-rows: 64px 1fr 0fr;
 }
 
 @keyframes App-logo-spin {

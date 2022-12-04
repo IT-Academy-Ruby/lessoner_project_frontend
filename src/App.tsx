@@ -18,7 +18,6 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
-import YourselfPage from "./pages/YourselfPage";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
 import { useTheme } from "./utils/useTheme";
@@ -29,10 +28,6 @@ function App(): JSX.Element {
     TranslationHelpers.getCurrentLanguageCode()
   );
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
-  const signOut = () => {
-    dispatch(showDefaultPage());
-    localStorage.setItem("JWT", "");
-  };
   const theme = useTheme();
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -64,22 +59,6 @@ function App(): JSX.Element {
                 element={<SetNewPasswordPage />}
               />
             </Routes>
-            <YourselfPage />
-          </div>
-          <div className="authorization">
-            <button onClick={signOut}>Not authorized</button>
-            <button onClick={() => dispatch(showDefaultPage())}>
-              Not authorized
-            </button>
-            <button onClick={() => dispatch(showStudentPage())}>
-              Authorized student in study section
-            </button>
-            <button onClick={() => dispatch(showSectionPage())}>
-              Authorized student/creator in study section
-            </button>
-            <button onClick={() => dispatch(showMyPage())}>
-              Authorized creator in my studio section
-            </button>
           </div>
         </div>
       </BrowserRouter>

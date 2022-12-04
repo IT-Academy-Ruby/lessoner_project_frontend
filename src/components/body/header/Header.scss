@@ -1,62 +1,12 @@
 @import "../../../constants.scss";
 
 .side-bar {
+  grid-column-start: 2;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
-}
-
-.menu {
-  position: relative;
-  width: 64px;
-  height: 100%;
-}
-
-.burg-btn {
-  visibility: hidden;
-  position: absolute;
-}
-
-.menu-burg {
-  display: inline-block;
-  width: 18px;
-  top: 25%;
-  border: 2px solid $blueDarkColor;
-  position: relative;
-}
-
-.menu-burg::before,
-.menu-burg::after {
-  content: "";
-  position: absolute;
-  width: 18px;
-  border: 2px solid $blueDarkColor;
-  left: -2px;
-  transition: 0.5s;
-}
-
-.menu-burg::before {
-  transform: translateY(5px);
-}
-
-.menu-burg::after {
-  transform: translateY(-9px);
-}
-
-.burg-btn:checked ~ .menu-burg {
-  visibility: hidden;
-}
-
-.burg-btn:checked ~ .menu-burg::before {
-  transform: rotate(-45deg);
-  visibility: visible;
-}
-
-.burg-btn:checked ~ .menu-burg::after {
-  transform: rotate(45deg);
-  visibility: visible;
 }
 
 .menu-list {

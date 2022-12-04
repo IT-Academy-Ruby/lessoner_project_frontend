@@ -1,4 +1,4 @@
-import "./Footer.scss";
+import "./footer.scss";
 import { FormattedMessage } from "react-intl";
 import LANGUAGES from "../../../translations/constants";
 import { Link } from "react-router-dom";
