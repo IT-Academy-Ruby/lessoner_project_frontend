@@ -1,3 +1,4 @@
+import "./modal.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
 

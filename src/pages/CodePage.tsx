@@ -1,3 +1,4 @@
+import "./modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
@@ -7,7 +8,6 @@ import {CODE} from "../constants";
 import Code from "../components/Code";
 import {Link} from "react-router-dom";
 import {CodeRegex} from "../validationRules";
-
 
 interface FormErrors {
   [key: string]: string

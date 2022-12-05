@@ -1,3 +1,4 @@
+import "./modal.scss";
 import {emailInvalidationRules, UserRegex} from "../validationRules";
 import {
   Field, Form, Formik
@@ -11,7 +12,6 @@ import {Link} from "react-router-dom";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
 import {useState} from "react";
-
 
 const gender = [{
   name: "gender", label: "Male", genderValue: "male"

@@ -18,45 +18,45 @@ const Header = () => {
 
   return (
     <div className="side-bar">
-      <label className='menu'>
-        {/*<input type='checkbox' className='burg-btn'/>*/}
-        {/*<span className='menu-burg'></span>*/}
+      <label className="menu">
+        <input type="checkbox" className="burg-btn"/>
+        <span className="menu-burg"></span>
       </label>
-      <div className='header'>
-        <Link to='/n' className='logo-name'>
-          <img className='logo' src={Logo} alt='Logo'/>
+      <div className="header">
+        <Link to="/n" className="logo-name">
+          <img className="logo" src={Logo} alt="Logo"/>
 
-          <h4 className='title-header'>
+          <h4 className="title-header">
             <FormattedMessage id="app.name"/>
           </h4>
-          {(page === "myPage" && isDefaultPage) && <Link to={"/myStudio"} className='my-studio'>
+          {(page === "myPage" && isDefaultPage) && <Link to={"/myStudio"} className="my-studio">
             <FormattedMessage id="app.studio"/>
           </Link>}
         </Link>
-        <div className='search-button'>
-          <Link to='/search' className='magnifier'>
-            <img src={Magnifier} alt='search'/>
+        <div className="search-button">
+          <Link to="/search" className="magnifier">
+            <img src={Magnifier} alt="search"/>
           </Link>
           <input
-            className='search' type='text'
+            className="search" type="text"
             placeholder={intl.formatMessage({id: "app.header.placeholder"})}
           />
           {isDefaultPage ?
-            <div className='user-item'>
+            <div className="user-item">
               {page &&
-                <Link to='/' className='section-button'>
-                  <Button buttonType='button' buttonText={userButtonText} className='user-button'/>
+                <Link to="/" className="section-button">
+                  <Button buttonType="button" buttonText={userButtonText} className="user-button"/>
                 </Link>}
-              <img src={Bell} alt='Bell' className='bell'/>
-              <img src={Avatar} alt='Avatar' className='avatar'/>
+              <img src={Bell} alt="Bell" className="bell"/>
+              <img src={Avatar} alt="Avatar" className="avatar"/>
             </div>
             :
-            <Link to="/users/sign_in" className='login-link'>
-              <img src={Avatar} alt='Avatar' className='avatar-login'/>
+            <Link to="/users/sign_in" className="login-link">
+              <img src={Avatar} alt="Avatar" className="avatar-login"/>
               <Button
-                buttonType='button'
+                buttonType="button"
                 buttonText={intl.formatMessage({id: "app.header.login"})}
-                className='button-login'
+                className="button-login"
               />
             </Link>}
         </div>

@@ -1,5 +1,4 @@
-import "../components/modal/checkbox.scss";
-import "../components/modal/NewModal.scss";
+import "./modal.scss";
 import {
   Field, Form, Formik
 } from "formik";

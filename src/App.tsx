@@ -13,13 +13,12 @@ import {Link} from "react-router-dom";
 import Pages  from "./components/Pages";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import Search from "./components/Search";
+import Search from "./components/body/header/search/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
 import YourselfPage from "./pages/YourselfPage";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
-
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();

@@ -10,33 +10,27 @@
 .react-tel-input {
   @include fieldsFont;
 }
-.flag-dropdown{
-  //display: none;
-  z-index: 0;
-}
 
 .react-tel-input > .form-control {
   padding: 1px 46px 1px 84px;
   width: 100%;
   border-color: $blueLightColor;
   color:$black;
-  z-index: 1;
   background: none;
 }
 
 .react-tel-input .flag-dropdown {
   padding-left:45px;
-  width: 99%;
   left:1px;
   background-color: $white;
   border: none;
   height: 90%;
   top: 2px;
-  //z-index: 0;
 }
 
 .react-tel-input .flag-dropdown.open{
   z-index: 0;
+  width: 99%;
 }
 
 .react-tel-input .flag-dropdown.open .selected-flag {
@@ -73,8 +67,3 @@
   cursor: pointer;
   z-index: 2;
 }
-
-//.react-tel-input >.flag-dropdown{
-//  padding-left: 46px;
-//}
-

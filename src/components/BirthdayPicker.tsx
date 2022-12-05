@@ -1,3 +1,4 @@
+import "./input.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import "./birthday.scss";
 import DatePicker, {registerLocale} from "react-datepicker";

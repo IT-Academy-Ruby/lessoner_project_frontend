@@ -1,3 +1,4 @@
+import "./input.scss";
 import {CODE} from "../constants";
 import {FormattedMessage} from "react-intl";
 

@@ -1,4 +1,4 @@
-import "./Pages.scss";
+import "./pages.scss";
 import Close from "./icons/close.svg";
 import CodePage from "../pages/CodePage";
 import ConfirmReg from "../pages/ConfirmReg";

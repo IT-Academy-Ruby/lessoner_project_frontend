@@ -1,3 +1,4 @@
+import "./modal.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";

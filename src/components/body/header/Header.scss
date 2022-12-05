@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  background: #FFFFFF;
+  background: $white;
 }
 
 .menu {
@@ -125,7 +125,7 @@
   height: 32px;
   border: 1px solid $greySearchColor;
   border-radius: 8px;
-  background: #FFFFFF;
+  background: $white;
   margin-right: 16px;
   padding-inline: 6px;
 }
@@ -183,7 +183,7 @@
   font-size: 16px;
   color: $blueLightColor;
   padding: 6px 16px;
-  background: white;
+  background: $white;
 }
 
 .bell {

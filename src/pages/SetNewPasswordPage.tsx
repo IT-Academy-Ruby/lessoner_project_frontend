@@ -1,3 +1,4 @@
+import "./modal.scss";
 import {
   Field, Form, Formik
 } from "formik";

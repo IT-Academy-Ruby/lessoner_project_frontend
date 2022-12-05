@@ -1,4 +1,4 @@
-import "./modal/radio.scss"
+import "./genderSelector.scss";
 import {FormattedMessage} from "react-intl";
 
 type GenderProps = {

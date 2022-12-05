@@ -1,4 +1,5 @@
 import "react-phone-input-2/lib/style.css";
+import "./input.scss";
 import "./phoneNumber.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import Magmagnifying from "./icons/magnifying_glass.svg";
@@ -20,12 +21,10 @@ type countryType = {
   format: string,
   name: string
 }
-let f:null|HTMLElement=null
-const PhoneNumber = ({error,setError, phoneNumber, setPhoneNumber, isError}: PhoneNumberProps) => {
+
+const PhoneNumber = ({error, setError, phoneNumber, setPhoneNumber, isError}: PhoneNumberProps) => {
   const intl = useIntl();
   const [isBlur, setIsBlur] = useState(false);
-  const [isSelect, setIsSelect] = useState(true);
-  const [flagDropdown, setFlagDropdown] = useState<HTMLElement>()
 
   const checkNumber =
     (value: string, country: countryType, e: React.ChangeEvent<HTMLDivElement>,
@@ -40,19 +39,6 @@ const PhoneNumber = ({error,setError, phoneNumber, setPhoneNumber, isError}: Pho
       }
     };
 
-  useEffect(() => {
-    const selected = document.getElementsByClassName("selected-flag");
-    selected[0].setAttribute("id", "selected");
-    f = document.getElementById("selected");
-    f ? setFlagDropdown(f) : null;
-    f?.click()
-  }, [])
-
-  const dropDown = () => {
-    console.log(flagDropdown)
-    f?.click();
-  }
-
   return (
     <label className="input-label">
       <FormattedMessage id="app.phoneNumber.label"/>
@@ -65,15 +51,14 @@ const PhoneNumber = ({error,setError, phoneNumber, setPhoneNumber, isError}: Pho
         excludeCountries={deleteCountry}
         value={phoneNumber}
         placeholder=""
-        enableLongNumbers={true}
-
+        // enableLongNumbers={true}
         inputProps={
           {
             required: true,
           }
         }
       />
-      <div className="symbol" onClick={dropDown}>&#10095;</div>
+      <div className="symbol">&#10095;</div>
       {((error && isBlur) || isError) && <span className="error-message">{error}</span>}
     </label>
   );
