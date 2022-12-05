@@ -1,3 +1,4 @@
+import "./categoryDescription.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useState} from "react";
 
@@ -14,20 +15,18 @@ const CategoryDescription = ({field, error}: CategoryDescriptionProps): JSX.Elem
   const intl = useIntl();
   const [value, setValue] = useState("")
   return (
-    <label className="">
+    <label className="category-label">
       <FormattedMessage id="app.categories.description"/>
       <textarea
-        className=""
+        className="category-textarea"
         placeholder={intl.formatMessage({id: "app.categories.placeholder.description"})}
-        cols={40}
-        rows={5}
         {...field}
         value={value}
         onChange={(event) => {
           setValue(event.currentTarget.value)
         }}
       ></textarea>
-      {(error) && <span className="error">{error}</span>}
+      {(error) && <span className="error-massage">{error}</span>}
     </label>
   )
 }

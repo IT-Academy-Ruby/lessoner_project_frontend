@@ -1,3 +1,5 @@
+
+
 /* eslint-disable max-len */
 export const messages_ru = {
   "app.name": "Lessoner",
@@ -62,6 +64,12 @@ export const messages_ru = {
   "app.categories.actions": "Действия",
   "app.categories.addCategory": "Добавить новую категорию",
   "app.categories.name": "Название категории",
-  "app.categories.uploadImage": "Загрузить изображение категории с компьютера",
+  "app.categories.uploadCategoryImage": "Загрузить изображение категории с компьютера",
   "app.categories.selectFile": "Выберите файл",
+  "app.categories.uploadImage": "Загрузить изображение",
+  "app.categories.or": "или",
+  "app.categories.dragAandDrop": "Перетащите",
+  "app.categories.button.select": " Выбрать файл",
+  "app.categories.button.cancel": "Отмена",
+  "app.categories.button.save": "Сохранить",
 };

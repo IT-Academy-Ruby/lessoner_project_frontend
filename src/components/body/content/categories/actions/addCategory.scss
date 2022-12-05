@@ -1,9 +1,53 @@
-.form-category{
+.add-category {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.arrow-back {
+  margin-right: 19px;
+  color: #9A9AA3;
+}
+
+.button-back {
+  position: absolute;
+  margin: 16px 24px;
+  left: 0;
+  top: 0;
+  text-decoration: none;
+  font-family: "ApercuPro";
+  color: #9A9AA3;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.form-category {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 656px;
-  height: 850px;
   background: #FFFFFF;
   padding: 32px 48px 48px;
   box-shadow: 0px 0px 4px #cacaca;
+}
+
+.add-title {
+  font-family: "ApercuPro";
+  color: #1B1B1F;
+  font-weight: 700;
+  line-height: 130%;
+  margin-bottom: 32px;
+  margin-top: 0;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.button-cancel {
+  margin-right: 6px;
 }

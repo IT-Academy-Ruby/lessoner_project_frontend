@@ -1,0 +1,61 @@
+@import "./src/constants";
+
+.category-label {
+  font-family: "ApercuPro";
+  color: #1B1B1F;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.category-input {
+  margin-top: 4px;
+  padding: 10px 12px;
+  width: 100%;
+  border: 1px solid #9A9AA3;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: "ApercuPro";
+  color: #1B1B1F;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  &:active {
+    outline: none;
+    border: 1px solid $blueLightColor;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $blueLightColor;
+  }
+
+  &:hover {
+    outline: none;
+    border: 1px solid $black;
+  }
+
+  &::placeholder{
+    font-family: 'ApercuPro';
+    color: #9A9AA3;
+  }
+}
+.error-message {
+  bottom: -22px;
+  color: $warningColor;
+  text-align: left;
+  display: block;
+  margin-top: 0.5em;
+  font-family: "ApercuPro", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+}

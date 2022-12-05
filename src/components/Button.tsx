@@ -1,20 +1,28 @@
 import "./button.scss";
-import {MouseEventHandler} from "react";
+import {MouseEventHandler,Fragment} from "react";
 
 type ButtonProps = {
   buttonType: "button" | "submit" | "reset";
   buttonText: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  disabled?:boolean;
 }
 
 const Button = ({
-  buttonType, buttonText, onClick, className
+  buttonType, buttonText, onClick, className, disabled=false
 }: ButtonProps) => {
   return (
-    <div>
-      <button type={buttonType} className={className} onClick={onClick}>{buttonText}</button>
-    </div>
+    <Fragment>
+      <button
+        type={buttonType}
+        className={className}
+        onClick={onClick}
+        disabled={disabled}
+      >
+        {buttonText}
+      </button>
+    </Fragment>
   );
 };
 

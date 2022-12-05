@@ -3,15 +3,16 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {Link,useNavigate} from "react-router-dom";
+import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
-import {Link} from "react-router-dom";
 
 interface FormValues {
   name: string;
   description: string;
-  image: string;
+  image: object;
 }
 
 interface FormErrors {
@@ -19,14 +20,19 @@ interface FormErrors {
 }
 
 const AddCoategory = () => {
+  const intl = useIntl();
+  const navigate = useNavigate();
   const initialValues: FormValues = {
     name: "",
-    description: "string",
-    image: "string",
+    description: "",
+    image: {},
   }
   return (
-    <div className="">
-      <Link to="/categories" className=""> Back</Link>
+    <div className="add-category">
+      <Link to="/categories" className="button-back">
+        <span className="arrow-back">&#10094;</span>
+        Back
+      </Link>
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
@@ -37,8 +43,8 @@ const AddCoategory = () => {
           if (values.description.length <= 10) {
             console.log(values.description)
           }
-          if (values.image.length === 0) {
-            console.log(values.image)
+          if (values) {
+            console.log(values)
           }
         }}
         onSubmit={(values: FormValues) => {
@@ -47,7 +53,7 @@ const AddCoategory = () => {
         {({errors, touched}) => {
           return (
             <Form className="form-category">
-              <h1>
+              <h1 className="add-title">
                 <FormattedMessage id="app.categories.addCategory"/>
               </h1>
               <Field
@@ -65,6 +71,20 @@ const AddCoategory = () => {
                 component={CategoryImage}
                 error={touched.image ? errors.image : undefined}
               />
+              <div className="category-buttons">
+                <Button
+                  buttonType="button"
+                  buttonText={intl.formatMessage({id: "app.categories.button.cancel"})}
+                  className="button-select button-cancel"
+                  onClick={()=>navigate("/categories")}
+                />
+                <Button
+                  buttonType="submit"
+                  buttonText={intl.formatMessage({id: "app.categories.button.save"})}
+                  className="button-select"
+                  disabled={true}
+                />
+              </div>
             </Form>
           )
         }}

@@ -62,6 +62,13 @@ export const messages_en = {
   "app.categories.actions": "Actions",
   "app.categories.addCategory": "Add new category",
   "app.categories.name": "Category name",
-  "app.categories.uploadImage": "Upload the category image from computer",
+  "app.categories.uploadCategoryImage": "Upload the category image from computer",
   "app.categories.selectFile": "Select file",
+  "app.categories.uploadImage": "Upload image",
+  "app.categories.or": "or",
+  "app.categories.dragAandDrop": "Drag and drop",
+  "app.categories.button.select": "Select file",
+  "app.categories.button.cancel": "Cancel",
+  "app.categories.button.save": "Save",
+
 };
