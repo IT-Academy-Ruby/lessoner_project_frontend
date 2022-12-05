@@ -1,0 +1,39 @@
+@import "../../constants.scss";
+
+.username__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.username__label {
+    text-align: left;
+    font-weight: bold;
+    width: 100%;
+    @include fieldsFont;
+}
+
+.username__input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5em;
+    @include fieldsFont;
+    @include textFieldInput;
+}
+
+.errorInput {
+    border-color: red;
+    color: red;
+}
+
+.error {
+    color: red;
+    display: block;
+    margin-top: 0.5em;
+}
+
+.red__border {
+    border-color: red;
+}

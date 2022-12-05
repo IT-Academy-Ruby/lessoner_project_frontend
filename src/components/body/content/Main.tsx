@@ -9,19 +9,29 @@ import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
 
 const Content = () => {
+  const typeOfNavbar = 
+  { study: <NavbarStudyStudio menuType={"study"}/>, 
+    studio: <NavbarStudyStudio menuType={"studio"}/> }; 
   return (
     <div className="main">
       <Routes>
-        <Route path="/myStudio" 
+        <Route path="myStudio" 
           element={
             <>
               <MyStudio /> 
-              <NavbarStudyStudio menuType={"studio"}/>
+              {typeOfNavbar.studio}
             </>
           } 
         />
         <Route path="/" element={<Lessoner />} />
-        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories"
+          element={
+            <>
+              <Categories />
+              {typeOfNavbar.study}
+            </>
+          } 
+        />
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/about" element={<About />} />
         <Route path="/users/sign_in" element={<SignIn />} />

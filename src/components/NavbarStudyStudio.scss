@@ -16,6 +16,11 @@ $content-color: #1b1b1f;
   transition: 0.1s;
 }
 
+.menu__content:hover {
+  width: 200px;
+  border-radius: 0 15px 15px 0;
+}
+
 .menu__content--active {
   width: 200px;
   border-radius: 0 15px 15px 0;
@@ -62,6 +67,13 @@ $content-color: #1b1b1f;
   font-weight: 600;
   color: $content-color;
   opacity: 0;
+  transition: 0.1s;
+}
+
+.menu__content:hover .menu__text {
+  width: 140px;
+  font-size: 1em;
+  opacity: 1;
   transition: 0.1s;
 }
 

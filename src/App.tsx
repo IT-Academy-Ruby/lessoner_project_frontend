@@ -20,6 +20,7 @@ import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
 import { useAppDispatch } from "./store/hooks";
 import { useState } from "react";
+import { EditVideoLessonTitle } from "./components/editVideoLesson/EditVideoLessonTitle";
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -31,6 +32,8 @@ function App(): JSX.Element {
     dispatch(showDefaultPage());
     localStorage.setItem("JWT", "");
   };
+  const pageType = 
+  { registration: <Pages pageType={"registration"}/> };
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
@@ -38,7 +41,7 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode} />
           <Routes>
             <Route path="/users/sign_in" element={<LoginPage />} />
-            <Route path="/users/sign_up" element={<Pages pageType={"registration"}/>} />
+            <Route path="/users/sign_up" element={pageType.registration} />
             <Route path="/users/sign_in/phone_number" element={<PhoneNumberPage />} />
             <Route path="/users/sign_in/phone_number/code" element={<CodePage />} />
             <Route path="/search" element={<Search />} />
@@ -46,6 +49,7 @@ function App(): JSX.Element {
             <Route path='/users/sign_in/reset_password/new_password'
               element={<SetNewPasswordPage />} />
           </Routes>
+          <EditVideoLessonTitle/>
           <div className="authorization">
             <button className="btn__temporary" onClick={signOut}>Not authorized</button>
             <button className="btn__temporary" onClick={() => dispatch(showDefaultPage())}>

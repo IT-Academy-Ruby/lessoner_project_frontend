@@ -1,20 +1,26 @@
-.userName {
-  margin: 20px 0;
+@import "../constants.scss";
+
+.username__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
-.userNameLabel {
-  display: block;
+.username__label {
+  text-align: left;
   font-weight: bold;
-  margin: 5px 0;
+  width: 100%;
+  @include fieldsFont;
 }
 
-.userNameInput {
+.username__input {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
-  border: 1px solid #0747a6;
-  border-radius: 0.2em;
-  color: black;
+  @include fieldsFont;
+  @include textFieldInput;
 }
 
 .errorInput {
@@ -28,6 +34,6 @@
   margin-top: 0.5em;
 }
 
-.redBorder {
+.red__border {
   border-color: red;
 }

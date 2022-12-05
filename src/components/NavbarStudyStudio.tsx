@@ -1,5 +1,6 @@
 import "./NavbarStudyStudio.scss";
 import {FC, useState} from "react";
+import { Link } from "react-router-dom";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
 import {useIntl} from "react-intl";
@@ -56,7 +57,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
   const menuContentCN = classNames("menu__content", {"menu__content--active": isMenuActive});
 
   return (
-    <div onClick={() => setIsMenuActive(false)}>
+    <div>
       <div className={menuContentCN} 
         onClick={e => e.stopPropagation()}>
         <ul className="menu__inner">
@@ -80,13 +81,13 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
           {items.map((item: {
             id: number; href: string; value: string; icon: string; place: string; 
               }) => (item.place === menuType) && 
-                <li className={"menu__item"} 
+                <nav className={"menu__item"} 
                   key={item.id} 
                   onClick={() => 
                     (item.id !== buttonPressed) && 
                   setButtonPressed(item.id)}
                 >
-                  <a className="menu__item-inner"  href={item.href}>
+                  <Link className="menu__item-inner"  to={item.href}>
                     <span className={classNames(imageWrapperCN, 
                       {"image__wrapper--selected": item.id === buttonPressed})}>
                       <div className={classNames(svgItemCN, 
@@ -101,8 +102,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                       ""}`}>
                       {item.value}
                     </span>
-                  </a>
-                </li>
+                  </Link>
+                </nav>
           ) 
           }
         </ul>

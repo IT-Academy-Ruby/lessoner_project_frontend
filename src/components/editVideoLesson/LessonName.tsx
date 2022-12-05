@@ -1,8 +1,7 @@
-import "./userName.scss";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
+import "./LessonName.scss";
+import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
-import {getUser} from "../store/loginName/userSlice";
 
 type UserNameProps = {
   minSymbol: number;
@@ -19,20 +18,11 @@ const UserName = ({
   minSymbol, maxSymbol, field, error, labelName
 }: UserNameProps): JSX.Element => {
   const [extraStyle, setExtraStyle] = useState("");
-  const [busyName, setBusyName] = useState("");
   const dispatch = useAppDispatch();
-  const userStatus = useAppSelector((state) => state.user.isLogged);
 
   const fieldHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    dispatch(getUser(e.currentTarget.value));
+    console.log("Ok")
   };
-
-  useEffect(() => {
-    if (userStatus) {
-      setBusyName("User already exists. Please enter a different username");
-      setExtraStyle("red__border");
-    }
-  }, [userStatus]);
 
   return (
     <div className="username__wrapper">
@@ -46,7 +36,6 @@ const UserName = ({
         />
       </label>
       {(error) && <span className="error">{error}</span>}
-      {(busyName) && <span className="error">{busyName}</span>}
     </div>
   );
 };
