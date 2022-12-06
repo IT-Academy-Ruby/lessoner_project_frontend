@@ -50,8 +50,8 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
       />
       {error && <span className="error-message">{error}</span>}
       {!loading && isUser && <span className="error-message">
-          <FormattedMessage id="app.email.error"/>
-        </span>}
+        <FormattedMessage id="app.email.error"/>
+      </span>}
     </label>
   );
 };

@@ -16,7 +16,7 @@ interface PagesProps {
   registration?: boolean;
 }
 
-export const Pages: FC<PagesProps> = ({pageType, registration}) => {
+const Pages: FC<PagesProps> = ({pageType, registration}) => {
   const page = () => {
     switch (pageType) {
     case "Login":
