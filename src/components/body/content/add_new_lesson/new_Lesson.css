@@ -2,27 +2,33 @@
     height: 200px;
     border: 1px dashed grey;
 }
+
 input.description-input-form{
     height: 50px;
 }
+
 .display-none{
     display: none;
 }
+
 .color-grey{
     color:grey;
 }
+
 .form-step-1, .form-step2{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-content: center;
 }
+
 .form-step-2{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     align-content: center;
 }
+
 .show-active-step{
     display: flex;
     flex-direction: row;
@@ -30,6 +36,7 @@ input.description-input-form{
     align-items: center;
     margin-bottom: 32px;
 }
+
 .step1, .step2{
     display: flex;
     flex-direction: column;
@@ -45,6 +52,7 @@ input.description-input-form{
     flex-wrap: wrap;
     align-content: center;
 }
+
 .input-link, .input-name{
     display: flex;
     flex-direction: column;
@@ -52,34 +60,39 @@ input.description-input-form{
     align-items: flex-start;
     margin-bottom: 32px;
 }
+
 #name, #link{
     width: 100%;
 }
+
 .input-name, .input-link{
     width: 100%;
 }
+
 .active .first-div-active{
 color:#B9D1FF
 }
+
 .active .second-div-active{
     color:#455FCE
 }
+
 .active-step{
    color:white;
    background-color:#455FCE ;
 }
+
 .form-fields{
     width: 656px;
     padding: 0 48px;
 }
+
 .h2-add-new-lesson{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
-<<<<<<< HEAD
-=======
 
 .button-shape-2{
     border:0px;
@@ -90,7 +103,6 @@ color:#B9D1FF
     margin:0 0 0 5px
 } 
 
->>>>>>> a71980f (some correct)
 .button-shape{
     border:1px solid #455FCE;
     border-radius: 28px;
@@ -101,27 +113,23 @@ color:#B9D1FF
     cursor: pointer;
     margin:0 0 0 5px
 }
+
 .button-shape.cansel{
     width: 122px;
 }
+
 .div-arrow{
     width: 88px;
 }
+
 .new-lesson-form{
 font-family: Apercu Pro;
 }
-#file{
-    border-radius:8px;
-    border:1px grey dashed;
-    width: 100%;
-    height: 216px;
-}
+
 .foot-div{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-<<<<<<< HEAD
-=======
 }
 
 .input-category{
@@ -134,6 +142,7 @@ font-family: Apercu Pro;
 .w100{
     width: 100%;
 }
+
 .marg-bot-32{
     margin-bottom: 32px;
 }
@@ -164,12 +173,15 @@ font-family: Apercu Pro;
     border: 1px solid grey;
     border-radius:10px;
 }
+
 label{
     font-weight: 600;
 }
+
 .subtitles{
     margin-bottom: 10px;
 }
+
 .div-thumbnail{
     width: 125px;
     height: 88px;
@@ -189,5 +201,65 @@ label{
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
->>>>>>> a71980f (some correct)
+
 }
+
+.name-div{
+    position: relative;
+    width: 100%;
+}
+
+.simbol-left{
+    position: absolute;
+    top: 8px;
+    right: 0;
+    font-size: 60%;
+    text-align: center;
+    color: #9A9AA3;
+}
+
+input{
+    border-radius:8px;
+    border:1px solid #9A9AA3;
+}
+
+ input:hover{
+    border: 2px solid rgb(69 95 206);
+ }
+
+ .error-border{
+    border:red solid 1px;
+ }
+
+ .load-file-div{
+    width: 100%;
+    height: 216px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-evenly;
+    border: 1px dashed #9A9AA3;
+    border-radius:8px;
+ }
+ 
+ .last-load-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+ }
+ #file{
+    display: none;
+ }
+
+ label.button-shape{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 170px;
+ }
+
+

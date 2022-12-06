@@ -1,14 +1,45 @@
 import "./new_Lesson.css";
 import { Link } from "react-router-dom";
-import Step1 from "./step1";
+import { Step1 } from "./step1";
 import Step2 from "./step2";
 import { useState } from "react";
 
+type dataType = {
+  name:string,
+  link:string,
+  file:string,
+  category:string,
+  description:string
+}
 const NewLesson = () => {
-  const [step, setStep] = useState(1);
-  const [stepStatus,setstepStatus]=useState("Next step");
+  const [ name, setName ] = useState("");
+  const [ link, setLink ] = useState("");
+  const [ file, setFile ] = useState("");
+  const [ category, setCategory] = useState("");
+  const [ description, setDescription ] = useState("");
+  const [ step, setStep ] = useState(1);
+  const [ stepStatus, setstepStatus ] = useState("Next step");
+  
+  const handleDataChangeStep1=( data:dataType ) => {
+    setName(data.name);
+    setLink(data.link);
+    setFile(data.file);
+    console.log(data);
+  };
+
+  const handleDataChangeStep2=( data:dataType ) => {
+    setCategory(data.category);
+    setDescription(data.description);
+    console.log(data);
+  };
+
+  const click=()=>{
+    // eslint-disable-next-line max-len
+    console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description);
+  };
+  
   const swapStepForm = () => {
-    console.log("step"+step);
+    // console.log("step"+step);
     if (step === 1) {
       setStep(2);
       document.getElementsByClassName("step1")[0].classList.remove("active");
@@ -45,29 +76,25 @@ const NewLesson = () => {
             <div className="second-div-active">Lesson details</div>
           </div>
         </div>
-        {step===1 ? <Step1 /> : <Step2 />}
+        {step===1 ? <Step1 onChange={handleDataChangeStep1} /> :
+          <Step2 onChange={handleDataChangeStep2} />}
         <div className="foot-div">
           <Link to="/myStudio">
             <input type="button" value="Cansel" className="button-shape cansel" />
           </Link>
-<<<<<<< HEAD
-          {step===1 ? <input type="button" className="next-step-button active-step button-shape"
-            value={stepStatus} onClick={swapStepForm}>
-          </input> : <input type="button" className="add-new-lesson"></input>}
-          
-=======
           {step===1 ? <input type="button" className="next-step-button active-step button-shape-2"
             value={stepStatus} onClick={swapStepForm}></input> :
             // <input type="button" className="add-new-lesson"><PlusSvg/>
             //   <FormattedMessage id="app.Add new lesson" />
             // </input>
             <input type="button" className="next-step-button  button-shape-2"
-              value={"+ Add new lesson"} ></input>
+              value={"+ Add new lesson"} onClick={click} ></input>
           }
->>>>>>> a71980f (some correct)
         </div>
       </div>
     </div>
   );
 };
-export default NewLesson;
+
+export  default NewLesson ;
+
