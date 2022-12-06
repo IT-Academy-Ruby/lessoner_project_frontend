@@ -7,27 +7,58 @@ export const getLogin = createAsyncThunk(
     const response = await fetch(
       `${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
       {method: "POST"});
+
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
     } else {
-      return null;
+      return "";
     }
   }
 );
 type Login = {
-  login: boolean;
-}
-const initialState: Login = {login: false,};
+  login: string;
+  event: boolean;
+  lookButton: boolean;
+  loading: boolean;
+};
+
+const initialState: Login = {
+  login: "",
+  event: false,
+  lookButton: false,
+  loading: false,
+};
+
 const loginSlice = createSlice({
   name: "login",
   initialState,
-  reducers: {},
-  extraReducers(builder) {
+  reducers: {
+    buttonEvent: (state) => {
+      state.event = true;
+    },
+    changeEvent: (state) => {
+      state.event = false;
+    },
+    lookEvent: (state) => {
+      state.lookButton = !state.lookButton;
+    }
+  },
+  extraReducers: (builder) => {
     builder.addCase(getLogin.fulfilled, (state, action) => {
       state.login = action.payload;
-      localStorage.setItem("JWT", `${state.login}`);
+      state.loading = false;
+      if (state.login) {
+        localStorage.setItem("JWT", `${state.login}`);
+      }
+    });
+    builder.addCase(getLogin.pending, (state) => {
+      state.loading = true;
     });
   }
 });
+
+export const {
+  buttonEvent, changeEvent, lookEvent
+} = loginSlice.actions;
 export default loginSlice.reducer;

@@ -59,7 +59,9 @@ export const messages_en = {
   "app.button.signIn": "Sign in",
   "app.button.code": "Resend code",
   "app.or": "or",
+  "app.pagesTitle.registration": "Registration",
   "app.pagesTitle.confirm": "Confirm your registration using the link we sent to your email.",
+  "app.pagesTitle.phoneNumber": "Enter your phone number",
   "app.pagesTitle.enterCode": "Enter the code",
   "app.pagesTitle.aboutYourself": "Tell us about yourself",
   "app.My lessons": "My lessons",
@@ -81,4 +83,5 @@ export const messages_en = {
   "app.UserName": "Username",
   "app.UserName.placeholder": `${USERNAME.minLength} to ${USERNAME.maxLength} characters`,
   "app.ConfirmReg.info": "Confirm your registration using the link we sent to your email.",
+  "app.userName.nameExists": "User already exists. Please enter a different username",
 };

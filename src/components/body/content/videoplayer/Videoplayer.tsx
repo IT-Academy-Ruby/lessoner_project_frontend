@@ -4,31 +4,35 @@ import "plyr-react/plyr.css";
 import Plyr from "plyr-react";
 import React from "react";
 
-const videoSrc  = {
+const videoSrc = {
   type: "video" as const,
   title: "Elephants",
   sources: [
     {
       src:
-        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
+        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/" +
+        "915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
       type: "video/mp4",
       size: 576,
     },
     {
       src:
-        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
+        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/" +
+        "915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
       type: "video/mp4",
       size: 720,
     },
     {
       src:
-        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
+        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/" +
+        "915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
       type: "video/mp4",
       size: 1080,
     },
 
   ],
-  poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Elephants_Dream_cover.jpg/1200px-Elephants_Dream_cover.jpg?20060831021346",
+  poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/" +
+    "Elephants_Dream_cover.jpg/1200px-Elephants_Dream_cover.jpg?20060831021346",
   tracks: [
     {
       kind: "captions" as const,
@@ -46,9 +50,10 @@ const videoSrc  = {
     },
   ],
   // Preview example
-  previewThumbnails: {enabled: true,
-    src: ["https://cdn.plyr.io/static/demo/thumbs/100p.vtt", "https://cdn.plyr.io/static/demo/thumbs/240p.vtt"],},
-  tooltips: {controls: true,},
+  previewThumbnails: { enabled: true,
+    src: ["https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
+      "https://cdn.plyr.io/static/demo/thumbs/240p.vtt"]},
+  tooltips: {controls: true},
 };
 
 const optionsVideoplayer = {
@@ -56,17 +61,16 @@ const optionsVideoplayer = {
     default: 576,
     // The options to display in the UI, if available for the source media
     options: [1080, 720, 576, 480, 360, 240],
-    forced: true,
+    forced: true
   },
-  markers: {enabled: true,
+  markers: { enabled: true,
     points: [
-      {time: 15,
-        label: "Test",},
-      {time: 23,
-        label: "Test",},
-      {time: 31,
-        label: "<strong>Test</strong> marker",},
-    ],},
+      { time: 15,
+        label: "Test"},
+      { time: 23,
+        label: "Test"},
+      { time: 31,
+        label: "<strong>Test</strong> marker"}]},
   controls: [
     "play-large", // The large play button in the center
     "restart", // Restart playback
@@ -82,7 +86,8 @@ const optionsVideoplayer = {
     "settings", // Settings menu
     "pip", // Picture-in-picture (currently Safari only)
     "airplay", // Airplay (currently Safari only)
-    // 'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
+    // 'download', // Show a download button with a link to either the current
+    // source or a custom URL you specify in your options
     "fullscreen", // Toggle fullscreen
     "advertisement",
     "ads",
@@ -92,13 +97,13 @@ const optionsVideoplayer = {
 
 export default function App() {
   return (
-    <VideoPlayer />
+    <VideoPlayer/>
   );
 }
 
 export const VideoPlayer: React.FC = () => {
   return (
-    <div className ="player">
+    <div className="player">
       <Plyr options={optionsVideoplayer} source={videoSrc}
       />
     </div>

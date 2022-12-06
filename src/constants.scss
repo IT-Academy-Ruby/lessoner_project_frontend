@@ -1,6 +1,6 @@
 $borderColor: #455FCE;
 $warningColor: #FF0000;
-$font: 'ApercuPro', sans-serif;
+$font: "ApercuPro", sans-serif;
 $formWidth: 100%;
 $max-width-tablet: 744px;
 $max-width-phone: 360px;
@@ -17,11 +17,12 @@ $greySearchColor: #9A9AA3;
     color: $black;
   }
 
-  @media (max-width: $max-width-tablet) {
-    & {
-      font-size: 16px;
-      line-height: 18px;
-    }
+  &::placeholder {
+    font-family: $font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
   }
 
   @media (max-width: $max-width-phone) {
@@ -29,12 +30,23 @@ $greySearchColor: #9A9AA3;
       font-size: 12px;
       line-height: 18px;
     }
+    &::placeholder {
+      font-size: 14px;
+      line-height: 150%;
+    }
   }
 }
 
 @mixin textFieldInput {
+  line-height: 40px;
+  border: 1px solid $greySearchColor;
+  border-radius: 8px;
+  width: 100%;
+  @include fieldsFont;
+  margin-top: 5px;
 
   &:focus {
-
+    outline: 0;
+    border: 1px solid $borderColor;
   }
 }

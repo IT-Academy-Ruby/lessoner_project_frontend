@@ -1,9 +1,13 @@
 import "./modal.scss";
 import {
-  Field, Form, Formik
+  Field, Form, Formik,
 } from "formik";
+import {
+  buttonEvent, getLogin, lookEvent
+} from "../store/loginName/loginSlice";
 import {FormattedMessage, useIntl} from "react-intl";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
@@ -11,11 +15,12 @@ import Facebook from "../components/icons/facebook.svg";
 import Google from "../components/icons/google.svg";
 import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
+import Password from "../components/PasswordAndConfirm";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
-import {getLogin} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
+
+import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -24,11 +29,13 @@ interface FormValues {
 }
 
 interface FormErrors {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const LoginPage = () => {
   const intl = useIntl();
+  const [isChecked, setIsChecked] = useState(false);
+  const loading = useAppSelector(state => state.login.loading);
   const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
@@ -39,6 +46,14 @@ const LoginPage = () => {
 
   return (
     <div className="log-content">
+      {loading &&
+        <h1
+          style={{
+            position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
+          }}
+        >
+          Loading...
+        </h1>}
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
@@ -60,6 +75,8 @@ const LoginPage = () => {
         }}
         onSubmit={(values: { email: string, password: string }) => {
           dispatch(getLogin(values));
+          dispatch(buttonEvent());
+          dispatch(lookEvent());
           console.log(values); //for example that working
         }}>
         {({errors, touched}) => {
@@ -129,4 +146,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;

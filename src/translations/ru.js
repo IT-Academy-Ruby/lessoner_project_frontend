@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import {USERNAME, CODE, PASSWORD} from "../constants";
+import {
+  CODE, PASSWORD, USERNAME
+} from "../constants";
 
 export const messages_ru = {
   "app.name": "Lessoner",
@@ -79,5 +81,7 @@ export const messages_ru = {
   "app.YourselfPage.errorSmalName":`Имя пользователя должно быть длинее ${USERNAME.minLength} символов`,
   "app.YourselfPage.errorBigName":`Имя пользователя должно быть короче ${USERNAME.maxLength} символов`,
   "app.UserName": "Имя пользователя",
+  "app.UserName.placeholder": `${USERNAME.minLength} до ${USERNAME.maxLength} символов`,
   "app.ConfirmReg.info": "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
+  "app.userName.nameExists": "Пользователь уже существует. Пожалуйста, введите другое имя пользователя",
 };

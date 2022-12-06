@@ -6,6 +6,8 @@ import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import { changePassword } from "../services/api/changePassword";
+import getParameterValue from "../helpers/parseUrl";
 import {passwordRegex} from "../validationRules";
 
 interface FormValues {
@@ -18,8 +20,10 @@ interface FormErrors {
 }
 
 const SetNewPasswordPage = () => {
+
   const intl = useIntl();
-  const initialValues: FormValues = {password: "", confirmPassword: ""};
+  const initialValues: FormValues = { password: "", confirmPassword: "" };
+  const token = getParameterValue(window.location.href, "token");
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
@@ -39,8 +43,11 @@ const SetNewPasswordPage = () => {
     return errors;
   };
 
-  const submitFirstStepForm = (values: FormValues) => {
-    console.log(values.password);
+  const submitFirstStepForm = async (values: FormValues) => {
+    if (token) {
+      const isStatusSended = await changePassword(token, values.password);
+      console.log(isStatusSended);
+    }
   };
 
   return (

@@ -15,6 +15,7 @@ type PhoneNumberProps = {
   setPhoneNumber: (str: string) => void;
   isError: boolean;
 }
+
 type countryType = {
   countryCode: string,
   dialCode: string,

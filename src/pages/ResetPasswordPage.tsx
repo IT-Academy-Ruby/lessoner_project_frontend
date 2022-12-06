@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import Email from "../components/Email";
 import {emailInvalidationRules} from "../validationRules";
 import {useNavigate} from "react-router-dom";
+import {sendPasswordResetLink} from "../services/api/sendPasswordResetLink";
 
 const ResetPasswordPage = () => {
   const intl = useIntl();
@@ -15,13 +16,22 @@ const ResetPasswordPage = () => {
 
   const closeLinkPopup = () => navigate("/users/sign_in/");
 
-  const checkEmail = (isSubmitting = false) => {
+  const checkEmail = () => {
     if (emailInvalidationRules.some(rule => rule.test(email))) {
-      setError("User is not found. Please enter a valid email address");
-      isSubmitting && setIsForm(true);
+      setError(intl.formatMessage({ id: "app.resetPasswordPage.userNotFound" }));
     } else {
       setError("");
-      isSubmitting && setIsForm(false);
+    }
+  };
+
+  const sendLink = async () => {
+    const isLinkSended = await sendPasswordResetLink(email);
+    if (isLinkSended !== "User not found") {
+      setError("");
+      setIsForm(false);
+    } else {
+      setError(intl.formatMessage({ id: "app.resetPasswordPage.userNotFound" }));
+      setIsForm(true);
     }
   };
 
@@ -36,7 +46,7 @@ const ResetPasswordPage = () => {
       <Email field={{
         name: email,
         onBlur: () => {
-          checkEmail(false);
+          checkEmail();
         },
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value),
         value: email
@@ -44,7 +54,7 @@ const ResetPasswordPage = () => {
       error={error}/>
       <Button
         buttonType="submit"
-        onClick={() => checkEmail(true)}
+        onClick={() => checkEmail()}
         buttonText={intl.formatMessage({id: "app.resetPasswordPage.resetPassword"})}
         className="button__page"
       />

@@ -19,7 +19,7 @@ interface FormValue {
 
 const CodePage = () => {
   const intl = useIntl();
-  const initialValue: FormValue = {code: "",};
+  const initialValue: FormValue = {code: ""};
   return (
     <div className="log-content">
       <Formik

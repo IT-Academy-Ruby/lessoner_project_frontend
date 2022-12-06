@@ -26,7 +26,7 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
 
   useEffect(() => {
     if (userStatus) {
-      setBusyName("User already exists. Please enter a different username");
+      setBusyName(intl.formatMessage({ id:"app.userName.nameExists"}));
       setExtraStyle("redBorder");
     }
   }, [userStatus]);
@@ -38,7 +38,7 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
         type="text"
         className={classNames("input", {[`${extraStyle}`]: error})}
         onKeyUp={fieldHandler}
-        placeholder={intl.formatMessage({id: "app.code.invalidationRules"})}
+        placeholder={intl.formatMessage({ id: "app.code.invalidationRules" })}
         {...field}
       />
       {(error) && <span className="error-message">{error}</span>}

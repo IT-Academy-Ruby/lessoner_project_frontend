@@ -8,7 +8,7 @@ const GOOGLE_APP =
 const PASSWORD = {
   minLength: 6, maxLength: 256, symbols:"! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
-const REDIRECT_URL = "https://lessoner.herokuapp.com/users/sign_up";
+const REDIRECT_URL = "https://lessoner-project-2w3h.onrender.com/users/sign_up";
 const USERNAME = { minLength: 3, maxLength: 50 };
 const VK_APP = { id: 51463254 };
 export {
