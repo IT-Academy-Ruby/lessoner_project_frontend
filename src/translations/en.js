@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import {USERNAME, CODE, PASSWORD} from "../constants";
+import {
+  CODE, PASSWORD, USERNAME
+} from "../constants";
 
 export const messages_en = {
   "app.name": "Lessoner",
@@ -70,7 +72,7 @@ export const messages_en = {
   "app.code.phoneNumber": "To change number",
   "app.resetPasswordPage.inform": "Enter the email that you used when register to recover your password. You will receive a password reset link",
   "app.resetPasswordPage.resetPassword": "Password reset",
-  "app.resetPasswordPage.text": `We've sent a link to restore access to your account to the address {email}`,
+  "app.resetPasswordPage.text": "We've sent a link to restore access to your account to the address {email}",
   "app.setNewPasswordPage.title": "Login as username",
   "app.YourselfPage.errorIncorrectName": "UserName is incorrect",
   "app.YourselfPage.errorFieldEmpty": "The field must not be empty",

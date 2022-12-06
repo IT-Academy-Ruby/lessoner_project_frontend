@@ -14,16 +14,16 @@ type CodeProps = {
 
 const Code = ({field, error}: CodeProps) => {
   return (
-      <label className="input-label">
-        <FormattedMessage id="app.code.name"/>
-        <input
-          type="text"
-          className="input"
-          maxLength={CODE.maxLength}
-          {...field}
-        />
-        {error && <span className="error-message">{error}</span>}
-      </label>
+    <label className="input-label">
+      <FormattedMessage id="app.code.name"/>
+      <input
+        type="text"
+        className="input"
+        maxLength={CODE.maxLength}
+        {...field}
+      />
+      {error && <span className="error-message">{error}</span>}
+    </label>
   );
 };
 

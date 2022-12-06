@@ -1,10 +1,10 @@
 import "./modal.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import {DEFAULT_COUNTRY_CODE} from "../constants";
 import PhoneNumber from "../components/PhoneNumber";
+import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
 type PhoneProps = {

@@ -8,14 +8,14 @@ import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
+import Facebook from "../components/icons/facebook.svg";
+import Google from "../components/icons/google.svg";
 import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import {isEmailExists} from "../services/api/isEmailExists";
-import Google from "../components/icons/google.svg";
-import Facebook from "../components/icons/facebook.svg";
-import VK from "../components/icons/vk.svg";
 import Phone from "../components/icons/phone.svg";
+import VK from "../components/icons/vk.svg";
+import {isEmailExists} from "../services/api/isEmailExists";
 
 interface FormValues {
   email: string;

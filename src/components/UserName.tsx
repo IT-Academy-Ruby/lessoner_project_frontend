@@ -32,18 +32,18 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
   }, [userStatus]);
 
   return (
-      <label className="input-label">
-        <FormattedMessage id="app.UserName"/>
-        <input
-          type="text"
-          className={classNames("input", {[`${extraStyle}`]: error})}
-          onKeyUp={fieldHandler}
-          placeholder={intl.formatMessage({ id: "app.code.invalidationRules" })}
-          {...field}
-        />
-        {(error) && <span className="error-message">{error}</span>}
-        {(busyName) && <span className="error-message">{busyName}</span>}
-      </label>
+    <label className="input-label">
+      <FormattedMessage id="app.UserName"/>
+      <input
+        type="text"
+        className={classNames("input", {[`${extraStyle}`]: error})}
+        onKeyUp={fieldHandler}
+        placeholder={intl.formatMessage({id: "app.code.invalidationRules"})}
+        {...field}
+      />
+      {(error) && <span className="error-message">{error}</span>}
+      {(busyName) && <span className="error-message">{busyName}</span>}
+    </label>
   );
 };
 

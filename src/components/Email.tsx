@@ -18,14 +18,15 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
   return (
     <label className="input-label">
       <FormattedMessage id="app.email.name"/>
-      <input type="text"
-             minLength={EMAIL.minLength}
-             maxLength={EMAIL.maxLength}
-             className={classNames("input", {"invalid-input": error},
-               {"success-input": !error && field.value})}
-             placeholder="username@gmail.com"
-             {...field}
-             required
+      <input
+        type="text"
+        minLength={EMAIL.minLength}
+        maxLength={EMAIL.maxLength}
+        className={classNames("input", {"invalid-input": error},
+          {"success-input": !error && field.value})}
+        placeholder="username@gmail.com"
+        {...field}
+        required
       />
       {error && <span className="error-message">{error}</span>}
     </label>

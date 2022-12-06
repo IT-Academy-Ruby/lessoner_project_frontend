@@ -1,10 +1,10 @@
 import "./modal.scss";
-import {Fragment, useState} from "react";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Link, useNavigate} from "react-router-dom";
+import {Fragment, useState} from "react";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import {emailInvalidationRules} from "../validationRules";
+import {useNavigate} from "react-router-dom";
 
 const ResetPasswordPage = () => {
   const intl = useIntl();
@@ -41,7 +41,7 @@ const ResetPasswordPage = () => {
         onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value),
         value: email
       }}
-             error={error}/>
+      error={error}/>
       <Button
         buttonType="submit"
         onClick={() => checkEmail(true)}

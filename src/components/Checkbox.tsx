@@ -1,5 +1,4 @@
 import "./checkbox.scss";
-import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";
 import {useState} from "react";
 
@@ -14,19 +13,21 @@ type CheckboxProps = {
   information: string;
   link: string;
 }
-const Checkbox = ({field, error, information, link}: CheckboxProps): JSX.Element => {
+const Checkbox = ({
+  field, error, information, link
+}: CheckboxProps): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
   return (
     <span className="checkbox">
-       <input
-         type="checkbox"
-         id="checkbox"
-         onClick={() => {
-           setIsChecked(!isChecked);
-         }}
-         className={isChecked ? "checked" : "unchecked"}
-         {...field}
-       />
+      <input
+        type="checkbox"
+        id="checkbox"
+        onClick={() => {
+          setIsChecked(!isChecked);
+        }}
+        className={isChecked ? "checked" : "unchecked"}
+        {...field}
+      />
       <label
         htmlFor="checkbox"
         className="label-checkbox"
@@ -35,7 +36,7 @@ const Checkbox = ({field, error, information, link}: CheckboxProps): JSX.Element
         {link ? <Link to={"/users/sign_in/terms"} className="link">{link}</Link> : null}
         {error && <span className="error-message">{error}</span>}
       </label>
-      </span>
+    </span>
   );
 };
 

@@ -14,8 +14,8 @@ type GenderProps = {
 }
 
 const GenderSelector = ({
-                          field, error, options, label
-                        }: GenderProps) => {
+  field, error, options
+}: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     field.value = event.currentTarget.value;
   };
@@ -23,26 +23,26 @@ const GenderSelector = ({
     <div className="input-label">
       <FormattedMessage id="app.genderSelector.gender"/>
       <div className="radio-wrapper">
-      {options ? (
-        options.map((option: {
-          value: string; label: string; name: string; genderValue: string
-        }) => (
-          <label
-            key={option.genderValue}
-          className="radio-label">
-            <input
-              {...field}
-              type="radio"
-              className="radio"
-              value={option.label}
-              onClick={handleChange}
-              checked={field.label}
-              name={option.name}
-            />{option.label}
-          </label>
-        ))
-      ) : null}
-      {(error) && <span className="error-message">{error}</span>}
+        {options ? (
+          options.map((option: {
+            value: string; label: string; name: string; genderValue: string
+          }) => (
+            <label
+              key={option.genderValue}
+              className="radio-label">
+              <input
+                {...field}
+                type="radio"
+                className="radio"
+                value={option.label}
+                onClick={handleChange}
+                checked={field.label}
+                name={option.name}
+              />{option.label}
+            </label>
+          ))
+        ) : null}
+        {(error) && <span className="error-message">{error}</span>}
       </div>
     </div>
   );

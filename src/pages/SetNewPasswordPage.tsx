@@ -4,7 +4,6 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
-import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import {passwordRegex} from "../validationRules";
@@ -25,14 +24,17 @@ const SetNewPasswordPage = () => {
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (!passwordRegex.test(values.password)) {
-      errors.password = errors.code = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+      errors.password = errors.code =
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
     }
     if (values.password.length > PASSWORD.maxLength ||
       values.password.length < PASSWORD.minLength) {
-      errors.password = errors.code = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+      errors.password = errors.code =
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
     }
     if (values.password !== values.confirmPassword) {
-      errors.password = errors.code = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
+      errors.password = errors.code =
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
     return errors;
   };
@@ -55,16 +57,19 @@ const SetNewPasswordPage = () => {
               <h2 className="title">
                 <FormattedMessage id="app.setNewPasswordPage.title"/>
               </h2>
-              <Field name="password" component={PasswordAndConfirm}
-                     minSymbol={PASSWORD.minLength}
-                     maxSymbol={PASSWORD.maxLength}
-                     isConfirm={false}
-                     error={touched.password ? errors.password : undefined}/>
-              <Field name="confirmPassword" component={PasswordAndConfirm}
-                     minSymbol={PASSWORD.minLength}
-                     maxSymbol={PASSWORD.maxLength}
-                     isConfirm={true}
-                     error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
+              <Field
+                name="password" component={PasswordAndConfirm}
+                minSymbol={PASSWORD.minLength}
+                maxSymbol={PASSWORD.maxLength}
+                isConfirm={false}
+                error={touched.password ? errors.password : undefined}/>
+              <Field
+                name="confirmPassword"
+                component={PasswordAndConfirm}
+                minSymbol={PASSWORD.minLength}
+                maxSymbol={PASSWORD.maxLength}
+                isConfirm={true}
+                error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
               <Button
                 buttonType="submit"
                 buttonText={intl.formatMessage({id: "app.resetPasswordPage.resetPassword"})}

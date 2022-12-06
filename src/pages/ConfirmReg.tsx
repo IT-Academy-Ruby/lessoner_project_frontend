@@ -16,5 +16,5 @@ const ConfirmReg=()=>{
       />
     </div>
   );
-}
+};
 export default ConfirmReg;

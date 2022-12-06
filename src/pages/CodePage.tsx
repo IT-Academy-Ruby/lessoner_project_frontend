@@ -6,8 +6,8 @@ import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
 import {CODE} from "../constants";
 import Code from "../components/Code";
-import {Link} from "react-router-dom";
 import {CodeRegex} from "../validationRules";
+import {Link} from "react-router-dom";
 
 interface FormErrors {
   [key: string]: string
@@ -27,10 +27,10 @@ const CodePage = () => {
         validate={async (values: FormValue) => {
           const errors: FormErrors = {};
           if (!CodeRegex.test(values.code)) {
-            errors.code = intl.formatMessage({ id: "app.code.invalidationRules" });
+            errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
           }
           if (values.code.length < CODE.maxLength) {
-            errors.code += intl.formatMessage({ id: "app.code.errorLength" });
+            errors.code += intl.formatMessage({id: "app.code.errorLength"});
           }
           return errors;
         }}
@@ -40,30 +40,30 @@ const CodePage = () => {
         {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
-                <h2 className="title">
-                  <FormattedMessage id="app.pagesTitle.enterCode"/>
-                </h2>
-                <p className="text">
-                  <FormattedMessage id="app.code.inform"/>
-                    <Link to="/users/sign_in/phone_number" className="link">
-                      <FormattedMessage id="app.code.phoneNumber"/>
-                    </Link>
-                </p>
-                <Field
-                  name="code"
-                  component={Code}
-                  error={touched.code ? errors.code : undefined}
-                />
-                <Button
-                  buttonType="button"
-                  buttonText={intl.formatMessage({ id: "app.button.code" })}
-                  className="button"
-                />
-                <Button
-                  buttonType="submit"
-                  buttonText={intl.formatMessage({ id: "app.button.finish"})}
-                  className="button__page"
-                />
+              <h2 className="title">
+                <FormattedMessage id="app.pagesTitle.enterCode"/>
+              </h2>
+              <p className="text">
+                <FormattedMessage id="app.code.inform"/>
+                <Link to="/users/sign_in/phone_number" className="link">
+                  <FormattedMessage id="app.code.phoneNumber"/>
+                </Link>
+              </p>
+              <Field
+                name="code"
+                component={Code}
+                error={touched.code ? errors.code : undefined}
+              />
+              <Button
+                buttonType="button"
+                buttonText={intl.formatMessage({id: "app.button.code"})}
+                className="button"
+              />
+              <Button
+                buttonType="submit"
+                buttonText={intl.formatMessage({id: "app.button.finish"})}
+                className="button__page"
+              />
             </Form>
           );
         }}

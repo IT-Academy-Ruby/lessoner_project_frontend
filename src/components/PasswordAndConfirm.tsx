@@ -36,23 +36,23 @@ const PasswordAndConfirm = ({
     <label className="input-label">{isConfirm ?
       intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"}) :
       intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
-      <input
-        type={visiblePassword ? "text" : "password"}
-        className={classNames("input", {"invalid-input": error},
-          {"success-input": !error && field.value})}
-        minLength={minSymbol}
-        maxLength={maxSymbol}
-        {...field}
-        required
-        placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"})}
-      />
-      <img
-        className="image-input"
-        alt="eye"
-        src={visiblePassword ? open_eye : close_eye}
-        onClick={showPassword}
-      />
-      {error && <span className="error-message">{error}</span>}
+    <input
+      type={visiblePassword ? "text" : "password"}
+      className={classNames("input", {"invalid-input": error},
+        {"success-input": !error && field.value})}
+      minLength={minSymbol}
+      maxLength={maxSymbol}
+      {...field}
+      required
+      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"})}
+    />
+    <img
+      className="image-input"
+      alt="eye"
+      src={visiblePassword ? open_eye : close_eye}
+      onClick={showPassword}
+    />
+    {error && <span className="error-message">{error}</span>}
     </label>
   );
 };

@@ -1,27 +1,26 @@
 import "./modal.scss";
-import {emailInvalidationRules, UserRegex} from "../validationRules";
 import {
   Field, Form, Formik
 } from "formik";
-import {FormattedMessage, useIntl} from "react-intl";
+import {UserRegex, emailInvalidationRules} from "../validationRules";
 import BirthdayPicker from "../components/BirthdayPicker";
 import Button from "../components/Button";
-import GenderSelector from "../components/GenderSelector";
 import Email from "../components/Email";
-import {Link} from "react-router-dom";
+import GenderSelector from "../components/GenderSelector";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
+import {useIntl} from "react-intl";
 import {useState} from "react";
 
 const gender = [{
   name: "gender", label: "Male", genderValue: "male"
 },
-  {
-    name: "gender", label: "Female", genderValue: "female"
-  },
-  {
-    name: "gender", label: "Other", genderValue: "other"
-  }];
+{
+  name: "gender", label: "Female", genderValue: "female"
+},
+{
+  name: "gender", label: "Other", genderValue: "other"
+}];
 
 interface FormValues {
   email: string;
@@ -104,7 +103,7 @@ const YourselfPage = () => {
                 component={GenderSelector}
                 error={touched.gender ? errors.gender : undefined}/>
               <Button buttonType="submit" buttonText="Finish" className="button__page"/>
-              {isWrapper?<div className="date-wrapper"></div>:null}
+              {isWrapper ? <div className="date-wrapper"></div> : null}
             </Form>
           );
         }}

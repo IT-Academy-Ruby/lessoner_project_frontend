@@ -7,16 +7,15 @@ import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
+import Facebook from "../components/icons/facebook.svg";
+import Google from "../components/icons/google.svg";
 import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import Phone from "../components/icons/phone.svg";
+import VK from "../components/icons/vk.svg";
 import {getLogin} from "../store/loginName/loginSlice";
 import {useAppDispatch} from "../store/hooks";
-import {useState} from "react";
-import Google from "../components/icons/google.svg";
-import Facebook from "../components/icons/facebook.svg";
-import VK from "../components/icons/vk.svg";
-import Phone from "../components/icons/phone.svg";
 
 interface FormValues {
   email: string;
@@ -28,20 +27,14 @@ interface FormErrors {
   [key: string]: string
 }
 
-const minSymbol = PASSWORD.minLength;
-const maxSymbol = PASSWORD.maxLength;
-const symbols = "! # $ % & ' * + - / = ? ^ _  { | } ~";
-
 const LoginPage = () => {
   const intl = useIntl();
-  const [isChecked, setIsChecked] = useState(false);
-
   const dispatch = useAppDispatch();
 
   const initialValues: FormValues = {
     email: "",
     password: "",
-    remember: isChecked,
+    remember: false,
   };
 
   return (
@@ -51,14 +44,17 @@ const LoginPage = () => {
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-            errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
+            errors.email =
+              intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
           }
           if (!passwordRegex.test(values.password)) {
-            errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+            errors.password =
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
-            errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+            errors.password =
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
           }
           return errors;
         }}
