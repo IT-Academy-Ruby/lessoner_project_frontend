@@ -74,7 +74,7 @@ export const messages_ru = {
   "app.code.phoneNumber": "Изменить номер",
   "app.resetPasswordPage.inform": "Введите адрес электронной почты, который вы использовали при регистрации для восстановления пароля. Вы получите ссылку для сброса пароля",
   "app.resetPasswordPage.resetPassword": "Сброс пароля",
-  "app.resetPasswordPage.text": `Мы отправили ссылку для восстановления доступа к вашему аккаунту на адрес {email}`,
+  "app.resetPasswordPage.text": "Мы отправили ссылку для восстановления доступа к вашему аккаунту на адрес {email}",
   "app.setNewPasswordPage.title": "Войти как пользователь",
   "app.YourselfPage.errorIncorrectName":"Неверное имя пользователя",
   "app.YourselfPage.errorFieldEmpty":"Поле не должно быть пустым",

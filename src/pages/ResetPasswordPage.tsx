@@ -4,8 +4,8 @@ import {Fragment, useState} from "react";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import {emailInvalidationRules} from "../validationRules";
-import {useNavigate} from "react-router-dom";
 import {sendPasswordResetLink} from "../services/api/sendPasswordResetLink";
+import {useNavigate} from "react-router-dom";
 
 const ResetPasswordPage = () => {
   const intl = useIntl();
@@ -54,7 +54,7 @@ const ResetPasswordPage = () => {
       error={error}/>
       <Button
         buttonType="submit"
-        onClick={() => checkEmail()}
+        onClick={() => sendLink()}
         buttonText={intl.formatMessage({id: "app.resetPasswordPage.resetPassword"})}
         className="button__page"
       />

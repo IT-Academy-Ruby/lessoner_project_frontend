@@ -2,10 +2,10 @@ import "./modal.scss";
 import {
   Field, Form, Formik,
 } from "formik";
+import {FormattedMessage, useIntl} from "react-intl";
 import {
   buttonEvent, getLogin, lookEvent
 } from "../store/loginName/loginSlice";
-import {FormattedMessage, useIntl} from "react-intl";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
@@ -15,7 +15,6 @@ import Facebook from "../components/icons/facebook.svg";
 import Google from "../components/icons/google.svg";
 import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
-import Password from "../components/PasswordAndConfirm";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
@@ -34,7 +33,6 @@ interface FormErrors {
 
 const LoginPage = () => {
   const intl = useIntl();
-  const [isChecked, setIsChecked] = useState(false);
   const loading = useAppSelector(state => state.login.loading);
   const dispatch = useAppDispatch();
 

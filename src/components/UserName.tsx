@@ -29,7 +29,7 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
       setBusyName(intl.formatMessage({ id:"app.userName.nameExists"}));
       setExtraStyle("redBorder");
     }
-  }, [userStatus]);
+  }, [userStatus,intl]);
 
   return (
     <label className="input-label">
