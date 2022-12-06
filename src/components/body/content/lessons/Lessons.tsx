@@ -5,18 +5,18 @@ import LessonCard from "../../../LessonCard";
 import items from "../../../../assets/lessonCard.json";
 import requestApi from "../../../../services/request";
 
+const url = "https://lessoner-prod.herokuapp.com/categories";
+
 const Lessons: React.FC = () => {
-  // interface data {
-  //   id: number;
-  //   name: string;
-  //   description: string;
-  //   status: string;
-  // }
-  // написать type вместо interface
-  const [data, setData] = useState<any>(null);
+  interface lesson {
+    id: number;
+    name: string;
+    description: string;
+    status: string;
+  };
+  const [data, setData] = useState<lesson[]>([]);
   useEffect(() => {
-    const url = "https://lessoner-prod.herokuapp.com/categories";
-    const fetchSuccess = (data: object) => {
+    const fetchSuccess = (data: lesson[]) => {
       setData(data);
     };
     const fetchError = (errMessage: string) => {
@@ -32,12 +32,15 @@ const Lessons: React.FC = () => {
       }
     };
     fetchData();
+    return () => {
+      console.log("unsubscribe");
+    };
   }, []);
   return (
     <div className="wrapper__lessons">
       <FormattedMessage id="app.lessons" />
       <div className="lessons">
-        {data.map((obj: any) => (
+        {data.map((obj) => (
           <LessonCard
             key={obj.id}
             title={obj.title}
