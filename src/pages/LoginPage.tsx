@@ -19,8 +19,6 @@ import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
 
-import {useState} from "react";
-
 interface FormValues {
   email: string;
   password: string;
