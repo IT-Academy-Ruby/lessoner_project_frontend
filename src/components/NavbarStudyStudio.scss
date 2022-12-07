@@ -35,6 +35,15 @@ $content-color: #1b1b1f;
   padding: 0;
 }
 
+.menu__burger {
+  position: absolute;
+    top: -52px;
+    left: 0;
+    width: 46px;
+    height: 36px;
+    padding: 0;
+}
+
 .menu__item {
   display: flex;
   justify-content: flex-start;

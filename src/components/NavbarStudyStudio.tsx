@@ -61,6 +61,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
       <div className={menuContentCN} 
         onClick={e => e.stopPropagation()}>
         <ul className="menu__inner">
+          <div className="menu__burger">
           {
             !isMenuActive ? 
               <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
@@ -78,6 +79,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 </div>
               </div>
           }
+          </div>
           {items.map((item: {
             id: number; href: string; value: string; icon: string; place: string; 
               }) => (item.place === menuType) && 
