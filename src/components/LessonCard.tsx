@@ -1,6 +1,7 @@
 import "./LessonCard.scss";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
+import Moment from "react-moment";
 import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import React from "react";
@@ -81,7 +82,9 @@ type PublishedDataProps = {
 const Published: React.FC<PublishedDataProps> = (props) => {
   return (
     <div className="details__date">
-      <p>Published: {props.published}</p>
+      <p>
+        Published: <Moment date={"2022-12-01 14:11:33 +0300"} />
+      </p>
     </div>
   );
 };
