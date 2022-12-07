@@ -1,6 +1,5 @@
 import "./EditVideoLessonTitle.scss";
-import React from "react";
-import LessonName from "./LessonName";
+import { EVLTest } from "./EVLTest";
 
 export const EditVideoLessonTitle = () => {
   return (
@@ -10,7 +9,7 @@ export const EditVideoLessonTitle = () => {
           <h2 className="evl__title">
             Edit the lesson
           </h2>
-          <LessonName minSymbol={1} maxSymbol={64} labelName="Name" />
+          <EVLTest/>
         </div>
       </div>
     </div> 

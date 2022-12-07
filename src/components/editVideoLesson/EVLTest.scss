@@ -1,0 +1,43 @@
+@import "../../constants.scss";
+
+.evlt__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.evlt__label {
+  width: 100%;
+  font-weight: bold;
+  @include fieldsFont;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.evlt__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  @include fieldsFont;
+  @include textFieldInput;
+}
+
+.evlt__input-textarea {
+  max-width: 100%;
+  resize: none;
+}
+
+.error-input {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.error-message {
+  display: block;
+  color: $warningColor;
+  font-weight: normal;
+  font-size: 12px;
+  margin-top: 5px;
+}
