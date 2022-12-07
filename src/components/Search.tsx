@@ -21,8 +21,13 @@ const Search = () => {
       <Link to="/" className="search-arrow">
         <img src={Arrow} alt="arrow"/>
       </Link>
-      <input type="text" placeholder="Search" value={value}
-        onChange={fieldHandler} className="search-input"/>
+      <input
+        type="text"
+        placeholder="Search"
+        value={value}
+        onChange={fieldHandler}
+        className="search-input"
+      />
       {isValue && <div className="search-cross" onClick={() => setValue("")}>
         <img src={Cross} alt="cross" className="cross"/>
       </div>}

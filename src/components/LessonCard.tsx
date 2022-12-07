@@ -1,6 +1,7 @@
 import "./LessonCard.scss";
-import Kebab from "../assets/kebab.png";
+import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
+import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import React from "react";
 import Tag from "./body/Tags/Tag";
@@ -8,6 +9,18 @@ import Tag from "./body/Tags/Tag";
 type ThumbnailImageUrlProps = {
   imagePreview: string;
 };
+
+const POPUP_ITEMS = [
+  {
+    label: "Archive", url: "#", id: 1
+  },
+  {
+    label: "Edit", url: "#", id: 2
+  },
+  {
+    label: "Send to review", url: "#", id: 3
+  },
+];
 
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
@@ -34,10 +47,24 @@ const Title: React.FC<TitleProps> = (props) => {
 };
 
 const MenuKebab = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  
+  const handleKebabClick = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="kebab__menu">
-      <img src={Kebab} alt="kebab" />
-    </div>
+    <>
+      <div onClick={handleKebabClick} className="kebab__menu">
+        <KebabSvg />
+      </div>
+      <PopupMenu 
+        isOpen={isOpen}
+        onClickOutside={() => setIsOpen(false)}
+        items={POPUP_ITEMS}
+      />
+    </>
   );
 };
 
