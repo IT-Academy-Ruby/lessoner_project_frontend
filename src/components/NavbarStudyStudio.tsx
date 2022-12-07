@@ -62,23 +62,23 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
         onClick={e => e.stopPropagation()}>
         <ul className="menu__inner">
           <div className="menu__burger">
-          {
-            !isMenuActive ? 
-              <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
-                <div className="image__wrapper image__wrapper--active">
-                  <div className="svg svg__menu">
-                    <NavbarStudyStudioSVGSelector icon="menu"/>
+            {
+              !isMenuActive ? 
+                <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
+                  <div className="image__wrapper image__wrapper--active">
+                    <div className="svg svg__menu">
+                      <NavbarStudyStudioSVGSelector icon="menu"/>
+                    </div>
+                  </div>
+                </div> :
+                <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
+                  <div className="image__wrapper image__wrapper--active">
+                    <div className="svg svg__menu">
+                      <NavbarStudyStudioSVGSelector icon="close"/>
+                    </div>
                   </div>
                 </div>
-              </div> :
-              <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
-                <div className="image__wrapper image__wrapper--active">
-                  <div className="svg svg__menu">
-                    <NavbarStudyStudioSVGSelector icon="close"/>
-                  </div>
-                </div>
-              </div>
-          }
+            }
           </div>
           {items.map((item: {
             id: number; href: string; value: string; icon: string; place: string; 
