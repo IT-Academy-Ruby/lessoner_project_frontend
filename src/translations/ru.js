@@ -102,4 +102,9 @@ export const messages_ru = {
   "app.gender.male": "Мужской",
   "app.gender.female": "Женский",
   "app.gender.other": "Другой",
+  "app.nameCategory.it": "IT",
+  "app.nameCategory.design": "Дизайн",
+  "app.nameCategory.music": "Музыка",
+  "app.nameCategory.business": "Бизнес",
 };
+ 
