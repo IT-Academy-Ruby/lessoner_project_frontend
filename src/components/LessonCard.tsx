@@ -12,13 +12,19 @@ type ThumbnailImageUrlProps = {
 
 const POPUP_ITEMS = [
   {
-    label: "Archive", url: "#", id: 1
+    label: "Archive",
+    url: "#",
+    id: 1,
   },
   {
-    label: "Edit", url: "#", id: 2
+    label: "Edit",
+    url: "#",
+    id: 2,
   },
   {
-    label: "Send to review", url: "#", id: 3
+    label: "Send to review",
+    url: "#",
+    id: 3,
   },
 ];
 
@@ -48,7 +54,7 @@ const Title: React.FC<TitleProps> = (props) => {
 
 const MenuKebab = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  
+
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
@@ -59,7 +65,7 @@ const MenuKebab = () => {
       <div onClick={handleKebabClick} className="kebab__menu">
         <KebabSvg />
       </div>
-      <PopupMenu 
+      <PopupMenu
         isOpen={isOpen}
         onClickOutside={() => setIsOpen(false)}
         items={POPUP_ITEMS}
@@ -103,6 +109,8 @@ type LessonCardsProps = {
   category: string;
   rating: string;
   totalVotes: string;
+  description: string;
+  author_id: number;
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
