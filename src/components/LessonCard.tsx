@@ -110,14 +110,20 @@ type LessonCardsProps = {
   rating: string;
   totalVotes: string;
 };
-//   "author_id": 1,
-//   "category_id": 1,
-//   "created_at": "2022-12-01 14:11:33 +0300"
-// imagePreview: ставим дефолтную картинку
-// props.published Преобразовать библиотека moment.js
-// view={obj.view} если undefined, то не рендерим
-// rating если undefined, то не рендерим
-//  totalVotes={obj.totalVotes} если undefined, то не рендерим
+
+// "created_at": "2022-12-01 14:11:33 +0300"
+// }
+// key={obj.id}
+// title={obj.title}
+// status={obj.status}
+// duration={obj.duration}
+// imagePreview={obj.imagePreview}
+// id={obj.id}
+// published={obj.created_at}
+// view={obj.view}
+// category={obj.category_id}
+// rating={obj.rating}
+// totalVotes={obj.totalVotes}
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
   return (

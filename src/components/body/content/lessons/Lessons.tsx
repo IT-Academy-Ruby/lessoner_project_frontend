@@ -23,7 +23,7 @@ const Lessons: React.FC = () => {
     rating: string;
     totalVotes: string;
   }
-  //  сделать fe
+  //  сделать Helper, который делает дополнительный fetch-запрос и  по айдишнику вытягивает имя кат
   const [data, setData] = useState<lesson[]>(items);
 
   return (
