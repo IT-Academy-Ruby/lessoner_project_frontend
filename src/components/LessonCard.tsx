@@ -76,14 +76,15 @@ const MenuKebab = () => {
 };
 
 type PublishedDataProps = {
-  published: null | string;
+  published: string;
 };
 
 const Published: React.FC<PublishedDataProps> = (props) => {
   return (
     <div className="details__date">
       <p>
-        Published: <Moment date={"2022-12-01 14:11:33 +0300"} />
+        Published:
+        <Moment element="span" format="YYYY.MM.DD" date={props.published} />
       </p>
     </div>
   );
@@ -103,15 +104,15 @@ const View: React.FC<ViewProps> = (props) => {
 
 type LessonCardsProps = {
   id: number;
-  imagePreview: string;
+  imagePreview?: string;
   status: string;
-  duration: string;
+  duration?: string;
   title: string;
-  published: string | null;
-  view: number;
+  published: string;
+  view?: number;
   category: string;
-  rating: string;
-  totalVotes: string;
+  rating?: number;
+  totalVotes?: number;
 };
 
 // "created_at": "2022-12-01 14:11:33 +0300"
@@ -133,7 +134,10 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
     <div className="wrapper">
       <div className="card">
         <div className="card__icon">
-          <ThumbnailImageUrl imagePreview={props.imagePreview} />
+          {props.imagePreview && (
+            <ThumbnailImageUrl imagePreview={props.imagePreview} />
+          )}
+
           <Tag
             type="status"
             className="video__status"
@@ -141,7 +145,9 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
             iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
             videoStatus={true}
           />
-          <Tag className="video__time" type="time" text={props.duration} />
+          {props.duration && (
+            <Tag className="video__time" type="time" text={props.duration} />
+          )}
         </div>
         <div className="card__info">
           <div className="card__info-top">
@@ -150,11 +156,13 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
           </div>
           <div className="details">
             <Published published={props.published} />
-            <View view={props.view} />
+            {props.view && <View view={props.view} />}
           </div>
           <div className="categories__raiting">
             <Tag className="categories" type="category" text={props.category} />
-            <Rating rating={props.rating} totalVotes={props.totalVotes} />
+            {props.rating && props.totalVotes && (
+              <Rating rating={props.rating} totalVotes={props.totalVotes} />
+            )}
           </div>
         </div>
       </div>

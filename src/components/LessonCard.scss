@@ -16,7 +16,7 @@
   padding: 0px 0px 12px 0px;
   border-radius: 8px;
   box-shadow: 2px 2px 15px rgba(16, 19, 45, 0.1);
-  background: #FFFFFF;
+  background: #ffffff;
   gap: 8px;
   user-select: none;
 }
@@ -130,7 +130,7 @@
   width: 228px;
   height: 21px;
   margin-top: -5px;
-  
+
   .details__date {
     width: 136px;
     height: 17px;
@@ -142,6 +142,11 @@
     color: #9a9aa3;
     margin-left: 0px;
     white-space: nowrap;
+    p {
+      span {
+        margin-left: 3px;
+      }
+    }
   }
 
   .details__view {
@@ -168,7 +173,7 @@
   width: 228px;
   height: 23px;
   margin-top: 24px;
-  
+
   .categories {
     display: flex;
     flex-direction: row;

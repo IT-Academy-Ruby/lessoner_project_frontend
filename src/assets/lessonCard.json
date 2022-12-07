@@ -3,16 +3,16 @@
     "id": 1,
     "title": "React",
     "description": "string",
-    "duration": "2:11:24",
+
     "video_link": "string",
     "status": "Archived",
     "author_id": 1,
     "category_id": "1",
-    "created_at": "2022-12-01 14:11:33 +0300",
+    "created_at": "2022.10.21",
     "imagePreview": "https://bs-uploads.toptal.io/blackfish-uploads/components/seo/content/og_image_file/og_image/777655/react-context-api-4929b3703a1a7082d99b53eb1bbfc31f.png",
     "view": 145,
-    "rating": "3.0",
-    "totalVotes": "(12)"
+    "rating": 3.0,
+    "totalVotes": 12
   },
   {
     "id": 2,
@@ -26,7 +26,7 @@
     "created_at": "2022-12-01 14:11:33 +0300",
     "imagePreview": "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg",
     "view": 125,
-    "rating": "4.0",
-    "totalVotes": "(15)"
+    "rating": 4.0,
+    "totalVotes": 15
   }
 ]
