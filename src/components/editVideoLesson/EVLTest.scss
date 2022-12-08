@@ -24,9 +24,34 @@
   @include textFieldInput;
 }
 
+.evlt__text {
+  @include textFont;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.evlt__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.button__fs16-white-evlt {
+  margin-right: 16px;
+}
+
 .evlt__input-textarea {
   max-width: 100%;
   resize: none;
+}
+
+.svg__add {
+  border: 1px black solid;
+  width: 20px;
+  height: 20px;
+  background: url(../icons/addSubtitle.svg) no-repeat center;
+  background-size: 13px 15px;
 }
 
 .error-input {

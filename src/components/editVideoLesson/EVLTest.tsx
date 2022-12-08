@@ -1,8 +1,9 @@
-import React from "react";
-import classNames from "classnames";
-import { Field, Form, Formik } from "formik";
 import "./EVLTest.scss";
+import { 
+  Field, Form, Formik 
+} from "formik";
 import Button from "../Button";
+import classNames from "classnames";
 import { useIntl } from "react-intl";
 
 const RegExp = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
@@ -18,7 +19,7 @@ const validateName = (value: string) => {
   } else if (value.length > maxNameLength) {
     return `The maximum number of characters is ${maxNameLength}`;
   }
-}
+};
 
 const validateDescription = (value: string) => {
   if (!value) {
@@ -28,7 +29,7 @@ const validateDescription = (value: string) => {
   } else if (value.length > maxDescriptionLength) {
     return `The maximum number of characters is ${maxDescriptionLength}`;
   }
-}
+};
 
 export const EVLTest = () => {
   const intl = useIntl();
@@ -51,10 +52,10 @@ export const EVLTest = () => {
             Name
             <Field
               className={classNames(
-              "evlt__input", {["error-input"]: errors.name && errors.name}
-            )}
-            name="name"
-            validate={validateName}
+                "evlt__input", {["error-input"]: errors.name && errors.name}
+              )}
+              name="name"
+              validate={validateName}
             />
             {errors.name && touched.name && (
               <div className="error-message">{errors.name}</div>
@@ -80,24 +81,46 @@ export const EVLTest = () => {
             Description
             <Field
               className={classNames(
-              "evlt__input evlt__input-textarea", {["error-input"]: errors.description && errors.description}
-            )}
-            name="description"
-            validate={validateDescription}
-            as="textarea"
-            rows="9"
+                "evlt__input evlt__input-textarea", 
+                {["error-input"]: errors.description && errors.description}
+              )}
+              name="description"
+              validate={validateDescription}
+              as="textarea"
+              rows="9"
             />
             {errors.description && touched.description && (
               <div className="error-message">{errors.description}</div>
             )}
-          </label>  
-          <Button
-            buttonType="submit" 
-            buttonText={intl.formatMessage({ id: "app.button.next"})} 
-            className="button__page"
-          />
+          </label>
+          <label
+            className="evlt__label"
+          >
+            Subtitles
+            <p className="evlt__text">
+              Add subtitles to reach bigger audience 
+            </p>
+            <Button
+              buttonType="button" 
+              buttonText={intl.formatMessage({ id: "app.button.next"})} 
+              className="button__fs16"
+            />
+            <div className="svg__add"></div>
+          </label>
+          <div className="evlt__btn-wrapper">   
+            <Button
+              buttonType="button" 
+              buttonText={intl.formatMessage({ id: "app.button.next"})} 
+              className="button__fs16-white button__fs16-white-evlt"
+            />    
+            <Button
+              buttonType="submit" 
+              buttonText={intl.formatMessage({ id: "app.button.next"})} 
+              className="button__fs16"
+            />
+          </div>
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};

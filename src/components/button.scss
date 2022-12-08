@@ -1,22 +1,35 @@
 @import "../constants.scss";
 
-.button__page {
+.button__main, .button__page, .button__fs16, .button__fs16-white {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 28px;
+  border: none;
+  background: $blueLightColor;
+  font-family: $font;
+  color: $whiteColor;
+  cursor: pointer;
+}
+
+.button__page {
   width: $formWidth;
-  height: 46px;
   padding: 10px;
   margin: $marginBottomMain;
-  border-radius: 28px;
-  background: $blueLightColor;
-  border: none;
-  font-family: $font;
+  font-size: 22px;
   font-style: normal;
   font-weight: 300;
-  font-size: 22px;
-  color: #fff;
-  cursor: pointer;
+}
+
+.button__fs16, .button__fs16-white {
+  padding: 6px 32px;
+  font-size: 16px;
+}
+
+.button__fs16-white {
+  border: 1px solid $borderColor;
+  color: $blueLightColor;
+  background: $whiteColor;
 }
 
 .btn__temporary {
