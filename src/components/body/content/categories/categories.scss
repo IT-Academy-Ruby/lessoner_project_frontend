@@ -29,6 +29,7 @@
   column-gap: 16px;
   padding: 16px 0;
   align-items: center;
+  height: 122px;
 }
 
 .column-name {
@@ -60,6 +61,8 @@
 
 .category-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .category-name {
@@ -88,4 +91,101 @@
 
 .icon-edit {
   margin-right: 23px;
+}
+
+.categories-user {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  text-align: -webkit-center;
+}
+
+.category-user {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+}
+
+.background-category {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.inform-user {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border-radius: 8px;
+  color: #171B2C;
+  visibility: hidden;
+  overflow: hidden;
+  @media (min-width: 745px) {
+    &:hover {
+      color: $white;
+      background: $blueLightColor;
+      opacity: 0.9;
+      visibility: visible;
+    }
+  }
+
+}
+
+.inform-for-hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  visibility: visible;
+}
+
+.category-user-name {
+  font-family: "ApercuPro";
+  color: inherit;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 150%;
+  margin: 16px 16px 8px;
+  text-align: justify;
+  visibility: visible;
+}
+
+.description-user {
+  margin: 0 16px;
+  font-family: "ApercuPro";
+  color: $white;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  visibility: inherit;
+}
+
+@media (max-width: 744px) {
+  .categories-user {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .category-user-name{
+    font-size: 45px;
+    line-height: 130%;
+    margin-top: 98px;
+    margin-bottom: 12px;
+  }
+  .description-user{
+    color: #45464F;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    visibility: visible;
+    -webkit-line-clamp: 3;
+  }
+}
+@media (max-width: 360px) {
+  .categories-user {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }

@@ -29,6 +29,12 @@ function App(): JSX.Element {
   );
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const theme = useTheme();
+
+  const signOut = () => {
+    dispatch(showDefaultPage());
+    localStorage.setItem("JWT", "");
+  };
+
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
@@ -59,6 +65,18 @@ function App(): JSX.Element {
                 element={<SetNewPasswordPage />}
               />
             </Routes>
+          </div>
+          <div className="authorization">
+            <button onClick={signOut}>Not authorized</button>
+            <button onClick={() => dispatch(showStudentPage())}>
+              Authorized student in study section
+            </button>
+            <button onClick={() => dispatch(showSectionPage())}>
+              Authorized student/creator in study section
+            </button>
+            <button onClick={() => dispatch(showMyPage())}>
+              Authorized creator in my studio section
+            </button>
           </div>
         </div>
       </BrowserRouter>

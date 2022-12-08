@@ -26,6 +26,11 @@ a {
   color: #61dafb;
 }
 
+.authorization {
+  display: flex;
+  flex-direction: column;
+}
+
 .body-page{
   display: grid;
   grid-template-columns: 64px 1fr;

@@ -2,8 +2,8 @@
 .button {
   padding: 1rem;
   width: 100%;
-  background: #0747a6;
-  color: white;
+  background: $blueLightColor;
+  color: $white;
   border: 0;
   margin: 1rem 0;
 }
@@ -17,13 +17,25 @@
   font-size: 16px;
   color: $blueLightColor;
   padding: 6px 36px;
-  background: white;
+  background: $white;
 
   &:disabled {
-    background: #FFFFFF;
+    background: $white;
     opacity: 0.5;
     border-radius: 28px;
     border: none;
-    color: #9A9AA3;
+    color: $greySearchColor;
   }
+}
+.button-login {
+  padding: 6px 36px;
+  height: 32px;
+  font-family: "ApercuPro", sans-serif;
+  background: $blueLightColor;
+  color: $white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
 }

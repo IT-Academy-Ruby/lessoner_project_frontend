@@ -61,6 +61,7 @@ export const messages_en = {
   "app.categories.amount": "Amount",
   "app.categories.actions": "Actions",
   "app.categories.addCategory": "Add new category",
+  "app.categories.updateCategory": "Update category",
   "app.categories.name": "Category name",
   "app.categories.uploadCategoryImage": "Upload the category image from computer",
   "app.categories.selectFile": "Select file",
@@ -70,5 +71,7 @@ export const messages_en = {
   "app.categories.button.select": "Select file",
   "app.categories.button.cancel": "Cancel",
   "app.categories.button.save": "Save",
+  "app.activeCategories.errorName": "Enter name",
+  "app.activeCategories.errorDescription": "Enter description",
 
 };

@@ -1,34 +1,54 @@
 import "./addCategory.scss"
+import {addCategory, updateCategory} from "../../../../../store/categorySlice/categorySlice";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Link,useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
+import Loader from "../../../../Loader";
+import requestApi from "../../../../../services/request";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+
 
 interface FormValues {
+  id: number;
   name: string;
   description: string;
-  image: object;
+  status: string;
 }
 
 interface FormErrors {
   [key: string]: string;
 }
 
-const AddCoategory = () => {
+type TypeTitle = {
+  add: boolean
+}
+const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector(state => state.categories.loading);
+
+  const idCategory = () => {
+    const url = window.location.href;
+    return url.slice(url.lastIndexOf("/") + 1);
+  };
+
   const initialValues: FormValues = {
+    id: 0,
     name: "",
     description: "",
-    image: {},
+    status: "active",
   }
+
   return (
     <div className="add-category">
+      {loading && <Loader/>}
       <Link to="/categories" className="button-back">
         <span className="arrow-back">&#10094;</span>
         Back
@@ -37,24 +57,33 @@ const AddCoategory = () => {
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
-          if (values.name.length === 0) {
-            console.log(values.name)
+          if (values.name.length < 5) {
+            errors.name = intl.formatMessage({id: "app.activeCategories.errorName"});
           }
-          if (values.description.length <= 10) {
-            console.log(values.description)
+          if (values.description.length < 5) {
+            errors.description = intl.formatMessage({id: "app.activeCategories.errorDescription"});
           }
-          if (values) {
-            console.log(values)
-          }
+          return errors;
         }}
         onSubmit={(values: FormValues) => {
-          console.log(values)
+          if (add) {
+            // dispatch(addCategory(values))
+            alert("help")
+          } else {
+            values.id = parseInt(idCategory())
+            dispatch(updateCategory(values))
+          }
+          !loading ? navigate("/categories") : null
+          console.log(values.id)
         }}>
         {({errors, touched}) => {
           return (
             <Form className="form-category">
               <h1 className="add-title">
-                <FormattedMessage id="app.categories.addCategory"/>
+                {add ?
+                  intl.formatMessage({id: "app.categories.addCategory"}) :
+                  intl.formatMessage({id: "app.categories.updateCategory"})
+                }
               </h1>
               <Field
                 name="name"
@@ -69,20 +98,19 @@ const AddCoategory = () => {
               <Field
                 name="image"
                 component={CategoryImage}
-                error={touched.image ? errors.image : undefined}
               />
               <div className="category-buttons">
                 <Button
                   buttonType="button"
                   buttonText={intl.formatMessage({id: "app.categories.button.cancel"})}
                   className="button-select button-cancel"
-                  onClick={()=>navigate("/categories")}
+                  onClick={() => navigate("/categories")}
                 />
                 <Button
                   buttonType="submit"
                   buttonText={intl.formatMessage({id: "app.categories.button.save"})}
                   className="button-select"
-                  disabled={true}
+                  disabled={!!errors.description||!!errors.name}
                 />
               </div>
             </Form>
@@ -92,4 +120,4 @@ const AddCoategory = () => {
     </div>
   )
 }
-export default AddCoategory;
+export default AddCategory;

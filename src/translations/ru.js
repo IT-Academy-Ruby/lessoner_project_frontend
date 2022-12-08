@@ -63,6 +63,7 @@ export const messages_ru = {
   "app.categories.amount": "Количество",
   "app.categories.actions": "Действия",
   "app.categories.addCategory": "Добавить новую категорию",
+  "app.categories.updateCategory": "Обновить категорию",
   "app.categories.name": "Название категории",
   "app.categories.uploadCategoryImage": "Загрузить изображение категории с компьютера",
   "app.categories.selectFile": "Выберите файл",
@@ -72,4 +73,6 @@ export const messages_ru = {
   "app.categories.button.select": " Выбрать файл",
   "app.categories.button.cancel": "Отмена",
   "app.categories.button.save": "Сохранить",
+  "app.activeCategories.errorName": "Введите имя",
+  "app.activeCategories.errorDescription": "Введите описание",
 };
