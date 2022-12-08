@@ -1,12 +1,11 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {BACKEND_URL} from "../../constants";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getLogin = createAsyncThunk(
   "login/getLoginStatus",
   async (value: { email: string, password: string }) => {
     const response = await fetch(
-      `${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
-      {method: "POST"});
+      `${process.env.REACT_APP_BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
+      { method: "POST" });
 
     const data = await response.json();
     if (response.status === 200) {

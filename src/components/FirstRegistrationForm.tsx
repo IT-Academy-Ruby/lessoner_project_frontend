@@ -3,7 +3,6 @@ import "./FirstRegistrationForm.scss";
 import {
   Field, Form, Formik
 } from "formik";
-import { GOOGLE_APP, PASSWORD } from "../constants";
 import { emailInvalidationRules, passwordRegex } from "../validationRules";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -11,6 +10,7 @@ import Email from "./Email";
 import FacebookButton from "./FacebookButton";
 import GoogleButton from "./GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { PASSWORD } from "../constants";
 import PasswordAndConfirm from "./PasswordAndConfirm";
 import VKButton from "./VKButton";
 import { isEmailExists } from "../services/api/isEmailExists";
@@ -97,7 +97,7 @@ const FirstRegistrationForm = () => {
                 <Button buttonType="submit" 
                   buttonText={intl.formatMessage({ id: "app.button.next"})} 
                   className="button__page"/>
-                <GoogleOAuthProvider clientId={GOOGLE_APP.id}><GoogleButton /></GoogleOAuthProvider>
+                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}><GoogleButton /></GoogleOAuthProvider>
                 <FacebookButton />
                 <VKButton />
               </Form>

@@ -1,6 +1,5 @@
 import FacebookLogin,
 { ReactFacebookFailureResponse, ReactFacebookLoginInfo } from "react-facebook-login";
-import { FACEBOOK_APP } from "../constants";
 
 const FacebookButton = () => {
   const responseFacebook = (response: ReactFacebookFailureResponse | ReactFacebookLoginInfo) => {
@@ -10,7 +9,7 @@ const FacebookButton = () => {
   return (
     <div>
       <FacebookLogin
-        appId={FACEBOOK_APP.id}
+        appId={process.env.REACT_APP_FACEBOOK_ID}
         fields="name, email, picture, user_birthday"
         scope="public_profile, user_friends, email, user_birthday"
         callback={responseFacebook}

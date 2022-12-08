@@ -1,23 +1,25 @@
-import { REDIRECT_URL, VK_APP } from "../constants";
 import getParameterValue from "../helpers/parseUrl";
 import { useEffect } from "react";
 
 const VKButton = () => {
-
+  const {
+    REACT_APP_REDIRECT_URL, REACT_APP_FRONTEND, REACT_APP_VK_ID
+  } = process.env;
   useEffect(() => {
     const code = getParameterValue(window.location.href, "code");
+    const error = getParameterValue(window.location.href, "error");
 
     if (code) {
       console.log(code);
     }
-    else {
-      window.location.href !== REDIRECT_URL && (window.location.href = REDIRECT_URL);
+    else if (error) {
+      window.location.href = `${REACT_APP_FRONTEND}/users/sign_up`;
     }
-  }, []);
+  }, [REACT_APP_FRONTEND]);
 
   const handleRedirect = () => {
-    window.location.href = `https://oauth.vk.com/authorize?client_id=${VK_APP.id}
-    &display=popup&redirect_uri=${REDIRECT_URL}&scope=email&response_type=code&
+    window.location.href = `https://oauth.vk.com/authorize?client_id=${REACT_APP_VK_ID}
+    &display=popup&redirect_uri=${REACT_APP_REDIRECT_URL}&scope=email&response_type=code&
     v=5.120&state=4194308`;
   };
 
