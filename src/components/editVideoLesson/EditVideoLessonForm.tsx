@@ -3,8 +3,8 @@ import {
   Field, Form, Formik 
 } from "formik";
 import Button from "../Button";
-import classNames from "classnames";
 import { EditVideoLessonThumbnail } from "./EditVideoLessonThumbnail";
+import classNames from "classnames";
 import { useIntl } from "react-intl";
 
 const RegExp = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
@@ -16,24 +16,25 @@ export const EditVideoLessonForm = () => {
   const intl = useIntl();
 
   const validateName = (value: string) => {
-  if (!value) {
-    return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
-  } else if (!RegExp.test(value)) {
-    return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
-  } else if (value.length > maxNameLength) {
-    return intl.formatMessage({ id: "app.editVideoLesson.errorMaxCharacters"}, {maxNameLength});
-  }
-};
+    if (!value) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
+    } else if (!RegExp.test(value)) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
+    } else if (value.length > maxNameLength) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorMaxCharacters"}, {maxNameLength});
+    }
+  };
 
-const validateDescription = (value: string) => {
-  if (!value) {
-    return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
-  } else if (!RegExp.test(value)) {
-    return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
-  } else if (value.length > maxDescriptionLength) {
-    return intl.formatMessage({ id: "app.editVideoLesson.errorMaxCharactersDescr"}, {maxDescriptionLength});
-  }
-};
+  const validateDescription = (value: string) => {
+    if (!value) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
+    } else if (!RegExp.test(value)) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
+    } else if (value.length > maxDescriptionLength) {
+      return intl.formatMessage(
+        { id: "app.editVideoLesson.errorMaxCharactersDescr"}, {maxDescriptionLength});
+    }
+  };
 
   return (
     <Formik
@@ -109,10 +110,10 @@ const validateDescription = (value: string) => {
               {/* <div className="svg__add"></div> */}
             </label>
             <Button
-                buttonType="button" 
-                buttonText={intl.formatMessage({ id: "app.button.addsubtitles"})} 
-                className="button__fs16 disabled"
-              />
+              buttonType="button" 
+              buttonText={intl.formatMessage({ id: "app.button.addsubtitles"})} 
+              className="button__fs16 disabled"
+            />
           </div>
           <label
             className="evlf__label"
@@ -121,7 +122,10 @@ const validateDescription = (value: string) => {
             <p className="evlf__text">
               {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnailText"})}
             </p>
-            <EditVideoLessonThumbnail/>
+            <Field
+              name="thumbnail"
+              as={EditVideoLessonThumbnail}
+            />
           </label>
           <div className="evlf__btn-wrapper">   
             <Button
