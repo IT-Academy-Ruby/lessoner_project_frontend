@@ -1,39 +1,67 @@
 @import "../../constants.scss";
 
 .evlf__wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .evlf__label {
-    text-align: left;
-    font-weight: bold;
-    width: 100%;
-    @include fieldsFont;
+  width: 100%;
+  font-weight: bold;
+  @include fieldsFont;
+  text-align: left;
+  margin-bottom: 30px;
 }
 
 .evlf__input {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0.5em;
-    @include fieldsFont;
-    @include textFieldInput;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  @include fieldsFont;
+  @include textFieldInput;
 }
 
-.evlf__input-error {
-    border-color: red;
-    color: red;
+.evlf__text {
+  @include textFont;
+  margin: 0;
+  margin-bottom: 12px;
 }
 
-.error {
-    color: red;
-    display: block;
-    margin-top: 0.5em;
+.evlf__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
-.evlf__label-error {
-    color: red;
+.button__fs16-white-evlt {
+  margin-right: 16px;
+}
+
+.evlf__input-textarea {
+  max-width: 100%;
+  resize: none;
+}
+
+/* .svg__add {
+  border: 1px black solid;
+  width: 20px;
+  height: 20px;
+  background: url(../icons/addSubtitle.svg) no-repeat center;
+  background-size: 13px 15px;
+} */
+
+.error-input {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.error-message {
+  display: block;
+  color: $warningColor;
+  font-weight: normal;
+  font-size: 12px;
+  margin-top: 5px;
 }

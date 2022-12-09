@@ -1,103 +1,142 @@
-import "./EditVideoLessonTitle.scss";
-import {
+import "./EditVideoLessonForm.scss";
+import { 
   Field, Form, Formik 
 } from "formik";
 import Button from "../Button";
 import classNames from "classnames";
+import { EditVideoLessonThumbnail } from "./EditVideoLessonThumbnail";
 import { useIntl } from "react-intl";
 
-interface FormValues { description: string; name: string; }
-
-const userRegex = new RegExp("[a-z0-9]", "i");
-/* const minLengthName = 1;
-const maxLengthName = 64;
-const minLengthDescription = 1;
-const maxLengthDescription = 600; */
+const RegExp = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
+const hashtagRegExp = /^[#]{0,10}$/;
+const maxNameLength = 64;
+const maxDescriptionLength = 600;
 
 export const EditVideoLessonForm = () => {
   const intl = useIntl();
 
-  const validateName = (values: FormValues) => {
-    if (!values) {
-      return "The field is not filled";
-    } else if (!userRegex.test(values.name)) {
-      return "The input field contains prohibited characters";
-    } /* else if (values.name.length < minLengthName) {
-      return `The minimum number of characters is ${minLengthName}`;
-    } else if (values.name.length > maxLengthName) {
-      return `The maximum number of characters is ${maxLengthName}`;
-    } */
-  };
-
-  const validateDescription = (values: FormValues) => {
-    if (!values) {
-      return "The field is not filled";
-    } else if (!userRegex.test(values.description)) {
-      return "The input field contains prohibited characters";
-    } /* else if (values.description.length < minLengthDescription) {
-      return `The minimum number of characters is ${minLengthDescription}`;
-    } else if (values.description.length > maxLengthDescription) {
-      return `The maximum number of characters is ${maxLengthDescription}`;
-    } */
-  };
-  
-  return (
-    <div className="evlf__wrapper">
-      <Formik
-        initialValues={{ name: "", description: ""}}
-        onSubmit={values => {
-          console.log("submit", values);
-        }}
-      >
-        {({errors, touched}) => (
-          <Form >
-            <label 
-              className={classNames(
-                "evlf__label", {"evlf__label-error": errors.name && touched.name}
-              )}
-            >
-              Name
-            
-            <Field
-              className={classNames(
-                "evlf__input", {"evlf__input-error": errors.name && touched.name}
-              )}
-              name="name"
-              type="text"
-              validate={validateName}
-            /> 
-            </label>
-            {errors.name && touched.name && (
-              <div className="error">{errors.name}</div> 
-            )}
-            <label 
-              className={classNames(
-                "evlf__label", {"evlf__label-error": errors.description && touched.description}
-              )}
-            >
-              Description
-            
-            <Field
-              className={classNames(
-                "evlf__input", {"evlf__input-error": errors.description && touched.description}
-              )}
-              name="description"
-              type="textarea"
-              validate={validateDescription}
-            /> 
-            </label>
-            {errors.name && touched.name && (
-              <div className="error">{errors.description}</div> 
-            )}
-            <Button 
-              buttonType="submit" 
-              buttonText={intl.formatMessage({ id: "app.button.next"})} 
-              className="button__page"
-            />  
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
+  const validateName = (value: string) => {
+  if (!value) {
+    return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
+  } else if (!RegExp.test(value)) {
+    return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
+  } else if (value.length > maxNameLength) {
+    return intl.formatMessage({ id: "app.editVideoLesson.errorMaxCharacters"}, {maxNameLength});
+  }
 };
 
+const validateDescription = (value: string) => {
+  if (!value) {
+    return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
+  } else if (!RegExp.test(value)) {
+    return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
+  } else if (value.length > maxDescriptionLength) {
+    return intl.formatMessage({ id: "app.editVideoLesson.errorMaxCharactersDescr"}, {maxDescriptionLength});
+  }
+};
+
+  return (
+    <Formik
+      initialValues={{
+        name: "",
+        category: "IT",
+        description: "",
+        thumbnail: "",
+      }}
+      onSubmit={values => {
+        console.log("submit", values);
+      }}
+    >
+      {({ errors, touched }) => (
+        <Form className="evlf__wrapper">
+          <label
+            className="evlf__label"
+          >
+            {intl.formatMessage({ id: "app.editVideoLesson.lableName"})}
+            <Field
+              className={classNames(
+                "evlf__input", {["error-input"]: errors.name && errors.name}
+              )}
+              name="name"
+              validate={validateName}
+            />
+            {errors.name && touched.name && (
+              <div className="error-message">{errors.name}</div>
+            )}
+          </label>
+          <label
+            className="evlf__label"
+          >
+            {intl.formatMessage({ id: "app.editVideoLesson.lableCategory"})}
+            <Field
+              className="evlf__input"
+              as="select"
+              name="category"
+            >
+              <option value="IT">IT</option>
+              <option value="Music">
+                {intl.formatMessage({ id: "app.editVideoLesson.lableCategoryMusic"})}
+              </option>
+              <option value="Design">
+                {intl.formatMessage({ id: "app.editVideoLesson.lableCategoryDesign"})}
+              </option>
+            </Field>
+          </label>
+          <label
+            className="evlf__label"
+          >
+            {intl.formatMessage({ id: "app.editVideoLesson.lableDescription"})}
+            <Field
+              className={classNames(
+                "evlf__input evlf__input-textarea", 
+                {["error-input"]: errors.description && errors.description}
+              )}
+              name="description"
+              validate={validateDescription}
+              as="textarea"
+              rows="9"
+            />
+            {errors.description && touched.description && (
+              <div className="error-message">{errors.description}</div>
+            )}
+          </label>
+          <div className="evlf__label">
+            <label>
+              {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitles"})}
+              <p className="evlf__text">
+                {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitlesText"})}
+              </p>
+              {/* <div className="svg__add"></div> */}
+            </label>
+            <Button
+                buttonType="button" 
+                buttonText={intl.formatMessage({ id: "app.button.addsubtitles"})} 
+                className="button__fs16 disabled"
+              />
+          </div>
+          <label
+            className="evlf__label"
+          >
+            {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail"})}
+            <p className="evlf__text">
+              {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnailText"})}
+            </p>
+            <EditVideoLessonThumbnail/>
+          </label>
+          <div className="evlf__btn-wrapper">   
+            <Button
+              buttonType="button" 
+              buttonText={intl.formatMessage({ id: "app.button.cancel"})} 
+              className="button__fs16-white button__fs16-white-evlt"
+            />    
+            <Button
+              buttonType="submit" 
+              buttonText={intl.formatMessage({ id: "app.button.save"})} 
+              className="button__fs16"
+            />
+          </div>
+        </Form>
+      )}
+    </Formik>
+  );
+};

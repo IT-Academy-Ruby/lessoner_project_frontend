@@ -1,0 +1,35 @@
+@import "../../constants.scss";
+
+.evlth__wrapper {
+  width: 100%;
+  margin: $marginBottomMain;
+}
+
+.evlth__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.evlth__item {
+  width: 100%;
+  width: 159px;
+  height: 100%;
+  height: 88px;
+  margin-right: 8px;
+  border-radius: 8px;
+  border: 1px dashed #D1D1D1;
+  background: url(../icons/thumbnail.svg) center no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.evlth__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

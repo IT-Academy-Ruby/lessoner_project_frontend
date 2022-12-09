@@ -1,6 +1,6 @@
 @import "../constants.scss";
 
-.button__main, .button__page, .button__fs16, .button__fs16-white {
+.button__main, .button__page, .button__fs16, .button__fs16-white, .disabled {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,6 +10,10 @@
   font-family: $font;
   color: $whiteColor;
   cursor: pointer;
+  transition: .2s;
+  &:hover {
+    box-shadow: 0px 4px 6px rgba(46, 51, 99, 0.43);
+  }
 }
 
 .button__page {
@@ -30,6 +34,13 @@
   border: 1px solid $borderColor;
   color: $blueLightColor;
   background: $whiteColor;
+  font-weight: 600;
+}
+
+.disabled {
+  background: none;
+  color: $greySearchColor;
+  border: 1px solid $greySearchColor;
 }
 
 .btn__temporary {
