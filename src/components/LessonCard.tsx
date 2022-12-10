@@ -110,24 +110,10 @@ type LessonCardsProps = {
   title: string;
   published: string;
   view?: number;
-  category: string;
+  category?: string;
   rating?: number;
   totalVotes?: number;
 };
-
-// "created_at": "2022-12-01 14:11:33 +0300"
-// }
-// key={obj.id}
-// title={obj.title}
-// status={obj.status}
-// duration={obj.duration}
-// imagePreview={obj.imagePreview}
-// id={obj.id}
-// published={obj.created_at}
-// view={obj.view}
-// category={obj.category_id}
-// rating={obj.rating}
-// totalVotes={obj.totalVotes}
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
   return (

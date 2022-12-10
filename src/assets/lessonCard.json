@@ -3,7 +3,6 @@
     "id": 1,
     "title": "React",
     "description": "string",
-
     "video_link": "string",
     "status": "Archived",
     "author_id": 1,
