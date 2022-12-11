@@ -9,7 +9,10 @@ type dataType = {
   link:string,
   file:string,
   category:string,
-  description:string
+  description:string,
+  subtitles:string,
+  subtitlesFile:string,
+  disStatus1:boolean
 }
 const NewLesson = () => {
   const [ name, setName ] = useState("");
@@ -17,29 +20,35 @@ const NewLesson = () => {
   const [ file, setFile ] = useState("");
   const [ category, setCategory] = useState("");
   const [ description, setDescription ] = useState("");
+  const [subtitles,setSubtitles]=useState("");
+  const [subtitlesFile,setSubtitlesFile]=useState("");
   const [ step, setStep ] = useState(1);
   const [ stepStatus, setstepStatus ] = useState("Next step");
+  const [ disStatusStep1, setDisStatusStep1 ]= useState(false);
+ 
   
   const handleDataChangeStep1=( data:dataType ) => {
     setName(data.name);
     setLink(data.link);
     setFile(data.file);
-    console.log(data);
+    setDisStatusStep1(data.disStatus1);
+    console.log(disStatusStep1);
   };
 
   const handleDataChangeStep2=( data:dataType ) => {
     setCategory(data.category);
     setDescription(data.description);
-    console.log(data);
+    setSubtitles(data.subtitles);
+    setSubtitlesFile(data.subtitlesFile);
   };
 
   const click=()=>{
     // eslint-disable-next-line max-len
-    console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description);
+    console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description,"subtitles lang:"+subtitles,"subtitlesFile:"+subtitlesFile);
   };
   
   const swapStepForm = () => {
-    // console.log("step"+step);
+    console.log(disStatusStep1);
     if (step === 1) {
       setStep(2);
       document.getElementsByClassName("step1")[0].classList.remove("active");
@@ -82,11 +91,9 @@ const NewLesson = () => {
           <Link to="/myStudio">
             <input type="button" value="Cansel" className="button-shape cansel" />
           </Link>
-          {step===1 ? <input type="button" className="next-step-button active-step button-shape-2"
-            value={stepStatus} onClick={swapStepForm}></input> :
-            // <input type="button" className="add-new-lesson"><PlusSvg/>
-            //   <FormattedMessage id="app.Add new lesson" />
-            // </input>
+          {step===1 ? <input type="button" className="next-step-button  button-shape-2"
+            value={stepStatus} onClick={swapStepForm}  
+            id="btn-add-new-lesson-next-step" ></input> :
             <input type="button" className="next-step-button  button-shape-2"
               value={"+ Add new lesson"} onClick={click} ></input>
           }
