@@ -4,7 +4,6 @@ import { BACKEND_URL } from "../../../../constants";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
-
 import requestApi from "../../../../services/request";
 
 const categoriesUrl = `${BACKEND_URL}/categories`;
