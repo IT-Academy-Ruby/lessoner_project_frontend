@@ -4,7 +4,7 @@ interface Map {
   [key: number]: string;
 }
 
-export const getCategoryNameById = (
+export const GetDataWithCategoryNames = (
   categoriesArr: Category[],
   dataArr: Lesson[]
 ) => {

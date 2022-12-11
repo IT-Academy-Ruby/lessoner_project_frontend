@@ -1,12 +1,14 @@
 import "./index.scss";
 import React, { useEffect, useState } from "react";
+import { BACKEND_URL } from "../../../../constants";
 import { FormattedMessage } from "react-intl";
+import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
-import { getCategoryNameById } from "./LessonsHelper";
+
 import requestApi from "../../../../services/request";
 
-const categoriesUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
-const lessonsUrl = "https://lessoner-project-2w3h.onrender.com/lessons";
+const categoriesUrl = `${BACKEND_URL}/categories`;
+const lessonsUrl = `${BACKEND_URL}/lessons`;
 export interface Lesson {
   id: number;
   title: string;
@@ -65,8 +67,8 @@ const Lessons: React.FC = () => {
           elem.imagePreview =
             "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg";
         });
-        const dataWithCategoryname = getCategoryNameById(categories, data);
-        setData(dataWithCategoryname);
+        const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
+        setData(dataWithCategoryName);
         setDataIsLoaded(true);
       };
       const fetchError = (errMessage: string) => {
