@@ -38,11 +38,11 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
       return <YourselfPage/>;
     case "ConfirmReg":
       return <ConfirmReg/>;
-  }
-};
+    }
+  };
   const closePage = () => {
     dispatch(closePopup);
-  }
+  };
 
   return (
     <div className="reg__wrapper">

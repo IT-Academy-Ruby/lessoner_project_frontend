@@ -3,11 +3,11 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Fragment, useState} from "react";
 import {closePopup, sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
+import {Fragment} from "react";
 import Loader from "../components/Loader";
 import {emailInvalidationRules} from "../validationRules";
 import {useNavigate} from "react-router-dom";
