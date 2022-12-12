@@ -1,4 +1,4 @@
-@import "../../../constants.scss";
+@import "./src/constants.scss";
 
 .side-bar {
   grid-column-start: 2;
@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
+  background: $white;
 }
 
 .menu-list {
@@ -53,7 +54,7 @@
   line-height: 150%;
   letter-spacing: 0.15px;
   text-decoration: none;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font;
 }
 
 .search-button {
@@ -74,7 +75,7 @@
   height: 32px;
   border: 1px solid $greySearchColor;
   border-radius: 8px;
-  background: #ffffff;
+  background: $white;
   margin-right: 16px;
   padding-inline: 6px;
 }
@@ -101,8 +102,17 @@
   align-items: center;
 }
 
-.avatar-login {
-  display: none;
+.button-login {
+  width: 115px;
+  height: 32px;
+  font-family: $font;
+  background: $blueLightColor;
+  color: #eaeaea;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
 }
 
 .user-item {
@@ -114,12 +124,12 @@
   width: 141px;
   border: 1px solid $blueLightColor;
   border-radius: 28px;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font;
   font-weight: 600;
   font-size: 16px;
   color: $blueLightColor;
   padding: 6px 16px;
-  background: white;
+  background: $white;
 }
 
 .bell {
@@ -131,7 +141,15 @@
 .avatar {
   width: 32px;
   height: 32px;
+  border: 2px solid $blueLightColor;
   border-radius: 50%;
+}
+
+.first-letters {
+  margin: 0;
+  color: $blueLightColor;
+  font-weight: bold;
+  line-height: 32px;
 }
 
 @media (max-width: 1536px) {
@@ -205,12 +223,6 @@
 
   .bell {
     display: none;
-  }
-
-  .avatar-login {
-    display: flex;
-    width: 32px;
-    border-radius: 50%;
   }
 
   .button-login {

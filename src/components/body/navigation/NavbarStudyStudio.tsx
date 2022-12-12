@@ -71,7 +71,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
               </div> :
               <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
                 <div className="image__wrapper image__wrapper--active">
-                  <div className="svg">
+                  <div className="svg svg__menu">
                     <NavbarStudyStudioSVGSelector icon="close"/>
                   </div>
                 </div>
@@ -106,6 +106,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
           ) 
           }
         </ul>
+        { isMenuActive && <div className = "copyright-wrapper">
+          <div>&reg;</div>2022. All right reserved</div> }
       </div>
     </div>
   );

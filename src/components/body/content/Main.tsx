@@ -8,8 +8,10 @@ import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
+import {useAppSelector} from "../../../store/hooks";
 
 const Content = () => {
+  const lessoner = useAppSelector(state => state.link.lessoner);
   return (
     <div className="main">
       <Routes>

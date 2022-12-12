@@ -1,7 +1,6 @@
 import "./index.scss";
 import { FormattedMessage } from "react-intl";
 import LessonCard from "../../../LessonCard";
-import React from "react";
 import items from "../../../../assets/lessonCard.json";
 
 const Lessons: React.FC = () => {

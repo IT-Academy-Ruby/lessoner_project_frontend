@@ -1,9 +1,6 @@
-$primary-color: rgb(82, 105, 207);
-$white-color: #fff;
-$content-color: #1b1b1f;
+@import "../../../constants.scss";
 
 .menu__content {
-  grid-column-start: 1;
   grid-row-start: 2;
   grid-row-end: 3;
   position: fixed;
@@ -16,6 +13,7 @@ $content-color: #1b1b1f;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
   transition: 0.1s;
+  background-color: $white;
 }
 
 .menu__content--active {
@@ -50,19 +48,20 @@ $content-color: #1b1b1f;
 }
 
 .menu__item-inner:hover .menu__text {
-  color: $primary-color;
+  color: $blueLightColor;
 }
 
 .menu__item-inner:hover .svg__item {
-  fill: $primary-color;
+  fill: $blueLightColor;
 }
 
 .menu__text {
   width: 0;
   text-align: left;
+  font-family: $font;
   font-size: 0;
   font-weight: 600;
-  color: $content-color;
+  color: $black;
   opacity: 0;
   transition: 0.1s;
 }
@@ -75,7 +74,7 @@ $content-color: #1b1b1f;
 }
 
 .menu__text--selected {
-  color: $primary-color;
+  color: $blueLightColor;
 }
 
 .image__wrapper {
@@ -91,19 +90,19 @@ $content-color: #1b1b1f;
 }
 
 .image__wrapper--active:hover {
-  background: $primary-color;
+  background: $blueLightColor;
 }
 
 .image__wrapper--active.image__wrapper--selected {
-  background: $primary-color;
+  background: $blueLightColor;
 }
 
 .image__wrapper--active:hover .svg__item {
-  fill: $white-color;
+  fill: $white;
 }
 
 .image__wrapper--active:hover .svg__menu {
-  stroke: $white-color;
+  stroke: $white;
 }
 
 .svg__item {
@@ -112,7 +111,7 @@ $content-color: #1b1b1f;
   align-items: center;
   width: 100%;
   height: 100%;
-  fill: $content-color;
+  fill: $black;
 }
 
 .svg__item svg {
@@ -121,13 +120,20 @@ $content-color: #1b1b1f;
 }
 
 .svg__menu {
-  stroke: $content-color;
+  stroke: $black;
 }
 
 .svg__item--active.svg__item--selected {
-  fill: $primary-color;
+  fill: $blueLightColor;
 }
 
 .svg__item--selected {
-  fill: $white-color;
+  fill: $white;
 }
+
+.copyright-wrapper {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+

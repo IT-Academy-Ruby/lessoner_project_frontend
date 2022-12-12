@@ -18,7 +18,9 @@ export const getUser = createAsyncThunk(
 type User = {
   isLogged: boolean;
 }
-const initialState: User = {isLogged: false,};
+
+const initialState: User = {isLogged: false};
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -30,4 +32,5 @@ const userSlice = createSlice({
       });
   }
 });
+
 export default userSlice.reducer;
