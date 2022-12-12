@@ -42,8 +42,8 @@ const GenderSelector = ({
             </label>
           ))
         ) : null}
-        {(error) && <span className="error-message">{error}</span>}
       </div>
+      {(error) && <span className="error-message">{error}</span>}
     </div>
   );
 };

@@ -14,6 +14,7 @@ import Email from "../components/Email";
 import Facebook from "../components/icons/facebook.svg";
 import Google from "../components/icons/google.svg";
 import {Link} from "react-router-dom";
+import Loader from "../components/Loader";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
@@ -42,21 +43,14 @@ const LoginPage = () => {
 
   return (
     <div className="log-content">
-      {loading &&
-        <h1
-          style={{
-            position: "fixed", left: "50%", transform: "translate(-50%, -40%)", color: "grey"
-          }}
-        >
-          Loading...
-        </h1>}
+      {loading && <Loader/>}
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
             errors.email =
-              intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
+              intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
           if (!passwordRegex.test(values.password)) {
             errors.password =
@@ -73,7 +67,6 @@ const LoginPage = () => {
           dispatch(getLogin(values));
           dispatch(buttonEvent());
           dispatch(lookEvent());
-          console.log(values); //for example that working
         }}>
         {({errors, touched}) => {
           return (
@@ -85,6 +78,7 @@ const LoginPage = () => {
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
+                needEmail={true}
               />
               <Field
                 name="password"

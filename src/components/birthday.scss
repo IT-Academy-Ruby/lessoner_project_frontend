@@ -49,12 +49,12 @@ div > .react-datepicker {
   font-weight: 600;
   font-size: 26px;
   background-color: $white;
-  color:$black;
+  color: $black;
 }
 
 .react-datepicker__header__dropdown {
   display: flex;
-  margin: 0 22px;
+  margin: 10px 22px 0;
   justify-content: space-around;
 }
 
@@ -69,6 +69,7 @@ div > .react-datepicker {
   justify-content: space-between;
   border-top: 1px solid #D1D1D1;
   padding-top: 10px;
+  padding-bottom: 22px;
 }
 
 .react-datepicker__week, .react-datepicker__day-names {
@@ -76,30 +77,45 @@ div > .react-datepicker {
   justify-content: space-around;;
   font-size: 15px;
 }
-.react-datepicker__day-name{
-  color:$black;
-}
-.react-datepicker__day {
+
+.react-datepicker__day-name {
   color: $black;
 }
-.react-datepicker__day--disabled{
-  color:$greySearchColor;
+
+.react-datepicker__day {
+  color: $black;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    border-radius: 50px;
+  }
+}
+
+.react-datepicker__day--disabled {
+  color: $greySearchColor;
 }
 
 .react-datepicker__day--keyboard-selected, .react-datepicker__day--selected {
   border-radius: 50px;
   background-color: $blueLightColor;
+  color: $white;
 }
 
 .react-datepicker__day--selected:hover {
   border-radius: 50px;
   background-color: $blueLightColor;
 }
-@media (max-width: $max-width-tablet){
-  .react-datepicker__month-select, .react-datepicker__year-select{
+
+@media (max-width: $max-width-tablet) {
+  .react-datepicker__month-select, .react-datepicker__year-select {
     font-size: 24px;
   }
 }
+
 @media (max-width: $max-width-phone) {
   .react-datepicker, .react-datepicker__month-container > .react-datepicker__header {
     border-radius: 23px;

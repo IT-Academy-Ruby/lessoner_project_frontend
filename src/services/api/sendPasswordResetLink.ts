@@ -14,6 +14,7 @@ const sendPasswordResetLink = async (email: string): Promise<string> => {
   }
 
   const data = await res.json();
+  console.log(data)
   return data.alert;
 };
 

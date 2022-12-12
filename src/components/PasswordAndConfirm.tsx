@@ -40,10 +40,7 @@ const PasswordAndConfirm = ({
       type={visiblePassword ? "text" : "password"}
       className={classNames("input", {"invalid-input": error},
         {"success-input": !error && field.value})}
-      minLength={minSymbol}
-      maxLength={maxSymbol}
       {...field}
-      required
       placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"})}
     />
     <img

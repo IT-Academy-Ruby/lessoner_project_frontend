@@ -12,7 +12,7 @@
   font-size: 16px;
   line-height: 150%;
   @include fieldsFont;
- }
+}
 
 .input {
   width: 100%;
@@ -24,6 +24,22 @@
   background-color: $white;
   margin-top: 4px;
   @include fieldsFont;
+
+  &:default {
+    border: 1px solid $greyDefault;
+
+    &::placeholder {
+      color: $greyDefault;
+    }
+  }
+
+  &:disabled {
+    border: 1px solid $greySearchColor;
+
+    &::placeholder {
+      color: $greySearchColor;
+    }
+  }
 
   &:active {
     outline: none;
@@ -61,13 +77,13 @@
   cursor: pointer;
 }
 
+.success-input {
+  border: 1px solid $green;
+}
+
 .invalid-input {
   border: 1px solid $warningColor;
   color: $warningColor;
-}
-
-.success-input {
-  border: 1px solid $green;
 }
 
 .input-message {

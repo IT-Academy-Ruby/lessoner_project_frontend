@@ -5,6 +5,7 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
@@ -15,7 +16,6 @@ import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
-import {isEmailExists} from "../services/api/isEmailExists";
 
 interface FormValues {
   email: string;
@@ -30,9 +30,12 @@ interface FormErrors {
 
 const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
+const symbols = PASSWORD.symbols;
 
 const FirstRegistrationForm = () => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const isEmail = useAppSelector(state => state.login.isEmail);
   const initialValues: FormValues = {
     email: "",
     password: "",
@@ -40,23 +43,27 @@ const FirstRegistrationForm = () => {
     hasTermsAndConditions: false
   };
 
-  const validate = async (values: FormValues) => {
-    const isEmailExistsInDB = await isEmailExists(values.email);
+  const validate = (values: FormValues) => {
 
     const errors: FormErrors = {};
-    if (isEmailExistsInDB) {
-      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
-    }
+
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
       errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
+    if (isEmail) {
+        errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
+    }
     if (!passwordRegex.test(values.password)) {
+      console.log(isEmail)
       errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
-        minSymbol, maxSymbol, symbols:  PASSWORD.symbols
+        minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
       });
     }
     if (values.password.length > maxSymbol || values.password.length < minSymbol) {
-      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {minSymbol, maxSymbol});
+      console.log(isEmail)
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
+        minSymbol: minSymbol, maxSymbol: maxSymbol
+      });
     }
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
@@ -65,10 +72,10 @@ const FirstRegistrationForm = () => {
       errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;
-  };
+  }
 
   const submitFirstStepForm = (values: FormValues) => {
-    console.log("all values are correct", values);
+    console.log( values)
   };
 
   return (
@@ -89,6 +96,7 @@ const FirstRegistrationForm = () => {
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
+                needEmail={false}
               />
               <Field
                 name="password"

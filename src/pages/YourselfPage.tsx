@@ -9,18 +9,24 @@ import Email from "../components/Email";
 import GenderSelector from "../components/GenderSelector";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
-import {useIntl} from "react-intl";
+import {FormattedMessage, useIntl} from "react-intl";
 import {useState} from "react";
 
 const gender = [{
-  name: "gender", label: "Male", genderValue: "male"
+  name: "gender",
+  label: <FormattedMessage id="app.gender.male"/>,
+  genderValue: "male"
 },
-{
-  name: "gender", label: "Female", genderValue: "female"
-},
-{
-  name: "gender", label: "Other", genderValue: "other"
-}];
+  {
+    name: "gender",
+    label: <FormattedMessage id="app.gender.female"/>,
+    genderValue: "female"
+  },
+  {
+    name: "gender",
+    label: <FormattedMessage id="app.gender.other"/>,
+    genderValue: "other"
+  }];
 
 interface FormValues {
   email: string;
@@ -36,6 +42,7 @@ interface FormErrors {
 const YourselfPage = () => {
   const intl = useIntl();
   const [isWrapper, setIsWrapper] = useState(false);
+
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
@@ -79,7 +86,7 @@ const YourselfPage = () => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                Tell us about yourself
+                <FormattedMessage id="app.pagesTitle.aboutYourself"/>
               </h2>
               <Field
                 name="email"
@@ -102,7 +109,10 @@ const YourselfPage = () => {
                 options={gender}
                 component={GenderSelector}
                 error={touched.gender ? errors.gender : undefined}/>
-              <Button buttonType="submit" buttonText="Finish" className="button__page"/>
+              <Button
+                buttonType="submit"
+                buttonText={intl.formatMessage({id: "app.button.finish"})}
+                className="button__page"/>
               {isWrapper ? <div className="date-wrapper"></div> : null}
             </Form>
           );

@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
- }
+}
 
 .reg__inner {
   position: relative;
@@ -14,13 +14,13 @@
   justify-content: center;
   width: 100%;
   max-width: 1322px;
-  height: 843px;
   border-radius: 44px;
   box-shadow: 5px 10px 10px $black;
   background: $white;
   margin: 90px 60px;
 }
-.close__wrapper{
+
+.close__wrapper {
   width: 24px;
   height: 24px;
   position: absolute;
@@ -28,6 +28,7 @@
   top: 45px;
   cursor: pointer;
 }
+
 .close {
   position: relative;
   top: 9px;
@@ -63,6 +64,7 @@
 
 .reg__logo {
   max-width: 321px;
+
 }
 
 .reg__content {
@@ -70,6 +72,12 @@
   justify-content: center;
   align-items: center;
   width: 50%;
+}
+
+@media (min-width: $max-width-tablet) {
+  .reg__logo {
+    width: 32vw;
+  }
 }
 
 @media (max-width: $max-width-tablet) {

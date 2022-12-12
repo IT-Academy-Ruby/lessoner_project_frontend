@@ -1,9 +1,10 @@
 import "./input.scss";
+import classNames from "classnames";
 import {CODE} from "../constants";
 import {FormattedMessage} from "react-intl";
 
 type CodeProps = {
-  field?: {
+  field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
@@ -18,7 +19,8 @@ const Code = ({field, error}: CodeProps) => {
       <FormattedMessage id="app.code.name"/>
       <input
         type="text"
-        className="input"
+        className={classNames("input", {"invalid-input": error},
+          {"success-input": !error && field.value})}
         maxLength={CODE.maxLength}
         {...field}
       />
