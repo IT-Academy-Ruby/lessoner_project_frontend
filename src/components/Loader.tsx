@@ -9,11 +9,13 @@ const Loader = () => {
   }
   return (
     <div className="lds-spinner">
-      {array.map(field => <div key={field} style={{
-        transform: `rotate(${360 / elements * field}deg)`,
-        animationDelay: `${speed / elements * field}s`
-      }}/>)}
+      {
+        array.map(field => <div key={field} style={{
+          transform: `rotate(${360 / elements * field}deg)`,
+          animationDelay: `${speed / elements * field}s`
+        }}/>)
+      }
     </div>
-  )
-}
+  );
+};
 export default Loader;

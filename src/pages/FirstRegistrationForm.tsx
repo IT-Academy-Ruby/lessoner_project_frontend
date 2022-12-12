@@ -5,7 +5,6 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
@@ -16,6 +15,7 @@ import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
+import {useAppSelector} from "../store/hooks";
 
 interface FormValues {
   email: string;
@@ -25,7 +25,7 @@ interface FormValues {
 }
 
 interface FormErrors {
-  [key: string]: string
+  [key: string]: string;
 }
 
 const minSymbol = PASSWORD.minLength;
@@ -34,7 +34,6 @@ const symbols = PASSWORD.symbols;
 
 const FirstRegistrationForm = () => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const isEmail = useAppSelector(state => state.login.isEmail);
   const initialValues: FormValues = {
     email: "",
@@ -51,19 +50,17 @@ const FirstRegistrationForm = () => {
       errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
     if (isEmail) {
-        errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
     }
     if (!passwordRegex.test(values.password)) {
-      console.log(isEmail)
       errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
         minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
       });
     }
     if (values.password.length > maxSymbol || values.password.length < minSymbol) {
-      console.log(isEmail)
-      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
-        minSymbol: minSymbol, maxSymbol: maxSymbol
-      });
+      errors.password = intl.formatMessage(
+        {id: "app.firstRegistrationForm.passwordLength"}, {minSymbol: minSymbol, maxSymbol: maxSymbol}
+      );
     }
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
@@ -72,10 +69,10 @@ const FirstRegistrationForm = () => {
       errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;
-  }
+  };
 
   const submitFirstStepForm = (values: FormValues) => {
-    console.log( values)
+    console.log(values);
   };
 
   return (

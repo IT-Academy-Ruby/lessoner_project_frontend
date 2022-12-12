@@ -1,7 +1,7 @@
 import "./input.scss";
-import classNames from "classnames";
 import {CODE} from "../constants";
 import {FormattedMessage} from "react-intl";
+import classNames from "classnames";
 
 type CodeProps = {
   field: {

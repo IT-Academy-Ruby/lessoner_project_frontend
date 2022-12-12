@@ -2,6 +2,7 @@ import "./modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
+import {FormattedMessage, useIntl} from "react-intl";
 import {UserRegex, emailInvalidationRules} from "../validationRules";
 import BirthdayPicker from "../components/BirthdayPicker";
 import Button from "../components/Button";
@@ -9,14 +10,14 @@ import Email from "../components/Email";
 import GenderSelector from "../components/GenderSelector";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
-import {FormattedMessage, useIntl} from "react-intl";
 import {useState} from "react";
 
-const gender = [{
-  name: "gender",
-  label: <FormattedMessage id="app.gender.male"/>,
-  genderValue: "male"
-},
+const gender = [
+  {
+    name: "gender",
+    label: <FormattedMessage id="app.gender.male"/>,
+    genderValue: "male"
+  },
   {
     name: "gender",
     label: <FormattedMessage id="app.gender.female"/>,

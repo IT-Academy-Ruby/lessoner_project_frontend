@@ -1,16 +1,15 @@
 import "./modal.scss";
-import {closePopup, sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Fragment, useState} from "react";
+import {closePopup, sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
-import {emailInvalidationRules} from "../validationRules";
 import Loader from "../components/Loader";
-import {useEffect} from "react";
+import {emailInvalidationRules} from "../validationRules";
 import {useNavigate} from "react-router-dom";
 
 interface FormValues {
@@ -25,13 +24,10 @@ const ResetPasswordPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const emailFound = useAppSelector(state => state.login.notFound);
-  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
   const loading = useAppSelector(state => state.login.loading);
 
-  const initialValues: FormValues = {
-    email: "",
-  };
+  const initialValues: FormValues = {email: "",};
 
   const closeLinkPopup = () => {
     navigate("/users/");
@@ -49,10 +45,10 @@ const ResetPasswordPage = () => {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
-          return errors
+          return errors;
         }}
         onSubmit={(values: { email: string }) => {
-          dispatch(sendPasswordResetLink(values.email))
+          dispatch(sendPasswordResetLink(values.email));
         }}>
         {({errors, touched}) => {
           return (
@@ -94,7 +90,7 @@ const ResetPasswordPage = () => {
         }}
       </Formik>
     </div>
-  )
+  );
 };
 
 export default ResetPasswordPage;

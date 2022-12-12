@@ -19,7 +19,7 @@ type PasswordProps = {
 }
 
 const PasswordAndConfirm = ({
-  minSymbol, maxSymbol, isConfirm, field, error
+  isConfirm, field, error
 }: PasswordProps): JSX.Element => {
   const intl = useIntl();
   const [visiblePassword, setVisiblePassword] = useState(false);

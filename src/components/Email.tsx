@@ -1,12 +1,10 @@
 import "./input.scss";
-import {changeEvent, closePopup} from "../store/loginName/loginSlice";
 import React, {useEffect, useState} from "react";
+import {changeEvent, getEmail} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import classNames from "classnames";
-import {getEmail} from "../store/loginName/loginSlice";
 import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
-
+import classNames from "classnames";
 
 type EmailProps = {
   field: {
@@ -19,7 +17,9 @@ type EmailProps = {
   needEmail?: boolean;
 }
 
-const Email = ({field, error, needEmail}: EmailProps): JSX.Element => {
+const Email = ({
+  field, error, needEmail
+}: EmailProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const loginEvent = useAppSelector(state => state.login.event);
   const JWT = useAppSelector(state => state.login.login);
@@ -31,15 +31,15 @@ const Email = ({field, error, needEmail}: EmailProps): JSX.Element => {
 
   useEffect(() => {
     if (needEmail) {
-      setIsNotFoundEmail(!emailFound)
+      setIsNotFoundEmail(!emailFound);
     }
-  }, [emailFound]);
+  }, [needEmail,emailFound]);
 
   useEffect(() => {
     if (!needEmail && field.value.length > 0) {
       dispatch(getEmail(field.value));
     }
-  }, [field.value]);
+  }, [dispatch,needEmail,field.value]);
 
   useEffect(() => {
     if (!JWT && loginEvent && field.value.length) {
@@ -65,12 +65,13 @@ const Email = ({field, error, needEmail}: EmailProps): JSX.Element => {
         )}
         placeholder="username@gmail.com"
         onKeyUp={() => {
-          setIsNotFoundEmail(false)
+          setIsNotFoundEmail(false);
         }}
         {...field}
       />
       {error && <span className="error-message">{error}</span>}
-      {needEmail && !loading && isNotFoundEmail && emailFound !== "" && !emailFound && <span className="error-message">
+      {needEmail && !loading && isNotFoundEmail && emailFound
+        !== "" && !emailFound && <span className="error-message">
         <FormattedMessage id="app.email.notFound"/>
       </span>}
       {!loading && isUser && <span className="error-message">
