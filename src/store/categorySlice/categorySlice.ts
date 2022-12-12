@@ -17,7 +17,7 @@ export const getCategory = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   "category/addCategory",
-  async (value: {name: string, description: string, status: string }) => {
+  async (value: { name: string, description: string, status: string }) => {
     const responce = await request(`${BACKEND_URL}/categories`, "POST", value);
     const data = await responce.json();
     if (responce.status === 200) {
@@ -31,7 +31,7 @@ export const addCategory = createAsyncThunk(
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
   async (value: { id: number, name: string, description: string, status: string }) => {
-    const category={
+    const category = {
       name: value.name,
       description: value.description,
       status: value.status,
@@ -57,10 +57,8 @@ export const archiveCategory = createAsyncThunk(
     const responce = await request(`${BACKEND_URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
-      console.log(data)
       return data
     } else {
-      console.log('shlapa')
       return `errror ${responce.status}`
     }
   }

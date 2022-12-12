@@ -18,8 +18,11 @@ const CategoryImage = ({field, error}: CategoryImageProps) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
   const handleUpload = () => {
-    fileRef.current ? fileRef.current.click() : null;
-  }
+    if (fileRef.current) {
+      fileRef.current.click();
+    }
+    ;
+  };
   return (
     <div className="category-label">
       <FormattedMessage id="app.categories.uploadCategoryImage"/>
@@ -29,7 +32,7 @@ const CategoryImage = ({field, error}: CategoryImageProps) => {
         <span className="upload-text category-upload">
           <FormattedMessage id="app.categories.uploadImage"/>
         </span>
-        <div className="upload-buttons" >
+        <div className="upload-buttons">
           <span className="upload-text">
           <FormattedMessage id="app.categories.dragAandDrop"/>
           </span>
@@ -41,7 +44,6 @@ const CategoryImage = ({field, error}: CategoryImageProps) => {
             type="file"
             className="category-file"
             accept="image/*"
-
           />
           <button className="button-select" onClick={handleUpload} type="button">
             <img src={Select} alt="Select file" className="button-image"/>

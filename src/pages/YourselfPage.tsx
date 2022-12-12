@@ -12,12 +12,12 @@ import UserName from "../components/UserName";
 const gender = [{
   name: "gender", label: "Male", genderValue: "male"
 },
-{
-  name: "gender", label: "Female", genderValue: "female"
-},
-{
-  name: "gender", label: "Other", genderValue: "other"
-}];
+  {
+    name: "gender", label: "Female", genderValue: "female"
+  },
+  {
+    name: "gender", label: "Other", genderValue: "other"
+  }];
 
 interface FormValues {
   userName: string;

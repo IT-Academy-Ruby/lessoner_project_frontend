@@ -1,5 +1,3 @@
-
-
 /* eslint-disable max-len */
 export const messages_ru = {
   "app.name": "Lessoner",
@@ -70,9 +68,10 @@ export const messages_ru = {
   "app.categories.uploadImage": "Загрузить изображение",
   "app.categories.or": "или",
   "app.categories.dragAandDrop": "Перетащите",
-  "app.categories.button.select": " Выбрать файл",
+  "app.categories.button.select": "Выбрать файл",
   "app.categories.button.cancel": "Отмена",
   "app.categories.button.save": "Сохранить",
-  "app.activeCategories.errorName": "Введите имя",
-  "app.activeCategories.errorDescription": "Введите описание",
+  "app.activeCategories.errorMinLength": "Пожалуйста заполните поле",
+  "app.activeCategories.errorMaxLength": "Максимальное количество символов {symbols}",
+  "app.activeCategories.errorProhibitedCharacters": "Поле ввода содержит запрещенные символы.",
 };

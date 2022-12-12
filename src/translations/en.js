@@ -71,7 +71,8 @@ export const messages_en = {
   "app.categories.button.select": "Select file",
   "app.categories.button.cancel": "Cancel",
   "app.categories.button.save": "Save",
-  "app.activeCategories.errorName": "Enter name",
-  "app.activeCategories.errorDescription": "Enter description",
+  "app.activeCategories.errorMinLength": "Please fill the field",
+  "app.activeCategories.errorMaxLength": "Maximum number of characters {symbols}",
+  "app.activeCategories.errorProhibitedCharacters": "The input field contains prohibited characters",
 
 };

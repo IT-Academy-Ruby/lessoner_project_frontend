@@ -1,5 +1,6 @@
 import "./addCategory.scss"
 import {addCategory, updateCategory} from "../../../../../store/categorySlice/categorySlice";
+import {DESCRIPTION_CATEGORY, NAME_CATEGORY} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
@@ -57,24 +58,34 @@ const AddCategory = ({add}: TypeTitle) => {
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
-          if (values.name.length < 5) {
-            errors.name = intl.formatMessage({id: "app.activeCategories.errorName"});
+          if (values.name.length < NAME_CATEGORY.minSymbols) {
+            errors.name = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
           }
-          if (values.description.length < 5) {
-            errors.description = intl.formatMessage({id: "app.activeCategories.errorDescription"});
+          if (values.name.length > NAME_CATEGORY.maxSymbols) {
+            errors.name = intl.formatMessage({id: "app.activeCategories.errorMaxLength"}, {
+              symbols: NAME_CATEGORY.maxSymbols
+            });
+          }
+          if (values.description.length < DESCRIPTION_CATEGORY.minSymbols) {
+            errors.description = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
+          }
+          if (values.description.length > DESCRIPTION_CATEGORY.maxSymbols) {
+            errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"}, {
+              symbols: DESCRIPTION_CATEGORY.maxSymbols
+            });
           }
           return errors;
         }}
         onSubmit={(values: FormValues) => {
           if (add) {
-            // dispatch(addCategory(values))
-            alert("help")
+            dispatch(addCategory(values))
           } else {
             values.id = parseInt(idCategory())
             dispatch(updateCategory(values))
           }
-          !loading ? navigate("/categories") : null
-          console.log(values.id)
+          if (!loading) {
+            navigate("/categories")
+          }
         }}>
         {({errors, touched}) => {
           return (
@@ -110,7 +121,7 @@ const AddCategory = ({add}: TypeTitle) => {
                   buttonType="submit"
                   buttonText={intl.formatMessage({id: "app.categories.button.save"})}
                   className="button-select"
-                  disabled={!!errors.description||!!errors.name}
+                  disabled={!!errors.description || !!errors.name}
                 />
               </div>
             </Form>
