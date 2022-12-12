@@ -1,52 +1,49 @@
-import "./userName.scss";
+import "./input.scss";
+import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {getUser} from "../store/loginName/userSlice";
 
 type UserNameProps = {
-  minSymbol: number;
-  maxSymbol: number;
+  field: {
+    name: string,
+    onChange: React.ChangeEventHandler<HTMLInputElement>,
+    value: string
+  };
+  error?: string;
 }
-const UserName = ({minSymbol, maxSymbol}: UserNameProps): JSX.Element => {
-  // eslint-disable-next-line no-useless-escape
-  const userNameRegex = new RegExp("^[A-Z\d]" +
-    "{" + minSymbol + "," + maxSymbol + "}$", "i");
+const UserName = ({field, error}: UserNameProps): JSX.Element => {
+  const intl = useIntl();
   const [extraStyle, setExtraStyle] = useState("");
-  const [error, setError] = useState("");
-
+  const [busyName, setBusyName] = useState("");
   const dispatch = useAppDispatch();
   const userStatus = useAppSelector((state) => state.user.isLogged);
 
   const fieldHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    dispatch(getUser(value));
-
-    if (!userNameRegex.test(value)) {
-      setError("Invalid username entered");
-      setExtraStyle("errorInput");
-    } else {
-      setError("");
-    }
+    dispatch(getUser(e.currentTarget.value));
   };
 
   useEffect(() => {
     if (userStatus) {
-      setError("User already exists. Please enter a different username");
+      setBusyName(intl.formatMessage({ id:"app.userName.nameExists"}));
       setExtraStyle("redBorder");
     }
-  }, [userStatus]);
+  }, [userStatus,intl]);
 
   return (
-    <div className="userName">
-      <label className="userNameLabel">Username</label>
+    <label className="input-label">
+      <FormattedMessage id="app.UserName"/>
       <input
         type="text"
-        required
-        className={classNames("userNameInput", {[`${extraStyle}`]: (error)})}
-        onChange={fieldHandler}/>
-      {(error) && <span className="error">{error}</span>}
-    </div>
+        className={classNames("input", {[`${extraStyle}`]: error})}
+        onKeyUp={fieldHandler}
+        placeholder={intl.formatMessage({ id: "app.code.invalidationRules" })}
+        {...field}
+      />
+      {(error) && <span className="error-message">{error}</span>}
+      {(busyName) && <span className="error-message">{busyName}</span>}
+    </label>
   );
 };
 

@@ -1,19 +1,17 @@
 @import "../constants.scss";
 
-$white-color: #fff;
-$content-color: #1b1b1f;
-
 .menu__content {
-  position: fixed;
-  left: 0;
-  top: 66px;
-  width: 64px;
-  height: 794px;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
-  transition: 0.1s;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 64px;
+    height: 794px;
+    background-color: $white;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+    transition: .1s;
 }
 
 .menu__content--active {
@@ -61,7 +59,7 @@ $content-color: #1b1b1f;
   font-family: $font;
   font-size: 0;
   font-weight: 600;
-  color: $content-color;
+  color: $black;
   opacity: 0;
   transition: 0.1s;
 }
@@ -98,11 +96,11 @@ $content-color: #1b1b1f;
 }
 
 .image__wrapper--active:hover .svg__item {
-  fill: $white-color;
+  fill: $white;
 }
 
 .image__wrapper--active:hover .svg__menu {
-  stroke: $white-color;
+  stroke: $white;
 }
 
 .svg__item {
@@ -111,7 +109,7 @@ $content-color: #1b1b1f;
   align-items: center;
   width: 100%;
   height: 100%;
-  fill: $content-color;
+  fill: $black;
 }
 
 .svg__item svg {
@@ -120,7 +118,7 @@ $content-color: #1b1b1f;
 }
 
 .svg__menu {
-  stroke: $content-color;
+  stroke: $black;
 }
 
 .svg__item--active.svg__item--selected {
@@ -128,7 +126,7 @@ $content-color: #1b1b1f;
 }
 
 .svg__item--selected {
-  fill: $white-color;
+  fill: $white;
 }
 
 .copyright-wrapper {

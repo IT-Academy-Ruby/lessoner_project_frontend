@@ -1,4 +1,4 @@
-@import "../constants.scss";
+@import "./src/constants.scss";
 
 .search-component {
   position: absolute;
@@ -18,17 +18,17 @@
 }
 
 .search-input {
-  font-family: 'ApercuPro',sans-serif;
+  font-family: "ApercuPro", sans-serif;
   font-weight: 600;
   font-size: 16px;
   width: 100%;
   height: 64px;
   padding-left: 56px;
   border: none;
-}
 
-.search-input::placeholder {
-  color: $greySearchColor;
+  &::placeholder {
+    color: #E3E1EC;
+  }
 }
 
 .search-cross {
