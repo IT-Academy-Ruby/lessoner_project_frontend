@@ -8,9 +8,9 @@ export const getCategory = createAsyncThunk(
     const responce = await request(`${BACKEND_URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
-      return data
+      return data;
     } else {
-      return `errror ${responce.status}`
+      return `errror ${responce.status}`;
     }
   }
 );
@@ -21,9 +21,9 @@ export const addCategory = createAsyncThunk(
     const responce = await request(`${BACKEND_URL}/categories`, "POST", value);
     const data = await responce.json();
     if (responce.status === 200) {
-      return data
+      return data;
     } else {
-      return `errror ${responce.status}`
+      return `errror ${responce.status}`;
     }
   }
 );
@@ -35,13 +35,13 @@ export const updateCategory = createAsyncThunk(
       name: value.name,
       description: value.description,
       status: value.status,
-    }
+    };
     const responce = await request(`${BACKEND_URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
-      return data
+      return data;
     } else {
-      return `errror ${responce.status}`
+      return `errror ${responce.status}`;
     }
   }
 );
@@ -53,13 +53,13 @@ export const archiveCategory = createAsyncThunk(
       name: value.name,
       description: value.description,
       status: value.status === "active" ? "archived" : "active"
-    }
+    };
     const responce = await request(`${BACKEND_URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
-      return data
+      return data;
     } else {
-      return `errror ${responce.status}`
+      return `errror ${responce.status}`;
     }
   }
 );
@@ -74,15 +74,13 @@ type Categories = {
   loading: boolean
 };
 
-const initialState: Categories = {
-  categories: [{
-    id: 0,
-    name: "",
-    description: "",
-    status: "",
-  }],
-  loading: false,
-};
+const initialState: Categories = {categories: [{
+  id: 0,
+  name: "",
+  description: "",
+  status: "",
+}],
+loading: false,};
 
 const categorySlice = createSlice({
   name: "category",
@@ -96,19 +94,19 @@ const categorySlice = createSlice({
     builder.addCase(getCategory.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(addCategory.fulfilled, (state, action) => {
+    builder.addCase(addCategory.fulfilled, (state) => {
       state.loading = false;
     });
     builder.addCase(addCategory.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(updateCategory.fulfilled, (state, action) => {
+    builder.addCase(updateCategory.fulfilled, (state) => {
       state.loading = false;
     });
     builder.addCase(updateCategory.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(archiveCategory.fulfilled, (state, action) => {
+    builder.addCase(archiveCategory.fulfilled, (state) => {
       state.loading = false;
     });
     builder.addCase(archiveCategory.pending, (state) => {

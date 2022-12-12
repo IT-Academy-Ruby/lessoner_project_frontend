@@ -21,7 +21,7 @@ const Categories = () => {
 
   const addCategory = () => {
     navigate("/categories/addCategory");
-  }
+  };
 
   return (
     <div className="categories">

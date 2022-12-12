@@ -1,19 +1,17 @@
-import "./addCategory.scss"
-import {addCategory, updateCategory} from "../../../../../store/categorySlice/categorySlice";
+import "./addCategory.scss";
 import {DESCRIPTION_CATEGORY, NAME_CATEGORY} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
-import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
+import {addCategory, updateCategory} from "../../../../../store/categorySlice/categorySlice";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import Loader from "../../../../Loader";
-import requestApi from "../../../../../services/request";
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-
+import {useIntl} from "react-intl";
 
 interface FormValues {
   id: number;
@@ -45,7 +43,7 @@ const AddCategory = ({add}: TypeTitle) => {
     name: "",
     description: "",
     status: "active",
-  }
+  };
 
   return (
     <div className="add-category">
@@ -62,29 +60,29 @@ const AddCategory = ({add}: TypeTitle) => {
             errors.name = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
           }
           if (values.name.length > NAME_CATEGORY.maxSymbols) {
-            errors.name = intl.formatMessage({id: "app.activeCategories.errorMaxLength"}, {
-              symbols: NAME_CATEGORY.maxSymbols
-            });
+            errors.name = intl.formatMessage(
+              {id: "app.activeCategories.errorMaxLength"}, {symbols: NAME_CATEGORY.maxSymbols});
           }
           if (values.description.length < DESCRIPTION_CATEGORY.minSymbols) {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
           }
           if (values.description.length > DESCRIPTION_CATEGORY.maxSymbols) {
-            errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"}, {
-              symbols: DESCRIPTION_CATEGORY.maxSymbols
-            });
-          }
+            errors.description = intl.formatMessage(
+              {id: "app.activeCategories.errorMaxLength"},
+              {symbols: DESCRIPTION_CATEGORY.maxSymbols}
+            );
+          };
           return errors;
         }}
         onSubmit={(values: FormValues) => {
           if (add) {
-            dispatch(addCategory(values))
+            dispatch(addCategory(values));
           } else {
-            values.id = parseInt(idCategory())
-            dispatch(updateCategory(values))
+            values.id = parseInt(idCategory());
+            dispatch(updateCategory(values));
           }
           if (!loading) {
-            navigate("/categories")
+            navigate("/categories");
           }
         }}>
         {({errors, touched}) => {
@@ -125,10 +123,10 @@ const AddCategory = ({add}: TypeTitle) => {
                 />
               </div>
             </Form>
-          )
+          );
         }}
       </Formik>
     </div>
-  )
-}
+  );
+};
 export default AddCategory;

@@ -1,9 +1,8 @@
 import "./categoryImage.scss";
-import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
-import {useRef} from "react";
+import {FormattedMessage} from "react-intl";
 import Select from "../../../../icons/select.svg";
 import Upload from "../../../../icons/download.svg";
+import {useRef} from "react";
 
 type CategoryImageProps = {
   field: {
@@ -14,9 +13,8 @@ type CategoryImageProps = {
   error?: string | undefined;
 }
 
-const CategoryImage = ({field, error}: CategoryImageProps) => {
+const CategoryImage = ({error}: CategoryImageProps) => {
   const fileRef = useRef<HTMLInputElement>(null);
-  const intl = useIntl();
   const handleUpload = () => {
     if (fileRef.current) {
       fileRef.current.click();
@@ -34,7 +32,7 @@ const CategoryImage = ({field, error}: CategoryImageProps) => {
         </span>
         <div className="upload-buttons">
           <span className="upload-text">
-          <FormattedMessage id="app.categories.dragAandDrop"/>
+            <FormattedMessage id="app.categories.dragAandDrop"/>
           </span>
           <span className="upload-text margin-or">
             <FormattedMessage id="app.categories.or"/>
@@ -53,7 +51,7 @@ const CategoryImage = ({field, error}: CategoryImageProps) => {
         {error && <span className="error-message">{error}</span>}
       </div>
     </div>
-  )
-}
-CategoryImage.displayName = "CategoryImage"
+  );
+};
+CategoryImage.displayName = "CategoryImage";
 export default CategoryImage;

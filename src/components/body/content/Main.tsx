@@ -8,10 +8,8 @@ import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
-import {useIntl} from "react-intl";
 
 const Content = () => {
-  const intl = useIntl();
   return (
     <div className="main">
       <Routes>

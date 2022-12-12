@@ -23,6 +23,6 @@ const CategoryName = ({field,error}:CategoryNameProps): JSX.Element => {
       />
       {(error) && <span className="error-message">{error}</span>}
     </label>
-  )
-}
+  );
+};
 export default CategoryName;

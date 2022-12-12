@@ -22,6 +22,6 @@ const CategoryDescription = ({field, error}: CategoryDescriptionProps): JSX.Elem
       />
       {(error) && <span className="error-message">{error}</span>}
     </label>
-  )
-}
+  );
+};
 export default CategoryDescription;

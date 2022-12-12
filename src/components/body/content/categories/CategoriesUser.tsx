@@ -1,6 +1,6 @@
-import {useAppSelector} from "../../../../store/hooks";
 import IT from "../../../icons/examplImage/IT.svg";
 import Loader from "../../../Loader";
+import {useAppSelector} from "../../../../store/hooks";
 
 const CategoriesUser = () => {
   const allCategories = useAppSelector((state) => state.categories.categories);
@@ -20,6 +20,6 @@ const CategoriesUser = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 export default CategoriesUser;
