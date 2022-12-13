@@ -2,16 +2,44 @@
 
 $themes: (
   bgThemeColor1: (
-    darkTheme: $blue700,
-    lightTheme: $grey100,
-  ),
-  bgThemeColor2: (
-    darkTheme: $blue600,
-    lightTheme: $grey200,
+    darkTheme: $darkMain,
+    lightTheme: $lightMain,
   ),
   textThemeColor1: (
     darkTheme: $grey100,
     lightTheme: $black,
+  ),
+  bgThemeSideBarColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  iconsThemeSideBarColor: (
+    darkTheme: $lightMain,
+    lightTheme: $darkMain,
+  ),
+  textThemeSideBarColor: (
+    darkTheme: $lightMain,
+    lightTheme: $darkMain,
+  ),
+  bgCardThemeColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  titleCardThemeColor: (
+    darkTheme: $lightCardText,
+    lightTheme: $darkMain,
+  ),
+  categoryTextCardThemeColor: (
+    darkTheme: $lightCardText,
+    lightTheme: $bluePrimaryText,
+  ),
+  categorybgCardThemeColor: (
+    darkTheme: $Surface5Dark,
+    lightTheme: $Surface5Light,
+  ),
+  KebabCardThemeColor: (
+    darkTheme: $lightMain,
+    lightTheme: $darkMain,
   ),
 );
 
