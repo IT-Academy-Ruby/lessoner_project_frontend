@@ -100,4 +100,9 @@ export const messages_en = {
   "app.gender.male": "Male",
   "app.gender.female": "Female",
   "app.gender.other": "Other",
+  "app.nameCategory.it": "IT",
+  "app.nameCategory.design": "Design",
+  "app.nameCategory.music": "Music",
+  "app.nameCategory.business": "Business",
 };
+  
