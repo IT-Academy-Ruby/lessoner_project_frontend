@@ -1,8 +1,9 @@
 import "./LessonCard.scss";
 import Kebab from "../assets/kebab.png";
 import { LetterSvg } from "../components/svg/LetterSvg";
+import { Link } from "react-router-dom";
 import Rating from "./body/content/Rating/Rating";
-import React from "react";
+import React, { useState } from "react";
 import Tag from "./body/Tags/Tag";
 
 type ThumbnailImageUrlProps = {
@@ -33,9 +34,22 @@ const Title: React.FC<TitleProps> = (props) => {
   );
 };
 
-const MenuKebab = () => {
+{
+  /* <Link to="/lessons/edit">
+      
+    </Link> */
+}
+
+const MenuKebab = (currentCard: any, onClick: any) => {
+  const getCardInfo = () => {
+    onClick(currentCard);
+    /* console.log(
+       `id: ${bodyCard.idCard.id}, IT: ${bodyCard.idCard.category}, image: ${bodyCard.idCard.imagePreview}, name: ${bodyCard.idCard.title},`
+    ); */
+  };
+
   return (
-    <div className="kebab__menu">
+    <div className="kebab__menu" onClick={getCardInfo}>
       <img src={Kebab} alt="kebab" />
     </div>
   );
@@ -79,6 +93,12 @@ type LessonCardsProps = {
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
+  const [curCard, setCurCard] = useState();
+  const getCurCardInfo = (curCard: any) => {
+    /* setCurCard(curCard); */
+    console.log(curCard);
+  };
+  
   return (
     <div className="wrapper">
       <div className="card">
@@ -96,7 +116,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} />
-            <MenuKebab />
+            <MenuKebab idCard={props} onclick={getCurCardInfo} />
           </div>
           <div className="details">
             <Published published={props.published} />

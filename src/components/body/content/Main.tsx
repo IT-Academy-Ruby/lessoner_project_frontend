@@ -7,6 +7,7 @@ import MyStudio from "./my_studio/MyStudio";
 import NavbarStudyStudio from "../../NavbarStudyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
+import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
 
 const Content = () => {
   const typeOfNavbar = 
@@ -15,24 +16,27 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
-        <Route path="myStudio" 
+        <Route
+          path="myStudio"
           element={
             <>
-              <MyStudio /> 
+              <MyStudio />
               {typeOfNavbar.studio}
             </>
-          } 
+          }
         />
         <Route path="/" element={<Lessoner />} />
-        <Route path="/categories"
+        <Route
+          path="/categories"
           element={
             <>
               <Categories />
               {typeOfNavbar.study}
             </>
-          } 
+          }
         />
         <Route path="/lessons" element={<Lessons />} />
+        <Route path="/lessons/edit" element={<EditVideoLessonTitle/>} />
         <Route path="/about" element={<About />} />
         <Route path="/users/sign_in" element={<SignIn />} />
         <Route path="/users/sign_up" element={<SignUp />} />

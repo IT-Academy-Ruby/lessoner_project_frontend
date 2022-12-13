@@ -23,7 +23,7 @@ export const EditVideoLessonThumbnail = () => {
             key={item.id}
             onClick={() => thumbnailId(item.id)}
           >
-            <img className="evlth__item-img" src={item.src} alt="picture"/>
+            {/* <img className="evlth__item-img" src={item.src} alt="picture"/> */}
           </div>
         )
         }
