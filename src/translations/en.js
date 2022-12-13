@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import { CODE, PASSWORD, USERNAME } from "../constants";
+import {
+  CODE, PASSWORD, USERNAME
+} from "../constants";
 
 export const messages_en = {
   "app.name": "Lessoner",
