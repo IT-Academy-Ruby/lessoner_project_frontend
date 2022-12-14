@@ -3,59 +3,71 @@ import {
   Field, Form, Formik 
 } from "formik";
 import Button from "../Button";
-import { EditVideoLessonThumbnail } from "./EditVideoLessonThumbnail";
 import classNames from "classnames";
 import { useIntl } from "react-intl";
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, FC } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { ILessonBack } from "../types/types";
 
 const RegExp = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
 const hashtagRegExp = /^[#]{0,10}$/;
 const maxNameLength = 64;
 const maxDescriptionLength = 600;
 
-export const EditVideoLessonForm = () => {
+export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
-  const getCatigorieUrl = "https://lessoner-project-2w3h.onrender.com/categories";
   const items = [
     { id: 1, src: "" },
     { id: 2, src: "" },
     { id: 3, src: "" },
     { id: 4, src: "" },
   ];
+  const [lesson, setLesson] = useState<ILessonBack | null>(null);
+  const params = useParams();
+  const navigate = useNavigate();
+  const getLessonsUrl =
+    "https://lessoner-project-2w3h.onrender.com/lessons/" + params.id;
 
   useEffect(() => {
-    fetch(getCatigorieUrl)
-      .then(response => response.json())
-      .then(categories => getCatigories(categories))
-      .catch(error => console.log(error));
+    fetchLesson();
   }, []);
 
-  const getCatigories = (categories: any) => {
-    console.log(categories);
-    console.log(categories[0].id);
-    console.log(categories[0].name);
-    console.log(categories[0].description);
+  const fetchLesson = () => {
+    fetch(getLessonsUrl)
+      .then((response) => response.json())
+      .then((lesson) => setLesson(lesson))
+      .catch((error) => console.log(error));
   };
 
-  const validateName = (value: string) => {
-    if (!value) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
-    } else if (!RegExp.test(value)) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
-    } else if (value.length > maxNameLength) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorMaxCharacters"}, {maxNameLength});
+  
+  
+  const validateName = (values: string) => {
+    if (!values) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
+    } else if (!RegExp.test(values)) {
+      return intl.formatMessage({
+        id: "app.editVideoLesson.errorProhibitedCharacters",
+      });
+    } else if (values.length > maxNameLength) {
+      return intl.formatMessage(
+        { id: "app.editVideoLesson.errorMaxCharacters" },
+        { maxNameLength }
+      );
     }
   };
 
   const validateDescription = (value: string) => {
     if (!value) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled"});
+      return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!RegExp.test(value)) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters"});
+      return intl.formatMessage({
+        id: "app.editVideoLesson.errorProhibitedCharacters",
+      });
     } else if (value.length > maxDescriptionLength) {
       return intl.formatMessage(
-        { id: "app.editVideoLesson.errorMaxCharactersDescr"}, {maxDescriptionLength});
+        { id: "app.editVideoLesson.errorMaxCharactersDescr" },
+        { maxDescriptionLength }
+      );
     }
   };
 
@@ -63,12 +75,33 @@ export const EditVideoLessonForm = () => {
     console.log(id);
   };
 
+  
+
+  
+
+  const [valueTitle, setValueTitle] = useState<string>("");
+  const [valueDescription, setValueDescription] = useState("");
+  /* setValue(lesson?.title); */
+  const changeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValueTitle(e.target.value);
+    
+  }
+
+  const lessonFromBack = {
+    title: lesson?.title,
+    description: lesson?.description,
+  };
+
+  const lessonFromEditForm = {
+    title: valueTitle,
+    description: valueDescription,
+  };
   return (
     <Formik
       initialValues={{
-        name: "",
+        name: lessonFromBack.title,
         category: "IT",
-        description: "",
+        description: lessonFromBack.description,
         thumbnail: 0,
       }}
       onSubmit={(values) => {
@@ -84,6 +117,8 @@ export const EditVideoLessonForm = () => {
                 ["error-input"]: errors.name && errors.name,
               })}
               name="name"
+              value={lessonFromBack.title}
+              onChange={changeNameHandler}
               validate={validateName}
             />
             {errors.name && touched.name && (
@@ -116,6 +151,7 @@ export const EditVideoLessonForm = () => {
               validate={validateDescription}
               as="textarea"
               rows="9"
+              value={lessonFromBack.description}
             />
             {errors.description && touched.description && (
               <div className="error-message">{errors.description}</div>
@@ -161,13 +197,12 @@ export const EditVideoLessonForm = () => {
           </label>
 
           <div className="evlf__btn-wrapper">
-            <Link to="/lessons" className="evlf__btn-link">
-              <Button
-                buttonType="button"
-                buttonText={intl.formatMessage({ id: "app.button.cancel" })}
-                className="button__fs16-white button__fs16-white-evlt"
-              />
-            </Link>
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({ id: "app.button.cancel" })}
+              className="button__fs16-white button__fs16-white-evlt"
+              onClick={() => navigate("/lessons")}
+            />
             <Button
               buttonType="submit"
               buttonText={intl.formatMessage({ id: "app.button.save" })}
