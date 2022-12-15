@@ -46,22 +46,18 @@ const Header = () => {
         <div className="header-buttons">
           {isRegister ? <Avatar/> : <Fragment>
             <div className="language"></div>
-            {/*<Link to="/users/sign_in" className="login-link">*/}
               <Button
                 buttonType="button"
                 buttonText={intl.formatMessage({id: "app.header.login"})}
                 className="button-login"
                 onClick={()=>navigate("/user/sign_in")}
               />
-            {/*</Link>*/}
-            {/*<Link to="/users/sign_in" className="login-link">*/}
               <Button
                 buttonType="button"
                 buttonText={intl.formatMessage({id: "app.registration"})}
                 className="button-register"
                 onClick={()=>navigate("/user/sign_up")}
               />
-            {/*</Link>*/}
           </Fragment>}
         </div>
       </div>

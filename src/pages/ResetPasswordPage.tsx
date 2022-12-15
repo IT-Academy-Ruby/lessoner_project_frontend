@@ -22,16 +22,13 @@ interface FormErrors {
 const ResetPasswordPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  // const emailFound = useAppSelector(state => state.login.notFound);
   const navigate = useNavigate();
   const loading = useAppSelector(state => state.login.loading);
   const isEmail = useAppSelector(state => state.login.isEmail);
 
   const initialValues: FormValues = {email: "",};
 
-  // const closeLinkPopup = () => {
   //   navigate("/users/");
-  // };
 
   return (
     <div className="log-content">

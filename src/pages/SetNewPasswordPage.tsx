@@ -3,12 +3,14 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import {changePassword} from "../services/api/changePassword";
+import {changePassword} from "../store/loginName/loginSlice";
 import getParameterValue from "../helpers/parseUrl";
 import {passwordRegex} from "../validationRules";
+import {useNavigate} from "react-router-dom";
 
 interface FormValues {
   password: string;
@@ -24,8 +26,10 @@ const SetNewPasswordPage = () => {
   const maxSymbol = PASSWORD.maxLength;
   const symbols = PASSWORD.symbols;
   const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const navigate =useNavigate();
+  const token = useAppSelector(state => state.login.token);
   const initialValues: FormValues = {password: "", confirmPassword: ""};
-  const token = getParameterValue(window.location.href, "token");
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
@@ -49,20 +53,20 @@ const SetNewPasswordPage = () => {
     return errors;
   };
 
-  const submitFirstStepForm = async (values: FormValues) => {
-    if (token) {
-      const isStatusSended = await changePassword(token, values.password);
-      console.log(isStatusSended);
-    }
-  };
-
   return (
     <div className="log-content">
       <Formik
         initialValues={initialValues}
         validateOnChange={false}
         validate={validate}
-        onSubmit={submitFirstStepForm}
+        onSubmit={(values: FormValues) => {
+          const value = {
+            token: token,
+            password: values.password,
+          };
+          dispatch(changePassword(value));
+          navigate("/")
+        }}
       >
         {({errors, touched}) => {
           return (

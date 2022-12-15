@@ -37,9 +37,7 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
         return <PhoneNumberPage registration={registration}/>;
       case "FirstRegistrationForm":
         return <FirstRegistrationForm
-          // userPassword={userPassword}
           setUserPassword={setUserPassword}
-          // userEmail={userEmail}
           setUserEmail={setUserEmail}
         />;
       case "YourselfPage":
@@ -51,6 +49,7 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
       case "ConfirmReg":
         return <ConfirmReg
           registration={registration}
+          userEmail={userEmail}
         />;
     }
   };

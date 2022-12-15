@@ -33,7 +33,7 @@ const gender = [
   }];
 
 interface FormValues {
-  userName: string;
+  name: string;
   gender: string;
   email: string;
   birthday: string;
@@ -58,7 +58,7 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isEmail = useAppSelector(state => state.login.isEmail);
-  const isUser = useAppSelector((state) => state.user.isLogged);
+  const isUser = useAppSelector((state) => state.login.isLogged);
   const loading = useAppSelector(state => state.login.loading);
 
   const [isWrapper, setIsWrapper] = useState(false);
@@ -72,24 +72,24 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
     if (isEmail) {
       errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
     }
-    if (!UserRegex.test(values.userName)) {
-      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
+    if (!UserRegex.test(values.name)) {
+      errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
     }
-    if (values.userName.length === 0) {
-      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
+    if (values.name.length === 0) {
+      errors.name = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
-    if (values.userName.length < USERNAME.minLength && values.userName.length > 0) {
-      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorSmallName"}, {
+    if (values.name.length < USERNAME.minLength && values.name.length > 0) {
+      errors.name = intl.formatMessage({id: "app.YourselfPage.errorSmallName"}, {
         minSymbol: minSymbol
       });
     }
-    if (values.userName.length > USERNAME.maxLength) {
-      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorBigName"}, {
+    if (values.name.length > USERNAME.maxLength) {
+      errors.name = intl.formatMessage({id: "app.YourselfPage.errorBigName"}, {
         maxSymbol: maxSymbol
       });
     }
     if (isUser) {
-      errors.userName = intl.formatMessage({id: "app.userName.nameExists"});
+      errors.name = intl.formatMessage({id: "app.userName.nameExists"});
     }
     if (!values.birthday) {
       errors.birthday = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
@@ -104,7 +104,7 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
     <div className="log-content">
       <Formik
         initialValues={{
-          userName: "",
+          name: "",
           phone:" ",
           gender: "",
           email: userEmail ? userEmail : "",
@@ -115,7 +115,7 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
         validate={validate}
         onSubmit={(values: FormValues) => {
           dispatch(signUpSlice(values));
-          loading ? navigate("/user/reg_in/information/modR") : null;
+         navigate("/user/reg_in/information/modR");
         }}
       >
         {({errors, touched}) => {
@@ -130,9 +130,9 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
                 error={touched.email ? errors.email : undefined}
               />}
               <Field
-                name="userName"
+                name="name"
                 component={UserName}
-                error={touched.userName ? errors.userName : undefined}/>
+                error={touched.name ? errors.name : undefined}/>
               <Field
                 name="birthday"
                 component={BirthdayPicker}

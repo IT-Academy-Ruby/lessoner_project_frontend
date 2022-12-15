@@ -9,26 +9,39 @@ import LoginPage from "./pages/LoginPage";
 import Pages from "./components/Pages";
 import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-import Search from "./components/body/header/search/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
+import {addToken, confirmTokenSlice} from "./store/loginName/loginSlice";
+import {useAppDispatch} from "./store/hooks";
 import {useEffect, useState} from "react";
+import getParameterValue from "./helpers/parseUrl";
 
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
-    const url = window.location.href;
-
-  useEffect(()=>{
-    const isToken = url.lastIndexOf("token=")
-    if(isToken>0) {
-      console.log(url.slice(url.lastIndexOf("token=") + 6))
-      // url.slice(url.lastIndexOf("token=") + 6)
-    }
-  },[])
-
+  const dispatch = useAppDispatch();
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+  const url = window.location.href;
+  let count = 1;
+
+  useEffect(() => {
+    const registrationToken = url.lastIndexOf("confirm_email?token=");
+    const resetPasswordToken = url.lastIndexOf("reset_password?token=");
+    if (registrationToken > 0 && count === 1) {
+      const token = url.slice(url.lastIndexOf("token=") + 6);
+      dispatch(confirmTokenSlice(token));
+      window.location.href = "/user/sign_in"
+      count++
+    }
+    if (registrationToken > 0 && count === 1) {
+      const token = url.slice(url.lastIndexOf("token=") + 6)
+      dispatch(addToken(token));
+      window.location.href = "/user/sign_in/reset_password/new_password"
+    }
+  }, [count]);
+
+
   const signOut = () => {
     localStorage.setItem("JWT", "");
   };
@@ -69,8 +82,6 @@ function App(): JSX.Element {
             <Route
               path="/user/sign_in/reset_password"
               element={<Pages pageType={"ResetPage"}/>}/>
-
-
             <Route
               path="/user/sign_in/reset_password/new_password"
               element={<Pages pageType={"SetNewPassword"}/>}/>

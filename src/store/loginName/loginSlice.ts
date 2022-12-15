@@ -14,6 +14,48 @@ export const getUser = createAsyncThunk(
   }
 );
 
+export const getEmail = createAsyncThunk(
+  "user/getEmailStatus",
+  async (email: string): Promise<boolean> => {
+    const response = await fetch(
+      `${BACKEND_URL}/check_email?email=${email}`
+    );
+    if (!response.ok) {
+      throw new Error(`Error code ${response.status}`);
+    }
+    const data = await response.json();
+    return data.email_exists;
+  }
+);
+
+export const signUpSlice = createAsyncThunk(
+  "users/signUpSliceStatus",
+  async (value: { name: string, phone?: string, gender: string, email: string, birthday: string, password: string }) => {
+    const response = await fetch(`${BACKEND_URL}/sign_up`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(value),
+    });
+    if (response.status !== 201) {
+      return response.status;
+    }
+    const data = await response.json();
+    return data;
+  }
+)
+
+export const confirmTokenSlice = createAsyncThunk(
+  "users/confirmTokenSliceStatus",
+  async (value: string) => {
+    const response = await fetch(`${BACKEND_URL}/sign_up/confirm_email?token=${value}`);
+    if (response.status != 200) {
+      return response.status
+    }
+    const data = await response.json();
+    return data;
+  }
+)
+
 export const getLogin = createAsyncThunk(
   "user/getLoginStatus",
   async (value: { email: string, password: string }) => {
@@ -30,22 +72,8 @@ export const getLogin = createAsyncThunk(
   }
 );
 
-export const getEmail = createAsyncThunk(
-  "user/getEmailStatus",
-  async (email: string): Promise<boolean> => {
-    const response = await fetch(
-      `${BACKEND_URL}/check_email?email=${email}`
-    );
-    if (!response.ok) {
-      throw new Error(`Error code ${response.status}`);
-    }
-    const data = await response.json();
-    return data.email_exists;
-  }
-);
-
 export const sendPasswordResetLink = createAsyncThunk(
-  "user/sendPasswordResetLink",
+  "user/sendPasswordResetLinkStatus",
   async (email: string): Promise<boolean> => {
     const response = await fetch(`${BACKEND_URL}/password/forgot`, {
       method: "POST",
@@ -56,30 +84,23 @@ export const sendPasswordResetLink = createAsyncThunk(
       return false;
     }
     return true;
-  }
-);
+  });
 
-export const signUpSlice = createAsyncThunk(
-  "users/signUpSliceStatus",
-  async (value: { userName: string, phone?: string, gender: string, email: string, birthday: string, password: string }) => {
-    const response = await fetch(
-      `${BACKEND_URL}/sign_up`,
-      {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(value)
-      });
-    console.log(response)
-    console.log(value)
-    if(response.status!==200){
-      return response.status
+export const changePassword = createAsyncThunk(
+  "user/changePasswordStatus",
+  async (value:{token: string, password: string}): Promise<string> => {
+    const response = await fetch(`${BACKEND_URL}/password/reset`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({token: value.token, password: value.password})
+    });
+
+    if (response.status !== 200) {
+      throw new Error(`Error code ${response.status}`);
     }
     const data = await response.json();
-    console.log(data)
-    return data;
-  }
-)
-
+    return data.status;
+  });
 
 type Login = {
   user: {
@@ -97,6 +118,7 @@ type Login = {
   isEmail: boolean | string;
   loading: boolean;
   isLogged: boolean;
+  token:string
 };
 
 const initialState: Login = {
@@ -115,6 +137,7 @@ const initialState: Login = {
   isEmail: "",
   loading: false,
   isLogged: false,
+  token:"",
 };
 
 const loginSlice = createSlice({
@@ -130,6 +153,9 @@ const loginSlice = createSlice({
     lookEvent: (state) => {
       state.lookButton = !state.lookButton;
     },
+    addToken:(state, action)=>{
+      state.token = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -146,20 +172,9 @@ const loginSlice = createSlice({
     builder.addCase(getLogin.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(sendPasswordResetLink.fulfilled, (state, action) => {
-      // state.notFound = action.payload;
-      state.loading = false;
-    });
-    builder.addCase(sendPasswordResetLink.pending, (state) => {
-      state.loading = true;
-    });
     builder.addCase(getEmail.fulfilled, (state, action) => {
       state.isEmail = action.payload;
-      // state.loading = false;
     });
-    // builder.addCase(getEmail.pending, (state) => {
-    //   state.loading = true;
-    // });
     builder.addCase(signUpSlice.fulfilled, (state, action) => {
       state.user = action.payload;
       state.loading = false;
@@ -171,6 +186,6 @@ const loginSlice = createSlice({
 });
 
 export const {
-  buttonEvent, changeEvent, lookEvent,
+  buttonEvent, changeEvent, lookEvent, addToken
 } = loginSlice.actions;
 export default loginSlice.reducer;
