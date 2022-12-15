@@ -41,7 +41,34 @@ $themes: (
     darkTheme: $lightMain,
     lightTheme: $darkMain,
   ),
+  bgFirstRegistrForm: (
+    darkTheme: $dark1,
+    lightTheme: $light1,
+  ),
+  titlesFirstRegistrForm: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  inputTextFirstRegistrForm: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgCalendar: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textCalendar: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
+  ),
+  textCalendarOutsideMonth: (
+    darkTheme: $dark4,
+    lightTheme: $light4,
+  )
+  
+ 
 );
+
 
 @mixin styles($mode) {
   @each $key, $map in $themes {
