@@ -1,7 +1,7 @@
 import "./search.scss";
 import {useEffect, useState} from "react";
-import Arrow from "./icons/Arrow.svg";
-import Cross from "./icons/Cross.svg";
+import Arrow from "../../../icons/Arrow.svg";
+import Cross from "../../../icons/Cross.svg";
 import {Link} from "react-router-dom";
 
 const Search = () => {

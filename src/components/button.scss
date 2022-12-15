@@ -4,26 +4,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: $formWidth;
+  width: 100%;
   height: 46px;
   padding: 10px;
-  margin: $marginBottomMain;
+  margin-bottom: 28px;
   border-radius: 28px;
   background: $blueLightColor;
   border: none;
-  font-family: $font;
+  font-family: "ApercuPro", sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
-  color: #fff;
+  color: $white;
   cursor: pointer;
-}
 
-@media (max-width: $max-width-3) {
-  .button__page {
-    height: 40px;
-    margin-bottom: 14px;
-    font-size: 16px;
+  &:active {
+    background: $blueDarkColor;
+  }
+
+  &:focus {
+    background: $blueDarkColor;
   }
 }
 
+.button {
+  margin-bottom: 28px;
+  font-family: 'ApercuPro', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: $blueLightColor;
+  border: none;
+  background: none;
+  width: 95px;
+  padding: 0;
+  align-self: center;
+  cursor: pointer;
+}
+
+@media (max-width: $max-width-phone) {
+  .button__page {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+}
