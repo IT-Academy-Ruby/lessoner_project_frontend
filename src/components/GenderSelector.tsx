@@ -34,7 +34,7 @@ const GenderSelector = ({
                 {...field}
                 type="radio"
                 className="radio"
-                value={option.label}
+                value={option.genderValue}
                 onClick={handleChange}
                 checked={field.label}
                 name={option.name}

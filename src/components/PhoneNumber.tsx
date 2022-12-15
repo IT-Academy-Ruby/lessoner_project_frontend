@@ -1,19 +1,24 @@
 import "react-phone-input-2/lib/style.css";
 import "./input.scss";
 import "./phoneNumber.scss";
+import {FieldInputProps, FormikProps} from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import React, {useState} from "react";
+import {DEFAULT_COUNTRY_CODE} from "../constants";
 import Magmagnifying from "./icons/magnifying_glass.svg";
 import PhoneInput from "react-phone-input-2";
+import classNames from "classnames";
 
 const deleteCountry: [string] = ["ke"];
 
-type PhoneNumberProps = {
+type PhoneNumberProps<V = string, FormValues = string> = {
+  field: FieldInputProps<V>;
+  form: FormikProps<FormValues>;
+  isError: boolean;
+  setIsError: (bool: boolean) => void;
   error: string;
-  setError: (str: string) => void;
   phoneNumber: string,
   setPhoneNumber: (str: string) => void;
-  isError: boolean;
 }
 
 type countryType = {
@@ -24,23 +29,27 @@ type countryType = {
 }
 
 const PhoneNumber = ({
-  error, setError, phoneNumber, setPhoneNumber, isError
-}: PhoneNumberProps) => {
+                       field, error, form, isError, setIsError, phoneNumber, setPhoneNumber
+                     }: PhoneNumberProps) => {
   const intl = useIntl();
-  const [isBlur, setIsBlur] = useState(false);
 
   const checkNumber =
     (value: string, country: countryType, e: React.ChangeEvent<HTMLDivElement>,
-      formattedValue: string) => {
-      if (country.format) {
-        if (formattedValue.split(" ").join("").length
-          !== country.format.split(" ").join("").length) {
-          setError(intl.formatMessage({id: "app.phoneNumber.err"}));
-        } else {
-          setError("");
+     formattedValue: string) => {
+      const {setFieldValue} = form;
+      const {name: fieldName} = field;
+      setFieldValue(fieldName, formattedValue, true);
+
+        if (country.format) {
+          if (formattedValue.split(" ").join("").length
+            !== country.format.split(" ").join("").length) {
+            setIsError(true);
+          } else {
+            setIsError(false);
+          }
         }
-        setPhoneNumber(value);
-      }
+
+      setPhoneNumber(value);
     };
 
   return (
@@ -49,17 +58,14 @@ const PhoneNumber = ({
       <img src={Magmagnifying} alt="" className="magmagnifying_glas"/>
       <PhoneInput
         onChange={checkNumber}
-        onBlur={() => {
-          setIsBlur(true);
-        }}
         excludeCountries={deleteCountry}
         value={phoneNumber}
         placeholder=""
         enableLongNumbers={true}
-        inputProps={{required: true}}
+        inputProps={{style: error ? {border: "1px solid red"} : null}}
       />
       <div className="symbol">&#10095;</div>
-      {((error && isBlur) || isError) && <span className="error-message">{error}</span>}
+      {error && <span className="error-message">{error}</span>}
     </label>
   );
 };

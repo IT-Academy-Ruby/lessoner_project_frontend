@@ -6,7 +6,7 @@ import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import { changePassword } from "../services/api/changePassword";
+import {changePassword} from "../services/api/changePassword";
 import getParameterValue from "../helpers/parseUrl";
 import {passwordRegex} from "../validationRules";
 
@@ -20,24 +20,30 @@ interface FormErrors {
 }
 
 const SetNewPasswordPage = () => {
-
+  const minSymbol = PASSWORD.minLength;
+  const maxSymbol = PASSWORD.maxLength;
+  const symbols = PASSWORD.symbols;
   const intl = useIntl();
-  const initialValues: FormValues = { password: "", confirmPassword: "" };
+  const initialValues: FormValues = {password: "", confirmPassword: ""};
   const token = getParameterValue(window.location.href, "token");
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (!passwordRegex.test(values.password)) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+          minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
+        });
     }
     if (values.password.length > PASSWORD.maxLength ||
-      values.password.length < PASSWORD.minLength) {
+      values.password.length < minSymbol) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
+          minSymbol: minSymbol, maxSymbol: maxSymbol
+        });
     }
     if (values.password !== values.confirmPassword) {
-      errors.password = errors.code =
+      errors.confirmPassword = errors.code =
         intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
     return errors;
@@ -66,15 +72,15 @@ const SetNewPasswordPage = () => {
               </h2>
               <Field
                 name="password" component={PasswordAndConfirm}
-                minSymbol={PASSWORD.minLength}
-                maxSymbol={PASSWORD.maxLength}
+                minSymbol={minSymbol}
+                maxSymbol={maxSymbol}
                 isConfirm={false}
                 error={touched.password ? errors.password : undefined}/>
               <Field
                 name="confirmPassword"
                 component={PasswordAndConfirm}
-                minSymbol={PASSWORD.minLength}
-                maxSymbol={PASSWORD.maxLength}
+                minSymbol={minSymbol}
+                maxSymbol={maxSymbol}
                 isConfirm={true}
                 error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
               <Button
