@@ -60,6 +60,7 @@ export const messages_en = {
   "app.navbarStudyStudio.watchLater": "Watch later",
   "app.navbarStudyStudio.myLesson": "My lesson",
   "app.navbarStudyStudio.management": "Management",
+  "app.navbarStudyStudio.footer": "All rights reserved.",
   "app.button.next": "Next",
   "app.button.ok": "Ok",
   "app.button.finish": "Finish",
