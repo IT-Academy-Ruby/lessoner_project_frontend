@@ -1,13 +1,16 @@
 import "./EditVideoLessonForm.scss";
 import { 
+  FC, useEffect, useState 
+} from "react";
+import { 
   Field, Form, Formik 
 } from "formik";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
-import classNames from "classnames";
-import { useIntl } from "react-intl";
-import React, { useEffect, useState, FC } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import { ILessonBack } from "../types/types";
+import classNames from "classnames";
+import request from "../../services/request";
+import { useIntl } from "react-intl";
 
 const RegExp = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
 const hashtagRegExp = /^[#]{0,10}$/;
@@ -27,6 +30,7 @@ export const EditVideoLessonForm: FC = () => {
   const navigate = useNavigate();
   const getLessonsUrl =
     "https://lessoner-project-2w3h.onrender.com/lessons/" + params.id;
+  const lessonEditUrl = getLessonsUrl;
 
   useEffect(() => {
     fetchLesson();
@@ -39,16 +43,23 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   };
 
+  const editL = (lessonFromEditForm: any) =>
+    request(lessonEditUrl, "PUT", lessonFromEditForm);
+
+  const addInfotoLessonObject = (values: any) => {
+    const lessonFromEditForm = { title: `${values.name}`, description: `${values.description}`,};
+    editL(lessonFromEditForm);
+  };
+
+  console.log(lesson);
   
-  
-  const validateName = (values: string) => {
-    if (!values) {
+   
+  const validateName = (title: string) => {
+    if (!title) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
-    } else if (!RegExp.test(values)) {
-      return intl.formatMessage({
-        id: "app.editVideoLesson.errorProhibitedCharacters",
-      });
-    } else if (values.length > maxNameLength) {
+    } else if (!RegExp.test(title)) {
+      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters" });
+    } else if (title.length > maxNameLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharacters" },
         { maxNameLength }
@@ -60,9 +71,7 @@ export const EditVideoLessonForm: FC = () => {
     if (!value) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!RegExp.test(value)) {
-      return intl.formatMessage({
-        id: "app.editVideoLesson.errorProhibitedCharacters",
-      });
+      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters" });
     } else if (value.length > maxDescriptionLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharactersDescr" },
@@ -75,51 +84,36 @@ export const EditVideoLessonForm: FC = () => {
     console.log(id);
   };
 
-  
-
-  
-
-  const [valueTitle, setValueTitle] = useState<string>("");
-  const [valueDescription, setValueDescription] = useState("");
-  /* setValue(lesson?.title); */
-  const changeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValueTitle(e.target.value);
-    
-  }
-
-  const lessonFromBack = {
-    title: lesson?.title,
-    description: lesson?.description,
+  const lessonValuesFromBack = {
+    name: `${lesson?.title}`,
+    category: "IT",
+    description: `${lesson?.description}`,
+    thumbnail: 0,
+  };
+  const initialValues = {
+    name: "",
+    category: "IT",
+    description: "",
+    thumbnail: 0,
   };
 
-  const lessonFromEditForm = {
-    title: valueTitle,
-    description: valueDescription,
-  };
   return (
     <Formik
-      initialValues={{
-        name: lessonFromBack.title,
-        category: "IT",
-        description: lessonFromBack.description,
-        thumbnail: 0,
-      }}
+      initialValues={lessonValuesFromBack || initialValues}
       onSubmit={(values) => {
         console.log("submit", values);
+        addInfotoLessonObject(values);
       }}
+      enableReinitialize
     >
       {({ errors, touched }) => (
         <Form className="evlf__wrapper">
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableName" })}
-            <Field
-              className={classNames("evlf__input", {
-                ["error-input"]: errors.name && errors.name,
-              })}
-              name="name"
-              value={lessonFromBack.title}
-              onChange={changeNameHandler}
-              validate={validateName}
+            <Field className={classNames("evlf__input", 
+              { ["error-input"]: errors.name && errors.name, })}
+            name="name"
+            validate={validateName}
             />
             {errors.name && touched.name && (
               <div className="error-message">{errors.name}</div>
@@ -130,28 +124,21 @@ export const EditVideoLessonForm: FC = () => {
             <Field className="evlf__input" as="select" name="category">
               <option value="IT">IT</option>
               <option value="Music">
-                {intl.formatMessage({
-                  id: "app.editVideoLesson.lableCategoryMusic",
-                })}
+                {intl.formatMessage({ id: "app.editVideoLesson.lableCategoryMusic" })}
               </option>
               <option value="Design">
-                {intl.formatMessage({
-                  id: "app.editVideoLesson.lableCategoryDesign",
-                })}
+                {intl.formatMessage({ id: "app.editVideoLesson.lableCategoryDesign" })}
               </option>
             </Field>
           </label>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableDescription" })}
-            <Field
-              className={classNames("evlf__input evlf__input-textarea", {
-                ["error-input"]: errors.description && errors.description,
-              })}
-              name="description"
-              validate={validateDescription}
-              as="textarea"
-              rows="9"
-              value={lessonFromBack.description}
+            <Field className={classNames("evlf__input evlf__input-textarea", 
+              { ["error-input"]: errors.description && errors.description, })}
+            name="description"
+            validate={validateDescription}
+            as="textarea"
+            rows="9"
             />
             {errors.description && touched.description && (
               <div className="error-message">{errors.description}</div>
@@ -161,9 +148,7 @@ export const EditVideoLessonForm: FC = () => {
             <label>
               {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitles" })}
               <p className="evlf__text">
-                {intl.formatMessage({
-                  id: "app.editVideoLesson.lableSubtitlesText",
-                })}
+                {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitlesText" })}
               </p>
               {/* <div className="svg__add"></div> */}
             </label>
@@ -176,11 +161,8 @@ export const EditVideoLessonForm: FC = () => {
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
             <p className="evlf__text">
-              {intl.formatMessage({
-                id: "app.editVideoLesson.lableThumbnailText",
-              })}
+              {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnailText" })}
             </p>
-            <Field name="thumbnail" />
             <div className="evlth__wrapper">
               <div className="evlth__inner">
                 {items.map((item: { id: number; src: string }) => (
@@ -207,6 +189,7 @@ export const EditVideoLessonForm: FC = () => {
               buttonType="submit"
               buttonText={intl.formatMessage({ id: "app.button.save" })}
               className="button__fs16"
+              //onClick={() => navigate("/lessons")}
             />
           </div>
         </Form>

@@ -1,7 +1,9 @@
 import "./index.scss";
+import { 
+  FC, useEffect, useState 
+} from "react";
 import { FormattedMessage } from "react-intl";
 import LessonCard from "../../../LessonCard";
-import { useEffect, useState, FC } from "react";
 import items from "../../../../assets/lessonCard.json";
 
 const Lessons: FC = () => {
@@ -15,9 +17,9 @@ const Lessons: FC = () => {
   const fetchLessons = () => {
     fetch(getLessonsUrl)
       .then((response) => response.json())
-      .then((lessons) => setLessons(lessons))
+      .then((lessons) => setLessons(lessons.records))
       .catch((error) => console.log(error));
-  }
+  };
 
   return (
     <div className="wrapper__lessons">
@@ -82,6 +84,6 @@ const Lessons: FC = () => {
       </div>
     </div>
   );
-};;
+};
 
 export default Lessons;
