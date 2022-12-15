@@ -38,9 +38,9 @@ const maxSymbol = PASSWORD.maxLength;
 const symbols = PASSWORD.symbols;
 
 const FirstRegistrationForm = ({
-  setUserPassword,
-  setUserEmail
-}: FirstRegistrationFormProps) => {
+                                 setUserPassword,
+                                 setUserEmail
+                               }: FirstRegistrationFormProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const isEmail = useAppSelector(state => state.login.isEmail);

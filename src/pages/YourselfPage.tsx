@@ -38,7 +38,7 @@ interface FormValues {
   email: string;
   birthday: string;
   password: string
-  phone:string;
+  phone: string;
 }
 
 interface FormErrors {
@@ -105,7 +105,7 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
       <Formik
         initialValues={{
           name: "",
-          phone:" ",
+          phone: " ",
           gender: "",
           email: userEmail ? userEmail : "",
           birthday: "",
@@ -115,7 +115,7 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
         validate={validate}
         onSubmit={(values: FormValues) => {
           dispatch(signUpSlice(values));
-         navigate("/user/reg_in/information/modR");
+          navigate("/user/reg_in/information/modR");
         }}
       >
         {({errors, touched}) => {

@@ -68,8 +68,8 @@ const LoginPage = () => {
         onSubmit={(values: { email: string, password: string }) => {
           dispatch(getLogin(values));
 
-          // dispatch(buttonEvent());
-          // dispatch(lookEvent());
+          dispatch(buttonEvent());
+          dispatch(lookEvent());
         }}>
         {({errors, touched}) => {
           return (

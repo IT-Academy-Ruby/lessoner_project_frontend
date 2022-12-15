@@ -46,18 +46,18 @@ const Header = () => {
         <div className="header-buttons">
           {isRegister ? <Avatar/> : <Fragment>
             <div className="language"></div>
-              <Button
-                buttonType="button"
-                buttonText={intl.formatMessage({id: "app.header.login"})}
-                className="button-login"
-                onClick={()=>navigate("/user/sign_in")}
-              />
-              <Button
-                buttonType="button"
-                buttonText={intl.formatMessage({id: "app.registration"})}
-                className="button-register"
-                onClick={()=>navigate("/user/sign_up")}
-              />
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({id: "app.header.login"})}
+              className="button-login"
+              onClick={() => navigate("/user/sign_in")}
+            />
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({id: "app.registration"})}
+              className="button-register"
+              onClick={() => navigate("/user/sign_up")}
+            />
           </Fragment>}
         </div>
       </div>

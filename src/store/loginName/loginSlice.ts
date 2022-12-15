@@ -88,7 +88,7 @@ export const sendPasswordResetLink = createAsyncThunk(
 
 export const changePassword = createAsyncThunk(
   "user/changePasswordStatus",
-  async (value:{token: string, password: string}): Promise<string> => {
+  async (value: { token: string, password: string }): Promise<string> => {
     const response = await fetch(`${BACKEND_URL}/password/reset`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -118,7 +118,7 @@ type Login = {
   isEmail: boolean | string;
   loading: boolean;
   isLogged: boolean;
-  token:string
+  token: string
 };
 
 const initialState: Login = {
@@ -137,7 +137,7 @@ const initialState: Login = {
   isEmail: "",
   loading: false,
   isLogged: false,
-  token:"",
+  token: "",
 };
 
 const loginSlice = createSlice({
@@ -153,7 +153,7 @@ const loginSlice = createSlice({
     lookEvent: (state) => {
       state.lookButton = !state.lookButton;
     },
-    addToken:(state, action)=>{
+    addToken: (state, action) => {
       state.token = action.payload;
     }
   },
