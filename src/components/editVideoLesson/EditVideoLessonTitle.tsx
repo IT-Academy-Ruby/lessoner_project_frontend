@@ -2,7 +2,7 @@ import "./EditVideoLessonTitle.scss";
 import { EditVideoLessonForm } from "./EditVideoLessonForm";
 import { useIntl } from "react-intl";
 
-export const EditVideoLessonTitle = (cardBody: any) => {
+export const EditVideoLessonTitle = () => {
   const intl = useIntl();
   return (
     <div className="evl__wrapper">

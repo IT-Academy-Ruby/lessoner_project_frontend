@@ -11,54 +11,63 @@ import { ILessonBack } from "../types/types";
 import classNames from "classnames";
 import request from "../../services/request";
 import { useIntl } from "react-intl";
+import frame88 from "../icons/Frame88.png";
+import frame87 from "../icons/Frame87.png";
+import frame86 from "../icons/Frame86.png";
+import frame85 from "../icons/Frame85.png";
 
-const RegExp = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
-const hashtagRegExp = /^[#]{0,10}$/;
+const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
+const DescriptionName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:#]+$/i;
 const maxNameLength = 64;
 const maxDescriptionLength = 600;
+const maxDescriptionHashTagLength = 10;
+const hachTag = "#";
 
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
   const items = [
-    { id: 1, src: "" },
-    { id: 2, src: "" },
-    { id: 3, src: "" },
-    { id: 4, src: "" },
+    { id: 1, src: `${frame88}` },
+    { id: 2, src: `${frame87}` },
+    { id: 3, src: `${frame86}` },
+    { id: 4, src: `${frame85}` },
   ];
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
   const params = useParams();
   const navigate = useNavigate();
-  const getLessonsUrl =
+  const getLessonUrl =
     "https://lessoner-project-2w3h.onrender.com/lessons/" + params.id;
-  const lessonEditUrl = getLessonsUrl;
+  const lessonEditUrl = getLessonUrl;
 
   useEffect(() => {
-    fetchLesson();
+    return () => {
+      fetch(getLessonUrl)
+        .then((response) => response.json())
+        .then((lesson) => setLesson(lesson))
+        .catch((error) => console.log(error));
+    };
   }, []);
 
-  const fetchLesson = () => {
-    fetch(getLessonsUrl)
-      .then((response) => response.json())
-      .then((lesson) => setLesson(lesson))
-      .catch((error) => console.log(error));
+  const editL = (lessonFromEditForm: any) => {
+    return () => {
+      request(lessonEditUrl, "PUT", lessonFromEditForm);
+    };
   };
 
-  const editL = (lessonFromEditForm: any) =>
-    request(lessonEditUrl, "PUT", lessonFromEditForm);
-
-  const addInfotoLessonObject = (values: any) => {
-    const lessonFromEditForm = { title: `${values.name}`, description: `${values.description}`,};
+  const addInfoToLessonObject = (values: any) => {
+    const lessonFromEditForm = {
+      title: `${values.name}`,
+      description: `${values.description}`,
+    };
     editL(lessonFromEditForm);
   };
 
-  console.log(lesson);
-  
-   
   const validateName = (title: string) => {
     if (!title) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
-    } else if (!RegExp.test(title)) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters" });
+    } else if (!RegExpName.test(title)) {
+      return intl.formatMessage({
+        id: "app.editVideoLesson.errorProhibitedCharacters",
+      });
     } else if (title.length > maxNameLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharacters" },
@@ -66,43 +75,59 @@ export const EditVideoLessonForm: FC = () => {
       );
     }
   };
+  /* const countHashTag = 0;
+  function insensitive_search(description: string, hachTag: string) {
+    
+    const res = description.indexOf(hachTag) >= 0 && countHashTag + 1;
+    return console.log(res);
+  } */
 
-  const validateDescription = (value: string) => {
-    if (!value) {
+  const validateDescription = (description: string) => {
+    
+    //insensitive_search(description, hachTag);
+
+    if (!description) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
-    } else if (!RegExp.test(value)) {
-      return intl.formatMessage({ id: "app.editVideoLesson.errorProhibitedCharacters" });
-    } else if (value.length > maxDescriptionLength) {
+    } else if (!DescriptionName.test(description)) {
+      return intl.formatMessage({
+        id: "app.editVideoLesson.errorProhibitedCharacters",
+      });
+    } else if (description.length > maxDescriptionLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharactersDescr" },
         { maxDescriptionLength }
       );
-    }
+    } /* else if (countHashTag > maxDescriptionHashTagLength) {
+      return intl.formatMessage(
+        { id: "app.editVideoLesson.errorMaxCharactersDescr" },
+        { maxDescriptionHashTagLength }
+      );
+    } */
   };
 
   const thumbnailId = (id: number) => {
-    console.log(id);
+    return id;
   };
 
   const lessonValuesFromBack = {
     name: `${lesson?.title}`,
     category: "IT",
     description: `${lesson?.description}`,
-    thumbnail: 0,
+    thumbnail: 1,
   };
   const initialValues = {
     name: "",
     category: "IT",
     description: "",
-    thumbnail: 0,
+    thumbnail: 1,
   };
 
   return (
     <Formik
       initialValues={lessonValuesFromBack || initialValues}
       onSubmit={(values) => {
-        console.log("submit", values);
-        addInfotoLessonObject(values);
+        addInfoToLessonObject(values);
+        navigate("/lessons");
       }}
       enableReinitialize
     >
@@ -110,10 +135,12 @@ export const EditVideoLessonForm: FC = () => {
         <Form className="evlf__wrapper">
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableName" })}
-            <Field className={classNames("evlf__input", 
-              { ["error-input"]: errors.name && errors.name, })}
-            name="name"
-            validate={validateName}
+            <Field
+              className={classNames("evlf__input", {
+                ["error-input"]: errors.name && errors.name,
+              })}
+              name="name"
+              validate={validateName}
             />
             {errors.name && touched.name && (
               <div className="error-message">{errors.name}</div>
@@ -124,21 +151,27 @@ export const EditVideoLessonForm: FC = () => {
             <Field className="evlf__input" as="select" name="category">
               <option value="IT">IT</option>
               <option value="Music">
-                {intl.formatMessage({ id: "app.editVideoLesson.lableCategoryMusic" })}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableCategoryMusic",
+                })}
               </option>
               <option value="Design">
-                {intl.formatMessage({ id: "app.editVideoLesson.lableCategoryDesign" })}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableCategoryDesign",
+                })}
               </option>
             </Field>
           </label>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableDescription" })}
-            <Field className={classNames("evlf__input evlf__input-textarea", 
-              { ["error-input"]: errors.description && errors.description, })}
-            name="description"
-            validate={validateDescription}
-            as="textarea"
-            rows="9"
+            <Field
+              className={classNames("evlf__input evlf__input-textarea", {
+                ["error-input"]: errors.description && errors.description,
+              })}
+              name="description"
+              validate={validateDescription}
+              as="textarea"
+              rows="9"
             />
             {errors.description && touched.description && (
               <div className="error-message">{errors.description}</div>
@@ -148,20 +181,24 @@ export const EditVideoLessonForm: FC = () => {
             <label>
               {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitles" })}
               <p className="evlf__text">
-                {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitlesText" })}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableSubtitlesText",
+                })}
               </p>
-              {/* <div className="svg__add"></div> */}
             </label>
             <Button
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.addsubtitles" })}
               className="button__fs16 disabled"
+              buttonIcon={<div className="svg__add"></div>}
             />
           </div>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
             <p className="evlf__text">
-              {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnailText" })}
+              {intl.formatMessage({
+                id: "app.editVideoLesson.lableThumbnailText",
+              })}
             </p>
             <div className="evlth__wrapper">
               <div className="evlth__inner">
@@ -171,7 +208,11 @@ export const EditVideoLessonForm: FC = () => {
                     key={item.id}
                     onClick={() => thumbnailId(item.id)}
                   >
-                    {/*  <img className="evlth__item-img" src={item.src} alt="picture"/> */}
+                    <img
+                      className="evlth__item-img"
+                      src={item.src}
+                      alt="picture"
+                    />
                   </div>
                 ))}
               </div>
@@ -189,11 +230,10 @@ export const EditVideoLessonForm: FC = () => {
               buttonType="submit"
               buttonText={intl.formatMessage({ id: "app.button.save" })}
               className="button__fs16"
-              //onClick={() => navigate("/lessons")}
             />
           </div>
         </Form>
       )}
     </Formik>
   );
-};
+};;

@@ -36,7 +36,6 @@ const Title: FC<TitleProps> = (props) => {
 
 const MenuKebab = (CardId: any) => {
   const navigate = useNavigate();
-
   return (
     <div
       className="kebab__menu"
