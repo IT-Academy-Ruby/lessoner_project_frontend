@@ -84,7 +84,7 @@ div > .react-datepicker {
 }
 
 .react-datepicker__day {
-  color: var(-- textCalendar);
+  color: var(--textCalendar);
   width: 32px;
   height: 32px;
   display: flex;
@@ -93,13 +93,10 @@ div > .react-datepicker {
 
   &:hover {
     border-radius: 50px;
-    background-color: #45464F;
+    background-color: var(--textCalendarDayHover)
   }
 }
 
-.react-datepicker__day--disabled {
-  // color: $greySearchColor;
-}
 .react-datepicker__day--outside-month{
   color: var(--textCalendarOutsideMonth);
 }

@@ -63,12 +63,13 @@ $themes: (
   ),
   textCalendarOutsideMonth: (
     darkTheme: $dark4,
+    lightTheme: $light3,
+  ),
+  textCalendarDayHover: (
+    darkTheme: $dark5,
     lightTheme: $light4,
   )
-  
- 
 );
-
 
 @mixin styles($mode) {
   @each $key, $map in $themes {

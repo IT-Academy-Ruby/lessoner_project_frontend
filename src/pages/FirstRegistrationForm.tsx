@@ -16,7 +16,6 @@ import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
 import { useAppSelector } from "../store/hooks";
-import ThemeBtn from "./../components/ThemeBtn";
 
 interface FormValues {
   email: string;
@@ -78,7 +77,6 @@ const FirstRegistrationForm = () => {
 
   return (
     <div className="log-content">
-      <ThemeBtn/>
       <Formik
         initialValues={initialValues}
         validateOnChange={false}
