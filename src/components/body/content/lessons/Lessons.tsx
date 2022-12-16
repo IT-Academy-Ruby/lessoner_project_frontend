@@ -79,7 +79,7 @@ const Lessons: React.FC = () => {
           fetchError("fetch error " + response.status);
         } else {
           const data = await response.json();
-          fetchSuccess(data);
+          fetchSuccess(data.records);
         }
       };
       fetchData();
