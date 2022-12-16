@@ -59,7 +59,6 @@ function App(): JSX.Element {
               element={<SetNewPasswordPage />}
             />
           </Routes>
-          {/* <EditVideoLessonTitle/> */}
           <div className="authorization">
             <button className="btn__temporary" onClick={signOut}>
               Not authorized

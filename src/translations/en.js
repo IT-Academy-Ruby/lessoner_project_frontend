@@ -68,6 +68,7 @@ export const messages_en = {
   "app.editVideoLesson.errorProhibitedCharacters": "The input field contains prohibited characters",
   "app.editVideoLesson.errorMaxCharacters": "The maximum number of characters is {maxNameLength}",
   "app.editVideoLesson.errorMaxCharactersDescr": "The maximum number of characters is {maxDescriptionLength}",
+  "app.editVideoLesson.errorMaxHachTagDescr": "The maximum number of hashtags is {maxDescriptionHashTagCount}",
   "app.editVideoLesson.lableName": "Name",
   "app.editVideoLesson.lableCategory": "Category",
   "app.editVideoLesson.lableCategoryMusic": "Music",

@@ -1,40 +1,49 @@
 @import "../../constants.scss";
 
 .evl__wrapper {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .evl__inner {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;   
-    max-width: 656px;
-    min-height: 843px;
-    border-radius: 8px;
-    box-shadow: 1px 1px 20px rgba(46, 51, 99, 0.1);
-    background: #fff;
-    margin: 0 20px;
-    padding: 32px 48px 0 48px;
+  display: flex;
+  justify-content: center;
+  width: 100%;   
+  max-width: 656px;
+  min-height: 843px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 20px rgba(46, 51, 99, 0.1);
+  background: #fff;
+  padding: 32px 48px 0 48px;
+  box-sizing: border-box;
 }
 
 .evl__content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 32px;
 }
 
 .evl__title {
-    width: 100%;
-    text-align: left;
-    font-family: $font;
-    margin: $marginBottomMain;
+  width: 100%;
+  text-align: left;
+  font-family: $font;
+  margin: $marginBottomMain;
+}
+
+@media (max-width: $max-width-3) {
+  .evl__wrapper {
+    padding: 0;
+  }
+  .evl__inner {
+    padding: 24px 20px 0 20px;
+  } 
 }
 

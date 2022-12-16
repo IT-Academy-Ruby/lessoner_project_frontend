@@ -9,19 +9,22 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
 import { ILessonBack } from "../types/types";
 import classNames from "classnames";
+import frame85 from "../icons/Frame85.png";
+import frame86 from "../icons/Frame86.png";
+import frame87 from "../icons/Frame87.png";
+import frame88 from "../icons/Frame88.png";
 import request from "../../services/request";
 import { useIntl } from "react-intl";
-import frame88 from "../icons/Frame88.png";
-import frame87 from "../icons/Frame87.png";
-import frame86 from "../icons/Frame86.png";
-import frame85 from "../icons/Frame85.png";
 
-const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:]+$/i;
-const DescriptionName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:#]+$/i;
+
+const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]]+$/i;
+const DescriptionName =
+  /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]#]+$/i;
 const maxNameLength = 64;
 const maxDescriptionLength = 600;
-const maxDescriptionHashTagLength = 10;
+const maxDescriptionHashTagCount = 10;
 const hachTag = "#";
+let countHashTag = 0;
 
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
@@ -37,6 +40,7 @@ export const EditVideoLessonForm: FC = () => {
   const getLessonUrl =
     "https://lessoner-project-2w3h.onrender.com/lessons/" + params.id;
   const lessonEditUrl = getLessonUrl;
+  
 
   useEffect(() => {
     return () => {
@@ -75,17 +79,19 @@ export const EditVideoLessonForm: FC = () => {
       );
     }
   };
-  /* const countHashTag = 0;
-  function insensitive_search(description: string, hachTag: string) {
-    
-    const res = description.indexOf(hachTag) >= 0 && countHashTag + 1;
-    return console.log(res);
-  } */
+  
+  const getHashTagCount = (description: string, hachTag: string) => {
+    const hashTagArr = [];
+    description
+      .split("")
+      .map(
+        (itemHashTag) => itemHashTag === hachTag && hashTagArr.push(itemHashTag)
+      );
+    countHashTag = hashTagArr.length;
+  };
 
   const validateDescription = (description: string) => {
-    
-    //insensitive_search(description, hachTag);
-
+    getHashTagCount(description, hachTag);
     if (!description) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!DescriptionName.test(description)) {
@@ -97,12 +103,12 @@ export const EditVideoLessonForm: FC = () => {
         { id: "app.editVideoLesson.errorMaxCharactersDescr" },
         { maxDescriptionLength }
       );
-    } /* else if (countHashTag > maxDescriptionHashTagLength) {
+    } else if (countHashTag > maxDescriptionHashTagCount) {
       return intl.formatMessage(
-        { id: "app.editVideoLesson.errorMaxCharactersDescr" },
-        { maxDescriptionHashTagLength }
+        { id: "app.editVideoLesson.errorMaxHachTagDescr" },
+        { maxDescriptionHashTagCount }
       );
-    } */
+    }
   };
 
   const thumbnailId = (id: number) => {
@@ -202,23 +208,45 @@ export const EditVideoLessonForm: FC = () => {
             </p>
             <div className="evlth__wrapper">
               <div className="evlth__inner">
-                {items.map((item: { id: number; src: string }) => (
-                  <div
-                    className="evlth__item"
-                    key={item.id}
-                    onClick={() => thumbnailId(item.id)}
-                  >
-                    <img
-                      className="evlth__item-img"
-                      src={item.src}
-                      alt="picture"
-                    />
-                  </div>
-                ))}
+                <div className="evlth__inner-left">
+                  {items.map(
+                    (item: { id: number; src: string }) =>
+                      item.id <= 2 && (
+                        <div
+                          className="evlth__item"
+                          key={item.id}
+                          onClick={() => thumbnailId(item.id)}
+                        >
+                          <img
+                            className="evlth__item-img"
+                            src={item.src}
+                            alt="picture"
+                          />
+                        </div>
+                      )
+                  )}
+                </div>
+                <div className="evlth__inner-right">
+                  {items.map(
+                    (item: { id: number; src: string }) =>
+                      item.id > 2 && (
+                        <div
+                          className="evlth__item"
+                          key={item.id}
+                          onClick={() => thumbnailId(item.id)}
+                        >
+                          <img
+                            className="evlth__item-img"
+                            src={item.src}
+                            alt="picture"
+                          />
+                        </div>
+                      )
+                  )}
+                </div>
               </div>
             </div>
           </label>
-
           <div className="evlf__btn-wrapper">
             <Button
               buttonType="button"
