@@ -70,17 +70,21 @@ type Categories = {
     name: string,
     description: string,
     status: string,
+    created_at: string,
   }],
   loading: boolean
 };
 
-const initialState: Categories = {categories: [{
-  id: 0,
-  name: "",
-  description: "",
-  status: "",
-}],
-loading: false,};
+const initialState: Categories = {
+  categories: [{
+    id: 0,
+    name: "",
+    description: "",
+    status: "",
+    created_at: "",
+  }],
+  loading: false,
+};
 
 const categorySlice = createSlice({
   name: "category",
@@ -90,7 +94,6 @@ const categorySlice = createSlice({
     builder.addCase(getCategory.fulfilled, (state, action) => {
       state.categories = action.payload;
       state.loading = false;
-      console.log(state.categories)
     });
     builder.addCase(getCategory.pending, (state) => {
       state.loading = true;

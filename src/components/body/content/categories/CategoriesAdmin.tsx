@@ -41,7 +41,7 @@ const CategoriesAdmin=()=>{
           <img src={IT} alt={category.name} className="category-img"/>
           <div className="category-name">{category.name}</div>
           <div className="category-text category-description">{category.description}</div>
-          <div className="category-date">{new Date().toLocaleDateString()}</div>
+          <div className="category-date">{new Date(category.created_at).toLocaleDateString()}</div>
           <div className="category-text">{category.status}</div>
           <div className="category-icon">
             <img
