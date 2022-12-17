@@ -11,8 +11,8 @@ const PASSWORD = {
 const REDIRECT_URL = `${BACKEND_URL}/users/sign_up`;
 const USERNAME = {minLength: 3, maxLength: 50};
 const VK_APP = {id: 51463254};
-const NAME_CATEGORY = {minSymbols: 1, maxSymbols: 64};
-const DESCRIPTION_CATEGORY = {minSymbols: 1, maxSymbols: 600};
+const NAME_CATEGORY = {minSymbols: 1, maxSymbols: 64, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"};
+const DESCRIPTION_CATEGORY = {minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"};
 
 export {
   BACKEND_URL, CODE, DEFAULT_COUNTRY_CODE, EMAIL, FACEBOOK_APP, GOOGLE_APP,

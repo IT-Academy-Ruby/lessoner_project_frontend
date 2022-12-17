@@ -85,6 +85,10 @@ export const messages_ru = {
   "app.categories.addCategory": "Добавить новую категорию",
   "app.categories.updateCategory": "Обновить категорию",
   "app.categories.name": "Название категории",
+  "app.categories.name.invalid": "Поле ввода содержит запрещенные символы",
+  "app.categories.name.helper": "Вы можете ввести {letters} символов",
+  "app.categories.description.invalid": "Поле ввода содержит запрещенные символы",
+  "app.categories.description.helper": "Вы можете ввести {letters} символов",
   "app.categories.uploadCategoryImage": "Загрузить изображение категории с компьютера",
   "app.categories.selectFile": "Выберите файл",
   "app.categories.uploadImage": "Загрузить изображение",
@@ -117,4 +121,5 @@ export const messages_ru = {
   "app.gender.male": "Мужской",
   "app.gender.female": "Женский",
   "app.gender.other": "Другой",
+  "app.categories.back": "Назад",
 };

@@ -84,6 +84,10 @@ export const messages_en = {
   "app.categories.addCategory": "Add new category",
   "app.categories.updateCategory": "Update category",
   "app.categories.name": "Category name",
+  "app.categories.name.invalid": "The input field contains prohibited characters",
+  "app.categories.name.helper": "You can enter {letters} characters",
+  "app.categories.description.invalid": "The input field contains prohibited characters",
+  "app.categories.description.helper": "You can enter {letters} characters",
   "app.categories.uploadCategoryImage": "Upload the category image from computer",
   "app.categories.selectFile": "Select file",
   "app.categories.uploadImage": "Upload image",
@@ -116,4 +120,5 @@ export const messages_en = {
   "app.gender.male": "Male",
   "app.gender.female": "Female",
   "app.gender.other": "Other",
+  "app.categories.back": "Back",
 };

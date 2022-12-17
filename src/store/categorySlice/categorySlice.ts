@@ -90,6 +90,7 @@ const categorySlice = createSlice({
     builder.addCase(getCategory.fulfilled, (state, action) => {
       state.categories = action.payload;
       state.loading = false;
+      console.log(state.categories)
     });
     builder.addCase(getCategory.pending, (state) => {
       state.loading = true;

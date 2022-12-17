@@ -44,6 +44,7 @@ const Categories = () => {
         <CategoriesAdmin/>
         <CategoriesUser/>
       </div>
+
     </div>
   );
 };

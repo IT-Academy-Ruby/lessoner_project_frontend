@@ -3,15 +3,19 @@ import {DESCRIPTION_CATEGORY, NAME_CATEGORY} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
+import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {addCategory, updateCategory} from "../../../../../store/categorySlice/categorySlice";
+import {nameCategoryRegex, descriptionCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import Loader from "../../../../Loader";
-import {useIntl} from "react-intl";
+import {getCategory} from "../../../../../store/categorySlice/categorySlice";
+
 
 interface FormValues {
   id: number;
@@ -31,59 +35,76 @@ const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(state => state.categories.loading);
+  // const [letters, setLetters] = useState<number>();
+  const allCategories = useAppSelector((state) => state.categories.categories);
 
-  const idCategory = () => {
-    const url = window.location.href;
-    return url.slice(url.lastIndexOf("/") + 1);
-  };
+  useEffect(() => {
+    if (!add) {
+      dispatch(getCategory());
+    }
+  }, []);
+
+  const url = window.location.href;
+  const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
+  let category = {name: "", description: ""};
+
+  if (!add && allCategories.length > 1) {
+    category = allCategories.filter(category => category.id === idCategory)[0];
+  }
 
   const initialValues: FormValues = {
     id: 0,
-    name: "",
-    description: "",
+    name: add ? "" : category.name,
+    description: add ? "" : category.description,
     status: "active",
   };
 
+  const nameLength=initialValues.name.length;
+  const descriptionLength=initialValues.name.length;
+
   return (
     <div className="add-category">
-      {loading && <Loader/>}
       <Link to="/categories" className="button-back">
         <span className="arrow-back">&#10094;</span>
-        Back
+        <FormattedMessage id="app.categories.back"/>
       </Link>
-      <Formik
+      {allCategories.length > 1 && <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
-          if (values.name.length < NAME_CATEGORY.minSymbols) {
+          if (!nameCategoryRegex.test(values.name)) {
+            errors.name = intl.formatMessage({id: "app.categories.name.invalid"});
+          }
+          if (values.name.trim().length < NAME_CATEGORY.minSymbols) {
             errors.name = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
           }
           if (values.name.length > NAME_CATEGORY.maxSymbols) {
             errors.name = intl.formatMessage(
               {id: "app.activeCategories.errorMaxLength"}, {symbols: NAME_CATEGORY.maxSymbols});
           }
-          if (values.description.length < DESCRIPTION_CATEGORY.minSymbols) {
+          if (!descriptionCategoryRegex.test(values.description)) {
+            errors.description = intl.formatMessage({id: "app.categories.description.invalid"});
+          }
+          if (values.description.trim().length < DESCRIPTION_CATEGORY.minSymbols) {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
           }
           if (values.description.length > DESCRIPTION_CATEGORY.maxSymbols) {
-            errors.description = intl.formatMessage(
-              {id: "app.activeCategories.errorMaxLength"},
-              {symbols: DESCRIPTION_CATEGORY.maxSymbols}
-            );
-          };
+            errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
+              {symbols: DESCRIPTION_CATEGORY.maxSymbols});
+          }
+
           return errors;
         }}
         onSubmit={(values: FormValues) => {
+          values.name = values.name.trim();
+          values.description = values.description.trim();
           if (add) {
             dispatch(addCategory(values));
           } else {
-            values.id = parseInt(idCategory());
+            values.id = idCategory;
             dispatch(updateCategory(values));
           }
-          if (!loading) {
-            navigate("/categories");
-          }
+          navigate("/categories");
         }}>
         {({errors, touched}) => {
           return (
@@ -98,11 +119,14 @@ const AddCategory = ({add}: TypeTitle) => {
                 name="name"
                 component={CategoryName}
                 error={touched.name ? errors.name : undefined}
+                nameLength={nameLength}
+
               />
               <Field
                 name="description"
                 component={CategoryDescription}
                 error={touched.description ? errors.description : undefined}
+                descriptionLength={descriptionLength}
               />
               <Field
                 name="image"
@@ -125,8 +149,9 @@ const AddCategory = ({add}: TypeTitle) => {
             </Form>
           );
         }}
-      </Formik>
+      </Formik>}
     </div>
   );
 };
+
 export default AddCategory;
