@@ -56,10 +56,8 @@ const UserCategory: React.FC<UserCategoryProps> = (props) => {
   });
 
   const titleClassName = classNames(
-    {
-      "user_card-title": true,
-      "user_card-title--hovered": isHovered,
-    }
+    {"user_card-title": true,
+      "user_card-title--hovered": isHovered,}
   );
 
   return (
