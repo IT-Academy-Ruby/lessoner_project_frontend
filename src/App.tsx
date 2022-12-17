@@ -34,7 +34,7 @@ function App(): JSX.Element {
       window.location.href = "/user/sign_in/reset_password/new_password";
       count=true;
     }
-  }, [count,dispatch]);
+  }, [dispatch]);
 
   const signOut = () => {
     localStorage.setItem("JWT", "");
