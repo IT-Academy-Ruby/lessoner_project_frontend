@@ -2,19 +2,13 @@ import "./App.scss";
 import {
   BrowserRouter, Link, Route, Routes
 } from "react-router-dom";
-import Body from "./components/body/Body";
-import CodePage from "./pages/CodePage";
-import {IntlProvider} from "react-intl";
-import LoginPage from "./pages/LoginPage";
-import Pages from "./components/Pages";
-import PhoneNumberPage from "./pages/PhoneNumberPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import SetNewPasswordPage from "./pages/SetNewPasswordPage";
-import TranslationHelpers from "./translations/translationHelpers";
 import {addToken, confirmTokenSlice} from "./store/loginName/loginSlice";
-import {useAppDispatch} from "./store/hooks";
 import {useEffect, useState} from "react";
-import getParameterValue from "./helpers/parseUrl";
+import Body from "./components/body/Body";
+import {IntlProvider} from "react-intl";
+import Pages from "./components/Pages";
+import TranslationHelpers from "./translations/translationHelpers";
+import {useAppDispatch} from "./store/hooks";
 
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
@@ -23,24 +17,23 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
-  let count = 1;
+  let count = false;
 
   useEffect(() => {
     const registrationToken = url.lastIndexOf("confirm_email?token=");
     const resetPasswordToken = url.lastIndexOf("reset_password?token=");
-    if (registrationToken > 0 && count === 1) {
+    if (registrationToken > 0 && count === false) {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(confirmTokenSlice(token));
-      window.location.href = "/user/sign_in"
-      count++
+      window.location.href = "/user/sign_in";
     }
-    if (registrationToken > 0 && count === 1) {
-      const token = url.slice(url.lastIndexOf("token=") + 6)
+    if (resetPasswordToken > 0 && count === false) {
+      const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(addToken(token));
-      window.location.href = "/user/sign_in/reset_password/new_password"
+      window.location.href = "/user/sign_in/reset_password/new_password";
     }
-  }, [count]);
-
+    count=true;
+  }, [count,dispatch]);
 
   const signOut = () => {
     localStorage.setItem("JWT", "");
