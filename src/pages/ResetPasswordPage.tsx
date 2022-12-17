@@ -3,12 +3,12 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Email from "../components/Email";
 import Loader from "../components/Loader";
 import {emailInvalidationRules} from "../validationRules";
+import {sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {useNavigate} from "react-router-dom";
 
 interface FormValues {
@@ -25,10 +25,6 @@ const ResetPasswordPage = () => {
   const navigate = useNavigate();
   const loading = useAppSelector(state => state.login.loading);
   const isEmail = useAppSelector(state => state.login.isEmail);
-
-  const initialValues: FormValues = {email: "",};
-
-  //   navigate("/users/");
 
   return (
     <div className="log-content">
@@ -48,7 +44,7 @@ const ResetPasswordPage = () => {
         }}
         onSubmit={(values: { email: string }) => {
           dispatch(sendPasswordResetLink(values.email));
-          navigate("/user/sign_in/reset_password/reset")
+          navigate("/user/sign_in/reset_password/reset");
         }}>
         {({errors, touched}) => {
           return (

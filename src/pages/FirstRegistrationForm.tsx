@@ -4,13 +4,13 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {Link, useNavigate} from "react-router-dom";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
 import Facebook from "../components/icons/facebook.svg";
 import Google from "../components/icons/google.svg";
-import {Link, useNavigate} from "react-router-dom";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
@@ -37,10 +37,7 @@ const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
 const symbols = PASSWORD.symbols;
 
-const FirstRegistrationForm = ({
-                                 setUserPassword,
-                                 setUserEmail
-                               }: FirstRegistrationFormProps) => {
+const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const isEmail = useAppSelector(state => state.login.isEmail);
@@ -88,9 +85,9 @@ const FirstRegistrationForm = ({
         validateOnChange={false}
         validate={validate}
         onSubmit={(values: FormValues) => {
-          setUserEmail(values.email)
-          setUserPassword(values.password)
-          navigate("/user/reg_in/information")
+          setUserEmail(values.email);
+          setUserPassword(values.password);
+          navigate("/user/reg_in/information");
         }}
       >
         {({errors, touched}) => {

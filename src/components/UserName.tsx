@@ -1,10 +1,9 @@
 import "./input.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {USERNAME} from "../constants";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
-import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {getUser} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
 
 type UserNameProps = {
   field: {
@@ -29,12 +28,12 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
         type="text"
         className={classNames("input",
           {"invalid-input": error},
-        {"success-input": !error && field.value}
+          {"success-input": !error && field.value}
         )}
         onKeyUp={fieldHandler}
-        placeholder={intl.formatMessage({ id: "app.code.invalidationRules" },{
-          minSymbol:USERNAME.minLength,maxSymbol:USERNAME.maxLength
-        })}
+        placeholder={intl.formatMessage(
+          { id: "app.code.invalidationRules" },
+          {minSymbol:USERNAME.minLength,maxSymbol:USERNAME.maxLength})}
         {...field}
       />
       {(error) && <span className="error-message">{error}</span>}

@@ -42,9 +42,8 @@ const PasswordAndConfirm = ({
       className={classNames("input", {"invalid-input": error},
         {"success-input": !error && field.value})}
       {...field}
-      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},{
-        minSymbol:PASSWORD.minLength
-      })}
+      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
+        {minSymbol:PASSWORD.minLength})}
     />
     <img
       className="image-input"

@@ -4,20 +4,16 @@ import {Fragment, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
-import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
 import Logo from "../../icons/Logo.svg";
-import Magnifier from "../../icons/blackMagnifier.svg";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {showStudentPage} from "../../../store/header/headerSlice";
-
 
 const Header = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isRegister = useAppSelector(state => state.value.isDefaultHeader);
-  const page = useAppSelector(state => state.value.page);
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const loading = useAppSelector(state => state.login.loading);
 
@@ -29,9 +25,6 @@ const Header = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegister, decodeUserName, loading]);
-
-  const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
-    : intl.formatMessage({id: "app.header.goStudy"});
 
   return (
     <div className="side-bar">

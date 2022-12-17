@@ -30,7 +30,8 @@ export const getEmail = createAsyncThunk(
 
 export const signUpSlice = createAsyncThunk(
   "users/signUpSliceStatus",
-  async (value: { name: string, phone?: string, gender: string, email: string, birthday: string, password: string }) => {
+  async (value: { name: string, phone?: string, gender: string, email: string,
+    birthday: string, password: string }) => {
     const response = await fetch(`${BACKEND_URL}/sign_up`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -42,19 +43,19 @@ export const signUpSlice = createAsyncThunk(
     const data = await response.json();
     return data;
   }
-)
+);
 
 export const confirmTokenSlice = createAsyncThunk(
   "users/confirmTokenSliceStatus",
   async (value: string) => {
     const response = await fetch(`${BACKEND_URL}/sign_up/confirm_email?token=${value}`);
     if (response.status != 200) {
-      return response.status
+      return response.status;
     }
     const data = await response.json();
     return data;
   }
-)
+);
 
 export const getLogin = createAsyncThunk(
   "user/getLoginStatus",

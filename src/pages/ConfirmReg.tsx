@@ -1,6 +1,6 @@
 import "./modal.scss";
-import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
+import {useIntl} from "react-intl";
 import {useNavigate} from "react-router-dom";
 
 type ConfirmProps = {
@@ -10,7 +10,7 @@ type ConfirmProps = {
 const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
-  const email = userEmail.slice(userEmail.lastIndexOf("@") + 1)
+  const email = userEmail.slice(userEmail.lastIndexOf("@") + 1);
   return (
     <div className="log-content">
       <h2 className="inform">
@@ -24,7 +24,7 @@ const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
           intl.formatMessage({id: "app.button.ok"})}
         className="button__page"
         onClick={() => {
-          registration ? window.location.href = `https://${email}` : navigate("/")
+          registration ? window.location.href = `https://${email}` : navigate("/");
         }}
       />
     </div>

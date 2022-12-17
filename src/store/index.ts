@@ -6,15 +6,13 @@ import loginReducer from "./loginName/loginSlice";
 
 
 const store = configureStore(
-  {
-    reducer: {
-      login: loginReducer,
-      value: headerReducer,
-      userDecodedName: decodeReducer,
-      userDecodedExp: decodeReducer,
-      link: linksReducer,
-    }
-  }
+  {reducer: {
+    login: loginReducer,
+    value: headerReducer,
+    userDecodedName: decodeReducer,
+    userDecodedExp: decodeReducer,
+    link: linksReducer,
+  }}
 );
 
 export default store;

@@ -2,12 +2,10 @@ import "react-phone-input-2/lib/style.css";
 import "./input.scss";
 import "./phoneNumber.scss";
 import {FieldInputProps, FormikProps} from "formik";
-import {FormattedMessage, useIntl} from "react-intl";
-import React, {useState} from "react";
-import {DEFAULT_COUNTRY_CODE} from "../constants";
+import {FormattedMessage} from "react-intl";
 import Magmagnifying from "./icons/magnifying_glass.svg";
 import PhoneInput from "react-phone-input-2";
-import classNames from "classnames";
+import React from "react";
 
 const deleteCountry: [string] = ["ke"];
 
@@ -29,26 +27,23 @@ type countryType = {
 }
 
 const PhoneNumber = ({
-                       field, error, form, isError, setIsError, phoneNumber, setPhoneNumber
-                     }: PhoneNumberProps) => {
-  const intl = useIntl();
+  field, error, form, setIsError, phoneNumber, setPhoneNumber
+}: PhoneNumberProps) => {
 
   const checkNumber =
     (value: string, country: countryType, e: React.ChangeEvent<HTMLDivElement>,
-     formattedValue: string) => {
+      formattedValue: string) => {
       const {setFieldValue} = form;
       const {name: fieldName} = field;
       setFieldValue(fieldName, formattedValue, true);
-
-        if (country.format) {
-          if (formattedValue.split(" ").join("").length
-            !== country.format.split(" ").join("").length) {
-            setIsError(true);
-          } else {
-            setIsError(false);
-          }
+      if (country.format) {
+        if (formattedValue.split(" ").join("").length
+          !== country.format.split(" ").join("").length) {
+          setIsError(true);
+        } else {
+          setIsError(false);
         }
-
+      }
       setPhoneNumber(value);
     };
 

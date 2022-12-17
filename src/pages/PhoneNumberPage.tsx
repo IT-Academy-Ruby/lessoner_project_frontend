@@ -31,18 +31,16 @@ const PhoneNumberPage = ({registration}: PhoneProps) => {
 
   const sendPhoneNumber = () => {
     switch (registration) {
-      case true:
-        return navigate("/user/sign_in/phone_numberR/code");
-      case false:
-        return navigate("/user/sign_in/phone_numberA/code");
-      case undefined:
-        return navigate("/user/reg_in/information/modR")
+    case true:
+      return navigate("/user/sign_in/phone_numberR/code");
+    case false:
+      return navigate("/user/sign_in/phone_numberA/code");
+    case undefined:
+      return navigate("/user/reg_in/information/modR");
     }
   };
-  const initialValues: FormValues = {
-    phone: phoneNumber,
-    hasTermsAndConditions: false
-  };
+  const initialValues: FormValues = {phone: phoneNumber,
+    hasTermsAndConditions: false};
   const validate = (values: FormValues) => {
     const errors: FormErrors = {};
     if (values.phone.length === 0) {
@@ -52,7 +50,8 @@ const PhoneNumberPage = ({registration}: PhoneProps) => {
       errors.phone = intl.formatMessage({id: "app.phoneNumber.err"});
     }
     if (registration && !values.hasTermsAndConditions) {
-      errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
+      errors.hasTermsAndConditions = intl.formatMessage(
+        {id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;
   };

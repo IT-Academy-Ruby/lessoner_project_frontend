@@ -1,10 +1,10 @@
 import "./input.scss";
-import React, {useEffect, useState} from "react";
-import {changeEvent, getEmail} from "../store/loginName/loginSlice";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
+import React, {useEffect} from "react";
 import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
 import classNames from "classnames";
+import {getEmail} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
 
 type EmailProps = {
   field: {
@@ -16,16 +16,7 @@ type EmailProps = {
   error?: string;
 }
 
-const Email = ({
-  field, error
-}: EmailProps): JSX.Element => {
-  const dispatch = useAppDispatch();
-  // const loginEvent = useAppSelector(state => state.login.event);
-  // const JWT = useAppSelector(state => state.login.login);
-  // const lookButton = useAppSelector(state => state.login.lookButton);
-  // const loading = useAppSelector(state => state.login.loading);
-  // const [isUser, setIsUser] = useState(false);
-  // const [isNotFoundEmail, setIsNotFoundEmail] = useState(true);
+const Email = ({field, error}: EmailProps): JSX.Element => {const dispatch = useAppDispatch();
 
   useEffect(() => {
     if(field.value.length > 0){

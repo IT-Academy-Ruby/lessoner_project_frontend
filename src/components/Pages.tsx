@@ -1,8 +1,7 @@
 import "./pages.scss";
-import {useAppSelector} from "../store/hooks";
+import {FC,useState} from "react";
 import CodePage from "../pages/CodePage";
 import ConfirmReg from "../pages/ConfirmReg";
-import {FC} from "react";
 import FirstRegistrationForm from "../pages/FirstRegistrationForm";
 import {Link} from "react-router-dom";
 import Loader from "../components/Loader";
@@ -12,7 +11,7 @@ import PhoneNumberPage from "../pages/PhoneNumberPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
 import SetNewPasswordPage from "../pages/SetNewPasswordPage";
 import YourselfPage from "../pages/YourselfPage";
-import {useState} from "react";
+import {useAppSelector} from "../store/hooks";
 
 interface PagesProps {
   pageType: string;
@@ -20,37 +19,37 @@ interface PagesProps {
 }
 
 const Pages: FC<PagesProps> = ({pageType, registration}) => {
-  const [userPassword, setUserPassword] = useState('');
-  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const page = () => {
     switch (pageType) {
-      case "Login":
-        return <LoginPage/>;
-      case "Code":
-        return <CodePage registration={registration}/>;
-      case "ResetPage":
-        return <ResetPasswordPage/>;
-      case "SetNewPassword":
-        return <SetNewPasswordPage/>;
-      case "PhoneNumberPage":
-        return <PhoneNumberPage registration={registration}/>;
-      case "FirstRegistrationForm":
-        return <FirstRegistrationForm
-          setUserPassword={setUserPassword}
-          setUserEmail={setUserEmail}
-        />;
-      case "YourselfPage":
-        return <YourselfPage
-          registration={registration}
-          userPassword={userPassword}
-          userEmail={userEmail}
-        />;
-      case "ConfirmReg":
-        return <ConfirmReg
-          registration={registration}
-          userEmail={userEmail}
-        />;
+    case "Login":
+      return <LoginPage/>;
+    case "Code":
+      return <CodePage registration={registration}/>;
+    case "ResetPage":
+      return <ResetPasswordPage/>;
+    case "SetNewPassword":
+      return <SetNewPasswordPage/>;
+    case "PhoneNumberPage":
+      return <PhoneNumberPage registration={registration}/>;
+    case "FirstRegistrationForm":
+      return <FirstRegistrationForm
+        setUserPassword={setUserPassword}
+        setUserEmail={setUserEmail}
+      />;
+    case "YourselfPage":
+      return <YourselfPage
+        registration={registration}
+        userPassword={userPassword}
+        userEmail={userEmail}
+      />;
+    case "ConfirmReg":
+      return <ConfirmReg
+        registration={registration}
+        userEmail={userEmail}
+      />;
     }
   };
   const loading = useAppSelector(state => state.login.loading);

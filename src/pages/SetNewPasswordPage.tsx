@@ -8,7 +8,6 @@ import Button from "../components/Button";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import {changePassword} from "../store/loginName/loginSlice";
-import getParameterValue from "../helpers/parseUrl";
 import {passwordRegex} from "../validationRules";
 import {useNavigate} from "react-router-dom";
 
@@ -42,9 +41,9 @@ const SetNewPasswordPage = () => {
     if (values.password.length > PASSWORD.maxLength ||
       values.password.length < minSymbol) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
-          minSymbol: minSymbol, maxSymbol: maxSymbol
-        });
+        intl.formatMessage(
+          {id: "app.firstRegistrationForm.passwordLength"},
+          {minSymbol: minSymbol, maxSymbol: maxSymbol});
     }
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = errors.code =
@@ -60,12 +59,9 @@ const SetNewPasswordPage = () => {
         validateOnChange={false}
         validate={validate}
         onSubmit={(values: FormValues) => {
-          const value = {
-            token: token,
-            password: values.password,
-          };
+          const value = {token: token, password: values.password,};
           dispatch(changePassword(value));
-          navigate("/")
+          navigate("/");
         }}
       >
         {({errors, touched}) => {

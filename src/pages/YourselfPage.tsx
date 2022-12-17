@@ -51,7 +51,9 @@ type YourselfPageProps = {
   userEmail: string;
 };
 
-const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps) => {
+const YourselfPage = ({
+  registration, userEmail, userPassword
+}: YourselfPageProps) => {
   const minSymbol = USERNAME.minLength;
   const maxSymbol = USERNAME.maxLength;
   const intl = useIntl();
@@ -59,8 +61,6 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
   const dispatch = useAppDispatch();
   const isEmail = useAppSelector(state => state.login.isEmail);
   const isUser = useAppSelector((state) => state.login.isLogged);
-  const loading = useAppSelector(state => state.login.loading);
-
   const [isWrapper, setIsWrapper] = useState(false);
 
   const validate = async (values: FormValues) => {
@@ -79,14 +79,11 @@ const YourselfPage = ({registration, userEmail, userPassword}: YourselfPageProps
       errors.name = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
     if (values.name.length < USERNAME.minLength && values.name.length > 0) {
-      errors.name = intl.formatMessage({id: "app.YourselfPage.errorSmallName"}, {
-        minSymbol: minSymbol
-      });
+      errors.name = intl.formatMessage(
+        {id: "app.YourselfPage.errorSmallName"}, {minSymbol: minSymbol});
     }
-    if (values.name.length > USERNAME.maxLength) {
-      errors.name = intl.formatMessage({id: "app.YourselfPage.errorBigName"}, {
-        maxSymbol: maxSymbol
-      });
+    if (values.name.length > USERNAME.maxLength) {errors.name = intl.formatMessage(
+      {id: "app.YourselfPage.errorBigName"}, {maxSymbol: maxSymbol});
     }
     if (isUser) {
       errors.name = intl.formatMessage({id: "app.userName.nameExists"});
