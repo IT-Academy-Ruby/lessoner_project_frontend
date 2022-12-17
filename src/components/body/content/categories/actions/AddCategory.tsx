@@ -5,17 +5,16 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {addCategory, updateCategory} from "../../../../../store/categorySlice/categorySlice";
-import {nameCategoryRegex, descriptionCategoryRegex} from "../../../../../validationRules";
+import {
+  addCategory,getCategory, updateCategory
+} from "../../../../../store/categorySlice/categorySlice";
+import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {useEffect, useState} from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
-import Loader from "../../../../Loader";
-import {getCategory} from "../../../../../store/categorySlice/categorySlice";
-
+import {useEffect} from "react";
 
 interface FormValues {
   id: number;
@@ -35,14 +34,13 @@ const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  // const [letters, setLetters] = useState<number>();
   const allCategories = useAppSelector((state) => state.categories.categories);
 
   useEffect(() => {
     if (!add) {
       dispatch(getCategory());
     }
-  }, []);
+  }, [dispatch,add]);
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));

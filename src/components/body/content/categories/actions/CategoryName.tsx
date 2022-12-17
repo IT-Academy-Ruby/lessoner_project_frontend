@@ -14,7 +14,9 @@ type CategoryNameProps = {
   error?: string;
   nameLength:number;
 }
-const CategoryName = ({field, error,nameLength}: CategoryNameProps): JSX.Element => {
+const CategoryName = ({
+  field, error,nameLength
+}: CategoryNameProps): JSX.Element => {
   const intl = useIntl();
   const [letters, setLetters] = useState<number>(NAME_CATEGORY.maxSymbols -nameLength);
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -29,7 +31,7 @@ const CategoryName = ({field, error,nameLength}: CategoryNameProps): JSX.Element
 
         {...field}
         onKeyUp={()=>setLetters(NAME_CATEGORY.maxSymbols - field.value.length)}
-        onFocus={()=>{setIsFocus(true)}}
+        onFocus={()=>setIsFocus(true)}
       />
       {error && <span className="message error">{error}</span>}
       {!error && <span className={classNames("message help", {"invisible":!isFocus})}>

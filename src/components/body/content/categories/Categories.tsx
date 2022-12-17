@@ -25,7 +25,6 @@ const Categories = () => {
 
   return (
     <div className="categories">
-
       <div className="category-header">
         <h1 className="category-title">
           <FormattedMessage id="app.categories"/>
@@ -44,7 +43,6 @@ const Categories = () => {
         <CategoriesAdmin/>
         <CategoriesUser/>
       </div>
-
     </div>
   );
 };

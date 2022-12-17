@@ -14,9 +14,12 @@ type CategoryDescriptionProps = {
   descriptionLength: number;
 }
 
-const CategoryDescription = ({field, error, descriptionLength}: CategoryDescriptionProps): JSX.Element => {
+const CategoryDescription = ({
+  field, error, descriptionLength
+}: CategoryDescriptionProps): JSX.Element => {
   const intl = useIntl();
-  const [letters, setLetters] = useState<number>(DESCRIPTION_CATEGORY.maxSymbols - descriptionLength);
+  const [letters, setLetters] =
+    useState<number>(DESCRIPTION_CATEGORY.maxSymbols - descriptionLength);
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
@@ -28,13 +31,10 @@ const CategoryDescription = ({field, error, descriptionLength}: CategoryDescript
         onBlur={() => setIsFocus(false)}
         {...field}
         onKeyUp={() => setLetters(DESCRIPTION_CATEGORY.maxSymbols - field.value.length)}
-        onFocus={() => {
-          setIsFocus(true)
-        }}
-
+        onFocus={() => setIsFocus(true)}
       />
       {error && <span className="error-message">{error}</span>}
-      {!error && <span className={classNames("message help", {"invisible":!isFocus})}>
+      {!error && <span className={classNames("message help", {"invisible": !isFocus})}>
         {intl.formatMessage({id: "app.categories.description.helper"}, {letters: letters})}
       </span>}
     </label>

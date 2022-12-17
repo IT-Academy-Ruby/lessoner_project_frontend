@@ -1,25 +1,26 @@
-import IT from "../../../icons/examplImage/IT.svg";
-import Loader from "../../../Loader";
+import "./index.scss";
+import CategoryIT from "../../../../assets/category_it.png";
+import {FormattedMessage} from "react-intl";
+import UserCategory from "../../../UserCategory";
 import {useAppSelector} from "../../../../store/hooks";
 
-const CategoriesUser = () => {
+const Categories = () => {
   const allCategories = useAppSelector((state) => state.categories.categories);
-  const loading = useAppSelector((state) => state.categories.loading);
 
   return (
-    <div className="categories-user">
-      {loading && <Loader/>}
-      {allCategories.map(category => category.status === "active" &&
-        <div key={category.name} className="category-user">
-          <img src={IT} alt="IT" className="background-category"/>
-          <div className="inform-user">
-            <div className="inform-for-hover"></div>
-            <h2 className="category-user-name">{category.name}</h2>
-            <p className="category-description description-user">{category.description}</p>
-          </div>
-        </div>
-      )}
+    <div className="wrapper__categories">
+      <FormattedMessage id="app.categories"/>
+      <div className="categories__block">
+        {allCategories.map(category =>
+          <UserCategory
+            imagePreview={CategoryIT}
+            name={category.name}
+            text={category.description}
+            bgColor="blue"
+            key={category.name}/>
+        )}
+      </div>
     </div>
   );
 };
-export default CategoriesUser;
+export default Categories;

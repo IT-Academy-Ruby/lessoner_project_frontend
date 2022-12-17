@@ -1,6 +1,7 @@
 import "./LessonCard.scss";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
+import Moment from "react-moment";
 import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import React from "react";
@@ -12,13 +13,19 @@ type ThumbnailImageUrlProps = {
 
 const POPUP_ITEMS = [
   {
-    label: "Archive", url: "#", id: 1
+    label: "Archive",
+    url: "#",
+    id: 1,
   },
   {
-    label: "Edit", url: "#", id: 2
+    label: "Edit",
+    url: "#",
+    id: 2,
   },
   {
-    label: "Send to review", url: "#", id: 3
+    label: "Send to review",
+    url: "#",
+    id: 3,
   },
 ];
 
@@ -48,7 +55,7 @@ const Title: React.FC<TitleProps> = (props) => {
 
 const MenuKebab = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  
+
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
@@ -59,7 +66,7 @@ const MenuKebab = () => {
       <div onClick={handleKebabClick} className="kebab__menu">
         <KebabSvg />
       </div>
-      <PopupMenu 
+      <PopupMenu
         isOpen={isOpen}
         onClickOutside={() => setIsOpen(false)}
         items={POPUP_ITEMS}
@@ -69,13 +76,16 @@ const MenuKebab = () => {
 };
 
 type PublishedDataProps = {
-  published: null | string;
+  published: string;
 };
 
 const Published: React.FC<PublishedDataProps> = (props) => {
   return (
     <div className="details__date">
-      <p>Published: {props.published}</p>
+      <p>
+        Published:
+        <Moment element="span" format="YYYY.MM.DD" date={props.published} />
+      </p>
     </div>
   );
 };
@@ -94,15 +104,15 @@ const View: React.FC<ViewProps> = (props) => {
 
 type LessonCardsProps = {
   id: number;
-  imagePreview: string;
+  imagePreview?: string;
   status: string;
-  duration: string;
+  duration?: string;
   title: string;
-  published: string | null;
-  view: number;
-  category: string;
-  rating: string;
-  totalVotes: string;
+  published: string;
+  view?: number;
+  category?: string;
+  rating?: number;
+  totalVotes?: number;
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
@@ -110,7 +120,10 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
     <div className="wrapper">
       <div className="card">
         <div className="card__icon">
-          <ThumbnailImageUrl imagePreview={props.imagePreview} />
+          {props.imagePreview && (
+            <ThumbnailImageUrl imagePreview={props.imagePreview} />
+          )}
+
           <Tag
             type="status"
             className="video__status"
@@ -118,7 +131,9 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
             iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
             videoStatus={true}
           />
-          <Tag className="video__time" type="time" text={props.duration} />
+          {props.duration && (
+            <Tag className="video__time" type="time" text={props.duration} />
+          )}
         </div>
         <div className="card__info">
           <div className="card__info-top">
@@ -127,11 +142,13 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
           </div>
           <div className="details">
             <Published published={props.published} />
-            <View view={props.view} />
+            {props.view && <View view={props.view} />}
           </div>
           <div className="categories__raiting">
             <Tag className="categories" type="category" text={props.category} />
-            <Rating rating={props.rating} totalVotes={props.totalVotes} />
+            {props.rating && props.totalVotes && (
+              <Rating rating={props.rating} totalVotes={props.totalVotes} />
+            )}
           </div>
         </div>
       </div>
