@@ -26,13 +26,14 @@ function App(): JSX.Element {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(confirmTokenSlice(token));
       window.location.href = "/user/sign_in";
+      count=true;
     }
     if (resetPasswordToken > 0 && count === false) {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(addToken(token));
       window.location.href = "/user/sign_in/reset_password/new_password";
+      count=true;
     }
-    count=true;
   }, [count,dispatch]);
 
   const signOut = () => {
