@@ -17,23 +17,22 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
-  let count = false;
+  let count = 1;
 
   useEffect(() => {
     const registrationToken = url.lastIndexOf("confirm_email?token=");
     const resetPasswordToken = url.lastIndexOf("reset_password?token=");
-    if (registrationToken > 0 && count === false) {
+    if (registrationToken > 0 && count === 1) {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(confirmTokenSlice(token));
       window.location.href = "/user/sign_in";
-      count=true;
     }
-    if (resetPasswordToken > 0 && count === false) {
+    if (resetPasswordToken > 0 && count === 1) {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(addToken(token));
       window.location.href = "/user/sign_in/reset_password/new_password";
-      count=true;
     }
+    count++;
   }, [dispatch]);
 
   const signOut = () => {
