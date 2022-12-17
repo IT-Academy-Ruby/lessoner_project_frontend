@@ -1,4 +1,6 @@
-import { CODE, PASSWORD,DESCRIPTION_CATEGORY,NAME_CATEGORY } from "./constants";
+import {
+  CODE, DESCRIPTION_CATEGORY,NAME_CATEGORY, PASSWORD
+} from "./constants";
 
 export const emailInvalidationRules = [
   /^\s*$/, // check string not empty
