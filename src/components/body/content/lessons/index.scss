@@ -1,11 +1,14 @@
 .wrapper__lessons {
-    width: 1376px;
-    height: 550px;
-    margin-left: 150px;
+  width: 1376px;
+  margin: auto;
 }
+
 .lessons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 1216px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }

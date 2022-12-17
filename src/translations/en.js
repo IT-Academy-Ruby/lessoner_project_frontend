@@ -5,6 +5,7 @@ export const messages_en = {
   "app.studio": "My Studio",
   "app.categories": "Categories",
   "app.lessons": "Lessons",
+  "app.lessons.loading": "Data is loading...",
   "app.about": "About",
   "app.login": "LogIn",
   "app.login.title": "Login to the Lessoner",
@@ -18,18 +19,24 @@ export const messages_en = {
   "app.sign_up": "Sign_up",
   "app.signUp": "Sign up",
   "app.birthdaylabel": "When is your birthday?",
-  "app.checkbox": "I agree to the processing of my personal data in accordance with the",
+  "app.checkbox":
+    "I agree to the processing of my personal data in accordance with the",
   "app.checkbox.terms": "Terms",
   "app.checkbox.login": "Stay logged in",
   "app.email.name": "Email",
   "app.email.notFound": "Email not found",
   "app.firstRegistrationForm.title": "Registration",
-  "app.firstRegistrationForm.existsInDb": "This email address is already registered",
-  "app.firstRegistrationForm.invalidationRules": "Please enter a valid email address",
-  "app.firstRegistrationForm.passwordRegEx": "An invalid character is present in the password. Password must be between {minSymbol} and {maxSymbol} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols {symbols}",
-  "app.firstRegistrationForm.passwordLength": "Password must be between {minSymbol} and {maxSymbol} characters",
+  "app.firstRegistrationForm.existsInDb":
+    "This email address is already registered",
+  "app.firstRegistrationForm.invalidationRules":
+    "Please enter a valid email address",
+  "app.firstRegistrationForm.passwordRegEx":
+    "An invalid character is present in the password. Password must be between {minSymbol} and {maxSymbol} characters; upper or lower case Latin letters (a–z, A–Z); numbers from 0 to 9; symbols {symbols}",
+  "app.firstRegistrationForm.passwordLength":
+    "Password must be between {minSymbol} and {maxSymbol} characters",
   "app.firstRegistrationForm.passwordConfrim": "Passwords do not match ",
-  "app.firstRegistrationForm.termsAndConditions": "You must consent to the processing of your personal data, in accordance with the Terms",
+  "app.firstRegistrationForm.termsAndConditions":
+    "You must consent to the processing of your personal data, in accordance with the Terms",
   "app.firstRegistrationForm.haveAccount": "Alredy have an account",
   "app.genderSelector.gender": "Select Your Gender",
   "app.passwordAndConfirm.pass": "Password",
@@ -50,6 +57,7 @@ export const messages_en = {
   "app.navbarStudyStudio.watchLater": "Watch later",
   "app.navbarStudyStudio.myLesson": "My lesson",
   "app.navbarStudyStudio.management": "Management",
+  "app.navbarStudyStudio.footer": "All rights reserved.",
   "app.button.next": "Next",
   "app.button.ok": "Ok",
   "app.button.finish": "Finish",
@@ -57,7 +65,8 @@ export const messages_en = {
   "app.button.code": "Resend code",
   "app.or": "or",
   "app.pagesTitle.registration": "Registration",
-  "app.pagesTitle.confirm": "Confirm your registration using the link we sent to your email.",
+  "app.pagesTitle.confirm":
+    "Confirm your registration using the link we sent to your email.",
   "app.pagesTitle.phoneNumber": "Enter your phone number",
   "app.pagesTitle.enterCode": "Enter the code",
   "app.pagesTitle.aboutYourself": "Tell us about yourself",
@@ -67,9 +76,11 @@ export const messages_en = {
   "app.code.name": "Code",
   "app.code.errorLength": "Code should be {maxSymbol} characters. ",
   "app.code.invalidationRules": "An invalid character is present in the Code. ",
-  "app.code.inform": "Now a code will come to your phone.\nEnter it in a line.\n",
+  "app.code.inform":
+    "Now a code will come to your phone.\nEnter it in a line.\n",
   "app.code.phoneNumber": "To change number",
-  "app.resetPasswordPage.inform": "Enter the email that you used when register to recover your password. You will receive a password reset link",
+  "app.resetPasswordPage.inform":
+    "Enter the email that you used when register to recover your password. You will receive a password reset link",
   "app.resetPasswordPage.resetPassword": "Password reset",
   "app.resetPasswordPage.text": "We've sent a link to restore access to your account to the address {email}",
   "app.setNewPasswordPage.title": "Login as username",
@@ -84,4 +95,9 @@ export const messages_en = {
   "app.gender.male": "Male",
   "app.gender.female": "Female",
   "app.gender.other": "Other",
+  "app.nameCategory.it": "IT",
+  "app.nameCategory.design": "Design",
+  "app.nameCategory.music": "Music",
+  "app.nameCategory.business": "Business",
 };
+  
