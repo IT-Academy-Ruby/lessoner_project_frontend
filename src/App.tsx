@@ -26,14 +26,16 @@ function App(): JSX.Element {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(confirmTokenSlice(token));
       window.location.href = "/user/sign_in";
+      count++;
     }
     if (resetPasswordToken > 0 && count === 1) {
       const token = url.slice(url.lastIndexOf("token=") + 6);
       dispatch(addToken(token));
       window.location.href = "/user/sign_in/reset_password/new_password";
+      count++;
     }
-    count++;
-  }, [dispatch]);
+
+  }, [count,dispatch,url]);
 
   const signOut = () => {
     localStorage.setItem("JWT", "");
