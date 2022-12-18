@@ -1,13 +1,12 @@
 import "./index.scss";
 import React, { useEffect, useState } from "react";
-import { BACKEND_URL } from "../../../../constants";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
 import requestApi from "../../../../services/request";
 
-const categoriesUrl = `${BACKEND_URL}/categories`;
-const lessonsUrl = `${BACKEND_URL}/lessons`;
+const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
+const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
 export interface Lesson {
   id: number;
   title: string;

@@ -1,3 +1,5 @@
+import "../pages/modal.scss";
+import VK from "../components/icons/vk.svg";
 import getParameterValue from "../helpers/parseUrl";
 import { useEffect } from "react";
 
@@ -13,7 +15,7 @@ const VKButton = () => {
       console.log(code);
     }
     else if (error) {
-      window.location.href = `${REACT_APP_FRONTEND}/users/sign_up`;
+      window.location.href = `${REACT_APP_FRONTEND}/firstRegistrationForm`;
     }
   }, [REACT_APP_FRONTEND]);
 
@@ -24,8 +26,8 @@ const VKButton = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleRedirect}>Continue with VK</button>
+    <div className="app-logo" onClick={handleRedirect}>
+      <img src={VK} alt="vk" />
     </div>
   );
 };
