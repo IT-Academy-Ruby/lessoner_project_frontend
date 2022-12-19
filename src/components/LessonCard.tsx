@@ -44,7 +44,7 @@ const MenuKebab: FC<MenuKebabProps> = (props) => {
   return (
     <div
       className="kebab__menu"
-      onClick={() => navigate("/lessons/edit/" + props.idCard)}
+      onClick={() => navigate("/lessons/" + props.idCard)}
     >
       <img src={Kebab} alt="kebab" />
     </div>

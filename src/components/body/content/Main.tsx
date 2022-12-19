@@ -37,7 +37,7 @@ const Content = () => {
           }
         />
         <Route path="/lessons" element={<Lessons />} />
-        <Route path="/lessons/edit/:id" element={<EditVideoLessonTitle/>} />
+        <Route path="/lessons/:id" element={<EditVideoLessonTitle/>} />
         <Route path="/about" element={<About />} />
         <Route path="/users/sign_in" element={<SignIn />} />
         <Route path="/users/sign_up" element={<SignUp />} />
