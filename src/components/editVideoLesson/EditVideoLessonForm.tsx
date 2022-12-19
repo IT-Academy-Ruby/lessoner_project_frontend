@@ -46,15 +46,15 @@ export const EditVideoLessonForm: FC = () => {
     };
   }, []);
 
-  const editL = (lessonFromEditForm: any) => {
+  const editL = (lessonFromEditForm: { name: string; description: string }) => {
     return () => {
       request(lessonEditUrl, "PUT", lessonFromEditForm);
     };
   };
 
-  const addInfoToLessonObject = (values: any) => {
+  const addInfoToLessonObject = (values: {name: string; description: string;}) => {
     const lessonFromEditForm = {
-      title: `${values.name}`,
+      name: `${values.name}`,
       description: `${values.description}`,
     };
     editL(lessonFromEditForm);

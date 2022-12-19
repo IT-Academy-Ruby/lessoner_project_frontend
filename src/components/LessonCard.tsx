@@ -5,6 +5,7 @@ import { LetterSvg } from "../components/svg/LetterSvg";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
 import { useNavigate } from "react-router-dom";
+import { LessonCardsProps } from "./types/types";
 
 type ThumbnailImageUrlProps = {
   imagePreview: string;
@@ -34,12 +35,16 @@ const Title: FC<TitleProps> = (props) => {
   );
 };
 
-const MenuKebab = (CardId: any) => {
+type MenuKebabProps = {
+  idCard: number;
+};
+
+const MenuKebab: FC<MenuKebabProps> = (props) => {
   const navigate = useNavigate();
   return (
     <div
       className="kebab__menu"
-      onClick={() => navigate("/lessons/edit/" + CardId.idCard)}
+      onClick={() => navigate("/lessons/edit/" + props.idCard)}
     >
       <img src={Kebab} alt="kebab" />
     </div>
@@ -70,18 +75,7 @@ const View: FC<ViewProps> = (props) => {
   );
 };
 
-interface LessonCardsProps {
-  id: number;
-  imagePreview: string;
-  status: string;
-  duration: string;
-  title: string;
-  published: string | null;
-  view: number;
-  category: string;
-  rating: string;
-  totalVotes: string;
-};
+
 
 const LessonCard: FC<LessonCardsProps> = (props) => {
   return (
@@ -101,7 +95,7 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} />
-            <MenuKebab idCard={props.id}/>
+            <MenuKebab idCard={props.id} />
           </div>
           <div className="details">
             <Published published={props.published} />

@@ -15,7 +15,7 @@ const Button = ({
   return (
     <Fragment>
       <button type={buttonType} className={className} onClick={onClick}>
-        {<>{buttonIcon}</>}
+        {buttonIcon}
         {buttonText}
       </button>
     </Fragment>
