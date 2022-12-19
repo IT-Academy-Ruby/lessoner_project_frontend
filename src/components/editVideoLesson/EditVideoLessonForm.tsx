@@ -42,15 +42,16 @@ export const EditVideoLessonForm: FC = () => {
     };
   }, []);
 
-  const editL = (lessonFromEditForm: { name: string; description: string }) => {
-    return () => {
-      request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
-    };
+  const editL = (lessonFromEditForm: {
+    title: string;
+    description: string;
+  }) => {
+    request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
   };
 
   const addInfoToLessonObject = (values: {name: string; description: string;}) => {
     const lessonFromEditForm = {
-      name: `${values.name}`,
+      title: `${values.name}`,
       description: `${values.description}`,
     };
     editL(lessonFromEditForm);

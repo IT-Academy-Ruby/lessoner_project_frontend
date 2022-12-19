@@ -14,6 +14,7 @@ export const messages_ru = {
   "app.sign_in": "Войти",
   "app.sign_up": "Зарегистрироваться",
   "app.lessoner": "Lessoner",
+  "app.lessons.loading": "Загрузка данных...",
   "app.birthdaylabel": "Когда у тебя день рождения?",
   "app.checkbox": "Даю согласие на обработку моих персональных данных в соответствии с",
   "app.checkbox.terms": "Условиями",
