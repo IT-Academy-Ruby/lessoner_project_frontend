@@ -1,63 +1,13 @@
 @import "./src/constants.scss";
 
 .side-bar {
+  grid-column-start: 2;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
   background: $white;
-}
-
-.menu {
-  position: relative;
-  width: 64px;
-  height: 100%;
-}
-
-.burg-btn {
-  visibility: hidden;
-  position: absolute;
-}
-
-.menu-burg {
-  display: inline-block;
-  width: 18px;
-  top: 25%;
-  border: 2px solid $blueDarkColor;
-  position: relative;
-}
-
-.menu-burg::before,
-.menu-burg::after {
-  content: "";
-  position: absolute;
-  width: 18px;
-  border: 2px solid $blueDarkColor;
-  left: -2px;
-  transition: 0.5s;
-}
-
-.menu-burg::before {
-  transform: translateY(5px);
-}
-
-.menu-burg::after {
-  transform: translateY(-9px);
-}
-
-.burg-btn:checked ~ .menu-burg {
-  visibility: hidden;
-}
-
-.burg-btn:checked ~ .menu-burg::before {
-  transform: rotate(-45deg);
-  visibility: visible;
-}
-
-.burg-btn:checked ~ .menu-burg::after {
-  transform: rotate(45deg);
-  visibility: visible;
 }
 
 .menu-list {
@@ -104,7 +54,7 @@
   line-height: 150%;
   letter-spacing: 0.15px;
   text-decoration: none;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font;
 }
 
 .search-button {
@@ -155,7 +105,7 @@
 .button-login {
   width: 115px;
   height: 32px;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font;
   background: $blueLightColor;
   color: #eaeaea;
   border: none;
@@ -174,7 +124,7 @@
   width: 141px;
   border: 1px solid $blueLightColor;
   border-radius: 28px;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font;
   font-weight: 600;
   font-size: 16px;
   color: $blueLightColor;

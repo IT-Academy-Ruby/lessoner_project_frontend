@@ -26,7 +26,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     }, 
     {
       id: 4, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.categories"})}`, 
-      href: "#!", icon: "categories", place: "study"
+      href: "/categories", icon: "categories", place: "study"
     }, 
     {
       id: 5, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.subscription"})}`,

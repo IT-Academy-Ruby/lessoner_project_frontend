@@ -1,17 +1,19 @@
-@import "../constants.scss";
+@import "../../../constants.scss";
 
 .menu__content {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 64px;
-    height: 794px;
-    background-color: $white;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    border-right: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
-    transition: .1s;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 64px;
+  height: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+  transition: 0.1s;
+  background-color: $white;
 }
 
 .menu__content--active {
