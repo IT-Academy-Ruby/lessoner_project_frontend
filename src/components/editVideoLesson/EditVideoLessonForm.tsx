@@ -34,12 +34,10 @@ export const EditVideoLessonForm: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    return () => {
-      fetch(BACKEND_URL_LESSONS + params.id)
-        .then((response) => response.json())
-        .then((lesson) => setLesson(lesson))
-        .catch((error) => console.log(error));
-    };
+    fetch(BACKEND_URL_LESSONS + params.id)
+      .then((response) => response.json())
+      .then((lesson) => setLesson(lesson))
+      .catch((error) => console.log(error));
   }, []);
 
   const editL = (lessonFromEditForm: {
