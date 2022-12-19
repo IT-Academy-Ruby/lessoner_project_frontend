@@ -26,7 +26,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     }, 
     {
       id: 4, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.categories"})}`, 
-      href: "#!", icon: "categories", place: "study"
+      href: "/categories", icon: "categories", place: "study"
     }, 
     {
       id: 5, value: `${intl.formatMessage({ id: "app.navbarStudyStudio.subscription"})}`,
@@ -105,9 +105,13 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 </li>
           ) 
           }
+          <div className="menu__footer">
+            <p className={classNames("menu__footer-text", 
+              {"menu__footer-text--active": isMenuActive})}>
+              &reg; 2022. {intl.formatMessage({ id: "app.navbarStudyStudio.footer"})}
+            </p>
+          </div>
         </ul>
-        { isMenuActive && <div className = "copyright-wrapper">
-          <div>&reg;</div>2022. All right reserved</div> }
       </div>
     </div>
   );

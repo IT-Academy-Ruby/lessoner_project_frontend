@@ -1,5 +1,26 @@
 @import "../constants.scss";
 
+.button-select {
+  display: flex;
+  align-items: center;
+  border: 1px solid $blueLightColor;
+  border-radius: 28px;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  color: $blueLightColor;
+  padding: 6px 36px;
+  background: $white;
+
+  &:disabled {
+    background: $white;
+    opacity: 0.5;
+    border-radius: 28px;
+    border: none;
+    color: $greySearchColor;
+  }
+}
+
 .button__page {
   display: flex;
   align-items: center;

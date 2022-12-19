@@ -42,7 +42,6 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
 
   return (
     <div className="side-bar">
-      <div className="menu"></div>
       <div className="header">
         <Link to="/" className="logo-name">
           <img className="logo" src={Logo} alt="Logo"/>

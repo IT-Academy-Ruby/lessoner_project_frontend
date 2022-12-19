@@ -3,16 +3,10 @@ import {
   BrowserRouter,Link, Route, Routes
 } from "react-router-dom";
 import Body from "./components/body/Body";
-import CodePage from "./pages/CodePage";
 import {IntlProvider} from "react-intl";
-import LoginPage from "./pages/LoginPage";
 import Pages from "./components/Pages";
-import PhoneNumberPage from "./pages/PhoneNumberPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import Search from "./components/body/header/search/Search";
-import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
-import {useState} from "react";
+import { useState } from "react";
 
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
