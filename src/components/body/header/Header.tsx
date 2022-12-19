@@ -5,11 +5,13 @@ import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
 import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
-import Logo from "../../icons/Logo.svg";
+import { DarkLogoHeaderSvg } from "../../svg/DarkLogoHeaderSvg";
+import { LightLogoHeaderSvg } from "../../svg/LightLogoHeaderSvg";
 import Magnifier from "../../icons/blackMagnifier.svg";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {showStudentPage} from "../../../store/header/headerSlice";
 import {useEffect} from "react";
+import { useTheme } from "../../../utils/useTheme";
 
 const Header = () => {
   const intl = useIntl();
@@ -19,7 +21,8 @@ const Header = () => {
   const page = useAppSelector(state => state.value.page);
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const loading = useAppSelector(state => state.login.loading);
-
+  const theme = useTheme();
+  
   useEffect(() => {
     dispatch(nameDecodedUser());
     if (decodeUserName) {
@@ -40,10 +43,7 @@ const Header = () => {
       </label>
       <div className="header">
         <Link to="/n" className="logo-name">
-          <img className="logo" src={Logo} alt="Logo"/>
-          <h4 className="title-header">
-            <FormattedMessage id="app.name"/>
-          </h4>
+          {theme === "Dark-mode" ? <DarkLogoHeaderSvg /> : <LightLogoHeaderSvg />}       
           {(page === "myPage" && isDefaultPage) && <Link to={"/myStudio"} className="my-studio">
             <FormattedMessage id="app.studio"/>
           </Link>}
