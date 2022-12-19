@@ -80,6 +80,22 @@ $themes: (
   textConfirmReg: (
     darkTheme: $light2,
     lightTheme: $dark1,
+  ),
+  bgPhoneNumberCountryList: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textPhoneNumberCountryList: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  textPhoneNumberCountryListHover: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
+  bgGenderSelectorRadio:(
+    darkTheme: $dark1,
+    lightTheme: $light1,
   )
 );
 
