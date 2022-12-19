@@ -1,11 +1,11 @@
 import "./LessonCard.scss";
 import { FC } from "react";
 import Kebab from "../assets/kebab.png";
+import { LessonCardsProps } from "./types/types";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
 import { useNavigate } from "react-router-dom";
-import { LessonCardsProps } from "./types/types";
 
 type ThumbnailImageUrlProps = {
   imagePreview: string;

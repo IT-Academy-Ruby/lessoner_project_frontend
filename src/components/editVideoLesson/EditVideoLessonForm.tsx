@@ -1,10 +1,12 @@
 import "./EditVideoLessonForm.scss";
+import { BACKEND_URL_LESSONS, maxDescriptionLength, maxDescriptionHashTagCount, maxNameLength } from "../../constants";
 import { 
   FC, useEffect, useState 
 } from "react";
 import { 
   Field, Form, Formik 
 } from "formik";
+import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
 import { ILessonBack } from "../types/types";
@@ -15,8 +17,6 @@ import frame87 from "../icons/Frame87.png";
 import frame88 from "../icons/Frame88.png";
 import request from "../../services/request";
 import { useIntl } from "react-intl";
-import { RegExpDescription, RegExpName } from "../../validationRules";
-import { maxDescriptionLength, maxDescriptionHashTagCount, maxNameLength } from "../../constants";
 
 const hachTag = "#";
 let countHashTag = 0;
@@ -32,14 +32,10 @@ export const EditVideoLessonForm: FC = () => {
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
   const params = useParams();
   const navigate = useNavigate();
-  const getLessonUrl =
-    "https://lessoner-project-2w3h.onrender.com/lessons/" + params.id;
-  const lessonEditUrl = getLessonUrl;
-  
 
   useEffect(() => {
     return () => {
-      fetch(getLessonUrl)
+      fetch(BACKEND_URL_LESSONS + params.id)
         .then((response) => response.json())
         .then((lesson) => setLesson(lesson))
         .catch((error) => console.log(error));
@@ -48,7 +44,7 @@ export const EditVideoLessonForm: FC = () => {
 
   const editL = (lessonFromEditForm: { name: string; description: string }) => {
     return () => {
-      request(lessonEditUrl, "PUT", lessonFromEditForm);
+      request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
     };
   };
 

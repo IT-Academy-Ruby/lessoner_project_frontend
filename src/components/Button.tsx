@@ -1,12 +1,12 @@
 import "./button.scss";
-import { Fragment, MouseEventHandler } from "react";
+import React, { Fragment, MouseEventHandler } from "react";
 
 type ButtonProps = {
   buttonType: "button" | "submit" | "reset";
   buttonText: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  buttonIcon?: any;
+  buttonIcon?: React.ReactNode;
 }
 
 const Button = ({
