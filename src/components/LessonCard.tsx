@@ -82,7 +82,10 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
     <div className="wrapper">
       <div className="card">
         <div className="card__icon">
-          <ThumbnailImageUrl imagePreview={props.imagePreview} />
+          {props.imagePreview && (
+            <ThumbnailImageUrl imagePreview={props.imagePreview} />
+          )}
+
           <Tag
             type="status"
             className="video__status"
@@ -90,20 +93,24 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
             iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
             videoStatus={true}
           />
-          <Tag className="video__time" type="time" text={props.duration} />
+          {props.duration && (
+            <Tag className="video__time" type="time" text={props.duration} />
+          )}
         </div>
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} />
-            <MenuKebab idCard={props.id} />
+            <MenuKebab idCard={props.id} />;
           </div>
           <div className="details">
             <Published published={props.published} />
-            <View view={props.view} />
+            {props.view && <View view={props.view} />}
           </div>
           <div className="categories__raiting">
             <Tag className="categories" type="category" text={props.category} />
-            <Rating rating={props.rating} totalVotes={props.totalVotes} />
+            {props.rating && props.totalVotes && (
+              <Rating rating={props.rating} totalVotes={props.totalVotes} />
+            )}
           </div>
         </div>
       </div>
@@ -112,3 +119,5 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
 };
 
 export default LessonCard;
+
+
