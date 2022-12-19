@@ -1,4 +1,4 @@
-import { PASSWORD } from "./constants";
+import { CODE, PASSWORD } from "./constants";
 
 export const emailInvalidationRules = [
   /^\s*$/, // check string not empty
@@ -13,3 +13,7 @@ export const emailInvalidationRules = [
 
 export const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" +
   PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+
+export const CodeRegex = new RegExp("[0-9a-z]{"+CODE.maxLength+"}", "i");
+
+export const UserRegex = new RegExp("[a-z0-9]", "i");

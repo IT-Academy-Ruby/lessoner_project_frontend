@@ -1,5 +1,6 @@
-import "./Checkbox.scss";
-import { FormattedMessage } from "react-intl";
+import "./checkbox.scss";
+import {Link} from "react-router-dom";
+import {useState} from "react";
 
 type CheckboxProps = {
   field?: {
@@ -9,23 +10,33 @@ type CheckboxProps = {
     value: string
   };
   error?: string;
+  information: string;
+  link: string;
 }
-const Checkbox = ({ field, error }: CheckboxProps): JSX.Element => {
+const Checkbox = ({
+  field, error, information, link
+}: CheckboxProps): JSX.Element => {
+  const [isChecked, setIsChecked] = useState(false);
   return (
-    <label className="checkbox__label">
-      <div className="checkbox__content">
-        <input
-          className="checkbox__input"
-          type='checkbox'
-          {...field}
-        />
-        <p className="checkbox__text">
-          <FormattedMessage id="app.checkbox" /> <a href='#!'>
-            <FormattedMessage id="app.checkbox.terms" /> </a>
-        </p>
-      </div>
-      {error && <span className="error-message">{error}</span>}
-    </label>
+    <span className="checkbox">
+      <input
+        type="checkbox"
+        id="checkbox"
+        onClick={() => {
+          setIsChecked(!isChecked);
+        }}
+        className={isChecked ? "checked" : "unchecked"}
+        {...field}
+      />
+      <label
+        htmlFor="checkbox"
+        className="label-checkbox"
+      >
+        {information}
+        {link ? <Link to={"/users/sign_in/terms"} className="link">{link}</Link> : null}
+        {error && <span className="error-message">{error}</span>}
+      </label>
+    </span>
   );
 };
 
