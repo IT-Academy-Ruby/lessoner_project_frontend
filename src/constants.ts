@@ -9,8 +9,12 @@ const PASSWORD = { minLength: 6, maxLength: 256 };
 const REDIRECT_URL = "https://lessoner.herokuapp.com/users/sign_up";
 const USERNAME = { minLength: 3, maxLength: 50 };
 const VK_APP = { id: 51463254 };
+const maxNameLength = 64;
+const maxDescriptionLength = 600;
+const maxDescriptionHashTagCount = 10;
 
 export {
   BACKEND_URL, CODE, DEFAULT_COUNTRY_CODE, EMAIL, FACEBOOK_APP, GOOGLE_APP,
-  PASSWORD, REDIRECT_URL, USERNAME, VK_APP
+  PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength, maxDescriptionLength, maxDescriptionHashTagCount
 };
+

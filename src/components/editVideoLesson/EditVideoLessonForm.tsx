@@ -15,14 +15,9 @@ import frame87 from "../icons/Frame87.png";
 import frame88 from "../icons/Frame88.png";
 import request from "../../services/request";
 import { useIntl } from "react-intl";
+import { RegExpDescription, RegExpName } from "../../validationRules";
+import { maxDescriptionLength, maxDescriptionHashTagCount, maxNameLength } from "../../constants";
 
-
-const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]]+$/i;
-const DescriptionName =
-  /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]#]+$/i;
-const maxNameLength = 64;
-const maxDescriptionLength = 600;
-const maxDescriptionHashTagCount = 10;
 const hachTag = "#";
 let countHashTag = 0;
 
@@ -94,7 +89,7 @@ export const EditVideoLessonForm: FC = () => {
     getHashTagCount(description, hachTag);
     if (!description) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
-    } else if (!DescriptionName.test(description)) {
+    } else if (!RegExpDescription.test(description)) {
       return intl.formatMessage({
         id: "app.editVideoLesson.errorProhibitedCharacters",
       });

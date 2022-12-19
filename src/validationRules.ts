@@ -13,3 +13,7 @@ export const emailInvalidationRules = [
 
 export const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" +
   PASSWORD.minLength + "," + PASSWORD.maxLength + "}$", "i");
+
+export const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]]+$/i;
+
+export const RegExpDescription = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]#]+$/i;
