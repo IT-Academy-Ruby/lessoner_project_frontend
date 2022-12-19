@@ -10,13 +10,13 @@ export interface ILessonBack {
 
 export interface LessonCardsProps {
   id: number;
-  imagePreview: string;
+  imagePreview?: string;
   status: string;
-  duration: string;
+  duration?: string;
   title: string;
-  published: string | null;
-  view: number;
-  category: string;
-  rating: string;
-  totalVotes: string;
+  published: string;
+  view?: number;
+  category?: string;
+  rating?: number;
+  totalVotes?: number;
 };
