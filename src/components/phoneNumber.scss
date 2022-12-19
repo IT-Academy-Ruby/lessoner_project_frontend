@@ -15,14 +15,14 @@
   padding: 1px 46px 1px 84px;
   width: 100%;
   border-color: $blueLightColor;
-  color:$black;
+  color:var(--textThemeColor1) !important;
   background: none;
 }
 
 .react-tel-input .flag-dropdown {
   padding-left:45px;
   left:1px;
-  background-color: $white;
+  background: var(--bgThemeColor1) !important;
   border: none;
   height: 90%;
   top: 2px;
@@ -34,7 +34,7 @@
 }
 
 .react-tel-input .flag-dropdown.open .selected-flag {
-  background: $white;
+  background: var(--bgThemeColor1) !important;
   border-radius: 0;
   }
 
@@ -48,7 +48,7 @@
 }
 
 .react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
-  background-color: $white;
+  background: var(--bgThemeColor1) !important;
   border-radius: 0;
 }
 
