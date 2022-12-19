@@ -120,7 +120,7 @@ function App(): JSX.Element {
             />
             <Route path="/user/facebook" element={<FacebookButton />} />
             <Route path="/user/vk" element={<VKButton />} />
-            <Route path="/videopage" element={<VideoViewPage />} />
+            <Route path="/lessons/:id" element={<VideoViewPage />} />
           </Routes>
         </div>
       </BrowserRouter>

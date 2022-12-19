@@ -42,12 +42,13 @@ const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
 
 type TitleProps = {
   title: string;
+  id: number;
 };
 
 const Title: React.FC<TitleProps> = (props) => {
   return (
     <div className="video__title">
-      <Link to="/videopage/lessons/23">
+      <Link to={`/lessons/${props.id}`}>
         <p>{props.title}</p>
       </Link>
     </div>
