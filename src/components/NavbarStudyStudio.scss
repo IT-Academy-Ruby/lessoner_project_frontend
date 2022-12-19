@@ -1,0 +1,153 @@
+@import "../constants.scss";
+
+.menu__content {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 64px;
+    height: 794px;
+    background-color: $white;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+    transition: .1s;
+}
+
+.menu__content--active {
+  width: 200px;
+  height: 794px;
+  border-radius: 0 15px 15px 0;
+}
+
+.menu__inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.menu__item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style-type: none;
+  width: 100%;
+  margin: 0 0 30px 13px;
+}
+
+.menu__item-inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.menu__item-inner:hover .menu__text {
+  color: $blueLightColor;
+}
+
+.menu__item-inner:hover .svg__item {
+  fill: $blueLightColor;
+}
+
+.menu__footer {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.menu__text, .menu__footer-text {
+  width: 0;
+  text-align: left;
+  font-family: $font;
+  font-size: 0;
+  font-weight: 600;
+  color: $black;
+  opacity: 0;
+  transition: 0.1s;
+}
+
+.menu__text--active {
+  width: 140px;
+  font-size: 1em;
+  opacity: 1;
+  transition: 0.1s;
+}
+
+.menu__footer-text--active {
+  width: 100%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: #9A9AA3;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 10px;
+  opacity: 1;
+  transition: 0.1s;
+}
+
+.menu__text--selected {
+  color: $blueLightColor;
+}
+
+.image__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.image__wrapper--active:hover {
+  background: $blueLightColor;
+}
+
+.image__wrapper--active.image__wrapper--selected {
+  background: $blueLightColor;
+}
+
+.image__wrapper--active:hover .svg__item {
+  fill: $white;
+}
+
+.image__wrapper--active:hover .svg__menu {
+  stroke: $white;
+}
+
+.svg__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  fill: $black;
+}
+
+.svg__item svg {
+  width: 20px;
+  height: 20px;
+}
+
+.svg__menu {
+  stroke: $black;
+}
+
+.svg__item--active.svg__item--selected {
+  fill: $blueLightColor;
+}
+
+.svg__item--selected {
+  fill: $white;
+}
