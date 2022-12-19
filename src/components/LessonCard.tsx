@@ -7,7 +7,7 @@ import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
 import { useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 type ThumbnailImageUrlProps = {
   imagePreview: string;
 };
@@ -33,9 +33,9 @@ const POPUP_ITEMS = [
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
-      <a href="/lessons">
+      <Link to="/videopage">
         <img src={props.imagePreview} alt="Videopreview" />
-      </a>
+      </Link>
     </div>
   );
 };
@@ -47,9 +47,9 @@ type TitleProps = {
 const Title: React.FC<TitleProps> = (props) => {
   return (
     <div className="video__title">
-      <a href="#">
+      <Link to="/videopage/lessons/23">
         <p>{props.title}</p>
-      </a>
+      </Link>
     </div>
   );
 };
@@ -164,5 +164,3 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
 };
 
 export default LessonCard;
-
-
