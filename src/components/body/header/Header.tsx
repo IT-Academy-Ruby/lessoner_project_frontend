@@ -1,16 +1,16 @@
 import "./Header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Fragment, useEffect, useState} from "react";
+import {
+  Fragment, useEffect, useState
+} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
-import Bell from "../../icons/Bell.svg";
 import Button from "../../Button";
 import Language from "./Language";
 import Logo from "../../icons/Logo.svg";
-import Magnifier from "../../icons/blackMagnifier.svg";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
-import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
 
 type HeaderProps = {
   onLanguageSwitch: (arg: string) => void;
@@ -21,7 +21,6 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isRegister = useAppSelector(state => state.value.isDefaultHeader);
-  const page = useAppSelector(state => state.value.page);
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const loading = useAppSelector(state => state.login.loading);
   const [language, setLanguage] = useState("en");
@@ -37,9 +36,6 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isRegister, decodeUserName, loading]);
 
-  const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
-    : intl.formatMessage({id: "app.header.goStudy"});
-
   return (
     <div className="side-bar">
       <div className="header">
@@ -51,9 +47,9 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
         </Link>
         <div className="header-buttons">
           {isRegister ? <Avatar
-              onLanguageSwitch={onLanguageSwitch}
-              language={language}
-              setLanguage={setLanguage}/> :
+            onLanguageSwitch={onLanguageSwitch}
+            language={language}
+            setLanguage={setLanguage}/> :
             <Fragment>
               <Language
                 onLanguageSwitch={onLanguageSwitch}

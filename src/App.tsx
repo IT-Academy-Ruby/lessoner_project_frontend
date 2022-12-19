@@ -1,6 +1,6 @@
 import "./App.scss";
 import {
-  BrowserRouter,Link, Route, Routes
+  BrowserRouter, Route, Routes
 } from "react-router-dom";
 import Body from "./components/body/Body";
 import {IntlProvider} from "react-intl";

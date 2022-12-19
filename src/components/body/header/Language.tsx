@@ -1,11 +1,12 @@
+import {useEffect, useState} from "react";
 import Arrow from "../../icons/arrowDown.svg";
 import ArrowRight from "../../icons/arrowRight.svg";
 import Check from "../../icons/check.svg";
-import Globe from "../../icons/Globe.svg";
 import {FormattedMessage} from "react-intl";
+import Globe from "../../icons/Globe.svg";
 import LANGUAGES from "../../../translations/constants";
 import classNames from "classnames";
-import {useEffect, useState} from "react";
+
 
 type LanguageProps = {
   onLanguageSwitch: (arg: string) => void;
@@ -13,15 +14,17 @@ type LanguageProps = {
   language: string;
   setLanguage: (arg: string) => void;
 }
-const Language = ({onLanguageSwitch, isRegistered, language, setLanguage}: LanguageProps) => {
+const Language = ({
+  onLanguageSwitch, isRegistered, language, setLanguage
+}: LanguageProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    onLanguageSwitch(language)
-  }, [language])
+    onLanguageSwitch(language);
+  }, [language,onLanguageSwitch]);
 
   const changelanguage = (value: string) => {
-    setLanguage(value)
+    setLanguage(value);
     setIsChecked(false);
   };
 
@@ -42,24 +45,28 @@ const Language = ({onLanguageSwitch, isRegistered, language, setLanguage}: Langu
         id="input-language"
         checked={isChecked}
         onChange={() => {
-          setIsChecked(!isChecked)
+          setIsChecked(!isChecked);
         }}/>
-      <ul className={classNames("list", {"list-language": isRegistered}, {"no-registration-list": !isRegistered})}>
+      <ul className={classNames("list",
+        {"list-language": isRegistered},
+        {"no-registration-list": !isRegistered})}>
         {LANGUAGES.map(lang => {
-            return <li key={lang.code}
-                       className="lang-name"
-                       onClick={(e) => changelanguage(lang.code)}>
-              {lang.label}
-              {language === lang.code ?
-                <img src={Check}
-                     alt="check"
-                     className="check-language"/> :
-                null}
-            </li>
-          }
+          return <li
+            key={lang.code}
+            className="lang-name"
+            onClick={() => changelanguage(lang.code)}>
+            {lang.label}
+            {language === lang.code ?
+              <img
+                src={Check}
+                alt="check"
+                className="check-language"/> :
+              null}
+          </li>;
+        }
         )}
       </ul>
     </div>
-  )
-}
+  );
+};
 export default Language;

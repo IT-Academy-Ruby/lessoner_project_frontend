@@ -14,7 +14,9 @@ type AvatarProps = {
   language: string;
 };
 
-const Avatar = ({onLanguageSwitch,language,setLanguage}: AvatarProps) => {
+const Avatar = ({
+  onLanguageSwitch,language,setLanguage
+}: AvatarProps) => {
   const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
@@ -39,7 +41,7 @@ const Avatar = ({onLanguageSwitch,language,setLanguage}: AvatarProps) => {
         id="input-avatar"
         checked={isChecked}
         onChange={() => {
-          setIsChecked(!isChecked)
+          setIsChecked(!isChecked);
         }}
       />
       <ul className="list list-user">
