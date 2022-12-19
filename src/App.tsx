@@ -28,10 +28,7 @@ function App(): JSX.Element {
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route
-              path="/users/sign_in"
-              element={<LoginPage/>}/>
-            <Route
-              path="/login"
+              path="/user/sign_in"
               element={<Pages pageType={"Login"}/>}/>
             <Route
               path="/code"
@@ -52,56 +49,12 @@ function App(): JSX.Element {
               path="/confirmReg"
               element={<Pages pageType={"ConfirmReg"}/>}/>
             <Route
-              path="/firstRegistrationForm"
+              path="/user/sign_up"
               element={<Pages pageType={"FirstRegistrationForm"}/>}/>
             <Route
               path="/yourselfPage"
               element={<Pages pageType={"YourselfPage"}/>}/>
-            <Route
-              path="/users/sign_in/phone_number"
-              element={<PhoneNumberPage registration={false}/>}/>
-            <Route
-              path="/users/sign_in/phone_number/code"
-              element={<CodePage/>}/>
-            <Route
-              path="/search"
-              element={<Search/>}/>
-            <Route
-              path="/users/sign_in/reset_password"
-              element={<ResetPasswordPage/>}/>
-            <Route
-              path="/users/sign_in/reset_password/new_password"
-              element={<SetNewPasswordPage/>}/>
           </Routes>
-          <div style={{display: "flex", flexDirection: "column"}}>
-            <Link to={"/login"}>
-              Login
-            </Link>
-            <Link to={"/code"}>
-              Code
-            </Link>
-            <Link to={"/resetPassword"}>
-              ResetPassword
-            </Link>
-            <Link to={"/setNewPassword"}>
-              SetNewPassword
-            </Link>
-            <Link to={"/RegPhoneNumberPage"}>
-              PhoneNumberPage with Registration
-            </Link>
-            <Link to={"/AuthPhoneNumberPage"}>
-              PhoneNumberPage with Autorization
-            </Link>
-            <Link to={"/firstRegistrationForm"}>
-              FirstRegistrationForm
-            </Link>
-            <Link to={"/yourselfPage"}>
-              YourselfPage
-            </Link>
-            <Link to={"/confirmReg"}>
-              ConfirmReg
-            </Link>
-          </div>
         </div>
       </BrowserRouter>
     </IntlProvider>
