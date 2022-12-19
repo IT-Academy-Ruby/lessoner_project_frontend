@@ -1,62 +1,82 @@
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
-import React, { ReactEventHandler , useState } from "react";
-
+import requestApi from "../../../../services/request";
 import { TopArrow } from "../../../svg/top-arrow";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react"; 
 
-
-
-const formData2={
+type categoriesType = {
+  id:number,
+  name:string,
+  description:string,
+  status:string
+}
+const formData2 = {
   category:"",description:"",subtitles:"",subtitlesFile:""
 };
 let simbolsLeft:any = 0;
-const Step2 = (props:any) => {
+const getCategorieUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
+const getLessonUrl = "https://Lessoner-project-2w3h.onrender.com/lessons";
+const Step2 = (props:any ) => {
+  const  [allCategories, setAllCategoris ] = useState([]);
+
+  useEffect(() => {
+    const lessons:any = requestApi(getCategorieUrl,"GET").then((response)=>{
+      return(response.json());
+    }).then((json) => {
+      setAllCategoris(json);
+      return(json); 
+    }).catch(error => {
+      console.log(error);
+    });
+  },[]);
+
   const { onChange } = props;
   // const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false); 
-  const [ open, setOpen ] = React.useState(false);
-  const [ msgErrorCategory, setMSgErrorCategory ] = useState(false);
-  const [ msgErrorDescription, setMsgErrorDescription ] = useState(false);
+  const [ open, setOpen ] = useState(false);
+  const [ msgErrorCategory, setMSgErrorCategory ] = useState("");
+  const [ msgErrorDescription, setMsgErrorDescription ] = useState("");
 
-  const addCategoryOnDate = (event:React.FormEvent)=>{
+  const addCategoryOnDate = ( event:React.FormEvent ) => {
     const e=event?.target as HTMLInputElement;
     formData2.category = e.value;
     onChange(formData2);
-    setMSgErrorCategory(false);
-  };
-
-  
-  const addDescriptionOnDate=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
-    formData2.description = e.value;
-    simbolsLeft=e.value.length;
-    onChange(formData2);
-    if(/^[а-яА-ЯёЁa-zA-Z0-9(!)$%&'"*+-/=?^_`{|}.,@/<>:]*$/ug.test(e.value)==false){
-      setMsgErrorDescription(true);
-    } else setMsgErrorDescription(false);
     
   };
 
-  const addSubtitlesOnDate=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
+  const addDescriptionOnDate = ( event:React.FormEvent ) => {
+    const e = event?.target as HTMLInputElement;
+    formData2.description = e.value;
+    simbolsLeft = e.value.length;
+    onChange(formData2);
+    if(/^[а-яА-ЯёЁa-zA-Z0-9(!)$%&'"*+# -/=?^_`{|}.,@/<>:]*$/ug.test(e.value)===false){
+      setMsgErrorDescription("The input field contain prohobited");
+      document.getElementById("description")?.classList.add("error-border");
+      
+    } else {setMsgErrorDescription("");
+      document.getElementById("description")?.classList.remove("error-border");
+    }
+  };
+
+  const addSubtitlesOnDate = ( event:React.FormEvent ) => {
+    const e = event?.target as HTMLInputElement;
     formData2.subtitles = e.value;
     onChange(formData2);
   };
 
-  const addSubtitlesFileOnDate=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
+  const addSubtitlesFileOnDate = ( event:React.FormEvent ) => {
+    const e = event?.target as HTMLInputElement;
     formData2.subtitlesFile = e.value;
     onChange(formData2);
   };
 
-  const categoryCheck=(event:React.FormEvent)=>{
+  const categoryCheck = ( event:React.FormEvent ) => {
     const e = event.target as HTMLInputElement;
-    // eslint-disable-next-line max-len
-    if (formData2.category === "IT" || formData2.category === "Music" || formData2.category === "Design"){
-      setMSgErrorCategory(false);
-    } else { setMSgErrorCategory(true); }
+    if (formData2.category === ""){
+      setMSgErrorCategory("Must select a lesson category");
+    } else { setMSgErrorCategory(""); }
   };
   
   const formik = useFormik({initialValues: {
@@ -65,6 +85,7 @@ const Step2 = (props:any) => {
     subtitles:"",
     subtitlesFile:""
   },
+  
   onSubmit: values => {
     console.log(JSON.stringify(values, null, 2));
   },});
@@ -75,6 +96,16 @@ const Step2 = (props:any) => {
     </svg>
   );
  
+  const categoriesElements=allCategories.map(( elem:any ) => {
+    return(<option value={elem.name}  key={elem.id}>{elem.name}</option>);
+  });
+
+  const onSelectChange = (e: React.FormEvent) => {
+    formik.handleChange(e);
+    addCategoryOnDate(e);
+    categoryCheck(e);
+  };
+    
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
@@ -83,17 +114,15 @@ const Step2 = (props:any) => {
             <select id="category" 
               name="category"
               className="w100"   
-              onChange={(e)=>{formik.handleChange(e);addCategoryOnDate(e);}}
+              onChange={onSelectChange}
               value={formik.values.category}
               placeholder="text" >
               <option value="Choose a category" selected hidden >
                   Choose a category
               </option>
-              <option value="IT">IT</option>
-              <option value="Music">Music</option>
-              <option value="Design">Design</option>
+              {categoriesElements}
             </select>
-            {msgErrorCategory && <div className="div-error-msg">Must select aa category</div>}
+            <div className="div-error-msg">{msgErrorCategory}</div>
           </div>
           <div className="input-description">
             <label htmlFor="description">Description</label>
@@ -105,16 +134,17 @@ const Step2 = (props:any) => {
               onChange={(e)=>{formik.handleChange(e);addDescriptionOnDate(e);}}
               onFocus={(e)=>{categoryCheck(e);}}
               value={formik.values.description}
+              className="description w100"
             />
             <div className="symbol-left">{simbolsLeft}/600</div>
-            {msgErrorDescription===true && <div className="div-error-msg">
-              The input field contains prohibited characters
-            </div>}
+            <div className="div-error-msg">
+              {msgErrorDescription}
+            </div>
           </div>
-          <div className="input-subtitles marg-bot-32">
+          <div className="input-subtitles marg-bot-32" >
             <label htmlFor="subtitles" className="subtitles">Subtitles</label>
             <span>Add subtitles to reach bigger audience</span>
-            <div className="button-shape-2 active-step subtitle-div" onClick={onOpenModal}>
+            <div className="button-shape-2 active-step subtitle-div" /*onClick={onOpenModal}*/ >
               <svg width="10" height="12" viewBox="0 0 10 12" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.66634 8.66648H6.33301C6.69967 8.66648 6.99967 8.36648
@@ -204,7 +234,7 @@ const Step2 = (props:any) => {
       </form>
     </div>
   );
+  
 };
 
 export default Step2;
-

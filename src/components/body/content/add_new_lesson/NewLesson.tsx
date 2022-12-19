@@ -2,7 +2,13 @@ import "./new_Lesson.css";
 import { Link } from "react-router-dom";
 import { Step1 } from "./step1";
 import Step2 from "./step2";
-import { useState } from "react";
+import  { useEffect, useState } from "react";
+import requestApi from "../../../../services/request";
+import { Callback } from "yup/lib/types";
+import { array } from "yup";
+
+
+ 
 
 type dataType = {
   name:string,
@@ -14,41 +20,75 @@ type dataType = {
   subtitlesFile:string,
   disStatus1:boolean
 }
+
 const NewLesson = () => {
+  const [data, setData]=useState();
+  const getCategorieUrl="https://Lessoner-project-2w3h.onrender.com/categories";
   const [ name, setName ] = useState("");
   const [ link, setLink ] = useState("");
   const [ file, setFile ] = useState("");
   const [ category, setCategory] = useState("");
   const [ description, setDescription ] = useState("");
-  const [subtitles,setSubtitles]=useState("");
-  const [subtitlesFile,setSubtitlesFile]=useState("");
+  const [subtitles,setSubtitles] = useState("");
+  const [subtitlesFile,setSubtitlesFile] = useState("");
   const [ step, setStep ] = useState(1);
   const [ stepStatus, setstepStatus ] = useState("Next step");
-  const [ disStatusStep1, setDisStatusStep1 ]= useState(false);
+  const [ disStatusStep1, setDisStatusStep1 ] = useState(false);
+  const  [allCategories, setAllCategoris ] = useState([]);
+
  
-  
-  const handleDataChangeStep1=( data:dataType ) => {
-    setName(data.name);
-    setLink(data.link);
-    setFile(data.file);
-    setDisStatusStep1(data.disStatus1);
-    console.log(disStatusStep1);
+
+  const dataForBe = {
+    title:name,
+    video_link:link,
+    category_id:1,
+    description:description,
+    author_id:1,
+
+  };
+  const getLessonUrl = "https://Lessoner-project-2w3h.onrender.com/lessons";
+  // useEffect(() => {
+  //   const categories:any = requestApi(getCategorieUrl,"GET").then((response)=>{
+  //     return(response.json());
+  //   }).then((json)=>{
+  //     setAllCategoris(json);
+  //     return(json); 
+  //   }).catch(error=>{
+  //     console.log(error);
+  //   });
+  // },[]);
+  // console.log(allCategories);
+  const handleDataChangeStep1 = ( formData1:dataType ) => {
+    setName(formData1.name);
+    setLink(formData1.link);
+    setFile(formData1.file);
+    setDisStatusStep1(formData1.disStatus1);
   };
 
-  const handleDataChangeStep2=( data:dataType ) => {
+  const handleDataChangeStep2 = ( data:dataType ) => {
     setCategory(data.category);
     setDescription(data.description);
     setSubtitles(data.subtitles);
     setSubtitlesFile(data.subtitlesFile);
+   
   };
 
-  const click=()=>{
+  const click = () => {
     // eslint-disable-next-line max-len
     console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description,"subtitles lang:"+subtitles,"subtitlesFile:"+subtitlesFile);
+
+    
+    const categories:any = requestApi(getLessonUrl,"POST",dataForBe).then((response)=>{
+      return(response.json());
+    }).then((json) => {
+      console.log(json);
+      return(json); 
+    }).catch(error => {
+      console.log(error);
+    });
   };
   
   const swapStepForm = () => {
-    console.log(disStatusStep1);
     if (step === 1) {
       setStep(2);
       document.getElementsByClassName("step1")[0].classList.remove("active");
@@ -86,7 +126,7 @@ const NewLesson = () => {
           </div>
         </div>
         {step===1 ? <Step1 onChange={handleDataChangeStep1} /> :
-          <Step2 onChange={handleDataChangeStep2} />}
+          <Step2 onChange={handleDataChangeStep2} allCategories={allCategories} />}
         <div className="foot-div">
           <Link to="/myStudio">
             <input type="button" value="Cansel" className="button-shape cansel" />
@@ -104,4 +144,3 @@ const NewLesson = () => {
 };
 
 export  default NewLesson ;
-

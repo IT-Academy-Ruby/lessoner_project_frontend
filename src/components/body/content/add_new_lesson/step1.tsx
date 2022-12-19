@@ -1,19 +1,19 @@
 import { useFormik } from "formik";
 import {  useState } from "react";
 
-const formData1={
+const formData1 = {
   name:"",link:"",file:"",disStatus1:"" 
 };
-let simbolsLeft:any=0;
+let simbolsLeft:any = 0;
 
 const Step1 = (  props:any  ) => {
-  const [ name, setName ]=useState("");
-  const [link, setLink]=useState("");
+  const [ name, setName ] = useState("");
+  const [link, setLink] = useState("");
   const { onChange } = props;
-  const [nameErrorMsg, setNameErrorMsg]=useState("");
-  const [linkErrorMsg, setLinkErrorMsg]=useState("");
+  const [nameErrorMsg, setNameErrorMsg] = useState("");
+  const [linkErrorMsg, setLinkErrorMsg] = useState("");
   const formik = useFormik(
-    {initialValues: {
+    { initialValues: {
       name: "",
       link: "",
       file: "",
@@ -25,44 +25,44 @@ const Step1 = (  props:any  ) => {
     },}
   );
   // ---------------------------------------------------------------------------------
-  const addNameOnDate=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
-    formData1.name=e.value;
-    simbolsLeft=e.value.length;
+  const addNameOnDate = (event:React.FormEvent)=>{
+    const e = event?.target as HTMLInputElement;
+    formData1.name = e.value;
+    simbolsLeft = e.value.length;
     disStatus();
     onChange(formData1);
   };
 
   const disStatus = () => {
     if (document.getElementById("name")?.classList.contains("error-border")===true){
-      formData1.disStatus1="true";
+      formData1.disStatus1 = "true";
     } else{
-      formData1.disStatus1="";
+      formData1.disStatus1 = "";
     }
   };
 
-  const addLinkOnDate=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
-    formData1.link=e.value;
+  const addLinkOnDate = (event:React.FormEvent) => {
+    const e = event?.target as HTMLInputElement;
+    formData1.link = e.value;
     onChange(formData1);
   };
   
-  const addFileOnDate=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
-    formData1.file=e.value;
+  const addFileOnDate = (event:React.FormEvent) => {
+    const e = event?.target as HTMLInputElement;
+    formData1.file = e.value;
     onChange(formData1);
   };
 
   // ----------------------------------------------------------------------------
 
-  const nameError=(event:React.FormEvent)=>{
-    const e=event?.target as HTMLInputElement;
-    const name=e.value;
+  const nameError = ( event:React.FormEvent ) => {
+    const e = event?.target as HTMLInputElement;
+    const name = e.value;
     setName(name);
-    if(/^[а-яА-ЯёЁa-zA-Z0-9(!)$%&'"*+-/=?^_`{|}.,@/<>:]*$/ug.test(name)==false ){
+    if(/^[а-яА-ЯёЁa-zA-Z0-9(!)$%&'"*+#\\[\\ -\]\\/=?^_`{|}.,@/<>:]*$/ug.test(name)==false ){
       setNameErrorMsg("The input field contains prohibited characters");
       document.getElementById("name")?.classList.add("error-border");
-    } else if(name===""){
+    } else if( name==="" ){
       setNameErrorMsg("The input field contains prohibited characters");
       document.getElementById("name")?.classList.add("error-border");
     } else { 
@@ -71,11 +71,11 @@ const Step1 = (  props:any  ) => {
     }
   };
   
-  const linkError=(event:React.FormEvent)=>{
-    formData1.file=("");
-    const e=event?.target as HTMLInputElement;
+  const linkError = (event:React.FormEvent) => {
+    formData1.file = ("");
+    const e = event?.target as HTMLInputElement;
     setLink(e.value);
-    formData1.link=e.value ;
+    formData1.link = e.value ;
     if( /^http:\/\//.test(e.value) === true || /^https:\/\//.test(e.value) === true )
     {
       setLinkErrorMsg("");
@@ -198,5 +198,3 @@ const Step1 = (  props:any  ) => {
 };
 
 export {Step1} ;
-
-

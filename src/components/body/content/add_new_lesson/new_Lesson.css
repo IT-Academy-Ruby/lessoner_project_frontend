@@ -180,7 +180,7 @@ font-family: Apercu Pro;
     align-items: flex-start;
 }
 
-#description{
+.description{
     height: 154px;
     border: 1px solid grey;
     border-radius:8px;
@@ -191,7 +191,9 @@ font-family: Apercu Pro;
     display: flex;
     align-content:flex-start;
     width: 100%;
-    color: var(--bs-danger)
+    color: var(--bs-danger);
+    height: 25px;
+    
 }
 
 label{
@@ -243,13 +245,19 @@ input{
     border:1px solid #9A9AA3;
     outline: none
 }
+textarea{
+    border-radius:8px;
+    border:1px solid #9A9AA3;
+    outline: none
+}
 
  input:hover{
     border: 1px solid rgb(69 95 206);
  }
 
  .error-border{
-    border:red solid 1px;
+    color: var(--bs-danger);
+    border: var(--bs-danger) solid 1px;
  }
 
  .load-file-div{
