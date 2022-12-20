@@ -7,7 +7,59 @@
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  background: $white;
+}
+
+.menu {
+  position: relative;
+  width: 64px;
+  height: 100%;
+  background-color: var(--bgThemeSideBarColor);
+  transition: background-color 0.5s ease;
+}
+
+.burg-btn {
+  visibility: hidden;
+  position: absolute;
+}
+
+.menu-burg {
+  display: inline-block;
+  width: 18px;
+  top: 25%;
+  border: 2px solid $blueDarkColor;
+  position: relative;
+}
+
+.menu-burg::before,
+.menu-burg::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  border: 2px solid $blueDarkColor;
+  left: -2px;
+  transition: 0.5s;
+}
+
+.menu-burg::before {
+  transform: translateY(5px);
+}
+
+.menu-burg::after {
+  transform: translateY(-9px);
+}
+
+.burg-btn:checked ~ .menu-burg {
+  visibility: hidden;
+}
+
+.burg-btn:checked ~ .menu-burg::before {
+  transform: rotate(-45deg);
+  visibility: visible;
+}
+
+.burg-btn:checked ~ .menu-burg::after {
+  transform: rotate(45deg);
+  visibility: visible;
 }
 
 .menu-list {
@@ -27,6 +79,8 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  background-color: var(--bgThemeColor1);
+  transition: background-color 0.5s ease;
 }
 
 .logo-name {
@@ -64,6 +118,10 @@
   justify-content: flex-end;
   margin-right: 24px;
   min-width: 592px;
+  input{
+    background-color: var(--bgThemeColor1);
+    transition: background-color 0.5s ease;
+  }
 }
 
 .magnifier {
@@ -78,6 +136,7 @@
   background: $white;
   margin-right: 16px;
   padding-inline: 6px;
+ 
 }
 
 .search::placeholder {
