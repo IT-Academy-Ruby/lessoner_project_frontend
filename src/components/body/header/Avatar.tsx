@@ -21,7 +21,7 @@ const Avatar = ({
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
 
-  const initial = nameDecode.split(" ")
+  const initialName = nameDecode.split(" ")
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
 
   const signOut = () => {
@@ -33,7 +33,7 @@ const Avatar = ({
   return (
     <>
       <label htmlFor="input-avatar" className="avatar">
-        <p className="first-letters">{initial}</p>
+        <p className="first-letters">{initialName}</p>
       </label>
       <input
         type="checkbox"
@@ -47,7 +47,7 @@ const Avatar = ({
       <ul className="list list-user">
         <li className="user-li">
           <Link to="/user/personalData" className="user-link">
-            <FormattedMessage id="app.avatar.personalData"/>
+            <FormattedMessage id="app.avatar.personalData" />
           </Link>
         </li>
         <li className="user-li">
@@ -59,8 +59,8 @@ const Avatar = ({
         </li>
         <li className="user-li">
           <div className="log-out" onClick={signOut}>
-            <FormattedMessage id="app.avatar.logOut"/>
-            <img src={Logout} alt="logout"/>
+            <FormattedMessage id="app.avatar.logOut" />
+            <img src={Logout} alt="logout" />
           </div>
         </li>
       </ul>

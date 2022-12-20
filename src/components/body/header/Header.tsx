@@ -46,11 +46,11 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
           </h4>
         </Link>
         <div className="header-buttons">
-          {isRegister ? <Avatar
+          {isRegister && <Avatar
             onLanguageSwitch={onLanguageSwitch}
             language={language}
-            setLanguage={setLanguage}/> :
-            <Fragment>
+            setLanguage={setLanguage}/>}
+          {!isRegister && <Fragment>
               <Language
                 onLanguageSwitch={onLanguageSwitch}
                 isRegistered={false}
