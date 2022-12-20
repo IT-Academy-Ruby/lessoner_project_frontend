@@ -1,11 +1,10 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {BACKEND_URL} from "../../constants";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import request from "../../services/request";
 
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async () => {
-    const responce = await request(`${BACKEND_URL}/categories`);
+    const responce = await request(`${process.env.REACT_APP_BACKEND_URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -18,7 +17,8 @@ export const getCategory = createAsyncThunk(
 export const addCategory = createAsyncThunk(
   "category/addCategory",
   async (value: { name: string, description: string, status: string }) => {
-    const responce = await request(`${BACKEND_URL}/categories`, "POST", value);
+    const responce =
+      await request(`${process.env.REACT_APP_BACKEND_URL}/categories`, "POST", value);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -36,7 +36,8 @@ export const updateCategory = createAsyncThunk(
       description: value.description,
       status: value.status,
     };
-    const responce = await request(`${BACKEND_URL}/categories/${value.id}`, "PUT", category);
+    const responce =
+      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -54,7 +55,8 @@ export const archiveCategory = createAsyncThunk(
       description: value.description,
       status: value.status === "active" ? "archived" : "active"
     };
-    const responce = await request(`${BACKEND_URL}/categories/${value.id}`, "PUT", category);
+    const responce =
+      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
