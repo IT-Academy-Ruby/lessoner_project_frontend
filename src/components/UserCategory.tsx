@@ -3,8 +3,8 @@ import React from "react";
 import classNames from "classnames";
 
 type CategoryImageProps = {
-    imagePreview: string;
-    opacity: boolean;
+  imagePreview: string;
+  opacity: boolean;
 };
 const CategoryImage: React.FC<CategoryImageProps> = (props) => {
   return (
@@ -40,7 +40,8 @@ type UserCategoryProps = {
   imagePreview: string;
   name: string;
   text: string;
-  bgColor: "blue" | "pink" |"grey"| "orange";
+  bgColor: "blue" | "pink" | "grey" | "orange";
+  key: string;
 };
 
 const UserCategory: React.FC<UserCategoryProps> = (props) => {
@@ -54,20 +55,23 @@ const UserCategory: React.FC<UserCategoryProps> = (props) => {
     "user_card-orange": bgColor === "orange",
   });
 
-  const titleClassName = classNames({"user_card-title": true,
-    "user_card-title--hovered": isHovered,});
-  
+  const titleClassName = classNames(
+    {"user_card-title": true,
+      "user_card-title--hovered": isHovered,}
+  );
+
   return (
-    <div  className="user_wrapper">
-      <div onMouseOver={() => setIsHovered(true)} 
+    <div className="user_wrapper" key={props.key}>
+      <div
+        onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)} className={userCardClassName}>
-        {isHovered && <div className="bg__hover" />}
-        <CategoryImage  imagePreview={props.imagePreview} opacity={isHovered} />
-        <CategoryName className={titleClassName} name={props.name} />
-        {isHovered && (<CategoryInfo text={props.text} />)}
+        {isHovered && <div className="bg__hover"/>}
+        <CategoryImage imagePreview={props.imagePreview} opacity={isHovered}/>
+        <CategoryName className={titleClassName} name={props.name}/>
+        {isHovered && (<CategoryInfo text={props.text}/>)}
       </div>
     </div>
   );
 };
-  
+
 export default UserCategory;

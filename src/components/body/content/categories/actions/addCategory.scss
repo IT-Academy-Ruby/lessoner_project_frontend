@@ -1,0 +1,136 @@
+@import "../../../../../constants.scss";
+
+.add-category {
+  font-family: $font;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.arrow-back {
+  margin-right: 19px;
+  color: $greySearchColor;
+}
+
+.button-back {
+  position: absolute;
+  margin: 16px 24px;
+  left: 0;
+  top: 0;
+  text-decoration: none;
+
+  color: $greySearchColor;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.form-category {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 656px;
+  background: $white;
+  padding: 32px 48px 48px;
+  box-shadow: 0px 0px 4px $greySearchColor;
+}
+
+.add-title {
+  color: $black;
+  font-weight: 700;
+  line-height: 130%;
+  margin-bottom: 32px;
+  margin-top: 0;
+}
+
+.category-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.button-cancel {
+  margin-right: 6px;
+}
+
+.category-label {
+  font-family: $font;
+  color: $black;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.category-textarea {
+  height: 212px;
+}
+
+.category-input {
+  margin-top: 4px;
+  padding: 10px 12px;
+  width: 100%;
+  border: 1px solid $greySearchColor;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: $font;
+  color: $black;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  &:active {
+    outline: none;
+    border: 1px solid $blueLightColor;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $blueLightColor;
+  }
+
+  &:hover {
+    outline: none;
+    border: 1px solid $black;
+  }
+
+  &::placeholder {
+    font-family: $font;
+    color: $greySearchColor;
+  }
+}
+
+.message {
+  bottom: -22px;
+  text-align: left;
+  display: block;
+  margin-top: 0.5em;
+  font-family: $font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+.error {
+  color: $warningColor;
+}
+
+.help {
+  color: $blueLightColor;
+}
+
+.invisible {
+  display: none
+}
+
+.invalid-input {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}

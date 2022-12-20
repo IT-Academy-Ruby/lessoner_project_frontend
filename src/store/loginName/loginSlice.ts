@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getLogin = createAsyncThunk(
-  "user/getLoginStatus",
+  "login/getLoginStatus",
   async (value: { email: string, password: string }) => {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
       { method: "POST" });
-
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
@@ -21,8 +20,8 @@ export const sendPasswordResetLink = createAsyncThunk(
   async (email: string): Promise<boolean> => {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({email: email})
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email })
     });
     if (response.status !== 200) {
       return false;

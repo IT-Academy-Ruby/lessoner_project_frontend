@@ -5,7 +5,14 @@ const PASSWORD = {
   minLength: 6, maxLength: 256, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
 const USERNAME = { minLength: 3, maxLength: 50 };
+const NAME_CATEGORY = {
+  minSymbols: 1, maxSymbols: 64, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
+};
+const DESCRIPTION_CATEGORY = {
+  minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
+};
 
 export {
-  CODE, DEFAULT_COUNTRY_CODE, EMAIL, PASSWORD, USERNAME
+  CODE, DEFAULT_COUNTRY_CODE, EMAIL, PASSWORD, USERNAME, NAME_CATEGORY, DESCRIPTION_CATEGORY
 };
+

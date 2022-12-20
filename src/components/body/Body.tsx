@@ -1,6 +1,7 @@
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Main from "./content/Main";
+import Navigation from "./navigation/NavbarStudyStudio";
 
 type BodyProps = {
   onLanguageSwitch: (arg: string) => void
@@ -8,10 +9,11 @@ type BodyProps = {
 
 const Body = ({onLanguageSwitch}: BodyProps) => {
   return (
-    <div>
-      <Header />
-      <Main />
-      <Footer onLanguageSwitch={onLanguageSwitch} />
+    <div className="body-page">
+      <Header/>
+      <Navigation menuType={"study"}/>
+      <Main/>
+      <Footer onLanguageSwitch={onLanguageSwitch}/>
     </div>
   );
 };
