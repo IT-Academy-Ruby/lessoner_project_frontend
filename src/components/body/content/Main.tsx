@@ -8,6 +8,7 @@ import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
+import UserPage from "./userPage/UserPage";
 
 const Content = () => {
   return (
@@ -28,6 +29,7 @@ const Content = () => {
           path="/categories/updateCategory/:id"
           element={<AddCategory add={false} />}
         />
+        <Route path="/user/userPage" element={<UserPage/>}/>
       </Routes>
     </div>
   );

@@ -6,7 +6,7 @@ import classNames from "classnames";
 import {getUser} from "../store/loginName/userSlice";
 
 type UserNameProps = {
-  field: {
+  field?: {
     name: string,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string

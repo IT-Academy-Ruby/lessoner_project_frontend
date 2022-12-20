@@ -1,0 +1,52 @@
+.user-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.title-user-page {
+  display: flex;
+  width: 100%;
+  margin: 0 0 24px 0;
+  font-family: "ApercuPro";
+  color: #1B1B1F;
+  font-weight: 600;
+  line-height: 130%;
+}
+
+.avatar-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 44px;
+}
+
+.avatar-user-page {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  border: 1px solid black;
+
+}
+
+.user-avatar {
+  width: 100%;
+}
+
+.inform-avatar {
+  max-width: 530px;
+  font-family: 'ApercuPro';
+  color: #757575;
+  font-feature-settings: 'liga' off;
+  font-size: 12px;
+  line-height: 150%;
+  margin-left: 24px;
+  text-align: left;
+}
+.user-data{
+  display: flex;
+}

@@ -137,5 +137,8 @@ export const messages_ru = {
   "app.gender.female": "Женский",
   "app.gender.other": "Другой",
   "app.categories.back": "Назад",
+  "app.userPage.editInformation": "Изменить информацию",
+  "app.userPage.avatarInformation": "",
+  "app.userPage.birthday": "Твой день рождения",
 };
 

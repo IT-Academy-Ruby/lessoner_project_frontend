@@ -135,4 +135,7 @@ export const messages_en = {
   "app.gender.female": "Female",
   "app.gender.other": "Other",
   "app.categories.back": "Back",
+  "app.userPage.editInformation": "Edit information",
+  "app.userPage.avatarInformation": "This photo represents you as \"The Lessoner\". It appears on your profile and next to your comments. The photo must be in JPG, PNG, GIF, the size of any side must be from 75 to 4000 px, maximum file size 5 Mb",
+  "app.userPage.birthday": "Your birthday",
 };
