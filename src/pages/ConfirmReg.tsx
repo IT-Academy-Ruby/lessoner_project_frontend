@@ -14,9 +14,9 @@ const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
 
   const handleClick = () => {
     if (registration) {
-      window.location.href = `https://${email}`
+      window.location.href = `https://${email}`;
     } else {
-      navigate("/")
+      navigate("/");
     }
   };
 
