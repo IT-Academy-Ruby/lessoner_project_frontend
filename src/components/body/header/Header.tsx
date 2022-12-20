@@ -51,25 +51,25 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
             language={language}
             setLanguage={setLanguage}/>}
           {!isRegister && <Fragment>
-              <Language
-                onLanguageSwitch={onLanguageSwitch}
-                isRegistered={false}
-                language={language}
-                setLanguage={setLanguage}
-              />
-              <Button
-                buttonType="button"
-                buttonText={intl.formatMessage({id: "app.header.login"})}
-                className="button-login"
-                onClick={() => navigate("/user/sign_in")}
-              />
-              <Button
-                buttonType="button"
-                buttonText={intl.formatMessage({id: "app.registration"})}
-                className="button-register"
-                onClick={() => navigate("/user/sign_up")}
-              />
-            </Fragment>}
+            <Language
+              onLanguageSwitch={onLanguageSwitch}
+              isRegistered={false}
+              language={language}
+              setLanguage={setLanguage}
+            />
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({id: "app.header.login"})}
+              className="button-login"
+              onClick={() => navigate("/user/sign_in")}
+            />
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({id: "app.registration"})}
+              className="button-register"
+              onClick={() => navigate("/user/sign_up")}
+            />
+          </Fragment>}
         </div>
       </div>
     </div>

@@ -60,14 +60,14 @@ const UserCategory: React.FC<UserCategoryProps> = (props) => {
   );
 
   return (
-      <div
-        onMouseOver={() => setIsHovered(true)}
-        onMouseOut={() => setIsHovered(false)} className={userCardClassName}>
-        {isHovered && <div className="bg__hover"/>}
-        <CategoryImage imagePreview={props.imagePreview} opacity={isHovered}/>
-        <CategoryName className={titleClassName} name={props.name}/>
-        {isHovered && (<CategoryInfo text={props.text}/>)}
-      </div>
+    <div
+      onMouseOver={() => setIsHovered(true)}
+      onMouseOut={() => setIsHovered(false)} className={userCardClassName}>
+      {isHovered && <div className="bg__hover"/>}
+      <CategoryImage imagePreview={props.imagePreview} opacity={isHovered}/>
+      <CategoryName className={titleClassName} name={props.name}/>
+      {isHovered && (<CategoryInfo text={props.text}/>)}
+    </div>
   );
 };
 
