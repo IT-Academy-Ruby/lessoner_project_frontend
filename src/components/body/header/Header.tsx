@@ -1,4 +1,4 @@
-import "./header.scss";
+import "./Header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Fragment, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
