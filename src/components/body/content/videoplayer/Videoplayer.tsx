@@ -4,6 +4,9 @@ import "plyr-react/plyr.css";
 import Plyr from "plyr-react";
 import React from "react";
 
+// const getVideoSrc=() => {
+  
+// }
 const videoSrc = {
   type: "video" as const,
   title: "Elephants",
@@ -94,17 +97,15 @@ const optionsVideoplayer = {
   ],
   seekTime: 10,
 };
-
-export default function App() {
-  return (
-    <VideoPlayer/>
-  );
+interface VideoPlayerProps{
+  id?:string
 }
 
-export const VideoPlayer: React.FC = () => {
+export const VideoPlayer: React.FC<VideoPlayerProps>=({ id }) => {
+
   return (
     <div className="player">
-      <Plyr options={optionsVideoplayer} source={videoSrc}
+      <Plyr options={optionsVideoplayer} source={videoSrc} id={id}
       />
     </div>
   );

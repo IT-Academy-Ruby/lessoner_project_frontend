@@ -1,12 +1,11 @@
-import { VideoPlayer } from "../../src/components/body/content/videoplayer/Videoplayer";
 import "./VideoViewPage.scss";
+import { VideoPlayer } from "../../src/components/body/content/videoplayer/Videoplayer";
 import { useParams } from "react-router-dom";
 export const VideoViewPage=() => {
-  const { id } = useParams()
-  console.log(id)
+  const { id }=useParams();
   return <div className="video__page_wrapper">
     
-    <VideoPlayer />
+    <VideoPlayer id={id} />
     <div className="pagination">
      Привет 
     </div>

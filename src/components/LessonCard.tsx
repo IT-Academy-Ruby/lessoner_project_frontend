@@ -2,6 +2,7 @@ import "./LessonCard.scss";
 import React, { FC, useState } from "react";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
+import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
