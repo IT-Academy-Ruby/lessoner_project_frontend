@@ -1,4 +1,4 @@
-import "./Header.scss";
+import "./header.scss";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 

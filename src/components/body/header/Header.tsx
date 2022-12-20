@@ -1,4 +1,4 @@
-import "./Header.scss";
+import "./header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Fragment, useEffect} from "react";
 import {Link, useNavigate} from "react-router-dom";
@@ -28,7 +28,6 @@ const Header = () => {
 
   return (
     <div className="side-bar">
-      <div className="menu"></div>
       <div className="header">
         <Link to="/" className="logo-name">
           <img className="logo" src={Logo} alt="Logo"/>

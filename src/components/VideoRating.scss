@@ -1,0 +1,17 @@
+.star-rating {
+    button {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        margin: 0px 8px;
+        }
+        
+    .on svg {
+        fill: #FFC01E; 
+    }
+    .off svg {
+        color: #FCFCFC;
+        stroke: #9A9AA3;
+    }
+}

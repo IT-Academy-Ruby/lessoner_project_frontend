@@ -58,12 +58,11 @@ export const confirmTokenSlice = createAsyncThunk(
 );
 
 export const getLogin = createAsyncThunk(
-  "user/getLoginStatus",
+  "login/getLoginStatus",
   async (value: { email: string, password: string }) => {
-    const response = await fetch(
-      `${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
-      {method: "POST"});
-
+    const response =
+      await fetch(`${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
+        {method: "POST"});
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
