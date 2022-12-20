@@ -13,6 +13,10 @@ $themes: (
     darkTheme: $darkSideBar,
     lightTheme: $lightSideBar,
   ),
+  bgSideBarShadow: (
+    darkTheme: $SideBarShadowDark,
+    lightTheme: $SideBarShadowLight,
+  ),
   iconsThemeSideBarColor: (
     darkTheme: $lightMain,
     lightTheme: $darkMain,
@@ -20,6 +24,10 @@ $themes: (
   textThemeSideBarColor: (
     darkTheme: $lightMain,
     lightTheme: $darkMain,
+  ),
+  textThemeSideBarColorHover: (
+    darkTheme: $dark6,
+    lightTheme: $light5,
   ),
   bgCardThemeColor: (
     darkTheme: $darkSideBar,
