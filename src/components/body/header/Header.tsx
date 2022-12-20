@@ -13,7 +13,7 @@ const Header = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isRegister = useAppSelector(state => state.value.isDefaultHeader);
+  const isRegistered = useAppSelector(state => state.value.isDefaultHeader);
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const loading = useAppSelector(state => state.login.loading);
 
@@ -24,7 +24,7 @@ const Header = () => {
       dispatch(showStudentPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRegister, decodeUserName, loading]);
+  }, [isRegistered, decodeUserName, loading]);
 
   return (
     <div className="side-bar">
@@ -37,7 +37,7 @@ const Header = () => {
           </h4>
         </Link>
         <div className="header-buttons">
-          {isRegister ? <Avatar/> : <Fragment>
+          {isRegistered ? <Avatar/> : <Fragment>
             <div className="language"></div>
             <Button
               buttonType="button"

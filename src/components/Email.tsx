@@ -16,24 +16,14 @@ type EmailProps = {
   error?: string;
 }
 
-const Email = ({field, error}: EmailProps): JSX.Element => {const dispatch = useAppDispatch();
+const Email = ({field, error}: EmailProps): JSX.Element => {
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if(field.value.length > 0){
       dispatch(getEmail(field.value));
     }
   }, [dispatch,error,field.value]);
-
-
-  // useEffect(() => {
-  //   if (!JWT && loginEvent && field.value.length) {
-  //     setIsUser(true);
-  //     dispatch(changeEvent());
-  //   } else {
-  //     setIsUser(false);
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [JWT, dispatch, field.value, lookButton]);
 
   return (
     <label className="input-label">
@@ -47,9 +37,6 @@ const Email = ({field, error}: EmailProps): JSX.Element => {const dispatch = use
           {"success-input": !error && field.value},
         )}
         placeholder="username@gmail.com"
-        // onKeyUp={() => {
-        //   setIsNotFoundEmail(false);
-        // }}
         {...field}
       />
       {error && <span className="error-message">{error}</span>}

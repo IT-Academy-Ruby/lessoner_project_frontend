@@ -11,6 +11,15 @@ const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const email = userEmail.slice(userEmail.lastIndexOf("@") + 1);
+
+  const handleClick = () => {
+    if (registration) {
+      window.location.href = `https://${email}`
+    } else {
+      navigate("/")
+    }
+  };
+
   return (
     <div className="log-content">
       <h2 className="inform">
@@ -23,9 +32,7 @@ const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
         buttonText={registration ? intl.formatMessage({id: "app.button.next"}) :
           intl.formatMessage({id: "app.button.ok"})}
         className="button__page"
-        onClick={() => {
-          registration ? window.location.href = `https://${email}` : navigate("/");
-        }}
+        onClick={handleClick}
       />
     </div>
   );

@@ -76,7 +76,7 @@ export const messages_ru = {
   "app.Add new lesson": "Добавить новый урок",
   "app.don'tAccount": "У вас нет аккаунта?",
   "app.code.name": "Код",
-  "app.code.errorLength": "Коде должен содержать {maxSymbol} символов. ",
+  "app.code.errorLength": "Код должен содержать {maxSymbol} символов. ",
   "app.code.invalidationRules": "В коде присутствует недопустимый символ. ",
   "app.code.inform":
     "Теперь на ваш телефон придет код.\n Введите его в строку.",
@@ -87,10 +87,10 @@ export const messages_ru = {
   "app.resetPasswordPage.text":
     "Мы отправили ссылку для восстановления доступа к вашему аккаунту на адрес ",
   "app.setNewPasswordPage.title": "Войти как пользователь",
-  "app.YourselfPage.errorIncorrectName":"Неверное имя пользователя",
-  "app.YourselfPage.errorFieldEmpty":"Поле не должно быть пустым",
-  "app.YourselfPage.errorSmallName":"Имя пользователя должно быть длинее {minSymbol} символов",
-  "app.YourselfPage.errorBigName":"Имя пользователя должно быть короче {maxSymbol} символов",
+  "app.YourselfPage.errorIncorrectName": "Неверное имя пользователя",
+  "app.YourselfPage.errorFieldEmpty": "Поле не должно быть пустым",
+  "app.YourselfPage.errorSmallName": "Имя пользователя должно быть длинее {minSymbol} символов",
+  "app.YourselfPage.errorBigName": "Имя пользователя должно быть короче {maxSymbol} символов",
   "app.UserName": "Имя пользователя",
   "app.UserName.placeholder": "{minSymbol} до {maxSymbol} символов",
   "app.ConfirmReg.info": "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",

@@ -50,7 +50,7 @@ const LoginPage = () => {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
-          if (!isEmail && values.email.length > 0) {
+          if (!isEmail && values.email.length) {
             errors.email = intl.formatMessage({id: "app.email.notFound"});
           }
           if (!passwordRegex.test(values.password)) {

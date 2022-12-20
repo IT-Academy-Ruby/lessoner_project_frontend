@@ -17,25 +17,26 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
-  let count = 1;
+  const findTokenWordInURL="token=";
+  let controlRendering = 1;
 
   useEffect(() => {
     const registrationToken = url.lastIndexOf("confirm_email?token=");
     const resetPasswordToken = url.lastIndexOf("reset_password?token=");
-    if (registrationToken > 0 && count === 1) {
-      const token = url.slice(url.lastIndexOf("token=") + 6);
+    if (registrationToken > 0 && controlRendering === 1) {
+      const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
       dispatch(confirmTokenSlice(token));
       window.location.href = "/user/sign_in";
-      count++;
+      controlRendering++;
     }
-    if (resetPasswordToken > 0 && count === 1) {
-      const token = url.slice(url.lastIndexOf("token=") + 6);
+    if (resetPasswordToken > 0 && controlRendering === 1) {
+      const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
       dispatch(addToken(token));
       window.location.href = "/user/sign_in/reset_password/new_password";
-      count++;
+      controlRendering++;
     }
 
-  }, [count,dispatch,url]);
+  }, [controlRendering,dispatch,url]);
 
   const signOut = () => {
     localStorage.setItem("JWT", "");
@@ -80,36 +81,8 @@ function App(): JSX.Element {
             <Route
               path="/user/sign_in/reset_password/new_password"
               element={<Pages pageType={"SetNewPassword"}/>}/>
-
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
-            <Link to={"/login"}>
-              Login
-            </Link>
-            <Link to={"/code"}>
-              Code
-            </Link>
-            <Link to={"/resetPassword"}>
-              ResetPassword
-            </Link>
-            <Link to={"/setNewPassword"}>
-              SetNewPassword
-            </Link>
-            <Link to={"/RegPhoneNumberPage"}>
-              PhoneNumberPage with Registration
-            </Link>
-            <Link to={"/AuthPhoneNumberPage"}>
-              PhoneNumberPage with Autorization
-            </Link>
-            <Link to={"/firstRegistrationForm"}>
-              FirstRegistrationForm
-            </Link>
-            <Link to={"/yourselfPage"}>
-              YourselfPage
-            </Link>
-            <Link to={"/confirmReg"}>
-              ConfirmReg
-            </Link>
             <button onClick={signOut}>Not authorized</button>
           </div>
         </div>

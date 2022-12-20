@@ -76,8 +76,7 @@ export const messages_en = {
   "app.code.name": "Code",
   "app.code.errorLength": "Code should be {maxSymbol} characters. ",
   "app.code.invalidationRules": "An invalid character is present in the Code. ",
-  "app.code.inform":
-    "Now a code will come to your phone.\nEnter it in a line.\n",
+  "app.code.inform": "Now a code will come to your phone.\nEnter it in a line.\n",
   "app.code.phoneNumber": "To change number",
   "app.resetPasswordPage.inform":
     "Enter the email that you used when register to recover your password. You will receive a password reset link",

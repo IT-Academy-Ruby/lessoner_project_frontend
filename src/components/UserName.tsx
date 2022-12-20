@@ -33,7 +33,7 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
         onKeyUp={fieldHandler}
         placeholder={intl.formatMessage(
           { id: "app.code.invalidationRules" },
-          {minSymbol:USERNAME.minLength,maxSymbol:USERNAME.maxLength})}
+          {minSymbol: USERNAME.minLength, maxSymbol: USERNAME.maxLength})}
         {...field}
       />
       {(error) && <span className="error-message">{error}</span>}

@@ -37,7 +37,7 @@ const ResetPasswordPage = () => {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
-          if (!isEmail && isEmail!=="") {
+          if (!isEmail && isEmail !== "") {
             errors.email = intl.formatMessage({id: "app.email.notFound"});
           }
           return errors;
