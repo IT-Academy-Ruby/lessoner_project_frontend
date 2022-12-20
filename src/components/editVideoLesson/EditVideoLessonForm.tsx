@@ -1,5 +1,6 @@
 import "./EditVideoLessonForm.scss";
-import { BACKEND_URL_LESSONS, maxDescriptionLength, maxDescriptionHashTagCount, maxNameLength } from "../../constants";
+import { BACKEND_URL_LESSONS, maxDescriptionLength,
+  maxDescriptionHashTagCount, maxNameLength } from "../../constants";
 import { 
   FC, useEffect, useState 
 } from "react";
@@ -40,19 +41,12 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  const editL = (lessonFromEditForm: {
-    title: string;
-    description: string;
-  }) => {
-    request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
-  };
-
   const addInfoToLessonObject = (values: {name: string; description: string;}) => {
     const lessonFromEditForm = {
       title: `${values.name}`,
       description: `${values.description}`,
     };
-    editL(lessonFromEditForm);
+    request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
   };
 
   const validateName = (title: string) => {
