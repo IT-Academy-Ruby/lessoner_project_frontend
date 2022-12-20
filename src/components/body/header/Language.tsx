@@ -56,12 +56,12 @@ const Language = ({
             className="lang-name"
             onClick={() => changelanguage(lang.code)}>
             {lang.label}
-            {language === lang.code ?
+            {language === lang.code &&
               <img
                 src={Check}
                 alt="check"
-                className="check-language"/> :
-              null}
+                className="check-language"/>
+            }
           </li>;
         }
         )}
