@@ -73,6 +73,9 @@ $themes: (
   bgGenderSelectorRadio:(darkTheme: $dark1,
     lightTheme: $light1,
   )
+  bgNavBar:(darkTheme: $dark3,
+    lightTheme: $light1,
+  )
 );
 
 @mixin styles($mode) {
