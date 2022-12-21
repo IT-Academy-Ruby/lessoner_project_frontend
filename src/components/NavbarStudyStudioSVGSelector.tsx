@@ -5,7 +5,7 @@ import {ReactComponent as Home} from "./icons/navbar/home.svg";
 import {ReactComponent as Management} from "./icons/navbar/management.svg";
 import {ReactComponent as Menu} from "./icons/navbar/menu.svg";
 import {ReactComponent as MyLesson} from "./icons/navbar/my_lesson.svg";
-import {ReactComponent as Subscription} from "./icons/navbar/subscription.svg";
+import { ReactComponent as Subscription } from "./icons/navbar/subscription.svg";
 import {ReactComponent as WatchLater} from "./icons/navbar/watch_later.svg";
 import {ReactComponent as AboutUs} from "./icons/navbar/about_us.svg";
 import { ReactComponent as EditCategories } from "./icons/navbar/edit_categories.svg";
@@ -16,6 +16,7 @@ import { ReactComponent as LightTheme } from "./icons/navbar/light_theme.svg";
 import { ReactComponent as Network } from "./icons/navbar/network.svg";
 import { ReactComponent as Instagram } from "./icons/navbar/instagram.svg";
 import { ReactComponent as Facebook } from "./icons/navbar/facebook.svg";
+import { ReactComponent as Linkedin } from "./icons/navbar/linkedin.svg";
 
 type Props = {
   icon: string;
@@ -59,6 +60,8 @@ const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
       return <Instagram />;
     case "facebook":
       return <Facebook />;
+    case "linkedin":
+      return <Linkedin />;
     default:
       return <svg></svg>;
   };

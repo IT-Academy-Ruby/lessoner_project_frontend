@@ -13,221 +13,371 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
   const EMPTY_BUTTON_ID = 0;
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(EMPTY_BUTTON_ID);
+  
   const items = [
     {
       id: 1,
       value: "Menu",
       href: "#!",
       icon: "menu",
-      place: "openclose",
+      place: {
+        openclose: "openclose",
+      },
     },
     {
       id: 2,
-      value: "Close",
-      href: "#!",
-      icon: "close",
-      place: "openclose",
-    },
-    {
-      id: 3,
       value: `${intl.formatMessage({ id: "app.navbarStudyStudio.home" })}`,
       href: "#!",
       icon: "home",
-      place: "study",
+      place: {
+        notAutorised: "not_autorised",
+        autorised: "autorised",
+        admin: "admin",
+      },
+    },
+    {
+      id: 3,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.subscription"
+      })}`,
+      href: "#!",
+      icon: "subscription",
+      place: {
+        autorised: "autorised",
+        admin: "admin",
+      },
     },
     {
       id: 4,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.categories",
+        id: "app.navbarStudyStudio.categories"
       })}`,
       href: "#!",
       icon: "categories",
-      place: "study",
+      place: {
+        notAutorised: "not_autorised",
+        autorised: "autorised",
+        admin: "admin",
+      },
     },
     {
       id: 5,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.subscription",
+        id: "app.navbarStudyStudio.management"
       })}`,
       href: "#!",
-      icon: "subscription",
-      place: "study",
+      icon: "edit_categories",
+      place: {
+        admin: "admin",
+      },
     },
     {
       id: 6,
-      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.myLessons" })}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.aboutUs"
+      })}`,
       href: "#!",
-      icon: "hat_mylesson",
-      place: "study",
+      icon: "about_us",
+      place: {
+        notAutorised: "not_autorised",
+        autorised: "autorised",
+        admin: "admin",
+      },
     },
     {
       id: 7,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.watchLater",
+        id: "app.navbarStudyStudio.logIn"
       })}`,
       href: "#!",
-      icon: "watch_later",
-      place: "study",
+      icon: "log_in",
+      place: {
+        logIn: "log_in",
+      },
     },
     {
       id: 8,
-      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.myLesson" })}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.logOut"
+      })}`,
       href: "#!",
-      icon: "my_lesson",
-      place: "studio",
+      icon: "log_out",
+      place: {
+        logOut: "log_out",
+      },
     },
     {
       id: 9,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
+        id: "app.navbarStudyStudio.darcTheme"
       })}`,
       href: "#!",
-      icon: "management",
-      place: "studio",
+      icon: "darc_theme",
+      place: {
+        theme: "theme",
+      },
     },
     {
       id: 10,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
+        id: "app.navbarStudyStudio.lightTheme"
       })}`,
       href: "#!",
-      icon: "about_us",
-      place: "study",
+      icon: "light_theme",
+      place: {
+        theme: "theme",
+      },
     },
     {
       id: 11,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
+        id: "app.navbarStudyStudio.management"
       })}`,
-      href: "#!",
-      icon: "edit_categories",
-      place: "study",
+      href: "https://www.grodno.it-academy.by/",
+      icon: "network",
+      place: {
+        contacts: "contacts"
+      },
     },
     {
       id: 12,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
+        id: "app.navbarStudyStudio.management"
       })}`,
-      href: "#!",
-      icon: "log_in",
-      place: "study",
+      href: "https://www.instagram.com/grodnoitacademypark/",
+      icon: "instagram",
+      place: {
+        contacts: "contacts"
+      },
     },
     {
       id: 13,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
+        id: "app.navbarStudyStudio.management"
       })}`,
-      href: "#!",
-      icon: "log_out",
-      place: "study",
+      href: "https://www.facebook.com/grodnoitacademypark",
+      icon: "facebook",
+      place: {
+        contacts: "contacts"
+      },
     },
     {
       id: 14,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
+        id: "app.navbarStudyStudio.management"
       })}`,
-      href: "#!",
-      icon: "darc_theme",
-      place: "study",
-    },
-    {
-      id: 15,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
-      href: "#!",
-      icon: "light_theme",
-      place: "study",
-    },
-    {
-      id: 16,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
-      href: "#!",
-      icon: "network",
-      place: "study",
-    },
-    {
-      id: 17,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
-      href: "#!",
-      icon: "instagram",
-      place: "study",
-    },
-    {
-      id: 18,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
-      href: "#!",
-      icon: "facebook",
-      place: "study",
+      href: "https://www.linkedin.com/school/15248534/",
+      icon: "linkedin",
+      place: {
+        contacts: "contacts"
+      },
     },
   ];
 
   const imageWrapperCN = classNames("image__wrapper", {"image__wrapper--active": !isMenuActive});
+  const imageWrapperThemeCN = classNames("image__wrapper-theme", {"image__wrapper-theme--active": !isMenuActive});
+  const imageWrapperFooterCN = classNames("image__wrapper-footer", {"image__wrapper-footer--active": !isMenuActive});
+  const menuFooterLginoutCN = classNames("menu__footer-lginout", {"menu__footer-lginout--active": isMenuActive});
+  const menuFooterContactsCN = classNames("menu__footer-contacts", {"menu__footer-contacts--active": isMenuActive});
+  const footerContactsNumberCN = classNames("footer__contacts-number", {"footer__contacts-number--active": isMenuActive});
+  const footerContactsTitleCN = classNames("footer__contacts-title", {"footer__contacts-title--active": isMenuActive});
   const svgItemCN = classNames("svg__item", {"svg__item--active" : isMenuActive});
   const menuTextCN = classNames("menu__text", {"menu__text--active": isMenuActive});
   const menuContentCN = classNames("menu__content", {"menu__content--active": isMenuActive});
+  const menuItemInnerCN = classNames("menu__item-inner", {"menu__item-inner--active": isMenuActive});
 
   return (
     <div onClick={() => setIsMenuActive(false)}>
-      <div className={menuContentCN} 
-        onClick={e => e.stopPropagation()}>
+      <div className={menuContentCN} onClick={(e) => e.stopPropagation()}>
         <ul className="menu__inner">
-          {
-            !isMenuActive ? 
-              <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
-                <div className="image__wrapper image__wrapper--active">
-                  <div className="svg svg__menu">
-                    <NavbarStudyStudioSVGSelector icon="menu"/>
-                  </div>
-                </div>
-              </div> :
-              <div className="menu__item" onClick={() => setIsMenuActive(!isMenuActive)}>
-                <div className="image__wrapper image__wrapper--active">
-                  <div className="svg svg__menu">
-                    <NavbarStudyStudioSVGSelector icon="close"/>
-                  </div>
-                </div>
+          <div
+            className="menu__item"
+            onClick={() => setIsMenuActive(!isMenuActive)}
+          >
+            <div className="image__wrapper image__wrapper--active">
+              <div className="svg svg__menu">
+                <NavbarStudyStudioSVGSelector icon="menu" />
               </div>
-          }
-          {items.map((item: {
-            id: number; href: string; value: string; icon: string; place: string; 
-              }) => (item.place === menuType) && 
-                <li className={"menu__item"} 
-                  key={item.id} 
-                  onClick={() => 
-                    (item.id !== buttonPressed) && 
-                  setButtonPressed(item.id)}
+            </div>
+          </div>
+          {items.map(
+            (item: {
+              id: number;
+              href: string;
+              value: string;
+              icon: string;
+              place: any;
+            }) =>
+              item.place.autorised === menuType && (
+                <li
+                  className={"menu__item"}
+                  key={item.id}
+                  onClick={() =>
+                    item.id !== buttonPressed && setButtonPressed(item.id)
+                  }
                 >
-                  <a className="menu__item-inner"  href={item.href}>
-                    <span className={classNames(imageWrapperCN, 
-                      {"image__wrapper--selected": item.id === buttonPressed})}>
-                      <div className={classNames(svgItemCN, 
-                        {"svg__item--selected": item.id === buttonPressed})}>
-                        <NavbarStudyStudioSVGSelector icon={item.icon}/>
+                  <a className={classNames(menuItemInnerCN, {
+                        "menu__item-inner--selected": item.id === buttonPressed,
+                      })} href={item.href}>
+                    <span
+                      className={classNames(imageWrapperCN, {
+                        "image__wrapper--selected": item.id === buttonPressed,
+                      })}
+                    >
+                      <div
+                        className={classNames(svgItemCN, {
+                          "svg__item--selected": item.id === buttonPressed,
+                        })}
+                      >
+                        <NavbarStudyStudioSVGSelector icon={item.icon} />
                       </div>
                     </span>
-                    <span className={`${menuTextCN} ${item.id === buttonPressed 
-                      ? 
-                      "menu__text--selected" 
-                      : 
-                      ""}`}>
+                    <span
+                      className={`${menuTextCN} ${
+                        item.id === buttonPressed ? "menu__text--selected" : ""
+                      }`}
+                    >
                       {item.value}
                     </span>
                   </a>
                 </li>
-          ) 
-          }
+              )
+          )}
           <div className="menu__footer">
-            <p className={classNames("menu__footer-text", 
-              {"menu__footer-text--active": isMenuActive})}>
-              &reg; 2022. {intl.formatMessage({ id: "app.navbarStudyStudio.footer"})}
+            <div className={classNames(menuFooterContactsCN)}>
+              <div className="footer__contacts-content">
+                <p className={classNames(footerContactsTitleCN)}>
+                  {intl.formatMessage({id: "app.navbarStudyStudio.contacts"})}
+                </p>
+                <a className={classNames(footerContactsNumberCN)} href="tel:+375 152 55 44 44">
+                  +375 152 55 44 44 
+                </a>
+              </div>
+              <div className="footer__contacts-social">
+                {items.map((item: {
+                  id: number;
+                  href: string;
+                  value: string;
+                  icon: string;
+                  place: any;
+                  }) =>
+                  item.place.contacts && (
+                    <li
+                      className={"footer__social-item"}
+                      key={item.id}
+                    >
+                      <a className={classNames(imageWrapperFooterCN)} href={item.href} target="_blank" rel="noreferrer">
+                          <div
+                            className={classNames(svgItemCN)}
+                          >
+                            <NavbarStudyStudioSVGSelector icon={item.icon} />
+                          </div>
+                      </a>
+                    </li>
+                    )
+                )}
+              </div>
+            </div>
+            <div className={classNames(menuFooterLginoutCN)}>
+              {items.map(
+                (item: {
+                  id: number;
+                  href: string;
+                  value: string;
+                  icon: string;
+                  place: any;
+                }) =>
+                  item.place.logIn && (
+                    <li
+                      className={"menu__item menu__item-footer"}
+                      key={item.id}
+                      onClick={() =>
+                        item.id !== buttonPressed && setButtonPressed(item.id)
+                      }
+                    >
+                      <a className={classNames(menuItemInnerCN, {
+                            "menu__item-inner--selected": item.id === buttonPressed,
+                          })} href={item.href}>
+                        <span
+                          className={classNames(imageWrapperCN, {
+                            "image__wrapper--selected": item.id === buttonPressed,
+                          })}
+                        >
+                          <div
+                            className={classNames(svgItemCN, {
+                              "svg__item--selected": item.id === buttonPressed,
+                            })}
+                          >
+                            <NavbarStudyStudioSVGSelector icon={item.icon} />
+                          </div>
+                        </span>
+                        <span
+                          className={`${menuTextCN} ${
+                            item.id === buttonPressed ? "menu__text--selected" : ""
+                          }`}
+                        >
+                          {item.value}
+                        </span>
+                      </a>
+                    </li>
+                  )
+              )}
+            </div>
+            <div className="menu__footer-theme">
+              {items.map(
+                (item: {
+                  id: number;
+                  href: string;
+                  value: string;
+                  icon: string;
+                  place: any;
+                }) =>
+                  item.place.theme && (
+                    <li
+                      className={"menu__item menu__item-footer"}
+                      key={item.id}
+                      onClick={() =>
+                        item.id !== buttonPressed && setButtonPressed(item.id)
+                      }
+                    >
+                      <a className={classNames(menuItemInnerCN, {
+                            "menu__item-inner--selected": item.id === buttonPressed,
+                          })} href={item.href}>
+                        <span
+                          className={classNames(imageWrapperThemeCN, {
+                            "image__wrapper-theme--selected": item.id === buttonPressed,
+                          })}
+                        >
+                          <div
+                            className={classNames(svgItemCN, {
+                              "svg__item--selected": item.id === buttonPressed,
+                            })}
+                          >
+                            <NavbarStudyStudioSVGSelector icon={item.icon} />
+                          </div>
+                        </span>
+                        <span
+                          className={`${menuTextCN} ${
+                            item.id === buttonPressed ? "menu__text--selected" : ""
+                          }`}
+                        >
+                          {item.value}
+                        </span>
+                      </a>
+                    </li>
+                  )
+              )}
+            </div>
+            <div className="menu__footer-rights">
+            <p className="menu__footer-date">
+              &reg; 2023<span className={classNames("menu__footer-text", {
+                "menu__footer-text--active": isMenuActive,
+              })}>.</span>{" "} <span className={classNames("menu__footer-text", {
+                "menu__footer-text--active": isMenuActive,
+              })}
+            >{intl.formatMessage({ id: "app.navbarStudyStudio.footer" })}</span>
             </p>
+            </div>
           </div>
         </ul>
       </div>
