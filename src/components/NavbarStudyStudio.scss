@@ -6,8 +6,8 @@
     top: 0;
     width: 76px;
     height: 100%;
-    box-shadow: 1px 1px 20px rgba(46, 53, 119, 0.07);
-    background: var(--bgNavBar);
+    box-shadow: var(--bgNavBarShadow);
+    background: var(--bgThemeNavBarColor);
     transition: .1s;
 }
 
@@ -49,23 +49,23 @@
 }
 
 .menu__item-inner:hover {
-  background: $greyBlueColor;
+  background: var(--themeNavBarBgHover);
 }
 
 .menu__item-inner:hover .menu__text {
-  color: $black;
+  color: var(--themeNavBarColorHover);
 }
 
 .menu__item-inner:hover .svg__item {
-  fill: $black;
+  fill: var(--themeNavBarColorHover);
 }
 
 .menu__item-inner--active.menu__item-inner--selected {
-  background: $greyBlueColor;
+  background: var(--themeNavBarBgHover);
 }
 
 .menu__content:hover .menu__item-inner--selected {
-  background: $greyBlueColor;
+  background: var(--themeNavBarBgHover);
 }
 
 .menu__footer {
@@ -87,7 +87,7 @@
 .menu__footer-contacts--active, .menu__content:hover .menu__footer-contacts {
   width: 232px;
   opacity: 1;
-  border-bottom: 1px solid $greyBlueColor;
+  border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
 }
 
 .footer__contacts-content {
@@ -115,7 +115,7 @@
   font-family: $font;
   font-size: 0;
   font-weight: 600;
-  color: $greySearchColor;
+  color: var(--iconsTextThemeNavBarColor);
   opacity: 0;
   text-decoration: none;
   transition: 0.1s;
@@ -130,22 +130,23 @@
 }
 
 .footer__contacts-number:hover {
-  color: $black;
+  color: var(--themeNavBarColorHover);
 }
 
 .menu__text--selected {
-  color: $black;
+  color: var(--textThemeSideBarColorHover);
 }
 
 .menu__footer-lginout {
   width: 44px;
-  border-bottom: 1px solid $greyBlueColor;
+  border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
   margin: 0 0 16px 0;
+  transition: .1s;
 }
 
 .menu__footer-lginout--active, .menu__content:hover .menu__footer-lginout {
   width: 232px;
-  border-bottom: 1px solid $greyBlueColor;
+  border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
 }
 
 .menu__footer-rights {
@@ -158,7 +159,7 @@
   font-weight: 400;
   font-size: 0;
   line-height: 150%;
-  color: $greySearchColor;
+  color: var(--iconsTextThemeNavBarColor);
   opacity: 0;
   text-decoration: none;
   transition: 0.1s;
@@ -170,7 +171,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
-  color: $greySearchColor;
+  color: var(--iconsTextThemeNavBarColor);
   opacity: 1;
   transition: 0.1s;
 }
@@ -192,11 +193,11 @@
 .image__wrapper-theme {
   width: 42px;
   height: 42px;
-  border: 1px solid $greySearchColor;
+  border: 1px solid var(--iconsTextThemeNavBarColor);
 }
 
 .image__wrapper-footer:hover .svg__item {
-  fill: $black;
+  fill: var(--themeNavBarColorHover);
 }
 
 
@@ -206,30 +207,30 @@
 }
 
 .image__wrapper--active:hover, .image__wrapper-theme--active:hover {
-  background: $greyBlueColor;
+  background: var(--themeNavBarBgHover);
 }
 .image__wrapper-theme--active:hover {
-  border: 1px solid $black;
+  border: 1px solid var(--themeNavBarColorHover);
 }
 
 .image__wrapper--active.image__wrapper--selected, .image__wrapper-theme--active.image__wrapper-theme--selected {
-  background: $greyBlueColor;
+  background: var(--themeNavBarBgHover);
 }
 
 .menu__item-inner:hover .image__wrapper-theme {
-  border: 1px solid $black;
+  border: 1px solid var(--themeNavBarColorHover);
 }
 
 .image__wrapper-theme.image__wrapper-theme--selected {
-  border: 1px solid $black;
+  border: 1px solid var(--themeNavBarColorHover);
 }
 
 .image__wrapper--active:hover .svg__item, .image__wrapper-theme--active:hover .svg__item {
-  fill: $black;
+  fill: var(--themeNavBarColorHover);
 }
 
 .image__wrapper--active:hover .svg__menu, .image__wrapper-theme--active:hover .svg__menu {
-  stroke: $black;
+  stroke: var(--themeNavBarColorHover);
 }
 
 .svg__item {
@@ -238,7 +239,7 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  fill: $greySearchColor;
+  fill: var(--iconsTextThemeNavBarColor);
 }
 
 .svg__item svg {
@@ -247,13 +248,13 @@
 }
 
 .svg__menu {
-  stroke: $black;
+  stroke: var(--iconsTextThemeNavBarColor);
 }
 
 .svg__item--active.svg__item--selected {
-  fill: $black;
+  fill: var(--themeNavBarColorHover);
 }
 
 .svg__item--selected {
-  fill: $black;
+  fill: var(--themeNavBarColorHover);
 }

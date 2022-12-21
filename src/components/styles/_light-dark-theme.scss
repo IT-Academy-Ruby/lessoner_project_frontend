@@ -7,19 +7,19 @@ $themes: (
   textThemeColor1: (darkTheme: $grey100,
     lightTheme: $black,
   ),
-  bgThemeSideBarColor: (darkTheme: $darkSideBar,
+  bgThemeNavBarColor: (darkTheme: $darkSideBar,
     lightTheme: $lightSideBar,
   ),
-  bgSideBarShadow: (darkTheme: $SideBarShadowDark,
+  bgNavBarShadow: (darkTheme: $SideBarShadowDark,
     lightTheme: $SideBarShadowLight,
   ),
-  iconsThemeSideBarColor: (darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  iconsTextThemeNavBarColor: (darkTheme: $dark7,
+    lightTheme: $dark8,
   ),
-  textThemeSideBarColor: (darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  themeNavBarColorHover: (darkTheme: $light2,
+    lightTheme: $dark1,
   ),
-  textThemeSideBarColorHover: (darkTheme: $dark6,
+  themeNavBarBgHover: (darkTheme: $dark6,
     lightTheme: $light5,
   ),
   bgCardThemeColor: (darkTheme: $darkSideBar,
@@ -72,10 +72,7 @@ $themes: (
   ),
   bgGenderSelectorRadio:(darkTheme: $dark1,
     lightTheme: $light1,
-  )
-  bgNavBar:(darkTheme: $dark3,
-    lightTheme: $light1,
-  )
+  ),
 );
 
 @mixin styles($mode) {
