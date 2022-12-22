@@ -1,3 +1,5 @@
+@import "../../../constants.scss";
+
 .tag {
   align-items: center;
   border-radius: 4px;
@@ -9,7 +11,7 @@
 .tag-status {
   background-color: #455fce;
   color: #ffffff;
-  font-family: "ApercuPro";
+  font-family: $font;
   font-size: 12px;
   line-height: 21px;
   height: 24px;
@@ -35,23 +37,19 @@
 .tag-time {
   background: rgba(0, 0, 0, 0.4);
   color: #ffffff;
-  font-family: "ApercuPro";
+  font-family: $font;
   font-size: 12px;
   line-height: 23px;
   height: 23px;
 }
 
 .tag-category {
-  background: linear-gradient(
-      0deg,
-      rgba(93, 150, 217, 0.08),
-      rgba(93, 150, 217, 0.08)
-    ),
-    #fefbff;
-  color: #455fce;
+  background: var(--categorybgCardThemeColor);
+  color: var(--categoryTextCardThemeColor);
   font-family: "ApercuPro";
   font-weight: bold;
   font-size: 12px;
   line-height: 23px;
   height: 23px;
+  transition: 0.5s ease;
 }

@@ -1,77 +1,96 @@
-import "../components/modal/modal.scss";
-import { FormattedMessage, useIntl } from "react-intl";
-import { Fragment, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import "./modal.scss";
+import {
+  Field, Form, Formik,
+} from "formik";
+import {FormattedMessage, useIntl} from "react-intl";
+import {closePopup, sendPasswordResetLink} from "../store/loginName/loginSlice";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import Button from "../components/Button";
 import Email from "../components/Email";
-import { emailInvalidationRules } from "../validationRules";
-import { sendPasswordResetLink } from "../services/api/sendPasswordResetLink";
+import {Fragment} from "react";
+import Loader from "../components/Loader";
+import {emailInvalidationRules} from "../validationRules";
+import {useNavigate} from "react-router-dom";
+
+interface FormValues {
+  email: string;
+}
+
+interface FormErrors {
+  [key: string]: string;
+}
 
 const ResetPasswordPage = () => {
-  const [isForm, setIsForm] = useState(true);
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
   const intl = useIntl();
+  const dispatch = useAppDispatch();
+  const emailFound = useAppSelector(state => state.login.notFound);
+  const navigate = useNavigate();
+  const loading = useAppSelector(state => state.login.loading);
 
-  const closeLinkPopup = () => navigate("/users/sign_in/");
+  const initialValues: FormValues = {email: "",};
 
-  const checkEmail = () => {
-    if (emailInvalidationRules.some(rule => rule.test(email))) {
-      setError(intl.formatMessage({ id: "app.resetPasswordPage.userNotFound" }));
-    } else {
-      setError("");
-    }
+  const closeLinkPopup = () => {
+    navigate("/users/");
+    dispatch(closePopup());
   };
-
-  const sendLink = async () => {
-    const isLinkSended = await sendPasswordResetLink(email);
-    if (isLinkSended !== "User not found") {
-      setError("");
-      setIsForm(false);
-    } else {
-      setError(intl.formatMessage({ id: "app.resetPasswordPage.userNotFound" }));
-      setIsForm(true);
-    }
-  };
-
-  const form =
-    <Fragment>
-      <h2 className='title'>
-        {intl.formatMessage({ id: "app.resetPasswordPage.forgotPassword" })}
-      </h2>
-      <h6>{intl.formatMessage({ id: "app.resetPasswordPage.enterEmailToRecoverPassword" })}</h6>
-      <div className="First-Registration-Form">
-        <Email field={{
-          name: email,
-          onBlur: () => { checkEmail(); },
-          onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value),
-          value: email
-        }}
-        error={error} />
-        <button type="submit" onMouseDown={() => sendLink()}>
-          <FormattedMessage id="app.resetPasswordPage.button" />
-        </button>
-      </div>
-    </Fragment>;
-
-  const confirmationLink =
-    <Fragment>
-      <h6>{intl.formatMessage({ id: "app.resetPasswordPage.weSentLink" })} {email}</h6>
-      <div className="First-Registration-Form">
-        <button type="submit" onClick={closeLinkPopup}>OK</button>
-      </div>
-    </Fragment>;
 
   return (
-    <div className='field'>
-      <div className='modal'>
-        <Link to='/users/sign_in/'>
-          <span className='close'>
-          </span>
-        </Link>
-        {(isForm || error) ? form : confirmationLink}
-      </div>
+    <div className="log-content">
+      {loading && <Loader/>}
+      <Formik
+        initialValues={{email: ""}}
+        validate={async (values: FormValues) => {
+          const errors: FormErrors = {};
+          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+            errors.email =
+              intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
+          }
+          return errors;
+        }}
+        onSubmit={(values: { email: string }) => {
+          dispatch(sendPasswordResetLink(values.email));
+        }}>
+        {({errors, touched}) => {
+          return (
+            <Form className="wrapper-component">
+              {!emailFound ?
+                <Fragment>
+                  <h2 className="title">
+                    <FormattedMessage id="app.loginPage.password"/>
+                  </h2>
+                  <p className="text">
+                    <FormattedMessage id="app.resetPasswordPage.inform"/>
+                  </p>
+                  <Field
+                    name="email"
+                    component={Email}
+                    error={touched.email ? errors.email : undefined}
+                    needEmail={true}
+                  />
+                  <Button
+                    buttonType="submit"
+                    buttonText={intl.formatMessage({id: "app.resetPasswordPage.resetPassword"})}
+                    className="button__page"
+                  />
+                </Fragment> :
+                <Fragment>
+                  <h2 className="inform">
+                    <FormattedMessage id="app.resetPasswordPage.text"/>{initialValues.email}
+                  </h2>
+                  <Button
+                    buttonType="button"
+                    onClick={closeLinkPopup}
+                    buttonText={intl.formatMessage({id: "app.button.ok"})}
+                    className="button__page"
+                  />
+                </Fragment>
+              }
+            </Form>
+          );
+        }}
+      </Formik>
     </div>
   );
 };
+
 export default ResetPasswordPage;

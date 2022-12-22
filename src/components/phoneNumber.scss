@@ -1,15 +1,77 @@
-.phone-number {
-  margin: 20px 0;
+@import "../constants.scss";
+
+.magmagnifying_glas {
+  position: absolute;
+  left: 16px;
+  top: 32px;
+  z-index: 5;
 }
 
-.phone-number-label {
-  display: block;
-  font-weight: bold;
-  margin: 5px 0;
+.react-tel-input {
+  @include fieldsFont;
 }
 
-.error {
-  color: red;
-  display: block;
-  margin-top: 0.5em;
+.react-tel-input > .form-control {
+  padding: 1px 46px 1px 84px;
+  width: 100%;
+  border-color: $blueLightColor;
+  color:var(--textThemeColor1) !important;
+  background: none;
+}
+
+.react-tel-input .flag-dropdown {
+  padding-left:45px;
+  left:1px;
+  background: var(--bgThemeColor1) !important;
+  border: none;
+  height: 90%;
+  top: 2px;
+}
+
+.react-tel-input .flag-dropdown.open{
+  z-index: 0;
+  width: 99%;
+}
+
+.react-tel-input .flag-dropdown.open .selected-flag {
+  background-color: var(--bgThemeColor1);
+  border-radius: 0;
+  }
+
+.react-tel-input .country-list {
+  background: var(--bgPhoneNumberCountryList);
+  color: var(--textPhoneNumberCountryList);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  left: 1px;
+  width: 100%;
+  overflow: hidden;
+  .dial-code{
+    color: var(--textPhoneNumberCountryList) !important;
+  }
+  .country:hover{
+    background-color: var(--textPhoneNumberCountryListHover) !important;
+  }
+}
+
+.react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
+  border-radius: 0;
+  background-color: var(--bgThemeColor1);
+}
+
+.arrow {
+  visibility: hidden;
+}
+
+.symbol {
+  width: 24px;
+  height: 24px;
+  color: $blueLightColor;
+  transform: rotate(90deg);
+  position: absolute;
+  top: 30px;
+  right: 8px;
+  cursor: pointer;
+  z-index: 2;
 }

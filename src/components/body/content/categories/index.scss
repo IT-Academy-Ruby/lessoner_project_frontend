@@ -1,0 +1,17 @@
+.wrapper__categories {
+    //width: 1376px;
+    height: 100%;
+    margin: auto;
+}
+
+.categories__block {
+  //width: 1376px;
+  margin-top: 30px;
+  margin-left: 32px;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+ 

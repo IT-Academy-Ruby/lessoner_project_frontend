@@ -1,23 +1,20 @@
-import "./userName.scss";
+import "./input.scss";
+import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {getUser} from "../store/loginName/userSlice";
 
 type UserNameProps = {
-  minSymbol: number;
-  maxSymbol: number;
-  labelName: string;
-  field?: {
+  field: {
     name: string,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string
   };
   error?: string;
 }
-const UserName = ({
-  minSymbol, maxSymbol, field, error, labelName
-}: UserNameProps): JSX.Element => {
+const UserName = ({field, error}: UserNameProps): JSX.Element => {
+  const intl = useIntl();
   const [extraStyle, setExtraStyle] = useState("");
   const [busyName, setBusyName] = useState("");
   const dispatch = useAppDispatch();
@@ -29,25 +26,24 @@ const UserName = ({
 
   useEffect(() => {
     if (userStatus) {
-      setBusyName("User already exists. Please enter a different username");
-      setExtraStyle("red__border");
+      setBusyName(intl.formatMessage({ id:"app.userName.nameExists"}));
+      setExtraStyle("redBorder");
     }
-  }, [userStatus]);
+  }, [userStatus,intl]);
 
   return (
-    <div className="username__wrapper">
-      <label className="username__label">{labelName}
-        <input
-          type="text"
-          className={classNames("username__input", {[`${extraStyle}`]: error})}
-          onKeyUp={fieldHandler}
-          placeholder={`${minSymbol} to ${maxSymbol} characters`}
-          {...field}
-        />
-      </label>
-      {(error) && <span className="error">{error}</span>}
-      {(busyName) && <span className="error">{busyName}</span>}
-    </div>
+    <label className="input-label">
+      <FormattedMessage id="app.UserName"/>
+      <input
+        type="text"
+        className={classNames("input", {[`${extraStyle}`]: error})}
+        onKeyUp={fieldHandler}
+        placeholder={intl.formatMessage({ id: "app.code.invalidationRules" })}
+        {...field}
+      />
+      {(error) && <span className="error-message">{error}</span>}
+      {(busyName) && <span className="error-message">{busyName}</span>}
+    </label>
   );
 };
 
