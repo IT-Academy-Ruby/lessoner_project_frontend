@@ -3,7 +3,6 @@ import {FC, useState} from "react";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
 import {useIntl} from "react-intl";
-import { THEME, useTheme } from "../utils/useTheme";
 import useDarkMode from "use-dark-mode";
 
 interface NavbarStudyStudioProps {
@@ -11,12 +10,11 @@ interface NavbarStudyStudioProps {
 }
 
 const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
-  const intl = useIntl();
-  const EMPTY_BUTTON_ID = 0;
-  const [isMenuActive, setIsMenuActive] = useState(false);
-  const [buttonPressed, setButtonPressed] = useState(EMPTY_BUTTON_ID);
-  const darkMode = useDarkMode(true);
-  const theme = useTheme();
+const intl = useIntl();
+const EMPTY_BUTTON_ID = 0;
+const [isMenuActive, setIsMenuActive] = useState(false);
+const [buttonPressed, setButtonPressed] = useState(EMPTY_BUTTON_ID);
+const darkMode = useDarkMode(true);
   
   const items = [
     {
@@ -113,12 +111,12 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     {
       id: 9,
       value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.darcTheme"
+        id: "app.navbarStudyStudio.darkTheme"
       })}`,
       href: "#!",
-      icon: "darc_theme",
+      icon: "dark_theme",
       place: {
-        darcTheme: "darc_theme",
+        darkTheme: "dark_theme",
       },
     },
     {
@@ -212,7 +210,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
               icon: string;
               place: any;
             }) =>
-              item.place.autorised === menuType && (
+              (item.place.admin === menuType || item.place.autorised === menuType || item.place.notAutorised === menuType)  && (
                 <li
                   className={"menu__item"}
                   key={item.id}
@@ -291,7 +289,42 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                   icon: string;
                   place: any;
                 }) =>
-                  item.place.logIn && (
+                 (menuType === "not_autorised") ? item.place.logIn && (
+                    <li
+                      className={"menu__item menu__item-footer"}
+                      key={item.id}
+                      onClick={() =>
+                        item.id !== buttonPressed && setButtonPressed(item.id)
+                      }
+                    >
+                      <a className={classNames(menuItemInnerCN, {
+                            "menu__item-inner--selected": item.id === buttonPressed,
+                          })} href={item.href}>
+                        <span
+                          className={classNames(imageWrapperCN, {
+                            "image__wrapper--selected": item.id === buttonPressed,
+                          })}
+                        >
+                          <div
+                            className={classNames(svgItemCN, {
+                              "svg__item--selected": item.id === buttonPressed,
+                            })}
+                          >
+                            <NavbarStudyStudioSVGSelector icon={item.icon} />
+                          </div>
+                        </span>
+                        <span
+                          className={`${menuTextCN} ${
+                            item.id === buttonPressed ? "menu__text--selected" : ""
+                          }`}
+                        >
+                          {item.value}
+                        </span>
+                      </a>
+                    </li>
+                  )
+                  :
+                  item.place.logOut && (
                     <li
                       className={"menu__item menu__item-footer"}
                       key={item.id}
@@ -363,7 +396,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                     </li>
                   )
                   :
-                  item.place.darcTheme && (
+                  item.place.darkTheme && (
                     <li
                       className={"menu__item menu__item-footer"}
                       key={item.id}

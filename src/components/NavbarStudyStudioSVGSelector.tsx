@@ -11,7 +11,7 @@ import {ReactComponent as AboutUs} from "./icons/navbar/about_us.svg";
 import { ReactComponent as EditCategories } from "./icons/navbar/edit_categories.svg";
 import { ReactComponent as LogIn } from "./icons/navbar/log_in.svg";
 import { ReactComponent as LogOut } from "./icons/navbar/log_out.svg";
-import { ReactComponent as DarcTheme } from "./icons/navbar/darc_theme.svg";
+import { ReactComponent as DarkTheme } from "./icons/navbar/dark_theme.svg";
 import { ReactComponent as LightTheme } from "./icons/navbar/light_theme.svg";
 import { ReactComponent as Network } from "./icons/navbar/network.svg";
 import { ReactComponent as Instagram } from "./icons/navbar/instagram.svg";
@@ -50,8 +50,8 @@ const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
       return <LogIn />;
     case "log_out":
       return <LogOut />;
-    case "darc_theme":
-      return <DarcTheme />;
+    case "dark_theme":
+      return <DarkTheme />;
     case "light_theme":
       return <LightTheme />;
     case "network":

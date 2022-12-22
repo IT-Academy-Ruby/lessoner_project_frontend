@@ -13,7 +13,7 @@ const Content = () => {
   const lessoner = useAppSelector(state => state.link.lessoner);
   return (
     <div className="main">
-      <NavbarStudyStudio menuType={"autorised"}/>
+      <NavbarStudyStudio menuType={"admin"}/>
       <Routes>
         <Route path={lessoner} element={<Lessoner/>}/>
         <Route path="/myStudio" element={<MyStudio />} />

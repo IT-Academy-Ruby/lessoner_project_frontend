@@ -64,7 +64,7 @@ export const messages_ru = {
   "app.navbarStudyStudio.management": "Управление",
   "app.navbarStudyStudio.contacts": "Контакты",
   "app.navbarStudyStudio.aboutUs": "О нас",
-  "app.navbarStudyStudio.darcTheme": "Темная тема",
+  "app.navbarStudyStudio.darkTheme": "Темная тема",
   "app.navbarStudyStudio.lightTheme": "Светлая тема",
   "app.navbarStudyStudio.logIn": "Войти",
   "app.navbarStudyStudio.logOut": "Выйти",

@@ -62,7 +62,7 @@ export const messages_en = {
   "app.navbarStudyStudio.management": "Management",
   "app.navbarStudyStudio.contacts": "Contacts",
   "app.navbarStudyStudio.aboutUs": "About us",
-  "app.navbarStudyStudio.darcTheme": "Dark theme",
+  "app.navbarStudyStudio.darkTheme": "Dark theme",
   "app.navbarStudyStudio.lightTheme": "Light theme",
   "app.navbarStudyStudio.logIn": "Log in",
   "app.navbarStudyStudio.logOut": "Log Out",
