@@ -1,6 +1,8 @@
 import "./EditVideoLessonForm.scss";
-import { BACKEND_URL_LESSONS, maxDescriptionLength,
-  maxDescriptionHashTagCount, maxNameLength } from "../../constants";
+import { 
+  BACKEND_URL_LESSONS, maxDescrHTCount,
+  maxDescriptionLength, maxNameLength 
+} from "../../constants";
 import { 
   FC, useEffect, useState 
 } from "react";
@@ -39,13 +41,11 @@ export const EditVideoLessonForm: FC = () => {
       .then((response) => response.json())
       .then((lesson) => setLesson(lesson))
       .catch((error) => console.log(error));
-  }, []);
+  }, [params.id]);
 
   const addInfoToLessonObject = (values: {name: string; description: string;}) => {
-    const lessonFromEditForm = {
-      title: `${values.name}`,
-      description: `${values.description}`,
-    };
+    const lessonFromEditForm = { title: `${values.name}`,
+      description: `${values.description}` };
     request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
   };
 
@@ -53,9 +53,7 @@ export const EditVideoLessonForm: FC = () => {
     if (!title) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!RegExpName.test(title)) {
-      return intl.formatMessage({
-        id: "app.editVideoLesson.errorProhibitedCharacters",
-      });
+      return intl.formatMessage({id: "app.editVideoLesson.errorProhibitedCharacters"});
     } else if (title.length > maxNameLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharacters" },
@@ -79,18 +77,16 @@ export const EditVideoLessonForm: FC = () => {
     if (!description) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!RegExpDescription.test(description)) {
-      return intl.formatMessage({
-        id: "app.editVideoLesson.errorProhibitedCharacters",
-      });
+      return intl.formatMessage({id: "app.editVideoLesson.errorProhibitedCharacters"});
     } else if (description.length > maxDescriptionLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharactersDescr" },
         { maxDescriptionLength }
       );
-    } else if (countHashTag > maxDescriptionHashTagCount) {
+    } else if (countHashTag > maxDescrHTCount) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxHachTagDescr" },
-        { maxDescriptionHashTagCount }
+        { maxDescriptionHashTagCount: maxDescrHTCount }
       );
     }
   };
@@ -126,9 +122,7 @@ export const EditVideoLessonForm: FC = () => {
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableName" })}
             <Field
-              className={classNames("evlf__input", {
-                ["error-input"]: errors.name && errors.name,
-              })}
+              className={classNames("evlf__input", {["error-input"]: errors.name && errors.name})}
               name="name"
               validate={validateName}
             />
@@ -141,23 +135,18 @@ export const EditVideoLessonForm: FC = () => {
             <Field className="evlf__input" as="select" name="category">
               <option value="IT">IT</option>
               <option value="Music">
-                {intl.formatMessage({
-                  id: "app.editVideoLesson.lableCategoryMusic",
-                })}
+                {intl.formatMessage({id: "app.editVideoLesson.lableCategoryMusic"})}
               </option>
               <option value="Design">
-                {intl.formatMessage({
-                  id: "app.editVideoLesson.lableCategoryDesign",
-                })}
+                {intl.formatMessage({id: "app.editVideoLesson.lableCategoryDesign"})}
               </option>
             </Field>
           </label>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableDescription" })}
             <Field
-              className={classNames("evlf__input evlf__input-textarea", {
-                ["error-input"]: errors.description && errors.description,
-              })}
+              className={classNames("evlf__input evlf__input-textarea", 
+                {["error-input"]: errors.description && errors.description})}
               name="description"
               validate={validateDescription}
               as="textarea"
@@ -171,9 +160,7 @@ export const EditVideoLessonForm: FC = () => {
             <label>
               {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitles" })}
               <p className="evlf__text">
-                {intl.formatMessage({
-                  id: "app.editVideoLesson.lableSubtitlesText",
-                })}
+                {intl.formatMessage({id: "app.editVideoLesson.lableSubtitlesText"})}
               </p>
             </label>
             <Button
@@ -186,9 +173,7 @@ export const EditVideoLessonForm: FC = () => {
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
             <p className="evlf__text">
-              {intl.formatMessage({
-                id: "app.editVideoLesson.lableThumbnailText",
-              })}
+              {intl.formatMessage({id: "app.editVideoLesson.lableThumbnailText"})}
             </p>
             <div className="evlth__wrapper">
               <div className="evlth__inner">

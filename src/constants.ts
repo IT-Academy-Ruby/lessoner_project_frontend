@@ -14,7 +14,7 @@ const USERNAME = { minLength: 3, maxLength: 50 };
 const VK_APP = { id: 51463254 };
 const maxNameLength = 64;
 const maxDescriptionLength = 600;
-const maxDescriptionHashTagCount = 10;
+const maxDescrHTCount = 10;
 const NAME_CATEGORY = {
   minSymbols: 1, maxSymbols: 64, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
@@ -25,7 +25,7 @@ const DESCRIPTION_CATEGORY = {
 export {
   BACKEND_URL, BACKEND_URL_LESSONS, CODE, DEFAULT_COUNTRY_CODE, EMAIL, FACEBOOK_APP, GOOGLE_APP,
   PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength,
-  maxDescriptionLength, maxDescriptionHashTagCount, NAME_CATEGORY, DESCRIPTION_CATEGORY
+  maxDescriptionLength, maxDescrHTCount, NAME_CATEGORY, DESCRIPTION_CATEGORY
 };
 
 
