@@ -3,6 +3,8 @@ import {FC, useState} from "react";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
 import {useIntl} from "react-intl";
+import { THEME, useTheme } from "../utils/useTheme";
+import useDarkMode from "use-dark-mode";
 
 interface NavbarStudyStudioProps {
   menuType: string;
@@ -13,6 +15,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
   const EMPTY_BUTTON_ID = 0;
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(EMPTY_BUTTON_ID);
+  const darkMode = useDarkMode(true);
+  const theme = useTheme();
   
   const items = [
     {
@@ -114,7 +118,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
       href: "#!",
       icon: "darc_theme",
       place: {
-        theme: "theme",
+        darcTheme: "darc_theme",
       },
     },
     {
@@ -125,7 +129,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
       href: "#!",
       icon: "light_theme",
       place: {
-        theme: "theme",
+        lightTheme: "light_theme",
       },
     },
     {
@@ -323,7 +327,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                   )
               )}
             </div>
-            <div className="menu__footer-theme">
+            <div className="menu__footer-theme" onClick={darkMode.toggle}>
               {items.map(
                 (item: {
                   id: number;
@@ -332,7 +336,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                   icon: string;
                   place: any;
                 }) =>
-                  item.place.theme && (
+                   item.place.lightTheme && (
                     <li
                       className={"menu__item menu__item-footer"}
                       key={item.id}
