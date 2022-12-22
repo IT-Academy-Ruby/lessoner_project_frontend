@@ -181,7 +181,6 @@
   transition: 0.1s;
 }
 
-
 .image__wrapper, .image__wrapper-theme, .image__wrapper-footer, .menu__content:hover .image__wrapper-footer  {
   display: flex;
   justify-content: center;
@@ -204,7 +203,6 @@
 .image__wrapper-footer:hover .svg__item {
   fill: var(--themeNavBarColorHover);
 }
-
 
 .image__wrapper-footer--active {
   width: 0;
