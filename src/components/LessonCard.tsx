@@ -1,5 +1,5 @@
 import "./LessonCard.scss";
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
@@ -30,7 +30,7 @@ const POPUP_ITEMS = [
   },
 ];
 
-const ThumbnailImageUrl: FC<ThumbnailImageUrlProps> = (props) => {
+const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
       <a href="/lessons">
@@ -44,7 +44,7 @@ type TitleProps = {
   title: string;
 };
 
-const Title: FC<TitleProps> = (props) => {
+const Title: React.FC<TitleProps> = (props) => {
   return (
     <div className="video__title">
       <a href="#">
@@ -86,7 +86,7 @@ type PublishedDataProps = {
   published: string;
 };
 
-const Published: FC<PublishedDataProps> = (props) => {
+const Published: React.FC<PublishedDataProps> = (props) => {
   return (
     <div className="details__date">
       <p>
@@ -101,7 +101,7 @@ type ViewProps = {
   view: number;
 };
 
-const View: FC<ViewProps> = (props) => {
+const View: React.FC<ViewProps> = (props) => {
   return (
     <div className="details__view">
       <p>{props.view} views</p>
@@ -122,15 +122,11 @@ type LessonCardsProps = {
   totalVotes?: number;
 };
 
-const LessonCard: FC<LessonCardsProps> = (props) => {
+const LessonCard: React.FC<LessonCardsProps> = (props) => {
   return (
     <div className="wrapper">
       <div className="card">
         <div className="card__icon">
-          {props.imagePreview && (
-            <ThumbnailImageUrl imagePreview={props.imagePreview} />
-          )}
-
           {props.imagePreview && (
             <ThumbnailImageUrl imagePreview={props.imagePreview} />
           )}
@@ -145,9 +141,6 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
           {props.duration && (
             <Tag className="video__time" type="time" text={props.duration} />
           )}
-          {props.duration && (
-            <Tag className="video__time" type="time" text={props.duration} />
-          )}
         </div>
         <div className="card__info">
           <div className="card__info-top">
@@ -157,13 +150,9 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
           <div className="details">
             <Published published={props.published} />
             {props.view && <View view={props.view} />}
-            {props.view && <View view={props.view} />}
           </div>
           <div className="categories__raiting">
             <Tag className="categories" type="category" text={props.category} />
-            {props.rating && props.totalVotes && (
-              <Rating rating={props.rating} totalVotes={props.totalVotes} />
-            )}
             {props.rating && props.totalVotes && (
               <Rating rating={props.rating} totalVotes={props.totalVotes} />
             )}
