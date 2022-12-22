@@ -10,12 +10,12 @@ $transition: .2s;
     height: 100%;
     box-shadow: var(--bgNavBarShadow);
     background: var(--bgThemeNavBarColor);
-    transition: $transition;
+    transition: .1s;
 }
 
 .menu__content:hover, .menu__content--active {
   width: 264px;
-  transition: $transition;
+  transition: .1s;
 }
 
 .menu__inner {
@@ -53,11 +53,6 @@ $transition: .2s;
 
 .menu__item-inner:hover {
   background: var(--themeNavBarBgHover);
-  transition: $transition;
-}
-
-.menu__item-inner.menu__item-inner-theme:hover {
-  background: none;
   transition: $transition;
 }
 
@@ -234,6 +229,10 @@ $transition: .2s;
 
 .menu__item-inner:hover .image__wrapper-theme {
   border: 1px solid var(--themeNavBarColorHover);
+}
+
+.menu__item-inner-theme:hover {
+  background: none;
 }
 
 .image__wrapper-theme.image__wrapper-theme--selected {

@@ -131,6 +131,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
 
   const imageWrapperCN = classNames("image__wrapper", 
     {"image__wrapper--active": !isMenuActive});
+  const imageWrapperThemeCN = classNames("image__wrapper-theme", 
+    {"image__wrapper-theme--active": !isMenuActive});
   const imageWrapperFooterCN = classNames("image__wrapper-footer", 
     {"image__wrapper-footer--active": !isMenuActive});
   const menuFooterLginoutCN = classNames("menu__footer-lginout", 
@@ -148,6 +150,86 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
   const menuItemInnerCN = classNames("menu__item-inner", 
     {"menu__item-inner--active": isMenuActive});
 
+  type itemTypes = {
+    id: number;
+    href: string;
+    value: string;
+    icon: string;
+    place: any;
+  };
+
+  const renderButtonLoInOut = (item: itemTypes) => {
+    return (
+      <li
+        className={"menu__item menu__item-footer"}
+        key={item.id}
+        onClick={() =>
+          item.id !== buttonPressed && setButtonPressed(item.id)
+        }
+      >
+        <a className={classNames(menuItemInnerCN, {
+              "menu__item-inner--selected": item.id === buttonPressed,
+            })} href={item.href}>
+          <span
+            className={classNames(imageWrapperCN, {
+              "image__wrapper--selected": item.id === buttonPressed,
+            })}
+          >
+            <div
+              className={classNames(svgItemCN, {
+                "svg__item--selected": item.id === buttonPressed,
+              })}
+            >
+              <NavbarStudyStudioSVGSelector icon={item.icon} />
+            </div>
+          </span>
+          <span
+            className={`${menuTextCN} ${
+              item.id === buttonPressed ? "menu__text--selected" : ""
+            }`}
+          >
+            {item.value}
+          </span>
+        </a>
+      </li>
+    );
+  };
+
+  const renderButtonTheme = (item: itemTypes) => {
+    return (
+    <li
+      className={"menu__item menu__item-footer"}
+      key={item.id}
+      onClick={() =>
+        item.id !== buttonPressed && setButtonPressed(item.id)
+      }
+    >
+      <a className={classNames("menu__item-inner-theme", menuItemInnerCN, {
+            "menu__item-inner--selected": item.id === buttonPressed,
+          })} href={item.href}>
+        <span
+          className={classNames(imageWrapperThemeCN)}
+        >
+          <div
+            className={classNames(svgItemCN, {
+              "svg__item--selected": item.id === buttonPressed,
+            })}
+          >
+            <NavbarStudyStudioSVGSelector icon={item.icon} />
+          </div>
+        </span>
+        <span
+          className={`${menuTextCN} ${
+            item.id === buttonPressed ? "menu__text--selected" : ""
+          }`}
+        >
+          {item.value}
+        </span>
+      </a>
+    </li>
+    );
+  };
+
   return (
     <div onClick={() => setIsMenuActive(false)}>
       <div className={menuContentCN} onClick={(e) => e.stopPropagation()}>
@@ -163,23 +245,14 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
             </div>
           </div>
           <div className="navbar__main" >
-            {items.map(
-              (item: {
-                id: number;
-                href: string;
-                value: string;
-                icon: string;
-                place: any;
-              }) =>
+            {items.map((item: itemTypes) =>
                 (item.place.admin === menuType || 
                   item.place.autorised === menuType || 
                   item.place.notAutorised === menuType)  && (
                   <li
                     className={"menu__item"}
                     key={item.id}
-                    onClick={() =>
-                      item.id !== buttonPressed && setButtonPressed(item.id)
-                    }
+                    onClick={() => item.id !== buttonPressed && setButtonPressed(item.id)}
                   >
                     <a className={classNames(menuItemInnerCN, 
                       {"menu__item-inner--selected": item.id === buttonPressed})} href={item.href}>
@@ -217,13 +290,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 </a>
               </div>
               <div className="footer__contacts-social">
-                {items.map((item: {
-                  id: number;
-                  href: string;
-                  value: string;
-                  icon: string;
-                  place: any;
-                  }) =>
+                {items.map((item: itemTypes) =>
                   item.place.contacts && (
                     <li
                       className={"footer__social-item"}
@@ -243,147 +310,21 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
               </div>
             </div>
             <div className={classNames(menuFooterLginoutCN)}>
-              {items.map(
-                (item: {
-                  id: number;
-                  href: string;
-                  value: string;
-                  icon: string;
-                  place: any;
-                }) =>
-                 (menuType === "not_autorised") ? item.place.logIn && (
-                    <li
-                      className={"menu__item menu__item-footer"}
-                      key={item.id}
-                      onClick={() =>
-                        item.id !== buttonPressed && setButtonPressed(item.id)
-                      }
-                    >
-                      <a className={classNames(menuItemInnerCN, {
-                            "menu__item-inner--selected": item.id === buttonPressed,
-                          })} href={item.href}>
-                        <span
-                          className={classNames(imageWrapperCN, {
-                            "image__wrapper--selected": item.id === buttonPressed,
-                          })}
-                        >
-                          <div
-                            className={classNames(svgItemCN, {
-                              "svg__item--selected": item.id === buttonPressed,
-                            })}
-                          >
-                            <NavbarStudyStudioSVGSelector icon={item.icon} />
-                          </div>
-                        </span>
-                        <span
-                          className={`${menuTextCN} ${
-                            item.id === buttonPressed ? "menu__text--selected" : ""
-                          }`}
-                        >
-                          {item.value}
-                        </span>
-                      </a>
-                    </li>
-                    )
+              {items.map((item: itemTypes) =>
+                 (menuType === "not_autorised") 
+                    ? 
+                  item.place.logIn && renderButtonLoInOut(item)
                     :
-                    item.place.logOut && (
-                      <li
-                        className={"menu__item menu__item-footer"}
-                        key={item.id}
-                        onClick={() =>
-                          item.id !== buttonPressed && setButtonPressed(item.id)
-                        }
-                      >
-                        <a className={classNames(menuItemInnerCN, {
-                              "menu__item-inner--selected": item.id === buttonPressed,
-                            })} href={item.href}>
-                          <span
-                            className={classNames(imageWrapperCN, {
-                              "image__wrapper--selected": item.id === buttonPressed,
-                            })}
-                          >
-                            <div
-                              className={classNames(svgItemCN, {
-                                "svg__item--selected": item.id === buttonPressed,
-                                })}
-                            >
-                              <NavbarStudyStudioSVGSelector icon={item.icon} />
-                            </div>
-                          </span>
-                          <span
-                            className={`${menuTextCN} ${
-                              item.id === buttonPressed ? "menu__text--selected" : ""
-                            }`}
-                          >
-                            {item.value}
-                          </span>
-                        </a>
-                      </li>
-                    )
+                  item.place.logOut && renderButtonLoInOut(item)
               )}
             </div>
             <div className="menu__footer-theme" onClick={darkMode.toggle}>
-              {items.map(
-                (item: {
-                  id: number;
-                  href: string;
-                  value: string;
-                  icon: string;
-                  place: any;
-                }) =>
-                  darkMode.value ? item.place.lightTheme && (
-                    <li
-                      className={"menu__item menu__item-footer"}
-                      key={item.id}
-                      onClick={() =>
-                        item.id !== buttonPressed && setButtonPressed(item.id)
-                      }
-                    >
-                      <a className="menu__item-inner menu__item-inner-theme" href={item.href}>
-                        <span
-                          className="image__wrapper-theme"
-                        >
-                          <div
-                            className="svg__item"
-                          >
-                            <NavbarStudyStudioSVGSelector icon={item.icon} />
-                          </div>
-                        </span>
-                        <span
-                          className={menuTextCN}
-                        >
-                          {item.value}
-                        </span>
-                      </a>
-                    </li>
-                  )
+              {items.map((item: itemTypes) =>
+                  darkMode.value 
+                    ? 
+                  item.place.lightTheme && renderButtonTheme(item)
                     :
-                    item.place.darkTheme && (
-                      <li
-                        className={"menu__item menu__item-footer"}
-                        key={item.id}
-                        onClick={() =>
-                          item.id !== buttonPressed && setButtonPressed(item.id)
-                        }
-                      >
-                        <a className="menu__item-inner menu__item-inner-theme" href={item.href}>
-                          <span
-                            className="image__wrapper-theme"
-                          >
-                            <div
-                              className="svg__item"
-                            >
-                              <NavbarStudyStudioSVGSelector icon={item.icon} />
-                            </div>
-                          </span>
-                          <span
-                            className={menuTextCN}
-                          >
-                            {item.value}
-                          </span>
-                        </a>
-                      </li>
-                    )
+                  item.place.darkTheme && renderButtonTheme(item)
               )}
             </div>
             <div className="menu__footer-rights">
