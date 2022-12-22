@@ -17,11 +17,11 @@ export const messages_ru = {
   "app.header.myStudio": "Моя студия",
   "app.header.goStudy": "Учиться",
   "app.footer": "Подвал",
+  "app.lessoner": "Lessoner",
+  "app.lessons.loading": "Загрузка данных...",
   "app.sign_in": "Войти",
   "app.sign_up": "Зарегистрироваться",
   "app.signUp": "Зарегистрироваться",
-  "app.lessoner": "Lessoner",
-  "app.lessons.loading": "Загрузка данных...",
   "app.birthdaylabel": "Когда у тебя день рождения?",
   "app.checkbox":
     "Даю согласие на обработку моих персональных данных в соответствии с",
