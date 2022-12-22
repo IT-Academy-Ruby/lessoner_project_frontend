@@ -1,5 +1,7 @@
 @import "../constants.scss";
 
+$transition: .2s;
+
 .menu__content {
     position: fixed;
     left: 0;
@@ -8,11 +10,12 @@
     height: 100%;
     box-shadow: var(--bgNavBarShadow);
     background: var(--bgThemeNavBarColor);
-    transition: .1s;
+    transition: $transition;
 }
 
 .menu__content:hover, .menu__content--active {
   width: 264px;
+  transition: $transition;
 }
 
 .menu__inner {
@@ -50,18 +53,22 @@
 
 .menu__item-inner:hover {
   background: var(--themeNavBarBgHover);
+  transition: $transition;
 }
 
 .menu__item-inner.menu__item-inner-theme:hover {
   background: none;
+  transition: $transition;
 }
 
 .menu__item-inner:hover .menu__text {
   color: var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .menu__item-inner:hover .svg__item {
   fill: var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .menu__item-inner--active.menu__item-inner--selected {
@@ -70,6 +77,7 @@
 
 .menu__content:hover .menu__item-inner--selected {
   background: var(--themeNavBarBgHover);
+  transition: $transition;
 }
 
 .menu__footer {
@@ -85,7 +93,7 @@
   align-items: flex-start;
   width: 0;
   opacity: 0;
-  transition: 0.1s;
+  transition: $transition;
 }
 
 .menu__footer-contacts--active, .menu__content:hover .menu__footer-contacts {
@@ -122,7 +130,7 @@
   color: var(--iconsTextThemeNavBarColor);
   opacity: 0;
   text-decoration: none;
-  transition: 0.1s;
+  transition: $transition;
 }
 
 .menu__text--active, .footer__contacts-number--active, .footer__contacts-title--active, .menu__content:hover .menu__text,
@@ -130,7 +138,7 @@
   width: 140px;
   font-size: 1em;
   opacity: 1;
-  transition: 0.1s;
+  transition: $transition;
 }
 
 .footer__contacts-number:hover {
@@ -145,12 +153,13 @@
   width: 44px;
   border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
   margin: 0 0 16px 0;
-  transition: .1s;
+  transition: $transition;
 }
 
 .menu__footer-lginout--active, .menu__content:hover .menu__footer-lginout {
   width: 232px;
   border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
+  transition: $transition;
 }
 
 .menu__footer-rights {
@@ -167,7 +176,7 @@
   color: var(--iconsTextThemeNavBarColor);
   opacity: 0;
   text-decoration: none;
-  transition: 0.1s;
+  transition: $transition;
 }
 
 .menu__footer-text--active, .menu__content:hover .menu__footer-text, .menu__footer-date {
@@ -178,7 +187,7 @@
   line-height: 150%;
   color: var(--iconsTextThemeNavBarColor);
   opacity: 1;
-  transition: 0.1s;
+  transition: $transition;
 }
 
 .image__wrapper, .image__wrapper-theme, .image__wrapper-footer, .menu__content:hover .image__wrapper-footer  {
@@ -202,6 +211,7 @@
 
 .image__wrapper-footer:hover .svg__item {
   fill: var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .image__wrapper-footer--active {
@@ -211,9 +221,11 @@
 
 .image__wrapper--active:hover, .image__wrapper-theme--active:hover {
   background: var(--themeNavBarBgHover);
+  transition: $transition;
 }
 .image__wrapper-theme--active:hover {
   border: 1px solid var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .image__wrapper--active.image__wrapper--selected, .image__wrapper-theme--active.image__wrapper-theme--selected {
@@ -230,10 +242,12 @@
 
 .image__wrapper--active:hover .svg__item, .image__wrapper-theme--active:hover .svg__item {
   fill: var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .image__wrapper--active:hover .svg__menu, .image__wrapper-theme--active:hover .svg__menu {
   stroke: var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .svg__item {
@@ -252,6 +266,11 @@
 
 .svg__menu {
   stroke: var(--iconsTextThemeNavBarColor);
+}
+
+.svg__menu--active, .menu__content:hover .svg__menu {
+  stroke: var(--themeNavBarColorHover);
+  transition: $transition;
 }
 
 .svg__item--active.svg__item--selected {
