@@ -18,7 +18,6 @@ export const messages_ru = {
   "app.header.goStudy": "Учиться",
   "app.footer": "Подвал",
   "app.lessoner": "Lessoner",
-  "app.lessons.loading": "Загрузка данных...",
   "app.sign_in": "Войти",
   "app.sign_up": "Зарегистрироваться",
   "app.signUp": "Зарегистрироваться",

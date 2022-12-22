@@ -18,7 +18,6 @@ export const messages_en = {
   "app.header.goStudy": "Go study",
   "app.footer": "Footer",
   "app.lessoner": "Lessoner",
-  "app.lessons.loading": "Data is loading...",
   "app.sign_in": "Sign_in",
   "app.sign_up": "Sign_up",
   "app.signUp": "Sign up",
