@@ -1,4 +1,7 @@
-.main{
-  grid-column-start: 2;
-  grid-row-start: 2;
+.main {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
