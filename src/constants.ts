@@ -15,9 +15,18 @@ const VK_APP = { id: 51463254 };
 const maxNameLength = 64;
 const maxDescriptionLength = 600;
 const maxDescriptionHashTagCount = 10;
+const NAME_CATEGORY = {
+  minSymbols: 1, maxSymbols: 64, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
+};
+const DESCRIPTION_CATEGORY = {
+  minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
+};
 
 export {
   BACKEND_URL, BACKEND_URL_LESSONS, CODE, DEFAULT_COUNTRY_CODE, EMAIL, FACEBOOK_APP, GOOGLE_APP,
-  PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength, maxDescriptionLength, maxDescriptionHashTagCount
+  PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength,
+  maxDescriptionLength, maxDescriptionHashTagCount, NAME_CATEGORY, DESCRIPTION_CATEGORY
 };
+
+
 
