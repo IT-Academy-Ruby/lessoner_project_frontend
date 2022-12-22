@@ -336,7 +336,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                   icon: string;
                   place: any;
                 }) =>
-                   item.place.lightTheme && (
+                  darkMode.value ? item.place.lightTheme && (
                     <li
                       className={"menu__item menu__item-footer"}
                       key={item.id}
@@ -344,26 +344,45 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                         item.id !== buttonPressed && setButtonPressed(item.id)
                       }
                     >
-                      <a className={classNames(menuItemInnerCN, {
-                            "menu__item-inner--selected": item.id === buttonPressed,
-                          })} href={item.href}>
+                      <a className="menu__item-inner menu__item-inner-theme" href={item.href}>
                         <span
-                          className={classNames(imageWrapperThemeCN, {
-                            "image__wrapper-theme--selected": item.id === buttonPressed,
-                          })}
+                          className="image__wrapper-theme"
                         >
                           <div
-                            className={classNames(svgItemCN, {
-                              "svg__item--selected": item.id === buttonPressed,
-                            })}
+                            className="svg__item"
                           >
                             <NavbarStudyStudioSVGSelector icon={item.icon} />
                           </div>
                         </span>
                         <span
-                          className={`${menuTextCN} ${
-                            item.id === buttonPressed ? "menu__text--selected" : ""
-                          }`}
+                          className={menuTextCN}
+                        >
+                          {item.value}
+                        </span>
+                      </a>
+                    </li>
+                  )
+                  :
+                  item.place.darcTheme && (
+                    <li
+                      className={"menu__item menu__item-footer"}
+                      key={item.id}
+                      onClick={() =>
+                        item.id !== buttonPressed && setButtonPressed(item.id)
+                      }
+                    >
+                      <a className="menu__item-inner menu__item-inner-theme" href={item.href}>
+                        <span
+                          className="image__wrapper-theme"
+                        >
+                          <div
+                            className="svg__item"
+                          >
+                            <NavbarStudyStudioSVGSelector icon={item.icon} />
+                          </div>
+                        </span>
+                        <span
+                          className={menuTextCN}
                         >
                           {item.value}
                         </span>

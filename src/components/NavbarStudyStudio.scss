@@ -52,6 +52,10 @@
   background: var(--themeNavBarBgHover);
 }
 
+.menu__item-inner.menu__item-inner-theme:hover {
+  background: none;
+}
+
 .menu__item-inner:hover .menu__text {
   color: var(--themeNavBarColorHover);
 }
