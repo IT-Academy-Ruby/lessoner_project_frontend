@@ -41,7 +41,6 @@ type UserCategoryProps = {
   name: string;
   text: string;
   bgColor: "blue" | "pink" | "grey" | "orange";
-  key: string;
 };
 
 const UserCategory: React.FC<UserCategoryProps> = (props) => {
@@ -61,7 +60,7 @@ const UserCategory: React.FC<UserCategoryProps> = (props) => {
   );
 
   return (
-    <div className="user_wrapper" key={props.key}>
+    <div className="user_wrapper" >
       <div
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)} className={userCardClassName}>

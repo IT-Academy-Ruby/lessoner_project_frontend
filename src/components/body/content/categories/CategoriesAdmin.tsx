@@ -38,11 +38,11 @@ const CategoriesAdmin=()=>{
       {allCategories.map(category =>
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
-          <img src={IT} alt={category.name} className="category-img"/>
+          <img src={category.image_url} alt={category.name} className="category-img"/>
           <div className="category-name">{category.name}</div>
           <div className="category-text category-description">{category.description}</div>
           <div className="category-date">{new Date(category.created_at).toLocaleDateString()}</div>
-          <div className="category-text">{category.status}</div>
+          <div className="category-text">{category.amount_lessons}</div>
           <div className="category-icon">
             <img
               src={Edit}

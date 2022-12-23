@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import request from "../../services/request";
 
 export const getCategory = createAsyncThunk(
@@ -35,6 +35,7 @@ export const updateCategory = createAsyncThunk(
       name: value.name,
       description: value.description,
       status: value.status,
+
     };
     const responce =
       await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
@@ -68,23 +69,29 @@ export const archiveCategory = createAsyncThunk(
 
 type Categories = {
   categories: [{
-    id: number,
-    name: string,
-    description: string,
-    status: string,
-    created_at: string,
+    amount_lessons: number;
+    id: number;
+    image_url: string;
+    name: string;
+    description: string;
+    status: string;
+    created_at: string;
   }],
-  loading: boolean
+  loading: boolean;
 };
 
-const initialState: Categories = {categories: [{
-  id: 0,
-  name: "",
-  description: "",
-  status: "",
-  created_at: "",
-}],
-loading: false,};
+const initialState: Categories = {
+  categories: [{
+    amount_lessons: 0,
+    image_url: "",
+    id: 0,
+    name: "",
+    description: "",
+    status: "",
+    created_at: "",
+  }],
+  loading: false,
+};
 
 const categorySlice = createSlice({
   name: "category",

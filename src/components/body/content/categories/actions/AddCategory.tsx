@@ -1,12 +1,12 @@
 import "./addCategory.scss";
-import {DESCRIPTION_CATEGORY, NAME_CATEGORY} from "../../../../../constants";
+import {DESCRIPTION_CATEGORY, NAME_CATEGORY, IMAGE_FORMAT} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {
-  addCategory,getCategory, updateCategory
+  addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
 import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
@@ -15,11 +15,13 @@ import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import {useEffect} from "react";
+import {useState} from "react";
 
 interface FormValues {
   id: number;
   name: string;
   description: string;
+  image: undefined;
   status: string;
 }
 
@@ -34,13 +36,14 @@ const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [selectImage, setSelectImage] = useState();
   const allCategories = useAppSelector((state) => state.categories.categories);
 
   useEffect(() => {
     if (!add) {
       dispatch(getCategory());
     }
-  }, [dispatch,add]);
+  }, [dispatch, add]);
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
@@ -54,11 +57,12 @@ const AddCategory = ({add}: TypeTitle) => {
     id: 0,
     name: add ? "" : category.name,
     description: add ? "" : category.description,
+    image: undefined,
     status: "active",
   };
 
-  const nameLength=initialValues.name.length;
-  const descriptionLength=initialValues.name.length;
+  const nameLength = initialValues.name.length;
+  const descriptionLength = initialValues.name.length;
 
   return (
     <div className="add-category">
@@ -90,19 +94,35 @@ const AddCategory = ({add}: TypeTitle) => {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
               {symbols: DESCRIPTION_CATEGORY.maxSymbols});
           }
-
+          if (selectImage) {
+            const imageFormat = String(selectImage["type"]);
+            const isFormat = IMAGE_FORMAT.format.find(format =>
+              "." + imageFormat.slice(imageFormat.indexOf("/") + 1) === format)
+            if (!isFormat) {
+              console.log(selectImage["type"])
+              errors.image = intl.formatMessage({id: "app.categories.imageError"});
+            }
+            if (selectImage["size"] > 5242880) {
+              errors.image = intl.formatMessage({id: "app.categories.imageBigSize"});
+            }
+          }
+          if (!selectImage) {
+            // errors.image = intl.formatMessage({id: "app.categories.imageError"});
+          }
           return errors;
         }}
         onSubmit={(values: FormValues) => {
-          values.name = values.name.trim();
-          values.description = values.description.trim();
-          if (add) {
-            dispatch(addCategory(values));
-          } else {
-            values.id = idCategory;
-            dispatch(updateCategory(values));
-          }
-          navigate("/categories");
+          // values.name = values.name.trim();
+          // values.description = values.description.trim();
+
+          console.log(selectImage ? selectImage["type"] : selectImage)
+          // if (add) {
+          //   dispatch(addCategory(values));
+          // } else {
+          //   values.id = idCategory;
+          //   dispatch(updateCategory(values));
+          // }
+          // navigate("/categories");
         }}>
         {({errors, touched}) => {
           return (
@@ -118,7 +138,6 @@ const AddCategory = ({add}: TypeTitle) => {
                 component={CategoryName}
                 error={touched.name ? errors.name : undefined}
                 nameLength={nameLength}
-
               />
               <Field
                 name="description"
@@ -129,7 +148,11 @@ const AddCategory = ({add}: TypeTitle) => {
               <Field
                 name="image"
                 component={CategoryImage}
+                error={touched.image ? errors.image : undefined}
+                selectImage={selectImage}
+                setSelectImage={setSelectImage}
               />
+
               <div className="category-buttons">
                 <Button
                   buttonType="button"
