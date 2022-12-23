@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {BACKEND_URL} from "../../constants";
+import requestApi from "../../services/request";
 
 export const getLogin = createAsyncThunk(
   "login/getLoginStatus",
@@ -44,6 +45,23 @@ export const getEmail = createAsyncThunk(
     return data.email_exists;
   }
 );
+export const getUserData = createAsyncThunk(
+  "user/getUserDataStatus",
+  async (name: string) => {
+    const response = await requestApi(`${BACKEND_URL}/users/${name}`);
+    const data = response.json();
+    return data;
+  }
+);
+
+export const editUserData = createAsyncThunk(
+  "user/editUserDataStatus",
+  async (items:{name:string,object:object}) => {
+    const response = await requestApi(`${BACKEND_URL}/users/${items.name}`,"PUT",items.object);
+    const data = response.json();
+    return data;
+  }
+);
 
 type Login = {
   login: string;
@@ -52,6 +70,17 @@ type Login = {
   notFound: boolean | string;
   isEmail: boolean | string,
   loading: boolean;
+  user: {
+    "id": number;
+    "name": string;
+    "description": string;
+    "email": string;
+    "avatar_url": string;
+    "phone": string;
+    "gender": string;
+    "birthday": string;
+    "created_at": string;
+  }
 };
 
 const initialState: Login = {
@@ -61,6 +90,17 @@ const initialState: Login = {
   notFound: "",
   isEmail: "",
   loading: false,
+  user: {
+    "id": 0,
+    "name": "",
+    "description": "",
+    "email": "",
+    "avatar_url": "",
+    "phone": "",
+    "gender": "",
+    "birthday": "",
+    "created_at": ""
+  }
 };
 
 const loginSlice = createSlice({
@@ -99,13 +139,21 @@ const loginSlice = createSlice({
     builder.addCase(getEmail.fulfilled, (state, action) => {
       state.isEmail = action.payload;
       state.loading = false;
-      // console.log(state.isEmail)
     });
     builder.addCase(getEmail.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(sendPasswordResetLink.pending, (state) => {
       state.loading = true;
+    });
+    builder.addCase(getUserData.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(getUserData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(editUserData.fulfilled, (state, action) => {
     });
   }
 });

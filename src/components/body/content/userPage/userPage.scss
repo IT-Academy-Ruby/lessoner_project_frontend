@@ -1,25 +1,32 @@
+@import "src/constants.scss";
+
+.wrapper-user_page {
+  display: flex;
+  justify-content: center;
+}
+
 .user-page {
   position: relative;
   display: flex;
   flex-direction: column;
   max-width: 680px;
   width: 100%;
-  left: 50%;
-  transform: translate(-50%, 0);
+  margin: 16px 46px;
 }
 
 .title-user-page {
   display: flex;
   width: 100%;
   margin: 0 0 24px 0;
-  font-family: "ApercuPro";
-  color: #1B1B1F;
+  font-family: $font;
+  color: $black;
   font-weight: 600;
   line-height: 130%;
 }
 
 .avatar-field {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 44px;
 }
@@ -29,17 +36,19 @@
   width: 104px;
   height: 104px;
   border-radius: 50%;
-  border: 1px solid black;
-
+  display: flex;
+  flex: none;
+  justify-content: center;
 }
 
 .user-avatar {
+  border-radius: 50px;
   width: 100%;
 }
 
 .inform-avatar {
   max-width: 530px;
-  font-family: 'ApercuPro';
+  font-family: $font;
   color: #757575;
   font-feature-settings: 'liga' off;
   font-size: 12px;
@@ -47,6 +56,56 @@
   margin-left: 24px;
   text-align: left;
 }
-.user-data{
+
+.user-page-field {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name-user-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-user-page {
+  font-family: $font;
+  color: $black;
+  font-weight: 600;
+  line-height: 150%;
+  margin: 0;
+}
+
+.user-page-data {
+  font-family: $font;
+  color: $black;
+  margin: 14px 0 10px 0;
+}
+
+.line-user-page {
+  color: $greyDefault;
+  size: 1px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+@media (max-width: $max-width-phone) {
+  .user-page {
+    margin: 16px;
+  }
+
+  .avatar-field {
+    flex-direction: column;
+  }
+
+  .avatar-user-page {
+    margin-bottom: 30px;
+  }
+
+  .inform-avatar {
+    text-align: center;
+    margin: 0;
+  }
 }

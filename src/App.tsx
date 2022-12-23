@@ -1,14 +1,15 @@
 import "./App.scss";
 import {
-  BrowserRouter, Route, Routes
+  BrowserRouter,Link, Route, Routes
 } from "react-router-dom";
 import Body from "./components/body/Body";
 import {IntlProvider} from "react-intl";
 import Pages from "./components/Pages";
 import TranslationHelpers from "./translations/translationHelpers";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 function App(): JSX.Element {
+
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
@@ -55,6 +56,7 @@ function App(): JSX.Element {
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
+            <Link to="/user/userPage"><h2>User page</h2></Link>
           </div>
         </div>
       </BrowserRouter>

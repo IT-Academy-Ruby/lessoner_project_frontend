@@ -15,7 +15,6 @@ const PhoneNumberPage = ({registration}: PhoneProps) => {
   const intl = useIntl();
   const [error, setError] = useState("Phone number incorrect");
   const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
-
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 

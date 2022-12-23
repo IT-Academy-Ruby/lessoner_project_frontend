@@ -5,17 +5,21 @@ import headerReducer from "./header/headerSlice";
 import linksReducer from "./links/linksSlise";
 import loginReducer from "./loginName/loginSlice";
 import userReducer from "./loginName/userSlice";
+import userDataReducer from "./sign_up/signUpSlice";
 
 const store = configureStore(
-  {reducer: {
-    login: loginReducer,
-    user: userReducer,
-    value: headerReducer,
-    userDecodedName: decodeReducer,
-    userDecodedExp: decodeReducer,
-    link: linksReducer,
-    categories: categoriesReducer,
-  }}
+  {
+    reducer: {
+      login: loginReducer,
+      user: userReducer,
+      value: headerReducer,
+      userDecodedName: decodeReducer,
+      userDecodedExp: decodeReducer,
+      link: linksReducer,
+      categories: categoriesReducer,
+      userData: loginReducer,
+    }
+  }
 );
 
 export default store;

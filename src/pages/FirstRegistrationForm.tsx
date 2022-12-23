@@ -108,7 +108,8 @@ const FirstRegistrationForm = () => {
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined}
+                isConfirm={true}
+                error={touched.confirmPassword ? errors.confirmPassword : undefined}
               />
               <Field
                 name="hasTermsAndConditions"

@@ -4,7 +4,7 @@ import {BACKEND_URL} from "../../constants";
 export const getUser = createAsyncThunk(
   "user/getUserStatus",
   async (userName: string) => {
-    const response = await fetch(`${BACKEND_URL}/en/check_username?name=${userName}`);
+    const response = await fetch(`${BACKEND_URL}/check_username?name=${userName}`);
     const data = await response.json();
 
     if (response.status === 200) {

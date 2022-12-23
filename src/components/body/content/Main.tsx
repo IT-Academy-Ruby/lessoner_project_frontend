@@ -10,6 +10,7 @@ import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
 import UserPage from "./userPage/UserPage";
 
+
 const Content = () => {
   return (
     <div className="main">

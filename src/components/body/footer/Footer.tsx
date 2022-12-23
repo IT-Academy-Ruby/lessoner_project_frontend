@@ -28,7 +28,7 @@ const Footer = (props: FooterProps) => {
 
   return (
     <footer style={{display: "flex",justifyContent: "center"}}>
-      <Link to={lessoner}>
+      <Link to="/user/userPage">
         <div>
           <FormattedMessage id="app.name" />
         </div>

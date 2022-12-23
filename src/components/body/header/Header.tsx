@@ -11,6 +11,7 @@ import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {showStudentPage} from "../../../store/header/headerSlice";
 import {useEffect} from "react";
 
+
 const Header = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -23,26 +24,19 @@ const Header = () => {
   useEffect(() => {
     dispatch(nameDecodedUser());
     if (decodeUserName) {
-      navigate("");
       dispatch(showStudentPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDefaultPage, decodeUserName, loading]);
-
-  const userButtonText = page === "sectionPage" ? intl.formatMessage({id: "app.header.myStudio"})
-    : intl.formatMessage({id: "app.header.goStudy"});
+  }, [dispatch, decodeUserName, loading]);
 
   return (
     <div className="side-bar">
       <div className="header">
-        <Link to="/n" className="logo-name">
+        <Link to="/" className="logo-name">
           <img className="logo" src={Logo} alt="Logo"/>
           <h4 className="title-header">
             <FormattedMessage id="app.name"/>
           </h4>
-          {(page === "myPage" && isDefaultPage) && <Link to={"/myStudio"} className="my-studio">
-            <FormattedMessage id="app.studio"/>
-          </Link>}
         </Link>
         <div className="search-button">
           <Link to="/search" className="magnifier">
@@ -52,21 +46,9 @@ const Header = () => {
             className="search" type="text"
             placeholder={intl.formatMessage({id: "app.header.placeholder"})}
           />
-          {isDefaultPage ?
-            <div className="user-item">
-              {page &&
-                <Link to="/" className="section-button">
-                  <Button
-                    buttonType="button"
-                    buttonText={userButtonText}
-                    className="user-button"
-                  />
-                </Link>}
-              <img src={Bell} alt="Bell" className="bell"/>
-              <Avatar/>
-            </div>
-            :
-            <Link to="/users/sign_in" className="login-link">
+          {isDefaultPage && <Avatar/>}
+          {!isDefaultPage &&
+            <Link to="/login" className="login-link">
               <Button
                 buttonType="button"
                 buttonText={intl.formatMessage({id: "app.header.login"})}
