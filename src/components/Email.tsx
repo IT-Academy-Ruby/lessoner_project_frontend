@@ -74,9 +74,9 @@ const Email = ({
         !== "" && !emailFound && <span className="error-message">
         <FormattedMessage id="app.email.notFound"/>
       </span>}
-      {!loading && isUser && <span className="error-message">
-        <FormattedMessage id="app.email.error"/>
-      </span>}
+      {/*{!loading && isUser && <span className="error-message">*/}
+      {/*  <FormattedMessage id="app.email.error"/>*/}
+      {/*</span>}*/}
     </label>
   );
 };
