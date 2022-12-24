@@ -6,7 +6,7 @@ export const getLogin = createAsyncThunk(
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
       { method: "POST",
-       headers: { "Content-Type": "application/json" });
+       headers: { "Content-Type": "application/json" }});
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
