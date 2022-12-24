@@ -107,23 +107,15 @@
 }
 
 .message {
+  position: absolute;
   bottom: -22px;
   text-align: left;
   display: block;
   margin-top: 0.5em;
   font-family: $font;
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
-}
-
-.error {
-  color: $warningColor;
-}
-
-.help {
-  color: $blueLightColor;
 }
 
 .invisible {
@@ -132,5 +124,20 @@
 
 .invalid-input {
   border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.amount-symbols {
+  position: absolute;
+  bottom: 7px;
+  right: 14px;
+  font-family: 'Apercu Pro';
+  color: #9A9AA3;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+.error {
   color: $warningColor;
 }

@@ -3,6 +3,7 @@ import {FormattedMessage} from "react-intl";
 import Select from "../../../../icons/select.svg";
 import Upload from "../../../../icons/download.svg";
 import {useRef} from "react";
+import {useState} from "react";
 
 type CategoryImageProps = {
   field: {
@@ -17,18 +18,19 @@ type CategoryImageProps = {
 
 const CategoryImage = ({error, selectImage, setSelectImage, field}: CategoryImageProps) => {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [isLargeFile, setIsLargeFile] = useState(false);
 
   const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+
     setSelectImage(event.target.files ? event.target.files[0] : null)
-    console.log(selectImage)
-    if (selectImage!["size"] > 524) {
-      console.log(error)
-  error = "ggggg"
-      console.log(error)
+
+    if (event.target.files) {
+      if (event.target.files[0]["size"] > 5242880) {
+        setIsLargeFile(true);
+      }else {setIsLargeFile(false)}
     }
   }
   const handleUpload = () => {
-    // console.log(event?event.target:"ppp")
     if (fileRef.current) {
       fileRef.current.click();
     }
@@ -52,31 +54,15 @@ const CategoryImage = ({error, selectImage, setSelectImage, field}: CategoryImag
       <button
         className="button-login"
         onClick={() => handleUpload()}
-        // onChange={(event:React.FormEvent<HTMLButtonElement>)=>{
-        //   console.log(event)}}
         type="button"
       >
         <img src={Select} alt="Select file" className="button-image"/>
         <FormattedMessage id="app.categories.button.select"/>
       </button>
-
-      {/*<div className="category-field">*/}
-      {/*<img src={Upload} alt="upload"/>*/}
-      {/*<span className="upload-text category-upload">*/}
-      {/*  <FormattedMessage id="app.categories.uploadImage"/>*/}
-      {/*</span>*/}
-
-      {/*<div className="upload-buttons">*/}
-      {/*  <span className="upload-text">*/}
-      {/*    <FormattedMessage id="app.categories.dragAandDrop"/>*/}
-      {/*  </span>*/}
-      {/*  <span className="upload-text margin-or">*/}
-      {/*    <FormattedMessage id="app.categories.or"/>*/}
-      {/*  </span>*/}
-
-      {/*</div>*/}
-      {error && <span className="error-message">{error}</span>}
-      {/*</div>*/}
+      {error && <span className="error-message">{error}</span> ||
+        isLargeFile && <span className="error-message">
+        <FormattedMessage id="app.categories.imageBigSize"/>
+      </span>}
       <hr className="category-image-line"/>
     </div>
   );

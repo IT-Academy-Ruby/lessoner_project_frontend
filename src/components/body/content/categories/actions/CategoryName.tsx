@@ -12,13 +12,13 @@ type CategoryNameProps = {
     value: string;
   },
   error?: string;
-  nameLength:number;
+  nameLength: number;
 }
 const CategoryName = ({
-  field, error,nameLength
-}: CategoryNameProps): JSX.Element => {
+                        field, error, nameLength
+                      }: CategoryNameProps): JSX.Element => {
   const intl = useIntl();
-  const [letters, setLetters] = useState<number>(NAME_CATEGORY.maxSymbols -nameLength);
+  const [letters, setLetters] = useState<number>(NAME_CATEGORY.maxSymbols - nameLength);
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
@@ -30,14 +30,17 @@ const CategoryName = ({
         placeholder={intl.formatMessage({id: "app.categories.name"})}
 
         {...field}
-        onKeyUp={()=>setLetters(NAME_CATEGORY.maxSymbols - field.value.length)}
-        onFocus={()=>setIsFocus(true)}
+        onKeyUp={() => setLetters(NAME_CATEGORY.maxSymbols - field.value.length)}
+        onFocus={() => {
+          setIsFocus(true)
+        }}
+        onBlurCapture={() => {
+          setIsFocus(false)
+        }}
       />
+      {isFocus && <span className={classNames("amount-symbols",{"error":error})}>{field.value.length}/{NAME_CATEGORY.maxSymbols}</span>}
       {error && <span className="message error">{error}</span>}
-      {!error && <span className={classNames("message help", {"invisible":!isFocus})}>
-        {intl.formatMessage({id: "app.categories.name.helper"},{letters:letters})}
-      </span>}
     </label>
-  );
-};
+  )
+}
 export default CategoryName;
