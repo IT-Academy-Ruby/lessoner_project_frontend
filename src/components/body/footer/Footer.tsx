@@ -1,4 +1,4 @@
-import "./footer.scss";
+import "./Footer.scss";
 import {lessonerLink, startLink} from "../../../store/links/linksSlise";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";

@@ -7,15 +7,17 @@ import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
-// import NavbarStudyStudio from "../../NavbarStudyStudio";
 import NewLesson from "./add_new_lesson/NewLesson";
+// import NavbarStudyStudio from "../../NavbarStudyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
+
 
 const Content = () => {
   return (
     <div className="main">
       <Routes>
+        {/* <Route path={lessoner} element={<Lessoner/>}/> */}
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudio />} />
         <Route path="/" element={<Lessoner />} />
