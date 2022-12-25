@@ -3,7 +3,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getUser = createAsyncThunk(
   "user/getUserStatus",
   async (userName: string) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/check_username?name=${userName}`);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/check_username?name=${userName}`);
     const data = await response.json();
     if (response.status === 200) {
       return data.username_exists;
@@ -47,7 +48,8 @@ export const signUpSlice = createAsyncThunk(
 export const confirmTokenSlice = createAsyncThunk(
   "users/confirmTokenSliceStatus",
   async (value: string) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sign_up/confirm_email?token=${value}`);
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/sign_up/confirm_email?token=${value}`);
     if (response.status != 200) {
       return response.status;
     }
@@ -62,7 +64,7 @@ export const getLogin = createAsyncThunk(
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
       { method: "POST",
-       headers: { "Content-Type": "application/json" }});
+        headers: { "Content-Type": "application/json" }});
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
