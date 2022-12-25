@@ -1,9 +1,13 @@
 import "react-responsive-modal/styles.css";
+import { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
+import { LoadGrey } from "../../../svg/LoadGrey";
+import { Loader } from "react-feather";
 import { Modal } from "react-responsive-modal";
-import requestApi from "../../../../services/request";
 import { TopArrow } from "../../../svg/top-arrow";
+import requestApi from "../../../../services/request";
 import { useFormik } from "formik";
-import { useEffect, useState } from "react"; 
+
 
 type categoriesType = {
   id:number,
@@ -12,24 +16,40 @@ type categoriesType = {
   status:string
 }
 const formData2 = {
-  category:"",description:"",subtitles:"",subtitlesFile:""
+  category:"",description:"",subtitles:"",subtitlesFile:"", id:""
 };
 let simbolsLeft:any = 0;
 const getCategorieUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
-const getLessonUrl = "https://Lessoner-project-2w3h.onrender.com/lessons";
+// const getLessonUrl = "https://Lessoner-project-2w3h.onrender.com/lessons";
 const Step2 = (props:any ) => {
-  const  [allCategories, setAllCategoris ] = useState([]);
+  const  [allCategories, setAllCategoris ] = useState<categoriesType[]>([]);
+  const [ showLoader, setShowLoader ] = useState(true);
+  const [category, setCategory ] = useState("");
+  const [ description, setDescription ] = useState("");
+
 
   useEffect(() => {
     const lessons:any = requestApi(getCategorieUrl,"GET").then((response)=>{
-      return(response.json());
+      return response.json();
     }).then((json) => {
       setAllCategoris(json);
-      return(json); 
+      console.log(json);
+      return json; 
     }).catch(error => {
       console.log(error);
     });
   },[]);
+
+  useEffect(()=>{
+    // eslint-disable-next-line max-len
+    if(category !== "" && description !== "" && msgErrorCategory == "" && msgErrorDescription == ""){
+      props.setAddNewLessonDisabled(false); 
+    } else {
+      props.setAddNewLessonDisabled(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[ category, description ] );
+
 
   const { onChange } = props;
   // const [open, setOpen] = useState(false);
@@ -41,6 +61,7 @@ const Step2 = (props:any ) => {
 
   const addCategoryOnDate = ( event:React.FormEvent ) => {
     const e=event?.target as HTMLInputElement;
+    setCategory(e.value);
     formData2.category = e.value;
     onChange(formData2);
     
@@ -49,14 +70,31 @@ const Step2 = (props:any ) => {
   const addDescriptionOnDate = ( event:React.FormEvent ) => {
     const e = event?.target as HTMLInputElement;
     formData2.description = e.value;
+    setDescription(e.value);
     simbolsLeft = e.value.length;
     onChange(formData2);
-    if(/^[а-яА-ЯёЁa-zA-Z0-9(!)$%&'"*+# -/=?^_`{|}.,@/<>:]*$/ug.test(e.value)===false){
+    const calc=e.value.matchAll(/#/g);
+
+
+    if(e.value.length > 600){
+      setMsgErrorDescription("The maximum description length is 600 simbols");
+      document.getElementById("description")?.classList.add("error-border");
+      document.getElementById("symbol-left2")?.classList.remove("symbol-left");
+      document.getElementById("symbol-left2")?.classList.add("error-border-symbol");
+    } else if(/^[а-яА-ЯёЁa-zA-Z0-9(!)$%&'"*+# -/=?^_`{|}.,@/<>:]*$/ug.test(e.value)===false){
       setMsgErrorDescription("The input field contain prohobited");
       document.getElementById("description")?.classList.add("error-border");
-      
-    } else {setMsgErrorDescription("");
+      document.getElementById("symbol-left2")?.classList.add("symbol-left");
+    }  else if(Array.from(calc).length>10){
+      setMsgErrorDescription("The maximum number of hashtags is 10");
+      document.getElementById("description")?.classList.add("error-border");
+      document.getElementById("symbol-left2")?.classList.add("symbol-left");
+    }
+    else {setMsgErrorDescription("");
       document.getElementById("description")?.classList.remove("error-border");
+      document.getElementById("symbol-left2")?.classList.remove("error-border-symbol");
+      document.getElementById("symbol-left2")?.classList.add("symbol-left");
+      
     }
   };
 
@@ -73,7 +111,6 @@ const Step2 = (props:any ) => {
   };
 
   const categoryCheck = ( event:React.FormEvent ) => {
-    const e = event.target as HTMLInputElement;
     if (formData2.category === ""){
       setMSgErrorCategory("Must select a lesson category");
     } else { setMSgErrorCategory(""); }
@@ -96,8 +133,10 @@ const Step2 = (props:any ) => {
     </svg>
   );
  
-  const categoriesElements=allCategories.map(( elem:any ) => {
-    return(<option value={elem.name}  key={elem.id}>{elem.name}</option>);
+  const categoriesElements=allCategories.map(( elem ) => {
+    return(<option value={elem.name}  key={elem.id} >
+      <FormattedMessage id={"app.nameCategory."+elem.name}/>
+    </option>);
   });
 
   const onSelectChange = (e: React.FormEvent) => {
@@ -105,7 +144,6 @@ const Step2 = (props:any ) => {
     addCategoryOnDate(e);
     categoryCheck(e);
   };
-    
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
@@ -118,17 +156,17 @@ const Step2 = (props:any ) => {
               value={formik.values.category}
               placeholder="text" >
               <option value="Choose a category" selected hidden >
-                  Choose a category
+                <FormattedMessage id="app.ChooseACategory"/>
               </option>
-              {categoriesElements}
+              {categoriesElements} 
             </select>
             <div className="div-error-msg">{msgErrorCategory}</div>
           </div>
-          <div className="input-description">
-            <label htmlFor="description">Description</label>
+          <div className="input-description marg-bot-32 w100">
+            <label htmlFor="description"><FormattedMessage id="app.Description"/></label>
             <textarea
               required
-              maxLength={600}
+              // maxLength={600}
               id="description"
               name="description"
               onChange={(e)=>{formik.handleChange(e);addDescriptionOnDate(e);}}
@@ -136,32 +174,26 @@ const Step2 = (props:any ) => {
               value={formik.values.description}
               className="description w100"
             />
-            <div className="symbol-left">{simbolsLeft}/600</div>
+            <div className="symbol-left" id="symbol-left2">{simbolsLeft}/600</div>
             <div className="div-error-msg">
               {msgErrorDescription}
             </div>
           </div>
           <div className="input-subtitles marg-bot-32" >
-            <label htmlFor="subtitles" className="subtitles">Subtitles</label>
-            <span>Add subtitles to reach bigger audience</span>
+            <label htmlFor="subtitles" className="subtitles">
+              <FormattedMessage id="app.Subtitles"/>
+            </label>
+            <span><FormattedMessage id="app.AddSubtitlesToReachBiggerAudience"/></span>
             <div className="button-shape-2 active-step subtitle-div" /*onClick={onOpenModal}*/ >
-              <svg width="10" height="12" viewBox="0 0 10 12" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.66634 8.66648H6.33301C6.69967 8.66648 6.99967 8.36648
-               6.99967 7.99982V4.66648H8.05967C8.65301 4.66648 8.95301 3.94648 8.53301
-                3.52648L5.47301 0.466484C5.21301 0.206484 4.79301 0.206484 4.53301 0.466484L1.47301
-                 3.52648C1.05301 3.94648 1.34634 4.66648 1.93967 4.66648H2.99967V7.99982C2.99967
-                  8.36648 3.29967 8.66648 3.66634 8.66648ZM0.999674 9.99982H8.99967C9.36634 9.99982
-                   9.66634 10.2998 9.66634 10.6665C9.66634 11.0332 9.36634 11.3332 8.99967
-                    11.3332H0.999674C0.633008 11.3332 0.333008 11.0332 0.333008 10.6665C0.333008
-                     10.2998 0.633008 9.99982 0.999674 9.99982Z" fill="white"/>
-              </svg>
-              Add subtitles
+              <TopArrow/>
+              <FormattedMessage id="app.AddSubtitles"/>
             </div>
           </div>
           <div className="input-thumbnail marg-bot-32">
-            <label className="subtitles">Thumbnail</label>
-            <span>Select or upload a picture that shows whats in your video</span>
+            <label className="subtitles"><FormattedMessage id="app.Thumbnail"/></label>
+            <span>
+              <FormattedMessage id="app.SelectOrUploadAPictureThatShowsWhatsInYourVideo"/>
+            </span>
             <div className="all-div-thumbnail">
               <div className="div-thumbnail"></div>
               <div className="div-thumbnail"></div>
@@ -188,13 +220,7 @@ const Step2 = (props:any ) => {
           </div>
           <div className="load-file-div">
             <div>
-              <svg width="48" height="32" viewBox="0 0 48 32"
-                fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M38.7 12.08C37.34 5.18 31.28 0 24 0C18.22 0 13.2 3.28
-                 10.7 8.08C4.68 8.72 0 13.82 0 20C0 26.62 5.38 32 12 32H38C43.52
-                  32 48 27.52 48 22C48 16.72 43.9 12.44 38.7 12.08ZM28
-                   18V26H20V18H14L23.3 8.7C23.7 8.3 24.32 8.3 24.72 8.7L34 18H28Z" fill="#9A9AA3"/>
-              </svg>
+              <LoadGrey/>
             </div>
             <div>Upload file</div>
             <div className="error"></div>
@@ -210,19 +236,8 @@ const Step2 = (props:any ) => {
                 hidden
               />
               <label htmlFor="subtitlesFile" className="button-shape" id="file-label">
-                <svg width="10" height="12" viewBox="0 0 10 12" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.66634 8.66648H6.33301C6.69967 8.66648 6.99967
-                   8.36648 6.99967 7.99982V4.66648H8.05967C8.65301 4.66648 
-                   8.95301 3.94648 8.53301 3.52648L5.47301 0.466484C5.21301
-                    0.206484 4.79301 0.206484 4.53301 0.466484L1.47301 
-                    3.52648C1.05301 3.94648 1.34634 4.66648 1.93967 
-                    4.66648H2.99967V7.99982C2.99967 8.36648 3.29967 
-                    8.66648 3.66634 8.66648ZM0.999674 9.99982H8.99967C9.36634 9.99982
-                     9.66634 10.2998 9.66634 10.6665C9.66634 11.0332 9.36634 11.3332
-                      8.99967 11.3332H0.999674C0.633008 11.3332 0.333008 11.0332 0.333008
-                       10.6665C0.333008 10.2998 0.633008 9.99982 0.999674 9.99982Z" fill="#455FCE"/>
-                </svg>Select file</label>
+                <TopArrow/>
+               Select file</label>
             </div>
           </div>
           <div className="btn-form-add-subtitles">
@@ -234,7 +249,6 @@ const Step2 = (props:any ) => {
       </form>
     </div>
   );
-  
 };
 
 export default Step2;

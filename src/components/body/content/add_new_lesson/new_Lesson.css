@@ -99,7 +99,7 @@ color:#B9D1FF
     border:0px;
     border-radius: 28px;
     height: 32px;
-    width:142px ;
+    width:150px ;
     cursor: pointer;
     margin:0 0 0 5px
 } 
@@ -256,8 +256,16 @@ textarea{
  }
 
  .error-border{
-    color: var(--bs-danger);
-    border: var(--bs-danger) solid 1px;
+    color: #dc3545;
+    border: #dc3545 solid 1px;
+ }
+ 
+ .error-border-symbol{
+    position: absolute;
+    top: 163px;
+    left: 611px;
+    font-size: 12px;
+    color: #dc3545;
  }
 
  .load-file-div{
@@ -318,6 +326,10 @@ textarea{
     color: #9A9AA3;
  }
 
+ .symbol-left-2{
+    color:#dc3545;
+ }
+ 
  #subtitles{
     height: 32px;
     border-radius:8px;

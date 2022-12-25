@@ -1,14 +1,10 @@
 import "./new_Lesson.css";
+import  { useEffect, useState } from "react";
+import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import { Step1 } from "./step1";
 import Step2 from "./step2";
-import  { useEffect, useState } from "react";
 import requestApi from "../../../../services/request";
-import { Callback } from "yup/lib/types";
-import { array } from "yup";
-
-
- 
 
 type dataType = {
   name:string,
@@ -18,11 +14,11 @@ type dataType = {
   description:string,
   subtitles:string,
   subtitlesFile:string,
-  disStatus1:boolean
+  disStatus1:boolean,
+  stepStatus:boolean
 }
 
 const NewLesson = () => {
-  const [data, setData]=useState();
   const getCategorieUrl="https://Lessoner-project-2w3h.onrender.com/categories";
   const [ name, setName ] = useState("");
   const [ link, setLink ] = useState("");
@@ -35,8 +31,14 @@ const NewLesson = () => {
   const [ stepStatus, setstepStatus ] = useState("Next step");
   const [ disStatusStep1, setDisStatusStep1 ] = useState(false);
   const  [allCategories, setAllCategoris ] = useState([]);
+  const [ stepStatusDis, setStepStatusDis ] = useState(true);
+  const [ nextStepButtonDisabled, setNextStepButtonDisabled ] = useState(true);
+  const [ addNewLessonDisabled, setAddNewLessonDisabled ] = useState(true);
 
- 
+  const intl=useIntl();
+  useEffect(() => {
+    console.log("newlesson stepstatusdis",stepStatusDis);
+  },[stepStatusDis]);
 
   const dataForBe = {
     title:name,
@@ -59,10 +61,14 @@ const NewLesson = () => {
   // },[]);
   // console.log(allCategories);
   const handleDataChangeStep1 = ( formData1:dataType ) => {
+
+
     setName(formData1.name);
     setLink(formData1.link);
     setFile(formData1.file);
     setDisStatusStep1(formData1.disStatus1);
+    setStepStatusDis(formData1.stepStatus);
+
   };
 
   const handleDataChangeStep2 = ( data:dataType ) => {
@@ -93,7 +99,7 @@ const NewLesson = () => {
       setStep(2);
       document.getElementsByClassName("step1")[0].classList.remove("active");
       document.getElementsByClassName("step2")[0].classList.add("active");
-      document.getElementsByClassName("next-step-button")[0].classList.add("active-step");
+      // document.getElementsByClassName("next-step-button")[0].classList.add("active-step");
       setstepStatus("Next step");
     } else {
       setStep(1);
@@ -104,11 +110,11 @@ const NewLesson = () => {
   return (
     <div className="new-lesson-form">
       <div className="form-fields">
-        <h2 className="h2-add-new-lesson">Add new Lesson</h2>
+        <h2 className="h2-add-new-lesson"> <FormattedMessage id="app.AddNewLesson"/></h2>
         <div className="show-active-step">
           <div className="step1 active">
-            <div className="step-1 first-div-active" >Step 1</div>
-            <div className="second-div-active">Get started</div>
+            <div className="step-1 first-div-active" ><FormattedMessage id="app.Step1"/></div>
+            <div className="second-div-active"><FormattedMessage id="app.GetStarted"/></div>
           </div>
           <div className="div-arrow">
             <svg width="8" height="13" viewBox="0 0 8 13" fill="none"
@@ -121,21 +127,35 @@ const NewLesson = () => {
             </svg>
           </div>
           <div className="step2">
-            <div className="step-2 first-div-active">Step 2</div>
-            <div className="second-div-active">Lesson details</div>
+            <div className="step-2 first-div-active"><FormattedMessage id="app.Step2"/></div>
+            <div className="second-div-active"><FormattedMessage id="app.LessonDetails"/></div>
           </div>
         </div>
-        {step===1 ? <Step1 onChange={handleDataChangeStep1} /> :
-          <Step2 onChange={handleDataChangeStep2} allCategories={allCategories} />}
+        {step===1 ? <Step1 
+          onChange={handleDataChangeStep1}
+          setNextStepButtonDisabled={setNextStepButtonDisabled} /> :
+          <Step2 
+            onChange={handleDataChangeStep2} 
+            setAddNewLessonDisabled={setAddNewLessonDisabled} 
+            allCategories={allCategories} />}
         <div className="foot-div">
           <Link to="/myStudio">
-            <input type="button" value="Cansel" className="button-shape cansel" />
+            <input type="button" value={intl.formatMessage({id: "app.Cansel"})} 
+              className="button-shape cansel"></input> 
           </Link>
-          {step===1 ? <input type="button" className="next-step-button  button-shape-2"
-            value={stepStatus} onClick={swapStepForm}  
-            id="btn-add-new-lesson-next-step" ></input> :
-            <input type="button" className="next-step-button  button-shape-2"
-              value={"+ Add new lesson"} onClick={click} ></input>
+          {step===1 ?
+            <input type="button"
+              disabled={nextStepButtonDisabled} 
+              className="next-step-button  button-shape-2 "
+              value={intl.formatMessage({id: "app.NextStep"})} 
+              onClick={swapStepForm}  
+              id="btn-add-new-lesson-next-step" ></input> :
+            <input type="button"
+              disabled={addNewLessonDisabled} 
+              className="next-step-button  button-shape-2 "
+              value={intl.formatMessage({id: "app.AddNewLesson"})} 
+              onClick={click} >
+            </input>
           }
         </div>
       </div>
