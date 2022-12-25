@@ -176,7 +176,8 @@ export const messages_en = {
   "app.Thumbnail": "Thumbnail",
   "app.SelectOrUploadAPictureThatShowsWhatsInYourVideo": "Select or upload a picture that shows whats in your video",
   "app.NextStep": "Next step",
-  "app.Cancel": "Cansel",
+  "app.cancel": "Cancel",
+  "app.Lessonname": "Lesson name"
 
 };
   

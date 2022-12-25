@@ -15,7 +15,8 @@ type dataType = {
   subtitles:string,
   subtitlesFile:string,
   disStatus1:boolean,
-  stepStatus:boolean
+  stepStatus:boolean,
+  id:number
 }
 
 const NewLesson = () => {
@@ -25,25 +26,23 @@ const NewLesson = () => {
   const [ file, setFile ] = useState("");
   const [ category, setCategory] = useState("");
   const [ description, setDescription ] = useState("");
+  const [ categoryId, setCategoryId ] = useState(0);
   const [subtitles,setSubtitles] = useState("");
   const [subtitlesFile,setSubtitlesFile] = useState("");
   const [ step, setStep ] = useState(1);
-  const [ stepStatus, setstepStatus ] = useState("Next step");
-  const [ disStatusStep1, setDisStatusStep1 ] = useState(false);
+  // const [ stepStatus, setstepStatus ] = useState("Next step");
+  // const [ disStatusStep1, setDisStatusStep1 ] = useState(false);
   const  [allCategories, setAllCategoris ] = useState([]);
-  const [ stepStatusDis, setStepStatusDis ] = useState(true);
+  // const [ stepStatusDis, setStepStatusDis ] = useState(true);
   const [ nextStepButtonDisabled, setNextStepButtonDisabled ] = useState(true);
   const [ addNewLessonDisabled, setAddNewLessonDisabled ] = useState(true);
-
   const intl=useIntl();
-  useEffect(() => {
-    console.log("newlesson stepstatusdis",stepStatusDis);
-  },[stepStatusDis]);
+;
 
   const dataForBe = {
     title:name,
     video_link:link,
-    category_id:1,
+    category_id:categoryId,
     description:description,
     author_id:1,
 
@@ -66,8 +65,8 @@ const NewLesson = () => {
     setName(formData1.name);
     setLink(formData1.link);
     setFile(formData1.file);
-    setDisStatusStep1(formData1.disStatus1);
-    setStepStatusDis(formData1.stepStatus);
+    // setDisStatusStep1(formData1.disStatus1);
+    // setStepStatusDis(formData1.stepStatus);
 
   };
 
@@ -76,18 +75,20 @@ const NewLesson = () => {
     setDescription(data.description);
     setSubtitles(data.subtitles);
     setSubtitlesFile(data.subtitlesFile);
+    setCategoryId(data.id);
    
   };
 
   const click = () => {
     // eslint-disable-next-line max-len
-    console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description,"subtitles lang:"+subtitles,"subtitlesFile:"+subtitlesFile);
+    console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description,"subtitles lang:"+subtitles,"subtitlesFile:"+subtitlesFile,"id:"+categoryId);
 
     
     const categories:any = requestApi(getLessonUrl,"POST",dataForBe).then((response)=>{
       return(response.json());
     }).then((json) => {
       console.log(json);
+      setAllCategoris(json);
       return(json); 
     }).catch(error => {
       console.log(error);
@@ -100,7 +101,7 @@ const NewLesson = () => {
       document.getElementsByClassName("step1")[0].classList.remove("active");
       document.getElementsByClassName("step2")[0].classList.add("active");
       // document.getElementsByClassName("next-step-button")[0].classList.add("active-step");
-      setstepStatus("Next step");
+      // setstepStatus("Next step");
     } else {
       setStep(1);
       document.getElementsByClassName("step2")[0].classList.remove("active");
@@ -137,13 +138,16 @@ const NewLesson = () => {
           <Step2 
             onChange={handleDataChangeStep2} 
             setAddNewLessonDisabled={setAddNewLessonDisabled} 
-            allCategories={allCategories} />}
+            allCategories={allCategories}
+            setCategoryId={setCategoryId} />}
         <div className="foot-div">
           <Link to="/myStudio">
-            <input type="button" value={intl.formatMessage({id: "app.Cansel"})} 
-              className="button-shape cansel"></input> 
+            <input type="button" 
+              className="button-shape cansel"
+              value={intl.formatMessage({id: "app.cancel"})}></input> 
           </Link>
-          {step===1 ?
+     
+          {step===1 ? <div>{nextStepButtonDisabled==true ?
             <input type="button"
               disabled={nextStepButtonDisabled} 
               className="next-step-button  button-shape-2 "
@@ -151,12 +155,28 @@ const NewLesson = () => {
               onClick={swapStepForm}  
               id="btn-add-new-lesson-next-step" ></input> :
             <input type="button"
-              disabled={addNewLessonDisabled} 
-              className="next-step-button  button-shape-2 "
-              value={intl.formatMessage({id: "app.AddNewLesson"})} 
-              onClick={click} >
-            </input>
-          }
+              disabled={nextStepButtonDisabled} 
+              className="next-step-button  button-shape-2 active-step "
+              value={intl.formatMessage({id: "app.NextStep"})} 
+              onClick={swapStepForm}  
+              id="btn-add-new-lesson-next-step" ></input> }</div> :
+            <div>{step!==1 ? 
+              <div>{addNewLessonDisabled==true ? 
+                <input type="button"
+                  disabled={addNewLessonDisabled} 
+                  className="next-step-button  button-shape-2 "
+                  value={intl.formatMessage({id: "app.AddNewLesson"})} 
+                  onClick={click} >
+                </input>
+                : 
+                <input type="button"
+                  disabled={addNewLessonDisabled} 
+                  className="next-step-button  button-shape-2 active-step"
+                  value={intl.formatMessage({id: "app.AddNewLesson"})} 
+                  onClick={click} >
+                </input>}</div> : 
+              <div></div>}
+            </div>}
         </div>
       </div>
     </div>

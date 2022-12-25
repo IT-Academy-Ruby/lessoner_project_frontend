@@ -1,5 +1,5 @@
+import { FormattedMessage, useIntl } from "react-intl";
 import {  useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
 import { LoadGrey } from "../../../svg/LoadGrey";
 import { TopArrow } from "../../../svg/top-arrow";
 import { useFormik } from "formik";
@@ -16,6 +16,7 @@ const Step1 = (  props:any  ) => {
   const { onChange } = props;
   const [nameErrorMsg, setNameErrorMsg] = useState("");
   const [linkErrorMsg, setLinkErrorMsg] = useState("");
+  const intl = useIntl();
 
   useEffect(() => {
     if ((name!=="") && (link!=="") && (nameErrorMsg==="")  && (linkErrorMsg==="") ){
@@ -125,7 +126,7 @@ const Step1 = (  props:any  ) => {
     }
   };
   const LessonName=<FormattedMessage id="app.LessonName"/>;
-  console.log(LessonName);
+  // console.log(LessonName);
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
@@ -135,7 +136,7 @@ const Step1 = (  props:any  ) => {
             <div className="name-div">
               <input 
                 // maxLength={64}
-                placeholder="Lesson name"
+                placeholder={intl.formatMessage({id: "app.Lessonname"})}
                 maxLength={64} 
                 id="name"
                 name="name"

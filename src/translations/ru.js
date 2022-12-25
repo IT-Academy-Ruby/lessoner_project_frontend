@@ -177,6 +177,7 @@ export const messages_ru = {
   "app.Thumbnail": "Миниатюра",
   "app.SelectOrUploadAPictureThatShowsWhatsInYourVideo": "Выберите или загрузите изображение, которое показывает, что в вашем видео",
   "app.NextStep": "Следующий шаг",
-  "app.Cancel": "Отмена",
+  "app.cancel": "Отмена",
+  "app.Lessonname": "Имя урока",
 };
 

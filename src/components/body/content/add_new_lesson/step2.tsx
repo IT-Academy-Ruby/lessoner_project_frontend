@@ -16,23 +16,23 @@ type categoriesType = {
   status:string
 }
 const formData2 = {
-  category:"",description:"",subtitles:"",subtitlesFile:"", id:""
+  category:"",description:"",subtitles:"",subtitlesFile:"", id:0
 };
 let simbolsLeft:any = 0;
 const getCategorieUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
-// const getLessonUrl = "https://Lessoner-project-2w3h.onrender.com/lessons";
 const Step2 = (props:any ) => {
-  const  [allCategories, setAllCategoris ] = useState<categoriesType[]>([]);
+  const  [allCategories, setAllCategories ] = useState<categoriesType[]>([]);
   const [ showLoader, setShowLoader ] = useState(true);
   const [category, setCategory ] = useState("");
   const [ description, setDescription ] = useState("");
+  const [ id, setId ] = useState(0);
 
 
   useEffect(() => {
     const lessons:any = requestApi(getCategorieUrl,"GET").then((response)=>{
       return response.json();
     }).then((json) => {
-      setAllCategoris(json);
+      setAllCategories(json);
       console.log(json);
       return json; 
     }).catch(error => {
@@ -41,13 +41,21 @@ const Step2 = (props:any ) => {
   },[]);
 
   useEffect(()=>{
+    console.log(allCategories);
     // eslint-disable-next-line max-len
     if(category !== "" && description !== "" && msgErrorCategory == "" && msgErrorDescription == ""){
       props.setAddNewLessonDisabled(false); 
     } else {
       props.setAddNewLessonDisabled(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const selectId = allCategories.map((elem) => {
+      if (elem.name===category){
+        props.setCategoryId(elem.id);
+        console.log(elem.id);
+      }
+    });
+    formData2.id=id;
   },[ category, description ] );
 
 
@@ -148,7 +156,7 @@ const Step2 = (props:any ) => {
     <div>
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
         <div className="form-step-2">
-          <div className="input-category marg-bot-32 w100">
+          {allCategories.length ? <div className="input-category marg-bot-32 w100">
             <select id="category" 
               name="category"
               className="w100"   
@@ -161,7 +169,8 @@ const Step2 = (props:any ) => {
               {categoriesElements} 
             </select>
             <div className="div-error-msg">{msgErrorCategory}</div>
-          </div>
+          </div> : <Loader/>}
+          
           <div className="input-description marg-bot-32 w100">
             <label htmlFor="description"><FormattedMessage id="app.Description"/></label>
             <textarea
