@@ -76,6 +76,15 @@
   cursor: pointer;
 }
 
+.button-delete {
+  color: $warningColor;
+  border-color: $warningColor;
+}
+
+.icon-button {
+  margin-right: 11px;
+}
+
 @media (max-width: $max-width-phone) {
   .button__page {
     font-size: 16px;

@@ -101,6 +101,8 @@ export const messages_en = {
   "app.categories.selectFile": "Select file",
   "app.categories.uploadImage": "Upload image",
   "app.categories.or": "or",
+  "app.categories.change": "Change",
+  "app.categories.delete": "Delete",
   "app.categories.dragAandDrop": "Drag and drop",
   "app.categories.button.select": "Select file",
   "app.categories.button.cancel": "Cancel",

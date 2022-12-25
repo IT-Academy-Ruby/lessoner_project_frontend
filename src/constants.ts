@@ -11,10 +11,10 @@ const NAME_CATEGORY = {
 const DESCRIPTION_CATEGORY = {
   minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
-const IMAGE_FORMAT = {format: [".jpg", ".jpeg", ".png", ".gif"], size: 5242880};
+const IMAGE_DATA = {format: [".jpg", ".jpeg", ".png", ".gif"], size: 5120};
 
 export {
   CODE, DEFAULT_COUNTRY_CODE, EMAIL, PASSWORD, USERNAME, NAME_CATEGORY,
-  DESCRIPTION_CATEGORY, IMAGE_FORMAT
+  DESCRIPTION_CATEGORY, IMAGE_DATA
 };
 

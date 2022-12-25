@@ -1,5 +1,5 @@
 import "./addCategory.scss";
-import {DESCRIPTION_CATEGORY, NAME_CATEGORY, IMAGE_FORMAT} from "../../../../../constants";
+import {DESCRIPTION_CATEGORY, NAME_CATEGORY, IMAGE_DATA} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
@@ -96,18 +96,17 @@ const AddCategory = ({add}: TypeTitle) => {
           }
           if (selectImage) {
             const imageFormat = String(selectImage["type"]);
-            const isFormat = IMAGE_FORMAT.format.find(format =>
+            const isFormat = IMAGE_DATA.format.find(format =>
               "." + imageFormat.slice(imageFormat.indexOf("/") + 1) === format)
             if (!isFormat) {
-              console.log(selectImage["type"])
               errors.image = intl.formatMessage({id: "app.categories.imageError"});
             }
-            if (selectImage["size"] > 5242880) {
+            if (selectImage["size"] > IMAGE_DATA.size) {
               errors.image = intl.formatMessage({id: "app.categories.imageBigSize"});
             }
           }
           if (!selectImage) {
-            // errors.image = intl.formatMessage({id: "app.categories.imageError"});
+            errors.image = intl.formatMessage({id: "app.categories.imageError"});
           }
           return errors;
         }}

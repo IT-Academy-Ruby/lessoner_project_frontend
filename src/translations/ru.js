@@ -103,6 +103,8 @@ export const messages_ru = {
   "app.categories.selectFile": "Выберите файл",
   "app.categories.uploadImage": "Загрузить изображение",
   "app.categories.or": "или",
+  "app.categories.change": "Изменить",
+  "app.categories.delete": "Удалить",
   "app.categories.dragAandDrop": "Перетащите",
   "app.categories.button.select": "Выбрать файл",
   "app.categories.button.cancel": "Отмена",

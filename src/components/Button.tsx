@@ -7,10 +7,12 @@ type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
   disabled?:boolean;
+  buttonImage?:string;
+  imageStyle?:string;
 }
 
 const Button = ({
-  buttonType, buttonText, onClick, className, disabled=false
+  buttonType, buttonText, onClick, className, disabled=false, buttonImage, imageStyle,
 }: ButtonProps) => {
   return (
     <Fragment>
@@ -20,6 +22,7 @@ const Button = ({
         onClick={onClick}
         disabled={disabled}
       >
+        {buttonImage && <img src={buttonImage} alt="icon" className={imageStyle}/>}
         {buttonText}
       </button>
     </Fragment>
