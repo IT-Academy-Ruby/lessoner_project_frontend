@@ -38,6 +38,17 @@ $greyDefault:#D1D1D1;
   }
 }
 
+@mixin textFont {
+  & {
+    font-family: $font;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    font-style: normal;
+    color: #1B1B1F;
+  }
+}
+
 @mixin textFieldInput {
   line-height: 40px;
   border: 1px solid $greySearchColor;

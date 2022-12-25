@@ -3,6 +3,7 @@ import {Route, Routes} from "react-router-dom";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
 import Categories from "./categories/Categories";
+import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
@@ -17,6 +18,7 @@ const Content = () => {
         <Route path="/" element={<Lessoner/>}/>
         <Route path="/categories" element={<Categories/>}/>
         <Route path="/lessons" element={<Lessons/>}/>
+        <Route path="/lessons/:id" element={<EditVideoLessonTitle/>} />
         <Route path="/about" element={<About/>}/>
         <Route path="/users/sign_in" element={<SignIn/>}/>
         <Route path="/users/sign_up" element={<SignUp/>}/>

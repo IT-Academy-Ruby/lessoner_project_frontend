@@ -5,9 +5,13 @@ import {
 import {addToken, confirmTokenSlice} from "./store/loginName/loginSlice";
 import {useEffect, useState} from "react";
 import Body from "./components/body/Body";
+import FacebookButton from "./components/FacebookButton";
+import GoogleButton from "./components/GoogleButton";
+import {GoogleOAuthProvider} from "@react-oauth/google";
 import {IntlProvider} from "react-intl";
 import Pages from "./components/Pages";
 import TranslationHelpers from "./translations/translationHelpers";
+import VKButton from "./components/VKButton";
 import {useAppDispatch} from "./store/hooks";
 
 function App(): JSX.Element {
@@ -17,7 +21,7 @@ function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
-  const findTokenWordInURL="token=";
+  const findTokenWordInURL = "token=";
   let controlRendering = 1;
 
   useEffect(() => {
@@ -36,7 +40,7 @@ function App(): JSX.Element {
       controlRendering++;
     }
 
-  }, [controlRendering,dispatch,url]);
+  }, [controlRendering, dispatch, url]);
 
   const signOut = () => {
     localStorage.setItem("JWT", "");
@@ -81,6 +85,18 @@ function App(): JSX.Element {
             <Route
               path="/user/sign_in/reset_password/new_password"
               element={<Pages pageType={"SetNewPassword"}/>}/>
+            <Route
+              path="/user/google"
+              element={<GoogleOAuthProvider
+                clientId={process.env.REACT_APP_GOOGLE_ID}>
+                <GoogleButton/>
+              </GoogleOAuthProvider>}/>
+            <Route
+              path="/user/facebook"
+              element={<FacebookButton/>}/>
+            <Route
+              path="/user/vk"
+              element={<VKButton/>}/>
           </Routes>
           <div style={{display: "flex", flexDirection: "column"}}>
             <button onClick={signOut}>Not authorized</button>
