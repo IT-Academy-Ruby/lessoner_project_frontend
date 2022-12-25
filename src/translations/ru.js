@@ -157,7 +157,7 @@ export const messages_ru = {
   "app.nameCategory.Design": "Дизайн",
   "app.nameCategory.Music": "Музыка",
   "app.nameCategory.Business": "Бизнес",
-  "app.nameCategory.Psycology": "Психодогия",
+  "app.nameCategory.Psycology": "Психология",
   "app.nameCategory.Fitness": "Фитнес",
   "app.nameCategory.Finanse": "Финансы",
   "app.nameCategory.Language": "Язык",
