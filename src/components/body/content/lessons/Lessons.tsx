@@ -6,8 +6,8 @@ import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
 import requestApi from "../../../../services/request";
 
-const categoriesUrl = `${BACKEND_URL}/categories`;
-const lessonsUrl = `${BACKEND_URL}/lessons`;
+export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
 export interface Lesson {
   id: number;
   title: string;

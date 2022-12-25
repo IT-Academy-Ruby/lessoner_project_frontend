@@ -1,12 +1,16 @@
-.video__page_wrapper{
-    margin-left: 66px;
-    display: flex;
-    padding:0 24px
+.video__page_wrapper {
+  margin-left: 66px;
+  display: flex;
+  padding: 0 24px;
 }
-.pagination{
-   width: 437px;
-   height: 100vh;
-   background:'yellow';
-   margin-left: 16px;
-   background-color: darkgray;
+.video__side_bar {
+  width: 437px;
+  height: 100vh;
+  background: "yellow";
+  margin-left: 16px;
+}
+.videoplayer__wrapper {
+  --plyr-captions-background: rgba(0, 0, 0, 0.8);
+  --plyr-captions-text-color: white;
+  flex: 1 0 auto;
 }

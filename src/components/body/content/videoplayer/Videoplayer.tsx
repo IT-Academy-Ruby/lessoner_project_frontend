@@ -1,79 +1,27 @@
 /* eslint-disable max-len */
 import "./index.scss";
 import "plyr-react/plyr.css";
+import { Lesson, lessonsUrl } from "../../content/lessons/Lessons";
+import React, { useEffect, useState } from "react";
+import { buildVideoSrc, getSrcFromId } from "./VideoPlayerHelper";
 import Plyr from "plyr-react";
-import React from "react";
-
-// const getVideoSrc=() => {
-  
-// }
-const videoSrc = {
-  type: "video" as const,
-  title: "Elephants",
-  sources: [
-    {
-      src:
-        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/" +
-        "915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
-      type: "video/mp4",
-      size: 576,
-    },
-    {
-      src:
-        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/" +
-        "915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
-      type: "video/mp4",
-      size: 720,
-    },
-    {
-      src:
-        "https://rawcdn.githack.com/chintan9/Big-Buck-Bunny/" +
-        "915c4b2aba75614b20dec3852375b394bb305f10/ElephantsDream.mp4",
-      type: "video/mp4",
-      size: 1080,
-    },
-
-  ],
-  poster: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/" +
-    "Elephants_Dream_cover.jpg/1200px-Elephants_Dream_cover.jpg?20060831021346",
-  tracks: [
-    {
-      kind: "captions" as const,
-      label: "Russian",
-      srclang: "ru",
-      src: "../examples/plyr/subtitles/subtitles-ru.vtt",
-      default: true
-    },
-    {
-      kind: "captions" as const,
-      label: "English",
-      srclang: "en",
-      src: "../examples/plyr/subtitles/subtitles-en.vtt",
-      default: true
-    },
-  ],
-  // Preview example
-  previewThumbnails: { enabled: true,
-    src: ["https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
-      "https://cdn.plyr.io/static/demo/thumbs/240p.vtt"]},
-  tooltips: {controls: true},
-};
+import requestApi from "../../../../services/request";
 
 const optionsVideoplayer = {
   quality: {
     default: 576,
     // The options to display in the UI, if available for the source media
     options: [1080, 720, 576, 480, 360, 240],
-    forced: true
+    forced: true,
   },
-  markers: { enabled: true,
+  markers: {
+    enabled: true,
     points: [
-      { time: 15,
-        label: "Test"},
-      { time: 23,
-        label: "Test"},
-      { time: 31,
-        label: "<strong>Test</strong> marker"}]},
+      { time: 15, label: "Test" },
+      { time: 23, label: "Test" },
+      { time: 31, label: "<strong>Test</strong> marker" },
+    ],
+  },
   controls: [
     "play-large", // The large play button in the center
     "restart", // Restart playback
@@ -97,16 +45,48 @@ const optionsVideoplayer = {
   ],
   seekTime: 10,
 };
-interface VideoPlayerProps{
-  id?:string
+interface VideoPlayerProps {
+  id?: number;
 }
 
-export const VideoPlayer: React.FC<VideoPlayerProps>=({ id }) => {
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({ id }) => {
+  const [data, setData] = useState<Lesson[]>([]);
+  const [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<Plyr.SourceInfo | null>(null);
+
+  useEffect(() => {
+    if (!dataIsLoaded) {
+      const fetchSuccess = (data: Lesson[]) => {
+        setData(data);
+        setDataIsLoaded(true);
+        const foundSrc = getSrcFromId(data, id);
+        setVideoSrc(buildVideoSrc(foundSrc));
+      };
+      const fetchError = (errMessage: string) => {
+        alert(errMessage);
+      };
+      const fetchData = async () => {
+        const response = await requestApi(lessonsUrl, "GET");
+        if (!response.ok) {
+          fetchError("fetch error " + response.status);
+        } else {
+          const data = await response.json();
+          fetchSuccess(data.records);
+        }
+      };
+      fetchData();
+    }
+  }, [data, dataIsLoaded, id]);
 
   return (
-    <div className="player">
-      <Plyr options={optionsVideoplayer} source={videoSrc} id={id}
-      />
-    </div>
+    <>
+      {videoSrc && dataIsLoaded ? (
+        <div className="player">
+          <Plyr options={optionsVideoplayer} source={videoSrc} />
+        </div>
+      ) : (
+        <h1>Загрузка данных</h1>
+      )}
+    </>
   );
 };
