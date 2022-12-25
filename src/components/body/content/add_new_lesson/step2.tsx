@@ -41,7 +41,7 @@ const Step2 = (props:any ) => {
   },[]);
 
   useEffect(()=>{
-    console.log(allCategories);
+    
     // eslint-disable-next-line max-len
     if(category !== "" && description !== "" && msgErrorCategory == "" && msgErrorDescription == ""){
       props.setAddNewLessonDisabled(false); 
