@@ -1,13 +1,13 @@
+/* eslint-disable max-len */
 import "react-responsive-modal/styles.css";
 import { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { LoadGrey } from "../../../svg/LoadGrey";
 import { Loader } from "react-feather";
 import { Modal } from "react-responsive-modal";
 import { TopArrow } from "../../../svg/top-arrow";
 import requestApi from "../../../../services/request";
 import { useFormik } from "formik";
-
 
 type categoriesType = {
   id:number,
@@ -18,18 +18,18 @@ type categoriesType = {
 const formData2 = {
   category:"",description:"",subtitles:"",subtitlesFile:"", id:0
 };
-let simbolsLeft:any = 0;
+let simbolsLeft = 0;
 const getCategorieUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
-const Step2 = (props:any ) => {
+
+const Step2 = ( props:any ) => {
   const  [allCategories, setAllCategories ] = useState<categoriesType[]>([]);
-  const [ showLoader, setShowLoader ] = useState(true);
   const [category, setCategory ] = useState("");
   const [ description, setDescription ] = useState("");
-  const [ id, setId ] = useState(0);
-
+  // const [ id, setId ] = useState(0);
+  const intl = useIntl();
 
   useEffect(() => {
-    const lessons:any = requestApi(getCategorieUrl,"GET").then((response)=>{
+    const lessons = requestApi(getCategorieUrl,"GET").then((response)=>{
       return response.json();
     }).then((json) => {
       setAllCategories(json);
@@ -38,29 +38,32 @@ const Step2 = (props:any ) => {
     }).catch(error => {
       console.log(error);
     });
+    console.log(lessons);
   },[]);
+  
 
-  useEffect(()=>{
-    
+  useEffect(()=>{ 
     // eslint-disable-next-line max-len
     if(category !== "" && description !== "" && msgErrorCategory == "" && msgErrorDescription == ""){
       props.setAddNewLessonDisabled(false); 
     } else {
       props.setAddNewLessonDisabled(true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const selectId = allCategories.map((elem) => {
       if (elem.name===category){
         props.setCategoryId(elem.id);
         console.log(elem.id);
       }
     });
-    formData2.id=id;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[ category, description ] );
 
 
   const { onChange } = props;
   // const [open, setOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false); 
   const [ open, setOpen ] = useState(false);
@@ -72,7 +75,13 @@ const Step2 = (props:any ) => {
     setCategory(e.value);
     formData2.category = e.value;
     onChange(formData2);
-    
+  };
+
+  const descriptionCheck = (event:React.FormEvent) => {
+    const e = event.target as HTMLInputElement;
+    if(e.value==""){
+      setMsgErrorDescription("Add description");
+    }
   };
 
   const addDescriptionOnDate = ( event:React.FormEvent ) => {
@@ -118,7 +127,7 @@ const Step2 = (props:any ) => {
     onChange(formData2);
   };
 
-  const categoryCheck = ( event:React.FormEvent ) => {
+  const categoryCheck = () => {
     if (formData2.category === ""){
       setMSgErrorCategory("Must select a lesson category");
     } else { setMSgErrorCategory(""); }
@@ -136,6 +145,7 @@ const Step2 = (props:any ) => {
   },});
 
   const closeIcon = (
+    // eslint-disable-next-line max-len
     <svg onClick={onCloseModal} width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M9.77816 0.229428C9.48237 -0.0663631 9.00455 -0.0663631 8.70876 0.229428L5 3.9306L1.29124 0.221843C0.99545 -0.0739477 0.517634 -0.0739477 0.221843 0.221843C-0.0739477 0.517634 -0.0739477 0.99545 0.221843 1.29124L3.9306 5L0.221843 8.70876C-0.0739477 9.00455 -0.0739477 9.48237 0.221843 9.77816C0.517634 10.0739 0.99545 10.0739 1.29124 9.77816L5 6.0694L8.70876 9.77816C9.00455 10.0739 9.48237 10.0739 9.77816 9.77816C10.0739 9.48237 10.0739 9.00455 9.77816 8.70876L6.0694 5L9.77816 1.29124C10.0664 1.00303 10.0664 0.517634 9.77816 0.229428Z" fill="#9A9AA3"/>
     </svg>
@@ -150,26 +160,32 @@ const Step2 = (props:any ) => {
   const onSelectChange = (e: React.FormEvent) => {
     formik.handleChange(e);
     addCategoryOnDate(e);
-    categoryCheck(e);
+    categoryCheck();
   };
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
         <div className="form-step-2">
-          {allCategories.length ? <div className="input-category marg-bot-32 w100">
-            <select id="category" 
-              name="category"
-              className="w100"   
-              onChange={onSelectChange}
-              value={formik.values.category}
-              placeholder="text" >
-              <option value="Choose a category" selected hidden >
-                <FormattedMessage id="app.ChooseACategory"/>
-              </option>
-              {categoriesElements} 
-            </select>
-            <div className="div-error-msg">{msgErrorCategory}</div>
-          </div> : <Loader/>}
+          {
+            allCategories.length 
+              ?
+              <div className="input-category marg-bot-32 w100">
+                <select id="category" 
+                  name="category"
+                  className="w100"   
+                  onChange={onSelectChange}
+                  value={formik.values.category}
+                  placeholder="text" >
+                  <option defaultValue={intl.formatMessage({id: "app.ChooseACategory"})} selected hidden >
+                    <FormattedMessage id="app.ChooseACategory"/>
+                  </option>
+                  {categoriesElements} 
+                </select>
+                <div className="div-error-msg">{msgErrorCategory}</div>
+              </div> 
+              : 
+              <Loader/>
+          }
           
           <div className="input-description marg-bot-32 w100">
             <label htmlFor="description"><FormattedMessage id="app.Description"/></label>
@@ -178,8 +194,9 @@ const Step2 = (props:any ) => {
               // maxLength={600}
               id="description"
               name="description"
-              onChange={(e)=>{formik.handleChange(e);addDescriptionOnDate(e);}}
-              onFocus={(e)=>{categoryCheck(e);}}
+              onChange={(e)=>{formik.handleChange(e);addDescriptionOnDate(e);descriptionCheck(e);}}
+              onFocus={()=>{categoryCheck();}}
+              onBlur={(e)=>{descriptionCheck(e);}}
               value={formik.values.description}
               className="description w100"
             />

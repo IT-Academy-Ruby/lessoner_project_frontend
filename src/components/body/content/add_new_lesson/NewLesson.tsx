@@ -1,10 +1,10 @@
 import "./new_Lesson.css";
-import  { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import { Step1 } from "./step1";
 import Step2 from "./step2";
 import requestApi from "../../../../services/request";
+import  { useState } from "react";
 
 type dataType = {
   name:string,
@@ -20,7 +20,6 @@ type dataType = {
 }
 
 const NewLesson = () => {
-  const getCategorieUrl="https://Lessoner-project-2w3h.onrender.com/categories";
   const [ name, setName ] = useState("");
   const [ link, setLink ] = useState("");
   const [ file, setFile ] = useState("");
@@ -37,8 +36,6 @@ const NewLesson = () => {
   const [ nextStepButtonDisabled, setNextStepButtonDisabled ] = useState(true);
   const [ addNewLessonDisabled, setAddNewLessonDisabled ] = useState(true);
   const intl=useIntl();
-;
-
   const dataForBe = {
     title:name,
     video_link:link,

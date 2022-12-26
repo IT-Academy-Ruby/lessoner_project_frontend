@@ -7,10 +7,11 @@ import { useFormik } from "formik";
 const formData1 = {
   name:"", link:"", file:"",disStatus1:"" , stepStatus:true
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let simbolsLeft:any = 0;
 
 const Step1 = (  props:any  ) => {
-  const [ stepStatus, nextStepButtonDisabled ] = useState(true);
+  const [ stepStatus, setStepStatus ] = useState(true);
   const [ name, setName ] = useState("");
   const [link, setLink] = useState("");
   const { onChange } = props;
@@ -50,7 +51,7 @@ const Step1 = (  props:any  ) => {
     simbolsLeft = e.value.length;
     disStatus();
     onChange(formData1);
-    stepCheck();
+    
   };
 
   const disStatus = () => {
@@ -65,26 +66,13 @@ const Step1 = (  props:any  ) => {
     const e = event?.target as HTMLInputElement;
     formData1.link = e.value;
     onChange(formData1);
-    stepCheck();
-  };
-
-  const stepCheck = () => {
-    // console.log("stepCheck");
-    // console.log({
-    //   name,link, nameErrorMsg, linkErrorMsg
-    // });
-    // if ((name!=="") && (link!=="") && (nameErrorMsg==="")  && (linkErrorMsg==="") ){
-    //   setStepStatus(false);
-     
-    // } else {setStepStatus(true);}
-    // console.log(stepStatus );
+    
   };
 
   const addFileOnDate = (event:React.FormEvent) => {
     const e = event?.target as HTMLInputElement;
     formData1.file = e.value;
     onChange(formData1);
-    stepCheck();
   };
 
   // ----------------------------------------------------------------------------
@@ -125,8 +113,7 @@ const Step1 = (  props:any  ) => {
       document.getElementById("link")?.classList.add("error-border");  
     }
   };
-  const LessonName=<FormattedMessage id="app.LessonName"/>;
-  // console.log(LessonName);
+
   return (
     <div>
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
