@@ -304,7 +304,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 "menu__footer-text--active": isMenuActive})} >
                 <a className={classNames("menu__footer-text menu__footer-policy", {
                   "menu__footer-text--active": isMenuActive})} href="#!">
-                  Privacy Policy
+                  {intl.formatMessage({ id: "app.navbarStudyStudio.policy" })}
                 </a>
               </p>
             </div>

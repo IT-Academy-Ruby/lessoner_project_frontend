@@ -69,6 +69,7 @@ export const messages_ru = {
   "app.navbarStudyStudio.logIn": "Войти",
   "app.navbarStudyStudio.logOut": "Выйти",
   "app.navbarStudyStudio.footer": "Все права защищены.",
+  "app.navbarStudyStudio.policy": "Политика конфиденциальности.",
   "app.button.next": "Дальше",
   "app.button.ok": "Хорошо",
   "app.button.finish": "Закончить",

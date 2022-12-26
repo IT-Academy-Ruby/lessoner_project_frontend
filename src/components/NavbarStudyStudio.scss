@@ -163,7 +163,6 @@ $transition: .2s;
 
 .menu__footer-rights {
   min-height: 52px;
- //margin: 0 0 10px 0;
 }
 
 .menu__footer-text {
@@ -175,7 +174,7 @@ $transition: .2s;
   color: var(--iconsTextThemeNavBarColor);
   opacity: 0;
   text-decoration: none;
-  transition: $transition;
+  transition: .1s;
 }
 
 .menu__footer-text--active, .menu__content:hover .menu__footer-text, .menu__footer-date {

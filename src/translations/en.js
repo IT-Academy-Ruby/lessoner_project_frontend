@@ -67,6 +67,7 @@ export const messages_en = {
   "app.navbarStudyStudio.logIn": "Log in",
   "app.navbarStudyStudio.logOut": "Log Out",
   "app.navbarStudyStudio.footer": "All rights reserved.",
+  "app.navbarStudyStudio.policy": "Privacy Policy.",
   "app.button.next": "Next",
   "app.button.ok": "Ok",
   "app.button.finish": "Finish",
