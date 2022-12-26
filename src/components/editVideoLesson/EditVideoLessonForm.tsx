@@ -14,24 +14,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
 import { ILessonBack } from "../types/types";
 import classNames from "classnames";
-import frame85 from "../icons/Frame85.png";
-import frame86 from "../icons/Frame86.png";
-import frame87 from "../icons/Frame87.png";
-import frame88 from "../icons/Frame88.png";
 import request from "../../services/request";
 import { useIntl } from "react-intl";
+import { Thumbnail } from "../Thumbnail";
 
 const hachTag = "#";
 let countHashTag = 0;
 
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
-  const items = [
-    { id: 1, src: `${frame88}` },
-    { id: 2, src: `${frame87}` },
-    { id: 3, src: `${frame86}` },
-    { id: 4, src: `${frame85}` },
-  ];
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
   const params = useParams();
   const navigate = useNavigate();
@@ -89,10 +80,6 @@ export const EditVideoLessonForm: FC = () => {
         { maxDescriptionHashTagCount: maxDescrHTCount }
       );
     }
-  };
-
-  const thumbnailId = (id: number) => {
-    return id;
   };
 
   const lessonValuesFromBack = {
@@ -176,44 +163,7 @@ export const EditVideoLessonForm: FC = () => {
               {intl.formatMessage({id: "app.editVideoLesson.lableThumbnailText"})}
             </p>
             <div className="evlth__wrapper">
-              <div className="evlth__inner">
-                <div className="evlth__inner-left">
-                  {items.map(
-                    (item: { id: number; src: string }) =>
-                      item.id <= 2 && (
-                        <div
-                          className="evlth__item"
-                          key={item.id}
-                          onClick={() => thumbnailId(item.id)}
-                        >
-                          <img
-                            className="evlth__item-img"
-                            src={item.src}
-                            alt="picture"
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
-                <div className="evlth__inner-right">
-                  {items.map(
-                    (item: { id: number; src: string }) =>
-                      item.id > 2 && (
-                        <div
-                          className="evlth__item"
-                          key={item.id}
-                          onClick={() => thumbnailId(item.id)}
-                        >
-                          <img
-                            className="evlth__item-img"
-                            src={item.src}
-                            alt="picture"
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
-              </div>
+              <Thumbnail/>
             </div>
           </label>
           <div className="evlf__btn-wrapper">

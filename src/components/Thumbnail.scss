@@ -1,0 +1,39 @@
+@import "../constants.scss";
+
+.evlth__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.evlth__inner-left, .evlth__inner-right {
+  display: flex;
+  width: 50%;
+}
+
+.evlth__inner-left {
+  justify-content: flex-start;
+}
+
+.evlth__inner-right {
+  justify-content: flex-end;
+}
+
+.evlth__item {
+  width: 100%;
+  width: 80px;
+  height: 100%;
+  height: 60px;
+  margin-right: 8px;
+  border-radius: 8px;
+  border: 1px dashed $greySearchColor;
+  background: url(./icons/thumbnail.svg) center no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.evlth__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
