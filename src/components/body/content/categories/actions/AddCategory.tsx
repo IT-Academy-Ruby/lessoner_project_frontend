@@ -6,7 +6,7 @@ import {
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {
-  addCategory, getCategory, updateCategory
+  addCategory, getCategory, updateCategory, getBlob
 } from "../../../../../store/categorySlice/categorySlice";
 import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
@@ -21,8 +21,10 @@ interface FormValues {
   id: number;
   name: string;
   description: string;
-  image: undefined;
+  image_url: string;
   status: string;
+  amount_lessons: number;
+  created_at: string;
 }
 
 interface FormErrors {
@@ -30,35 +32,57 @@ interface FormErrors {
 }
 
 type TypeTitle = {
-  add: boolean
+  add: boolean;
 }
 const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [selectImage, setSelectImage] = useState();
+  const [selectImage, setSelectImage] = useState({name: "", type: "", size: 0, image: new Blob()});
+  const [getImage, setGetImage] = useState<Blob>();
   const allCategories = useAppSelector((state) => state.categories.categories);
+
+  let category = {
+    name: "",
+    description: "",
+    id: 0,
+    image_url: "",
+    status: "",
+    amount_lessons: 0,
+    created_at: "",
+  };
+
+  const url = window.location.href;
+  const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
 
   useEffect(() => {
     if (!add) {
       dispatch(getCategory());
     }
-  }, [dispatch, add]);
+    if (!add && allCategories.length > 1) {
+        category = allCategories.filter(category => category.id === idCategory)[0];
+        fetch(category.image_url).then(responce => responce.blob()).then(blob => setGetImage(blob))
 
-  const url = window.location.href;
-  const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
-  let category = {name: "", description: ""};
-
-  if (!add && allCategories.length > 1) {
-    category = allCategories.filter(category => category.id === idCategory)[0];
-  }
+      if (getImage) {
+        const file = {
+          image: getImage!,
+          size: getImage!.size,
+          name: String(getImage).slice(String(getImage).indexOf("/") + 1),
+          type: getImage!.type,
+         }
+        setSelectImage(file);
+      }
+    }
+  }, [dispatch, add, selectImage]);
 
   const initialValues: FormValues = {
-    id: 0,
+    id: add ? 0 : category.id,
     name: add ? "" : category.name,
     description: add ? "" : category.description,
-    image: undefined,
-    status: "active",
+    image_url: add ? "" : category.image_url,
+    status: add ? "active" : category.status,
+    amount_lessons: add ? 0 : category.amount_lessons,
+    created_at: add ? "" : category.created_at,
   };
 
   const nameLength = initialValues.name.length;
@@ -95,25 +119,25 @@ const AddCategory = ({add}: TypeTitle) => {
               {symbols: DESCRIPTION_CATEGORY.maxSymbols});
           }
           if (selectImage) {
-            const imageFormat = String(selectImage["type"]);
+            // const imageFormat = String(selectImage["type"]);
             const isFormat = IMAGE_DATA.format.find(format =>
-              "." + imageFormat.slice(imageFormat.indexOf("/") + 1) === format)
+              "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format)
             if (!isFormat) {
-              errors.image = intl.formatMessage({id: "app.categories.imageError"});
+              errors.image_url = intl.formatMessage({id: "app.categories.imageError"});
             }
             if (selectImage["size"] > IMAGE_DATA.size) {
-              errors.image = intl.formatMessage({id: "app.categories.imageBigSize"});
+              errors.image_url = intl.formatMessage({id: "app.categories.imageBigSize"});
             }
           }
           if (!selectImage) {
-            errors.image = intl.formatMessage({id: "app.categories.imageError"});
+            errors.image_url = intl.formatMessage({id: "app.categories.selectFile"});
           }
           return errors;
         }}
         onSubmit={(values: FormValues) => {
           // values.name = values.name.trim();
           // values.description = values.description.trim();
-
+          console.log(values)
           console.log(selectImage ? selectImage["type"] : selectImage)
           // if (add) {
           //   dispatch(addCategory(values));
@@ -147,9 +171,10 @@ const AddCategory = ({add}: TypeTitle) => {
               <Field
                 name="image"
                 component={CategoryImage}
-                error={touched.image ? errors.image : undefined}
+                error={touched.image_url ? errors.image_url : undefined}
                 selectImage={selectImage}
                 setSelectImage={setSelectImage}
+                getImage={getImage}
               />
 
               <div className="category-buttons">
