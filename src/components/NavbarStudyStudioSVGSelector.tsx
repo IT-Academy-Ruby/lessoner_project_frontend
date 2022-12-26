@@ -63,7 +63,7 @@ const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
   case "linkedin":
     return <Linkedin />;
   default:
-    return <svg></svg>;
+    return null;
   };
 };
 

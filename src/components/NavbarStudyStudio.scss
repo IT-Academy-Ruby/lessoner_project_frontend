@@ -231,6 +231,10 @@ $transition: .2s;
   border: 1px solid var(--themeNavBarColorHover);
 }
 
+.menu__content:hover .image__wrapper, .menu__content:hover .image__wrapper-theme{
+  background: none;
+}
+
 .menu__item-inner-theme:hover {
   background: none;
 }
