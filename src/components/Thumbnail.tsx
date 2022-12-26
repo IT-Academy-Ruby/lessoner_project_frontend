@@ -25,7 +25,7 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
   const [imageURL, setImageURL] = useState<any>();
   fileReader.onloadend = () => {
     setImageURL(fileReader.result);
-  }
+  };
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
     console.log("change", e.target.files[0]);
@@ -34,21 +34,18 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
       setImage(file);
       fileReader.readAsDataURL(file);
 
-
-    /* const formData = new FormData();
+      /* const formData = new FormData();
     formData.append("file", file)
     request("https://lessoner.s3.amazonaws.com/", "PUT", formData); */
-
     } else {
-      alert("size to big: " + (Math.floor(e.target.files[0].size)/1000000).toFixed(2) )
+      alert(
+        "size to big: " +
+          (Math.floor(e.target.files[0].size) / 1000000).toFixed(2)
+      );
     }
   };
 
   console.log(propImage.propImage);
-
-  
-
-  
 
   return (
     <div className="thumbnail__wrapper">

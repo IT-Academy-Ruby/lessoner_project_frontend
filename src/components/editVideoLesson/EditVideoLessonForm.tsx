@@ -1,14 +1,12 @@
 import "./EditVideoLessonForm.scss";
-import { 
-  BACKEND_URL_LESSONS, maxDescrHTCount,
-  maxDescriptionLength, maxNameLength 
+import {
+  BACKEND_URL_LESSONS,
+  maxDescrHTCount,
+  maxDescriptionLength,
+  maxNameLength,
 } from "../../constants";
-import { 
-  FC, useEffect, useState 
-} from "react";
-import { 
-  Field, Form, Formik 
-} from "formik";
+import { FC, useEffect, useState } from "react";
+import { Field, Form, Formik } from "formik";
 import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
@@ -36,9 +34,14 @@ export const EditVideoLessonForm: FC = () => {
 
   console.log(lesson);
 
-  const addInfoToLessonObject = (values: {name: string; description: string;}) => {
-    const lessonFromEditForm = { title: `${values.name}`,
-      description: `${values.description}` };
+  const addInfoToLessonObject = (values: {
+    name: string;
+    description: string;
+  }) => {
+    const lessonFromEditForm = {
+      title: `${values.name}`,
+      description: `${values.description}`,
+    };
     request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
   };
 
@@ -46,7 +49,9 @@ export const EditVideoLessonForm: FC = () => {
     if (!title) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!RegExpName.test(title)) {
-      return intl.formatMessage({id: "app.editVideoLesson.errorProhibitedCharacters"});
+      return intl.formatMessage({
+        id: "app.editVideoLesson.errorProhibitedCharacters",
+      });
     } else if (title.length > maxNameLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharacters" },
@@ -54,7 +59,7 @@ export const EditVideoLessonForm: FC = () => {
       );
     }
   };
-  
+
   const getHashTagCount = (description: string, hachTag: string) => {
     const hashTagArr = [];
     description
@@ -70,7 +75,9 @@ export const EditVideoLessonForm: FC = () => {
     if (!description) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
     } else if (!RegExpDescription.test(description)) {
-      return intl.formatMessage({id: "app.editVideoLesson.errorProhibitedCharacters"});
+      return intl.formatMessage({
+        id: "app.editVideoLesson.errorProhibitedCharacters",
+      });
     } else if (description.length > maxDescriptionLength) {
       return intl.formatMessage(
         { id: "app.editVideoLesson.errorMaxCharactersDescr" },
@@ -196,4 +203,4 @@ export const EditVideoLessonForm: FC = () => {
       )}
     </Formik>
   );
-};;
+};
