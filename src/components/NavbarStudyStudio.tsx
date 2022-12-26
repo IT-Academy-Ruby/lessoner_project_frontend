@@ -158,44 +158,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     place: any;
   };
 
-  const renderButtonLoInOut = (item: itemTypes) => {
-    return (
-      <li
-        className={"menu__item menu__item-footer"}
-        key={item.id}
-        onClick={() =>
-          item.id !== buttonPressed && setButtonPressed(item.id)
-        }
-      >
-        <a className={classNames(menuItemInnerCN, {
-              "menu__item-inner--selected": item.id === buttonPressed,
-            })} href={item.href}>
-          <span
-            className={classNames(imageWrapperCN, {
-              "image__wrapper--selected": item.id === buttonPressed,
-            })}
-          >
-            <div
-              className={classNames(svgItemCN, {
-                "svg__item--selected": item.id === buttonPressed,
-              })}
-            >
-              <NavbarStudyStudioSVGSelector icon={item.icon} />
-            </div>
-          </span>
-          <span
-            className={`${menuTextCN} ${
-              item.id === buttonPressed ? "menu__text--selected" : ""
-            }`}
-          >
-            {item.value}
-          </span>
-        </a>
-      </li>
-    );
-  };
-
-  const renderButtonTheme = (item: itemTypes) => {
+  const renderTheme_LogInOut = (item: itemTypes) => {
     return (
     <li
       className={"menu__item menu__item-footer"}
@@ -204,11 +167,13 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
         item.id !== buttonPressed && setButtonPressed(item.id)
       }
     >
-      <a className={classNames("menu__item-inner-theme", menuItemInnerCN, {
+      <a className={classNames({"menu__item-inner-theme": item.place.lightTheme || item.place.darkTheme}, menuItemInnerCN, {
             "menu__item-inner--selected": item.id === buttonPressed,
           })} href={item.href}>
         <span
-          className={classNames(imageWrapperThemeCN)}
+          className={classNames((item.place.lightTheme || item.place.darkTheme) ? imageWrapperThemeCN : imageWrapperCN, {
+              "image__wrapper--selected": item.id === buttonPressed,
+            })}
         >
           <div
             className={classNames(svgItemCN, {
@@ -313,18 +278,18 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
               {items.map((item: itemTypes) =>
                  (menuType === "not_autorised") 
                     ? 
-                  item.place.logIn && renderButtonLoInOut(item)
+                  item.place.logIn && renderTheme_LogInOut(item)
                     :
-                  item.place.logOut && renderButtonLoInOut(item)
+                  item.place.logOut && renderTheme_LogInOut(item)
               )}
             </div>
             <div className="menu__footer-theme" onClick={darkMode.toggle}>
               {items.map((item: itemTypes) =>
                   darkMode.value 
                     ? 
-                  item.place.lightTheme && renderButtonTheme(item)
+                  item.place.lightTheme && renderTheme_LogInOut(item)
                     :
-                  item.place.darkTheme && renderButtonTheme(item)
+                  item.place.darkTheme && renderTheme_LogInOut(item)
               )}
             </div>
             <div className="menu__footer-rights">
@@ -334,6 +299,13 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 <span className={classNames("menu__footer-text", {
                 "menu__footer-text--active": isMenuActive})}
                 >{intl.formatMessage({ id: "app.navbarStudyStudio.footer" })}</span>
+              </p>
+              <p className={classNames("menu__footer-text", {
+                "menu__footer-text--active": isMenuActive})} >
+                <a className={classNames("menu__footer-text menu__footer-policy", {
+                  "menu__footer-text--active": isMenuActive})} href="#!">
+                  Privacy Policy
+                </a>
               </p>
             </div>
           </div>
