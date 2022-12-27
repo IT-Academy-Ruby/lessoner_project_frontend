@@ -18,14 +18,14 @@
 }
 
 .thumbnail__right {
+  width: 60%;
+}
+
+.thumbnail__right-inner {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-}
-
-.thumbnail__right {
-  width: 60%;
 }
 
 .thumbnail__picture {
@@ -47,11 +47,8 @@
   object-fit: cover;
 }
 
-.thumbnail__btn-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
+.thumbnail__item-name, .thumbnail__item-size {
+  margin: 0 0 10px 0;
 }
 
 .svg__change, .svg__delete {

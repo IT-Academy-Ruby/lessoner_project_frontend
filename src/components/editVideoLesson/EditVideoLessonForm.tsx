@@ -166,17 +166,17 @@ export const EditVideoLessonForm: FC = () => {
               buttonIcon={<div className="svg__add"></div>}
             />
           </div>
-          <label className="evlf__label">
-            {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
-            <p className="evlf__text">
-              {intl.formatMessage({
-                id: "app.editVideoLesson.lableThumbnailText",
-              })}
-            </p>
-            <div className="evlth__wrapper">
-              <Thumbnail />
-            </div>
-          </label>
+          <div className="evlf__label">
+            <label>
+              {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
+              <p className="evlf__text">
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableThumbnailText",
+                })}
+              </p>
+            </label>
+            <Thumbnail />
+          </div>
           <div className="evlf__btn-wrapper">
             <Button
               buttonType="button"
