@@ -73,10 +73,12 @@ export const messages_ru = {
   "app.button.finish": "Закончить",
   "app.button.signIn": "Войти",
   "app.button.code": "Отправить код еще раз",
-  "app.or": "или",
   "app.button.addsubtitles": "Добавить субтитры",
   "app.button.cancel": "Отменить",
   "app.button.save": "Сохранить",
+  "app.button.change": "Изменить",
+  "app.button.delete": "Удалить",
+  "app.or": "или",
   "app.pagesTitle.registration": "Регистрация",
   "app.pagesTitle.confirm":
     "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
