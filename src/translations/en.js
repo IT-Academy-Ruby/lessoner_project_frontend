@@ -4,7 +4,7 @@ import {
 } from "../constants";
 
 export const messages_en = {
-  "app.name": "Lessoner",
+  "app.name": "The Lessoner",
   "app.studio": "My Studio",
   "app.categories": "Categories",
   "app.lessons": "Lessons",
