@@ -12,7 +12,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/body/header/search/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import TranslationHelpers from "./translations/translationHelpers";
-import {useState} from "react";
+import { useState } from "react";
 
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
@@ -20,6 +20,10 @@ function App(): JSX.Element {
   );
 
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
+
+  const signOut = () => {
+    localStorage.setItem("JWT", "");
+  };
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -101,6 +105,7 @@ function App(): JSX.Element {
             <Link to={"/confirmReg"}>
               ConfirmReg
             </Link>
+            <button onClick={signOut}>Not authorized</button>
           </div>
         </div>
       </BrowserRouter>

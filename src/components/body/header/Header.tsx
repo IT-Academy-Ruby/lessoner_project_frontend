@@ -34,10 +34,6 @@ const Header = () => {
 
   return (
     <div className="side-bar">
-      <label className="menu">
-        <input type="checkbox" className="burg-btn"/>
-        <span className="menu-burg"></span>
-      </label>
       <div className="header">
         <Link to="/n" className="logo-name">
           <img className="logo" src={Logo} alt="Logo"/>
