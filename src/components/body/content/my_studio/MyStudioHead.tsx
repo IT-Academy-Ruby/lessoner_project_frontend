@@ -1,11 +1,28 @@
 import "./my_studio_head.css";
+import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { PlusSvg } from "../../../svg/PlusSvg";
-import { useState } from "react"; 
+import requestApi from "../../../../services/request";
+ 
 
 const MyStudioHead = () => {
   const [statusActive, setStatusActive] = useState("All lessons");
   const [categoryActive, setCategoryActive] = useState("All categories");
+  const [ allCategories, setAllCategories ] = useState([]);
+  const getCategorieUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
+
+  useEffect(() => {
+    const lessons = requestApi(getCategorieUrl,"GET").then((response)=>{
+      return response.json();
+    }).then((json) => {
+      setAllCategories(json);
+      console.log(json);
+      return json;
+    }).catch(error => {
+      console.log(error);
+    });
+    console.log(lessons);
+  },[]);
 
   const handleStatusToggle = (status: string) => {
     setStatusActive(status);
@@ -17,7 +34,6 @@ const MyStudioHead = () => {
   };
 
   const STATUSES = ["All lessons", "Published", "In review", "Draft", "Archived"];
-  const CATEGORIES = ["All categories", "IT", "Music", "Design"];
   const elementsStatus = STATUSES.map((status) => {
     return (
       <div key={status}  id="status-div">
@@ -29,10 +45,10 @@ const MyStudioHead = () => {
       </div>
     );
   });
-  const elementsCategory = CATEGORIES.map((category) => {
+  const elementsCategory = allCategories.map((elem:any) => {
     return (     
-      <option key={category} id={category}
-      >{category}
+      <option key={elem.id} 
+      >{elem.name}
       </option>
     );
   });
@@ -55,6 +71,7 @@ const MyStudioHead = () => {
         </div>
         <div className="my-categories">
           <select name="" id="my_studio_select" onChange={(event)=>handleCategoryToggle(event)}>
+            <option value="All categories" selected hidden >All categories</option>
             {elementsCategory}
           </select>
         </div>
