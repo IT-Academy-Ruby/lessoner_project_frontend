@@ -2,7 +2,7 @@ import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Main from "./content/Main";
 import { NAVBAR_ADMIN } from "../../constants";
-import NavbarStudyStudio from "../NavbarStudyStudio";
+import NavbarStudyStudio from "./navigation/NavbarStudyStudio";
 
 type BodyProps = {
   onLanguageSwitch: (arg: string) => void;
