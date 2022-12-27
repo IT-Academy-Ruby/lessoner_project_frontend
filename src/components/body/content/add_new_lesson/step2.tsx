@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import "react-responsive-modal/styles.css";
-import { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useEffect, useState } from "react";
 import { LoadGrey } from "../../../svg/LoadGrey";
 import { Loader } from "react-feather";
 import { Modal } from "react-responsive-modal";
@@ -19,17 +19,16 @@ const formData2 = {
   category:"",description:"",subtitles:"",subtitlesFile:"", id:0
 };
 let simbolsLeft = 0;
-const getCategorieUrl = "https://Lessoner-project-2w3h.onrender.com/categories";
+const getCategoriesUrl=`${process.env.REACT_APP_BACKEND_URL}/categories`;
 
 const Step2 = ( props:any ) => {
   const  [allCategories, setAllCategories ] = useState<categoriesType[]>([]);
   const [category, setCategory ] = useState("");
   const [ description, setDescription ] = useState("");
-  // const [ id, setId ] = useState(0);
   const intl = useIntl();
 
   useEffect(() => {
-    const lessons = requestApi(getCategorieUrl,"GET").then((response)=>{
+    const lessons = requestApi(getCategoriesUrl,"GET").then((response)=>{
       return response.json();
     }).then((json) => {
       setAllCategories(json);
@@ -62,7 +61,6 @@ const Step2 = ( props:any ) => {
 
 
   const { onChange } = props;
-  // const [open, setOpen] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false); 
@@ -91,7 +89,6 @@ const Step2 = ( props:any ) => {
     simbolsLeft = e.value.length;
     onChange(formData2);
     const calc=e.value.matchAll(/#/g);
-
 
     if(e.value.length > 600){
       setMsgErrorDescription("The maximum description length is 600 simbols");
@@ -191,7 +188,6 @@ const Step2 = ( props:any ) => {
             <label htmlFor="description"><FormattedMessage id="app.Description"/></label>
             <textarea
               required
-              // maxLength={600}
               id="description"
               name="description"
               onChange={(e)=>{formik.handleChange(e);addDescriptionOnDate(e);descriptionCheck(e);}}
@@ -221,10 +217,10 @@ const Step2 = ( props:any ) => {
               <FormattedMessage id="app.SelectOrUploadAPictureThatShowsWhatsInYourVideo"/>
             </span>
             <div className="all-div-thumbnail">
-              <div className="div-thumbnail"></div>
-              <div className="div-thumbnail"></div>
-              <div className="div-thumbnail"></div>
-              <div className="div-thumbnail"></div>
+              <div className="div-thumbnail"/>
+              <div className="div-thumbnail"/>
+              <div className="div-thumbnail"/>
+              <div className="div-thumbnail"/>
             </div>
           </div>
         </div>

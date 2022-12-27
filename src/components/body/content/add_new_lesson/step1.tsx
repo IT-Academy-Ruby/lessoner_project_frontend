@@ -31,7 +31,6 @@ const Step1 = (  props:any  ) => {
     formData1.stepStatus=stepStatus;
   },[stepStatus]);
 
-
   const formik = useFormik(
     { initialValues: {
       name: "",
@@ -41,17 +40,15 @@ const Step1 = (  props:any  ) => {
 
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
-      
     },}
   );
-  // ---------------------------------------------------------------------------------
+
   const addNameOnDate = (event:React.FormEvent)=>{
     const e = event?.target as HTMLInputElement;
     formData1.name = e.value;
     simbolsLeft = e.value.length;
     disStatus();
     onChange(formData1);
-    
   };
 
   const disStatus = () => {
@@ -65,8 +62,7 @@ const Step1 = (  props:any  ) => {
   const addLinkOnDate = (event:React.FormEvent) => {
     const e = event?.target as HTMLInputElement;
     formData1.link = e.value;
-    onChange(formData1);
-    
+    onChange(formData1); 
   };
 
   const addFileOnDate = (event:React.FormEvent) => {
@@ -74,8 +70,6 @@ const Step1 = (  props:any  ) => {
     formData1.file = e.value;
     onChange(formData1);
   };
-
-  // ----------------------------------------------------------------------------
 
   const nameError = ( event:React.FormEvent ) => {
     const e = event?.target as HTMLInputElement;

@@ -29,14 +29,12 @@ const NewLesson = () => {
   const [subtitles,setSubtitles] = useState("");
   const [subtitlesFile,setSubtitlesFile] = useState("");
   const [ step, setStep ] = useState(1);
-  // const [ stepStatus, setstepStatus ] = useState("Next step");
-  // const [ disStatusStep1, setDisStatusStep1 ] = useState(false);
   const  [allCategories, setAllCategoris ] = useState([]);
-  // const [ stepStatusDis, setStepStatusDis ] = useState(true);
   const [ nextStepButtonDisabled, setNextStepButtonDisabled ] = useState(true);
   const [ addNewLessonDisabled, setAddNewLessonDisabled ] = useState(true);
   const intl=useIntl();
-  const dataForBe = {
+
+  const payload = {
     title:name,
     video_link:link,
     category_id:categoryId,
@@ -45,26 +43,10 @@ const NewLesson = () => {
 
   };
   const getLessonUrl = "https://Lessoner-project-2w3h.onrender.com/lessons";
-  // useEffect(() => {
-  //   const categories:any = requestApi(getCategorieUrl,"GET").then((response)=>{
-  //     return(response.json());
-  //   }).then((json)=>{
-  //     setAllCategoris(json);
-  //     return(json); 
-  //   }).catch(error=>{
-  //     console.log(error);
-  //   });
-  // },[]);
-  // console.log(allCategories);
   const handleDataChangeStep1 = ( formData1:dataType ) => {
-
-
     setName(formData1.name);
     setLink(formData1.link);
     setFile(formData1.file);
-    // setDisStatusStep1(formData1.disStatus1);
-    // setStepStatusDis(formData1.stepStatus);
-
   };
 
   const handleDataChangeStep2 = ( data:dataType ) => {
@@ -73,15 +55,22 @@ const NewLesson = () => {
     setSubtitles(data.subtitles);
     setSubtitlesFile(data.subtitlesFile);
     setCategoryId(data.id);
-   
   };
 
   const click = () => {
     // eslint-disable-next-line max-len
-    console.log("name:"+name,"link:"+link,"file:"+file,"category:"+category,"description:"+description,"subtitles lang:"+subtitles,"subtitlesFile:"+subtitlesFile,"id:"+categoryId);
-
-    
-    const categories:any = requestApi(getLessonUrl,"POST",dataForBe).then((response)=>{
+    console.log("data",{
+      name,
+      link,
+      file,
+      category,
+      description,
+      subtitles,
+      subtitlesFile,
+      categoryId,
+    });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const categories:unknown = requestApi(getLessonUrl,"POST",payload).then((response)=>{
       return(response.json());
     }).then((json) => {
       console.log(json);
@@ -97,8 +86,6 @@ const NewLesson = () => {
       setStep(2);
       document.getElementsByClassName("step1")[0].classList.remove("active");
       document.getElementsByClassName("step2")[0].classList.add("active");
-      // document.getElementsByClassName("next-step-button")[0].classList.add("active-step");
-      // setstepStatus("Next step");
     } else {
       setStep(1);
       document.getElementsByClassName("step2")[0].classList.remove("active");
