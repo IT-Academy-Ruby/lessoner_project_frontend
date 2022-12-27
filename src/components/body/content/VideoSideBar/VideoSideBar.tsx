@@ -5,7 +5,7 @@ import { VideoCard } from "../VideoCard/VideoCard";
 import requestApi from "../../../../services/request";
 
 interface VideoSideBarProps {
-  id?: number;
+  id: number;
 }
 
 export const VideoSideBar = (prop: VideoSideBarProps) => {
@@ -57,7 +57,12 @@ export const VideoSideBar = (prop: VideoSideBarProps) => {
       {videoCardsArr.map((elem, index) => {
         return (
           <div className="video__card_wrapper" key={index}>
-            <VideoCard img={elem.imagePreview} />
+            <VideoCard
+              id={id}
+              img={elem.image_link}
+              title={elem.title}
+              published={elem.created_at}
+            />
           </div>
         );
       })}

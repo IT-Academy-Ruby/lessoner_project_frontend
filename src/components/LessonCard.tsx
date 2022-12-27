@@ -35,6 +35,7 @@ const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
       <Link to="/videopage">
+      <Link to="/videopage">
         <img src={props.imagePreview} alt="Videopreview" />
       </Link>
     </div>
@@ -44,11 +45,12 @@ const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
 type TitleProps = {
   title: string;
   id: number;
+  className?: string;
 };
 
-const Title: React.FC<TitleProps> = (props) => {
+export const Title: React.FC<TitleProps> = (props) => {
   return (
-    <div className="video__title">
+    <div className={`video__title ${props.className}`}>
       <Link to={`/lessons/${props.id}`}>
         <p>{props.title}</p>
       </Link>
@@ -88,7 +90,7 @@ type PublishedDataProps = {
   published: string;
 };
 
-const Published: React.FC<PublishedDataProps> = (props) => {
+export const Published: React.FC<PublishedDataProps> = (props) => {
   return (
     <div className="details__date">
       <p>

@@ -18,7 +18,7 @@ export interface Lesson {
   author_id: number;
   category_id: number;
   created_at: string;
-  imagePreview?: string;
+  image_link?: string;
   view?: number;
   rating?: number;
   totalVotes?: number;
@@ -72,7 +72,7 @@ const Lessons: React.FC = () => {
     if (!dataIsLoaded && categoriesIsLoaded) {
       const fetchSuccess = (data: Lesson[]) => {
         data.map((elem) => {
-          elem.imagePreview =
+          elem.image_link =
             "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg";
         });
         const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
@@ -112,7 +112,7 @@ const Lessons: React.FC = () => {
             title={obj.title}
             status={obj.status}
             duration={obj.duration}
-            imagePreview={obj.imagePreview}
+            imagePreview={obj.image_link}
             id={obj.id}
             published={obj.created_at}
             view={obj.view}

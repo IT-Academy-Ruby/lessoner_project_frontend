@@ -5,4 +5,12 @@
   height: 132px;
   box-shadow: 2px 0px 15px rgba(16, 19, 45, 0.1);
   border-radius: 8px;
+  margin-bottom: 12px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+.video__card_wrapper:last-child {
+  margin-bottom: 0px;
 }
