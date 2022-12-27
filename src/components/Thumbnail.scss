@@ -7,7 +7,7 @@
   width: 100%;
 }
 .thumbnail__left {
-  width: 40%;
+  width: 60%;
 }
 
 .thumbnail__left-inner {
@@ -18,7 +18,7 @@
 }
 
 .thumbnail__right {
-  width: 60%;
+  width: 40%;
 }
 
 .thumbnail__right-inner {
@@ -47,11 +47,15 @@
   object-fit: cover;
 }
 
+.thumbnail__item-info {
+  width: calc(100% - 80px);
+}
+
 .thumbnail__item-name, .thumbnail__item-size {
   margin: 0 0 10px 0;
 }
 
-.svg__change, .svg__delete {
+.svg__change{
   width: 20px;
   height: 20px;
   background-size: 15px 17px;
@@ -62,6 +66,8 @@
   background: url(./icons/changeFile.svg) no-repeat center;
 }
 
-.svg__delete {
-  background: url(./icons/deleteFile.svg) no-repeat center;
+.button__notsee {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
