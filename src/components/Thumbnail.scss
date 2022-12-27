@@ -1,25 +1,27 @@
 @import "../constants.scss";
 
-.evlth__inner {
+.thumbnail__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-.evlth__inner-left, .evlth__inner-right {
-  display: flex;
+.thumbnail__left, .thumbnail__right {
   width: 50%;
 }
 
-.evlth__inner-left {
+.thumbnail__left-inner {
+  display: flex;
   justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }
 
-.evlth__inner-right {
+.thumbnail__right {
   justify-content: flex-end;
 }
 
-.evlth__item {
+.thumbnail__picture {
   width: 100%;
   width: 80px;
   height: 100%;
@@ -32,8 +34,15 @@
   cursor: pointer;
 }
 
-.evlth__item-img {
+.thumbnail__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.thumbnail__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
