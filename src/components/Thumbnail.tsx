@@ -19,18 +19,18 @@ export const Thumbnail = () => {
         </div>
       </div>
       <div className="thumbnail__right">
-        <div className="thumbnail__btn-wrapper">
-          <Button
-            buttonType="button"
-            buttonText={intl.formatMessage({ id: "app.button.cancel" })}
-            className="button__fs16-white button__fs16-white-evlt"
-          />
-          <Button
-            buttonType="button"
-            buttonText={intl.formatMessage({ id: "app.button.save" })}
-            className="button__fs16"
-          />
-        </div>
+        <Button
+          buttonType="button"
+          buttonText={intl.formatMessage({ id: "app.button.change" })}
+          className="button__fs16-white button__fs16-left"
+          buttonIcon={<div className="svg__change"></div>}
+        />
+        <Button
+          buttonType="button"
+          buttonText={intl.formatMessage({ id: "app.button.delete" })}
+          className="button__fs16-red"
+          buttonIcon={<div className="svg__delete"></div>}
+        />
       </div>
     </div>
   );
