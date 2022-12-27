@@ -1,7 +1,5 @@
-import { BACKEND_URL } from "../../constants";
-
 const sendPasswordResetLink = async (email: string): Promise<string> => {
-  const res = await fetch(`${BACKEND_URL}/password/forgot`, {
+  const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email: email })

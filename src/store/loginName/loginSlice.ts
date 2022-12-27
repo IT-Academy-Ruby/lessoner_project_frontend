@@ -1,13 +1,12 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {BACKEND_URL} from "../../constants";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getLogin = createAsyncThunk(
-  "user/getLoginStatus",
+  "login/getLoginStatus",
   async (value: { email: string, password: string }) => {
     const response = await fetch(
-      `${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
-      {method: "POST"});
-
+      `${process.env.REACT_APP_BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
+      { method: "POST",
+        headers: { "Content-Type": "application/json" }});
     const data = await response.json();
     if (response.status === 200) {
       return data.jwt;
@@ -20,10 +19,10 @@ export const getLogin = createAsyncThunk(
 export const sendPasswordResetLink = createAsyncThunk(
   "user/sendPasswordResetLink",
   async (email: string): Promise<boolean> => {
-    const response = await fetch(`${BACKEND_URL}/password/forgot`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({email: email})
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email })
     });
     if (response.status !== 200) {
       return false;
@@ -36,7 +35,7 @@ export const getEmail = createAsyncThunk(
   "user/getEmailStatus",
   async (email: string): Promise<boolean> => {
     const response = await fetch(
-      `${BACKEND_URL}/check_email?email=${email}`
+      `${process.env.REACT_APP_BACKEND_URL}/check_email?email=${email}`
     );
     if (!response.ok) {
       throw new Error(`Error code ${response.status}`);

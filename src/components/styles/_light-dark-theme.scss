@@ -2,23 +2,111 @@
 
 $themes: (
   bgThemeColor1: (
-    darkTheme: $blue700,
-    lightTheme: $grey100,
-  ),
-  bgThemeColor2: (
-    darkTheme: $blue600,
-    lightTheme: $grey200,
+    darkTheme: $darkMain,
+    lightTheme: $lightMain,
   ),
   textThemeColor1: (
     darkTheme: $grey100,
     lightTheme: $black,
   ),
+  bgThemeNavBarColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  bgNavBarShadow: (
+    darkTheme: $SideBarShadowDark,
+    lightTheme: $SideBarShadowLight,
+  ),
+  iconsTextThemeNavBarColor: (
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  themeNavBarColorHover: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  themeNavBarBgHover: (
+    darkTheme: $dark6,
+    lightTheme: $light5,
+  ),
+  bgCardThemeColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  titleCardThemeColor: (
+    darkTheme: $lightCardText,
+    lightTheme: $darkMain,
+  ),
+  categoryTextCardThemeColor: (
+    darkTheme: $lightCardText,
+    lightTheme: $bluePrimaryText,
+  ),
+  categorybgCardThemeColor: (
+    darkTheme: $Surface5Dark,
+    lightTheme: $Surface5Light,
+  ),
+  KebabCardThemeColor: (
+    darkTheme: $lightMain,
+    lightTheme: $darkMain,
+  ),
+  bgFirstRegistrForm: (
+    darkTheme: $dark1,
+    lightTheme: $light1,
+  ),
+  titlesFirstRegistrForm: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  inputTextFirstRegistrForm: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgCalendar: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textCalendar: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
+  ),
+  textCalendarOutsideMonth: (
+    darkTheme: $dark4,
+    lightTheme: $light3,
+  ),
+  textCalendarDayHover: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
+  textConfirmReg: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgPhoneNumberCountryList: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textPhoneNumberCountryList: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  textPhoneNumberCountryListHover: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
+  bgGenderSelectorRadio:(
+    darkTheme: $dark1,
+    lightTheme: $light1,
+  )
 );
 
 @mixin styles($mode) {
-  @each $key, $map in $themes {
-    @each $prop, $color in $map {
-      @if $prop == $mode {
+
+  @each $key,
+  $map in $themes {
+
+    @each $prop,
+    $color in $map {
+      @if $prop ==$mode {
         --#{$key}: #{$color};
       }
     }
