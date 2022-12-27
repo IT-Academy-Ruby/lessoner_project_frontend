@@ -1,13 +1,9 @@
-import {
-  NAVBAR_ADMIN, NAVBAR_AUTORISED, NAVBAR_NOT_AUTORISED
-} from "../../../constants";
 import {Route, Routes} from "react-router-dom";
 import About from "./about/About";
 import Categories from "./categories/Categories";
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
-import NavbarStudyStudio from "../../NavbarStudyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
 import {useAppSelector} from "../../../store/hooks";
@@ -16,7 +12,6 @@ const Content = () => {
   const lessoner = useAppSelector(state => state.link.lessoner);
   return (
     <div className="main">
-      <NavbarStudyStudio menuType={NAVBAR_ADMIN}/>
       <Routes>
         <Route path={lessoner} element={<Lessoner/>}/>
         <Route path="/myStudio" element={<MyStudio />} />
