@@ -64,10 +64,6 @@ const MyStudioHead = () => {
         </div> 
       </div>
       <div className="lessons-nav">
-        <div className="my-lessons" >
-          {elementsStatus} 
-
-        </div>
         <div className="lessons-nav">
           <div className="my-lessons" >
             {elementsStatus} 
