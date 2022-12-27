@@ -1,7 +1,5 @@
 import "./VideoCard.scss";
-import { Published } from "../../../../components/LessonCard";
-import { Title } from "../../../../components/LessonCard";
-import { MenuKebab } from "../../../../../src/components/LessonCard";
+import { MenuKebab, Published, Title } from "../../../../components/LessonCard";
 
 interface VideoCardProps {
   id: number;
@@ -19,9 +17,9 @@ export const VideoCard = ({ id, img, title, published }: VideoCardProps) => {
       <div className="info">
         <div className="info__title">
           <Title title={title} id={id} className="VideoCardTitle" />
-          <MenuKebab />
+          <MenuKebab className="VideoCardKebab" />
         </div>
-        <Published published={published} />
+        <Published published={published} className="VideoCardPublished" />
       </div>
     </>
   );

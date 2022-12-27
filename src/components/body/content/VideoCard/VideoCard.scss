@@ -1,19 +1,23 @@
 @import "../../../../constants.scss";
 .VideoCardTitle {
-  margin-left: 0px;
+  width: 164px;
+  height: auto;
+  text-align: left;
 }
 .preview__img {
   width: 208px;
   height: 132px;
   img {
     border-radius: 8px 0px 0px 8px;
+    width: 208px;
   }
 }
 .info {
   width: 229px;
   height: 132px;
+  margin-left: 14px;
 }
-.details__date {
+.VideoCardPublished {
   width: 136px;
   height: 17px;
   font-family: $font;
@@ -30,46 +34,15 @@
     }
   }
 }
-.video__title {
-  width: 168px;
-  height: 41px;
-  text-align: left;
-  margin-top: -14px;
-  margin-left: 0px;
-  font-family: $font;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
-  color: #1b1b1f;
-  a {
-    text-decoration: none;
-    color: var(--titleCardThemeColor);
-    transition: color 0.5s ease;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    a:visited {
-      color: #1b1b1f;
-    }
-  }
-}
-.popup {
-  position: relative;
-  user-select: none;
-}
+
 .info__title {
   display: flex;
-}
-.kebab__menu {
-  position: static;
-  margin-left: auto;
-}
-.video__title {
-  width: auto;
-  height: auto;
-  text-align: left;
-  margin-left: 0;
   margin-top: 8px;
+  justify-content: space-between;
+}
+.VideoCardKebab {
+  position: static;
+  margin-left: 0;
+  width: auto;
+  margin-right: 24px;
 }

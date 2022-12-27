@@ -9,6 +9,7 @@ import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 type ThumbnailImageUrlProps = {
   imagePreview: string;
 };
@@ -58,11 +59,13 @@ export const Title: React.FC<TitleProps> = (props) => {
   );
 };
 
+
 type MenuKebabProps = {
+  className?: string;
   idCard: number;
 };
 
-const MenuKebab: FC<MenuKebabProps> = (props) => {
+const MenuKebab: React.FC<MenuKebabProps>: FC<MenuKebabProps> = ({ className }props) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -74,7 +77,7 @@ const MenuKebab: FC<MenuKebabProps> = (props) => {
 
   return (
     <>
-      <div onClick={handleKebabClick} className="kebab__menu">
+      <div onClick={handleKebabClick} className={`kebab__menu ${className}`}>
         <KebabSvg />
       </div>
       <PopupMenu
@@ -88,11 +91,12 @@ const MenuKebab: FC<MenuKebabProps> = (props) => {
 
 type PublishedDataProps = {
   published: string;
+  className?: string;
 };
 
 export const Published: React.FC<PublishedDataProps> = (props) => {
   return (
-    <div className="details__date">
+    <div className={`details__date ${props.className}`}>
       <p>
         Published:
         <Moment element="span" format="YYYY.MM.DD" date={props.published} />
