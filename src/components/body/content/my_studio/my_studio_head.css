@@ -153,3 +153,7 @@ div.status_lesson{
 #status-div{
     margin: 0px 20px;
 }
+
+.add-new-lesson-div a{
+    text-decoration: none;
+}
