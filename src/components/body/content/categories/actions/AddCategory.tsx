@@ -6,25 +6,21 @@ import {
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {
-  addCategory, getCategory, updateCategory, getBlob
+  addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
 import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
-import {useEffect} from "react";
-import {useState} from "react";
+import Successful from "../../../../icons/successful.svg";
 
 interface FormValues {
-  id: number;
   name: string;
   description: string;
   image_url: string;
-  status: string;
-  amount_lessons: number;
-  created_at: string;
 }
 
 interface FormErrors {
@@ -38,63 +34,59 @@ const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [selectImage, setSelectImage] = useState({name: "", type: "", size: 0, image: new Blob()});
-  const [getImage, setGetImage] = useState<Blob>();
+  const [selectImage, setSelectImage] = useState({name: "", type: "", size: 0, image: ""});
   const allCategories = useAppSelector((state) => state.categories.categories);
-
-  let category = {
+  const [category, setCategory] = useState({
     name: "",
     description: "",
     id: 0,
     image_url: "",
-    status: "",
+    status: "active",
     amount_lessons: 0,
     created_at: "",
-  };
+    image_size: 0,
+    image_name: "",
+    image_type: "",
+  });
+  const [editCategory, setEditCategory] = useState("");
+  const [isClose, setIsClose] = useState(false);
+  const [isSuccessful, setISuccessful] = useState(false);
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
 
   useEffect(() => {
-    if (!add) {
+    if (!add && allCategories.length <= 1) {
       dispatch(getCategory());
     }
     if (!add && allCategories.length > 1) {
-        category = allCategories.filter(category => category.id === idCategory)[0];
-        fetch(category.image_url).then(responce => responce.blob()).then(blob => setGetImage(blob))
-
-      if (getImage) {
-        const file = {
-          image: getImage!,
-          size: getImage!.size,
-          name: String(getImage).slice(String(getImage).indexOf("/") + 1),
-          type: getImage!.type,
-         }
-        setSelectImage(file);
-      }
+      setCategory(allCategories.filter(category => category.id === idCategory)[0]);
+      setSelectImage({
+        image: "",
+        size: category.image_size,
+        name: category.image_name,
+        type: category.image_type,
+      });
+      setEditCategory(category.image_url);
     }
-  }, [dispatch, add, selectImage]);
+  }, [dispatch, add, allCategories]);
 
   const initialValues: FormValues = {
-    id: add ? 0 : category.id,
-    name: add ? "" : category.name,
-    description: add ? "" : category.description,
-    image_url: add ? "" : category.image_url,
-    status: add ? "active" : category.status,
-    amount_lessons: add ? 0 : category.amount_lessons,
-    created_at: add ? "" : category.created_at,
+    name: category.name,
+    description: category.description,
+    image_url: "",
   };
 
-  const nameLength = initialValues.name.length;
-  const descriptionLength = initialValues.name.length;
+  const nameLength = category.name.length;
+  const descriptionLength = category.name.length;
 
   return (
     <div className="add-category">
-      <Link to="/categories" className="button-back">
+      <div  className="button-back" onClick={()=>setIsClose(true)}>
         <span className="arrow-back">&#10094;</span>
         <FormattedMessage id="app.categories.back"/>
-      </Link>
-      {allCategories.length > 1 && <Formik
+      </div>
+      {(add || category.id > 0) && <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
@@ -118,27 +110,33 @@ const AddCategory = ({add}: TypeTitle) => {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
               {symbols: DESCRIPTION_CATEGORY.maxSymbols});
           }
-          if (selectImage) {
+          if (selectImage.image || editCategory) {
+
             // const imageFormat = String(selectImage["type"]);
-            const isFormat = IMAGE_DATA.format.find(format =>
-              "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format)
-            if (!isFormat) {
-              errors.image_url = intl.formatMessage({id: "app.categories.imageError"});
-            }
-            if (selectImage["size"] > IMAGE_DATA.size) {
+            // const isFormat = IMAGE_DATA.format.find(format =>
+            //   "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format)
+            // console.log(isFormat)
+            // if (!isFormat) {
+            //   errors.image_url = intl.formatMessage({id: "app.categories.imageError"});
+            // }
+            if (selectImage.size > IMAGE_DATA.size) {
               errors.image_url = intl.formatMessage({id: "app.categories.imageBigSize"});
             }
           }
-          if (!selectImage) {
+          if (!selectImage.image && !editCategory) {
             errors.image_url = intl.formatMessage({id: "app.categories.selectFile"});
           }
+
           return errors;
         }}
         onSubmit={(values: FormValues) => {
+          values.image_url = selectImage.image
           // values.name = values.name.trim();
           // values.description = values.description.trim();
           console.log(values)
-          console.log(selectImage ? selectImage["type"] : selectImage)
+          console.log(category.name)
+          console.log(selectImage.name)
+          setISuccessful(true)
           // if (add) {
           //   dispatch(addCategory(values));
           // } else {
@@ -174,7 +172,9 @@ const AddCategory = ({add}: TypeTitle) => {
                 error={touched.image_url ? errors.image_url : undefined}
                 selectImage={selectImage}
                 setSelectImage={setSelectImage}
-                getImage={getImage}
+                setEditCategory={setEditCategory}
+                editCategory={editCategory}
+                // getImage={getImage}
               />
 
               <div className="category-buttons">
@@ -182,19 +182,55 @@ const AddCategory = ({add}: TypeTitle) => {
                   buttonType="button"
                   buttonText={intl.formatMessage({id: "app.categories.button.cancel"})}
                   className="button-select button-cancel"
-                  onClick={() => navigate("/categories")}
+                  onClick={() => setIsClose(true)}
                 />
                 <Button
                   buttonType="submit"
                   buttonText={intl.formatMessage({id: "app.categories.button.save"})}
                   className="button-select"
-                  disabled={!!errors.description || !!errors.name}
+                  disabled={!!errors.description || !!errors.name || !!errors.image_url}
                 />
               </div>
             </Form>
           );
         }}
       </Formik>}
+      {isClose && <div className="wrapper-modal">
+        <div className="cansel-modal">
+          <div className="field-close">
+            <span className="close-modal" onClick={() => setIsClose(false)}/>
+          </div>
+          <span className="close-text">
+             <FormattedMessage id="app.categories.close.text"/>
+            </span>
+          <div className="field-button">
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({id: "app.categories.button.yes"})}
+              className="button-login"
+              onClick={() => navigate("/categories")}/>
+            <Button
+              buttonType="button"
+              buttonText={intl.formatMessage({id: "app.categories.button.no"})}
+              className="button-select"
+              onClick={() => setIsClose(false)}/>
+          </div>
+
+        </div>
+      </div>}
+      {isSuccessful && <div className="wrapper-modal">
+        <div className="field-modal">
+          <div className="field-successful">
+            <img src={Successful} alt="successful" className="successful-icon"/>
+            {add && <FormattedMessage id="app.categories.add.successful"/>}
+            {!add && <FormattedMessage id="app.categories.edit.successful"/>}
+            <div className="field-close-successful">
+              <span className="close-modal" onClick={() => setISuccessful(false)}/>
+            </div>
+          </div>
+
+        </div>
+      </div>}
     </div>
   );
 };

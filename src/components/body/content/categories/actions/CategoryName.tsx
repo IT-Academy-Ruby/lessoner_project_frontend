@@ -13,14 +13,15 @@ type CategoryNameProps = {
   },
   error?: string;
   nameLength: number;
+  // editName: string;
+  // setEditName: (value:string)=>void;
 }
 const CategoryName = ({
                         field, error, nameLength
-                      }: CategoryNameProps): JSX.Element => {
+}: CategoryNameProps): JSX.Element => {
   const intl = useIntl();
   const [letters, setLetters] = useState<number>(NAME_CATEGORY.maxSymbols - nameLength);
   const [isFocus, setIsFocus] = useState<boolean>(false);
-
   return (
     <label className="category-label">
       <FormattedMessage id="app.categories.name"/>
@@ -28,7 +29,6 @@ const CategoryName = ({
         type="text"
         className={classNames("category-input", {"invalid-input": error})}
         placeholder={intl.formatMessage({id: "app.categories.name"})}
-
         {...field}
         onKeyUp={() => setLetters(NAME_CATEGORY.maxSymbols - field.value.length)}
         onFocus={() => {
@@ -38,7 +38,8 @@ const CategoryName = ({
           setIsFocus(false)
         }}
       />
-      {isFocus && <span className={classNames("amount-symbols",{"error":error})}>{field.value.length}/{NAME_CATEGORY.maxSymbols}</span>}
+      {isFocus && <span
+        className={classNames("amount-symbols", {"error": error})}>{field.value.length}/{NAME_CATEGORY.maxSymbols}</span>}
       {error && <span className="message error">{error}</span>}
     </label>
   )

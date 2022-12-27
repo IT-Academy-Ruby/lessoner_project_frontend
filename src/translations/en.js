@@ -140,4 +140,9 @@ export const messages_en = {
   "app.gender.female": "Female",
   "app.gender.other": "Other",
   "app.categories.back": "Back",
+  "app.categories.close.text": "Are you sure you want to cancel the action?",
+  "app.categories.button.yes":"Yes",
+  "app.categories.button.no":"No",
+  "app.categories.add.successful":"New category is created and added to the list",
+  "app.categories.edit.successful":"Changes have been saved",
 };

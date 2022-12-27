@@ -9,7 +9,7 @@ const NAME_CATEGORY = {
   minSymbols: 1, maxSymbols: 64, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
 const DESCRIPTION_CATEGORY = {
-  minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
+  minSymbols: 1, maxSymbols: 300, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
 const IMAGE_DATA = {format: [".jpg", ".jpeg", ".png", ".gif"], size: 5120};
 

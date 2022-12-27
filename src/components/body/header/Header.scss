@@ -17,51 +17,6 @@
   transition: background-color 0.5s ease;
 }
 
-.burg-btn {
-  visibility: hidden;
-  position: absolute;
-}
-
-.menu-burg {
-  display: inline-block;
-  width: 18px;
-  top: 25%;
-  border: 2px solid $blueDarkColor;
-  position: relative;
-}
-
-.menu-burg::before,
-.menu-burg::after {
-  content: "";
-  position: absolute;
-  width: 18px;
-  border: 2px solid $blueDarkColor;
-  left: -2px;
-  transition: 0.5s;
-}
-
-.menu-burg::before {
-  transform: translateY(5px);
-}
-
-.menu-burg::after {
-  transform: translateY(-9px);
-}
-
-.burg-btn:checked ~ .menu-burg {
-  visibility: hidden;
-}
-
-.burg-btn:checked ~ .menu-burg::before {
-  transform: rotate(-45deg);
-  visibility: visible;
-}
-
-.burg-btn:checked ~ .menu-burg::after {
-  transform: rotate(45deg);
-  visibility: visible;
-}
-
 .menu-list {
   padding: 0;
   position: absolute;
@@ -111,19 +66,6 @@
   font-family: $font;
 }
 
-.search-button {
-  display: flex;
-  grid-column-start: 9;
-  grid-column-end: 13;
-  justify-content: flex-end;
-  margin-right: 24px;
-  min-width: 592px;
-  input{
-    background-color: var(--bgThemeColor1);
-    transition: background-color 0.5s ease;
-  }
-}
-
 .magnifier {
   display: none;
 }
@@ -161,34 +103,9 @@
   align-items: center;
 }
 
-.button-login {
-  width: 115px;
-  height: 32px;
-  font-family: $font;
-  background: $blueLightColor;
-  color: #eaeaea;
-  border: none;
-  border-radius: 28px;
-  font-weight: 600;
-  font-size: 16px;
-  box-sizing: content-box;
-}
-
 .user-item {
   display: flex;
   align-items: center;
-}
-
-.user-button {
-  width: 141px;
-  border: 1px solid $blueLightColor;
-  border-radius: 28px;
-  font-family: $font;
-  font-weight: 600;
-  font-size: 16px;
-  color: $blueLightColor;
-  padding: 6px 16px;
-  background: $white;
 }
 
 .bell {
@@ -230,12 +147,6 @@
   .logo-name {
     min-width: 170px;
   }
-
-  .search-button {
-    grid-column-start: 4;
-    grid-column-end: 7;
-    min-width: 340px;
-  }
 }
 
 @media (max-width: 650px) {
@@ -264,13 +175,6 @@
     margin-left: 0;
   }
 
-  .search-button {
-    margin-right: 16px;
-    grid-column-start: 3;
-    grid-column-end: 4;
-    min-width: 70px;
-  }
-
   .search {
     display: none;
   }
@@ -281,10 +185,6 @@
   }
 
   .bell {
-    display: none;
-  }
-
-  .button-login {
     display: none;
   }
 }

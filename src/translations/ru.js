@@ -142,5 +142,10 @@ export const messages_ru = {
   "app.gender.female": "Женский",
   "app.gender.other": "Другой",
   "app.categories.back": "Назад",
+  "app.categories.close.text": "Вы уверены, что хотите отменить действие?",
+  "app.categories.button.yes": "Да",
+  "app.categories.button.no": "Нет",
+  "app.categories.add.successful":"Новая категория создана и добавлена в список",
+  "app.categories.edit.successful":"Изменения были сохранены",
 };
 
