@@ -13,10 +13,10 @@ import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../Button";
 import { ILessonBack } from "../types/types";
+import { Thumbnail } from "../Thumbnail";
 import classNames from "classnames";
 import request from "../../services/request";
 import { useIntl } from "react-intl";
-import { Thumbnail } from "../Thumbnail";
 
 const hachTag = "#";
 let countHashTag = 0;
