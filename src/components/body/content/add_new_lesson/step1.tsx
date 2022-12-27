@@ -11,7 +11,6 @@ const formData1 = {
 let simbolsLeft:any = 0;
 
 const Step1 = (  props:any  ) => {
-  const [ stepStatus, setStepStatus ] = useState(true);
   const [ name, setName ] = useState("");
   const [link, setLink] = useState("");
   const { onChange } = props;
@@ -26,10 +25,6 @@ const Step1 = (  props:any  ) => {
       props.setNextStepButtonDisabled(true);
     }
   },[name, link, linkErrorMsg, nameErrorMsg, props]);
-
-  useEffect(() => {
-    formData1.stepStatus=stepStatus;
-  },[stepStatus]);
 
   const formik = useFormik(
     { initialValues: {

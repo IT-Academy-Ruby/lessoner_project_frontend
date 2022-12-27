@@ -1,14 +1,11 @@
 import "./my_studio_head.css";
-
 import { FormattedMessage } from "react-intl";
-import { PlusSvg } from "../../../svg/PlusSvg";
-
 import { Link } from "react-router-dom";
-
 import { useState } from "react"; 
 
 const MyStudioHead = () => {
   const [statusActive, setStatusActive] = useState("All lessons");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [categoryActive, setCategoryActive] = useState("All categories");
 
   const handleStatusToggle = (status: string) => {

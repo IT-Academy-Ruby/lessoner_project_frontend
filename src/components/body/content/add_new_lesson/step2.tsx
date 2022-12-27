@@ -21,6 +21,7 @@ const formData2 = {
 let simbolsLeft = 0;
 const getCategoriesUrl=`${process.env.REACT_APP_BACKEND_URL}/categories`;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Step2 = ( props:any ) => {
   const  [allCategories, setAllCategories ] = useState<categoriesType[]>([]);
   const [category, setCategory ] = useState("");

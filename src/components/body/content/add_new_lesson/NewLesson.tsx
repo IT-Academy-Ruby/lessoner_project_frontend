@@ -70,7 +70,8 @@ const NewLesson = () => {
       categoryId,
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const categories:unknown = requestApi(getLessonUrl,"POST",{...payload,rating:0}).then((response)=>{
+    const categories:unknown = requestApi(
+      getLessonUrl,"POST",{...payload,rating:0}).then((response)=>{
       return(response.json());
     }).then((json) => {
       console.log(json);
