@@ -1,6 +1,6 @@
 @import "../constants.scss";
 
-.button__main, .button__page, .button__fs16, .button__fs16-white, .disabled {
+.button__main, .button__page, .button__fs16, .button__fs16-white, .button__fs16-red, .disabled {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,16 +17,27 @@
   }
 }
 
-.button__fs16, .button__fs16-white {
+.button__fs16, .button__fs16-white,
+.button__fs16-red {
   padding: 6px 32px;
   font-size: 16px;
 }
 
-.button__fs16-white {
+.button__fs16-white,
+.button__fs16-red {
   border: 1px solid $borderColor;
   color: $blueLightColor;
   background: $white;
   font-weight: 600;
+}
+
+.button__fs16-red {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.button__fs16-left {
+  margin-right: 16px;
 }
 
 .disabled {

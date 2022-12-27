@@ -73,10 +73,12 @@ export const messages_en = {
   "app.button.finish": "Finish",
   "app.button.signIn": "Sign in",
   "app.button.code": "Resend code",
-  "app.or": "or",
   "app.button.addsubtitles": "Add subtitles",
   "app.button.cancel": "Cancel",
   "app.button.save": "Save",
+  "app.button.change": "Change",
+  "app.button.delete": "Delete",
+  "app.or": "or",
   "app.pagesTitle.registration": "Registration",
   "app.pagesTitle.confirm":
     "Confirm your registration using the link we sent to your email.",
