@@ -10,6 +10,7 @@ const formData1 = {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let simbolsLeft:any = 0;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Step1 = (  props:any  ) => {
   const [ name, setName ] = useState("");
   const [link, setLink] = useState("");

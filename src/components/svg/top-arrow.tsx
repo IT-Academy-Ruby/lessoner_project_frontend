@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TopArrow:any = (props:string)=>{
   const color=props;
   return(<div style={{color:color}}>
