@@ -1,11 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {BACKEND_URL} from "../../constants";
 
 export const signUpSlice = createAsyncThunk(
   "user/registration",
   async (value: { name: string, phone: string, gender: string, email: string, birthday: string, password: string }) => {
     const response = await fetch(
-      `${BACKEND_URL}/sign_up`,
+      `${process.env.REACT_APP_BACKEND_URL}/sign_up`,
       {method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(value)

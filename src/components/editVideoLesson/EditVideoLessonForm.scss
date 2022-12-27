@@ -1,0 +1,144 @@
+@import "../../constants.scss";
+
+.evlf__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.evlf__label {
+  width: 100%;
+  font-weight: bold;
+  @include fieldsFont;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.evlf__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  @include fieldsFont;
+  @include textFieldInput;
+}
+
+.evlf__text {
+  @include textFont;
+  margin: 0;
+  margin-bottom: 12px;
+}
+
+.evlf__btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+.evlf__btn-link {
+  text-decoration: none;
+}
+
+.button__fs16-white-evlt {
+  margin-right: 16px;
+}
+
+.evlf__input-textarea {
+  max-width: 100%;
+  resize: none;
+}
+
+.svg__add {
+  width: 20px;
+  height: 20px;
+  background: url(../icons/addSubtitle.svg) no-repeat center;
+  background-size: 15px 17px;
+  margin-right: 6px;
+}
+
+.evlth__wrapper {
+  width: 100%;
+  margin: 0 0 30px 0;
+}
+
+.evlth__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.evlth__inner-left, .evlth__inner-right {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.evlth__inner-left .evlth__item {
+  &:last-child {
+      margin-right: 8px;
+    }
+}
+
+.evlth__item {
+  width: 100%;
+  width: 159px;
+  height: 100%;
+  height: 88px;
+  margin-right: 8px;
+  border-radius: 8px;
+  border: 1px dashed $greySearchColor;
+  background: url(../icons/thumbnail.svg) center no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.evlth__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.error-input {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.error-message {
+  display: block;
+  color: $warningColor;
+  font-weight: normal;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+@media (max-width: $max-width-phone) {
+  .evlth__inner {
+    flex-direction: column;
+  }
+  .evlth__item {
+    margin-bottom: 8px;
+    margin-right: 0;
+  }
+  .evlth__inner-left, .evlth__inner-right {
+    width: 100%;
+  } 
+  .evlth__inner-right .evlth__item {
+    margin-bottom: 0;
+    &:last-child {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+  }
+  .evlth__inner-left .evlth__item {
+    &:last-child {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+  }
+}

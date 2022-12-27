@@ -1,3 +1,4 @@
+import "./Body.scss";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Main from "./content/Main";
@@ -10,11 +11,11 @@ type BodyProps = {
 
 const Body = ({ onLanguageSwitch }: BodyProps) => {
   return (
-    <div>
-      <Header />
+    <div className="body-page">
+      <Header/>
       <NavbarStudyStudio menuType={NAVBAR_ADMIN} />
-      <Main />
-      <Footer onLanguageSwitch={onLanguageSwitch} />
+      <Main/>
+      <Footer onLanguageSwitch={onLanguageSwitch}/>
     </div>
   );
 };
