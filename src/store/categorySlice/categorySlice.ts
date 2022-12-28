@@ -73,18 +73,21 @@ type Categories = {
     description: string,
     status: string,
     created_at: string,
+    amount_lessons: number,
   }],
   loading: boolean
 };
 
-const initialState: Categories = {categories: [{
-  id: 0,
-  name: "",
-  description: "",
-  status: "",
-  created_at: "",
-}],
-loading: false,};
+const initialState: Categories = { categories: [
+  {
+    id: 0,
+    name: "",
+    description: "",
+    status: "",
+    created_at: "",
+    amount_lessons: 0,
+  }],
+loading: false, };
 
 const categorySlice = createSlice({
   name: "category",

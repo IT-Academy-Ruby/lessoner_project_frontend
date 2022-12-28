@@ -1,4 +1,4 @@
-@import "./src/constants.scss";
+@import "./src/constants.module.scss";
 
 .side-bar {
   grid-column-start: 2;
@@ -48,16 +48,16 @@
   transform: translateY(-9px);
 }
 
-.burg-btn:checked ~ .menu-burg {
+.burg-btn:checked~.menu-burg {
   visibility: hidden;
 }
 
-.burg-btn:checked ~ .menu-burg::before {
+.burg-btn:checked~.menu-burg::before {
   transform: rotate(-45deg);
   visibility: visible;
 }
 
-.burg-btn:checked ~ .menu-burg::after {
+.burg-btn:checked~.menu-burg::after {
   transform: rotate(45deg);
   visibility: visible;
 }
@@ -118,7 +118,8 @@
   justify-content: flex-end;
   margin-right: 24px;
   min-width: 592px;
-  input{
+
+  input {
     background-color: var(--bgThemeColor1);
     transition: background-color 0.5s ease;
   }
@@ -136,7 +137,7 @@
   background: $white;
   margin-right: 16px;
   padding-inline: 6px;
- 
+
 }
 
 .search::placeholder {
@@ -218,6 +219,7 @@
 }
 
 @media (max-width: 1024px) {
+
   .title-header,
   .section-button {
     display: none;

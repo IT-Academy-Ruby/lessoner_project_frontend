@@ -1,4 +1,4 @@
-@import "../constants.scss";
+@import "../constants.module.scss";
 
 .button-select {
   display: flex;
@@ -11,13 +11,14 @@
   color: $blueLightColor;
   padding: 6px 36px;
   background: $white;
+  justify-content: center;
 
   &:disabled {
-    background: $white;
+    background: #F3F3F3;
     opacity: 0.5;
     border-radius: 28px;
     border: none;
-    color: $greySearchColor;
+    color: $greyDefault;
   }
 }
 
@@ -76,9 +77,27 @@
   cursor: pointer;
 }
 
+.button-add-category {
+  height: 32px;
+  width: 187px;
+  font-family: $font;
+  background: $blueLightColor;
+  color: $white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+}
+
+
 @media (max-width: $max-width-phone) {
   .button__page {
     font-size: 16px;
     margin-bottom: 14px;
+  }
+
+  .button-add-category {
+    width: 122px;
   }
 }

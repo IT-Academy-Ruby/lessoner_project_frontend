@@ -1,75 +1,29 @@
-@import "./src/constants";
+@import "./src/constants.module.scss";
 
-.category-label {
-  font-family: "ApercuPro";
-  color: #1B1B1F;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 150%;
+.image-category-field {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-end;
+  padding-bottom: 38px;
+  border-bottom: 1px solid $greyDefault;
   width: 100%;
-  margin-bottom: 32px;
-}
-
-.category-field {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px dashed #B9D1FF;
-  border-radius: 8px;
-  width: 100%;
-  margin-top: 4px;
-  background: #FBFBFF;
-  height: 216px;
   box-sizing: border-box;
 }
 
-.category-upload {
-  margin: 12px 64px 50px 64px;
-}
-
-.upload-buttons {
-  display: flex;
-}
-
-.upload-text {
-  font-family: "ApercuPro";
-  color: #9A9AA3;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 150%;
-}
-
-.margin-or {
-  margin: 0 24px;
-}
-
-.category-file {
-  width: 0;
-  height: 0;
-  visibility: hidden;
-  opacity: 0;
-  padding: 0;
-  margin: 0;
-  line-height: 0;
-}
-
-.button-select {
+.category-image-button-upload {
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid $blueLightColor;
   border-radius: 28px;
-  font-family: "ApercuPro", sans-serif;
+  font-family: "ApercuPro";
   font-weight: 600;
   font-size: 16px;
-  color: $blueLightColor;
-  padding: 6px 36px;
-  background: white;
+  line-height: 20px;
+  background: $blueLightColor;
+  color: $white;
   margin: 0;
+  width: 188px;
+  height: 32px;
 
   &:disabled {
     background: #FFFFFF;
@@ -77,6 +31,63 @@
     border-radius: 28px;
   }
 }
+
+.category-image-description {
+  display: flex;
+  font-weight: 400;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  text-align: start;
+}
+
+.category-image-uploading {
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 24px;
+  margin-bottom: 15px;
+}
+
+.change-delete-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+}
+
+.category-image-button-delete {
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $warningColor;
+  border-radius: 28px;
+  font-family: "ApercuPro";
+  font-weight: 600;
+  font-size: 16px;
+  color: $warningColor;
+  background: $white;
+  color: $warningColor;
+  margin: 0;
+  width: 138px;
+  height: 32px;
+}
+
+.category-image-button-change {
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $blueLightColor;
+  border-radius: 28px;
+  font-family: "ApercuPro";
+  font-weight: 600;
+  font-size: 16px;
+  color: $blueLightColor;
+  background: $white;
+  color: $blueLightColor;
+  margin: 0;
+  padding: 6px 6px 10px;
+  width: 145px;
+  height: 32px;
+}
+
 
 .button-image {
   margin-right: 11px;

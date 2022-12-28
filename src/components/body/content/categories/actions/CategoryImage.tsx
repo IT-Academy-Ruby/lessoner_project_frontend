@@ -1,8 +1,11 @@
 import "./categoryImage.scss";
-import {FormattedMessage} from "react-intl";
+import Change from "../../../../icons/change.svg";
+import Delete from "../../../../icons/deleteRed.svg";
+import {
+  Fragment, useRef, useState
+} from "react";
+import { FormattedMessage } from "react-intl";
 import Select from "../../../../icons/select.svg";
-import Upload from "../../../../icons/download.svg";
-import {useRef} from "react";
 
 type CategoryImageProps = {
   field: {
@@ -10,46 +13,72 @@ type CategoryImageProps = {
     onClick: () => void,
     value: string | undefined;
   },
-  error?: string | undefined;
+  error?: string | undefined,
+  isAdd: boolean,
 }
 
-const CategoryImage = ({error}: CategoryImageProps) => {
+const CategoryImage = ({ error, isAdd }: CategoryImageProps) => {
   const fileRef = useRef<HTMLInputElement>(null);
+  const [uploadingStatus, setUploadingStatus] = useState(isAdd ? "no image" : "finish uploading");
   const handleUpload = () => {
     if (fileRef.current) {
       fileRef.current.click();
-    }
-    ;
+    };
+    setUploadingStatus("start uploading");
   };
+  const setUploadingFileView = () => {
+    switch (uploadingStatus) {
+      case "no image":
+        return (
+          <Fragment>
+            <div className="category-image-description">
+              <FormattedMessage id="app.categories.uploadCategoryImageDescription" />
+            </div>
+            <div>
+              <button className="category-image-button-upload" onClick={handleUpload} type="button">
+                <img src={Select} alt="Select file" className="button-image" />
+                <FormattedMessage id="app.categories.button.upload" />
+              </button>
+              {error && <span className="error-message">{error}</span>}
+            </div>
+          </Fragment>
+        );
+      case "start uploading":
+        return (
+          <Fragment>
+            <div className="category-image-uploading">
+              <FormattedMessage id="app.categories.uploadingFileCategoryImage" />
+            </div>
+          </Fragment>
+        );
+      case "finish uploading":
+        return (
+          <Fragment>
+            <div className="category-image-uploading">
+              <FormattedMessage id="app.categories.uploadedFileCategoryImage" />
+            </div>
+            <div className="image-category-field">
+              <div className="change-delete-buttons">
+                <button className="category-image-button-change" type="button">
+                  <img src={Change} alt="Change file" className="button-image" />
+                  <FormattedMessage id="app.categories.button.change" />
+                </button>
+                <button className="category-image-button-delete" type="button">
+                  <img src={Delete} alt="Delete file" className="button-image" />
+                  <FormattedMessage id="app.categories.button.delete" />
+                </button>
+              </div>
+              {error && <span className="error-message">{error}</span>}
+            </div>
+          </Fragment>
+        );
+    }
+  };
+
   return (
     <div className="category-label">
-      <FormattedMessage id="app.categories.uploadCategoryImage"/>
-      <div className="category-field"
-      >
-        <img src={Upload} alt="upload"/>
-        <span className="upload-text category-upload">
-          <FormattedMessage id="app.categories.uploadImage"/>
-        </span>
-        <div className="upload-buttons">
-          <span className="upload-text">
-            <FormattedMessage id="app.categories.dragAandDrop"/>
-          </span>
-          <span className="upload-text margin-or">
-            <FormattedMessage id="app.categories.or"/>
-          </span>
-          <input
-            ref={fileRef}
-            type="file"
-            className="category-file"
-            accept="image/*"
-          />
-          <button className="button-select" onClick={handleUpload} type="button">
-            <img src={Select} alt="Select file" className="button-image"/>
-            <FormattedMessage id="app.categories.button.select"/>
-          </button>
-        </div>
-        {error && <span className="error-message">{error}</span>}
-      </div>
+      <FormattedMessage id="app.categories.uploadCategoryImage" />
+      {setUploadingFileView()}
     </div>
   );
 };

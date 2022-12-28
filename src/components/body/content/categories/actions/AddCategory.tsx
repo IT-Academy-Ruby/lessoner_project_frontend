@@ -1,20 +1,20 @@
 import "./addCategory.scss";
-import {DESCRIPTION_CATEGORY, NAME_CATEGORY} from "../../../../../constants";
+import { DESCRIPTION_CATEGORY, NAME_CATEGORY } from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
-import {FormattedMessage, useIntl} from "react-intl";
-import {Link, useNavigate} from "react-router-dom";
+import { FormattedMessage, useIntl } from "react-intl";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  addCategory,getCategory, updateCategory
+  addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
-import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import { descriptionCategoryRegex, nameCategoryRegex } from "../../../../../validationRules";
+import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
-import {useEffect} from "react";
+import { useEffect } from "react";
 
 interface FormValues {
   id: number;
@@ -30,7 +30,7 @@ interface FormErrors {
 type TypeTitle = {
   add: boolean
 }
-const AddCategory = ({add}: TypeTitle) => {
+const AddCategory = ({ add }: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -40,11 +40,11 @@ const AddCategory = ({add}: TypeTitle) => {
     if (!add) {
       dispatch(getCategory());
     }
-  }, [dispatch,add]);
+  }, [dispatch, add]);
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
-  let category = {name: "", description: ""};
+  let category = { name: "", description: "" };
 
   if (!add && allCategories.length > 1) {
     category = allCategories.filter(category => category.id === idCategory)[0];
@@ -57,38 +57,38 @@ const AddCategory = ({add}: TypeTitle) => {
     status: "active",
   };
 
-  const nameLength=initialValues.name.length;
-  const descriptionLength=initialValues.name.length;
+  const nameLength = initialValues.name.length;
+  const descriptionLength = initialValues.name.length;
 
   return (
     <div className="add-category">
       <Link to="/categories" className="button-back">
         <span className="arrow-back">&#10094;</span>
-        <FormattedMessage id="app.categories.back"/>
+        <span className="button-back-text"><FormattedMessage id="app.categories.back" /></span>
       </Link>
       {allCategories.length > 1 && <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
           if (!nameCategoryRegex.test(values.name)) {
-            errors.name = intl.formatMessage({id: "app.categories.name.invalid"});
+            errors.name = intl.formatMessage({ id: "app.categories.name.invalid" });
           }
           if (values.name.trim().length < NAME_CATEGORY.minSymbols) {
-            errors.name = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
+            errors.name = intl.formatMessage({ id: "app.activeCategories.errorMinLength" });
           }
           if (values.name.length > NAME_CATEGORY.maxSymbols) {
             errors.name = intl.formatMessage(
-              {id: "app.activeCategories.errorMaxLength"}, {symbols: NAME_CATEGORY.maxSymbols});
+              { id: "app.activeCategories.errorMaxLength" }, { symbols: NAME_CATEGORY.maxSymbols });
           }
           if (!descriptionCategoryRegex.test(values.description)) {
-            errors.description = intl.formatMessage({id: "app.categories.description.invalid"});
+            errors.description = intl.formatMessage({ id: "app.categories.description.invalid" });
           }
           if (values.description.trim().length < DESCRIPTION_CATEGORY.minSymbols) {
-            errors.description = intl.formatMessage({id: "app.activeCategories.errorMinLength"});
+            errors.description = intl.formatMessage({ id: "app.activeCategories.errorMinLength" });
           }
           if (values.description.length > DESCRIPTION_CATEGORY.maxSymbols) {
-            errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
-              {symbols: DESCRIPTION_CATEGORY.maxSymbols});
+            errors.description = intl.formatMessage({ id: "app.activeCategories.errorMaxLength" },
+              { symbols: DESCRIPTION_CATEGORY.maxSymbols });
           }
 
           return errors;
@@ -104,13 +104,15 @@ const AddCategory = ({add}: TypeTitle) => {
           }
           navigate("/categories");
         }}>
-        {({errors, touched}) => {
+        {({
+          errors, touched, values
+        }) => {
           return (
             <Form className="form-category">
               <h1 className="add-title">
                 {add ?
-                  intl.formatMessage({id: "app.categories.addCategory"}) :
-                  intl.formatMessage({id: "app.categories.updateCategory"})
+                  intl.formatMessage({ id: "app.categories.addCategory" }) :
+                  intl.formatMessage({ id: "app.categories.editCategory" })
                 }
               </h1>
               <Field
@@ -129,19 +131,20 @@ const AddCategory = ({add}: TypeTitle) => {
               <Field
                 name="image"
                 component={CategoryImage}
+                isAdd={add}
               />
               <div className="category-buttons">
                 <Button
                   buttonType="button"
-                  buttonText={intl.formatMessage({id: "app.categories.button.cancel"})}
+                  buttonText={intl.formatMessage({ id: "app.categories.button.cancel" })}
                   className="button-select button-cancel"
                   onClick={() => navigate("/categories")}
                 />
                 <Button
                   buttonType="submit"
-                  buttonText={intl.formatMessage({id: "app.categories.button.save"})}
-                  className="button-select"
-                  disabled={!!errors.description || !!errors.name}
+                  buttonText={intl.formatMessage({ id: "app.categories.button.save" })}
+                  className="button-select button-save"
+                  disabled={!!errors.description || !!errors.name || values.name === ""}
                 />
               </div>
             </Form>
