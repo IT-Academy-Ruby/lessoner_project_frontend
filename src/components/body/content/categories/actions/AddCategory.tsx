@@ -150,9 +150,11 @@ const AddCategory = ({add}: TypeTitle) => {
           setISuccessful(true);
           if (add) {
             dispatch(addCategory(valueCategory));
+            dispatch(getCategory());
           } else {
             valueCategory.id = idCategory;
             dispatch(updateCategory(valueCategory));
+            dispatch(getCategory());
           }
           navigate("/categories");
         }}>

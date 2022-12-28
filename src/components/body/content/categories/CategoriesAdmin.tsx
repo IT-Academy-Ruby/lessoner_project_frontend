@@ -41,7 +41,7 @@ const CategoriesAdmin = () => {
   return (
     <>
       {loading && <Loader/>}
-      {allCategories.map(category =>
+      { allCategories.map(category =>
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
           <img src={category.image_url} alt={category.name} className="category-img"/>
