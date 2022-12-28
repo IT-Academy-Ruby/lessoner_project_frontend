@@ -3,22 +3,24 @@
 .thumbnail__wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 .thumbnail__left {
   width: 60%;
+  height: 100%;
+  margin-right: 12px;
 }
 
 .thumbnail__left-inner {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   width: 100%;
 }
 
 .thumbnail__right {
-  width: 40%;
+  width: calc(100% - 60% - 12px);
+  height: 100%;
 }
 
 .thumbnail__right-inner {
@@ -33,9 +35,8 @@
   width: 80px;
   height: 100%;
   height: 60px;
-  margin-right: 8px;
+  margin-right: 12px;
   border-radius: 8px;
-  border: 1px dashed $greySearchColor;
   background: url(./icons/thumbnail.svg) center no-repeat;
   overflow: hidden;
   cursor: pointer;
@@ -48,26 +49,47 @@
 }
 
 .thumbnail__item-info {
-  width: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: calc(100% - 94px);
+  height: 100%;
 }
 
 .thumbnail__item-name, .thumbnail__item-size {
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
 }
 
-.svg__change{
+.thumbnail__item-name {
+  font-family: $font;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+  color: #1B1B1F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thumbnail__item-size {
+  font-family: $font;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 150%;
+  color: #D1D1D1;
+}
+
+.svg__change {
   width: 20px;
   height: 20px;
+  background: url(./icons/changeFile.svg) no-repeat center;
   background-size: 15px 17px;
   margin-right: 6px;
 }
 
-.svg__change {
-  background: url(./icons/changeFile.svg) no-repeat center;
-}
-
 .button__notsee {
-  opacity: 0;
-  position: absolute;
-  z-index: -1;
+  display: none;
 }
