@@ -11,6 +11,7 @@ import PhoneNumberPage from "./pages/PhoneNumberPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import Search from "./components/body/header/search/Search";
 import SetNewPasswordPage from "./pages/SetNewPasswordPage";
+import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
 import { useState } from "react";
 
@@ -18,6 +19,7 @@ function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
+  const [opacity, setOpacity] = useState<number>(1);
 
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
 
@@ -28,7 +30,8 @@ function App(): JSX.Element {
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
-        <div className="App">
+        <Snowfall setOpacity={setOpacity} />
+        <div className="App" style={{ transition: "opacity 5s", opacity }}>
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route
