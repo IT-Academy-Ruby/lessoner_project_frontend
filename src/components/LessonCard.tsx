@@ -2,7 +2,6 @@ import "./LessonCard.scss";
 import React, { FC, useState } from "react";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
-import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
@@ -36,7 +35,6 @@ const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
       <Link to="/videopage">
-      <Link to="/videopage">
         <img src={props.imagePreview} alt="Videopreview" />
       </Link>
     </div>
@@ -45,7 +43,7 @@ const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
 
 type TitleProps = {
   title: string;
-  id: number;
+  id?: number;
   className?: string;
 };
 
@@ -59,20 +57,19 @@ export const Title: React.FC<TitleProps> = (props) => {
   );
 };
 
-
-type MenuKebabProps = {
+export type MenuKebabProps = {
   className?: string;
-  idCard: number;
+  idCard?: number;
 };
 
-const MenuKebab: React.FC<MenuKebabProps>: FC<MenuKebabProps> = ({ className }props) => {
+export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
-    navigate("/lessons/" + props.idCard);
+    navigate("/lessons/" + idCard);
   };
 
   return (
