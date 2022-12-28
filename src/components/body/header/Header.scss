@@ -1,18 +1,20 @@
 @import "./src/constants.scss";
 
 .side-bar {
+  grid-column-start: 2;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  background: $white;
 }
 
 .menu {
   position: relative;
   width: 64px;
   height: 100%;
+  background-color: var(--bgThemeSideBarColor);
+  transition: background-color 0.5s ease;
 }
 
 .burg-btn {
@@ -77,20 +79,17 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  background-color: var(--bgThemeColor1);
+  transition: background-color 0.5s ease;
 }
 
 .logo-name {
   display: flex;
   grid-column-start: 1;
   grid-column-end: 4;
-  min-width: 230px;
+  width: 132px;
   margin-left: 24px;
   text-decoration: none;
-}
-
-.title-header {
-  display: inline-block;
-  margin: 0 0 0 5px;
 }
 
 .my-studio {
@@ -104,7 +103,7 @@
   line-height: 150%;
   letter-spacing: 0.15px;
   text-decoration: none;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font, sans-serif;
 }
 
 .search-button {
@@ -114,6 +113,10 @@
   justify-content: flex-end;
   margin-right: 24px;
   min-width: 592px;
+  input{
+    background-color: var(--bgThemeColor1);
+    transition: background-color 0.5s ease;
+  }
 }
 
 .magnifier {
@@ -128,6 +131,7 @@
   background: $white;
   margin-right: 16px;
   padding-inline: 6px;
+ 
 }
 
 .search::placeholder {
@@ -155,7 +159,7 @@
 .button-login {
   width: 115px;
   height: 32px;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font, sans-serif;
   background: $blueLightColor;
   color: #eaeaea;
   border: none;
@@ -174,7 +178,7 @@
   width: 141px;
   border: 1px solid $blueLightColor;
   border-radius: 28px;
-  font-family: "ApercuPro", sans-serif;
+  font-family: $font, sans-serif;
   font-weight: 600;
   font-size: 16px;
   color: $blueLightColor;

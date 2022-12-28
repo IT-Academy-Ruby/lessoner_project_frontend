@@ -1,5 +1,78 @@
 @import "../constants.scss";
 
+.button__main, .button__page, .button__fs16, .button__fs16-white, .disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  border: none;
+  background: $blueLightColor;
+  font-family: $font;
+  color: $white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s;
+  &:hover {
+    box-shadow: 0px 4px 6px rgba(46, 51, 99, 0.43);
+  }
+}
+
+.button__fs16, .button__fs16-white {
+  padding: 6px 32px;
+  font-size: 16px;
+}
+
+.button__fs16-white {
+  border: 1px solid $borderColor;
+  color: $blueLightColor;
+  background: $white;
+  font-weight: 600;
+}
+
+.disabled {
+  background: none;
+  color: $greySearchColor;
+  border: 1px solid $greySearchColor;
+}
+
+.btn__temporary {
+  width: 300px;
+}
+
+.button-select {
+  display: flex;
+  align-items: center;
+  border: 1px solid $blueLightColor;
+  border-radius: 28px;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  color: $blueLightColor;
+  padding: 6px 36px;
+  background: $white;
+
+  &:disabled {
+    background: $white;
+    opacity: 0.5;
+    border-radius: 28px;
+    border: none;
+    color: $greySearchColor;
+  }
+}
+
+.button-login {
+  padding: 6px 36px;
+  height: 32px;
+  font-family: $font;
+  background: $blueLightColor;
+  color: $white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+}
+
 .button__page {
   display: flex;
   align-items: center;

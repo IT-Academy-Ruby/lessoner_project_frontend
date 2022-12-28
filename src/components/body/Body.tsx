@@ -1,17 +1,21 @@
+import "./Body.scss";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Main from "./content/Main";
+import { NAVBAR_ADMIN } from "../../constants";
+import NavbarStudyStudio from "./navigation/NavbarStudyStudio";
 
 type BodyProps = {
-  onLanguageSwitch: (arg: string) => void
-}
+  onLanguageSwitch: (arg: string) => void;
+};
 
-const Body = ({onLanguageSwitch}: BodyProps) => {
+const Body = ({ onLanguageSwitch }: BodyProps) => {
   return (
-    <div>
-      <Header />
-      <Main />
-      <Footer onLanguageSwitch={onLanguageSwitch} />
+    <div className="body-page">
+      <Header/>
+      <NavbarStudyStudio menuType={NAVBAR_ADMIN} />
+      <Main/>
+      <Footer onLanguageSwitch={onLanguageSwitch}/>
     </div>
   );
 };

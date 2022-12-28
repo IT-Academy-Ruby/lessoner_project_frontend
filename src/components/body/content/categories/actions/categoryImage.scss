@@ -1,0 +1,83 @@
+@import "./src/constants";
+
+.category-label {
+  font-family: "ApercuPro";
+  color: #1B1B1F;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.category-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px dashed #B9D1FF;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 4px;
+  background: #FBFBFF;
+  height: 216px;
+  box-sizing: border-box;
+}
+
+.category-upload {
+  margin: 12px 64px 50px 64px;
+}
+
+.upload-buttons {
+  display: flex;
+}
+
+.upload-text {
+  font-family: "ApercuPro";
+  color: #9A9AA3;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.margin-or {
+  margin: 0 24px;
+}
+
+.category-file {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+.button-select {
+  display: flex;
+  align-items: center;
+  border: 1px solid $blueLightColor;
+  border-radius: 28px;
+  font-family: "ApercuPro", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: $blueLightColor;
+  padding: 6px 36px;
+  background: white;
+  margin: 0;
+
+  &:disabled {
+    background: #FFFFFF;
+    opacity: 0.5;
+    border-radius: 28px;
+  }
+}
+
+.button-image {
+  margin-right: 11px;
+}
