@@ -34,6 +34,8 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   }, [params.id]);
 
+  console.log(lesson);
+
   const addInfoToLessonObject = (values: {name: string; description: string;}) => {
     const lessonFromEditForm = { title: `${values.name}`,
       description: `${values.description}` };
@@ -175,7 +177,7 @@ export const EditVideoLessonForm: FC = () => {
                 })}
               </p>
             </label>
-            <Thumbnail />
+            <Thumbnail propImage={lesson?.image_link} />
           </div>
           <div className="evlf__btn-wrapper">
             <Button
