@@ -6,13 +6,13 @@ type ButtonProps = {
   buttonText: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
-  disabled?:boolean;
-  buttonImage?:string;
-  imageStyle?:string;
+  disabled?: boolean;
+  buttonImage?: string;
+  imageStyle?: string;
 }
 
 const Button = ({
-  buttonType, buttonText, onClick, className, disabled=false, buttonImage, imageStyle,
+  buttonType, buttonText, onClick, className, disabled = false, buttonImage, imageStyle,
 }: ButtonProps) => {
   return (
     <Fragment>

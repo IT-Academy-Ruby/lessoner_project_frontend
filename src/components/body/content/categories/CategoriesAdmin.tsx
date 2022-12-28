@@ -1,38 +1,44 @@
 import {
   MouseEvent, useEffect, useState
 } from "react";
-import {archiveCategory, getCategory} from "../../../../store/categorySlice/categorySlice";
+import {
+  archiveCategory, deleteCategory, getCategory
+} from "../../../../store/categorySlice/categorySlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import Add from "../../../icons/add.svg";
 import Delete from "../../../icons/delete.svg";
 import Edit from "../../../icons/edit.svg";
-import IT from "../../../icons/examplImage/IT.svg";
 import Loader from "../../../Loader";
+import ModalCategory from "./actions/ModalCategory";
+import {useIntl} from "react-intl";
 import {useNavigate} from "react-router-dom";
 
-const CategoriesAdmin=()=>{
-  const [isGetCategory, setIsGetCategory] = useState(false);
+const CategoriesAdmin = () => {
+  const [isClose, setIsClose] = useState(false);
+  const [idCategory, setIdCategory]=useState(0);
+  const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const allCategories = useAppSelector((state) => state.categories.categories);
   const loading = useAppSelector((state) => state.categories.loading);
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getCategory());
-  },[dispatch]);
+  }, [dispatch]);
 
   const handleEdit = (event: MouseEvent) => {
     navigate(`/categories/updateCategory/${event.currentTarget.id}`);
   };
 
-  const handleDelete = async (category:
-    { id: number, name: string, description: string, status: string }
-  ) => {
-    await dispatch(archiveCategory(category));
-    dispatch(getCategory());
-    setIsGetCategory(!isGetCategory);
+  const handleDelete = async (category: {
+    id: number, name: string, description: string, status: string, amount_lessons: number
+  }) => {
+    setIdCategory(category.id);
+    category.amount_lessons > 0 ?
+      await dispatch(archiveCategory(category)) : setIsClose(true);
   };
-  return(
+
+  return (
     <>
       {loading && <Loader/>}
       {allCategories.map(category =>
@@ -60,6 +66,15 @@ const CategoriesAdmin=()=>{
           </div>
         </button>
       )}
+      {isClose && <ModalCategory
+        setIsClose={setIsClose}
+        onClickYes={async () => {
+          await dispatch(deleteCategory(idCategory));
+          dispatch(getCategory());
+          setIsClose(false);
+        }}
+        title={intl.formatMessage({id: "app.categories.textDelete"})}
+      />}
     </>
   );
 };

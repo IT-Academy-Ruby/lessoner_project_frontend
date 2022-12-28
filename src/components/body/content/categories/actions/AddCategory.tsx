@@ -1,10 +1,12 @@
 import "./addCategory.scss";
-import {DESCRIPTION_CATEGORY, NAME_CATEGORY, IMAGE_DATA} from "../../../../../constants";
+import {
+  DESCRIPTION_CATEGORY,  IMAGE_DATA, NAME_CATEGORY
+} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Link, useNavigate} from "react-router-dom";
+
 import {
   addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
@@ -15,12 +17,14 @@ import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
+import ModalCategory from "./ModalCategory";
 import Successful from "../../../../icons/successful.svg";
+import {useNavigate} from "react-router-dom";
 
 interface FormValues {
   name: string;
   description: string;
-  image_url: string;
+  image: string;
 }
 
 interface FormErrors {
@@ -34,7 +38,9 @@ const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [selectImage, setSelectImage] = useState({name: "", type: "", size: 0, image: ""});
+  const [selectImage, setSelectImage] = useState({
+    name: "", type: "", size: 0, image: {},
+  });
   const allCategories = useAppSelector((state) => state.categories.categories);
   const [category, setCategory] = useState({
     name: "",
@@ -48,9 +54,12 @@ const AddCategory = ({add}: TypeTitle) => {
     image_name: "",
     image_type: "",
   });
-  const [editCategory, setEditCategory] = useState("");
+  const [editCategory, setEditCategory] = useState({
+    name: "", type: "", size: 0, image: "",
+  });
   const [isClose, setIsClose] = useState(false);
   const [isSuccessful, setISuccessful] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
@@ -61,20 +70,19 @@ const AddCategory = ({add}: TypeTitle) => {
     }
     if (!add && allCategories.length > 1) {
       setCategory(allCategories.filter(category => category.id === idCategory)[0]);
-      setSelectImage({
-        image: "",
-        size: category.image_size,
-        name: category.image_name,
-        type: category.image_type,
-      });
-      setEditCategory(category.image_url);
     }
-  }, [dispatch, add, allCategories]);
+    setEditCategory({
+      image: category.image_url,
+      size: category.image_size,
+      name: category.image_name,
+      type: category.image_type,
+    });
+  }, [dispatch, add, allCategories, category,idCategory]);
 
   const initialValues: FormValues = {
     name: category.name,
     description: category.description,
-    image_url: "",
+    image: editCategory.image,
   };
 
   const nameLength = category.name.length;
@@ -82,7 +90,7 @@ const AddCategory = ({add}: TypeTitle) => {
 
   return (
     <div className="add-category">
-      <div  className="button-back" onClick={()=>setIsClose(true)}>
+      <div className="button-back" onClick={() => setIsClose(true)}>
         <span className="arrow-back">&#10094;</span>
         <FormattedMessage id="app.categories.back"/>
       </div>
@@ -110,40 +118,43 @@ const AddCategory = ({add}: TypeTitle) => {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
               {symbols: DESCRIPTION_CATEGORY.maxSymbols});
           }
-          if (selectImage.image || editCategory) {
-
-            // const imageFormat = String(selectImage["type"]);
-            // const isFormat = IMAGE_DATA.format.find(format =>
-            //   "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format)
-            // console.log(isFormat)
-            // if (!isFormat) {
-            //   errors.image_url = intl.formatMessage({id: "app.categories.imageError"});
-            // }
+          if (selectImage.type) {
+            const isFormat = IMAGE_DATA.format.some(format =>
+              "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format);
+            if (!isFormat) {
+              errors.image = intl.formatMessage({id: "app.categories.imageError"});
+            }
             if (selectImage.size > IMAGE_DATA.size) {
-              errors.image_url = intl.formatMessage({id: "app.categories.imageBigSize"});
+              errors.image = intl.formatMessage({id: "app.categories.imageBigSize"});
             }
           }
-          if (!selectImage.image && !editCategory) {
-            errors.image_url = intl.formatMessage({id: "app.categories.selectFile"});
+          if (!selectImage.name) {
+            errors.image = intl.formatMessage({id: "app.categories.selectFile"});
           }
-
+          if (values.name && values.description && (selectImage.name || editCategory.name)
+            && !errors.name && !errors.description && !errors.image) {
+            setIsDisabled(false);
+          } else {
+            setIsDisabled(true);
+          }
           return errors;
+
         }}
         onSubmit={(values: FormValues) => {
-          values.image_url = selectImage.image
-          // values.name = values.name.trim();
-          // values.description = values.description.trim();
-          console.log(values)
-          console.log(category.name)
-          console.log(selectImage.name)
-          setISuccessful(true)
-          // if (add) {
-          //   dispatch(addCategory(values));
-          // } else {
-          //   values.id = idCategory;
-          //   dispatch(updateCategory(values));
-          // }
-          // navigate("/categories");
+          const valueCategory = {
+            id: 0,
+            image: !editCategory.image ? selectImage.image : null,
+            name: values.name.trim(),
+            description: values.description.trim(),
+          };
+          setISuccessful(true);
+          if (add) {
+            dispatch(addCategory(valueCategory));
+          } else {
+            valueCategory.id = idCategory;
+            dispatch(updateCategory(valueCategory));
+          }
+          navigate("/categories");
         }}>
         {({errors, touched}) => {
           return (
@@ -169,12 +180,11 @@ const AddCategory = ({add}: TypeTitle) => {
               <Field
                 name="image"
                 component={CategoryImage}
-                error={touched.image_url ? errors.image_url : undefined}
+                error={touched.image ? errors.image : undefined}
                 selectImage={selectImage}
                 setSelectImage={setSelectImage}
                 setEditCategory={setEditCategory}
                 editCategory={editCategory}
-                // getImage={getImage}
               />
 
               <div className="category-buttons">
@@ -188,36 +198,18 @@ const AddCategory = ({add}: TypeTitle) => {
                   buttonType="submit"
                   buttonText={intl.formatMessage({id: "app.categories.button.save"})}
                   className="button-select"
-                  disabled={!!errors.description || !!errors.name || !!errors.image_url}
+                  disabled={isDisabled}
                 />
               </div>
             </Form>
           );
         }}
       </Formik>}
-      {isClose && <div className="wrapper-modal">
-        <div className="cansel-modal">
-          <div className="field-close">
-            <span className="close-modal" onClick={() => setIsClose(false)}/>
-          </div>
-          <span className="close-text">
-             <FormattedMessage id="app.categories.close.text"/>
-            </span>
-          <div className="field-button">
-            <Button
-              buttonType="button"
-              buttonText={intl.formatMessage({id: "app.categories.button.yes"})}
-              className="button-login"
-              onClick={() => navigate("/categories")}/>
-            <Button
-              buttonType="button"
-              buttonText={intl.formatMessage({id: "app.categories.button.no"})}
-              className="button-select"
-              onClick={() => setIsClose(false)}/>
-          </div>
-
-        </div>
-      </div>}
+      {isClose && <ModalCategory
+        setIsClose={setIsClose}
+        onClickYes={() => navigate("/categories")}
+        title={intl.formatMessage({id: "app.categories.close.text"})}
+      />}
       {isSuccessful && <div className="wrapper-modal">
         <div className="field-modal">
           <div className="field-successful">

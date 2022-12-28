@@ -109,7 +109,6 @@
 }
 
 .message {
-  position: absolute;
   bottom: -22px;
   text-align: left;
   display: block;
@@ -121,7 +120,7 @@
 }
 
 .invisible {
-  display: none
+  display: none;
 }
 
 .invalid-input {
@@ -133,8 +132,8 @@
   position: absolute;
   bottom: 7px;
   right: 14px;
-  font-family: 'ApercuPro';
-  color: #9A9AA3;
+  font-family: $font;
+  color: $greySearchColor;
   font-weight: 700;
   font-size: 12px;
   line-height: 150%;
@@ -144,81 +143,10 @@
   color: $warningColor;
 }
 
-.wrapper-modal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-.cansel-modal {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background: $white;
-  max-width: 379px;
-  width: 100%;
-  box-shadow: 0 0 4px $greySearchColor;
-}
-
-.field-close {
-  width: 24px;
-  height: 24px;
-  margin-left: auto;
-  position: relative;
-  top: 24px;
-  right: 24px;
-  cursor: pointer;
-}
-
-.close-modal {
-  position: relative;
-  top: 9px;
-  left: -9px;
-  width: 16px;
-  z-index: 3;
-}
-
-.close-modal:before,
-.close-modal:after {
-  position: absolute;
-  width: 10px;
-  border: 1px solid #9A9AA3;
-  background: #9A9AA3;
-  content: "";
-}
-
-.close-modal:before {
-  transform: rotate(45deg);
-}
-
-.close-modal:after {
-  transform: rotate(-45deg);
-}
-
-.close-text {
-  margin: 40px 48px 24px 48px;
-  color: #1B1B1F;
-  font-family: 'ApercuPro';
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 150%;
-}
-
-.field-button {
-  display: flex;
-  margin-bottom: 32px;
-}
-
 .field-modal {
-  background: $white;
   max-width: 280px;
   width: 100%;
+  background: $white;
   box-shadow: 0 0 4px $greySearchColor;
 }
 

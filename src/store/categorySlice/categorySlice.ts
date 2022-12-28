@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import request from "../../services/request";
-import * as url from "url";
 
 export const getCategory = createAsyncThunk(
   "category/getCategory",
@@ -8,7 +7,6 @@ export const getCategory = createAsyncThunk(
     const responce = await request(`${process.env.REACT_APP_BACKEND_URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
-      console.log(data)
       return data;
     } else {
       return `errror ${responce.status}`;
@@ -18,9 +16,32 @@ export const getCategory = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   "category/addCategory",
-  async (value: { name: string, description: string, status: string }) => {
+  async (dataCategory: { name: string, description: string, image: any }) => {
+
+    const formData = new FormData();
+    formData.append("image", dataCategory.image[0]);
+    formData.append("name", dataCategory.name);
+    formData.append("description", dataCategory.description);
+    const token = localStorage.getItem("JWT");
+    const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
+      method: "POST",
+      headers: new Headers({"Authorization": `Bearer ${token}`}),
+      body: formData,
+    });
+    const data = await responce.json();
+    if (responce.status === 200) {
+      return data;
+    } else {
+      return `errror ${responce.status}`;
+    }
+  }
+);
+
+export const deleteCategory = createAsyncThunk(
+  "category/addCategory",
+  async (id: number) => {
     const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories`, "POST", value);
+      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${id}`, "DELETE");
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -32,14 +53,20 @@ export const addCategory = createAsyncThunk(
 
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
-  async (value: { id: number, name: string, description: string, status: string }) => {
-    const category = {
-      name: value.name,
-      description: value.description,
-      status: value.status,
-    };
+  async (dataCategory: {
+    id: number, name: string, description: string, image?: any,
+  }) => {
+    const formData = new FormData();
+    dataCategory.image ? formData.append("image", dataCategory.image[0]) : null;
+    formData.append("name", dataCategory.name);
+    formData.append("description", dataCategory.description);
+    const token = localStorage.getItem("JWT");
     const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories/${dataCategory.id}`, {
+        method: "PUT",
+        headers: new Headers({"Authorization": `Bearer ${token}`}),
+        body: formData,
+      });
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -55,7 +82,7 @@ export const archiveCategory = createAsyncThunk(
     const category = {
       name: value.name,
       description: value.description,
-      status: value.status === "active" ? "archived" : "active"
+      status: value.status === "active" ? "archived" : "active",
     };
     const responce =
       await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
@@ -84,21 +111,19 @@ type Categories = {
   loading: boolean;
 };
 
-const initialState: Categories = {
-  categories: [{
-    amount_lessons: 0,
-    image_url: "",
-    id: 0,
-    name: "",
-    description: "",
-    status: "",
-    created_at: "",
-    image_size: 0,
-    image_name: "",
-    image_type: "png",
-  }],
-  loading: false,
-};
+const initialState: Categories = {categories: [{
+  amount_lessons: 0,
+  image_url: "",
+  id: 0,
+  name: "",
+  description: "",
+  status: "",
+  created_at: "",
+  image_size: 0,
+  image_name: "",
+  image_type: "",
+}],
+loading: false,};
 
 const categorySlice = createSlice({
   name: "category",

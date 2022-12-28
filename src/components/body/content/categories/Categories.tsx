@@ -1,13 +1,28 @@
 import "./categories.scss";
 import {FormattedMessage, useIntl} from "react-intl";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../Button";
 import CategoriesAdmin from "./CategoriesAdmin";
 import CategoriesUser from "./CategoriesUser";
+import {getCategory} from "../../../../store/categorySlice/categorySlice";
 import {useNavigate} from "react-router-dom";
 
 const Categories = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const user = useAppSelector(state => state.userDecodedName.session);
+
+  useEffect(() => {
+    if (user.name === "admin" && user.email === "lessonerteam@gmail.com") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+      dispatch(getCategory());
+    };
+  }, [isAdmin,user,dispatch]);
 
   const nameColomn = [
     "ID",
@@ -40,7 +55,7 @@ const Categories = () => {
         <div className="row-category">
           {nameColomn.map(column => <div key={column} className="column-name">{column}</div>)}
         </div>
-        <CategoriesAdmin/>
+        {isAdmin && <CategoriesAdmin/>}
         <CategoriesUser/>
       </div>
     </div>

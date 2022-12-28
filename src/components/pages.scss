@@ -62,7 +62,7 @@
   background: url(../components/icons/background1440.svg) right;
   background-color: var(--bgFirstRegistrForm);
   background-size: cover;
-  transition: background-color  0.5s ease;
+  transition: background-color 0.5s ease;
 }
 
 .reg__logo {
@@ -75,7 +75,8 @@
   align-items: center;
   width: 50%;
   background-color: var(--bgFirstRegistrForm);
-  transition: background-color  0.5s ease;
+  transition: background-color 0.5s ease;
+  border-radius: inherit;
 }
 
 @media (min-width: $max-width-tablet) {

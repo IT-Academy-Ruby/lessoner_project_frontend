@@ -12,12 +12,13 @@ const Categories = () => {
       <FormattedMessage id="app.categories"/>
       <div className="categories__block">
         {allCategories.map(category =>
+          category.status==="active"?
           <UserCategory
             imagePreview={CategoryIT}
             name={category.name}
             text={category.description}
             bgColor="blue"
-            key={category.name}/>
+            key={category.name}/>:null
         )}
       </div>
     </div>

@@ -147,5 +147,6 @@ export const messages_ru = {
   "app.categories.button.no": "Нет",
   "app.categories.add.successful":"Новая категория создана и добавлена в список",
   "app.categories.edit.successful":"Изменения были сохранены",
+  "app.categories.textDelete": "Вы уверены, что хотите удалить категорию?",
 };
 

@@ -1,56 +1,65 @@
 import "./categoryImage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
+import {
+  useEffect, useRef, useState
+} from "react";
 import Button from "../../../../Button";
 import Change from "../../../../icons/Change.svg";
-import Delete from "../../../../icons/DeleteButton.svg";
 import {IMAGE_DATA} from "../../../../../constants";
 import Select from "../../../../icons/select.svg";
-import Upload from "../../../../icons/download.svg";
-import {useEffect, useRef, useState} from "react";
 
 type CategoryImageProps = {
   field: {
     name: string;
-    onClick: () => void,
-    value: FileList | null;
+    onClick: () => void;
+    value: FileList;
   },
-  error?: string | undefined;
-  selectImage: { size: number, image: Blob | MediaSource, name: string, type: string };
+  selectImage: {
+    size: number;
+    image: FileList;
+    name: string;
+    type: string;
+  };
   setSelectImage: (object: object) => void;
-  setEditCategory: (object: string) => void;
-  editCategory: string;
-}
+  setEditCategory: (object: object) => void;
+  editCategory: { image: string, name: string, type: string, size: number };
+};
 
 const CategoryImage = ({
-                         error, selectImage, setSelectImage, field, setEditCategory, editCategory
-                       }: CategoryImageProps) => {
+  selectImage, setSelectImage, setEditCategory, editCategory
+}: CategoryImageProps) => {
   const intl = useIntl();
   const fileRef = useRef<HTMLInputElement>(null);
-  const [isLargeFile, setIsLargeFile] = useState(false);
+  const [errorImage, setErrorImage] = useState("");
   const [isChange, setIsChange] = useState(false);
 
   const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
+      setEditCategory({image: null});
       setSelectImage({
-        image: event.target.files[0],
+        image: event.target.files,
         size: event.target.files[0]["size"],
         name: event.target.files[0]["name"],
-        type: event.target.files[0]["type"]
+        type: event.target.files[0]["type"],
       });
-      if (selectImage!.size > IMAGE_DATA.size) {
-        setIsLargeFile(true);
+    }
+  };
+
+  useEffect(() => {
+    if (selectImage.type) {
+      const isFormat = IMAGE_DATA.format.some(format => format ===
+        "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1));
+      if (selectImage.size > IMAGE_DATA.size) {
+        setErrorImage(intl.formatMessage({id: "app.categories.imageBigSize"}));
+      } else if (!isFormat) {
+        setErrorImage(intl.formatMessage({id: "app.categories.imageError"}));
+      } else if (!selectImage.name && isChange) {
+        setErrorImage(intl.formatMessage({id: "app.categories.selectFile"}));
       } else {
-        setIsLargeFile(false);
+        setErrorImage("");
       }
     }
-  }
-  useEffect(() => {
-    // setSelectImage(selectImage)
-  }, [selectImage])
-
-  const handleChangeFile = () => {
-    setIsChange(true);
-  };
+  }, [selectImage,intl,isChange]);
 
   const handleUpload = () => {
     if (fileRef.current) {
@@ -58,48 +67,49 @@ const CategoryImage = ({
     }
   };
 
-  const handleDelete = () => {
-    setSelectImage({name: null});
-    setEditCategory("");
-  }
-
   return (
     <div className="category-label">
       <FormattedMessage id="app.categories.uploadCategoryImage"/>
-      {!selectImage.name && !editCategory && <>
-      <span className="category-image-inform">
-       <FormattedMessage id="app.categories.imageInform"/>
-      </span>
-        <input
-          ref={fileRef}
-          type="file"
-          className="category-file"
-          accept=".jpg, .gif, .png"
-          onChange={(event) => {
-            handleSelectFile(event)
-          }}
-        />
+      <input
+        ref={fileRef}
+        type="file"
+        className="category-file"
+        accept=".jpg, .gif, .png"
+        onChange={(event) => {
+          handleSelectFile(event);
+        }}
+        onBlur={() => setIsChange(true)}
+      />
+      {!selectImage.name && !editCategory.image && <>
+        <span className="category-image-inform">
+          <FormattedMessage id="app.categories.imageInform"/>
+        </span>
         <button
           className="button-login"
-          onClick={() => handleUpload()}
+          onClick={handleUpload}
           type="button"
         >
           <img src={Select} alt="Select file" className="button-image"/>
           <FormattedMessage id="app.categories.button.select"/>
         </button>
       </>}
-      {(!!selectImage.name || !!editCategory) && <>
+      {(!!selectImage.name || !!editCategory.image) && <>
         <span className="upload-image">
-           <FormattedMessage id="app.categories.uploadImage"/>
+          <FormattedMessage id="app.categories.uploadImage"/>
         </span>
         <div className="image-add-field">
           <img
-            src={selectImage.name ? URL.createObjectURL(selectImage.image) : editCategory}
-            alt={selectImage.name}
+            src={!editCategory.image
+              ? URL.createObjectURL(selectImage.image[0]) : editCategory.image}
+            alt={selectImage.name || editCategory.name}
             className="select-image"/>
           <div className="image-data">
-            <span className="select-image-name">{selectImage.name}</span>
-            <span className="select-image-size">{selectImage.size}</span>
+            <span className="select-image-name">
+              {selectImage.name || editCategory.name}
+            </span>
+            <span className="select-image-size">
+              {Math.floor((selectImage.size || editCategory.size)/1048.576)*0.001} MB
+            </span>
           </div>
           <div className="category-buttons-field">
             <Button
@@ -108,28 +118,16 @@ const CategoryImage = ({
               className="button-select"
               buttonImage={Change}
               imageStyle="icon-button"
-              onClick={handleChangeFile}
-            />
-            <Button
-              buttonType="button"
-              className="button-select button-delete"
-              buttonText={intl.formatMessage({id: "app.categories.delete"})}
-              buttonImage={Delete}
-              imageStyle="icon-button"
-              onClick={handleDelete}
+              onClick={handleUpload}
             />
           </div>
         </div>
       </>
       }
-      {error && <span className="error-message">{error}</span> ||
-        isLargeFile && <span className="error-message">
-        <FormattedMessage id="app.categories.imageBigSize"/>
+      {errorImage && <span className="error message">
+        {errorImage}
       </span>}
       <hr className="category-image-line"/>
-      {isChange && <div className="change-file-field" onClick={() => setIsChange(false)}>
-
-      </div>}
     </div>
   );
 };
