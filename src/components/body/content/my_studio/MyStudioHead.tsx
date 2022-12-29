@@ -1,7 +1,7 @@
 import "./my_studio_head.css";
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
-import { PlusSvg } from "../../../svg/PlusSvg";
+import { Link } from "react-feather";
 import requestApi from "../../../../services/request";
 
 const MyStudioHead = () => {
