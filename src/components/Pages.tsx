@@ -5,7 +5,7 @@ import {FC} from "react";
 import FirstRegistrationForm from "../pages/FirstRegistrationForm";
 import {Link} from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
-import Logo1440 from "./icons/logo1440.svg";
+import LogoRegistration from "./icons/logo1440.svg";
 import PhoneNumberPage from "../pages/PhoneNumberPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
 import SetNewPasswordPage from "../pages/SetNewPasswordPage";
@@ -51,7 +51,7 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
           <span className="close"></span>
         </Link>
         <div className="reg__picture">
-          <img src={Logo1440} className="reg__logo" alt="Logo"/>
+          <img src={LogoRegistration} className="reg__logo" alt="Logo"/>
         </div>
         <div className="reg__content">
           {page()}

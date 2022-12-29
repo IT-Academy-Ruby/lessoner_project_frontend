@@ -1,5 +1,44 @@
 @import "../constants.scss";
 
+.button__main, .button__page, .button__fs16, .button__fs16-white, .disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  border: none;
+  background: $blueLightColor;
+  font-family: $font;
+  color: $white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s;
+  &:hover {
+    box-shadow: 0px 4px 6px rgba(46, 51, 99, 0.43);
+  }
+}
+
+.button__fs16, .button__fs16-white {
+  padding: 6px 32px;
+  font-size: 16px;
+}
+
+.button__fs16-white {
+  border: 1px solid $borderColor;
+  color: $blueLightColor;
+  background: $white;
+  font-weight: 600;
+}
+
+.disabled {
+  background: none;
+  color: $greySearchColor;
+  border: 1px solid $greySearchColor;
+}
+
+.btn__temporary {
+  width: 300px;
+}
+
 .button-select {
   display: flex;
   align-items: center;
