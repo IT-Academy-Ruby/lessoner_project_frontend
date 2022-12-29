@@ -10,6 +10,7 @@ import GoogleButton from "./components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import {IntlProvider} from "react-intl";
 import Pages from "./components/Pages";
+import {Snowfall} from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
 import VKButton from "./components/VKButton";
 import {useAppDispatch} from "./store/hooks";
@@ -18,7 +19,10 @@ function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
+
   const dispatch = useAppDispatch();
+  const [opacity, setOpacity] = useState<number>(1);
+
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
   const findTokenWordInURL = "token=";
@@ -49,7 +53,8 @@ function App(): JSX.Element {
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
-        <div className="App">
+        <Snowfall setOpacity={setOpacity}/>
+        <div className="App" style={{transition: "opacity 5s", opacity}}>
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route

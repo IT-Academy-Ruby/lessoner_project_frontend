@@ -5,9 +5,12 @@ import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
 import Button from "../../Button";
+import {DarkLogoHeaderSvg} from "../../svg/DarkLogoHeaderSvg";
+import {LightLogoHeaderSvg} from "../../svg/LightLogoHeaderSvg";
 import Logo from "../../icons/Logo.svg";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {showStudentPage} from "../../../store/header/headerSlice";
+import {useTheme} from "../../../utils/useTheme";
 
 const Header = () => {
   const intl = useIntl();
@@ -16,6 +19,7 @@ const Header = () => {
   const isRegistered = useAppSelector(state => state.value.isDefaultHeader);
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const loading = useAppSelector(state => state.login.loading);
+  const theme = useTheme();
 
   useEffect(() => {
     dispatch(nameDecodedUser());
@@ -30,6 +34,7 @@ const Header = () => {
     <div className="side-bar">
       <div className="header">
         <Link to="/" className="logo-name">
+          {theme === "Dark-mode" ? <DarkLogoHeaderSvg/> : <LightLogoHeaderSvg/>}
           <img className="logo" src={Logo} alt="Logo"/>
           <h4 className="title-header">
             <FormattedMessage id="app.name"/>

@@ -99,9 +99,6 @@ const LoginPage = () => {
                 buttonText={intl.formatMessage({id: "app.button.signIn"})}
                 className="button__page"
               />
-              <Link to="/user/sign_in/reset_password" className="">
-                <FormattedMessage id="app.loginPage.password"/>
-              </Link>
               <Link to="/user/sign_in/reset_password" className="password-link">
                 <FormattedMessage id="app.loginPage.password"/>
               </Link>
