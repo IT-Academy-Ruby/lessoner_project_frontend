@@ -45,6 +45,7 @@ const MyStudioHead = () => {
       </div>
     );
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const elementsCategory = allCategories.map((elem:any) => {
     return (     
       <option key={elem.id} 
