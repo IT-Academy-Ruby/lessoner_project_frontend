@@ -1,4 +1,4 @@
-@import "../../constants.scss";
+@import "../../constants.module.scss";
 
 .evlf__wrapper {
   display: flex;
@@ -69,7 +69,8 @@
   width: 100%;
 }
 
-.evlth__inner-left, .evlth__inner-right {
+.evlth__inner-left,
+.evlth__inner-right {
   display: flex;
   justify-content: center;
   width: 50%;
@@ -77,8 +78,8 @@
 
 .evlth__inner-left .evlth__item {
   &:last-child {
-      margin-right: 8px;
-    }
+    margin-right: 8px;
+  }
 }
 
 .evlth__item {
@@ -121,20 +122,26 @@
   .evlth__inner {
     flex-direction: column;
   }
+
   .evlth__item {
     margin-bottom: 8px;
     margin-right: 0;
   }
-  .evlth__inner-left, .evlth__inner-right {
+
+  .evlth__inner-left,
+  .evlth__inner-right {
     width: 100%;
-  } 
+  }
+
   .evlth__inner-right .evlth__item {
     margin-bottom: 0;
+
     &:last-child {
       margin-right: 0;
       margin-left: 8px;
     }
   }
+
   .evlth__inner-left .evlth__item {
     &:last-child {
       margin-right: 0;

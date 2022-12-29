@@ -48,7 +48,6 @@ const CategoriesUser = () => {
   
   return (
     <div className="wrapper__categories">
-      <FormattedMessage id="app.categories" />
       <div className="categories__block">
         {isLoading ? skeleton : categorySet}
       </div>

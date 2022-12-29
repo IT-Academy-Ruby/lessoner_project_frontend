@@ -24,7 +24,6 @@ const Header = () => {
   useEffect(() => {
     dispatch(nameDecodedUser());
     if (decodeUserName) {
-      navigate("");
       dispatch(showStudentPage());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

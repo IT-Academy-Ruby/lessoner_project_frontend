@@ -1,9 +1,11 @@
 import "./categories.scss";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { useEffect, useState } from "react";
 import Button from "../../../Button";
 import CategoriesAdmin from "./CategoriesAdmin";
 import CategoriesUser from "./CategoriesUser";
+import { getCategory } from "../../../../store/categorySlice/categorySlice";
 import getWindowDimensions from "../../../../helpers/getWindowDimensions";
 import styles from "../../../../constants.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +13,19 @@ import { useNavigate } from "react-router-dom";
 const Categories = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [isAdmin, setIsAdmin] = useState(false);
   const [pageSize, setPageSize] = useState(getWindowDimensions());
+  const user = useAppSelector(state => state.userDecodedName.session);
+
+  useEffect(() => {
+    if (user.name === "admin" && user.email === "lessonerteam@gmail.com") {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+      dispatch(getCategory());
+    };
+  }, [isAdmin, user, dispatch]);
 
   const resizeHanlder = () => {
     const pageSize = getWindowDimensions();
@@ -63,23 +77,34 @@ const Categories = () => {
 
   return (
     <div className="categories">
-      <div className="category-header">
-        <h1 className="category-title">
-          <FormattedMessage id="app.categories" />
-        </h1>
-        <Button
-          className="button-add-category"
-          buttonText={intl.formatMessage((pageSize.width > parseInt(styles.maxWidthPhone)) ?
-            { id: "app.button.categories.Add" } : { id: "app.button.categories.New" })}
-          buttonType="button"
-          onClick={addCategory}
-        />
-      </div>
-      <div className="tab">
-        {columnsHeaders()}
-        <CategoriesAdmin />
-        <CategoriesUser />
-      </div>
+      {isAdmin && <div className="categories">
+        <div className="category-header">
+          <h1 className="category-title">
+            <FormattedMessage id="app.categories" />
+          </h1>
+          <Button
+            className="button-add-category"
+            buttonText={intl.formatMessage((pageSize.width > parseInt(styles.maxWidthPhone)) ?
+              { id: "app.button.categories.Add" } : { id: "app.button.categories.New" })}
+            buttonType="button"
+            onClick={addCategory}
+          />
+        </div>
+        <div className="tab">
+          {columnsHeaders()}
+          <CategoriesAdmin />
+        </div>
+      </div>}
+      {!isAdmin && <div className="categories">
+        <div className="category-header">
+          <h1 className="category-title">
+            <FormattedMessage id="app.categories" />
+          </h1>
+        </div>
+        <div className="tab">
+          <CategoriesUser />
+        </div>
+      </div>}
     </div>
   );
 };

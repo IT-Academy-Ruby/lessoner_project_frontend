@@ -45,7 +45,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     {
       id: 4,
       value: `${intl.formatMessage({id: "app.navbarStudyStudio.categories"})}`,
-      href: "#!",
+      href: "/categories",
       icon: "categories",
       place: {
         notAutorised: "not_autorised",

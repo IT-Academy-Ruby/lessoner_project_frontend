@@ -43,7 +43,9 @@ const CategoriesAdmin = () => {
   };
 
   const handleDelete = async (category:
-    { id: number, name: string, description: string, status: string }
+    {
+      id: number, name: string, description: string, status: string, amount_lessons: number
+    }
   ) => {
     await dispatch(archiveCategory(category));
     dispatch(getCategory());

@@ -1,4 +1,4 @@
-@import "../../constants.scss";
+@import "../../constants.module.scss";
 
 .evl__wrapper {
   display: flex;
@@ -12,7 +12,7 @@
 .evl__inner {
   display: flex;
   justify-content: center;
-  width: 100%;   
+  width: 100%;
   max-width: 656px;
   min-height: 843px;
   border-radius: 8px;
@@ -42,8 +42,8 @@
   .evl__wrapper {
     padding: 0;
   }
+
   .evl__inner {
     padding: 24px 20px 0 20px;
-  } 
+  }
 }
-
