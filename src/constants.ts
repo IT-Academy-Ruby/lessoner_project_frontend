@@ -21,13 +21,16 @@ const NAME_CATEGORY = {
 const DESCRIPTION_CATEGORY = {
   minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
-
 const SKELETON_AMOUT = 8;
+const NAVBAR_ADMIN = "admin";
+const NAVBAR_AUTORISED = "autorised";
+const NAVBAR_NOT_AUTORISED = "not_autorised";
 
 export {
   BACKEND_URL, BACKEND_URL_LESSONS, CODE, DEFAULT_COUNTRY_CODE, EMAIL, FACEBOOK_APP, GOOGLE_APP,
   PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength,
-  maxDescriptionLength, maxDescrHTCount, NAME_CATEGORY, DESCRIPTION_CATEGORY, SKELETON_AMOUT
+  maxDescriptionLength, maxDescrHTCount, NAME_CATEGORY, DESCRIPTION_CATEGORY, SKELETON_AMOUT, 
+  NAVBAR_ADMIN, NAVBAR_AUTORISED, NAVBAR_NOT_AUTORISED
 };
 
 

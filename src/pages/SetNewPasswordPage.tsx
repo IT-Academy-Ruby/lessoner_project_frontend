@@ -3,12 +3,13 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import { changePassword } from "../services/api/changePassword";
-import getParameterValue from "../helpers/parseUrl";
+import {changePassword} from "../store/loginName/loginSlice";
 import {passwordRegex} from "../validationRules";
+import {useNavigate} from "react-router-dom";
 
 interface FormValues {
   password: string;
@@ -20,34 +21,35 @@ interface FormErrors {
 }
 
 const SetNewPasswordPage = () => {
-
+  const minSymbol = PASSWORD.minLength;
+  const maxSymbol = PASSWORD.maxLength;
+  const symbols = PASSWORD.symbols;
   const intl = useIntl();
-  const initialValues: FormValues = { password: "", confirmPassword: "" };
-  const token = getParameterValue(window.location.href, "token");
+  const dispatch = useAppDispatch();
+  const navigate =useNavigate();
+  const token = useAppSelector(state => state.login.token);
+  const initialValues: FormValues = {password: "", confirmPassword: ""};
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (!passwordRegex.test(values.password)) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+          minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
+        });
     }
     if (values.password.length > PASSWORD.maxLength ||
-      values.password.length < PASSWORD.minLength) {
+      values.password.length < minSymbol) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+        intl.formatMessage(
+          {id: "app.firstRegistrationForm.passwordLength"},
+          {minSymbol: minSymbol, maxSymbol: maxSymbol});
     }
     if (values.password !== values.confirmPassword) {
-      errors.password = errors.code =
+      errors.confirmPassword = errors.code =
         intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
     return errors;
-  };
-
-  const submitFirstStepForm = async (values: FormValues) => {
-    if (token) {
-      const isStatusSended = await changePassword(token, values.password);
-      console.log(isStatusSended);
-    }
   };
 
   return (
@@ -56,7 +58,11 @@ const SetNewPasswordPage = () => {
         initialValues={initialValues}
         validateOnChange={false}
         validate={validate}
-        onSubmit={submitFirstStepForm}
+        onSubmit={(values: FormValues) => {
+          const value = {token: token, password: values.password,};
+          dispatch(changePassword(value));
+          navigate("/");
+        }}
       >
         {({errors, touched}) => {
           return (
@@ -66,15 +72,15 @@ const SetNewPasswordPage = () => {
               </h2>
               <Field
                 name="password" component={PasswordAndConfirm}
-                minSymbol={PASSWORD.minLength}
-                maxSymbol={PASSWORD.maxLength}
+                minSymbol={minSymbol}
+                maxSymbol={maxSymbol}
                 isConfirm={false}
                 error={touched.password ? errors.password : undefined}/>
               <Field
                 name="confirmPassword"
                 component={PasswordAndConfirm}
-                minSymbol={PASSWORD.minLength}
-                maxSymbol={PASSWORD.maxLength}
+                minSymbol={minSymbol}
+                maxSymbol={maxSymbol}
                 isConfirm={true}
                 error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
               <Button

@@ -1,17 +1,17 @@
 import "./pages.scss";
+import {FC,useState} from "react";
 import CodePage from "../pages/CodePage";
 import ConfirmReg from "../pages/ConfirmReg";
-import {FC} from "react";
 import FirstRegistrationForm from "../pages/FirstRegistrationForm";
 import {Link} from "react-router-dom";
+import Loader from "../components/Loader";
 import LoginPage from "../pages/LoginPage";
-import Logo1440 from "./icons/logo1440.svg";
+import LogoRegistration from "./icons/logo1440.svg";
 import PhoneNumberPage from "../pages/PhoneNumberPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
 import SetNewPasswordPage from "../pages/SetNewPasswordPage";
 import YourselfPage from "../pages/YourselfPage";
-import {closePopup} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
+import {useAppSelector} from "../store/hooks";
 
 interface PagesProps {
   pageType: string;
@@ -19,13 +19,15 @@ interface PagesProps {
 }
 
 const Pages: FC<PagesProps> = ({pageType, registration}) => {
-  const dispatch = useAppDispatch();
+  const [userPassword, setUserPassword] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+
   const page = () => {
     switch (pageType) {
     case "Login":
       return <LoginPage/>;
     case "Code":
-      return <CodePage/>;
+      return <CodePage registration={registration}/>;
     case "ResetPage":
       return <ResetPasswordPage/>;
     case "SetNewPassword":
@@ -33,27 +35,36 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
     case "PhoneNumberPage":
       return <PhoneNumberPage registration={registration}/>;
     case "FirstRegistrationForm":
-      return <FirstRegistrationForm/>;
+      return <FirstRegistrationForm
+        setUserPassword={setUserPassword}
+        setUserEmail={setUserEmail}
+      />;
     case "YourselfPage":
-      return <YourselfPage/>;
+      return <YourselfPage
+        registration={registration}
+        userPassword={userPassword}
+        userEmail={userEmail}
+      />;
     case "ConfirmReg":
-      return <ConfirmReg/>;
+      return <ConfirmReg
+        registration={registration}
+        userEmail={userEmail}
+      />;
     }
   };
-  const closePage = () => {
-    dispatch(closePopup);
-  };
+  const loading = useAppSelector(state => state.login.loading);
 
   return (
     <div className="reg__wrapper">
       <div className="reg__inner">
-        <Link to="/" className="close__wrapper" onClick={closePage}>
+        <Link to="/" className="close__wrapper">
           <span className="close"></span>
         </Link>
         <div className="reg__picture">
-          <img src={Logo1440} className="reg__logo" alt="Logo"/>
+          <img src={LogoRegistration} className="reg__logo" alt="Logo"/>
         </div>
         <div className="reg__content">
+          {loading && <Loader/>}
           {page()}
         </div>
       </div>

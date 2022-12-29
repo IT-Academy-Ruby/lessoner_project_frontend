@@ -9,23 +9,23 @@ $themes: (
     darkTheme: $grey100,
     lightTheme: $black,
   ),
-  bgThemeSideBarColor: (
+  bgThemeNavBarColor: (
     darkTheme: $darkSideBar,
     lightTheme: $lightSideBar,
   ),
-  bgSideBarShadow: (
+  bgNavBarShadow: (
     darkTheme: $SideBarShadowDark,
     lightTheme: $SideBarShadowLight,
   ),
-  iconsThemeSideBarColor: (
-    darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  iconsTextThemeNavBarColor: (
+    darkTheme: $dark7,
+    lightTheme: $dark8,
   ),
-  textThemeSideBarColor: (
-    darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  themeNavBarColorHover: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
   ),
-  textThemeSideBarColorHover: (
+  themeNavBarBgHover: (
     darkTheme: $dark6,
     lightTheme: $light5,
   ),
@@ -100,9 +100,13 @@ $themes: (
 );
 
 @mixin styles($mode) {
-  @each $key, $map in $themes {
-    @each $prop, $color in $map {
-      @if $prop == $mode {
+
+  @each $key,
+  $map in $themes {
+
+    @each $prop,
+    $color in $map {
+      @if $prop ==$mode {
         --#{$key}: #{$color};
       }
     }

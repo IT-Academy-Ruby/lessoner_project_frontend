@@ -43,6 +43,7 @@
   position: absolute;
   width: 16px;
   border: 2px solid var(--KebabCardThemeColor);
+  background: var(--KebabCardThemeColor);
   content: "";
 }
 
@@ -63,11 +64,6 @@
   background-color: var(--bgFirstRegistrForm);
   background-size: cover;
   transition: background-color  0.5s ease;
-}
-
-.reg__logo {
-  max-width: 321px;
-
 }
 
 .reg__content {
