@@ -1,9 +1,9 @@
 import "./categoryImage.scss";
-import Change from "../../../../icons/change.svg";
-import Delete from "../../../../icons/deleteRed.svg";
 import {
   Fragment, useRef, useState
 } from "react";
+import Change from "../../../../icons/change.svg";
+import Delete from "../../../../icons/deleteRed.svg";
 import { FormattedMessage } from "react-intl";
 import Select from "../../../../icons/select.svg";
 
@@ -28,50 +28,50 @@ const CategoryImage = ({ error, isAdd }: CategoryImageProps) => {
   };
   const setUploadingFileView = () => {
     switch (uploadingStatus) {
-      case "no image":
-        return (
-          <Fragment>
-            <div className="category-image-description">
-              <FormattedMessage id="app.categories.uploadCategoryImageDescription" />
-            </div>
-            <div>
-              <button className="category-image-button-upload" onClick={handleUpload} type="button">
-                <img src={Select} alt="Select file" className="button-image" />
-                <FormattedMessage id="app.categories.button.upload" />
+    case "no image":
+      return (
+        <Fragment>
+          <div className="category-image-description">
+            <FormattedMessage id="app.categories.uploadCategoryImageDescription" />
+          </div>
+          <div>
+            <button className="category-image-button-upload" onClick={handleUpload} type="button">
+              <img src={Select} alt="Select file" className="button-image" />
+              <FormattedMessage id="app.categories.button.upload" />
+            </button>
+            {error && <span className="error-message">{error}</span>}
+          </div>
+        </Fragment>
+      );
+    case "start uploading":
+      return (
+        <Fragment>
+          <div className="category-image-uploading">
+            <FormattedMessage id="app.categories.uploadingFileCategoryImage" />
+          </div>
+        </Fragment>
+      );
+    case "finish uploading":
+      return (
+        <Fragment>
+          <div className="category-image-uploading">
+            <FormattedMessage id="app.categories.uploadedFileCategoryImage" />
+          </div>
+          <div className="image-category-field">
+            <div className="change-delete-buttons">
+              <button className="category-image-button-change" type="button">
+                <img src={Change} alt="Change file" className="button-image" />
+                <FormattedMessage id="app.categories.button.change" />
               </button>
-              {error && <span className="error-message">{error}</span>}
+              <button className="category-image-button-delete" type="button">
+                <img src={Delete} alt="Delete file" className="button-image" />
+                <FormattedMessage id="app.categories.button.delete" />
+              </button>
             </div>
-          </Fragment>
-        );
-      case "start uploading":
-        return (
-          <Fragment>
-            <div className="category-image-uploading">
-              <FormattedMessage id="app.categories.uploadingFileCategoryImage" />
-            </div>
-          </Fragment>
-        );
-      case "finish uploading":
-        return (
-          <Fragment>
-            <div className="category-image-uploading">
-              <FormattedMessage id="app.categories.uploadedFileCategoryImage" />
-            </div>
-            <div className="image-category-field">
-              <div className="change-delete-buttons">
-                <button className="category-image-button-change" type="button">
-                  <img src={Change} alt="Change file" className="button-image" />
-                  <FormattedMessage id="app.categories.button.change" />
-                </button>
-                <button className="category-image-button-delete" type="button">
-                  <img src={Delete} alt="Delete file" className="button-image" />
-                  <FormattedMessage id="app.categories.button.delete" />
-                </button>
-              </div>
-              {error && <span className="error-message">{error}</span>}
-            </div>
-          </Fragment>
-        );
+            {error && <span className="error-message">{error}</span>}
+          </div>
+        </Fragment>
+      );
     }
   };
 
