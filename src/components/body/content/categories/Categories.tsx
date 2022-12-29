@@ -83,7 +83,7 @@ const Categories = () => {
             <FormattedMessage id="app.categories" />
           </h1>
           <Button
-            className="button-add-category"
+            className="button-register"
             buttonText={intl.formatMessage((pageSize.width > parseInt(styles.maxWidthPhone)) ?
               { id: "app.button.categories.Add" } : { id: "app.button.categories.New" })}
             buttonType="button"

@@ -12,10 +12,10 @@ type BodyProps = {
 const Body = ({ onLanguageSwitch }: BodyProps) => {
   return (
     <div className="body-page">
-      <Header/>
+      <Header onLanguageSwitch={onLanguageSwitch} />
       <NavbarStudyStudio menuType={NAVBAR_ADMIN} />
-      <Main/>
-      <Footer onLanguageSwitch={onLanguageSwitch}/>
+      <Main />
+      <Footer />
     </div>
   );
 };

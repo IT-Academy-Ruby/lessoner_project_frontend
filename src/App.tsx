@@ -10,7 +10,7 @@ import GoogleButton from "./components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import {IntlProvider} from "react-intl";
 import Pages from "./components/Pages";
-import {Snowfall} from "./components/Snowfall";
+import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
 import VKButton from "./components/VKButton";
 import {useAppDispatch} from "./store/hooks";
@@ -22,6 +22,7 @@ function App(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
+  const [display, setDisplay] = useState<boolean>(true);
 
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
@@ -46,15 +47,15 @@ function App(): JSX.Element {
 
   }, [controlRendering, dispatch, url]);
 
-  const signOut = () => {
-    localStorage.setItem("JWT", "");
-  };
-
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
-        <Snowfall setOpacity={setOpacity}/>
-        <div className="App" style={{transition: "opacity 5s", opacity}}>
+        <Snowfall setOpacity={setOpacity} setDisplay={setDisplay}/>
+        <div className="App" style={{
+          transition: "opacity 5s",
+          opacity,
+          display: display ? undefined : "none",
+        }}>
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route
@@ -103,9 +104,6 @@ function App(): JSX.Element {
               path="/user/vk"
               element={<VKButton/>}/>
           </Routes>
-          <div style={{display: "flex", flexDirection: "column"}}>
-            <button onClick={signOut}>Not authorized</button>
-          </div>
         </div>
       </BrowserRouter>
     </IntlProvider>

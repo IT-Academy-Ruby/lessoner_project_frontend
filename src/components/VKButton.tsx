@@ -15,7 +15,7 @@ const VKButton = () => {
       console.log(code);
     }
     else if (error) {
-      window.location.href = `${REACT_APP_FRONTEND}/firstRegistrationForm`;
+      window.location.href = `${REACT_APP_FRONTEND}/user/sign_up`;
     }
   }, [REACT_APP_FRONTEND]);
 

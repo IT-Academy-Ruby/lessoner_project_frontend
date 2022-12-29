@@ -61,19 +61,6 @@
   }
 }
 
-.button-login {
-  padding: 6px 36px;
-  height: 32px;
-  font-family: $font;
-  background: $blueLightColor;
-  color: $white;
-  border: none;
-  border-radius: 28px;
-  font-weight: 600;
-  font-size: 16px;
-  box-sizing: content-box;
-}
-
 .button__page {
   display: flex;
   align-items: center;
@@ -101,24 +88,25 @@
 }
 
 .button-login {
+  width: 100%;
   font-size: 16px;
   font-family: $font;
   background: none;
-  color:$blueLightColor;
+  color: $blueLightColor;
   border: none;
   margin-left: 12px;
   padding: 6px 26px;
 
-  &:focus{
-    border: 1px solid #D1D1D1;
+  &:focus {
+    border: 1px solid $greyDefault;
     border-radius: 28px;
-    color: #001257;
+    color: $blueLightColor;
   }
 
-  &:active{
-    border: 1px solid #D1D1D1;
+  &:active {
+    border: 1px solid $greyDefault;
     border-radius: 28px;
-    color: #001257;
+    color: $blueLightColor;
   }
 }
 
