@@ -1,11 +1,12 @@
 import "./LessonCard.scss";
+import React, { FC, useState } from "react";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
 import PopupMenu from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
-import React from "react";
 import Tag from "./body/Tags/Tag";
+import { useNavigate } from "react-router-dom";
 
 type ThumbnailImageUrlProps = {
   imagePreview: string;
@@ -53,12 +54,18 @@ const Title: React.FC<TitleProps> = (props) => {
   );
 };
 
-const MenuKebab = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+type MenuKebabProps = {
+  idCard: number;
+};
+
+const MenuKebab: FC<MenuKebabProps> = (props) => {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
+    navigate("/lessons/" + props.idCard);
   };
 
   return (
@@ -138,7 +145,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} />
-            <MenuKebab />
+            <MenuKebab idCard={props.id} />;
           </div>
           <div className="details">
             <Published published={props.published} />
@@ -157,3 +164,5 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
 };
 
 export default LessonCard;
+
+

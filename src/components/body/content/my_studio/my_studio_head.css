@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: center;
+    margin: 0 29px 0 240px;
 }
 .my-categories{
     display: flex;
@@ -17,7 +18,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 37px 29px;
+    margin: 37px 29px 37px 240px;
 }
 #intro{
     position: relative;
@@ -151,4 +152,8 @@ div.status_lesson{
 }
 #status-div{
     margin: 0px 20px;
+}
+
+.add-new-lesson-div a{
+    text-decoration: none;
 }

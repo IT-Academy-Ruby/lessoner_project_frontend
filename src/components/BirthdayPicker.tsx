@@ -26,7 +26,7 @@ const BirthdayPicker = ({
     const {setFieldValue} = form;
     const {name: fieldName} = field;
     setBirthday(selectedDate);
-    setFieldValue(fieldName, selectedDate, true);
+    setFieldValue(fieldName, selectedDate.toLocaleDateString(), true);
   };
 
   const minYear = new Date((new Date()).getTime() -
