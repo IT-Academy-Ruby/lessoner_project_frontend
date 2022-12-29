@@ -22,6 +22,7 @@ function App(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const [opacity, setOpacity] = useState<number>(1);
+  const [display, setDisplay] = useState<boolean>(true);
 
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
   const url = window.location.href;
@@ -49,8 +50,12 @@ function App(): JSX.Element {
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
-        <Snowfall setOpacity={setOpacity}/>
-        <div className="App" style={{transition: "opacity 5s", opacity}}>
+        <Snowfall setOpacity={setOpacity} setDisplay={setDisplay}/>
+        <div className="App" style={{
+          transition: "opacity 5s",
+          opacity,
+          display: display ? undefined : "none",
+        }}>
           <Body onLanguageSwitch={setLanguageCode}/>
           <Routes>
             <Route
