@@ -3,21 +3,19 @@ import "./modal.scss";
 import {
   Field, Form, Formik
 } from "formik";
-import { FormattedMessage, useIntl } from "react-intl";
-import { emailInvalidationRules, passwordRegex } from "../validationRules";
+import {FormattedMessage, useIntl} from "react-intl";
+import {Link, useNavigate} from "react-router-dom";
+import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
-import FacebookButton from "../components/FacebookButton";
-import GoogleButton from "../components/GoogleButton";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { Link } from "react-router-dom";
-import { PASSWORD } from "../constants";
+import Facebook from "../components/icons/facebook.svg";
+import Google from "../components/icons/google.svg";
+import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
-import VKButton from "../components/VKButton";
+import VK from "../components/icons/vk.svg";
 import { useAppSelector } from "../store/hooks";
-
 
 interface FormValues {
   email: string;
@@ -30,12 +28,18 @@ interface FormErrors {
   [key: string]: string;
 }
 
+type FirstRegistrationFormProps = {
+  setUserPassword: (str: string) => void;
+  setUserEmail: (str: string) => void;
+}
+
 const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
 const symbols = PASSWORD.symbols;
 
-const FirstRegistrationForm = () => {
+const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const isEmail = useAppSelector(state => state.login.isEmail);
   const initialValues: FormValues = {
     email: "",
@@ -73,9 +77,6 @@ const FirstRegistrationForm = () => {
     return errors;
   };
 
-  const submitFirstStepForm = (values: FormValues) => {
-    console.log(values);
-  };
 
   return (
     <div className="log-content">
@@ -83,7 +84,11 @@ const FirstRegistrationForm = () => {
         initialValues={initialValues}
         validateOnChange={false}
         validate={validate}
-        onSubmit={submitFirstStepForm}
+        onSubmit={(values: FormValues) => {
+          setUserEmail(values.email);
+          setUserPassword(values.password);
+          navigate("/user/reg_in/information");
+        }}
       >
         {({ errors, touched }) => {
           return (
@@ -130,17 +135,23 @@ const FirstRegistrationForm = () => {
                 <span className="line-left"></span>
               </div>
               <div className="apps-logs">
-                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}><GoogleButton /></GoogleOAuthProvider>
-                <FacebookButton />
-                <VKButton />
-                <div className="app-logo">
-                  <img src={Phone} alt="phone" />
-                </div>
+                <Link to="/user/google" className="app-logo">
+                  <img src={Google} alt="google"/>
+                </Link>
+                <Link to="/user/facebook" className="app-logo">
+                  <img src={Facebook} alt="facebook"/>
+                </Link>
+                <Link to="/user/vk" className="app-logo">
+                  <img src={VK} alt="vk"/>
+                </Link>
+                <Link to="/user/sign_in/phone_numberR" className="app-logo">
+                  <img src={Phone} alt="phone"/>
+                </Link>
               </div>
               <p className="text">
                 <FormattedMessage id="app.firstRegistrationForm.haveAccount" />
                 <Link
-                  to={"/users/sign_in"}
+                  to={"/user/sign_in"}
                   className="link"
                 >
                   <FormattedMessage id="app.header.login" />

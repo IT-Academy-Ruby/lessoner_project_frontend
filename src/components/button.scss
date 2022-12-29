@@ -99,13 +99,13 @@
   &:focus {
     border: 1px solid $greyDefault;
     border-radius: 28px;
-    color: #001257;
+    color: $blueLightColor;
   }
 
   &:active {
     border: 1px solid $greyDefault;
     border-radius: 28px;
-    color: #001257;
+    color: $blueLightColor;
   }
 }
 

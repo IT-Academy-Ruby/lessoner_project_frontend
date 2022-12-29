@@ -16,8 +16,8 @@
 }
 
 .logo {
-  width: 19px;
-  height: 21px;
+  width: 24px;
+  height: 30px;
 }
 
 .logo-name {
@@ -31,8 +31,9 @@
 }
 
 .title-header {
-  display: inline-block;
   margin: 0 0 0 5px;
+  display: flex;
+  align-items: center;
 }
 
 .header-buttons {
@@ -64,7 +65,7 @@
   cursor: pointer;
 
   &:hover {
-    background: #EEF3FE;
+    background: $greyDefault;
   }
 }
 
@@ -149,7 +150,7 @@
   cursor: pointer;
 
   &:hover {
-    background: #EEF3FE;
+    background: $greyDefault;
   }
 }
 
@@ -157,7 +158,6 @@
   width: 12px;
   height: 8px;
 }
-
 
 #input-language:checked ~ .list-language {
   display: block;

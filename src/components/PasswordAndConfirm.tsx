@@ -1,4 +1,5 @@
 import "./input.scss";
+import {PASSWORD} from "../constants";
 import classNames from "classnames";
 import close_eye from "./icons/close_eye.svg";
 import open_eye from "./icons/open_eye.svg";
@@ -41,7 +42,8 @@ const PasswordAndConfirm = ({
       className={classNames("input", {"invalid-input": error},
         {"success-input": !error && field.value})}
       {...field}
-      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"})}
+      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
+        {minSymbol: PASSWORD.minLength})}
     />
     <img
       className="image-input"

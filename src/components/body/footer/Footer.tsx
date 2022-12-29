@@ -43,16 +43,6 @@ const Footer = () => {
           <FormattedMessage id="app.about" />
         </div>
       </Link>
-      <Link to="/users/sign_in">
-        <button>
-          <FormattedMessage id="app.login" />
-        </button>
-      </Link>
-      <Link to="/users/sign_up">
-        <button>
-          <FormattedMessage id="app.registration" />
-        </button>
-      </Link>
       <ThemeBtn />
     </footer>
   );

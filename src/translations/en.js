@@ -1,7 +1,4 @@
 /* eslint-disable max-len */
-import {
-  CODE, PASSWORD, USERNAME
-} from "../constants";
 
 export const messages_en = {
   "app.name": "The Lessoner",
@@ -45,7 +42,7 @@ export const messages_en = {
   "app.genderSelector.gender": "Select Your Gender",
   "app.passwordAndConfirm.pass": "Password",
   "app.passwordAndConfirm.confirmPass": "Confirm password",
-  "app.passwordAndConfirm.placeholder": `At least ${PASSWORD.minLength} characters`,
+  "app.passwordAndConfirm.placeholder": "At least {minSymbol} characters",
   "app.phoneNumberPage.title": "Enter your phone number",
   "app.phoneNumberPage.submit": "Submit code",
   "app.phoneNumber.label": "Phone number",
@@ -121,27 +118,23 @@ export const messages_en = {
   "app.activeCategories.errorProhibitedCharacters": "The input field contains prohibited characters",
   "app.don'tAccount": "Don`t you have an account?",
   "app.code.name": "Code",
-  "app.code.errorLength": `Code should be ${CODE.maxLength} characters. `,
+  "app.code.errorLength": "Code should be {maxSymbol} characters. ",
   "app.code.invalidationRules": "An invalid character is present in the Code. ",
-  "app.code.inform":
-    "Now a code will come to your phone.\nEnter it in a line.\n",
+  "app.code.inform": "Now a code will come to your phone.\nEnter it in a line.\n",
   "app.code.phoneNumber": "To change number",
   "app.resetPasswordPage.inform":
     "Enter the email that you used when register to recover your password. You will receive a password reset link",
   "app.resetPasswordPage.resetPassword": "Password reset",
-  "app.resetPasswordPage.text":
-    "We've sent a link to restore access to your account to the address ",
+  "app.resetPasswordPage.text": "We've sent a link to restore access to your account to the address {email}",
   "app.setNewPasswordPage.title": "Login as username",
   "app.YourselfPage.errorIncorrectName": "UserName is incorrect",
   "app.YourselfPage.errorFieldEmpty": "The field must not be empty",
-  "app.YourselfPage.errorSmalName": `UserName should be more ${USERNAME.minLength}`,
-  "app.YourselfPage.errorBigName": `UserName should be less ${USERNAME.maxLength}`,
+  "app.YourselfPage.errorSmallName": "UserName should be more {minSymbol}",
+  "app.YourselfPage.errorBigName": "UserName should be less {maxSymbol}",
   "app.UserName": "Username",
-  "app.UserName.placeholder": `${USERNAME.minLength} to ${USERNAME.maxLength} characters`,
-  "app.ConfirmReg.info":
-    "Confirm your registration using the link we sent to your email.",
-  "app.userName.nameExists":
-    "User already exists. Please enter a different username",
+  "app.UserName.placeholder": "{minSymbol} to {maxSymbol} characters",
+  "app.ConfirmReg.info": "Confirm your registration using the link we sent to your email.",
+  "app.userName.nameExists": "User already exists. Please enter a different username",
   "app.gender.male": "Male",
   "app.gender.female": "Female",
   "app.gender.other": "Other",
