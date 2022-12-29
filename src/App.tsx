@@ -5,10 +5,6 @@ import {
 import Body from "./components/body/Body";
 import {IntlProvider} from "react-intl";
 import Pages from "./components/Pages";
-import PhoneNumberPage from "./pages/PhoneNumberPage";
-import ResetPasswordPage from "./pages/ResetPasswordPage";
-import Search from "./components/body/header/search/Search";
-import SetNewPasswordPage from "./pages/SetNewPasswordPage";
 import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
 import { useState } from "react";

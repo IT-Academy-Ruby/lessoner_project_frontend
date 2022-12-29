@@ -25,7 +25,6 @@ const Email = ({
   const JWT = useAppSelector(state => state.login.login);
   const lookButton = useAppSelector(state => state.login.lookButton);
   const loading = useAppSelector(state => state.login.loading);
-  const [isUser, setIsUser] = useState(false);
   const [isNotFoundEmail, setIsNotFoundEmail] = useState(true);
   const emailFound = useAppSelector(state => state.login.notFound);
 
@@ -43,10 +42,7 @@ const Email = ({
 
   useEffect(() => {
     if (!JWT && loginEvent && field.value.length) {
-      setIsUser(true);
       dispatch(changeEvent());
-    } else {
-      setIsUser(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JWT, dispatch, field.value, lookButton]);
@@ -74,9 +70,6 @@ const Email = ({
         !== "" && !emailFound && <span className="error-message">
         <FormattedMessage id="app.email.notFound"/>
       </span>}
-      {/*{!loading && isUser && <span className="error-message">*/}
-      {/*  <FormattedMessage id="app.email.error"/>*/}
-      {/*</span>}*/}
     </label>
   );
 };
