@@ -1,12 +1,14 @@
 import "./formUserPage.scss";
-import Button from "../../../Button";
+import {BACKEND_URL, CODE, DEFAULT_COUNTRY_CODE, PASSWORD, USERNAME} from "../../../../constants";
+import {CodeRegex, emailInvalidationRules, passwordRegex, UserRegex} from "../../../../validationRules";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {BACKEND_URL, CODE, DEFAULT_COUNTRY_CODE, PASSWORD, USERNAME} from "../../../../constants";
-import {CodeRegex, emailInvalidationRules, passwordRegex, UserRegex} from "../../../../validationRules";
+import {getUserData, editUserData} from "../../../../store/loginName/loginSlice";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import Birthday from "../../../BirthdayPicker";
+import Button from "../../../Button";
 import Code from "../../../Code";
 import Gender from "../../../GenderSelector";
 import Email from "../../../Email";
@@ -15,9 +17,9 @@ import PasswordAndConfirm from "../../../PasswordAndConfirm";
 import Phone from "../../../PhoneNumber";
 import UserName from "../../../UserName";
 import classNames from "classnames";
-import {getUserData, editUserData} from "../../../../store/loginName/loginSlice";
+
 import requestApi from "../../../../services/request";
-import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+
 import {useEffect, useState} from "react";
 
 const gender = [

@@ -3,10 +3,11 @@ import {BACKEND_URL} from "../../constants";
 import requestApi from "../../services/request";
 
 export const getLogin = createAsyncThunk(
-  "login/getLoginStatus",
+  "user/getLoginStatus",
   async (value: { email: string, password: string }) => {
     const response =
-      await fetch(`${BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
+      await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/login?email=${value.email}&password=${value.password}`,
         {method: "POST"});
     const data = await response.json();
     if (response.status === 200) {
@@ -20,7 +21,7 @@ export const getLogin = createAsyncThunk(
 export const sendPasswordResetLink = createAsyncThunk(
   "user/sendPasswordResetLink",
   async (email: string): Promise<boolean> => {
-    const response = await fetch(`${BACKEND_URL}/password/forgot`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({email: email})
@@ -48,7 +49,7 @@ export const getEmail = createAsyncThunk(
 export const getUserData = createAsyncThunk(
   "user/getUserDataStatus",
   async (name: string) => {
-    const response = await requestApi(`${BACKEND_URL}/users/${name}`);
+    const response = await requestApi(`${process.env.REACT_APP_BACKEND_URL}/users/${name}`);
     const data = response.json();
     return data;
   }
@@ -56,10 +57,31 @@ export const getUserData = createAsyncThunk(
 
 export const editUserData = createAsyncThunk(
   "user/editUserDataStatus",
-  async (items:{name:string,object:object}) => {
-    const response = await requestApi(`${BACKEND_URL}/users/${items.name}`,"PUT",items.object);
+  async (items: { name: string, object: object }) => {
+    const response = await requestApi(
+      `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
     const data = response.json();
     return data;
+  }
+);
+
+export const uploadFile = createAsyncThunk(
+  "user/uploadFileStatus",
+  async (user: { name: string, file: FileList}) => {
+    const formData = new FormData();
+    formData.append("avatar", user.file[0]);
+    const token = localStorage.getItem("JWT");
+    const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.name}`, {
+      method: "PUT",
+      headers: new Headers({"Authorization": `Bearer ${token}`}),
+      body: formData,
+    });
+    const data = await responce.json();
+    if (responce.status === 200) {
+      return data;
+    } else {
+      return `errror ${responce.status}`;
+    }
   }
 );
 
@@ -153,8 +175,8 @@ const loginSlice = createSlice({
     builder.addCase(getUserData.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(editUserData.fulfilled, (state, action) => {
-    });
+    // builder.addCase(editUserData.fulfilled, (state, action) => {
+    // });
   }
 });
 

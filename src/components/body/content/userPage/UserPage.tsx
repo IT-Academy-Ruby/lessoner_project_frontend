@@ -1,13 +1,15 @@
 import "./userPage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Route, Routes} from "react-router-dom";
+import {getUserData, uploadFile} from "../../../../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {useEffect, useRef, useState} from "react";
 import Button from "../../../Button";
 import FormUserPage from "./FormUserPage";
-import {getUserData} from "../../../../store/loginName/loginSlice"
-import {useEffect, useState} from "react";
+import Upload from "../../../icons/upload.svg";
 
 const UserPage = () => {
+  const fileRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const userName = useAppSelector(state => state.userDecodedName.session.name);
@@ -19,7 +21,7 @@ const UserPage = () => {
     if (userName) {
       dispatch(getUserData(userName));
     }
-  }, [userName]);
+  }, [dispatch,userName]);
 
   const dataUser = [
     {value: user.name, title: intl.formatMessage({id: "app.UserName"})},
@@ -36,6 +38,21 @@ const UserPage = () => {
     setIsVisible(true);
     setComponent(value);
   };
+  const handleUpload = () => {
+    if (fileRef.current) {
+      fileRef.current.click();
+    }
+  };
+  const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && user.name) {
+      const userData = {
+        name: user.name,
+        file: event.target.files
+      };
+      dispatch(uploadFile(userData));
+      dispatch(getUserData(userName));
+    }
+  };
 
   return (
     <div className="wrapper-user_page">
@@ -44,8 +61,20 @@ const UserPage = () => {
           <FormattedMessage id="app.userPage.editInformation"/>
         </h1>
         <div className="avatar-field">
+          <input
+            ref={fileRef}
+            type="file"
+            className="category-file"
+            accept=".jpg, .gif, .png"
+            onChange={(event) => {
+              handleSelectFile(event);
+            }}
+          />
           <div className="avatar-user-page">
             <img src={user.avatar_url} className="user-avatar" alt="avatar"/>
+            <div className="upload-field" onClick={handleUpload}>
+              <img src={Upload} alt="upload" className="upload-avater"/>
+            </div>
           </div>
           <span className="inform-avatar">
           <FormattedMessage id="app.userPage.avatarInformation"/>

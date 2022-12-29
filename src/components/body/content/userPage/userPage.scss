@@ -46,6 +46,16 @@
   width: 100%;
 }
 
+.upload-field {
+  position: absolute;
+  bottom: 0;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #455FCE;
+}
+
 .inform-avatar {
   max-width: 530px;
   font-family: $font;
