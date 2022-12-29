@@ -61,6 +61,7 @@ export const editUserData = createAsyncThunk(
     const response = await requestApi(
       `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
     const data = response.json();
+    console.log(data)
     return data;
   }
 );
