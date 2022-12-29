@@ -1,4 +1,3 @@
-import "./main.scss";
 import {Route, Routes} from "react-router-dom";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
