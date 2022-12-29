@@ -21,7 +21,6 @@ const CategoriesUser = () => {
   async function fetchCategory() {
     try {
       const {data} = await axios.get(categoriesUrl,);
-      console.log(data);
       setCategories(data);
       setIsLoading(false);
     } catch (error) {

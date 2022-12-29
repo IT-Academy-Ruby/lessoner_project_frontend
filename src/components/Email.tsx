@@ -18,7 +18,6 @@ type EmailProps = {
 
 const Email = ({field, error}: EmailProps): JSX.Element => {
   const dispatch = useAppDispatch();
-
   useEffect(() => {
     if(field.value.length > 0){
       dispatch(getEmail(field.value));

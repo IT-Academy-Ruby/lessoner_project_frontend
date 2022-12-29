@@ -30,7 +30,7 @@ const Categories = () => {
           <FormattedMessage id="app.categories"/>
         </h1>
         <Button
-          className="button-login"
+          className="button-register"
           buttonText={intl.formatMessage({id: "app.button.categories"})}
           buttonType="button"
           onClick={addCategory}

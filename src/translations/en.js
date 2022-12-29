@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 export const messages_en = {
-  "app.name": "Lessoner",
+  "app.name": "The Lessoner",
   "app.Name": "Name",
   "app.studio": "My Studio",
   "app.categories": "Categories",
@@ -138,6 +138,10 @@ export const messages_en = {
   "app.gender.male": "Male",
   "app.gender.female": "Female",
   "app.gender.other": "Other",
+  "app.avatar.personalData": "Personal data",
+  "app.avatar.logOut": "Log out",
+  "app.header.language": "Language",
+  "app.categories.back": "Back",
   "app.AddNewLesson":"Add new Lesson",
   "app.ChooseACategory": "Choose a category",
   "app.nameCategory.it": "IT",
@@ -171,6 +175,5 @@ export const messages_en = {
   "app.NextStep": "Next step",
   "app.cancel": "Cancel",
   "app.Lessonname": "Lesson name"
-
 };
-  
+

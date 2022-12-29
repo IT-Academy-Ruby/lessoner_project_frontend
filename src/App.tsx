@@ -10,7 +10,7 @@ import GoogleButton from "./components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import {IntlProvider} from "react-intl";
 import Pages from "./components/Pages";
-import {Snowfall} from "./components/Snowfall";
+import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
 import VKButton from "./components/VKButton";
 import {useAppDispatch} from "./store/hooks";
@@ -45,10 +45,6 @@ function App(): JSX.Element {
     }
 
   }, [controlRendering, dispatch, url]);
-
-  const signOut = () => {
-    localStorage.setItem("JWT", "");
-  };
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
@@ -103,9 +99,6 @@ function App(): JSX.Element {
               path="/user/vk"
               element={<VKButton/>}/>
           </Routes>
-          <div style={{display: "flex", flexDirection: "column"}}>
-            <button onClick={signOut}>Not authorized</button>
-          </div>
         </div>
       </BrowserRouter>
     </IntlProvider>

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 export const messages_ru = {
-  "app.name": "Lessoner",
+  "app.name": "The Lessoner",
   "app.Name": "Имя",
   "app.studio": "Моя студия",
   "app.categories": "Категории",
@@ -142,6 +142,10 @@ export const messages_ru = {
   "app.gender.male": "Мужской",
   "app.gender.female": "Женский",
   "app.gender.other": "Другой",
+  "app.avatar.personalData": "Личные данные",
+  "app.avatar.logOut": "Выйти",
+  "app.header.language": "Язык",
+  "app.categories.back": "Назад",
   "app.AddNewLesson":"Добавить новый урок",
   "app.ChooseACategory": "Выберите категорию",
   "app.nameCategory.it": "IT",
@@ -175,4 +179,3 @@ export const messages_ru = {
   "app.cancel": "Отмена",
   "app.Lessonname": "Имя урока",
 };
-
