@@ -14,7 +14,6 @@ import Email from "../components/Email";
 import Facebook from "../components/icons/facebook.svg";
 import Google from "../components/icons/google.svg";
 import {Link} from "react-router-dom";
-import Loader from "../components/Loader";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
@@ -32,8 +31,8 @@ interface FormErrors {
 
 const LoginPage = () => {
   const intl = useIntl();
-  const loading = useAppSelector(state => state.login.loading);
   const dispatch = useAppDispatch();
+  const isEmail = useAppSelector(state => state.login.isEmail);
 
   const initialValues: FormValues = {
     email: "",
@@ -43,7 +42,6 @@ const LoginPage = () => {
 
   return (
     <div className="log-content">
-      {loading && <Loader/>}
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
@@ -51,6 +49,9 @@ const LoginPage = () => {
           if (emailInvalidationRules.some(rule => rule.test(values.email))) {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
+          }
+          if (!isEmail && values.email.length) {
+            errors.email = intl.formatMessage({id: "app.email.notFound"});
           }
           if (!passwordRegex.test(values.password)) {
             errors.password =
@@ -65,6 +66,7 @@ const LoginPage = () => {
         }}
         onSubmit={(values: { email: string, password: string }) => {
           dispatch(getLogin(values));
+
           dispatch(buttonEvent());
           dispatch(lookEvent());
         }}>
@@ -78,7 +80,6 @@ const LoginPage = () => {
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
-                needEmail={true}
               />
               <Field
                 name="password"
@@ -98,7 +99,7 @@ const LoginPage = () => {
                 buttonText={intl.formatMessage({id: "app.button.signIn"})}
                 className="button__page"
               />
-              <Link to={"/users/sign_in/reset_password"} className="password-link">
+              <Link to="/user/sign_in/reset_password" className="password-link">
                 <FormattedMessage id="app.loginPage.password"/>
               </Link>
               <div className="or">
@@ -116,14 +117,14 @@ const LoginPage = () => {
                 <div className="app-logo">
                   <img src={VK} alt="vk"/>
                 </div>
-                <div className="app-logo">
+                <Link to="/user/sign_in/phone_numberA" className="app-logo">
                   <img src={Phone} alt="phone"/>
-                </div>
+                </Link>
               </div>
               <p className="text">
                 <FormattedMessage id="app.don'tAccount"/>
                 <Link
-                  to={"/users/sign_up"}
+                  to={"/user/sign_up"}
                   className="link"
                 >
                   <FormattedMessage id="app.signUp"/>

@@ -1,7 +1,4 @@
 /* eslint-disable max-len */
-import {
-  CODE, PASSWORD, USERNAME
-} from "../constants";
 
 export const messages_ru = {
   "app.name": "Lessoner",
@@ -47,7 +44,7 @@ export const messages_ru = {
   "app.genderSelector.gender": "Укажите свой пол",
   "app.passwordAndConfirm.pass": "Пароль",
   "app.passwordAndConfirm.confirmPass": "Подтвердите пароль",
-  "app.passwordAndConfirm.placeholder": `Не менее ${PASSWORD.minLength} символов`,
+  "app.passwordAndConfirm.placeholder": "Не менее {minSymbol} символов",
   "app.phoneNumberPage.title": "Введите номер вашего телефона",
   "app.phoneNumber.label": "Номер телефона",
   "app.phoneNumberPage.submit": "Отправить код",
@@ -123,7 +120,7 @@ export const messages_ru = {
   "app.activeCategories.errorProhibitedCharacters": "Поле ввода содержит запрещенные символы.",
   "app.don'tAccount": "У вас нет аккаунта?",
   "app.code.name": "Код",
-  "app.code.errorLength": `Код должен содержать ${CODE.maxLength} символов. `,
+  "app.code.errorLength": "Код должен содержать {maxSymbol} символов. ",
   "app.code.invalidationRules": "В коде присутствует недопустимый символ. ",
   "app.code.inform":
     "Теперь на ваш телефон придет код.\n Введите его в строку.",
@@ -136,14 +133,12 @@ export const messages_ru = {
   "app.setNewPasswordPage.title": "Войти как пользователь",
   "app.YourselfPage.errorIncorrectName": "Неверное имя пользователя",
   "app.YourselfPage.errorFieldEmpty": "Поле не должно быть пустым",
-  "app.YourselfPage.errorSmalName": `Имя пользователя должно быть длинее ${USERNAME.minLength} символов`,
-  "app.YourselfPage.errorBigName": `Имя пользователя должно быть короче ${USERNAME.maxLength} символов`,
+  "app.YourselfPage.errorSmallName": "Имя пользователя должно быть длинее {minSymbol} символов",
+  "app.YourselfPage.errorBigName": "Имя пользователя должно быть короче {maxSymbol} символов",
   "app.UserName": "Имя пользователя",
-  "app.UserName.placeholder": `${USERNAME.minLength} до ${USERNAME.maxLength} символов`,
-  "app.ConfirmReg.info":
-    "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
-  "app.userName.nameExists":
-    "Пользователь уже существует. Пожалуйста, введите другое имя пользователя",
+  "app.UserName.placeholder": "{minSymbol} до {maxSymbol} символов",
+  "app.ConfirmReg.info": "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
+  "app.userName.nameExists": "Пользователь уже существует. Пожалуйста, введите другое имя пользователя",
   "app.gender.male": "Мужской",
   "app.gender.female": "Женский",
   "app.gender.other": "Другой",
