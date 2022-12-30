@@ -24,7 +24,8 @@ export const nameCategoryRegex = new RegExp("^[\"\\[\\]\\s-:)(/=!#$%&'*+?^_`{|}~
   NAME_CATEGORY.minSymbols + "," + NAME_CATEGORY.maxSymbols + "}$", "i");
 
 
-export const descriptionCategoryRegex = new RegExp("^[\"\\[\\]\\s-:)(/=!#$%&'*+?^_`{|}~.,<>@A-Z0-9А-Я]{" +
+export const descriptionCategoryRegex =
+  new RegExp("^[\"\\[\\]\\s-:)(/=!#$%&'*+?^_`{|}~.,<>@A-Z0-9А-Я]{" +
   DESCRIPTION_CATEGORY.minSymbols + "," + DESCRIPTION_CATEGORY.maxSymbols + "}$", "i");
 
 export const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]]+$/i;

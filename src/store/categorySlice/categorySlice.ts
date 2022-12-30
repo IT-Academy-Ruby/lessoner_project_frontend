@@ -16,7 +16,7 @@ export const getCategory = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   "category/addCategory",
-  async (dataCategory: { name: string, description: string, image: any }) => {
+  async (dataCategory: { name: string, description: string, image: FileList }) => {
 
     const formData = new FormData();
     formData.append("image", dataCategory.image[0]);
@@ -54,7 +54,7 @@ export const deleteCategory = createAsyncThunk(
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
   async (dataCategory: {
-    id: number, name: string, description: string, image?: any,
+    id: number, name: string, description: string, image: FileList|undefined,
   }) => {
     const formData = new FormData();
     dataCategory.image ? formData.append("image", dataCategory.image[0]) : null;

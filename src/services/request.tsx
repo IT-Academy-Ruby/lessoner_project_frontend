@@ -7,7 +7,7 @@ const requestApi = async (
   file?: FileList
 ) => {
   const formData = new FormData();
-  file ? formData.append('image', file[0]) : null;
+  file ? formData.append("image", file[0]) : null;
 
   const token = localStorage.getItem("JWT");
 
@@ -16,10 +16,9 @@ const requestApi = async (
   }
   return await fetch(url, {
     method: typeRequest,
-    headers: new Headers({
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json;charset=utf-8"
-    }),
+    headers: new Headers(
+      {"Authorization": `Bearer ${token}`, "Content-Type": "application/json;charset=utf-8"}
+    ),
     body: JSON.stringify(value) && formData,
 
   });

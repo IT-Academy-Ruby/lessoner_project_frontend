@@ -1,12 +1,11 @@
 import "./addCategory.scss";
 import {
-  DESCRIPTION_CATEGORY,  IMAGE_DATA, NAME_CATEGORY
+  DESCRIPTION_CATEGORY, IMAGE_DATA, NAME_CATEGORY
 } from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-
 import {
   addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
@@ -39,7 +38,7 @@ const AddCategory = ({add}: TypeTitle) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [selectImage, setSelectImage] = useState({
-    name: "", type: "", size: 0, image: {},
+    name: "", type: "", size: 0, image: new FileList(),
   });
   const allCategories = useAppSelector((state) => state.categories.categories);
   const [category, setCategory] = useState({
@@ -77,7 +76,7 @@ const AddCategory = ({add}: TypeTitle) => {
       name: category.image_name,
       type: category.image_type,
     });
-  }, [dispatch, add, allCategories, category,idCategory]);
+  }, [dispatch, add, allCategories, category, idCategory]);
 
   const initialValues: FormValues = {
     name: category.name,
@@ -141,19 +140,21 @@ const AddCategory = ({add}: TypeTitle) => {
 
         }}
         onSubmit={(values: FormValues) => {
-          const valueCategory = {
-            id: 0,
-            image: !editCategory.image ? selectImage.image : null,
-            name: values.name.trim(),
-            description: values.description.trim(),
-          };
           setISuccessful(true);
-          if (add) {
-            dispatch(addCategory(valueCategory));
+          if (!editCategory.image) {
+            dispatch(addCategory({
+              image: selectImage.image,
+              name: values.name.trim(),
+              description: values.description.trim(),
+            }))
             dispatch(getCategory());
           } else {
-            valueCategory.id = idCategory;
-            dispatch(updateCategory(valueCategory));
+            dispatch(updateCategory({
+              id: idCategory,
+              image: !editCategory.image ? selectImage.image : undefined,
+              name: values.name.trim(),
+              description: values.description.trim(),
+            }));
             dispatch(getCategory());
           }
           navigate("/categories");
