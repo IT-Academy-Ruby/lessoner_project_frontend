@@ -101,6 +101,79 @@
   margin: 20px 0;
 }
 
+.wrapper-form-user-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-user-page {
+  position: relative;
+  width: 469px;
+  background: $white;
+  border-radius: 8px;
+  padding: 48px;
+  box-sizing: border-box;
+  margin: 22px;
+}
+
+.close-modal-form {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin: 20px;
+  top: 0;
+  right: 0;
+}
+
+.close-form {
+  position: relative;
+  top: 9px;
+  left: -9px;
+  width: 16px;
+  z-index: 3;
+}
+
+.close-form:before,
+.close-form:after {
+  position: absolute;
+  width: 16px;
+  border: 2px solid $greySearchColor;
+  background: $greySearchColor;
+  content: "";
+}
+
+.close-form:before {
+  transform: rotate(45deg);
+}
+
+.close-form:after {
+  transform: rotate(-45deg);
+}
+
+.form-title-user-page {
+  margin: 0 0 25px 0;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 130%;
+  color: #1B1B1F;
+}
+.inVisible{
+  display: none;
+}
+@media (max-width: $max-width-phone) {
+  .close-modal-form {
+    margin: 8px;
+  }
+}
+
 @media (max-width: $max-width-phone) {
   .user-page {
     margin: 16px;

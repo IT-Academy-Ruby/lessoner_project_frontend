@@ -64,9 +64,11 @@
   line-height: 130%;
   color: #1B1B1F;
 }
-.inVisible{
+
+.inVisible {
   display: none;
 }
+
 @media (max-width: $max-width-phone) {
   .close-modal-form {
     margin: 8px;

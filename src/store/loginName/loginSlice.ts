@@ -93,6 +93,7 @@ type Login = {
   notFound: boolean | string;
   isEmail: boolean | string,
   loading: boolean;
+  updateAfterRequest: boolean;
   user: {
     "id": number;
     "name": string;
@@ -113,6 +114,7 @@ const initialState: Login = {
   notFound: "",
   isEmail: "",
   loading: false,
+  updateAfterRequest: false,
   user: {
     "id": 0,
     "name": "",
@@ -176,8 +178,13 @@ const loginSlice = createSlice({
     builder.addCase(getUserData.pending, (state) => {
       state.loading = true;
     });
-    // builder.addCase(editUserData.fulfilled, (state, action) => {
-    // });
+    builder.addCase(editUserData.fulfilled, (state) => {
+     state.updateAfterRequest = !state.updateAfterRequest;
+    });
+    builder.addCase(uploadFile.fulfilled, (state,action) => {
+      // state.updateAfterRequest = !state.updateAfterRequest;
+     state.user = action.payload
+    });
   }
 });
 

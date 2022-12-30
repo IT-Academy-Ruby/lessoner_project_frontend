@@ -2,12 +2,12 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {getUserData, editUserData} from "../../../../../store/loginName/loginSlice";
 import Button from "../../../../Button";
 import {USERNAME} from "../../../../../constants";
 import {UserRegex} from "../../../../../validationRules";
 import UserName from "../../../../UserName";
-import classNames from "classnames";
+import {editUserData} from "../../../../../store/loginName/loginSlice";
+import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
 interface FormValues {
@@ -23,7 +23,9 @@ type NameFormProps={
 }
 const NameForm = ({userName,handleClose}:NameFormProps) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
+
   const initialValues: FormValues = {
     name: "",
   };
@@ -56,10 +58,8 @@ const NameForm = ({userName,handleClose}:NameFormProps) => {
             name: userName,
             object: {name: values.name}
           };
-          // console.log(items)
-          // dispatch(editUserData(items));
-          // dispatch(getUserData(user.name));
-          // handleClose();
+          dispatch(editUserData(items));
+          handleClose();
         }}>
         {({errors, touched}) => {
           return (
@@ -83,6 +83,6 @@ const NameForm = ({userName,handleClose}:NameFormProps) => {
             </Form>)
         }}
       </Formik>
-  )
-}
+  );
+};
 export default NameForm;

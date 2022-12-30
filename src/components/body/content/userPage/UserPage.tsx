@@ -4,9 +4,16 @@ import {Route, Routes} from "react-router-dom";
 import {getUserData, uploadFile} from "../../../../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useRef, useState} from "react";
+import BirthdayForm from "./forms/BirthdayForm";
 import Button from "../../../Button";
-import FormUserPage from "./FormUserPage";
+import CodeForm from "./forms/CodeForm";
+import EmailForm from "./forms/EmailForm";
+import GenderForm from "./forms/GenderForm";
+import NameForm from "./forms/NameForm";
+import PasswordForm from "./forms/PasswordForm";
+import PhoneForm from "./forms/PhoneForm";
 import Upload from "../../../icons/upload.svg";
+import classNames from "classnames";
 
 const UserPage = () => {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -14,14 +21,16 @@ const UserPage = () => {
   const dispatch = useAppDispatch();
   const userName = useAppSelector(state => state.userDecodedName.session.name);
   const user = useAppSelector(state => state.userData.user);
+  const track = useAppSelector(state => state.userData.updateAfterRequest);
   const [isVisible, setIsVisible] = useState(false);
   const [component, setComponent] = useState("");
 
   useEffect(() => {
     if (userName) {
       dispatch(getUserData(userName));
+      // console.log(user.avatar_url)
     }
-  }, [dispatch,userName]);
+  }, [dispatch, userName, track]);
 
   const dataUser = [
     {value: user.name, title: intl.formatMessage({id: "app.UserName"})},
@@ -31,26 +40,48 @@ const UserPage = () => {
     {value: user.phone, title: intl.formatMessage({id: "app.phoneNumber.label"})},
     {value: "**********", title: intl.formatMessage({id: "app.passwordAndConfirm.pass"})},
   ];
-
+  const element = () => {
+    switch (component) {
+      case (intl.formatMessage({id: "app.UserName"})):
+        return <NameForm userName={user.name} handleClose={
+          handleClose}/>
+      case (intl.formatMessage({id: "app.userPage.birthday"})):
+        return <BirthdayForm userName={user.name} handleClose={handleClose}/>
+      case (intl.formatMessage({id: "app.userPage.gender"})):
+        return <GenderForm userName={user.name} handleClose={handleClose}/>
+      case (intl.formatMessage({id: "app.email.name"})):
+        return <EmailForm userName={user.name} handleClose={handleClose}/>
+      case (intl.formatMessage({id: "app.phoneNumber.label"})):
+        return <PhoneForm userName={user.name} handleClose={handleClose} handleEdit={handleEdit}/>
+      case (intl.formatMessage({id: "app.passwordAndConfirm.pass"})):
+        return <PasswordForm userName={user.name} handleClose={handleClose}/>
+      case ("code"):
+        return <CodeForm userName={user.name} handleClose={handleClose}/>
+    }
+  }
   let keyField = dataUser.length;
+  const handleClose = () => {
+    setIsVisible(false);
+  }
 
-  const handleEdit = (value: string, name: string) => {
+  const handleEdit = (title: string) => {
     setIsVisible(true);
-    setComponent(value);
+    setComponent(title);
   };
+
   const handleUpload = () => {
     if (fileRef.current) {
       fileRef.current.click();
     }
   };
+
   const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && user.name) {
       const userData = {
         name: user.name,
-        file: event.target.files
+        file: event.target.files,
       };
       dispatch(uploadFile(userData));
-      dispatch(getUserData(userName));
     }
   };
 
@@ -71,7 +102,11 @@ const UserPage = () => {
             }}
           />
           <div className="avatar-user-page">
-            <img src={user.avatar_url} className="user-avatar" alt="avatar"/>
+            <img
+              src={user.avatar_url}
+              className="user-avatar"
+              alt="avatar"
+            />
             <div className="upload-field" onClick={handleUpload}>
               <img src={Upload} alt="upload" className="upload-avater"/>
             </div>
@@ -96,17 +131,16 @@ const UserPage = () => {
                   buttonText={intl.formatMessage({id: "app.userPage.edit"})}
                   className="button-select"
                   buttonType="button"
-                  onClick={() => handleEdit(data.title, data.value)}/>
+                  onClick={() => handleEdit(data.title)}/>
               </div>
               {keyField !== 0 && <hr className="line-user-page"/>}
             </div>
           }
         )}
       </div>
-      <FormUserPage
-        component={component}
-        isVisible={isVisible}
-        setIsVisible={setIsVisible}/>
+      <div className={classNames("wrapper-form-user-page", {"inVisible": !isVisible})}>
+        {element()}
+      </div>
     </div>
   );
 };
