@@ -1,60 +1,50 @@
 import "./VideoSideBar.scss";
-import { Lesson, lessonsUrl } from "../lessons/Lessons";
-import { useEffect, useState } from "react";
+import { Lesson } from "../lessons/Lessons";
 import { VideoCard } from "../VideoCard/VideoCard";
-import requestApi from "../../../../services/request";
+import { VideoSideBarButton } from "./VideoSideBarButton";
+import { useState } from "react";
 
 interface VideoSideBarProps {
   id: number;
+  lessonsArr: Lesson[];
+  newLessonsArr: Lesson[];
+  popularLessonsArr: Lesson[];
+  categoryName: string;
 }
+export const VideoSideBar = (props: VideoSideBarProps) => {
+  const { id, lessonsArr, newLessonsArr, popularLessonsArr, categoryName } =
+    props;
 
-export const VideoSideBar = (prop: VideoSideBarProps) => {
-  const { id } = prop;
-  const [lessonsArr, setLessonsArr] = useState<Lesson[]>([]);
-  const [lessonsArrisLoaded, setLessonsArrIsLoaded] = useState(false);
-  const [videoCardsArr, setVideoCardsArr] = useState<Lesson[]>([]);
+  const [newSelectedButton, setNewSelectedButton] = useState(1);
+  const sideBarButtonsArr = [
+    { name: categoryName, id: 1 },
+    { name: "New", id: 2 },
+    { name: "Popular", id: 3 },
+  ];
 
-  useEffect(() => {
-    if (!lessonsArrisLoaded) {
-      const fetchSuccess = (lessonsArr: Lesson[]) => {
-        setLessonsArr(lessonsArr);
-        setLessonsArrIsLoaded(true);
-      };
-      const fetchError = (errMessage: string) => {
-        alert(errMessage);
-      };
-      const fetchData = async () => {
-        const response = await requestApi(lessonsUrl, "GET");
-        if (!response.ok) {
-          fetchError("fetch error " + response.status);
-        } else {
-          const data = await response.json();
-          fetchSuccess(data.records);
-        }
-      };
-      fetchData();
-    }
-  }, [lessonsArr, lessonsArrisLoaded]);
-  useEffect(() => {
-    if (lessonsArrisLoaded) {
-      console.log(lessonsArr);
-      const foundElem = lessonsArr.find((elem) => elem.id === id);
-      const foundCategoryid = foundElem?.category_id;
-      const updatedData = [...lessonsArr];
-      const newVideoCardsArr = updatedData.filter(
-        (elem) => elem.category_id === foundCategoryid
-      );
-      setVideoCardsArr(newVideoCardsArr);
-    }
-  }, [lessonsArr, id, lessonsArrisLoaded]);
-  console.log(videoCardsArr);
-  if (!videoCardsArr) {
+  const cbSelectedButton = (newSelectedButton: number) => {
+    setNewSelectedButton(newSelectedButton);
+  };
+  if (!categoryName) {
     return <h1>Загрузка данных...</h1>;
   }
-
+  console.log(lessonsArr);
   return (
     <>
-      {videoCardsArr.map((elem, index) => {
+      <div className="sideBar__buttons_wrapper">
+        {sideBarButtonsArr.map((button) => {
+          return (
+            <VideoSideBarButton
+              key={button.id}
+              name={button.name}
+              id={button.id}
+              cbSelected={cbSelectedButton}
+              newSelectedButton={newSelectedButton}
+            />
+          );
+        })}
+      </div>
+      {lessonsArr.map((elem, index) => {
         return (
           <div className="video__card_wrapper" key={index}>
             <VideoCard

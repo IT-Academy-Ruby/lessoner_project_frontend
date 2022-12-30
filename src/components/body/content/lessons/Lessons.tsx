@@ -1,6 +1,5 @@
 import "./index.scss";
 import React, { useEffect, useState } from "react";
-import { BACKEND_URL } from "../../../../constants";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";

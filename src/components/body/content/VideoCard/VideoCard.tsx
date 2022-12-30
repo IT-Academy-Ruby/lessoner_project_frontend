@@ -1,3 +1,4 @@
+import placeHolder from "../../../../assets/category-placeholder.png";
 import "./VideoCard.scss";
 import { MenuKebab, Published, Title } from "../../../../components/LessonCard";
 
@@ -12,7 +13,7 @@ export const VideoCard = ({ id, img, title, published }: VideoCardProps) => {
   return (
     <>
       <div className="preview__img">
-        <img src={img} />
+        {img ? <img src={img} /> : <img src={placeHolder} />}
       </div>
       <div className="info">
         <div className="info__title">

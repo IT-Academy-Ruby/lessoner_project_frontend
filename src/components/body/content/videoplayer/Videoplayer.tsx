@@ -1,11 +1,9 @@
 /* eslint-disable max-len */
 import "./index.scss";
 import "plyr-react/plyr.css";
-import { Lesson, lessonsUrl } from "../../content/lessons/Lessons";
 import React, { useEffect, useState } from "react";
-import { buildVideoSrc, getSrcFromId } from "./VideoPlayerHelper";
 import Plyr from "plyr-react";
-import requestApi from "../../../../services/request";
+import { buildVideoSrc } from "./VideoPlayerHelper";
 
 const optionsVideoplayer = {
   quality: {
@@ -46,37 +44,19 @@ const optionsVideoplayer = {
   seekTime: 10,
 };
 interface VideoPlayerProps {
-  id?: number;
+  src: string;
 }
 
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({ id }) => {
-  const [data, setData] = useState<Lesson[]>([]);
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<Plyr.SourceInfo | null>(null);
 
   useEffect(() => {
     if (!dataIsLoaded) {
-      const fetchSuccess = (data: Lesson[]) => {
-        setData(data);
-        setDataIsLoaded(true);
-        const foundSrc = getSrcFromId(data, id);
-        setVideoSrc(buildVideoSrc(foundSrc));
-      };
-      const fetchError = (errMessage: string) => {
-        alert(errMessage);
-      };
-      const fetchData = async () => {
-        const response = await requestApi(lessonsUrl, "GET");
-        if (!response.ok) {
-          fetchError("fetch error " + response.status);
-        } else {
-          const data = await response.json();
-          fetchSuccess(data.records);
-        }
-      };
-      fetchData();
+      setVideoSrc(buildVideoSrc(src));
+      setDataIsLoaded(true);
     }
-  }, [data, dataIsLoaded, id]);
+  }, [dataIsLoaded, src]);
 
   return (
     <>

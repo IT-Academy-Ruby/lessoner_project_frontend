@@ -149,7 +149,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         </div>
         <div className="card__info">
           <div className="card__info-top">
-            <Title title={props.title} />
+            <Title title={props.title} id={props.id} />
             <MenuKebab idCard={props.id} />;
           </div>
           <div className="details">

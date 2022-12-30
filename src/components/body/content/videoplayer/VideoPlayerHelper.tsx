@@ -3,7 +3,7 @@ import { Lesson } from "../../content/lessons/Lessons";
 export const getSrcFromId = (lessonsArr: Lesson[], id: number | undefined) => {
   const foundElem = lessonsArr.find((elem) => elem.id === id);
   if (foundElem) return foundElem.video_link;
-  return lessonsArr[31].video_link;
+  return lessonsArr[1].video_link;
 };
 
 export const buildVideoSrc = (src: string): Plyr.SourceInfo | null => {
