@@ -1,8 +1,9 @@
 import "./modal.scss";
 import {
-  Field, Form, Formik,
+  Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {Link, useNavigate} from "react-router-dom";
 import {
   buttonEvent, getLogin, lookEvent
 } from "../store/loginName/loginSlice";
@@ -13,11 +14,11 @@ import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
 import Facebook from "../components/icons/facebook.svg";
 import Google from "../components/icons/google.svg";
-import {Link} from "react-router-dom";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
+import {showMainPage} from "../store/header/headerSlice";
 
 interface FormValues {
   email: string;
@@ -32,6 +33,7 @@ interface FormErrors {
 const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const isEmail = useAppSelector(state => state.login.isEmail);
 
   const initialValues: FormValues = {
@@ -65,8 +67,13 @@ const LoginPage = () => {
           return errors;
         }}
         onSubmit={(values: { email: string, password: string }) => {
-          dispatch(getLogin(values));
-
+          dispatch(getLogin(values))
+            .then(() => {
+              if (localStorage.getItem("JWT")) {
+                navigate("/"); // Redirects to main page
+              }
+            });
+          dispatch(showMainPage);
           dispatch(buttonEvent());
           dispatch(lookEvent());
         }}>
