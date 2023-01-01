@@ -9,9 +9,13 @@ import MyStudio from "./my_studio/MyStudio";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./lessoner/SignUp/SignUp";
 import UserPage from "./userPage/UserPage";
+import {useAppSelector} from "../../../store/hooks";
 
-
-const Content = () => {
+type ContentProps={
+  languageCode:string;
+}
+const Content = ({languageCode}:ContentProps) => {
+  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   return (
     <div className="main">
       <Routes>
@@ -30,7 +34,7 @@ const Content = () => {
           path="/categories/updateCategory/:id"
           element={<AddCategory add={false} />}
         />
-        <Route path="/user/userPage" element={<UserPage/>}/>
+        {decodeUserName && <Route path={decodeUserName?"/user/userPage":"/"} element={<UserPage languageCode={languageCode}/>}/>}
       </Routes>
     </div>
   );

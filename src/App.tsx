@@ -13,7 +13,6 @@ function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
-
   const messages = TranslationHelpers.getLanguageMessages(languageCode);
 
   const signOut = () => {
@@ -24,7 +23,7 @@ function App(): JSX.Element {
     <IntlProvider locale={languageCode} messages={messages}>
       <BrowserRouter>
         <div className="App">
-          <Body onLanguageSwitch={setLanguageCode}/>
+          <Body onLanguageSwitch={setLanguageCode} languageCode={languageCode}/>
           <Routes>
             <Route
               path="/login"

@@ -13,7 +13,7 @@ type PhoneProps = {
 
 const PhoneNumberPage = ({registration}: PhoneProps) => {
   const intl = useIntl();
-  const [error, setError] = useState("Phone number incorrect");
+  const [error, setError] = useState(intl.formatMessage({id: "app.phoneNumber.incorrect"}));
   const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();

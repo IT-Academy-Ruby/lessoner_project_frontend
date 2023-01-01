@@ -6,7 +6,7 @@ import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../components/Button";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import { changePassword } from "../services/api/changePassword";
+import {changePassword} from "../services/api/changePassword";
 import getParameterValue from "../helpers/parseUrl";
 import {passwordRegex} from "../validationRules";
 
@@ -22,19 +22,23 @@ interface FormErrors {
 const SetNewPasswordPage = () => {
 
   const intl = useIntl();
-  const initialValues: FormValues = { password: "", confirmPassword: "" };
+  const initialValues: FormValues = {password: "", confirmPassword: ""};
   const token = getParameterValue(window.location.href, "token");
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (!passwordRegex.test(values.password)) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+          minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength, symbols: PASSWORD.symbols
+        });
     }
     if (values.password.length > PASSWORD.maxLength ||
       values.password.length < PASSWORD.minLength) {
       errors.password = errors.code =
-        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+        intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
+          minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength
+        });
     }
     if (values.password !== values.confirmPassword) {
       errors.password = errors.code =

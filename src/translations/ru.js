@@ -1,7 +1,4 @@
 /* eslint-disable max-len */
-import {
-  CODE, PASSWORD, USERNAME
-} from "../constants";
 
 export const messages_ru = {
   "app.name": "Lessoner",
@@ -36,9 +33,9 @@ export const messages_ru = {
   "app.firstRegistrationForm.invalidationRules":
     "Пожалуйста, введите корректный адрес электронной почты",
   "app.firstRegistrationForm.passwordRegEx":
-    "В пароле присутствует недопустимый символ. Пароль должен быть от {minSymbols} до {maxSymbols} символов; заглавные или строчные латинские буквы (a–z, A–Z); цифры от 0 до 9; символы {symbols}",
+    "В пароле присутствует недопустимый символ. Пароль должен быть от {minSymbol} до {maxSymbol} символов; заглавные или строчные латинские буквы (a–z, A–Z); цифры от 0 до 9; символы {symbols}",
   "app.firstRegistrationForm.passwordLength":
-    "Пароль должен быть от {minSymbols} до {maxSymbols} символов",
+    "Пароль должен быть от {minSymbol} до {maxSymbol} символов",
   "app.firstRegistrationForm.passwordConfrim": "Пароли не совпадают",
   "app.firstRegistrationForm.termsAndConditions":
     "Вы должны дать согласие на обработку ваших персональных данных в соответствии с Условиями",
@@ -46,9 +43,10 @@ export const messages_ru = {
   "app.genderSelector.gender": "Укажите свой пол",
   "app.passwordAndConfirm.pass": "Пароль",
   "app.passwordAndConfirm.confirmPass": "Подтвердите пароль",
-  "app.passwordAndConfirm.placeholder": `Не менее ${PASSWORD.minLength} символов`,
+  "app.passwordAndConfirm.placeholder": "Не менее {minSymbol} символов",
   "app.phoneNumberPage.title": "Введите номер вашего телефона",
   "app.phoneNumber.label": "Номер телефона",
+  "app.phoneNumber.incorrect":"Неверный номер телефона",
   "app.phoneNumberPage.submit": "Отправить код",
   "app.loginPage.title": "Зарегистрироваться на Учитель",
   "app.loginPage.checkbox": "Оставаться в системе",
@@ -112,7 +110,7 @@ export const messages_ru = {
   "app.activeCategories.errorProhibitedCharacters": "Поле ввода содержит запрещенные символы.",
   "app.don'tAccount": "У вас нет аккаунта?",
   "app.code.name": "Код",
-  "app.code.errorLength": `Код должен содержать ${CODE.maxLength} символов. `,
+  "app.code.errorLength": "Код должен содержать {maxSymbol} символов. ",
   "app.code.invalidationRules": "В коде присутствует недопустимый символ. ",
   "app.code.inform":
     "Теперь на ваш телефон придет код.\n Введите его в строку.",
@@ -125,10 +123,10 @@ export const messages_ru = {
   "app.setNewPasswordPage.title": "Войти как пользователь",
   "app.YourselfPage.errorIncorrectName": "Неверное имя пользователя",
   "app.YourselfPage.errorFieldEmpty": "Поле не должно быть пустым",
-  "app.YourselfPage.errorSmalName": `Имя пользователя должно быть длинее ${USERNAME.minLength} символов`,
-  "app.YourselfPage.errorBigName": `Имя пользователя должно быть короче ${USERNAME.maxLength} символов`,
+  "app.YourselfPage.errorSmalName": "Имя пользователя должно быть длинее {minSymbol} символов",
+  "app.YourselfPage.errorBigName": "Имя пользователя должно быть короче {maxSymbol} символов",
   "app.UserName": "Имя пользователя",
-  "app.UserName.placeholder": `${USERNAME.minLength} до ${USERNAME.maxLength} символов`,
+  "app.UserName.placeholder": "{minSymbol} до {maxSymbol} символов",
   "app.ConfirmReg.info":
     "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
   "app.userName.nameExists":

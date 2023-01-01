@@ -56,10 +56,14 @@ const YourselfPage = () => {
       errors.userName = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
     if (values.userName.length < USERNAME.minLength && values.userName.length > 0) {
-      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorSmalName"});
+      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorSmalName"},{
+        minSymbol:USERNAME.minLength
+      });
     }
     if (values.userName.length > USERNAME.maxLength) {
-      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorBigName"});
+      errors.userName = intl.formatMessage({id: "app.YourselfPage.errorBigName"},{
+        maxSymbol:USERNAME.maxLength
+      });
     }
     if (!values.birthday) {
       errors.birthday = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});

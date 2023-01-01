@@ -9,7 +9,7 @@ import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
 interface FormValues {
-  birthday: string;
+  birthday: Date;
 }
 
 interface FormErrors {
@@ -27,7 +27,7 @@ const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
   const [isWrapper, setIsWrapper] = useState(false);
 
   const initialValues: FormValues = {
-    birthday: "",
+    birthday: new Date,
   };
   return(
     <Formik
@@ -48,7 +48,7 @@ const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
       onSubmit={(values) => {
         const items = {
           name: userName,
-          object: {birthday: values.birthday}
+          object: {birthday: values.birthday.toDateString()}
         };
         dispatch(editUserData(items));
         handleClose();

@@ -54,19 +54,21 @@ const LoginPage = () => {
           }
           if (!passwordRegex.test(values.password)) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"},{
+                minSymbol:PASSWORD.minLength, maxSymbol:PASSWORD.maxLength,symbols:PASSWORD.symbols
+              });
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"},{
+                minSymbol:PASSWORD.minLength, maxSymbol:PASSWORD.maxLength
+              });
           }
           return errors;
         }}
         onSubmit={(values: { email: string, password: string }) => {
           dispatch(getLogin(values));
-          // dispatch(buttonEvent());
-          // dispatch(lookEvent());
         }}>
         {({errors, touched}) => {
           return (

@@ -1,7 +1,4 @@
 /* eslint-disable max-len */
-import {
-  CODE, PASSWORD, USERNAME
-} from "../constants";
 
 export const messages_en = {
   "app.name": "Lessoner",
@@ -28,6 +25,8 @@ export const messages_en = {
   "app.checkbox.login": "Stay logged in",
   "app.email.name": "Email",
   "app.email.notFound": "Email not found",
+  "app.email.error":
+    "Please enter a valid email address",
   "app.firstRegistrationForm.title": "Registration",
   "app.firstRegistrationForm.existsInDb":
     "This email address is already registered",
@@ -44,10 +43,11 @@ export const messages_en = {
   "app.genderSelector.gender": "Select Your Gender",
   "app.passwordAndConfirm.pass": "Password",
   "app.passwordAndConfirm.confirmPass": "Confirm password",
-  "app.passwordAndConfirm.placeholder": "At least {minLSymbols} characters",
+  "app.passwordAndConfirm.placeholder": "At least {minSymbol} characters",
   "app.phoneNumberPage.title": "Enter your phone number",
   "app.phoneNumberPage.submit": "Submit code",
   "app.phoneNumber.label": "Phone number",
+  "app.phoneNumber.incorrect":"Phone number incorrect",
   "app.loginPage.title": "Login to the Lessoner",
   "app.loginPage.checkbox": "Stay logged in",
   "app.loginPage.password": "Forgot your password?",
@@ -110,7 +110,7 @@ export const messages_en = {
   "app.activeCategories.errorProhibitedCharacters": "The input field contains prohibited characters",
   "app.don'tAccount": "Don`t you have an account?",
   "app.code.name": "Code",
-  "app.code.errorLength": `Code should be ${CODE.maxLength} characters. `,
+  "app.code.errorLength": "Code should be {maxSymbol} characters. ",
   "app.code.invalidationRules": "An invalid character is present in the Code. ",
   "app.code.inform":
     "Now a code will come to your phone.\nEnter it in a line.\n",
@@ -123,10 +123,10 @@ export const messages_en = {
   "app.setNewPasswordPage.title": "Login as username",
   "app.YourselfPage.errorIncorrectName": "UserName is incorrect",
   "app.YourselfPage.errorFieldEmpty": "The field must not be empty",
-  "app.YourselfPage.errorSmalName": `UserName should be more ${USERNAME.minLength}`,
-  "app.YourselfPage.errorBigName": `UserName should be less ${USERNAME.maxLength}`,
+  "app.YourselfPage.errorSmalName": "UserName should be more {minSymbol}",
+  "app.YourselfPage.errorBigName": "UserName should be less {maxSymbol}",
   "app.UserName": "Username",
-  "app.UserName.placeholder": `${USERNAME.minLength} to ${USERNAME.maxLength} characters`,
+  "app.UserName.placeholder": "{minSymbol} to {maxSymbol} characters",
   "app.ConfirmReg.info":
     "Confirm your registration using the link we sent to your email.",
   "app.userName.nameExists":
@@ -155,6 +155,4 @@ export const messages_en = {
   "app.userPage.form.code": "Enter the code",
   "app.userPage.form.button.code": "Change phone number",
   "app.userPage.form.currentPassword": "Current password",
-
-
 };

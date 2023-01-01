@@ -15,7 +15,10 @@ import PhoneForm from "./forms/PhoneForm";
 import Upload from "../../../icons/upload.svg";
 import classNames from "classnames";
 
-const UserPage = () => {
+type UserPageProps={
+  languageCode:string;
+}
+const UserPage = ({languageCode}:UserPageProps) => {
   const fileRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -25,20 +28,39 @@ const UserPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [component, setComponent] = useState("");
 
+  const formatter = new Intl.DateTimeFormat(languageCode);
+
   useEffect(() => {
     if (userName) {
       dispatch(getUserData(userName));
-      // console.log(user.avatar_url)
     }
   }, [dispatch, userName, track]);
 
   const dataUser = [
-    {value: user.name, title: intl.formatMessage({id: "app.UserName"})},
-    {value: new Date(user.birthday).toLocaleDateString(), title: intl.formatMessage({id: "app.userPage.birthday"})},
-    {value: user.gender, title: intl.formatMessage({id: "app.userPage.gender"})},
-    {value: user.email, title: intl.formatMessage({id: "app.email.name"})},
-    {value: user.phone, title: intl.formatMessage({id: "app.phoneNumber.label"})},
-    {value: "**********", title: intl.formatMessage({id: "app.passwordAndConfirm.pass"})},
+    {
+      value: user.name,
+      title: intl.formatMessage({id: "app.UserName"})
+    },
+    {
+      value: user.birthday?formatter.format(new Date(user.birthday)):null,
+      title: intl.formatMessage({id: "app.userPage.birthday"})
+    },
+    {
+      value: user.gender,
+      title: intl.formatMessage({id: "app.userPage.gender"})
+    },
+    {
+      value: user.email,
+      title: intl.formatMessage({id: "app.email.name"})
+    },
+    {
+      value: user.phone,
+      title: intl.formatMessage({id: "app.phoneNumber.label"})
+    },
+    {
+      value: "**********",
+      title: intl.formatMessage({id: "app.passwordAndConfirm.pass"})
+    },
   ];
   const element = () => {
     switch (component) {
