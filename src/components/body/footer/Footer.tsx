@@ -2,17 +2,12 @@ import "./footer.scss";
 import {lessonerLink, startLink} from "../../../store/links/linksSlise";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";
-import LANGUAGES from "../../../translations/constants";
 import {Link} from "react-router-dom";
 import ThemeBtn from "../../ThemeBtn";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {useEffect} from "react";
 
-type FooterProps = {
-  onLanguageSwitch: (arg: string) => void;
-};
-const Footer = (props: FooterProps) => {
-  const {onLanguageSwitch} = props;
+const Footer = () => {
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   const lessoner = useAppSelector(state => state.link.lessoner);
   const dispatch = useAppDispatch();
@@ -47,26 +42,6 @@ const Footer = (props: FooterProps) => {
         <div>
           <FormattedMessage id="app.about" />
         </div>
-      </Link>
-      <div>
-        {LANGUAGES.map((languageObj) => {
-          const { code, label } = languageObj;
-          return (
-            <button key={code} onClick={() => onLanguageSwitch(code)}>
-              {label}
-            </button>
-          );
-        })}
-      </div>
-      <Link to="/users/sign_in">
-        <button>
-          <FormattedMessage id="app.login" />
-        </button>
-      </Link>
-      <Link to="/users/sign_up">
-        <button>
-          <FormattedMessage id="app.registration" />
-        </button>
       </Link>
       <ThemeBtn />
     </footer>

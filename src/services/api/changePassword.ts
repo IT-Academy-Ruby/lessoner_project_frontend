@@ -1,7 +1,5 @@
-import { BACKEND_URL } from "../../constants";
-
 const changePassword = async (token: string, password: string): Promise<string> => {
-  const res = await fetch(`${BACKEND_URL}/password/reset`, {
+  const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/reset`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token: token, password: password })

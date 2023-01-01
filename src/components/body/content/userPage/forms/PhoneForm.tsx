@@ -5,8 +5,6 @@ import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../../../../Button";
 import {DEFAULT_COUNTRY_CODE} from "../../../../../constants";
 import Phone from "../../../../PhoneNumber";
-import classNames from "classnames";
-import {emailInvalidationRules} from "../../../../../validationRules";
 import {useEffect, useState} from "react";
 
 
@@ -21,7 +19,7 @@ interface FormErrors {
 type PhoneFormProps = {
   userName: string;
   handleClose: () => void;
-  handleEdit:(title:string)=>void;
+  handleEdit: (title: string) => void;
 }
 const PhoneForm = ({userName, handleClose, handleEdit}: PhoneFormProps) => {
   const intl = useIntl();
@@ -39,12 +37,23 @@ const PhoneForm = ({userName, handleClose, handleEdit}: PhoneFormProps) => {
     }
   }, [phoneNumber]);
   const initialValues: FormValues = {
-    phone: "",
+    phone: phoneNumber,
   };
 
+  const validate = (values: FormValues) => {
+    const errors: FormErrors = {};
+    if (values.phone.length === 0) {
+      errors.phone = intl.formatMessage({id: "app.pagesTitle.phoneNumber"});
+    }
+    if (isError) {
+      errors.phone = intl.formatMessage({id: "app.phoneNumber.err"});
+    }
+    return errors;
+  };
   return (
     <Formik
       initialValues={initialValues}
+      validate={validate}
       onSubmit={(values) => {
         const items = {
           name: userName,
@@ -63,12 +72,14 @@ const PhoneForm = ({userName, handleClose, handleEdit}: PhoneFormProps) => {
             <h2 className="form-title-user-page">
               <FormattedMessage id="app.userPage.form.phone"/>
             </h2>
-            <Phone
-              setError={setError}
-              error={error}
+            <Field
+              name="phone"
+              error={touched.phone ? errors.phone : undefined}
+              setIsError={setIsError}
+              isError={isError}
               phoneNumber={phoneNumber}
               setPhoneNumber={setPhoneNumber}
-              isError={isError}
+              // isError={isError}
             />
             <Button
               buttonType="submit"

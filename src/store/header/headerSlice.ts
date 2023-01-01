@@ -17,9 +17,9 @@ const headerSlice = createSlice({
     showDefaultPage: (state) => {
       state.isDefaultHeader = false;
     },
-    showStudentPage: (state) => {
+    showMainPage: (state) => {
       state.isDefaultHeader = true;
-      state.page = "";
+      state.page = "mainPage";
     },
     showSectionPage: (state) => {
       state.page = "sectionPage";
@@ -31,6 +31,6 @@ const headerSlice = createSlice({
   }
 });
 export const {
-  showDefaultPage, showStudentPage, showSectionPage, showMyPage
+  showDefaultPage, showMainPage, showSectionPage, showMyPage
 } = headerSlice.actions;
 export default headerSlice.reducer;

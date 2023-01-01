@@ -27,8 +27,6 @@ const BirthdayPicker = ({
     const {name: fieldName} = field;
     setBirthday(selectedDate);
     setFieldValue(fieldName, selectedDate, true);
-    console.log((selectedDate.toDateString()))
-    // console.log(selectedDate.getFullYear()+"-"+(selectedDate.getMonth()+1)+"-"+selectedDate.getDate())
   };
 
   const minYear = new Date((new Date()).getTime() -
