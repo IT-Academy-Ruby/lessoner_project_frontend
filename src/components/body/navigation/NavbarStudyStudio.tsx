@@ -37,15 +37,19 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 3,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.subscription"})}`,
-      href: "#!",
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.subscription",
+      })}`,
+      href: "/lessons",
       icon: "subscription",
       place: { autorised: "autorised", admin: "admin" },
     },
     {
       id: 4,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.categories"})}`,
-      href: "#!",
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.categories",
+      })}`,
+      href: "/categories",
       icon: "categories",
       place: {
         notAutorised: "not_autorised",
@@ -55,14 +59,16 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 5,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.management",
+      })}`,
       href: "#!",
       icon: "edit_categories",
       place: { admin: "admin" },
     },
     {
       id: 6,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.aboutUs"})}`,
+      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.aboutUs" })}`,
       href: "#!",
       icon: "about_us",
       place: {
@@ -73,56 +79,66 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 7,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.logIn"})}`,
+      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.logIn" })}`,
       href: "#!",
       icon: "log_in",
       place: { logIn: "log_in" },
     },
     {
       id: 8,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.logOut"})}`,
+      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.logOut" })}`,
       href: "#!",
       icon: "log_out",
       place: { logOut: "log_out" },
     },
     {
       id: 9,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.darkTheme"})}`,
+      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.darkTheme" })}`,
       href: "#!",
       icon: "dark_theme",
       place: { darkTheme: "dark_theme" },
     },
     {
       id: 10,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.lightTheme"})}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.lightTheme",
+      })}`,
       href: "#!",
       icon: "light_theme",
       place: { lightTheme: "light_theme" },
     },
     {
       id: 11,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.management",
+      })}`,
       href: "https://www.grodno.it-academy.by/",
       icon: "network",
       place: { contacts: "contacts" },
     },
     {
       id: 12,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.management",
+      })}`,
       href: "https://www.instagram.com/grodnoitacademypark/",
       icon: "instagram",
       place: { contacts: "contacts" },
     },
     {
       id: 13,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.management",
+      })}`,
       href: "https://www.facebook.com/grodnoitacademypark",
       icon: "facebook",
       place: { contacts: "contacts" },
     },
     {
       id: 14,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
+      value: `${intl.formatMessage({
+        id: "app.navbarStudyStudio.management",
+      })}`,
       href: "https://www.linkedin.com/school/15248534/",
       icon: "linkedin",
       place: { contacts: "contacts" },
