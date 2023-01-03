@@ -227,7 +227,7 @@ const loginSlice = createSlice({
       gender: "",
       birthday: "",
       password: "",
-      created_at: "",
+      created_at: ""
     };
   },
 
