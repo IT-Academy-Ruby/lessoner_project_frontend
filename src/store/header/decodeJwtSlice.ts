@@ -14,18 +14,16 @@ type UserSession = {
   }
 }
 
-const initialState: UserSession = {
-  session: {
-    name: "",
-    email: "",
-    gender: "",
-    birthday: "",
-    phone: "",
-    description: "",
-    exp: 0,
-    admin: false,
-  }
-};
+const initialState: UserSession = {session: {
+  name: "",
+  email: "",
+  gender: "",
+  birthday: "",
+  phone: "",
+  description: "",
+  exp: 0,
+  admin: false,
+}};
 
 const decode = () => {
   const token = localStorage.getItem("JWT");
@@ -42,11 +40,7 @@ const decode = () => {
 const sessionJWTSlice = createSlice({
   name: "sessionJWT",
   initialState,
-  reducers: {
-    nameDecodedUser: (state) => {
-      state.session = decode();
-    },
-  },
+  reducers: {nameDecodedUser: (state) => {state.session = decode();}},
 });
 
 export const {nameDecodedUser} = sessionJWTSlice.actions;

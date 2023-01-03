@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import requestApi from "../../services/request";
 export const getUser = createAsyncThunk(
   "user/getUserStatus",
   async (userName: string) => {
@@ -103,17 +103,28 @@ export const changePassword = createAsyncThunk(
     return data.status;
   });
 
+export const getUserData = createAsyncThunk(
+  "user/getUserDataStatus",
+  async (name: string) => {
+    const response = await requestApi(`${process.env.REACT_APP_BACKEND_URL}/users/${name}`);
+    const data = response.json();
+    return data;
+  }
+);
 type Login = {
   user: {
     id: number;
+    description: string;
     name: string;
     phone?: string;
     gender: string;
     email: string;
+    avatar_url: string;
     birthday: string;
     password: string;
+    created_at: string;
   };
-  login: string;
+  userToken: string;
   event: boolean;
   lookButton: boolean;
   isEmail: boolean | string;
@@ -125,14 +136,17 @@ type Login = {
 const initialState: Login = {
   user: {
     id: 0,
+    description: "",
     name: "",
     phone: "",
     gender: "",
     email: "",
+    avatar_url: "",
     birthday: "",
     password: "",
+    created_at: "",
   },
-  login: "",
+  userToken: "",
   event: false,
   lookButton: false,
   isEmail: "",
@@ -156,7 +170,21 @@ const loginSlice = createSlice({
     },
     addToken: (state, action) => {
       state.token = action.payload;
-    }
+    },
+    resetUserData: (state) => {
+      state.user = {
+        id: 0,
+        name: "",
+        description: "",
+        email: "",
+        avatar_url: "",
+        phone: "",
+        gender: "",
+        birthday: "",
+        password: "",
+        created_at: ""
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -164,10 +192,10 @@ const loginSlice = createSlice({
         state.isLogged = action.payload;
       });
     builder.addCase(getLogin.fulfilled, (state, action) => {
-      state.login = action.payload;
+      state.userToken = action.payload;
       state.loading = false;
-      if (state.login) {
-        localStorage.setItem("JWT", `${state.login}`);
+      if (state.userToken) {
+        localStorage.setItem("JWT", `${state.userToken}`);
       }
     });
     builder.addCase(getLogin.pending, (state) => {
@@ -187,6 +215,6 @@ const loginSlice = createSlice({
 });
 
 export const {
-  buttonEvent, changeEvent, lookEvent, addToken
+  buttonEvent, changeEvent, lookEvent, addToken,resetUserData
 } = loginSlice.actions;
 export default loginSlice.reducer;
