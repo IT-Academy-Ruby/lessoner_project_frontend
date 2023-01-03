@@ -15,7 +15,7 @@ import {useNavigate} from "react-router-dom";
 
 const CategoriesAdmin = () => {
   const [isClose, setIsClose] = useState(false);
-  const [idCategory, setIdCategory]=useState(0);
+  const [idCategory, setIdCategory] = useState(0);
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -34,14 +34,17 @@ const CategoriesAdmin = () => {
     id: number, name: string, description: string, status: string, amount_lessons: number
   }) => {
     setIdCategory(category.id);
-    category.amount_lessons > 0 ?
-      await dispatch(archiveCategory(category)) : setIsClose(true);
+    if (category.amount_lessons > 0) {
+      await dispatch(archiveCategory(category));
+    } else {
+      setIsClose(true);
+    }
   };
 
   return (
     <>
       {loading && <Loader/>}
-      { allCategories.map(category =>
+      {allCategories.map(category =>
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
           <img src={category.image_url} alt={category.name} className="category-img"/>

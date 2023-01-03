@@ -118,7 +118,7 @@ export const messages_ru = {
   "app.categories.button.cancel": "Отмена",
   "app.categories.button.save": "Сохранить",
   "app.categories.imageInform": "Изображение должно представлять содержимое категории",
-  "app.categories.imageError": "Неправильный формат. Попробуй снова",
+  "app.categories.imageError": "Неправильный формат. Попробуйте снова",
   "app.categories.imageBigSize": "Большой размер файла",
   "app.activeCategories.errorMinLength": "Пожалуйста, заполните все поля",
   "app.activeCategories.errorMaxLength": "Максимальное количество символов {symbols}",
