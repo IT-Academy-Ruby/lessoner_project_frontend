@@ -29,7 +29,7 @@ const UserPage = ({languageCode}: UserPageProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [component, setComponent] = useState("");
 
-  const formatter = new Intl.DateTimeFormat(languageCode);
+  const formatter = new Intl.DateTimeFormat("ru");
 
   useEffect(() => {
     if (nameDecode) {
