@@ -174,12 +174,12 @@ type Login = {
     name: string;
     phone: string;
     gender: string;
-    "description": string;
+    description: string;
     email: string;
-    "avatar_url": string;
+    avatar_url: string;
     birthday: string;
     password: string;
-    "created_at": string;
+    created_at: string;
   };
  userToken: string;
   event: boolean;
@@ -202,7 +202,7 @@ const initialState: Login = {
     gender: "",
     birthday: "",
     password: "",
-    created_at: ""
+    created_at: "",
   },
   userToken: "",
   event: false,
@@ -227,7 +227,7 @@ const loginSlice = createSlice({
       gender: "",
       birthday: "",
       password: "",
-      created_at: ""
+      created_at: "",
     };
   },
 

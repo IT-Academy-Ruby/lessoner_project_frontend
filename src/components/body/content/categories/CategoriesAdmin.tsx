@@ -10,32 +10,33 @@ import IT from "../../../icons/examplImage/IT.svg";
 import Loader from "../../../Loader";
 import {useNavigate} from "react-router-dom";
 
-const CategoriesAdmin=()=>{
+const CategoriesAdmin = () => {
   const [isGetCategory, setIsGetCategory] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const allCategories = useAppSelector((state) => state.categories.categories);
   const loading = useAppSelector((state) => state.categories.loading);
-
-  useEffect(()=>{
-    dispatch(getCategory());
-  },[dispatch]);
+  // const [allCategories, setAllCategories] = useState<[]>([])
+  useEffect(() => {
+    dispatch(getCategory())
+  }, [dispatch]);
 
   const handleEdit = (event: MouseEvent) => {
     navigate(`/categories/updateCategory/${event.currentTarget.id}`);
   };
 
-  const handleDelete = async (category:
-    { id: number, name: string, description: string, status: string }
-  ) => {
+  const handleDelete = async (category:{
+    id: number, name: string, description: string, status: string
+  }) => {
     await dispatch(archiveCategory(category));
     dispatch(getCategory());
     setIsGetCategory(!isGetCategory);
   };
-  return(
+
+  return (
     <>
       {loading && <Loader/>}
-      {allCategories.map(category =>
+      {allCategories && allCategories.map(category =>
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
           <img src={IT} alt={category.name} className="category-img"/>
