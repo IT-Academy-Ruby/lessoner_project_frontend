@@ -1,11 +1,11 @@
 import "./categories.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {useEffect, useState} from "react";
 import Button from "../../../Button";
 import CategoriesAdmin from "./CategoriesAdmin";
 import CategoriesUser from "./CategoriesUser";
 import {getCategory} from "../../../../store/categorySlice/categorySlice";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 
 const Categories = () => {

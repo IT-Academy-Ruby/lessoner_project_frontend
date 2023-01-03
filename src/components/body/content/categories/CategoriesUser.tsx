@@ -1,7 +1,6 @@
 import "./index.scss";
 import {BACKEND_URL, SKELETON_AMOUT} from "../../../../constants";
 import {useEffect, useState} from "react";
-import {FormattedMessage} from "react-intl";
 import SkeletonCategory from "../../../SkeletonCategory";
 import UserCategory from "../../../UserCategory";
 import axios from "axios";
