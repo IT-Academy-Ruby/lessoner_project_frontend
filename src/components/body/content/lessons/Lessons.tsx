@@ -31,6 +31,15 @@ export interface Category {
   status: string;
 }
 
+export interface CategoriesResponce {
+  records: Category[];
+  pagy_metadata: {
+    count_pages: number;
+    page: number;
+    per_page: number;
+  };
+}
+
 const Lessons: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [data, setData] = useState<Lesson[]>([]);
@@ -39,8 +48,8 @@ const Lessons: React.FC = () => {
 
   useEffect(() => {
     if (!categoriesIsLoaded) {
-      const fetchSuccess = (data: Category[]) => {
-        setCategories(data);
+      const fetchSuccess = (responseData: CategoriesResponce) => {
+        setCategories(responseData?.records || []);
         setCategoriesIsLoaded(true);
       };
       const fetchError = (errMessage: string) => {
