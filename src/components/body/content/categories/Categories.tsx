@@ -12,17 +12,13 @@ const Categories = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [isAdmin, setIsAdmin] = useState(false);
-  const user = useAppSelector(state => state.userDecodedName.session);
+  const admin = useAppSelector(state => state.userDecodedName.session.admin);
 
   useEffect(() => {
-    if (user.name === "admin" && user.email === "lessonerteam@gmail.com") {
-      setIsAdmin(true);
-    } else {
-      setIsAdmin(false);
+    if (admin) {
       dispatch(getCategory());
-    };
-  }, [isAdmin,user,dispatch]);
+    }
+  }, [admin, dispatch]);
 
   const nameColomn = [
     "ID",
@@ -44,19 +40,19 @@ const Categories = () => {
         <h1 className="category-title">
           <FormattedMessage id="app.categories"/>
         </h1>
-        <Button
+        {admin && <Button
           className="button-register"
           buttonText={intl.formatMessage({id: "app.button.categories"})}
           buttonType="button"
           onClick={addCategory}
-        />
+        />}
       </div>
       <div className="tab">
-        <div className="row-category">
+        {admin && <div className="row-category">
           {nameColomn.map(column => <div key={column} className="column-name">{column}</div>)}
-        </div>
-        {isAdmin && <CategoriesAdmin/>}
-        <CategoriesUser/>
+        </div>}
+        {admin && <CategoriesAdmin/>}
+        {!admin && <CategoriesUser/>}
       </div>
     </div>
   );

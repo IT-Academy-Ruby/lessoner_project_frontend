@@ -22,7 +22,7 @@ const CategoriesUser = () => {
   async function fetchCategory() {
     try {
       const {data} = await axios.get(categoriesUrl,);
-      setCategories(data);
+      setCategories(data.records);
       setIsLoading(false);
     } catch (error) {
       alert("Error getting categories!!!");
@@ -52,7 +52,6 @@ const CategoriesUser = () => {
 
   return (
     <div className="wrapper__categories">
-      <FormattedMessage id="app.categories"/>
       <div className="categories__block">
         {isLoading ? skeleton : categorySet}
       </div>

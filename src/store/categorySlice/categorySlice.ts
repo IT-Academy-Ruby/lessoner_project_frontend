@@ -7,7 +7,7 @@ export const getCategory = createAsyncThunk(
     const responce = await request(`${process.env.REACT_APP_BACKEND_URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
-      return data;
+      return data.records;
     } else {
       return `errror ${responce.status}`;
     }
