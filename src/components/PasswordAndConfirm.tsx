@@ -9,7 +9,7 @@ import {useState} from "react";
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
-  isConfirm: boolean;
+  isConfirm: boolean|string;
   field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
@@ -34,24 +34,26 @@ const PasswordAndConfirm = ({
   };
 
   return (
-    <label className="input-label">{isConfirm ?
-      intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"}) :
-      intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
-    <input
-      type={visiblePassword ? "text" : "password"}
-      className={classNames("input", {"invalid-input": error},
-        {"success-input": !error && field.value})}
-      {...field}
-      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
-        {minSymbol: PASSWORD.minLength})}
-    />
-    <img
-      className="image-input"
-      alt="eye"
-      src={visiblePassword ? open_eye : close_eye}
-      onClick={showPassword}
-    />
-    {error && <span className="error-message">{error}</span>}
+    <label className="input-label">
+      {isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}
+      {isConfirm === true && intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
+      {isConfirm === "currentPassword" && intl.formatMessage(
+        {id: "app.userPage.form.currentPassword"})}
+      <input
+        type={visiblePassword ? "text" : "password"}
+        className={classNames("input", {"invalid-input": error},
+          {"success-input": !error && field.value})}
+        {...field}
+        placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
+          {minSymbol: PASSWORD.minLength})}
+      />
+      <img
+        className="image-input"
+        alt="eye"
+        src={visiblePassword ? open_eye : close_eye}
+        onClick={showPassword}
+      />
+      {error && <span className="error-message">{error}</span>}
     </label>
   );
 };

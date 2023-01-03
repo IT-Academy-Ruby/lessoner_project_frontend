@@ -119,9 +119,29 @@ export const getUserData = createAsyncThunk(
 
 export const editUserData = createAsyncThunk(
   "user/editUserDataStatus",
-  async (items: { name: string, object: object }) => {
+  async (items: { name: number|string, object: object }) => {
     const response = await requestApi(
       `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
+    const data = response.json();
+    return data;
+  }
+);
+
+export const editUserEmail = createAsyncThunk(
+  "user/editUserEmailStatus",
+  async (token:string)=>{
+    const response = await requestApi(
+      `${process.env.REACT_APP_BACKEND_URL}/users/update_email?token=${token}`);
+    const data = response.json();
+    return data;
+  }
+);
+
+export const sendUserCode = createAsyncThunk(
+  "user/sendUserCodeStatus",
+  async (verif:object)=>{
+    const response = await requestApi(
+      `${process.env.REACT_APP_BACKEND_URL}/verify`,"POST",verif);
     const data = response.json();
     return data;
   }
@@ -161,7 +181,7 @@ type Login = {
     password: string;
     "created_at": string;
   };
-  login: string;
+ userToken: string;
   event: boolean;
   lookButton: boolean;
   isEmail: boolean | string;
@@ -184,7 +204,7 @@ const initialState: Login = {
     password: "",
     created_at: ""
   },
-  login: "",
+  userToken: "",
   event: false,
   lookButton: false,
   isEmail: "",
@@ -196,30 +216,43 @@ const initialState: Login = {
 const loginSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    buttonEvent: (state) => {
-      state.event = true;
-    },
-    changeEvent: (state) => {
-      state.event = false;
-    },
-    lookEvent: (state) => {
-      state.lookButton = !state.lookButton;
-    },
-    addToken: (state, action) => {
-      state.token = action.payload;
-    }
+  reducers: {resetUserData:(state)=>{
+    state.user ={
+      id: 0,
+      name: "",
+      description: "",
+      email: "",
+      avatar_url: "",
+      phone: "",
+      gender: "",
+      birthday: "",
+      password: "",
+      created_at: ""
+    };
   },
+
+  // buttonEvent: (state) => {
+  //   state.event = true;
+  // },
+  // changeEvent: (state) => {
+  //   state.event = false;
+  // },
+  // lookEvent: (state) => {
+  //   state.lookButton = !state.lookButton;
+  // },
+  addToken: (state, action) => {
+    state.token = action.payload;
+  }},
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLogged = action.payload;
       });
     builder.addCase(getLogin.fulfilled, (state, action) => {
-      state.login = action.payload;
+      state.userToken = action.payload;
       state.loading = false;
-      if (state.login) {
-        localStorage.setItem("JWT", `${state.login}`);
+      if (state.userToken) {
+        localStorage.setItem("JWT", `${state.userToken}`);
       }
     });
     builder.addCase(getLogin.pending, (state) => {
@@ -228,6 +261,9 @@ const loginSlice = createSlice({
     builder.addCase(getEmail.fulfilled, (state, action) => {
       state.isEmail = action.payload;
       state.loading = false;
+    });
+    builder.addCase(getEmail.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(signUpSlice.fulfilled, (state, action) => {
       state.user = action.payload;
@@ -253,7 +289,5 @@ const loginSlice = createSlice({
   }
 });
 
-export const {
-  buttonEvent, changeEvent, lookEvent, addToken
-} = loginSlice.actions;
+export const {addToken, resetUserData} = loginSlice.actions;
 export default loginSlice.reducer;

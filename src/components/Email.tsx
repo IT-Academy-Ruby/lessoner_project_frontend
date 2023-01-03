@@ -10,19 +10,21 @@ type EmailProps = {
   field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
-    onChange: React.ChangeEventHandler<HTMLInputElement>,
+    // onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string,
   };
   error?: string;
+  isEmail: string | boolean;
+  textError?: string;
 }
 
-const Email = ({field, error}: EmailProps): JSX.Element => {
+const Email = ({field, error, isEmail, textError}: EmailProps): JSX.Element => {
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    if(field.value.length > 0){
-      dispatch(getEmail(field.value));
-    }
-  }, [dispatch,error,field.value]);
+  // useEffect(() => {
+  //   if(field.value.length > 0){
+  //     dispatch(getEmail(field.value));
+  //   }
+  // }, [dispatch,error,field.value]);
 
   return (
     <label className="input-label">
@@ -39,6 +41,9 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
         {...field}
       />
       {error && <span className="error-message">{error}</span>}
+      {isEmail === false && !error && <span className="error-message">
+        {textError}
+      </span>}
     </label>
   );
 };

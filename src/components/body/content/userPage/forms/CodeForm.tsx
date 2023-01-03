@@ -7,6 +7,8 @@ import {CODE} from "../../../../../constants";
 import Code from "../../../../Code";
 import {CodeRegex} from "../../../../../validationRules";
 import {Link} from "react-router-dom";
+import {sendUserCode} from "../../../../../store/loginName/loginSlice";
+import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
 
@@ -19,45 +21,39 @@ interface FormErrors {
 }
 
 type CodeFormProps = {
- userName:string;
- handleClose:()=>void;
+  userName: string;
+  handleClose: () => void;
 }
-const CodeForm=({userName,handleClose}:CodeFormProps)=>{
+const CodeForm = ({handleClose}: CodeFormProps) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
-  const initialValues: FormValues = {
-    code: "",
-  };
-  return(
+  const initialValues: FormValues = {code: ""};
+  return (
     <Formik
 
       initialValues={initialValues}
       validate={async (values: FormValues) => {
-        const errors: FormErrors = {}
+        const errors: FormErrors = {};
 
-          if (!CodeRegex.test(values.code)) {
-            errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
-          }
-          if (values.code.length < CODE.maxLength) {
-            errors.code += intl.formatMessage({id: "app.code.errorLength"});
-          }
-          if (values.code && !errors.code) {
-            setIsDisable(false)
-          } else {
-            setIsDisable(true)
-          }
+        if (!CodeRegex.test(values.code)) {
+          errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
+        }
+        if (values.code.length < CODE.maxLength) {
+          errors.code += intl.formatMessage({id: "app.code.errorLength"});
+        }
+        if (values.code && !errors.code) {
+          setIsDisable(false);
+        } else {
+          setIsDisable(true);
+        }
 
         return errors;
       }}
 
       onSubmit={(values) => {
-        const items = {
-          name: userName,
-          object: {code: values.code}
-        };
-        console.log(items)
-        // dispatch(editUserData(items));
+        dispatch(sendUserCode({verification_code: values.code}));
         handleClose();
       }}>
       {({errors, touched}) => {
@@ -90,10 +86,10 @@ const CodeForm=({userName,handleClose}:CodeFormProps)=>{
               buttonText={intl.formatMessage({id: "app.userPage.form.button.code"})}
               className="button__page button-form-user__page"
               disabled={isDisable}/>
-          </Form>)
+          </Form>);
       }}
     </Formik>
 
-      );
+  );
 };
 export default CodeForm;

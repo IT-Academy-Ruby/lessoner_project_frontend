@@ -2,9 +2,11 @@ import "./App.scss";
 import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
-import {addToken, confirmTokenSlice} from "./store/loginName/loginSlice";
-import Body from "./components/body/Body";
+import {
+  addToken, confirmTokenSlice,editUserEmail,resetUserData
+} from "./store/loginName/loginSlice";
 import {useEffect, useState} from "react";
+import Body from "./components/body/Body";
 import FacebookButton from "./components/FacebookButton";
 import GoogleButton from "./components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
@@ -13,10 +15,10 @@ import Pages from "./components/Pages";
 import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
 import VKButton from "./components/VKButton";
+import {nameDecodedUser} from "./store/header/decodeJwtSlice";
 import {useAppDispatch} from "./store/hooks";
 
 function App(): JSX.Element {
-
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
@@ -33,6 +35,8 @@ function App(): JSX.Element {
   useEffect(() => {
     const registrationToken = url.lastIndexOf("confirm_email?token=");
     const resetPasswordToken = url.lastIndexOf("reset_password?token=");
+    const updateEmaiToken = url.lastIndexOf("update_email?token=");
+
     if (registrationToken > 0 && controlRendering === 1) {
       const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
       dispatch(confirmTokenSlice(token));
@@ -45,7 +49,15 @@ function App(): JSX.Element {
       window.location.href = "/user/sign_in/reset_password/new_password";
       controlRendering++;
     }
-
+    if (updateEmaiToken > 0 && controlRendering === 1) {
+      const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
+      dispatch(editUserEmail(token));
+      window.location.href = "/user/sign_in";
+      localStorage.setItem("JWT", "");
+      dispatch(nameDecodedUser());
+      dispatch(resetUserData());
+      controlRendering++;
+    }
   }, [controlRendering, dispatch, url]);
 
   return (

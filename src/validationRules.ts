@@ -1,5 +1,5 @@
 import {
-  CODE, DESCRIPTION_CATEGORY,NAME_CATEGORY, PASSWORD
+  CODE, DESCRIPTION_CATEGORY,NAME_CATEGORY, PASSWORD,USERNAME
 } from "./constants";
 
 export const emailInvalidationRules = [
@@ -18,7 +18,7 @@ export const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" +
 
 export const CodeRegex = new RegExp("[0-9a-z]{"+CODE.maxLength+"}", "i");
 
-export const UserRegex = new RegExp("[a-z0-9]", "i");
+export const UserRegex = new RegExp("[^0-9a-z]", "i");
 
 export const descriptionCategoryRegex = new RegExp("^[\\s-/=!#$%&'*+?^_`{|}~.A-Z0-9А-Я]{" +
   DESCRIPTION_CATEGORY.minSymbols + "," + DESCRIPTION_CATEGORY.maxSymbols + "}$", "i");

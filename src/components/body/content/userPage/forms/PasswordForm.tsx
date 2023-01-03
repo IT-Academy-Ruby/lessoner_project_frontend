@@ -5,11 +5,13 @@ import {FormattedMessage, useIntl} from "react-intl";
 import Button from "../../../../Button";
 import {PASSWORD} from "../../../../../constants";
 import PasswordAndConfirm from "../../../../PasswordAndConfirm";
-import classNames from "classnames";
+import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
+import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
 interface FormValues {
+  current_password:string;
   password: string;
   confirmPassword: string;
 }
@@ -24,9 +26,11 @@ type PasswordFormProps = {
 }
 const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {
+    current_password:"",
     password: "",
     confirmPassword: "",
   };
@@ -35,12 +39,14 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
 
       initialValues={initialValues}
       validate={async (values: FormValues) => {
-        const errors: FormErrors = {}
+        const errors: FormErrors = {};
 
         if (!passwordRegex.test(values.password)) {
           errors.password = errors.code =
             intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
-              minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength, symbols: PASSWORD.symbols
+              minSymbol: PASSWORD.minLength,
+              maxSymbol: PASSWORD.maxLength,
+              symbols: PASSWORD.symbols
             });
         }
         if (values.password.length > PASSWORD.maxLength ||
@@ -51,24 +57,22 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
         }
         if (values.password !== values.confirmPassword) {
           errors.confirmPassword = errors.code =
-            intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
+            intl.formatMessage(
+              {id: "app.firstRegistrationForm.passwordConfrim"});
         }
-        if (values.password && !errors.password && values.confirmPassword && !errors.confirmPassword) {
-          setIsDisable(false)
+        if (values.password && !errors.password && values.confirmPassword
+          && !errors.confirmPassword) {
+          setIsDisable(false);
         } else {
-          setIsDisable(true)
+          setIsDisable(true);
         }
         return errors;
       }}
 
       onSubmit={(values) => {
-        const items = {
-          name: userName,
-          object: {password: values.password}
-        };
-        console.log(items)
-        // dispatch(editUserData(items));
-        // dispatch(getUserData(user.name));
+        const items = {name: userName, object:
+            {password: values.password, current_password: values.current_password}};
+        dispatch(editUserData(items));
         handleClose();
       }}>
       {({errors, touched}) => {
@@ -80,10 +84,14 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
             <h2 className="form-title-user-page">
               <FormattedMessage id="app.userPage.form.password"/>
             </h2>
-            <label className="input-label">
-              <FormattedMessage id="app.userPage.form.currentPassword"/>
-              <input className="input"/>
-            </label>
+            <Field
+              name="current_password"
+              component={PasswordAndConfirm}
+              minSymbol={PASSWORD.minLength}
+              maxSymbol={PASSWORD.maxLength}
+              isConfirm={"currentPassword"}
+              error={touched.password ? errors.password : undefined}
+            />
             <Field
               name="password"
               component={PasswordAndConfirm}
@@ -105,7 +113,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               buttonText={intl.formatMessage({id: "app.userPage.form.button.password"})}
               className="button__page button-form-user__page"
               disabled={isDisable}/>
-          </Form>)
+          </Form>);
       }}
     </Formik>
   );

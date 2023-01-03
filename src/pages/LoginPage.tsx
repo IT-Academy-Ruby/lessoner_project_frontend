@@ -4,11 +4,9 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {
-  buttonEvent, getLogin, lookEvent
-} from "../store/loginName/loginSlice";
+import {getEmail, getLogin} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
@@ -18,7 +16,7 @@ import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 import Phone from "../components/icons/phone.svg";
 import VK from "../components/icons/vk.svg";
-import {showMainPage} from "../store/header/headerSlice";
+import {useAppDispatch} from "../store/hooks";
 
 interface FormValues {
   email: string;
@@ -34,7 +32,20 @@ const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isEmail = useAppSelector(state => state.login.isEmail);
+  const [value, setValue] = useState<FormValues>();
+  const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
+
+
+  useEffect(() => {
+    if (isLogEmail) {
+      dispatch(getLogin(value!))
+        .then(() => {
+          if (localStorage.getItem("JWT")) {
+            navigate("/"); // Redirects to main page
+          }
+        });
+    }
+  }, [isLogEmail])
 
   const initialValues: FormValues = {
     email: "",
@@ -52,34 +63,28 @@ const LoginPage = () => {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
-          if (!isEmail && values.email.length) {
-            errors.email = intl.formatMessage({id: "app.email.notFound"});
-          }
           if (!passwordRegex.test(values.password)) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"},{
-                minSymbol:PASSWORD.minLength, maxSymbol:PASSWORD.maxLength,symbols:PASSWORD.symbols
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength, symbols: PASSWORD.symbols
               });
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"},{
-                minSymbol:PASSWORD.minLength, maxSymbol:PASSWORD.maxLength
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
+                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength
               });
           }
           return errors;
         }}
-        onSubmit={(values: { email: string, password: string }) => {
-          dispatch(getLogin(values))
-            .then(() => {
-              if (localStorage.getItem("JWT")) {
-                // navigate("/"); // Redirects to main page
-              }
-            });
-          dispatch(showMainPage);
-          // dispatch(buttonEvent());
-          // dispatch(lookEvent());
+        onSubmit={(values: FormValues) => {
+          setValue(values);
+          dispatch(getEmail(values.email))
+            .then((data) => data.payload)
+            .then((result) => {
+              setIslogEmail(result)
+            })
         }}>
         {({errors, touched}) => {
           return (
@@ -91,6 +96,8 @@ const LoginPage = () => {
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
+                isEmail={isLogEmail}
+                textError={intl.formatMessage({id: "app.email.notFound"})}
               />
               <Field
                 name="password"

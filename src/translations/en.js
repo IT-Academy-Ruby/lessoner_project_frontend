@@ -135,6 +135,7 @@ export const messages_en = {
   "app.YourselfPage.errorSmallName": "UserName should be more {minSymbol}",
   "app.YourselfPage.errorBigName": "UserName should be less {maxSymbol}",
   "app.UserName": "Username",
+  "app.userName.nameExists": "The user already exists. Please enter a different username",
   "app.UserName.placeholder": "{minSymbol} to {maxSymbol} characters",
   "app.ConfirmReg.info": "Confirm your registration using the link we sent to your email.",
   "app.gender.male": "Male",
