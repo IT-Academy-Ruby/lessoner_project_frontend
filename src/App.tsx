@@ -10,9 +10,9 @@ import { IntlProvider } from "react-intl";
 import Pages from "./components/Pages";
 import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
-import { useState } from "react";
 import VKButton from "./components/VKButton";
 import { VideoViewPage } from "./pages/VideoViewPage";
+import { useAppDispatch } from "../src/store/hooks";
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
