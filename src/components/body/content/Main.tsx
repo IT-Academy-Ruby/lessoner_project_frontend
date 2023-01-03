@@ -9,10 +9,8 @@ import NewLesson from "./add_new_lesson/NewLesson";
 import UserPage from "./userPage/UserPage";
 import {useAppSelector} from "../../../store/hooks";
 
-type ContentProps={
-  languageCode:string;
-}
-const Content = ({languageCode}:ContentProps) => {
+
+const Content = () => {
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
   return (
     <div className="main">
@@ -34,7 +32,7 @@ const Content = ({languageCode}:ContentProps) => {
         {decodeUserName &&
           <Route
             path={decodeUserName?"/user/userPage":"/"}
-            element={<UserPage languageCode={languageCode}/>}
+            element={<UserPage />}
           />
         }
       </Routes>

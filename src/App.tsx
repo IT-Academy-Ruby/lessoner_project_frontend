@@ -69,7 +69,7 @@ function App(): JSX.Element {
           opacity,
           display: display ? undefined : "none",
         }}>
-          <Body onLanguageSwitch={setLanguageCode} languageCode={languageCode}/>
+          <Body onLanguageSwitch={setLanguageCode} />
           <Routes>
             <Route
               path="/user/sign_up"
