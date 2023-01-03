@@ -40,8 +40,7 @@ const sessionJWTSlice = createSlice({
   initialState,
   reducers: {nameDecodedUser: (state) => {
     state.session = decode();
-    },
-  },
+    }},
 });
 
 export const {nameDecodedUser} = sessionJWTSlice.actions;

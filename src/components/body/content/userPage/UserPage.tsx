@@ -16,10 +16,7 @@ import PhoneForm from "./forms/PhoneForm";
 import Upload from "../../../icons/upload.svg";
 import classNames from "classnames";
 
-type UserPageProps = {
-  languageCode: string;
-}
-const UserPage = ({languageCode}: UserPageProps) => {
+const UserPage = () => {
   const fileRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
   const dispatch = useAppDispatch();

@@ -1,5 +1,5 @@
 import {
-  CODE, DESCRIPTION_CATEGORY,NAME_CATEGORY, PASSWORD,USERNAME
+  CODE, DESCRIPTION_CATEGORY,NAME_CATEGORY, PASSWORD,
 } from "./constants";
 
 export const emailInvalidationRules = [

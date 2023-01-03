@@ -1,6 +1,8 @@
 import "./Header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Fragment, useEffect, useState} from "react";
+import {
+  Fragment, useEffect, useState
+} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
@@ -22,7 +24,6 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
   const token = useAppSelector(state => state.dataUser.userToken);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
   const user = useAppSelector(state => state.dataUser.user.name);
-  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     if (token) {
@@ -31,7 +32,7 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
     if (nameDecode && !user) {
       dispatch(getUserData(nameDecode));
     }
-  }, [token, nameDecode]);
+  }, [token, dispatch, nameDecode]);
 
   return (
     <div className="side-bar">

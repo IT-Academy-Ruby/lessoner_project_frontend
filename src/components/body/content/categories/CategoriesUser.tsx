@@ -33,15 +33,15 @@ const CategoriesUser = () => {
     fetchCategory();
   }, []);
 
-    const categorySet = categories.map((obj) => (
-      <UserCategory
-        key={obj.id}
-        id={obj.id}
-        imagePreview={obj.image_url}
-        name={obj.name}
-        description={obj.description}
-      />
-    ));
+  const categorySet = categories.map((obj) => (
+    <UserCategory
+      key={obj.id}
+      id={obj.id}
+      imagePreview={obj.image_url}
+      name={obj.name}
+      description={obj.description}
+    />
+  ));
 
   const skeleton = [...new Array(SKELETON_AMOUT)].map((_, index) =>
     <SkeletonCategory key={index}/>);

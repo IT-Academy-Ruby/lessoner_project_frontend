@@ -9,7 +9,6 @@ import {useEffect} from "react";
 
 const Footer = () => {
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
-  const lessoner = useAppSelector(state => state.link.lessoner);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

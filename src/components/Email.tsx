@@ -1,16 +1,14 @@
 import "./input.scss";
-import React, {useEffect} from "react";
 import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
 import classNames from "classnames";
-import {getEmail} from "../store/loginName/loginSlice";
 import {useAppDispatch} from "../store/hooks";
 
 type EmailProps = {
   field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
-    // onChange: React.ChangeEventHandler<HTMLInputElement>,
+    onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string,
   };
   error?: string;
@@ -18,14 +16,9 @@ type EmailProps = {
   textError?: string;
 }
 
-const Email = ({field, error, isEmail, textError}: EmailProps): JSX.Element => {
-  const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   if(field.value.length > 0){
-  //     dispatch(getEmail(field.value));
-  //   }
-  // }, [dispatch,error,field.value]);
-
+const Email = ({
+  field, error, isEmail, textError}: EmailProps
+): JSX.Element => {
   return (
     <label className="input-label">
       <FormattedMessage id="app.email.name"/>

@@ -26,30 +26,25 @@ const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
   const [isDisable, setIsDisable] = useState(true);
   const [isWrapper, setIsWrapper] = useState(false);
 
-  const initialValues: FormValues = {
-    birthday: new Date,
-  };
+  const initialValues: FormValues = {birthday: new Date};
   return(
     <Formik
       initialValues={initialValues}
       validate={async (values: FormValues) => {
-        const errors: FormErrors = {}
+        const errors: FormErrors = {};
         if (!values.birthday) {
           errors.birthday = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
         }
         if (values.birthday) {
-          setIsDisable(false)
+          setIsDisable(false);
         } else {
-          setIsDisable(true)
+          setIsDisable(true);
         }
 
         return errors;
       }}
       onSubmit={(values) => {
-        const items = {
-          name: userName,
-          object: {birthday: values.birthday.toDateString()}
-        };
+        const items = {name: userName, object: {birthday: values.birthday.toDateString()}};
         dispatch(editUserData(items));
         handleClose();
       }}>
@@ -74,7 +69,7 @@ const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
               buttonText={intl.formatMessage({id: "app.userPage.form..button.birthday"})}
               className="button__page button-form-user__page"
               disabled={isDisable}/>
-          </Form>)
+          </Form>);
       }}
     </Formik>
   );

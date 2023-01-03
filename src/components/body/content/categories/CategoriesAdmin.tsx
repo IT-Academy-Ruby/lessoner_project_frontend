@@ -18,7 +18,7 @@ const CategoriesAdmin = () => {
   const loading = useAppSelector((state) => state.categories.loading);
   // const [allCategories, setAllCategories] = useState<[]>([])
   useEffect(() => {
-    dispatch(getCategory())
+    dispatch(getCategory());
   }, [dispatch]);
 
   const handleEdit = (event: MouseEvent) => {

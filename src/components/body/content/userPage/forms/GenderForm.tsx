@@ -42,30 +42,25 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
-  const initialValues: FormValues = {
-    gender: "",
-  };
+  const initialValues: FormValues = {gender: ""};
   return (
     <Formik
 
       initialValues={initialValues}
       validate={async (values: FormValues) => {
-        const errors: FormErrors = {}
+        const errors: FormErrors = {};
 
         if (!values.gender) {
           errors.gender = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
         }
         if (values.gender && !errors.gender) {
-          setIsDisable(false)
+          setIsDisable(false);
         } else {
-          setIsDisable(true)
+          setIsDisable(true);
         }
       }}
       onSubmit={(values) => {
-        const items = {
-          name: userName,
-          object: {gender: values.gender}
-        };
+        const items = {name: userName, object: {gender: values.gender}};
         dispatch(editUserData(items));
         handleClose();
       }}>
@@ -89,7 +84,7 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
               buttonText={intl.formatMessage({id: "app.userPage.form..button.gender"})}
               className="button__page button-form-user__page"
               disabled={isDisable}/>
-          </Form>)
+          </Form>);
       }}
     </Formik>
   );

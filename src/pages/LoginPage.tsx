@@ -4,8 +4,8 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {getEmail, getLogin} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
+import {getEmail, getLogin} from "../store/loginName/loginSlice";
 import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
@@ -32,20 +32,20 @@ const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [value, setValue] = useState<FormValues>();
+  const [value, setValue] = useState({email:"", password:""});
   const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
 
 
   useEffect(() => {
     if (isLogEmail) {
-      dispatch(getLogin(value!))
+      dispatch(getLogin(value))
         .then(() => {
           if (localStorage.getItem("JWT")) {
             navigate("/"); // Redirects to main page
           }
         });
     }
-  }, [isLogEmail])
+  }, [dispatch, navigate, value, isLogEmail]);
 
   const initialValues: FormValues = {
     email: "",
@@ -66,15 +66,13 @@ const LoginPage = () => {
           if (!passwordRegex.test(values.password)) {
             errors.password =
               intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
-                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength, symbols: PASSWORD.symbols
-              });
+                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength, symbols: PASSWORD.symbols});
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
             errors.password =
               intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
-                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength
-              });
+                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength});
           }
           return errors;
         }}
@@ -83,8 +81,8 @@ const LoginPage = () => {
           dispatch(getEmail(values.email))
             .then((data) => data.payload)
             .then((result) => {
-              setIslogEmail(result)
-            })
+              setIslogEmail(result);
+            });
         }}>
         {({errors, touched}) => {
           return (
