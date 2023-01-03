@@ -32,7 +32,7 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
     if (nameDecode && !user) {
       dispatch(getUserData(nameDecode));
     }
-  }, [token, dispatch, nameDecode]);
+  }, [token, dispatch, user, nameDecode]);
 
   return (
     <div className="side-bar">

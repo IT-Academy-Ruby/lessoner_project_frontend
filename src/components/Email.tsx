@@ -2,7 +2,6 @@ import "./input.scss";
 import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
 import classNames from "classnames";
-import {useAppDispatch} from "../store/hooks";
 
 type EmailProps = {
   field: {
@@ -16,9 +15,10 @@ type EmailProps = {
   textError?: string;
 }
 
+
 const Email = ({
-  field, error, isEmail, textError}: EmailProps
-): JSX.Element => {
+  field, error, isEmail, textError
+}: EmailProps): JSX.Element => {
   return (
     <label className="input-label">
       <FormattedMessage id="app.email.name"/>

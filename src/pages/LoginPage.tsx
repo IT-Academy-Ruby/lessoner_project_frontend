@@ -66,13 +66,15 @@ const LoginPage = () => {
           if (!passwordRegex.test(values.password)) {
             errors.password =
               intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
-                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength, symbols: PASSWORD.symbols});
+                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength,
+                symbols: PASSWORD.symbols
+              });
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"}, {
-                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength});
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"},
+                {minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength});
           }
           return errors;
         }}
