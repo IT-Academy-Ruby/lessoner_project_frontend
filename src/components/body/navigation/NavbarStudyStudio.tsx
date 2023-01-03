@@ -37,18 +37,14 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 3,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.subscription",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.subscription"})}`,
       href: "/lessons",
       icon: "subscription",
       place: { autorised: "autorised", admin: "admin" },
     },
     {
       id: 4,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.categories",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.categories"})}`,
       href: "/categories",
       icon: "categories",
       place: {
@@ -59,9 +55,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 5,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "#!",
       icon: "edit_categories",
       place: { admin: "admin" },
@@ -100,45 +94,35 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 10,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.lightTheme",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.lightTheme"})}`,
       href: "#!",
       icon: "light_theme",
       place: { lightTheme: "light_theme" },
     },
     {
       id: 11,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.grodno.it-academy.by/",
       icon: "network",
       place: { contacts: "contacts" },
     },
     {
       id: 12,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.instagram.com/grodnoitacademypark/",
       icon: "instagram",
       place: { contacts: "contacts" },
     },
     {
       id: 13,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.facebook.com/grodnoitacademypark",
       icon: "facebook",
       place: { contacts: "contacts" },
     },
     {
       id: 14,
-      value: `${intl.formatMessage({
-        id: "app.navbarStudyStudio.management",
-      })}`,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.linkedin.com/school/15248534/",
       icon: "linkedin",
       place: { contacts: "contacts" },
