@@ -38,7 +38,7 @@ const AddCategory = ({add}: TypeTitle) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [selectImage, setSelectImage] = useState({
-    name: "", type: "", size: 0, image: new FileList(),
+    name: "", type: "", size: 0, image:  undefined,
   });
   const allCategories = useAppSelector((state) => state.categories.categories);
   const [category, setCategory] = useState({
@@ -223,7 +223,6 @@ const AddCategory = ({add}: TypeTitle) => {
               <span className="close-modal" onClick={() => setISuccessful(false)}/>
             </div>
           </div>
-
         </div>
       </div>}
     </div>

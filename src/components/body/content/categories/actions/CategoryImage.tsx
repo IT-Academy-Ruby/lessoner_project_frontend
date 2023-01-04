@@ -85,7 +85,7 @@ const CategoryImage = ({
           <FormattedMessage id="app.categories.imageInform"/>
         </span>
         <button
-          className="button-login"
+          className="button-login-category"
           onClick={handleUpload}
           type="button"
         >
