@@ -16,7 +16,6 @@ const CategoriesAdmin = () => {
   const dispatch = useAppDispatch();
   const allCategories = useAppSelector((state) => state.categories.categories);
   const loading = useAppSelector((state) => state.categories.loading);
-  // const [allCategories, setAllCategories] = useState<[]>([])
   useEffect(() => {
     dispatch(getCategory());
   }, [dispatch]);
@@ -25,7 +24,7 @@ const CategoriesAdmin = () => {
     navigate(`/categories/updateCategory/${event.currentTarget.id}`);
   };
 
-  const handleDelete = async (category:{
+  const handleDelete = async (category: {
     id: number, name: string, description: string, status: string
   }) => {
     await dispatch(archiveCategory(category));
@@ -36,7 +35,7 @@ const CategoriesAdmin = () => {
   return (
     <>
       {loading && <Loader/>}
-      {allCategories && allCategories.map(category =>
+      {allCategories?.map(category =>
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
           <img src={IT} alt={category.name} className="category-img"/>

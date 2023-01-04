@@ -11,7 +11,7 @@ import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
 interface FormValues {
-  current_password:string;
+  current_password: string;
   password: string;
   confirmPassword: string;
 }
@@ -24,23 +24,23 @@ type PasswordFormProps = {
   userName: string;
   handleClose: () => void;
 }
+
 const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {
-    current_password:"",
+    current_password: "",
     password: "",
     confirmPassword: "",
   };
+
   return (
     <Formik
-
       initialValues={initialValues}
       validate={async (values: FormValues) => {
         const errors: FormErrors = {};
-
         if (!passwordRegex.test(values.password)) {
           errors.password = errors.code =
             intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
@@ -66,12 +66,13 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
         } else {
           setIsDisable(true);
         }
+
         return errors;
       }}
 
-      onSubmit={(values) => {
+      onSubmit = {(values) => {
         const items = {name: userName, object:
-            {password: values.password, current_password: values.current_password}};
+          {password: values.password, current_password: values.current_password}};
         dispatch(editUserData(items));
         handleClose();
       }}>
@@ -82,7 +83,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.password"/>
+              <FormattedMessage id="app.userPage.form.password" />
             </h2>
             <Field
               name="current_password"
@@ -112,10 +113,12 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form.button.password"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}/>
+              disabled={isDisable}
+            />
           </Form>);
       }}
     </Formik>
   );
 };
+
 export default PasswordForm;

@@ -11,7 +11,6 @@ import {sendUserCode} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
-
 interface FormValues {
   code: string;
 }
@@ -24,15 +23,16 @@ type CodeFormProps = {
   userName: string;
   handleClose: () => void;
 }
+
 const CodeForm = ({handleClose}: CodeFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {code: ""};
+
   return (
     <Formik
-
       initialValues={initialValues}
       validate={async (values: FormValues) => {
         const errors: FormErrors = {};
@@ -63,12 +63,12 @@ const CodeForm = ({handleClose}: CodeFormProps) => {
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.code"/>
+              <FormattedMessage id="app.userPage.form.code" />
             </h2>
             <p className="text">
-              <FormattedMessage id="app.code.inform"/>
+              <FormattedMessage id="app.code.inform" />
               <Link to="/users/sign_in/phone_number" className="link">
-                <FormattedMessage id="app.code.phoneNumber"/>
+                <FormattedMessage id="app.code.phoneNumber" />
               </Link>
             </p>
             <Field
@@ -85,11 +85,13 @@ const CodeForm = ({handleClose}: CodeFormProps) => {
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form.button.code"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}/>
+              disabled={isDisable}
+            />
           </Form>);
       }}
     </Formik>
 
   );
 };
+
 export default CodeForm;

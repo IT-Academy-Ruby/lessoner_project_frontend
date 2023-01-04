@@ -18,17 +18,17 @@ import {useState} from "react";
 const gender = [
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.male"/>,
+    label: <FormattedMessage id="app.gender.male" />,
     genderValue: "male"
   },
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.female"/>,
+    label: <FormattedMessage id="app.gender.female" />,
     genderValue: "female"
   },
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.other"/>,
+    label: <FormattedMessage id="app.gender.other" />,
     genderValue: "other"
   }];
 
@@ -70,7 +70,7 @@ const YourselfPage = ({
     if (values.name.length === 0) {
       errors.name = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
-    if (values.name.length < minSymbol && values.name.length > 0) {
+    if (values.name.length < minSymbol && values.name.length) {
       errors.name = intl.formatMessage(
         {id: "app.YourselfPage.errorSmallName"}, {minSymbol: minSymbol});
     }
@@ -87,6 +87,7 @@ const YourselfPage = ({
     if (!values.gender) {
       errors.gender = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
+
     return errors;
   };
 
@@ -95,7 +96,7 @@ const YourselfPage = ({
       <Formik
         initialValues={{
           name: "",
-          phone: " ",
+          phone: "",
           gender: "",
           email: userEmail ? userEmail : "",
           birthday: "",
@@ -111,7 +112,7 @@ const YourselfPage = ({
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.pagesTitle.aboutYourself"/>
+                <FormattedMessage id="app.pagesTitle.aboutYourself" />
               </h2>
               {registration && <Field
                 name="email"
@@ -149,4 +150,5 @@ const YourselfPage = ({
     </div>
   );
 };
+
 export default YourselfPage;

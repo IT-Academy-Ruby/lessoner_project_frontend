@@ -94,7 +94,7 @@ const UserPage = () => {
     <div className="wrapper-user_page">
       <div className="user-page">
         <h1 className="title-user-page">
-          <FormattedMessage id="app.userPage.editInformation"/>
+          <FormattedMessage id="app.userPage.editInformation" />
         </h1>
         <div className="avatar-field">
           <input
@@ -114,16 +114,16 @@ const UserPage = () => {
             />}
             {!user.avatar_url && <p className="first-letters">{user.name}</p>}
             <div className="upload-field" onClick={handleUpload}>
-              <img src={Upload} alt="upload" className="upload-avater"/>
+              <img src={Upload} alt="upload" className="upload-avater" />
             </div>
           </div>
           <span className="inform-avatar">
-            <FormattedMessage id="app.userPage.avatarInformation"/>
+            <FormattedMessage id="app.userPage.avatarInformation" />
           </span>
         </div>
         {dataUser.map(data => {
           --keyField;
-          return <div key={keyField}>
+          return (<div key={keyField}>
             <div className="user-page-field">
               <div className="name-user-page">
                 <p className="label-user-page">
@@ -137,10 +137,11 @@ const UserPage = () => {
                 buttonText={intl.formatMessage({id: "app.userPage.edit"})}
                 className="button-select"
                 buttonType="button"
-                onClick={() => handleEdit(data.title)}/>
+                onClick={() => handleEdit(data.title)}
+              />
             </div>
-            {keyField !== 0 && <hr className="line-user-page"/>}
-          </div>;
+            {keyField !== 0 && <hr className="line-user-page" />}
+          </div>);
         }
         )};
       </div>
@@ -150,4 +151,5 @@ const UserPage = () => {
     </div>
   );
 };
+
 export default UserPage;

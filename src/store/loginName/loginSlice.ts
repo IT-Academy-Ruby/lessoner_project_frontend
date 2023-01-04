@@ -100,7 +100,6 @@ export const changePassword = createAsyncThunk(
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({token: value.token, password: value.password})
     });
-
     if (response.status !== 200) {
       throw new Error(`Error code ${response.status}`);
     }
@@ -108,6 +107,7 @@ export const changePassword = createAsyncThunk(
     return data.email_exists;
   }
 );
+
 export const getUserData = createAsyncThunk(
   "user/getUserDataStatus",
   async (name: string) => {
@@ -119,7 +119,7 @@ export const getUserData = createAsyncThunk(
 
 export const editUserData = createAsyncThunk(
   "user/editUserDataStatus",
-  async (items: { name: number|string, object: object }) => {
+  async (items: { name: number | string, object: object }) => {
     const response = await requestApi(
       `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
     const data = response.json();
@@ -129,7 +129,7 @@ export const editUserData = createAsyncThunk(
 
 export const editUserEmail = createAsyncThunk(
   "user/editUserEmailStatus",
-  async (token:string)=>{
+  async (token: string) => {
     const response = await requestApi(
       `${process.env.REACT_APP_BACKEND_URL}/users/update_email?token=${token}`);
     const data = response.json();
@@ -139,9 +139,9 @@ export const editUserEmail = createAsyncThunk(
 
 export const sendUserCode = createAsyncThunk(
   "user/sendUserCodeStatus",
-  async (verif:object)=>{
+  async (verif: object) => {
     const response = await requestApi(
-      `${process.env.REACT_APP_BACKEND_URL}/verify`,"POST",verif);
+      `${process.env.REACT_APP_BACKEND_URL}/verify`, "POST", verif);
     const data = response.json();
     return data;
   }
@@ -181,7 +181,7 @@ type Login = {
     password: string;
     created_at: string;
   };
- userToken: string;
+  userToken: string;
   event: boolean;
   lookButton: boolean;
   isEmail: boolean | string;
@@ -216,33 +216,24 @@ const initialState: Login = {
 const loginSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {resetUserData:(state)=>{
-    state.user ={
-      id: 0,
-      name: "",
-      description: "",
-      email: "",
-      avatar_url: "",
-      phone: "",
-      gender: "",
-      birthday: "",
-      password: "",
-      created_at: ""
-    };
-  },
-
-  // buttonEvent: (state) => {
-  //   state.event = true;
-  // },
-  // changeEvent: (state) => {
-  //   state.event = false;
-  // },
-  // lookEvent: (state) => {
-  //   state.lookButton = !state.lookButton;
-  // },
-  addToken: (state, action) => {
-    state.token = action.payload;
-  }},
+  reducers: {
+    resetUserData: (state) => {
+      state.user = {
+        id: 0,
+        name: "",
+        description: "",
+        email: "",
+        avatar_url: "",
+        phone: "",
+        gender: "",
+        birthday: "",
+        password: "",
+        created_at: ""
+      };
+    },
+    addToken: (state, action) => {
+      state.token = action.payload;
+    }},
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
@@ -283,7 +274,6 @@ const loginSlice = createSlice({
       state.updateAfterRequest = !state.updateAfterRequest;
     });
     builder.addCase(uploadFile.fulfilled, (state, action) => {
-      // state.updateAfterRequest = !state.updateAfterRequest;
       state.user = action.payload;
     });
   }

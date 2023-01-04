@@ -22,12 +22,14 @@ type NameFormProps = {
   userName: string;
   handleClose: () => void;
 }
+
 const NameForm = ({userName, handleClose}: NameFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {name: ""};
+
   return (
     <Formik
       initialValues={initialValues}
@@ -52,9 +54,10 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
         } else {
           setIsDisable(true);
         }
+
         return errors;
       }}
-      onSubmit={(values) => {
+      onSubmit = {(values) => {
         const items = {name: userName, object: {name: values.name}};
         dispatch(editUserData(items));
         handleClose();
@@ -66,7 +69,7 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.username"/>
+              <FormattedMessage id="app.userPage.form.username" />
             </h2>
             <Field
               name="name"
@@ -77,10 +80,12 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form..button.username"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}/>
+              disabled={isDisable}
+            />
           </Form>);
       }}
     </Formik>
   );
 };
+
 export default NameForm;

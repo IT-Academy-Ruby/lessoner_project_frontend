@@ -52,10 +52,10 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
   };
 
   useEffect(() => {
-    if (isRegEmail===false) {
+    if (isRegEmail === false) {
       navigate("/user/reg_in/information");
     }
-  }, [isRegEmail,navigate]);
+  }, [isRegEmail, navigate]);
 
   const validate = (values: FormValues) => {
 
@@ -105,7 +105,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.firstRegistrationForm.title"/>
+                <FormattedMessage id="app.firstRegistrationForm.title" />
               </h2>
               <Field
                 name="email"
@@ -144,30 +144,30 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
               />
               <div className="or">
                 <span className="line-right"></span>
-                <FormattedMessage id="app.or"/>
+                <FormattedMessage id="app.or" />
                 <span className="line-left"></span>
               </div>
               <div className="apps-logs">
                 <Link to="/user/google" className="app-logo">
-                  <img src={Google} alt="google"/>
+                  <img src={Google} alt="google" />
                 </Link>
                 <Link to="/user/facebook" className="app-logo">
-                  <img src={Facebook} alt="facebook"/>
+                  <img src={Facebook} alt="facebook" />
                 </Link>
                 <Link to="/user/vk" className="app-logo">
-                  <img src={VK} alt="vk"/>
+                  <img src={VK} alt="vk" />
                 </Link>
                 <Link to="/user/sign_in/phone_numberR" className="app-logo">
-                  <img src={Phone} alt="phone"/>
+                  <img src={Phone} alt="phone" />
                 </Link>
               </div>
               <p className="text">
-                <FormattedMessage id="app.firstRegistrationForm.haveAccount"/>
+                <FormattedMessage id="app.firstRegistrationForm.haveAccount" />
                 <Link
                   to={"/user/sign_in"}
                   className="link"
                 >
-                  <FormattedMessage id="app.header.login"/>
+                  <FormattedMessage id="app.header.login" />
                 </Link>
               </p>
             </Form>

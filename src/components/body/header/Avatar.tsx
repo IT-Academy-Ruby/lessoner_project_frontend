@@ -8,7 +8,6 @@ import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 import {resetUserData} from "../../../store/loginName/loginSlice";
 import {useState} from "react";
 
-
 type AvatarProps = {
   onLanguageSwitch: (arg: string) => void;
   setLanguage: (arg: string) => void;
@@ -37,7 +36,7 @@ const Avatar = ({
     <>
       <label htmlFor="input-avatar" className="avatar">
         {!userAvatar && <p className="first-letters">{initialName}</p>}
-        {userAvatar && <img src={userAvatar} alt="avatar" className="user-avatar"/>}
+        {userAvatar && <img src={userAvatar} alt="avatar" className="user-avatar" />}
       </label>
       <input
         type="checkbox"
@@ -51,7 +50,7 @@ const Avatar = ({
       <ul className="list list-user">
         <li className="user-li">
           <Link to="/user/userPage" className="user-link">
-            <FormattedMessage id="app.avatar.personalData"/>
+            <FormattedMessage id="app.avatar.personalData" />
           </Link>
         </li>
         <li className="user-li">
@@ -59,12 +58,13 @@ const Avatar = ({
             onLanguageSwitch={onLanguageSwitch}
             isRegistered={true}
             language={language}
-            setLanguage={setLanguage}/>
+            setLanguage={setLanguage}
+          />
         </li>
         <li className="user-li" onClick={signOut}>
-          <div className="log-out" >
-            <FormattedMessage id="app.avatar.logOut"/>
-            <img src={Logout} alt="logout"/>
+          <div className="log-out">
+            <FormattedMessage id="app.avatar.logOut" />
+            <img src={Logout} alt="logout" />
           </div>
         </li>
       </ul>

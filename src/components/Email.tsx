@@ -10,8 +10,8 @@ type EmailProps = {
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string,
   };
-  error?: string;
   isEmail: string | boolean;
+  error?: string;
   textError?: string;
 }
 

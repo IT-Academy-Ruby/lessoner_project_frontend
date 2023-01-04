@@ -37,15 +37,16 @@ type GenderFormProps = {
   userName: string;
   handleClose: () => void;
 }
+
 const GenderForm = ({userName, handleClose}: GenderFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {gender: ""};
+
   return (
     <Formik
-
       initialValues={initialValues}
       validate={async (values: FormValues) => {
         const errors: FormErrors = {};
@@ -71,7 +72,7 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.gender"/>
+              <FormattedMessage id="app.userPage.form.gender" />
             </h2>
             <Field
               name="name"
@@ -83,10 +84,12 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form..button.gender"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}/>
+              disabled={isDisable}
+            />
           </Form>);
       }}
     </Formik>
   );
 };
+
 export default GenderForm;

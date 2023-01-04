@@ -28,6 +28,7 @@ const EmailForm = ({userName, handleClose}: EmailFormProps) => {
   const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {email: ""};
+
   return (
     <Formik
       initialValues={initialValues}
@@ -43,6 +44,7 @@ const EmailForm = ({userName, handleClose}: EmailFormProps) => {
         } else {
           setIsDisable(true);
         }
+
         return errors;
       }}
 
@@ -69,10 +71,12 @@ const EmailForm = ({userName, handleClose}: EmailFormProps) => {
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form.button.email"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}/>
+              disabled={isDisable}
+            />
           </Form>);
       }}
     </Formik>
   );
 };
+
 export default EmailForm;

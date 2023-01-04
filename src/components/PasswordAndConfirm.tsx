@@ -9,7 +9,7 @@ import {useState} from "react";
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
-  isConfirm: boolean|string;
+  isConfirm: boolean | string;
   field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,

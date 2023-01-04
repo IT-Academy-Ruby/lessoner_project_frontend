@@ -1,12 +1,10 @@
 import "./index.scss";
-import {BACKEND_URL, SKELETON_AMOUT} from "../../../../constants";
 import {useEffect, useState} from "react";
 import {FormattedMessage} from "react-intl";
+import {SKELETON_AMOUT} from "../../../../constants";
 import SkeletonCategory from "../../../SkeletonCategory";
 import UserCategory from "../../../UserCategory";
 import axios from "axios";
-
-const categoriesUrl = `${BACKEND_URL}/categories`;
 
 export interface Category {
   id: number;
@@ -21,7 +19,7 @@ const CategoriesUser = () => {
 
   async function fetchCategory() {
     try {
-      const {data} = await axios.get(categoriesUrl,);
+      const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/categories`,);
       setCategories(data.records);
       setIsLoading(false);
     } catch (error) {

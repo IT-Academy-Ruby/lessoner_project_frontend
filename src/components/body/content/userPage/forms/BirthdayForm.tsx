@@ -17,17 +17,17 @@ interface FormErrors {
 }
 
 type BirthdayFormProps = {
-  userName:string;
-  handleClose:()=>void;
+  userName: string;
+  handleClose: () => void;
 }
-const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
+const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
   const [isWrapper, setIsWrapper] = useState(false);
 
   const initialValues: FormValues = {birthday: new Date};
-  return(
+  return (
     <Formik
       initialValues={initialValues}
       validate={async (values: FormValues) => {
@@ -55,7 +55,7 @@ const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.birthday"/>
+              <FormattedMessage id="app.userPage.form.birthday" />
             </h2>
             <Field
               name="birthday"
@@ -68,10 +68,12 @@ const BirthdayForm=({userName,handleClose}:BirthdayFormProps)=>{
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form..button.birthday"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}/>
+              disabled={isDisable}
+            />
           </Form>);
       }}
     </Formik>
   );
 };
+
 export default BirthdayForm;

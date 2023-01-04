@@ -32,9 +32,8 @@ const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [value, setValue] = useState({email:"", password:""});
+  const [value, setValue] = useState({email: "", password: ""});
   const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
-
 
   useEffect(() => {
     if (isLogEmail) {
@@ -90,7 +89,7 @@ const LoginPage = () => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.login.title"/>
+                <FormattedMessage id="app.login.title" />
               </h2>
               <Field
                 name="email"
@@ -118,34 +117,34 @@ const LoginPage = () => {
                 className="button__page"
               />
               <Link to="/user/sign_in/reset_password" className="password-link">
-                <FormattedMessage id="app.loginPage.password"/>
+                <FormattedMessage id="app.loginPage.password" />
               </Link>
               <div className="or">
                 <span className="line-right"></span>
-                <FormattedMessage id="app.or"/>
+                <FormattedMessage id="app.or" />
                 <span className="line-left"></span>
               </div>
               <div className="apps-logs">
                 <div className="app-logo">
-                  <img src={Google} alt="google"/>
+                  <img src={Google} alt="google" />
                 </div>
                 <div className="app-logo">
-                  <img src={Facebook} alt="facebook"/>
+                  <img src={Facebook} alt="facebook" />
                 </div>
                 <div className="app-logo">
-                  <img src={VK} alt="vk"/>
+                  <img src={VK} alt="vk" />
                 </div>
                 <Link to="/user/sign_in/phone_numberA" className="app-logo">
-                  <img src={Phone} alt="phone"/>
+                  <img src={Phone} alt="phone" />
                 </Link>
               </div>
               <p className="text">
-                <FormattedMessage id="app.don'tAccount"/>
+                <FormattedMessage id="app.don'tAccount" />
                 <Link
                   to={"/user/sign_up"}
                   className="link"
                 >
-                  <FormattedMessage id="app.signUp"/>
+                  <FormattedMessage id="app.signUp" />
                 </Link>
               </p>
             </Form>

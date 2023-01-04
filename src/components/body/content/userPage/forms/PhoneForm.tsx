@@ -18,6 +18,7 @@ type PhoneFormProps = {
   handleClose: () => void;
   handleEdit: (title: string) => void;
 }
+
 const PhoneForm = ({
   userName, handleClose, handleEdit
 }: PhoneFormProps) => {
@@ -45,13 +46,14 @@ const PhoneForm = ({
         handleClose();
         handleEdit("code");
       }}>
+
       return (
       <Form className="form-user-page">
         <div className="close-modal-form" onClick={() => handleClose()}>
           <span className="close-form"></span>
         </div>
         <h2 className="form-title-user-page">
-          <FormattedMessage id="app.userPage.form.phone"/>
+          <FormattedMessage id="app.userPage.form.phone" />
         </h2>
         <Field
           name="phone"
@@ -64,9 +66,11 @@ const PhoneForm = ({
           buttonType="submit"
           buttonText={intl.formatMessage({id: "app.userPage.form.button.phone"})}
           className="button__page button-form-user__page"
-          disabled={isDisable}/>
+          disabled={isDisable}
+        />
       </Form>);
     </Formik>
   );
 };
+
 export default PhoneForm;
