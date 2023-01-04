@@ -1,4 +1,4 @@
-/* eslint-disable max-len */ 
+/* eslint-disable max-len */
 
 export const messages_ru = {
   "app.name": "The Lessoner",
@@ -93,6 +93,7 @@ export const messages_ru = {
   "app.button.save": "Сохранить",
   "app.button.change": "Изменить",
   "app.button.delete": "Удалить",
+  "app.button.uploadThumbnail": "Загрузить миниатюру",
   "app.or": "или",
   "app.pagesTitle.registration": "Регистрация",
   "app.pagesTitle.confirm":

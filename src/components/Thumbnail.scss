@@ -104,6 +104,16 @@
   margin-right: 6px;
 }
 
+.svg__upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  fill: white;
+}
+
 .button__notsee {
   display: none;
 }

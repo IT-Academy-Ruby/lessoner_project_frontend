@@ -5,6 +5,7 @@ import { useIntl } from "react-intl";
 import React, { ChangeEvent, FC, useState } from "react";
 import request from "../services/request";
 import { ILessonBack } from "./types/types";
+import { ReactComponent as Upload } from "./icons/upload.svg";
 
 interface ThumbnailProps {
   propImage?: string;
@@ -35,9 +36,9 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
       setImage(file);
       fileReader.readAsDataURL(file);
 
-      /* const formData = new FormData();
-    formData.append("file", file)
-    request("https://lessoner.s3.amazonaws.com/", "PUT", formData); */
+    /* const formData = new FormData();
+    formData.append("file", file); */
+    /* request("https://lessoner.s3.amazonaws.com/", "PUT", formData); */
     } else {
       alert(
         "size to big: " +
@@ -50,11 +51,13 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
 
   return (
     <div className="thumbnail__wrapper">
-      {imageURL ? (
+      {propImage.propImage === null && !image ? (
         <div className="thumbnail__upload">
-          <label htmlFor="but__loader" className="button__fs16-white">
-            <div className="svg__change"></div>
-            {intl.formatMessage({ id: "app.button.change" })}
+          <label htmlFor="but__loader" className="button__fs16">
+            <div className="svg__upload">
+              <Upload />
+            </div>
+            {intl.formatMessage({ id: "app.button.uploadThumbnail" })}
           </label>
           <input
             id="but__loader"

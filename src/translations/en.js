@@ -1,4 +1,4 @@
-/* eslint-disable max-len */ 
+/* eslint-disable max-len */
 
 export const messages_en = {
   "app.name": "The Lessoner",
@@ -91,6 +91,7 @@ export const messages_en = {
   "app.button.save": "Save",
   "app.button.change": "Change",
   "app.button.delete": "Delete",
+  "app.button.uploadThumbnail": "Upload thumbnail",
   "app.or": "or",
   "app.pagesTitle.registration": "Registration",
   "app.pagesTitle.confirm":
