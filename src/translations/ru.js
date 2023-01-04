@@ -20,6 +20,7 @@ export const messages_ru = {
   "app.editVideoLesson.lableSubtitlesText": "Добавьте субтитры, чтобы охватить большую аудиторию.",
   "app.editVideoLesson.lableThumbnail": "Миниатюра",
   "app.editVideoLesson.lableThumbnailText": "Выберите или загрузите изображение, которое показывает, что в вашем видео.",
+  "app.editVideoLesson.loading": "Загрузка...",
   "app.lessons": "Уроки",
   "app.lessons.loading": "Загрузка данных...",
   "app.about": "О нас",

@@ -92,9 +92,25 @@ export const EditVideoLessonForm: FC = () => {
   };
 
   const lessonValuesFromBack = {
-    name: `${lesson?.title}`,
+    name: `${
+      lesson?.title === undefined
+        ? 
+        intl.formatMessage({
+            id: "app.editVideoLesson.loading",
+          })
+        : 
+        lesson?.title
+    }`,
     category: "IT",
-    description: `${lesson?.description}`,
+    description: `${
+      lesson?.description === undefined
+        ? 
+        intl.formatMessage({
+            id: "app.editVideoLesson.loading",
+          })
+        : 
+        lesson?.description
+    }`,
     thumbnail: 1,
   };
   const initialValues = {

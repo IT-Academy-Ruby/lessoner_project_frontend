@@ -13,8 +13,16 @@
   cursor: pointer;
   transition: .2s;
   &:hover {
-    box-shadow: 0px 4px 6px rgba(46, 51, 99, 0.43);
+    box-shadow: var(--themeButtonHover);
   }
+  /* &:focus {
+    background: var(--bgFocusButtonColor);
+    color: var(--iconsTextFocusButtonColor);
+  }
+  &:active {
+    box-shadow: var(--shadowActiveButtonColor);
+    color: var(--iconsTextActiveButtonColor);
+  } */
 }
 
 .button__fs16, .button__fs16-white,
@@ -26,9 +34,20 @@
 .button__fs16-white,
 .button__fs16-red {
   border: 1px solid $borderColor;
-  color: $blueLightColor;
-  background: $white;
+  color: var(--iconsTextButtonColor);
+  background: var(--bgButtonColor);
   font-weight: 600;
+  /* &:focus {
+    background: var(--bgFocusButtonSecondaryColor);
+    color: var(--iconsTextFocusButtonSecondaryColor);
+    border: 1px solid var(--borderFocusButtonSecondaryColor);
+  }
+  &:active {
+    background: var(--bgFocusButtonSecondaryColor);
+    box-shadow: none;
+    color: var(--iconsTextActiveButtonSecondaryColor);
+    border: 1px solid var(--borderActiveButtonSecondaryColor);
+  } */
 }
 
 .button__fs16-red {

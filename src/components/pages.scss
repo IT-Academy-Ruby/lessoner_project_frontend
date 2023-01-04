@@ -73,6 +73,7 @@
   width: 50%;
   background-color: var(--bgFirstRegistrForm);
   transition: background-color  0.5s ease;
+  border-radius: 0 44px 44px 0;
 }
 
 @media (min-width: $max-width-tablet) {

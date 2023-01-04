@@ -1,3 +1,4 @@
+import "./button.scss";
 import "./Thumbnail.scss";
 import frame85 from "./icons/Frame85.png";
 import Placeholder from "./icons/PlaceholderM.png";
@@ -6,6 +7,8 @@ import React, { ChangeEvent, FC, useState } from "react";
 import request from "../services/request";
 import { ILessonBack } from "./types/types";
 import { ReactComponent as Upload } from "./icons/upload.svg";
+import { ReactComponent as ChangeFile } from "./icons/changeFile.svg";
+import { BACKEND_URL_LESSONS } from "../constants";
 
 interface ThumbnailProps {
   propImage?: string;
@@ -23,11 +26,13 @@ interface imageTypes {
 export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
   const intl = useIntl();
   const fileReader = new FileReader();
-  const [image, setImage] = useState<imageTypes>();
+  const [image, setImage] = useState<any>();
   const [imageURL, setImageURL] = useState<any>();
   fileReader.onloadend = () => {
     setImageURL(fileReader.result);
   };
+  const formData = new FormData();
+
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
     console.log("change", e.target.files[0]);
@@ -35,10 +40,6 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
       const file = e.target.files[0];
       setImage(file);
       fileReader.readAsDataURL(file);
-
-    /* const formData = new FormData();
-    formData.append("file", file); */
-    /* request("https://lessoner.s3.amazonaws.com/", "PUT", formData); */
     } else {
       alert(
         "size to big: " +
@@ -47,7 +48,22 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
     }
   };
 
-  console.log(propImage.propImage);
+  const imageUp = () => {
+    formData.append("lesson_image", imageURL);
+    console.log("image", image);
+    console.log("imageURL", imageURL);
+
+    const lessonImage = {
+      lesson_image: imageURL,
+    };
+    request(BACKEND_URL_LESSONS + 63, "PUT", formData);
+    const token = localStorage.getItem("JWT");
+    /* fetch(`${BACKEND_URL_LESSONS + 63}`, {
+      method: "PUT",
+      headers: new Headers({ Authorization: `Bearer ${token}` }),
+      body: formData,
+    }); */
+  };
 
   return (
     <div className="thumbnail__wrapper">
@@ -101,8 +117,11 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
           </div>
           <div className="thumbnail__right">
             <div className="thumbnail__right-inner">
+              <button onClick={imageUp}>Upload</button>
               <label htmlFor="but__loader" className="button__fs16-white">
-                <div className="svg__change"></div>
+                <div className="svg__change">
+                  <ChangeFile />
+                </div>
                 {intl.formatMessage({ id: "app.button.change" })}
               </label>
               <input

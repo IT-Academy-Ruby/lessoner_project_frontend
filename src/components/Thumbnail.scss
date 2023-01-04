@@ -81,7 +81,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 150%;
-  color: #1B1B1F;
+  color: var(--iconsTextEditVideoLessonColor);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -97,11 +97,10 @@
 }
 
 .svg__change {
-  width: 20px;
+  width: 16px;
   height: 20px;
-  background: url(./icons/changeFile.svg) no-repeat center;
-  background-size: 15px 17px;
-  margin-right: 6px;
+  margin-right: 3px;
+  fill: var(--iconsTextButtonColor);
 }
 
 .svg__upload {
@@ -111,7 +110,7 @@
   width: 16px;
   height: 16px;
   margin-right: 6px;
-  fill: white;
+  fill: #F6F5F6;
 }
 
 .button__notsee {

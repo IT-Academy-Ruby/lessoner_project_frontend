@@ -20,6 +20,7 @@ export const messages_en = {
   "app.editVideoLesson.lableSubtitlesText": "Add subtitles to reach bigger audience.",
   "app.editVideoLesson.lableThumbnail": "Thumbnail",
   "app.editVideoLesson.lableThumbnailText": "Select or upload a picture that shows what's in your video.",
+  "app.editVideoLesson.loading": "Loading...",
   "app.lessons": "Lessons",
   "app.lessons.loading": "Data is loading...",
   "app.about": "About",

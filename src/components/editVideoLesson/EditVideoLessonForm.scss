@@ -13,20 +13,29 @@
   @include fieldsFont;
   text-align: left;
   margin-bottom: 30px;
+  color: var(--iconsTextEditVideoLessonColor);
 }
 
-.evlf__input {
+.evlf__input, .evlf__input-textarea {
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
   @include fieldsFont;
   @include textFieldInput;
+  color: var(--iconsTextEditVideoLessonColor);
+  background: var(--bgEditVideoLessonColor);
+}
+
+.evlf__input-textarea {
+  max-width: 100%;
+  resize: none;
 }
 
 .evlf__text {
   @include textFont;
   margin: 0;
   margin-bottom: 12px;
+  color: var(--iconsTextEditVideoLessonColor);
 }
 
 .evlf__btn-wrapper {
@@ -38,11 +47,6 @@
 
 .evlf__btn-link {
   text-decoration: none;
-}
-
-.evlf__input-textarea {
-  max-width: 100%;
-  resize: none;
 }
 
 .svg__add {
