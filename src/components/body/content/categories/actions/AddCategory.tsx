@@ -146,7 +146,7 @@ const AddCategory = ({add}: TypeTitle) => {
               image: selectImage.image,
               name: values.name.trim(),
               description: values.description.trim(),
-            }))
+            }));
             dispatch(getCategory());
           } else {
             dispatch(updateCategory({

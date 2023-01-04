@@ -19,7 +19,9 @@ export const addCategory = createAsyncThunk(
   async (dataCategory: { name: string, description: string, image: FileList | undefined }) => {
 
     const formData = new FormData();
-    formData.append("image", dataCategory.image![0]);
+    if(dataCategory.image){
+      formData.append("image", dataCategory.image[0]);
+    }
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = localStorage.getItem("JWT");
@@ -111,21 +113,19 @@ type Categories = {
   loading: boolean;
 };
 
-const initialState: Categories = {
-  categories: [{
-    amount_lessons: 0,
-    image_url: "",
-    id: 0,
-    name: "",
-    description: "",
-    status: "",
-    created_at: "",
-    image_size: 0,
-    image_name: "",
-    image_type: "",
-  }],
-  loading: false,
-};
+const initialState: Categories = {categories: [{
+  amount_lessons: 0,
+  image_url: "",
+  id: 0,
+  name: "",
+  description: "",
+  status: "",
+  created_at: "",
+  image_size: 0,
+  image_name: "",
+  image_type: "",
+}],
+loading: false,};
 
 const categorySlice = createSlice({
   name: "category",

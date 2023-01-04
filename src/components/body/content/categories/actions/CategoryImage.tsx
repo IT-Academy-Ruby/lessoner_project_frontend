@@ -37,10 +37,10 @@ const CategoryImage = ({
     if (event.target.files) {
       setEditCategory({image: null});
       setSelectImage({
-        image: event.target['files'][0],
-        size: event.target['files'][0]["size"],
-        name: event.target['files'][0]["name"],
-        type: event.target['files'][0]["type"],
+        image: event.target["files"][0],
+        size: event.target["files"][0]["size"],
+        name: event.target["files"][0]["name"],
+        type: event.target["files"][0]["type"],
       });
     }
   };
