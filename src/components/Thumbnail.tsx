@@ -4,6 +4,7 @@ import Placeholder from "./icons/PlaceholderM.png";
 import { useIntl } from "react-intl";
 import React, { ChangeEvent, FC, useState } from "react";
 import request from "../services/request";
+import { ILessonBack } from "./types/types";
 
 interface ThumbnailProps {
   propImage?: string;
@@ -49,36 +50,8 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
 
   return (
     <div className="thumbnail__wrapper">
-      <div className="thumbnail__left">
-        <div className="thumbnail__left-inner">
-          <div className="thumbnail__picture">
-            <img
-              className="thumbnail__img"
-              src={
-                imageURL
-                  ? imageURL
-                  : propImage.propImage != null
-                  ? propImage.propImage
-                  : frame85
-              }
-              alt="picture"
-            />
-          </div>
-          <div className="thumbnail__item-info">
-            <p
-              className="thumbnail__item-name"
-              title={image ? image.name : "Some.png"}
-            >
-              {image ? image.name : "Some image name.png"}
-            </p>
-            <p className="thumbnail__item-size">
-              {image ? (Math.floor(image.size) / 1000000).toFixed(2) : "0.0"} MB
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="thumbnail__right">
-        <div className="thumbnail__right-inner">
+      {imageURL ? (
+        <div className="thumbnail__upload">
           <label htmlFor="but__loader" className="button__fs16-white">
             <div className="svg__change"></div>
             {intl.formatMessage({ id: "app.button.change" })}
@@ -90,7 +63,55 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
             onChange={handleOnChange}
           />
         </div>
-      </div>
+      ) : (
+        <div className="thumbnail__withpicture">
+          <div className="thumbnail__left">
+            <div className="thumbnail__left-inner">
+              <div className="thumbnail__picture">
+                <img
+                  className="thumbnail__img"
+                  src={
+                    imageURL
+                      ? imageURL
+                      : propImage.propImage != null
+                      ? propImage.propImage
+                      : frame85
+                  }
+                  alt="picture"
+                />
+              </div>
+              <div className="thumbnail__item-info">
+                <p
+                  className="thumbnail__item-name"
+                  title={image ? image.name : "Some.png"}
+                >
+                  {image ? image.name : "Some image name.png"}
+                </p>
+                <p className="thumbnail__item-size">
+                  {image
+                    ? (Math.floor(image.size) / 1000000).toFixed(2)
+                    : "0.0"}{" "}
+                  MB
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="thumbnail__right">
+            <div className="thumbnail__right-inner">
+              <label htmlFor="but__loader" className="button__fs16-white">
+                <div className="svg__change"></div>
+                {intl.formatMessage({ id: "app.button.change" })}
+              </label>
+              <input
+                id="but__loader"
+                type="file"
+                className="button__notsee"
+                onChange={handleOnChange}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

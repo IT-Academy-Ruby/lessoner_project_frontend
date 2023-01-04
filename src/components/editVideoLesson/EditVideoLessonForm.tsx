@@ -184,7 +184,7 @@ export const EditVideoLessonForm: FC = () => {
                 })}
               </p>
             </label>
-            <Thumbnail propImage={lesson?.image_link} />
+            <Thumbnail propImage={lesson?.image_link}/>
           </div>
           <div className="evlf__btn-wrapper">
             <Button
