@@ -1,10 +1,25 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len */ 
 
 export const messages_en = {
   "app.name": "The Lessoner",
   "app.Name": "Name",
   "app.studio": "My Studio",
   "app.categories": "Categories",
+  "app.editVideoLesson.title": "Edit the lesson",
+  "app.editVideoLesson.errorNotFilled": "The field is not filled",
+  "app.editVideoLesson.errorProhibitedCharacters": "The input field contains prohibited characters",
+  "app.editVideoLesson.errorMaxCharacters": "The maximum number of characters is {maxNameLength}",
+  "app.editVideoLesson.errorMaxCharactersDescr": "The maximum number of characters is {maxDescriptionLength}",
+  "app.editVideoLesson.errorMaxHachTagDescr": "The maximum number of hashtags is {maxDescriptionHashTagCount}",
+  "app.editVideoLesson.lableName": "Name",
+  "app.editVideoLesson.lableCategory": "Category",
+  "app.editVideoLesson.lableCategoryMusic": "Music",
+  "app.editVideoLesson.lableCategoryDesign": "Design",
+  "app.editVideoLesson.lableDescription": "Description",
+  "app.editVideoLesson.lableSubtitles": "Subtitles",
+  "app.editVideoLesson.lableSubtitlesText": "Add subtitles to reach bigger audience.",
+  "app.editVideoLesson.lableThumbnail": "Thumbnail",
+  "app.editVideoLesson.lableThumbnailText": "Select or upload a picture that shows what's in your video.",
   "app.lessons": "Lessons",
   "app.lessons.loading": "Data is loading...",
   "app.about": "About",

@@ -1,10 +1,25 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len */ 
 
 export const messages_ru = {
   "app.name": "The Lessoner",
   "app.Name": "Имя",
   "app.studio": "Моя студия",
   "app.categories": "Категории",
+  "app.editVideoLesson.title": "Изменить урок",
+  "app.editVideoLesson.errorNotFilled": "Поле не заполнено",
+  "app.editVideoLesson.errorProhibitedCharacters": "Поле ввода содержит запрещенные символы",
+  "app.editVideoLesson.errorMaxCharacters": "Максимальное количество символов {maxNameLength}",
+  "app.editVideoLesson.errorMaxCharactersDescr": "Максимальное количество символов - {maxDescriptionLength}",
+  "app.editVideoLesson.errorMaxHachTagDescr": "Максимальное количество хэштегов - {maxDescriptionHashTagCount}",
+  "app.editVideoLesson.lableName": "Имя",
+  "app.editVideoLesson.lableCategory": "Категория",
+  "app.editVideoLesson.lableCategoryMusic": "Музыка",
+  "app.editVideoLesson.lableCategoryDesign": "Дизайн",
+  "app.editVideoLesson.lableDescription": "Описание",
+  "app.editVideoLesson.lableSubtitles": "Субтитры",
+  "app.editVideoLesson.lableSubtitlesText": "Добавьте субтитры, чтобы охватить большую аудиторию.",
+  "app.editVideoLesson.lableThumbnail": "Миниатюра",
+  "app.editVideoLesson.lableThumbnailText": "Выберите или загрузите изображение, которое показывает, что в вашем видео.",
   "app.lessons": "Уроки",
   "app.lessons.loading": "Загрузка данных...",
   "app.about": "О нас",
