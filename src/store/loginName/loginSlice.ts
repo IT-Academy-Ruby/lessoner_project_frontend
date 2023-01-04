@@ -216,24 +216,21 @@ const initialState: Login = {
 const loginSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    resetUserData: (state) => {
-      state.user = {
-        id: 0,
-        name: "",
-        description: "",
-        email: "",
-        avatar_url: "",
-        phone: "",
-        gender: "",
-        birthday: "",
-        password: "",
-        created_at: ""
-      };
-    },
-    addToken: (state, action) => {
-      state.token = action.payload;
-    }},
+  reducers: {resetUserData: (state) => {state.user = {
+    id: 0,
+    name: "",
+    description: "",
+    email: "",
+    avatar_url: "",
+    phone: "",
+    gender: "",
+    birthday: "",
+    password: "",
+    created_at: ""
+  };},
+  addToken: (state, action) => {
+    state.token = action.payload;
+  }},
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
