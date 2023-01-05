@@ -21,7 +21,7 @@ const CategoriesAdmin = () => {
   const dispatch = useAppDispatch();
   const allCategories = useAppSelector((state) => state.categories.categories);
   const loading = useAppSelector((state) => state.categories.loading);
-
+  const formatter = new Intl.DateTimeFormat("ru");
   useEffect(() => {
     dispatch(getCategory());
   }, [dispatch]);
@@ -44,13 +44,13 @@ const CategoriesAdmin = () => {
   return (
     <>
       {loading && <Loader/>}
-      {allCategories.map(category =>
+      {allCategories.length > 1 && allCategories.map(category =>
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
           <img src={category.image_url} alt={category.name} className="category-img"/>
           <div className="category-name">{category.name}</div>
           <div className="category-text category-description">{category.description}</div>
-          <div className="category-date">{new Date(category.created_at).toLocaleDateString()}</div>
+          <div className="category-date">{formatter.format(new Date(category.created_at))}</div>
           <div className="category-text">{category.amount_lessons}</div>
           <div className="category-icon">
             <img

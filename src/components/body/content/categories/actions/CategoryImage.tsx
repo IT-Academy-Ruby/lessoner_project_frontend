@@ -16,7 +16,7 @@ type CategoryImageProps = {
   },
   selectImage: {
     size: number;
-    image: FileList;
+    image: Blob;
     name: string;
     type: string;
   };
@@ -59,7 +59,7 @@ const CategoryImage = ({
         setErrorImage("");
       }
     }
-  }, [selectImage,intl,isChange]);
+  }, [selectImage, intl, isChange]);
 
   const handleUpload = () => {
     if (fileRef.current) {
@@ -99,8 +99,8 @@ const CategoryImage = ({
         </span>
         <div className="image-add-field">
           <img
-            src={!editCategory.image
-              ? URL.createObjectURL(selectImage.image[0]) : editCategory.image}
+            src={selectImage.image
+              ? URL.createObjectURL(selectImage.image) : editCategory.image}
             alt={selectImage.name || editCategory.name}
             className="select-image"/>
           <div className="image-data">
@@ -108,7 +108,7 @@ const CategoryImage = ({
               {selectImage.name || editCategory.name}
             </span>
             <span className="select-image-size">
-              {Math.floor((selectImage.size || editCategory.size)/1048.576)*0.001} MB
+              {Math.floor((selectImage.size || editCategory.size) / 1048.576) / 1000} MB
             </span>
           </div>
           <div className="category-buttons-field">
