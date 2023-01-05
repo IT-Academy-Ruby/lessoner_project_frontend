@@ -36,12 +36,10 @@ export const buildVideoSrc = (src: string): Plyr.SourceInfo | null => {
       },
     ],
     // Preview example
-    previewThumbnails: {
-      enabled: true,
+    previewThumbnails: {enabled: true,
       src: [
         "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
         "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
-      ],
-    },
+      ],},
   };
 };
