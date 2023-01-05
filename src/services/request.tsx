@@ -1,6 +1,13 @@
 type requestType = "GET" | "POST" | "PUT" | "DELETE";
 
-const requestApi = async (url: string, typeRequest: requestType = "GET", value?: object) => {
+const requestApi = async (
+  url: string,
+  typeRequest: requestType = "GET",
+  value?: object,
+  file?: FileList
+) => {
+  const formData = new FormData();
+  file ? formData.append("image", file[0]) : null;
 
   const token = localStorage.getItem("JWT");
 
@@ -9,9 +16,11 @@ const requestApi = async (url: string, typeRequest: requestType = "GET", value?:
   }
   return await fetch(url, {
     method: typeRequest,
-    headers: new Headers({"Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json;charset=utf-8"}),
-    body: JSON.stringify(value),
+    headers: new Headers(
+      {"Authorization": `Bearer ${token}`, "Content-Type": "application/json;charset=utf-8"}
+    ),
+    body: JSON.stringify(value) && formData,
+
   });
 };
 
