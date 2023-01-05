@@ -3,7 +3,7 @@ import {
   BrowserRouter, Route, Routes
 } from "react-router-dom";
 import {
-  addToken, confirmTokenSlice,editUserEmail,resetUserData
+  addToken, confirmTokenSlice, editUserEmail, resetUserData
 } from "./store/loginName/loginSlice";
 import {useEffect, useState} from "react";
 import Body from "./components/body/Body";

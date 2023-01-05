@@ -61,7 +61,6 @@ const YourselfPage = ({
   const dispatch = useAppDispatch();
   const isUser = useAppSelector((state) => state.login.isLogged);
   const [isWrapper, setIsWrapper] = useState(false);
-
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (UserRegex.test(values.name)) {
