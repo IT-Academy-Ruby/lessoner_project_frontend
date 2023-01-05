@@ -1,13 +1,12 @@
 import "./index.scss";
 import React, { useEffect, useState } from "react";
-import { BACKEND_URL } from "../../../../constants";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
 import requestApi from "../../../../services/request";
 
-const categoriesUrl = `${BACKEND_URL}/categories`;
-const lessonsUrl = `${BACKEND_URL}/lessons`;
+export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
 export interface Lesson {
   id: number;
   title: string;
@@ -18,11 +17,13 @@ export interface Lesson {
   author_id: number;
   category_id: number;
   created_at: string;
-  imagePreview?: string;
+  image_link?: string;
   view?: number;
   rating?: number;
-  totalVotes?: number;
+  votes_count?: number;
   categoryName?: string;
+  author_avatar_url?: string;
+  author_name?: string;
 }
 export interface Category {
   id: number;
@@ -72,7 +73,7 @@ const Lessons: React.FC = () => {
     if (!dataIsLoaded && categoriesIsLoaded) {
       const fetchSuccess = (data: Lesson[]) => {
         data.map((elem) => {
-          elem.imagePreview =
+          elem.image_link =
             "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg";
         });
         const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
@@ -112,13 +113,13 @@ const Lessons: React.FC = () => {
             title={obj.title}
             status={obj.status}
             duration={obj.duration}
-            imagePreview={obj.imagePreview}
+            imagePreview={obj.image_link}
             id={obj.id}
             published={obj.created_at}
             view={obj.view}
             category={obj.categoryName}
             rating={obj.rating}
-            totalVotes={obj.totalVotes}
+            totalVotes={obj.votes_count}
           />
         ))}
       </div>
