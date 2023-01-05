@@ -38,7 +38,6 @@ const optionsVideoplayer = {
     "fullscreen", // Toggle fullscreen
     "advertisement",
     "ads",
-    
   ],
   seekTime: 10,
 };
