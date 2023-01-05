@@ -13,7 +13,9 @@ type PopupMenuProps = {
 
 export const PopupMenu = (props: PopupMenuProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { isOpen, onClickOutside, items = [] } = props;
+  const {
+    isOpen, onClickOutside, items = [] 
+  } = props;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -38,7 +40,9 @@ export const PopupMenu = (props: PopupMenuProps) => {
       <div className="popup__window">
         <div className="popup__content">
           {items.map((item) => {
-            const { label, url, id } = item;
+            const {
+              label, url, id 
+            } = item;
             return (
               <a href={url} key={id}>
                 {label}

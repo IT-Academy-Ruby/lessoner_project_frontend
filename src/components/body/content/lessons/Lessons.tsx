@@ -22,6 +22,8 @@ export interface Lesson {
   rating?: number;
   votes_count?: number;
   categoryName?: string;
+  author_avatar_url?: string;
+  author_name?: string;
 }
 export interface Category {
   id: number;

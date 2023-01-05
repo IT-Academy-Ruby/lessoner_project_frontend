@@ -237,9 +237,15 @@ export const VideoViewPage = () => {
   console.log(lessonData);
 
   const sideBarTabs = [
-    { label: categoryName, id: 1, data: lessonsArr },
-    { label: "New", id: 2, data: newLessonsArr },
-    { label: "Popular", id: 3, data: popularLessonsArr },
+    {
+      label: categoryName, id: 1, data: lessonsArr 
+    },
+    {
+      label: "New", id: 2, data: newLessonsArr 
+    },
+    {
+      label: "Popular", id: 3, data: popularLessonsArr 
+    },
   ];
 
   if (
@@ -260,10 +266,10 @@ export const VideoViewPage = () => {
         <div className="videoplayer__wrapper__info">
           <div className="videoplayer__wrapper__info_top">
             <div className="info__top_left">
-              <img src={img}></img>
+              <img src={lessonData.author_avatar_url ?? img}></img>
               <div className="info__top_left_text">
                 <h2>{lessonData.title}</h2>
-                <span>131331311</span>
+                <span>{lessonData.author_name}</span>
               </div>
             </div>
             <div className="info__top_right">

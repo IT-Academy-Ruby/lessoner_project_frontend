@@ -1,5 +1,7 @@
 import "./App.scss";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter, Route, Routes
+} from "react-router-dom";
 import { addToken, confirmTokenSlice } from "./store/loginName/loginSlice";
 import { useEffect, useState } from "react";
 import Body from "./components/body/Body";

@@ -8,10 +8,10 @@ type VideoSideBarButtonProps = {
 };
 
 export const VideoSideBarButton = (props: VideoSideBarButtonProps) => {
-  const { label, onClick, isActive } = props;
-  const className = classNames("sideBar__button", {
-    sideBar__button_active: isActive,
-  });
+  const {
+    label, onClick, isActive 
+  } = props;
+  const className = classNames("sideBar__button", {sideBar__button_active: isActive,});
 
   return (
     <div className={className} onClick={onClick}>

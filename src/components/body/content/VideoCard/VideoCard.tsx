@@ -1,5 +1,7 @@
 import "./VideoCard.scss";
-import { MenuKebab, Published, Title } from "../../../../components/LessonCard";
+import {
+  MenuKebab, Published, Title 
+} from "../../../../components/LessonCard";
 import placeHolder from "../../../../assets/category-placeholder.png";
 
 interface VideoCardProps {
