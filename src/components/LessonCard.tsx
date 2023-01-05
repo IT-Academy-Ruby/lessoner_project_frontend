@@ -1,5 +1,5 @@
 import "./LessonCard.scss";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
@@ -8,7 +8,7 @@ import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import classNames from "classnames";
+
 type ThumbnailImageUrlProps = {
   imagePreview: string;
 };

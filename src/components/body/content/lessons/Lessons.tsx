@@ -20,7 +20,7 @@ export interface Lesson {
   image_link?: string;
   view?: number;
   rating?: number;
-  totalVotes?: number;
+  votes_count?: number;
   categoryName?: string;
 }
 export interface Category {
@@ -117,7 +117,7 @@ const Lessons: React.FC = () => {
             view={obj.view}
             category={obj.categoryName}
             rating={obj.rating}
-            totalVotes={obj.totalVotes}
+            totalVotes={obj.votes_count}
           />
         ))}
       </div>

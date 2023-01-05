@@ -50,7 +50,9 @@ interface VideoPlayerProps {
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<Plyr.SourceInfo | null>(null);
-
+  useEffect(() => {
+    setDataIsLoaded(false);
+  }, [src]);
   useEffect(() => {
     if (!dataIsLoaded) {
       setVideoSrc(buildVideoSrc(src));

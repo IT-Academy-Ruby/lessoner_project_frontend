@@ -1,30 +1,21 @@
 import "./VideoSideBarButton.scss";
+import classNames from "classnames";
 
 type VideoSideBarButtonProps = {
-  name: string;
-  id: number;
-  newSelectedButton: number;
-  cbSelected: (newSelectedButton: number) => void;
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
 };
+
 export const VideoSideBarButton = (props: VideoSideBarButtonProps) => {
-  const { name, id, newSelectedButton, cbSelected } = props;
+  const { label, onClick, isActive } = props;
+  const className = classNames("sideBar__button", {
+    sideBar__button_active: isActive,
+  });
+
   return (
-    <div
-      className="sideBar__button"
-      onClick={() => {
-        cbSelected(id);
-      }}
-      style={{
-        backgroundColor: newSelectedButton === id ? "#1B1B1F" : "#FFFFFF",
-      }}
-    >
-      <p
-        style={{
-          color: newSelectedButton === id ? "#FFFFFF" : "#1B1B1F",
-        }}
-      >
-        {name}
-      </p>
+    <div className={className} onClick={onClick}>
+      <p>{label}</p>
     </div>
   );
 };

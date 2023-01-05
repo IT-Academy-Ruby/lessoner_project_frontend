@@ -1,57 +1,65 @@
 import "./VideoSideBar.scss";
+import { useEffect, useState } from "react";
 import { Lesson } from "../lessons/Lessons";
 import { VideoCard } from "../VideoCard/VideoCard";
 import { VideoSideBarButton } from "./VideoSideBarButton";
-import { useState } from "react";
 
-interface VideoSideBarProps {
-  id: number;
-  lessonsArr: Lesson[];
-  newLessonsArr: Lesson[];
-  popularLessonsArr: Lesson[];
-  categoryName: string;
+export interface VideoSideBarProps {
+  tabs: {
+    label: string;
+    id: number;
+    data: Lesson[];
+  }[];
+  changeIdState: (id: number) => void;
 }
+
 export const VideoSideBar = (props: VideoSideBarProps) => {
-  const { id, lessonsArr, newLessonsArr, popularLessonsArr, categoryName } =
-    props;
+  const { tabs, changeIdState } = props;
+  const initialTabId = tabs[0]?.id;
+  const initialData = tabs[0]?.data;
+  const [activeTabId, setActiveTabId] = useState(initialTabId);
+  const [activeData, setActiveData] = useState<Lesson[] | undefined>(
+    initialData
+  );
 
-  const [newSelectedButton, setNewSelectedButton] = useState(1);
-  const sideBarButtonsArr = [
-    { name: categoryName, id: 1 },
-    { name: "New", id: 2 },
-    { name: "Popular", id: 3 },
-  ];
+  useEffect(() => {
+    if (activeTabId != null) {
+      setActiveData(tabs.find((tab) => tab.id === activeTabId)?.data);
+    }
+  }, [activeTabId, tabs]);
 
-  const cbSelectedButton = (newSelectedButton: number) => {
-    setNewSelectedButton(newSelectedButton);
+  const handleActiveTabIdSwitch = (newId: number) => {
+    setActiveTabId(newId);
   };
-  if (!categoryName) {
+  if (!activeData || !tabs) {
     return <h1>Загрузка данных...</h1>;
   }
-  console.log(lessonsArr);
+
   return (
     <>
       <div className="sideBar__buttons_wrapper">
-        {sideBarButtonsArr.map((button) => {
+        {tabs.map((tab) => {
           return (
             <VideoSideBarButton
-              key={button.id}
-              name={button.name}
-              id={button.id}
-              cbSelected={cbSelectedButton}
-              newSelectedButton={newSelectedButton}
+              key={tab.id}
+              label={tab.label}
+              onClick={() => {
+                handleActiveTabIdSwitch(tab.id);
+              }}
+              isActive={activeTabId === tab.id}
             />
           );
         })}
       </div>
-      {lessonsArr.map((elem, index) => {
+      {activeData.map((lessonItem) => {
         return (
-          <div className="video__card_wrapper" key={index}>
+          <div className="video__card_wrapper" key={lessonItem.id}>
             <VideoCard
-              id={id}
-              img={elem.image_link}
-              title={elem.title}
-              published={elem.created_at}
+              id={lessonItem.id}
+              img={lessonItem.image_link}
+              title={lessonItem.title}
+              published={lessonItem.created_at}
+              changeIdState={changeIdState}
             />
           </div>
         );

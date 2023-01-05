@@ -30,9 +30,7 @@ const Tag: React.FC<TagProps> = (props: TagProps) => {
     },
     className
   );
-  // if (isLoggedIn) {
-  //   return <UserGreeting />;
-  // }
+
   if (videoStatus) {
     return (
       <div className={tagClassName}>
