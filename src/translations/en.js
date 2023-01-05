@@ -62,6 +62,8 @@ export const messages_en = {
   "app.navbarStudyStudio.aboutUs": "About us",
   "app.navbarStudyStudio.darkTheme": "Dark theme",
   "app.navbarStudyStudio.lightTheme": "Light theme",
+  "app.navbarStudyStudio.snowOn": "SnowFall",
+  "app.navbarStudyStudio.snowOff": "Snow not Fall",
   "app.navbarStudyStudio.logIn": "Log in",
   "app.navbarStudyStudio.logOut": "Log Out",
   "app.navbarStudyStudio.footer": "All rights reserved.",
@@ -84,9 +86,12 @@ export const messages_en = {
   "app.My lessons": "My lessons",
   "app.Add new lesson": "Add new lesson",
   "app.resetPasswordPage.forgotPassword": "Forgot your password?",
-  "app.resetPasswordPage.enterEmailToRecoverPassword": "Enter the email that you used when register to recover your password. You will receive a password reset link",
-  "app.resetPasswordPage.weSentLink": "We've sent a link to restore access to your account to the address",
-  "app.resetPasswordPage.userNotFound": "User is not found. Please enter a valid email address",
+  "app.resetPasswordPage.enterEmailToRecoverPassword":
+    "Enter the email that you used when register to recover your password. You will receive a password reset link",
+  "app.resetPasswordPage.weSentLink":
+    "We've sent a link to restore access to your account to the address",
+  "app.resetPasswordPage.userNotFound":
+    "User is not found. Please enter a valid email address",
   "app.resetPasswordPage.button": "Password reset",
   "app.button.categories": "+ Add category",
   "app.setNewPasswordPage.resetPassword": "Reset Password",
@@ -101,11 +106,14 @@ export const messages_en = {
   "app.categories.addCategory": "Add new category",
   "app.categories.updateCategory": "Edit the category",
   "app.categories.name": "Category name",
-  "app.categories.name.invalid": "The input field contains prohibited characters",
+  "app.categories.name.invalid":
+    "The input field contains prohibited characters",
   "app.categories.name.helper": "You can enter {letters} characters",
-  "app.categories.description.invalid": "The input field contains prohibited characters",
+  "app.categories.description.invalid":
+    "The input field contains prohibited characters",
   "app.categories.description.helper": "You can enter {letters} characters",
-  "app.categories.uploadCategoryImage": "Upload the category image from computer",
+  "app.categories.uploadCategoryImage":
+    "Upload the category image from computer",
   "app.categories.selectFile": "Select file",
   "app.categories.uploadImage": "Upload image",
   "app.categories.or": "or",
@@ -115,22 +123,27 @@ export const messages_en = {
   "app.categories.button.select": "Select file",
   "app.categories.button.cancel": "Cancel",
   "app.categories.button.save": "Save",
-  "app.categories.imageInform": "The image should represent the content of the category",
+  "app.categories.imageInform":
+    "The image should represent the content of the category",
   "app.categories.imageError": "Incorrect format. Try again",
   "app.categories.imageBigSize": "Large file size",
   "app.activeCategories.errorMinLength": "Please fill in all the fields",
-  "app.activeCategories.errorMaxLength": "Maximum number of characters {symbols}",
-  "app.activeCategories.errorProhibitedCharacters": "The input field contains prohibited characters",
+  "app.activeCategories.errorMaxLength":
+    "Maximum number of characters {symbols}",
+  "app.activeCategories.errorProhibitedCharacters":
+    "The input field contains prohibited characters",
   "app.don'tAccount": "Don`t you have an account?",
   "app.code.name": "Code",
   "app.code.errorLength": "Code should be {maxSymbol} characters. ",
   "app.code.invalidationRules": "An invalid character is present in the Code. ",
-  "app.code.inform": "Now a code will come to your phone.\nEnter it in a line.\n",
+  "app.code.inform":
+    "Now a code will come to your phone.\nEnter it in a line.\n",
   "app.code.phoneNumber": "To change number",
   "app.resetPasswordPage.inform":
     "Enter the email that you used when register to recover your password. You will receive a password reset link",
   "app.resetPasswordPage.resetPassword": "Password reset",
-  "app.resetPasswordPage.text": "We've sent a link to restore access to your account to the address {email}",
+  "app.resetPasswordPage.text":
+    "We've sent a link to restore access to your account to the address {email}",
   "app.setNewPasswordPage.title": "Login as username",
   "app.YourselfPage.errorIncorrectName": "UserName is incorrect",
   "app.YourselfPage.errorFieldEmpty": "The field must not be empty",
@@ -138,8 +151,10 @@ export const messages_en = {
   "app.YourselfPage.errorBigName": "UserName should be less {maxSymbol}",
   "app.UserName": "Username",
   "app.UserName.placeholder": "{minSymbol} to {maxSymbol} characters",
-  "app.ConfirmReg.info": "Confirm your registration using the link we sent to your email.",
-  "app.userName.nameExists": "User already exists. Please enter a different username",
+  "app.ConfirmReg.info":
+    "Confirm your registration using the link we sent to your email.",
+  "app.userName.nameExists":
+    "User already exists. Please enter a different username",
   "app.gender.male": "Male",
   "app.gender.female": "Female",
   "app.gender.other": "Other",
@@ -148,12 +163,13 @@ export const messages_en = {
   "app.header.language": "Language",
   "app.categories.back": "Back",
   "app.categories.close.text": "Are you sure you want to cancel the action?",
-  "app.categories.button.yes":"Yes",
-  "app.categories.button.no":"No",
-  "app.categories.add.successful":"New category is created and added to the list",
-  "app.categories.edit.successful":"Changes have been saved",
+  "app.categories.button.yes": "Yes",
+  "app.categories.button.no": "No",
+  "app.categories.add.successful":
+    "New category is created and added to the list",
+  "app.categories.edit.successful": "Changes have been saved",
   "app.categories.textDelete": "Are you sure you want to delete the category?",
-  "app.AddNewLesson":"Add new Lesson",
+  "app.AddNewLesson": "Add new Lesson",
   "app.ChooseACategory": "Choose a category",
   "app.nameCategory.it": "IT",
   "app.nameCategory.design": "Design",
@@ -180,12 +196,16 @@ export const messages_en = {
   "app.Description": "Description",
   "app.Subtitles": "Subtitles",
   "app.AddSubtitles": "Add subtitles",
-  "app.AddSubtitlesToReachBiggerAudience": "Add subtitles to reach bigger audience",
+  "app.AddSubtitlesToReachBiggerAudience":
+    "Add subtitles to reach bigger audience",
   "app.Thumbnail": "Thumbnail",
-  "app.SelectOrUploadAPictureThatShowsWhatsInYourVideo": "Select or upload a picture that shows whats in your video",
+  "app.SelectOrUploadAPictureThatShowsWhatsInYourVideo":
+    "Select or upload a picture that shows whats in your video",
   "app.NextStep": "Next step",
   "app.cancel": "Cancel",
   "app.Lessonname": "Lesson name",
-  "app.hero.title": "<span>Teach</span> by studying. <br /> Study while teaching.",
-  "app.hero.subtitle": "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills."
+  "app.hero.title":
+    "<span>Teach</span> by studying. <br /> Study while teaching.",
+  "app.hero.subtitle":
+    "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills.",
 };

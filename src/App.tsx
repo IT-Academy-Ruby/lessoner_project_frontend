@@ -1,9 +1,15 @@
 import "./App.scss";
 import {
-  BrowserRouter, Route, Routes
+  BrowserRouter,
+  Route,
+  Routes,
 } from "react-router-dom";
 import { addToken, confirmTokenSlice } from "./store/loginName/loginSlice";
-import { useEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState, 
+} from "react";
 import Body from "./components/body/Body";
 import FacebookButton from "./components/FacebookButton";
 import GoogleButton from "./components/GoogleButton";
@@ -15,12 +21,21 @@ import TranslationHelpers from "./translations/translationHelpers";
 import VKButton from "./components/VKButton";
 import { VideoViewPage } from "./pages/VideoViewPage";
 import { useAppDispatch } from "../src/store/hooks";
+
+type SetBooleanInnerFunction = (value: boolean) => boolean;
+
+export const snowContext = createContext<{
+  snow: boolean;
+  setSnow: (value: boolean | SetBooleanInnerFunction) => void;
+    } | null>(null);
+
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(
     TranslationHelpers.getCurrentLanguageCode()
   );
 
   const dispatch = useAppDispatch();
+  const [snow, setSnow] = useState<boolean>(false);
   const [opacity, setOpacity] = useState<number>(1);
   const [display, setDisplay] = useState<boolean>(true);
 
@@ -52,80 +67,86 @@ function App(): JSX.Element {
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
-      <BrowserRouter>
-        <Snowfall setOpacity={setOpacity} setDisplay={setDisplay} />
-        <div
-          className="App"
-          style={{
-            transition: "opacity 5s",
-            opacity,
-            display: display ? undefined : "none",
-          }}
-        >
-          <Body onLanguageSwitch={setLanguageCode} />
-          <Routes>
-            <Route
-              path="/user/sign_up"
-              element={<Pages pageType={"FirstRegistrationForm"} />}
-            />
-            <Route
-              path="/user/reg_in/information"
-              element={<Pages pageType={"YourselfPage"} registration={false} />}
-            />
-            <Route
-              path="/user/reg_in/information/modR"
-              element={<Pages pageType={"ConfirmReg"} registration={true} />}
-            />
-            <Route
-              path="/user/sign_in/phone_numberR"
-              element={
-                <Pages pageType={"PhoneNumberPage"} registration={true} />
-              }
-            />
-            <Route
-              path="/user/sign_in/phone_numberR/code"
-              element={<Pages pageType={"Code"} registration={true} />}
-            />
-            <Route
-              path="/user/sign_in"
-              element={<Pages pageType={"Login"} />}
-            />
-            <Route
-              path="/user/sign_in/phone_numberA"
-              element={
-                <Pages pageType={"PhoneNumberPage"} registration={false} />
-              }
-            />
-            <Route
-              path="/user/sign_in/reset_password/reset"
-              element={<Pages pageType={"ConfirmReg"} registration={false} />}
-            />
-            <Route
-              path="/user/sign_in/phone_numberA/code"
-              element={<Pages pageType={"Code"} registration={false} />}
-            />
-            <Route
-              path="/user/sign_in/reset_password"
-              element={<Pages pageType={"ResetPage"} />}
-            />
-            <Route
-              path="/user/sign_in/reset_password/new_password"
-              element={<Pages pageType={"SetNewPassword"} />}
-            />
-            <Route
-              path="/user/google"
-              element={
-                <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-                  <GoogleButton />
-                </GoogleOAuthProvider>
-              }
-            />
-            <Route path="/user/facebook" element={<FacebookButton />} />
-            <Route path="/user/vk" element={<VKButton />} />
-            <Route path="/lessons/:id" element={<VideoViewPage />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <snowContext.Provider value={{ snow, setSnow }}>
+        <BrowserRouter>
+          {snow && <Snowfall setOpacity={setOpacity} setDisplay={setDisplay} /> }
+          <div
+            className="App"
+            style={{
+              transition: "opacity 5s",
+              opacity,
+              display: display ? undefined : "none",
+            }}
+          >
+            <Body onLanguageSwitch={setLanguageCode} />
+            <Routes>
+              <Route
+                path="/user/sign_up"
+                element={<Pages pageType={"FirstRegistrationForm"} />}
+              />
+              <Route
+                path="/user/reg_in/information"
+                element={
+                  <Pages pageType={"YourselfPage"} registration={false} />
+                }
+              />
+              <Route
+                path="/user/reg_in/information/modR"
+                element={<Pages pageType={"ConfirmReg"} registration={true} />}
+              />
+              <Route
+                path="/user/sign_in/phone_numberR"
+                element={
+                  <Pages pageType={"PhoneNumberPage"} registration={true} />
+                }
+              />
+              <Route
+                path="/user/sign_in/phone_numberR/code"
+                element={<Pages pageType={"Code"} registration={true} />}
+              />
+              <Route
+                path="/user/sign_in"
+                element={<Pages pageType={"Login"} />}
+              />
+              <Route
+                path="/user/sign_in/phone_numberA"
+                element={
+                  <Pages pageType={"PhoneNumberPage"} registration={false} />
+                }
+              />
+              <Route
+                path="/user/sign_in/reset_password/reset"
+                element={<Pages pageType={"ConfirmReg"} registration={false} />}
+              />
+              <Route
+                path="/user/sign_in/phone_numberA/code"
+                element={<Pages pageType={"Code"} registration={false} />}
+              />
+              <Route
+                path="/user/sign_in/reset_password"
+                element={<Pages pageType={"ResetPage"} />}
+              />
+              <Route
+                path="/user/sign_in/reset_password/new_password"
+                element={<Pages pageType={"SetNewPassword"} />}
+              />
+              <Route
+                path="/user/google"
+                element={
+                  <GoogleOAuthProvider
+                    clientId={process.env.REACT_APP_GOOGLE_ID}
+                  >
+                    <GoogleButton />
+                  </GoogleOAuthProvider>
+                }
+              />
+              <Route path="/user/facebook" element={<FacebookButton />} />
+              <Route path="/user/vk" element={<VKButton />} />
+              <Route path="/lessons/:id" element={<VideoViewPage />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </snowContext.Provider>
     </IntlProvider>
   );
 }

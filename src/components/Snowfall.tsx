@@ -12,6 +12,7 @@ const SNOWFLAKE_RADIUSES_HIGHT: [number, number] = [3, 7];
 const SNOWFLAKE_COLOR_LIGHT_THEME = "#455FCE";
 const SNOWFLAKE_COLOR_DARK_THEME = "white";
 
+const INTERVAL_TICK_MS = 1000;
 const SHOW_BG_AFTER_MS = 3 * 60 * 1000;
 const BG_APPEAR_DELAY_MS = 60 * 1000;
 const SHOW_LOGO_AFTER_MS = 4 * 60 * 1000;
@@ -77,9 +78,9 @@ export function Snowfall({ setOpacity, setDisplay }: SnowfallProps) {
           }
         }
 
-        return value + 250;
+        return value + INTERVAL_TICK_MS;
       });
-    }, 250);
+    }, INTERVAL_TICK_MS);
 
     return () => {
       clearInterval(timer);
