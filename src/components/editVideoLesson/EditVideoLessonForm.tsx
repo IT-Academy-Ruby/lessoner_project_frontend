@@ -24,6 +24,7 @@ export const EditVideoLessonForm: FC = () => {
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
   const params = useParams();
   const navigate = useNavigate();
+  const [imageURL, setImageURL] = useState<any>();
 
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS + params.id)
@@ -32,7 +33,15 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   }, [params.id]);
 
-  console.log(lesson);
+  //console.log(lesson);
+
+  const handleImageURL = (imageURLTH: any) => {
+    setImageURL(imageURLTH);
+  }
+  
+  const showImURL = () => {
+    console.log("EVL: ", imageURL);
+  };
 
   const addInfoToLessonObject = (values: {
     name: string;
@@ -200,9 +209,10 @@ export const EditVideoLessonForm: FC = () => {
                 })}
               </p>
             </label>
-            <Thumbnail propImage={lesson?.image_link}/>
+            <Thumbnail lesson={lesson} imageURltoParent={handleImageURL} />
           </div>
           <div className="evlf__btn-wrapper">
+            <button type="button" onClick={showImURL}>Show imageURL</button>
             <Button
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.cancel" })}

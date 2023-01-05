@@ -11,7 +11,8 @@ import { ReactComponent as ChangeFile } from "./icons/changeFile.svg";
 import { BACKEND_URL_LESSONS } from "../constants";
 
 interface ThumbnailProps {
-  propImage?: string;
+  lesson?: ILessonBack | null;
+  imageURltoParent?: (imageURL: any) => void;
 }
 
 interface imageTypes {
@@ -23,51 +24,58 @@ interface imageTypes {
   webkitRelativePath?: string;
 }
 
-export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
+export const Thumbnail: FC<ThumbnailProps> = (props, {imageURltoParent}) => {
+
   const intl = useIntl();
   const fileReader = new FileReader();
+  const formData = new FormData();
   const [image, setImage] = useState<any>();
   const [imageURL, setImageURL] = useState<any>();
+
+
+ 
+    imageURltoParent = (imageURL: any) => imageURL;
+    
+    /* console.log("Thumbnail: ", imageURL); */
+
   fileReader.onloadend = () => {
     setImageURL(fileReader.result);
+    imageURltoParent(imageURL);
   };
-  const formData = new FormData();
 
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
     console.log("change", e.target.files[0]);
-    if (e.target.files[0].size <= 2000000) {
+    if (e.target.files[0].size <= 2_000_000) {
       const file = e.target.files[0];
       setImage(file);
       fileReader.readAsDataURL(file);
+
+      
+
     } else {
       alert(
         "size to big: " +
-          (Math.floor(e.target.files[0].size) / 1000000).toFixed(2)
+          (Math.floor(e.target.files[0].size) / 1_000_000).toFixed(2)
       );
     }
   };
 
-  const imageUp = () => {
-    formData.append("lesson_image", imageURL);
-    console.log("image", image);
-    console.log("imageURL", imageURL);
 
-    const lessonImage = {
-      lesson_image: imageURL,
-    };
-    request(BACKEND_URL_LESSONS + 63, "PUT", formData);
+
+  const imageUpload = () => {
+    formData.append("lesson_image", imageURL);
     const token = localStorage.getItem("JWT");
-    /* fetch(`${BACKEND_URL_LESSONS + 63}`, {
+    fetch(`${BACKEND_URL_LESSONS + props.lesson?.id}`, {
       method: "PUT",
       headers: new Headers({ Authorization: `Bearer ${token}` }),
       body: formData,
-    }); */
+    });
   };
 
   return (
     <div className="thumbnail__wrapper">
-      {propImage.propImage === null && !image ? (
+      {props.lesson?.image_link === null && !image ? (
         <div className="thumbnail__upload">
           <label htmlFor="but__loader" className="button__fs16">
             <div className="svg__upload">
@@ -92,8 +100,8 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
                   src={
                     imageURL
                       ? imageURL
-                      : propImage.propImage != null
-                      ? propImage.propImage
+                      : props.lesson?.image_link != null
+                      ? props.lesson?.image_link
                       : frame85
                   }
                   alt="picture"
@@ -117,7 +125,7 @@ export const Thumbnail: FC<ThumbnailProps> = (propImage) => {
           </div>
           <div className="thumbnail__right">
             <div className="thumbnail__right-inner">
-              <button onClick={imageUp}>Upload</button>
+              <button onClick={imageUpload}>Upload</button>
               <label htmlFor="but__loader" className="button__fs16-white">
                 <div className="svg__change">
                   <ChangeFile />
