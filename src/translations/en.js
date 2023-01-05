@@ -185,5 +185,7 @@ export const messages_en = {
   "app.SelectOrUploadAPictureThatShowsWhatsInYourVideo": "Select or upload a picture that shows whats in your video",
   "app.NextStep": "Next step",
   "app.cancel": "Cancel",
-  "app.Lessonname": "Lesson name"
+  "app.Lessonname": "Lesson name",
+  "app.hero.title": "<span>Teach</span> by studying. <br /> Study while teaching.",
+  "app.hero.subtitle": "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills."
 };
