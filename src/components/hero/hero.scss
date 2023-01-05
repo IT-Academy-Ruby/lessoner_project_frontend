@@ -1,0 +1,49 @@
+@import "../../constants";
+
+$imageHeight: 340px;
+$imageWidth: 429px;
+
+.hero {
+    display: flex;
+    height: 396px;
+    justify-content: center;
+    align-items: center;
+    font-family: $font;
+    border: 1px solid black;
+}
+
+.hero__body {
+    text-align: left;
+}
+
+.hero__title {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+
+    & span {
+        color: $blueLightColor;
+        font-size: inherit;
+    }
+}
+
+.hero__subtitle {
+    font-size: 24px;
+}
+
+.hero__image, .hero__image img {
+    height: $imageHeight;
+    width: $imageWidth;
+}
+
+.hero__button {
+    height: 40px; 
+    font-size: 16px;
+    font-family: $font;
+    background: $blueLightColor;
+    color: $white;
+    padding: 6px 92px;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+}

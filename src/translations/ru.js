@@ -178,7 +178,7 @@ export const messages_ru = {
   "app.LinkToTheVideo": "Сылка на видео",
   "app.SelectFile": "Выберите Файл",
   "app.UploadVideo": "Загрузить видео",
-  "app.UploadVideoFromComputer": " Загрузить видео с кампьютера",
+  "app.UploadVideoFromComputer": " Загрузить видео с компьютера",
   "app.DragAndDrop": "Перетащите",
   "app.Description": "Описание",
   "app.Subtitles": "Субтитры",
@@ -189,4 +189,6 @@ export const messages_ru = {
   "app.NextStep": "Следующий шаг",
   "app.cancel": "Отмена",
   "app.Lessonname": "Имя урока",
+  "app.hero.title": "<span>Teach</span> by studying. <br /> Study while teaching.",
+  "app.hero.subtitle": "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills."
 };
