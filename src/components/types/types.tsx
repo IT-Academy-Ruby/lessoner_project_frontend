@@ -1,10 +1,14 @@
 export interface ILessonBack {
+  author_avatar_url: string | null;
   author_id: number;
+  author_name: string;
   category_id: number;
   created_at: string;
   description: string;
   id: number;
-  image_link?: string;
+  image_link: string | null;
+  image_name: string | null;
+  image_size: string | null;
   rating: number | null;
   status: string;
   title: string;

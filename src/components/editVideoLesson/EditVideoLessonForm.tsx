@@ -13,7 +13,7 @@ import Button from "../Button";
 import { ILessonBack } from "../types/types";
 import { Thumbnail } from "../Thumbnail";
 import classNames from "classnames";
-import request from "../../services/request";
+import sendInfoInLesson from "../../services/request";
 import { useIntl } from "react-intl";
 
 const hachTag = "#";
@@ -24,7 +24,8 @@ export const EditVideoLessonForm: FC = () => {
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
   const params = useParams();
   const navigate = useNavigate();
-  const [imageURL, setImageURL] = useState<any>();
+  const [imageURL, setImageURL] = useState("");
+  const formData = new FormData();
 
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS + params.id)
@@ -33,17 +34,13 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   }, [params.id]);
 
-  //console.log(lesson);
-
-  const handleImageURL = (imageURLTH: any) => {
-    setImageURL(imageURLTH);
+  const handleImageUrlChange  = (currentImageUrl: string) => {
+    setImageURL(currentImageUrl);
   }
   
-  const showImURL = () => {
-    console.log("EVL: ", imageURL);
-  };
+  console.log(lesson);
 
-  const addInfoToLessonObject = (values: {
+  const changeInfoInLesson = (values: {
     name: string;
     description: string;
   }) => {
@@ -51,7 +48,18 @@ export const EditVideoLessonForm: FC = () => {
       title: `${values.name}`,
       description: `${values.description}`,
     };
-    request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
+    sendInfoInLesson(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
+    changeImageInLesson();
+  };
+
+  const changeImageInLesson = () => {
+    const token = localStorage.getItem("JWT");
+    formData.append("lesson_image", imageURL);
+    fetch(`${BACKEND_URL_LESSONS + params.id}`, {
+      method: "PUT",
+      headers: new Headers({ Authorization: `Bearer ${token}` }),
+      body: formData,
+    });
   };
 
   const validateName = (title: string) => {
@@ -133,7 +141,7 @@ export const EditVideoLessonForm: FC = () => {
     <Formik
       initialValues={lessonValuesFromBack || initialValues}
       onSubmit={(values) => {
-        addInfoToLessonObject(values);
+        changeInfoInLesson(values);
         navigate("/lessons");
       }}
       enableReinitialize
@@ -209,10 +217,13 @@ export const EditVideoLessonForm: FC = () => {
                 })}
               </p>
             </label>
-            <Thumbnail lesson={lesson} imageURltoParent={handleImageURL} />
+            <Thumbnail
+              lesson={lesson}
+              onImageUrlChange ={handleImageUrlChange }
+              imageURL={imageURL}
+            />
           </div>
           <div className="evlf__btn-wrapper">
-            <button type="button" onClick={showImURL}>Show imageURL</button>
             <Button
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.cancel" })}
