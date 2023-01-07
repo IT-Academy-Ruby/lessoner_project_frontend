@@ -7,7 +7,7 @@
 
 .thumbnail__withpicture {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
   width: 100%;
 }
@@ -20,7 +20,7 @@
 }
 
 .thumbnail__left {
-  width: 60%;
+  width: 65%;
   height: 100%;
   margin-right: 12px;
 }
@@ -32,7 +32,7 @@
 }
 
 .thumbnail__right {
-  width: calc(100% - 60% - 12px);
+  width: calc(100% - 65% - 12px);
   height: 100%;
 }
 
@@ -72,6 +72,7 @@
 
 .thumbnail__item-name,
 .thumbnail__item-size {
+  width: 100%;
   margin: 0 0 5px 0;
 }
 

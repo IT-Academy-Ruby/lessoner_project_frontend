@@ -1,11 +1,11 @@
 import "./button.scss";
 import "./Thumbnail.scss";
-import frame85 from "./icons/Frame85.png";
-import { useIntl } from "react-intl";
 import { ChangeEvent, FC, useState } from "react";
-import { ILessonBack } from "./types/types";
-import { ReactComponent as Upload } from "./icons/upload.svg";
 import { ReactComponent as ChangeFile } from "./icons/changeFile.svg";
+import { ReactComponent as Upload } from "./icons/upload.svg";
+import frame85 from "./icons/Frame85.png";
+import { ILessonBack } from "./types/types";
+import { useIntl } from "react-intl";
 
 interface ThumbnailProps {
   lesson?: ILessonBack | null;
@@ -28,6 +28,8 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
   const intl = useIntl();
   const fileReader = new FileReader();
   const [image, setImage] = useState<imageTypes>();
+  /* const [imageTypeError, setImageTypeError] = useState("");
+  const [imageSizeError, setImageSizeError] = useState(""); */
 
   fileReader.onloadend = () => {
     onImageUrlChange(fileReader.result as string);
@@ -36,6 +38,7 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
     const image = e.target.files[0];
+    
     console.log("change", image);
   
     if (image.size <= 2_000_000) {
@@ -49,16 +52,36 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
         fileReader.readAsDataURL(image);
       } else {
         alert("picture type must be jpg, png or gif, and yours is: " + image.type);
+        /* setImageTypeError(
+          "picture type must be jpg, png or gif, and yours is: " + image.type
+        );
+        alert(imageTypeError); */
       }
     } else {
-      alert("max size is 2.0Mb, and yours is: " + (Math.floor(image.size) / 1_000_000).toFixed(2) + "Mb" );
+      alert("max size is 2.0Mb, and yours is: " + (Math.floor(+image.size) / 1_000_000).toFixed(2) + "Mb");
+      /* setImageSizeError(
+        "max size is 2.0Mb, and yours is: " +
+          (Math.floor(+image.size) / 1_000_000).toFixed(2) +
+          "Mb"
+      );
+      alert(imageSizeError); */
     }
   };
 
 
   return (
     <div className="thumbnail__wrapper">
-      {props.lesson?.image_link === null && !image ? (
+      {props.lesson?.image_link === undefined 
+      ? 
+      (
+        <div>
+          {intl.formatMessage({id: "app.editVideoLesson.loading"})}
+        </div>
+      )
+      :
+      props.lesson?.image_link === null 
+      ? 
+      (
         <div className="thumbnail__upload">
           <label htmlFor="but__loader" className="button__fs16">
             <div className="svg__upload">
@@ -73,7 +96,9 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
             onChange={handleOnChange}
           />
         </div>
-      ) : (
+      ) 
+      : 
+      (
         <div className="thumbnail__withpicture">
           <div className="thumbnail__left">
             <div className="thumbnail__left-inner">
