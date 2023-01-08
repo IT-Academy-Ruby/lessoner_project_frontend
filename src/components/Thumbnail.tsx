@@ -1,6 +1,8 @@
 import "./button.scss";
 import "./Thumbnail.scss";
-import { ChangeEvent, FC, useState } from "react";
+import { 
+  ChangeEvent, FC, useState 
+} from "react";
 import { ReactComponent as ChangeFile } from "./icons/changeFile.svg";
 import { ReactComponent as Upload } from "./icons/upload.svg";
 import frame85 from "./icons/Frame85.png";
@@ -28,8 +30,8 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
   const intl = useIntl();
   const fileReader = new FileReader();
   const [image, setImage] = useState<imageTypes>();
-  /* const [imageTypeError, setImageTypeError] = useState("");
-  const [imageSizeError, setImageSizeError] = useState(""); */
+  const [imageTypeError, setImageTypeError] = useState(false);
+  const [imageSizeError, setImageSizeError] = useState(false);
 
   fileReader.onloadend = () => {
     onImageUrlChange(fileReader.result as string);
@@ -38,8 +40,8 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
     const image = e.target.files[0];
-    
-    console.log("change", image);
+    setImageTypeError(false);
+    setImageSizeError(false);
   
     if (image.size <= 2_000_000) {
       if (
@@ -51,37 +53,19 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
         setImage(image);
         fileReader.readAsDataURL(image);
       } else {
-        alert("picture type must be jpg, png or gif, and yours is: " + image.type);
-        /* setImageTypeError(
-          "picture type must be jpg, png or gif, and yours is: " + image.type
-        );
-        alert(imageTypeError); */
+        setImageTypeError(true);
       }
     } else {
-      alert("max size is 2.0Mb, and yours is: " + (Math.floor(+image.size) / 1_000_000).toFixed(2) + "Mb");
-      /* setImageSizeError(
-        "max size is 2.0Mb, and yours is: " +
-          (Math.floor(+image.size) / 1_000_000).toFixed(2) +
-          "Mb"
-      );
-      alert(imageSizeError); */
+      setImageSizeError(true);
     }
   };
 
 
   return (
     <div className="thumbnail__wrapper">
-      {props.lesson?.image_link === undefined 
-      ? 
-      (
-        <div>
-          {intl.formatMessage({id: "app.editVideoLesson.loading"})}
-        </div>
-      )
-      :
-      props.lesson?.image_link === null 
-      ? 
-      (
+      {props.lesson?.image_link === undefined ? (
+        <div>{intl.formatMessage({ id: "app.thumbnail.loading" })}</div>
+      ) : props.lesson?.image_link === null && !image ? (
         <div className="thumbnail__upload">
           <label htmlFor="but__loader" className="button__fs16">
             <div className="svg__upload">
@@ -96,9 +80,7 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
             onChange={handleOnChange}
           />
         </div>
-      ) 
-      : 
-      (
+      ) : (
         <div className="thumbnail__withpicture">
           <div className="thumbnail__left">
             <div className="thumbnail__left-inner">
@@ -109,8 +91,8 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
                     props.imageURL
                       ? props.imageURL
                       : props.lesson?.image_link != null
-                      ? props.lesson?.image_link
-                      : frame85
+                        ? props.lesson?.image_link
+                        : frame85
                   }
                   alt="picture"
                 />
@@ -122,22 +104,24 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
                     image
                       ? image.name
                       : props.lesson?.image_name != null
-                      ? props.lesson?.image_name
-                      : "No name"
+                        ? props.lesson?.image_name
+                        : "No name"
                   }
                 >
                   {image
                     ? image.name
                     : props.lesson?.image_name != null
-                    ? props.lesson?.image_name
-                    : "No name"}
+                      ? props.lesson?.image_name
+                      : "No name"}
                 </p>
                 <p className="thumbnail__item-size">
                   {image
                     ? (Math.floor(image.size) / 1000000).toFixed(2)
                     : props.lesson?.image_size != null
-                    ? (Math.floor(+props.lesson?.image_size) / 1000000).toFixed(2)
-                    : "0.0"}{" "}
+                      ? (Math.floor(+props.lesson?.image_size) / 1000000).toFixed(
+                        2
+                      )
+                      : "0.0"}{" "}
                   MB
                 </p>
               </div>
@@ -159,6 +143,16 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
               />
             </div>
           </div>
+        </div>
+      )}
+      {imageTypeError && (
+        <div className="thumbnail__error">
+          {intl.formatMessage({ id: "app.thumbnail.imageTypeError" })}
+        </div>
+      )}
+      {imageSizeError && (
+        <div className="thumbnail__error">
+          {intl.formatMessage({ id: "app.thumbnail.imageSizeError" })}
         </div>
       )}
     </div>

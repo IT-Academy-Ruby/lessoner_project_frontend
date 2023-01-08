@@ -117,3 +117,11 @@
 .button__notsee {
   display: none;
 }
+
+.thumbnail__error {
+  display: block;
+  color: $warningColor;
+  font-weight: normal;
+  font-size: 12px;
+  margin-top: 5px;
+}
