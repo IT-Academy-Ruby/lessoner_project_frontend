@@ -53,6 +53,10 @@ $themes: (
     darkTheme: $dark1,
     lightTheme: $light1,
   ),
+  borderRadiusFirstRegistrForm: (
+    darkTheme: $darkBorderRadius,
+    lightTheme: $lightBorderRadius,
+  ),
   titlesFirstRegistrForm: (
     darkTheme: $light2,
     lightTheme: $dark1,
@@ -93,19 +97,31 @@ $themes: (
     darkTheme: $dark5,
     lightTheme: $light4,
   ),
-  bgGenderSelectorRadio:(
+  bgGenderSelectorRadio: (
     darkTheme: $dark1,
     lightTheme: $light1,
-  )
+  ),
+  textLogo: (
+    darkTheme: $light2,
+    lightTheme: $blue1,
+  ),
+  bgDropDownMainPage: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textDropDownMainPage: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgTextHoverDropDownMainPage: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
 );
 
 @mixin styles($mode) {
-
-  @each $key,
-  $map in $themes {
-
-    @each $prop,
-    $color in $map {
+  @each $key, $map in $themes {
+    @each $prop, $color in $map {
       @if $prop ==$mode {
         --#{$key}: #{$color};
       }

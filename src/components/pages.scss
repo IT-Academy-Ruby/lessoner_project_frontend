@@ -76,8 +76,7 @@
   align-items: center;
   width: 50%;
   background-color: var(--bgFirstRegistrForm);
-  transition: background-color 0.5s ease;
-  border-radius: inherit;
+  border-radius: var(--borderRadiusFirstRegistrForm);
 }
 
 @media (min-width: $max-width-tablet) {
