@@ -16,16 +16,3 @@ export interface ILessonBack {
   views_count: number;
   votes_count: number;
 }
-
-export interface LessonCardsProps {
-  id: number;
-  imagePreview?: string;
-  status: string;
-  duration?: string;
-  title: string;
-  published: string;
-  view?: number;
-  category?: string;
-  rating?: number;
-  totalVotes?: number;
-};
