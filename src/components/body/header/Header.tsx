@@ -14,9 +14,10 @@ import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 
 type HeaderProps = {
   onLanguageSwitch: (arg: string) => void;
+  onSignOut: VoidFunction;
 };
 
-const Header = ({onLanguageSwitch}: HeaderProps) => {
+const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const [language, setLanguage] = useState("en");
@@ -44,6 +45,7 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
         <div className="header-buttons">
           {nameDecode && <Avatar
             onLanguageSwitch={onLanguageSwitch}
+            onSignOut={onSignOut}
             language={language}
             setLanguage={setLanguage}/>}
           {!nameDecode && <Fragment>
