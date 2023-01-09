@@ -62,6 +62,8 @@ export const EditVideoLessonForm: FC = () => {
     });
   };
 
+
+
   const validateName = (title: string) => {
     if (!title) {
       return intl.formatMessage({ id: "app.editVideoLesson.errorNotFilled" });
@@ -120,13 +122,12 @@ export const EditVideoLessonForm: FC = () => {
         : 
         lesson?.description
     }`,
-    thumbnail: 1,
+
   };
   const initialValues = {
     name: "",
     category: "IT",
     description: "",
-    thumbnail: 1,
   };
 
   return (
