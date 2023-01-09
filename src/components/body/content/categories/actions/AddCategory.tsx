@@ -38,9 +38,10 @@ const AddCategory = ({add}: TypeTitle) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [selectImage, setSelectImage] = useState({
-    name: "", type: "", size: 0, image:  undefined,
+    name: "", type: "", size: 0, image: undefined,
   });
   const allCategories = useAppSelector((state) => state.categories.categories);
+
   const [category, setCategory] = useState({
     name: "",
     description: "",
@@ -53,12 +54,16 @@ const AddCategory = ({add}: TypeTitle) => {
     image_name: "",
     image_type: "",
   });
+
   const [editCategory, setEditCategory] = useState({
     name: "", type: "", size: 0, image: "",
   });
+
   const [isClose, setIsClose] = useState(false);
   const [isSuccessful, setISuccessful] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isErrorValue, setIsErrorValue] = useState (false);
+  const [errorImage, setErrorImage] = useState("");
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
@@ -87,11 +92,19 @@ const AddCategory = ({add}: TypeTitle) => {
   const nameLength = category.name.length;
   const descriptionLength = category.name.length;
 
+  useEffect(()=>{
+    if ((selectImage.image || editCategory.image) && !errorImage && isErrorValue) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  },[selectImage,editCategory,isErrorValue,errorImage]);
+
   return (
     <div className="add-category">
       <div className="button-back" onClick={() => setIsClose(true)}>
         <span className="arrow-back">&#10094;</span>
-        <FormattedMessage id="app.categories.back"/>
+        <span><FormattedMessage id="app.categories.back"/></span>
       </div>
       {(add || category.id > 0) && <Formik
         initialValues={initialValues}
@@ -117,31 +130,18 @@ const AddCategory = ({add}: TypeTitle) => {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
               {symbols: DESCRIPTION_CATEGORY.maxSymbols});
           }
-          if (selectImage.type) {
-            const isFormat = IMAGE_DATA.format.some(format =>
-              "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format);
-            if (!isFormat) {
-              errors.image = intl.formatMessage({id: "app.categories.imageError"});
-            }
-            if (selectImage.size > IMAGE_DATA.size) {
-              errors.image = intl.formatMessage({id: "app.categories.imageBigSize"});
-            }
-          }
-          if (!selectImage.name) {
-            errors.image = intl.formatMessage({id: "app.categories.selectFile"});
-          }
-          if (values.name && values.description && (selectImage.name || editCategory.name)
-            && !errors.name && !errors.description && !errors.image) {
-            setIsDisabled(false);
+          if (values.name && values.description &&
+             !errors.name && !errors.description) {
+            setIsErrorValue(true);
           } else {
-            setIsDisabled(true);
+            setIsErrorValue(false);
           }
           return errors;
 
         }}
         onSubmit={(values: FormValues) => {
           setISuccessful(true);
-          if (!editCategory.image) {
+          if (add) {
             dispatch(addCategory({
               image: selectImage.image,
               name: values.name.trim(),
@@ -151,7 +151,7 @@ const AddCategory = ({add}: TypeTitle) => {
           } else {
             dispatch(updateCategory({
               id: idCategory,
-              image: !editCategory.image ? selectImage.image : undefined,
+              image: editCategory.image ? editCategory.image : selectImage.image,
               name: values.name.trim(),
               description: values.description.trim(),
             }));
@@ -160,6 +160,7 @@ const AddCategory = ({add}: TypeTitle) => {
           navigate("/categories");
         }}>
         {({errors, touched}) => {
+
           return (
             <Form className="form-category">
               <h1 className="add-title">
@@ -188,6 +189,8 @@ const AddCategory = ({add}: TypeTitle) => {
                 setSelectImage={setSelectImage}
                 setEditCategory={setEditCategory}
                 editCategory={editCategory}
+                errorImage={errorImage}
+                setErrorImage={setErrorImage}
               />
 
               <div className="category-buttons">

@@ -16,11 +16,10 @@ export const getCategory = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   "category/addCategory",
-  async (dataCategory: { name: string, description: string, image: FileList | undefined }) => {
-
+  async (dataCategory: { name: string, description: string, image: Blob | undefined }) => {
     const formData = new FormData();
     if(dataCategory.image){
-      formData.append("image", dataCategory.image[0]);
+      formData.append("image", dataCategory.image);
     }
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
@@ -56,10 +55,10 @@ export const deleteCategory = createAsyncThunk(
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
   async (dataCategory: {
-    id: number, name: string, description: string, image: FileList | undefined | null,
+    id: number, name: string, description: string, image: Blob | undefined | null | string,
   }) => {
     const formData = new FormData();
-    dataCategory.image ? formData.append("image", dataCategory.image[0]) : null;
+    dataCategory.image ? formData.append("image", dataCategory.image) : null;
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = localStorage.getItem("JWT");

@@ -2,7 +2,10 @@
 
 .add-category {
   font-family: $font;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -27,14 +30,15 @@
 
 .form-category {
   display: flex;
+  max-width: 753px;
+  width: 100%;
+  margin: 16px 16px 80px 16px;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 656px;
-  width: 100%;
-  margin: 0 40px;
-  background: $white;
-  padding: 32px 48px 48px;
-  box-shadow: 0px 0px 4px $greySearchColor;
+  background: var(--bgFirstRegistrForm);;
+  padding: 36px;
+  box-shadow: var(--bgNavBarShadow);
+  font-size: 14px;
 }
 
 .add-title {
@@ -170,4 +174,27 @@
   width: 24px;
   height: 24px;
   text-align: end;
+}
+
+@media (max-width: $max-width-tablet) {
+  .form-category {
+    border-radius: 8px;
+    padding: 28px;
+    margin-top: 57px;
+  }
+}
+
+@media (max-width: $max-width-phone) {
+  .form-category {
+    margin: 0;
+    padding: 47px 37px;
+    font-size: 12px;
+  }
+  .arrow-back {
+    color: $black;
+
+    ~ span {
+      display: none;
+    }
+  }
 }

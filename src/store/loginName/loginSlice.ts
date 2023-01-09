@@ -149,6 +149,7 @@ export const sendUserCode = createAsyncThunk(
 export const uploadFile = createAsyncThunk(
   "user/uploadFileStatus",
   async (user: { name: string, file: FileList }) => {
+    console.log(user.file[0])
     const formData = new FormData();
     formData.append("avatar", user.file[0]);
     const token = localStorage.getItem("JWT");
