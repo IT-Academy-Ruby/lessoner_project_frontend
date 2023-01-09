@@ -1,23 +1,21 @@
 import "./Header.scss";
-import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import Language from "./Language";
 import {Link} from "react-router-dom";
 import Logout from "../../icons/logOut.svg";
-import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
-import {resetUserData} from "../../../store/loginName/loginSlice";
+import {useAppSelector} from "../../../store/hooks";
 import {useState} from "react";
 
 type AvatarProps = {
   onLanguageSwitch: (arg: string) => void;
   setLanguage: (arg: string) => void;
   language: string;
+  onSignOut: VoidFunction;
 };
 
 const Avatar = ({
-  onLanguageSwitch, language, setLanguage
+  onLanguageSwitch, language, setLanguage, onSignOut
 }: AvatarProps) => {
-  const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
   const userAvatar = useAppSelector(state => state.dataUser.user.avatar_url);
@@ -26,10 +24,8 @@ const Avatar = ({
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
 
   const signOut = () => {
-    localStorage.setItem("JWT", "");
-    dispatch(nameDecodedUser());
+    onSignOut();
     setIsChecked(false);
-    dispatch(resetUserData());
   };
 
   return (
