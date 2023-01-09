@@ -3,11 +3,11 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Link, useNavigate} from "react-router-dom";
 import Button from "../components/Button";
 import {CODE} from "../constants";
 import Code from "../components/Code";
 import {CodeRegex} from "../validationRules";
+import {Link} from "react-router-dom";
 
 interface FormErrors {
   [key: string]: string
@@ -23,7 +23,6 @@ type CodePageProps = {
 
 const CodePage = ({registration}: CodePageProps) => {
   const intl = useIntl();
-  const navigate = useNavigate();
   const initialValue: FormValue = {code: ""};
 
   return (
@@ -42,8 +41,8 @@ const CodePage = ({registration}: CodePageProps) => {
           return errors;
         }}
 
-        onSubmit={() => {
-          navigate("/");
+        onSubmit={(values) => {
+          console.log(values);
         }}>
         {({errors, touched}) => {
           return (

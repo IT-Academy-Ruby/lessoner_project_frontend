@@ -5,8 +5,8 @@ import Language from "./Language";
 import {Link} from "react-router-dom";
 import Logout from "../../icons/logOut.svg";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
+import {resetUserData} from "../../../store/loginName/loginSlice";
 import {useState} from "react";
-
 
 type AvatarProps = {
   onLanguageSwitch: (arg: string) => void;
@@ -15,11 +15,12 @@ type AvatarProps = {
 };
 
 const Avatar = ({
-  onLanguageSwitch,language,setLanguage
+  onLanguageSwitch, language, setLanguage
 }: AvatarProps) => {
   const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
+  const userAvatar = useAppSelector(state => state.dataUser.user.avatar_url);
 
   const initialName = nameDecode.split(" ")
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
@@ -28,12 +29,14 @@ const Avatar = ({
     localStorage.setItem("JWT", "");
     dispatch(nameDecodedUser());
     setIsChecked(false);
+    dispatch(resetUserData());
   };
 
   return (
     <>
       <label htmlFor="input-avatar" className="avatar">
-        <p className="first-letters">{initialName}</p>
+        {!userAvatar && <p className="first-letters">{initialName}</p>}
+        {userAvatar && <img src={userAvatar} alt="avatar" className="user-avatar" />}
       </label>
       <input
         type="checkbox"
@@ -46,7 +49,7 @@ const Avatar = ({
       />
       <ul className="list list-user">
         <li className="user-li">
-          <Link to="/user/personalData" className="user-link">
+          <Link to="/user/userPage" className="user-link" onClick={()=>setIsChecked(false)}>
             <FormattedMessage id="app.avatar.personalData" />
           </Link>
         </li>
@@ -55,10 +58,11 @@ const Avatar = ({
             onLanguageSwitch={onLanguageSwitch}
             isRegistered={true}
             language={language}
-            setLanguage={setLanguage}/>
+            setLanguage={setLanguage}
+          />
         </li>
-        <li className="user-li">
-          <div className="log-out" onClick={signOut}>
+        <li className="user-li" onClick={signOut}>
+          <div className="log-out">
             <FormattedMessage id="app.avatar.logOut" />
             <img src={Logout} alt="logout" />
           </div>

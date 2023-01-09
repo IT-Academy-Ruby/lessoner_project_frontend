@@ -1,12 +1,27 @@
 // lessons page
-$darkMain: #1B1B1F;
-$lightMain: #FFFFFF; 
+$darkMain: #1b1b1f;
+$lightMain: #ffffff;
 
-$darkSideBar: linear-gradient(0deg, rgba(185, 195, 255, 0.05), rgba(185, 195, 255, 0.05)), #232429;
-$lightSideBar: #FFFFFF;
-$lightCardText: #F6F5F6;
-$Surface5Dark: linear-gradient(0deg, rgba(185, 195, 255, 0.14), rgba(185, 195, 255, 0.14)), #333336;
-$Surface5Light: linear-gradient(0deg, rgba(104, 160, 211, 0.14), rgba(104, 160, 211, 0.14)), #FEFBFF;
+$darkSideBar: linear-gradient(
+    0deg,
+    rgba(185, 195, 255, 0.05),
+    rgba(185, 195, 255, 0.05)
+  ),
+  #232429;
+$lightSideBar: #ffffff;
+$lightCardText: #f6f5f6;
+$Surface5Dark: linear-gradient(
+    0deg,
+    rgba(185, 195, 255, 0.14),
+    rgba(185, 195, 255, 0.14)
+  ),
+  #333336;
+$Surface5Light: linear-gradient(
+    0deg,
+    rgba(104, 160, 211, 0.14),
+    rgba(104, 160, 211, 0.14)
+  ),
+  #fefbff;
 $SideBarShadowLight: 1px 1px 20px rgba(46, 53, 119, 0.07);
 $SideBarShadowDark: none;
 $bluePrimaryText: #455FCE;
@@ -49,5 +64,6 @@ $grey100: #fdfcfc;
 $grey200: #f5f1f1;
 $purple100: #7a0bc0;
 $purple200: #650c9d;
-$themes: (
-);
+$lightBorderRadius: 44px;
+$darkBorderRadius: none;
+$themes: ();

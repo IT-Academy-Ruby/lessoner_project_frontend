@@ -5,15 +5,15 @@ export const signUpSlice = createAsyncThunk(
   async (value: { name: string, phone: string, gender: string, email: string, birthday: string, password: string }) => {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/sign_up`,
-      {method: "POST",
+      {
+        method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(value)
       });
     const data = await response.json();
-    console.log(data)
     return data;
   }
-)
+);
 
 type User = {
   user: {
@@ -22,8 +22,11 @@ type User = {
     phone: string;
     gender: string;
     email: string;
+    avatar_url: string;
     birthday: string;
     password: string;
+    description: string;
+    created_at: string;
   }
 }
 
@@ -34,10 +37,13 @@ const initialState: User = {
     phone: "",
     gender: "",
     email: "",
+    avatar_url: "",
     birthday: "",
     password: "",
+    description: "",
+    created_at: "",
   }
-}
+};
 
 const userSlice = createSlice({
   name: "user",
@@ -48,4 +54,6 @@ const userSlice = createSlice({
       state.user = action.payload;
     })
   }
-})
+});
+
+export default userSlice.reducer;

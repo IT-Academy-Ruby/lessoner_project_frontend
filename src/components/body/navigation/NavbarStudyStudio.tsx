@@ -1,9 +1,15 @@
 import "./NavbarStudyStudio.scss";
-import {FC, useState} from "react";
+import {
+  FC,
+  useContext,
+  useState
+} from "react";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
+import { snowContext } from "../../../App";
 import useDarkMode from "use-dark-mode";
 import {useIntl} from "react-intl";
+
 
 interface NavbarStudyStudioProps {
   menuType: string;
@@ -15,7 +21,13 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [buttonPressed, setButtonPressed] = useState(EMPTY_BUTTON_ID);
   const darkMode = useDarkMode(true);
-  
+
+  const snow = useContext(snowContext);
+  const snowToggle = snow
+    ? () => snow.setSnow((value) => !value)
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    : () => {};
+
   const items = [
     {
       id: 1,
@@ -101,27 +113,41 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
     },
     {
       id: 11,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.snowOn"})}`,
+      href: "#!",
+      icon: "snow_on",
+      place: { snowOn: "snow_on" },
+    },
+    {
+      id: 12,
+      value: `${intl.formatMessage({id: "app.navbarStudyStudio.snowOff"})}`,
+      href: "#!",
+      icon: "snow_off",
+      place: { snowOff: "snow_off" },
+    },
+    {
+      id: 13,
       value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.grodno.it-academy.by/",
       icon: "network",
       place: { contacts: "contacts" },
     },
     {
-      id: 12,
+      id: 14,
       value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.instagram.com/grodnoitacademypark/",
       icon: "instagram",
       place: { contacts: "contacts" },
     },
     {
-      id: 13,
+      id: 15,
       value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.facebook.com/grodnoitacademypark",
       icon: "facebook",
       place: { contacts: "contacts" },
     },
     {
-      id: 14,
+      id: 16,
       value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
       href: "https://www.linkedin.com/school/15248534/",
       icon: "linkedin",
@@ -164,6 +190,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
       logOut?: string;
       darkTheme?: string;
       lightTheme?: string;
+      snowOn?: string;
+      snowOff?: string;
       contacts?: string;
     };
   };
@@ -299,6 +327,13 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                   item.place.lightTheme && renderTheme_LogInOut(item)
                   :
                   item.place.darkTheme && renderTheme_LogInOut(item)
+              )}
+            </div>
+            <div className="menu__footer-snow" onClick={snowToggle}>
+              {items.map((item: itemTypes) =>
+                snow?.snow
+                  ? item.place.snowOff && renderTheme_LogInOut(item)
+                  : item.place.snowOn && renderTheme_LogInOut(item)
               )}
             </div>
             <div className="menu__footer-rights">

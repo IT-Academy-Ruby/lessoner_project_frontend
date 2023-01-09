@@ -3,13 +3,16 @@ import Rating from "./../assets/reiting.png";
 import { StarRating } from "./svg/StarRating";
 import { useState } from "react";
 
-const VideoRating = () => {
+interface VideoRatingProps {
+  ratingProp?: number;
+  votesCount?: number;
+}
+const VideoRating = ({ ratingProp, votesCount }: VideoRatingProps) => {
   const [rating, setRating] = useState(0);
   const [hover] = useState(0);
-  
+
   return (
     <div className="star-rating">
-      <br/>
       {[...Array(5)].map((star, index) => {
         const ratingUnit: number = index + 1;
         return (
@@ -28,8 +31,9 @@ const VideoRating = () => {
         );
       })}
       <p>
-        <img src={Rating} alt="rating"/>
-        {rating}</p>
+        <img src={Rating} alt="rating" />
+        {`${ratingProp} (${votesCount})`}
+      </p>
     </div>
   );
 };

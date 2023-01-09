@@ -1,10 +1,35 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import request from "../../services/request";
 
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async () => {
     const responce = await request(`${process.env.REACT_APP_BACKEND_URL}/categories`);
+    const data = await responce.json();
+    if (responce.status === 200) {
+      return data.records;
+    } else {
+      return `errror ${responce.status}`;
+    }
+  }
+);
+
+export const addCategory = createAsyncThunk(
+  "category/addCategory",
+  async (dataCategory: { name: string, description: string, image: FileList | undefined }) => {
+
+    const formData = new FormData();
+    if(dataCategory.image){
+      formData.append("image", dataCategory.image[0]);
+    }
+    formData.append("name", dataCategory.name);
+    formData.append("description", dataCategory.description);
+    const token = localStorage.getItem("JWT");
+    const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
+      method: "POST",
+      headers: new Headers({"Authorization": `Bearer ${token}`}),
+      body: formData,
+    });
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -14,11 +39,11 @@ export const getCategory = createAsyncThunk(
   }
 );
 
-export const addCategory = createAsyncThunk(
+export const deleteCategory = createAsyncThunk(
   "category/addCategory",
-  async (value: { name: string, description: string, status: string }) => {
+  async (id: number) => {
     const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories`, "POST", value);
+      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${id}`, "DELETE");
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -30,14 +55,20 @@ export const addCategory = createAsyncThunk(
 
 export const updateCategory = createAsyncThunk(
   "category/updateCategory",
-  async (value: { id: number, name: string, description: string, status: string }) => {
-    const category = {
-      name: value.name,
-      description: value.description,
-      status: value.status,
-    };
+  async (dataCategory: {
+    id: number, name: string, description: string, image: FileList | undefined | null,
+  }) => {
+    const formData = new FormData();
+    dataCategory.image ? formData.append("image", dataCategory.image[0]) : null;
+    formData.append("name", dataCategory.name);
+    formData.append("description", dataCategory.description);
+    const token = localStorage.getItem("JWT");
     const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories/${dataCategory.id}`, {
+        method: "PUT",
+        headers: new Headers({"Authorization": `Bearer ${token}`}),
+        body: formData,
+      });
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
@@ -53,7 +84,7 @@ export const archiveCategory = createAsyncThunk(
     const category = {
       name: value.name,
       description: value.description,
-      status: value.status === "active" ? "archived" : "active"
+      status: value.status === "active" ? "archived" : "active",
     };
     const responce =
       await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
@@ -68,21 +99,31 @@ export const archiveCategory = createAsyncThunk(
 
 type Categories = {
   categories: [{
-    id: number,
-    name: string,
-    description: string,
-    status: string,
-    created_at: string,
+    amount_lessons: number;
+    id: number;
+    image_url: string;
+    name: string;
+    description: string;
+    status: string;
+    created_at: string;
+    image_size: number;
+    image_name: string;
+    image_type: string;
   }],
-  loading: boolean
+  loading: boolean;
 };
 
 const initialState: Categories = {categories: [{
+  amount_lessons: 0,
+  image_url: "",
   id: 0,
   name: "",
   description: "",
   status: "",
   created_at: "",
+  image_size: 0,
+  image_name: "",
+  image_type: "",
 }],
 loading: false,};
 

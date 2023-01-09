@@ -3,7 +3,6 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {UserRegex, emailInvalidationRules} from "../validationRules";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import BirthdayPicker from "../components/BirthdayPicker";
 import Button from "../components/Button";
@@ -11,6 +10,7 @@ import Email from "../components/Email";
 import GenderSelector from "../components/GenderSelector";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
+import {UserRegex} from "../validationRules";
 import {signUpSlice} from "../store/loginName/loginSlice";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
@@ -18,17 +18,17 @@ import {useState} from "react";
 const gender = [
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.male"/>,
+    label: <FormattedMessage id="app.gender.male" />,
     genderValue: "male"
   },
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.female"/>,
+    label: <FormattedMessage id="app.gender.female" />,
     genderValue: "female"
   },
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.other"/>,
+    label: <FormattedMessage id="app.gender.other" />,
     genderValue: "other"
   }];
 
@@ -59,31 +59,23 @@ const YourselfPage = ({
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isEmail = useAppSelector(state => state.login.isEmail);
   const isUser = useAppSelector((state) => state.login.isLogged);
   const [isWrapper, setIsWrapper] = useState(false);
-
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
-    if (emailInvalidationRules.some(rule => values.email ? rule.test(values.email) : null)) {
-      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
-    }
-
-    if (isEmail) {
-      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
-    }
-    if (!UserRegex.test(values.name)) {
+    if (UserRegex.test(values.name)) {
       errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
     }
     if (values.name.length === 0) {
       errors.name = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
-    if (values.name.length < USERNAME.minLength && values.name.length > 0) {
+    if (values.name.length < minSymbol && values.name.length) {
       errors.name = intl.formatMessage(
         {id: "app.YourselfPage.errorSmallName"}, {minSymbol: minSymbol});
     }
-    if (values.name.length > USERNAME.maxLength) {errors.name = intl.formatMessage(
-      {id: "app.YourselfPage.errorBigName"}, {maxSymbol: maxSymbol});
+    if (values.name.length > maxSymbol) {
+      errors.name = intl.formatMessage(
+        {id: "app.YourselfPage.errorBigName"}, {maxSymbol: maxSymbol});
     }
     if (isUser) {
       errors.name = intl.formatMessage({id: "app.userName.nameExists"});
@@ -94,6 +86,7 @@ const YourselfPage = ({
     if (!values.gender) {
       errors.gender = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
     }
+
     return errors;
   };
 
@@ -102,12 +95,11 @@ const YourselfPage = ({
       <Formik
         initialValues={{
           name: "",
-          phone: " ",
+          phone: "",
           gender: "",
           email: userEmail ? userEmail : "",
           birthday: "",
           password: userPassword,
-
         }}
         validate={validate}
         onSubmit={(values: FormValues) => {
@@ -119,7 +111,7 @@ const YourselfPage = ({
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.pagesTitle.aboutYourself"/>
+                <FormattedMessage id="app.pagesTitle.aboutYourself" />
               </h2>
               {registration && <Field
                 name="email"
@@ -129,7 +121,8 @@ const YourselfPage = ({
               <Field
                 name="name"
                 component={UserName}
-                error={touched.name ? errors.name : undefined}/>
+                error={touched.name ? errors.name : undefined}
+              />
               <Field
                 name="birthday"
                 component={BirthdayPicker}
@@ -141,11 +134,13 @@ const YourselfPage = ({
                 name="gender"
                 options={gender}
                 component={GenderSelector}
-                error={touched.gender ? errors.gender : undefined}/>
+                error={touched.gender ? errors.gender : undefined}
+              />
               <Button
                 buttonType="submit"
                 buttonText={intl.formatMessage({id: "app.button.finish"})}
-                className="button__page"/>
+                className="button__page"
+              />
               {isWrapper ? <div className="date-wrapper"></div> : null}
             </Form>
           );
@@ -154,4 +149,5 @@ const YourselfPage = ({
     </div>
   );
 };
+
 export default YourselfPage;

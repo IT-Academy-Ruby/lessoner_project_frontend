@@ -142,14 +142,6 @@ font-family: Apercu Pro;
 }
 
 .input-category
-    label{
-        margin-bottom: 8px;
-    }
-    span{
-        font-size: 12px;
-        margin-bottom: 20px;
-    }
-
 .w100{
     width: 100%;
 }

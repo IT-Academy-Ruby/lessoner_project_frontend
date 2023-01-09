@@ -1,20 +1,20 @@
 import "./PopupMenu.scss";
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 
 type PopupMenuProps = {
-    items?: {
-        label: string;
-        url: string;
-        id: number;
-    }[];
-    isOpen?: boolean;
-    onClickOutside?: () => void;
-}
+  items?: {
+    label: string;
+    url: string;
+    id: number;
+  }[];
+  isOpen?: boolean;
+  onClickOutside?: () => void;
+};
 
-const PopupMenu = (props: PopupMenuProps) => {
+export const PopupMenu = (props: PopupMenuProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const {
-    isOpen, onClickOutside, items = []
+    isOpen, onClickOutside, items = [] 
   } = props;
 
   useEffect(() => {
@@ -31,20 +31,23 @@ const PopupMenu = (props: PopupMenuProps) => {
     };
   }, [onClickOutside]);
 
-
   if (!isOpen) {
     return null;
   }
 
   return (
     <div className="popup" ref={ref}>
-      <div  className="popup__window">
+      <div className="popup__window">
         <div className="popup__content">
           {items.map((item) => {
             const {
               label, url, id 
             } = item;
-            return (<a href={url} key={id}>{label}</a>);
+            return (
+              <a href={url} key={id}>
+                {label}
+              </a>
+            );
           })}
         </div>
       </div>
