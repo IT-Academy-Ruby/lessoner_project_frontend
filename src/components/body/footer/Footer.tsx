@@ -1,15 +1,17 @@
 import "./footer.scss";
-import {lessonerLink, startLink} from "../../../store/links/linksSlise";
-import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import {FormattedMessage} from "react-intl";
-import {Link} from "react-router-dom";
+import { lessonerLink, startLink } from "../../../store/links/linksSlise";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { FormattedMessage } from "react-intl";
+import { Link } from "react-router-dom";
 import ThemeBtn from "../../ThemeBtn";
-import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
-import {useEffect} from "react";
+import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
+import { useEffect } from "react";
 
 const Footer = () => {
-  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
-  const lessoner = useAppSelector(state => state.link.lessoner);
+  const decodeUserName = useAppSelector(
+    (state) => state.userDecodedName.session.name
+  );
+  const lessoner = useAppSelector((state) => state.link.lessoner);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -19,10 +21,10 @@ const Footer = () => {
     } else {
       dispatch(startLink());
     }
-  }, [decodeUserName,dispatch]);
+  }, [decodeUserName, dispatch]);
 
   return (
-    <footer style={{display: "flex",justifyContent: "center"}}>
+    <footer className="footer">
       <Link to={lessoner}>
         <div>
           <FormattedMessage id="app.name" />
