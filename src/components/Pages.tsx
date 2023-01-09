@@ -55,20 +55,18 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
   const loading = useAppSelector(state => state.login.loading);
 
   return (
-    // <div className="reg__wrapper">
-      <div className="reg__inner">
-        <Link to="/" className="close__wrapper">
-          <span className="close"></span>
-        </Link>
-        <div className="reg__picture">
-          <img src={LogoRegistration} className="reg__logo" alt="Logo"/>
-        </div>
-        <div className="reg__content">
-          {loading && <Loader/>}
-          {page()}
-        </div>
+    <div className="reg__inner">
+      <Link to="/" className="close__wrapper">
+        <span className="close"></span>
+      </Link>
+      <div className="reg__picture">
+        <img src={LogoRegistration} className="reg__logo" alt="Logo"/>
       </div>
-    // </div>
+      <div className="reg__content">
+        {loading && <Loader/>}
+        {page()}
+      </div>
+    </div>
   );
 };
 export default Pages;

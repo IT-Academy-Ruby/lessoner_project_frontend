@@ -12,7 +12,7 @@ const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-     navigate("/");
+    navigate("/");
   };
 
   return (

@@ -46,7 +46,6 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
   const [isRegEmail, setIsRegEmail] = useState<string | unknown>("");
 
   useEffect(() => {
-    console.log(isRegEmail)
     if (isRegEmail) {
       navigate("/user/reg_in/information");
     }
@@ -96,7 +95,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
           dispatch(getEmail(values.email))
             .then((data) => data.payload)
             .then((result) =>{
-              setIsRegEmail(!result)
+              setIsRegEmail(!result);
             });
           setUserEmail(values.email);
           setUserPassword(values.password);

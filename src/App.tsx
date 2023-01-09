@@ -1,7 +1,5 @@
 import "./App.scss";
-import {
-  Route, Routes
-} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import {  createContext, useState} from "react";
 import Body from "./components/body/Body";
 import {IntlProvider} from "react-intl";
@@ -30,7 +28,7 @@ function App(): JSX.Element {
   return (
     <IntlProvider locale={languageCode} messages={messages}>
       <snowContext.Provider value={{ snow, setSnow }}>
-          {snow && <Snowfall setOpacity={setOpacity} setDisplay={setDisplay} /> }
+        {snow && <Snowfall setOpacity={setOpacity} setDisplay={setDisplay} /> }
         <div className="App" style={{
           transition: "opacity 5s",
           opacity,
