@@ -15,14 +15,6 @@
   &:hover {
     box-shadow: var(--themeButtonHover);
   }
-  /* &:focus {
-    background: var(--bgFocusButtonColor);
-    color: var(--iconsTextFocusButtonColor);
-  }
-  &:active {
-    box-shadow: var(--shadowActiveButtonColor);
-    color: var(--iconsTextActiveButtonColor);
-  } */
 }
 
 .button__fs16, .button__fs16-white,
@@ -37,17 +29,6 @@
   color: var(--iconsTextButtonColor);
   background: var(--bgButtonColor);
   font-weight: 600;
-  /* &:focus {
-    background: var(--bgFocusButtonSecondaryColor);
-    color: var(--iconsTextFocusButtonSecondaryColor);
-    border: 1px solid var(--borderFocusButtonSecondaryColor);
-  }
-  &:active {
-    background: var(--bgFocusButtonSecondaryColor);
-    box-shadow: none;
-    color: var(--iconsTextActiveButtonSecondaryColor);
-    border: 1px solid var(--borderActiveButtonSecondaryColor);
-  } */
 }
 
 .button__fs16-red {
