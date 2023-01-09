@@ -38,12 +38,12 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
     setImageOnPage(fileReader.result as string);
   };
 
-  const handleOnChange = (e: ChangeEvent<any>) => {
+  const handleOnChange = (e: ChangeEvent<any>) => {// eslint-disable-line
     e.preventDefault();
     const image = e.target.files[0];
     setImageTypeError(false);
     setImageSizeError(false);
-  
+
     if (image.size <= 2_000_000) {
       if (
         image.type === "image/jpeg" ||
