@@ -12,7 +12,7 @@ type SetBooleanInnerFunction = (value: boolean) => boolean;
 export const snowContext = createContext<{
   snow: boolean;
   setSnow: (value: boolean | SetBooleanInnerFunction) => void;
-} | null>(null);
+    } | null>(null);
 
 function App(): JSX.Element {
   const [languageCode, setLanguageCode] = useState(

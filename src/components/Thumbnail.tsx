@@ -4,9 +4,9 @@ import {
   ChangeEvent, FC, useState 
 } from "react";
 import { ReactComponent as ChangeFile } from "./icons/changeFile.svg";
+import { ILessonBack } from "./types/types";
 import { ReactComponent as Upload } from "./icons/upload.svg";
 import frame85 from "./icons/Frame85.png";
-import { ILessonBack } from "./types/types";
 import { useIntl } from "react-intl";
 
 interface ThumbnailProps {
@@ -32,15 +32,15 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
   const [image, setImage] = useState<imageTypes>();
   const [imageTypeError, setImageTypeError] = useState(false);
   const [imageSizeError, setImageSizeError] = useState(false);
-  const [imageOnPage, setImageOnPage] = useState<any>();
+  const [imageOnPage, setImageOnPage] = useState("");
 
   fileReader.onloadend = () => {
-    setImageOnPage(fileReader.result);
+    setImageOnPage(fileReader.result as string);
   };
 
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
-    const image = e.target["files"][0];
+    const image = e?.target["files"][0];
     setImageTypeError(false);
     setImageSizeError(false);
   
@@ -93,8 +93,8 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
                     props.imageURL
                       ? imageOnPage
                       : props.lesson?.image_link != null
-                      ? props.lesson?.image_link
-                      : frame85
+                        ? props.lesson?.image_link
+                        : frame85
                   }
                   alt="picture"
                 />
@@ -106,24 +106,22 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
                     image
                       ? image.name
                       : props.lesson?.image_name != null
-                      ? props.lesson?.image_name
-                      : "No name"
+                        ? props.lesson?.image_name
+                        : "No name"
                   }
                 >
                   {image
                     ? image.name
                     : props.lesson?.image_name != null
-                    ? props.lesson?.image_name
-                    : "No name"}
+                      ? props.lesson?.image_name
+                      : "No name"}
                 </p>
                 <p className="thumbnail__item-size">
                   {image
                     ? (Math.floor(image.size) / 1000000).toFixed(2)
                     : props.lesson?.image_size != null
-                    ? (Math.floor(+props.lesson?.image_size) / 1000000).toFixed(
-                        2
-                      )
-                    : "0.0"}{" "}
+                      ? (Math.floor(+props.lesson?.image_size) / 1000000).toFixed(2)
+                      : "0.0"}{" "}
                   MB
                 </p>
               </div>
