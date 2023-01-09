@@ -10,12 +10,12 @@ import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
-import Facebook from "../components/icons/facebook.svg";
-import Google from "../components/icons/google.svg";
+// import Facebook from "../components/icons/facebook.svg";
+// import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import Phone from "../components/icons/phone.svg";
-import VK from "../components/icons/vk.svg";
+// import Phone from "../components/icons/phone.svg";
+// import VK from "../components/icons/vk.svg";
 import {getEmail} from "../store/loginName/loginSlice";
 import {useAppDispatch} from "../store/hooks";
 
@@ -44,18 +44,20 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isRegEmail, setIsRegEmail] = useState<string | unknown>("");
+
+  useEffect(() => {
+    console.log(isRegEmail)
+    if (isRegEmail) {
+      navigate("/user/reg_in/information");
+    }
+  }, [isRegEmail, navigate]);
+
   const initialValues: FormValues = {
     email: "",
     password: "",
     confirmPassword: "",
     hasTermsAndConditions: false
   };
-
-  useEffect(() => {
-    if (isRegEmail === false) {
-      navigate("/user/reg_in/information");
-    }
-  }, [isRegEmail, navigate]);
 
   const validate = (values: FormValues) => {
 
@@ -64,9 +66,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
       errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
-    if (isRegEmail) {
-      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
-    }
+
     if (!passwordRegex.test(values.password)) {
       errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
         minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
@@ -95,10 +95,11 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
         onSubmit={(values: FormValues) => {
           dispatch(getEmail(values.email))
             .then((data) => data.payload)
-            .then((result) => setIsRegEmail(!result));
+            .then((result) =>{
+              setIsRegEmail(!result)
+            });
           setUserEmail(values.email);
           setUserPassword(values.password);
-
         }}
       >
         {({errors, touched}) => {
@@ -142,25 +143,25 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
                 buttonText={intl.formatMessage({id: "app.button.next"})}
                 className="button__page"
               />
-              <div className="or">
-                <span className="line-right"></span>
-                <FormattedMessage id="app.or" />
-                <span className="line-left"></span>
-              </div>
-              <div className="apps-logs">
-                <Link to="/user/google" className="app-logo">
-                  <img src={Google} alt="google" />
-                </Link>
-                <Link to="/user/facebook" className="app-logo">
-                  <img src={Facebook} alt="facebook" />
-                </Link>
-                <Link to="/user/vk" className="app-logo">
-                  <img src={VK} alt="vk" />
-                </Link>
-                <Link to="/user/sign_in/phone_numberR" className="app-logo">
-                  <img src={Phone} alt="phone" />
-                </Link>
-              </div>
+              {/*<div className="or">*/}
+              {/*  <span className="line-right"></span>*/}
+              {/*  <FormattedMessage id="app.or" />*/}
+              {/*  <span className="line-left"></span>*/}
+              {/*</div>*/}
+              {/*<div className="apps-logs">*/}
+              {/*  <Link to="/user/google" className="app-logo">*/}
+              {/*    <img src={Google} alt="google" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/facebook" className="app-logo">*/}
+              {/*    <img src={Facebook} alt="facebook" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/vk" className="app-logo">*/}
+              {/*    <img src={VK} alt="vk" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/sign_in/phone_numberR" className="app-logo">*/}
+              {/*    <img src={Phone} alt="phone" />*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
               <p className="text">
                 <FormattedMessage id="app.firstRegistrationForm.haveAccount" />
                 <Link

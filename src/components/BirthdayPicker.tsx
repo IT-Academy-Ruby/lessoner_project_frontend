@@ -15,6 +15,7 @@ type BirthdayPickerProps<V = string, FormValues = string> = {
   setIsWrapper: (a:boolean)=>void;
   isWrapper:boolean;
 }
+
 const BirthdayPicker = ({
   form, field, error,setIsWrapper
 }: BirthdayPickerProps): JSX.Element => {

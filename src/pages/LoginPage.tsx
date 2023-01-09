@@ -10,12 +10,12 @@ import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
-import Facebook from "../components/icons/facebook.svg";
-import Google from "../components/icons/google.svg";
+// import Facebook from "../components/icons/facebook.svg";
+// import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import Phone from "../components/icons/phone.svg";
-import VK from "../components/icons/vk.svg";
+// import Phone from "../components/icons/phone.svg";
+// import VK from "../components/icons/vk.svg";
 import {useAppDispatch} from "../store/hooks";
 
 interface FormValues {
@@ -119,25 +119,25 @@ const LoginPage = () => {
               <Link to="/user/sign_in/reset_password" className="password-link">
                 <FormattedMessage id="app.loginPage.password" />
               </Link>
-              <div className="or">
-                <span className="line-right"></span>
-                <FormattedMessage id="app.or" />
-                <span className="line-left"></span>
-              </div>
-              <div className="apps-logs">
-                <div className="app-logo">
-                  <img src={Google} alt="google" />
-                </div>
-                <div className="app-logo">
-                  <img src={Facebook} alt="facebook" />
-                </div>
-                <div className="app-logo">
-                  <img src={VK} alt="vk" />
-                </div>
-                <Link to="/user/sign_in/phone_numberA" className="app-logo">
-                  <img src={Phone} alt="phone" />
-                </Link>
-              </div>
+              {/*<div className="or">*/}
+              {/*  <span className="line-right"></span>*/}
+              {/*  <FormattedMessage id="app.or" />*/}
+              {/*  <span className="line-left"></span>*/}
+              {/*</div>*/}
+              {/*<div className="apps-logs">*/}
+              {/*  <div className="app-logo">*/}
+              {/*    <img src={Google} alt="google" />*/}
+              {/*  </div>*/}
+              {/*  <div className="app-logo">*/}
+              {/*    <img src={Facebook} alt="facebook" />*/}
+              {/*  </div>*/}
+              {/*  <div className="app-logo">*/}
+              {/*    <img src={VK} alt="vk" />*/}
+              {/*  </div>*/}
+              {/*  <Link to="/user/sign_in/phone_numberA" className="app-logo">*/}
+              {/*    <img src={Phone} alt="phone" />*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
               <p className="text">
                 <FormattedMessage id="app.don'tAccount" />
                 <Link

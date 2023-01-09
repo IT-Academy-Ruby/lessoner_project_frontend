@@ -91,7 +91,6 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               minSymbol={PASSWORD.minLength}
               maxSymbol={PASSWORD.maxLength}
               isConfirm={"currentPassword"}
-              error={touched.password ? errors.password : undefined}
             />
             <Field
               name="password"

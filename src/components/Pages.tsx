@@ -55,7 +55,7 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
   const loading = useAppSelector(state => state.login.loading);
 
   return (
-    <div className="reg__wrapper">
+    // <div className="reg__wrapper">
       <div className="reg__inner">
         <Link to="/" className="close__wrapper">
           <span className="close"></span>
@@ -68,7 +68,7 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
           {page()}
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 export default Pages;

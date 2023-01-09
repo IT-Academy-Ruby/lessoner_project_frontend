@@ -51,6 +51,7 @@ const EmailForm = ({userName, handleClose}: EmailFormProps) => {
       onSubmit={(values) => {
         const items = {name: userName, object: {email: values.email}};
         dispatch(editUserData(items));
+
       }}>
       {({errors, touched}) => {
         return (

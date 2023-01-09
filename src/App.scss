@@ -36,8 +36,8 @@ a {
 
 .body-page{
   display: grid;
-  grid-template-columns: 64px 1fr;
-  grid-auto-rows: 64px 1fr 0fr;
+  grid-template-columns: 76px 1fr;
+  grid-auto-rows: 64px 2fr;
 }
 
 @keyframes App-logo-spin {

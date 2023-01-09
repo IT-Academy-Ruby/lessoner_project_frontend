@@ -2,9 +2,13 @@
 
 .side-bar {
   grid-column-start: 2;
-  position: relative;
-  align-items: center;
+  position: fixed;
+  margin-left: 76px;
+  left: 0;
+  right: 0;
   height: 64px;
+  background: var(--bgThemeNavBarColor);
+  z-index: 91;
 }
 
 .header {
@@ -28,6 +32,9 @@
   align-content: center;
   text-decoration: none;
   margin-left: 27px;
+  position: relative;
+  z-index: 100;
+
 }
 
 .title-header {

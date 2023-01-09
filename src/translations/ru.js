@@ -131,7 +131,7 @@ export const messages_ru = {
   "app.resetPasswordPage.resetPassword": "Сброс пароля",
   "app.resetPasswordPage.text":
     "Мы отправили ссылку для восстановления доступа к вашему аккаунту на адрес ",
-  "app.setNewPasswordPage.title": "Войти как пользователь",
+  "app.setNewPasswordPage.title": "Сброс твоего пароля",
   "app.YourselfPage.errorIncorrectName": "Неверное имя пользователя",
   "app.YourselfPage.errorFieldEmpty": "Поле не должно быть пустым",
   "app.YourselfPage.errorSmallName": "Имя пользователя должно быть длинее {minSymbol} символов",

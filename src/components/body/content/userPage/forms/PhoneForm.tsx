@@ -47,7 +47,6 @@ const PhoneForm = ({
         handleEdit("code");
       }}>
 
-      return (
       <Form className="form-user-page">
         <div className="close-modal-form" onClick={() => handleClose()}>
           <span className="close-form"></span>
@@ -68,7 +67,7 @@ const PhoneForm = ({
           className="button__page button-form-user__page"
           disabled={isDisable}
         />
-      </Form>);
+      </Form>
     </Formik>
   );
 };

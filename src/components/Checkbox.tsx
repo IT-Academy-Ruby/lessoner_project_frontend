@@ -33,7 +33,7 @@ const Checkbox = ({
         className="label-checkbox"
       >
         {information}
-        {link ? <Link to={"/users/sign_in/terms"} className="link">{link}</Link> : null}
+        {link ? <Link to={"/user/sign_up/terms"} className="link">{link}</Link> : null}
         {error && <span className="error-message">{error}</span>}
       </label>
     </span>

@@ -49,7 +49,7 @@ const Avatar = ({
       />
       <ul className="list list-user">
         <li className="user-li">
-          <Link to="/user/userPage" className="user-link">
+          <Link to="/user/userPage" className="user-link" onClick={()=>setIsChecked(false)}>
             <FormattedMessage id="app.avatar.personalData" />
           </Link>
         </li>
