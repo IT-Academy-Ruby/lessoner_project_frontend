@@ -1,5 +1,4 @@
 import "./EditVideoLessonForm.scss";
-import AddSubtitle from"../icons/addSubtitle.svg";
 import { 
   BACKEND_URL_LESSONS, maxDescrHTCount,
   maxDescriptionLength, maxNameLength 
@@ -12,6 +11,7 @@ import {
 } from "formik";
 import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
+import AddSubtitle from"../icons/addSubtitle.svg";
 import Button from "../Button";
 import { ILessonBack } from "../types/types";
 import { Thumbnail } from "../Thumbnail";

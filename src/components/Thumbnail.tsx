@@ -40,7 +40,7 @@ export const Thumbnail: FC<ThumbnailProps> = (props) => {
 
   const handleOnChange = (e: ChangeEvent<any>) => {
     e.preventDefault();
-    const image = e?.target["files"][0];
+    const image = e.target.files[0];
     setImageTypeError(false);
     setImageSizeError(false);
   
