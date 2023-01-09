@@ -9,13 +9,13 @@
   height: 132px;
   img {
     border-radius: 8px 0px 0px 8px;
-    width: 208px;
   }
 }
 .info {
   width: 229px;
   height: 132px;
-  margin-left: 14px;
+  background-color: var(--bgVideoCard);
+  padding-left: 14px;
 }
 .VideoCardPublished {
   width: 136px;

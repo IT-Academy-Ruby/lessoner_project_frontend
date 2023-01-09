@@ -117,6 +117,30 @@ $themes: (
     darkTheme: $dark5,
     lightTheme: $light4,
   ),
+  bgCategoriesButtons: (
+    darkTheme: $dark1,
+    lightTheme: $light2,
+  ),
+  textCategoriesButtons: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgCategoryActiveButton: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  textCategoryActiveButton: (
+    darkTheme: $dark1,
+    lightTheme: $light2,
+  ),
+  categoriesBorder: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgVideoCard: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
 );
 
 @mixin styles($mode) {
