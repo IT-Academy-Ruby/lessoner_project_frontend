@@ -23,7 +23,7 @@ const Footer = () => {
   }, [decodeUserName, dispatch]);
 
   return (
-    <footer style={{ display: "flex", justifyContent: "center" }}>
+    <footer className="footer">
       <Link to={lessoner}>
         <div>
           <FormattedMessage id="app.name" />
