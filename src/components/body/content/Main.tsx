@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
 import Categories from "./categories/Categories";
+import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
 import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
@@ -62,6 +63,7 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
+        <Route path="/lessons/:id" element={<EditVideoLessonTitle />} />
         <Route path="/" element={<Lessoner/>} />
         <Route path="/categories" element={<Categories/>} />
         <Route path="/lessons" element={<Lessons/>} />
