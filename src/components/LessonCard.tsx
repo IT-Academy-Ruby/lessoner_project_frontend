@@ -1,12 +1,14 @@
 import "./LessonCard.scss";
-import React, { FC, useState } from "react";
+import { Link , useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
-import PopupMenu from "./PopupMenu";
+import { PopupMenu } from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
-import { useNavigate } from "react-router-dom";
+
+
 
 type ThumbnailImageUrlProps = {
   imagePreview: string;
@@ -33,44 +35,47 @@ const POPUP_ITEMS = [
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
-      <a href="/lessons">
+      <Link to="/videopage">
         <img src={props.imagePreview} alt="Videopreview" />
-      </a>
+      </Link>
     </div>
   );
 };
 
 type TitleProps = {
   title: string;
+  id?: number;
+  className?: string;
 };
 
-const Title: React.FC<TitleProps> = (props) => {
+export const Title: React.FC<TitleProps> = (props) => {
   return (
-    <div className="video__title">
-      <a href="#">
+    <div className={`video__title ${props.className}`}>
+      <Link to={`/lessons/${props.id}`}>
         <p>{props.title}</p>
-      </a>
+      </Link>
     </div>
   );
 };
 
-type MenuKebabProps = {
-  idCard: number;
+export type MenuKebabProps = {
+  className?: string;
+  idCard?: number;
 };
 
-const MenuKebab: FC<MenuKebabProps> = (props) => {
+export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
-    navigate("/lessons/" + props.idCard);
+    navigate("/lessons/" + idCard);
   };
 
   return (
     <>
-      <div onClick={handleKebabClick} className="kebab__menu">
+      <div onClick={handleKebabClick} className={`kebab__menu ${className}`}>
         <KebabSvg />
       </div>
       <PopupMenu
@@ -84,11 +89,12 @@ const MenuKebab: FC<MenuKebabProps> = (props) => {
 
 type PublishedDataProps = {
   published: string;
+  className?: string;
 };
 
-const Published: React.FC<PublishedDataProps> = (props) => {
+export const Published: React.FC<PublishedDataProps> = (props) => {
   return (
-    <div className="details__date">
+    <div className={`details__date ${props.className}`}>
       <p>
         Published:
         <Moment element="span" format="YYYY.MM.DD" date={props.published} />
@@ -144,7 +150,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         </div>
         <div className="card__info">
           <div className="card__info-top">
-            <Title title={props.title} />
+            <Title title={props.title} id={props.id} />
             <MenuKebab idCard={props.id} />;
           </div>
           <div className="details">
@@ -164,5 +170,3 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
 };
 
 export default LessonCard;
-
-

@@ -10,6 +10,7 @@ type UserSession = {
     phone: string;
     description: string;
     exp: number;
+    admin: boolean;
   }
 }
 
@@ -21,6 +22,7 @@ const initialState: UserSession = {session: {
   phone: "",
   description: "",
   exp: 0,
+  admin: false,
 }};
 
 const decode = () => {
@@ -38,9 +40,7 @@ const decode = () => {
 const sessionJWTSlice = createSlice({
   name: "sessionJWT",
   initialState,
-  reducers: {nameDecodedUser: (state) => {
-    state.session = decode();
-  }},
+  reducers: {nameDecodedUser: (state) => {state.session = decode();}},
 });
 
 export const {nameDecodedUser} = sessionJWTSlice.actions;

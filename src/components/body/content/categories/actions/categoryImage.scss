@@ -1,51 +1,27 @@
 @import "./src/constants";
 
 .category-label {
-  font-family: "ApercuPro";
-  color: #1B1B1F;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 32px;
+  font-family: $font;
+  color: $black;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 32px;
 }
 
-.category-field {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 1px dashed #B9D1FF;
-  border-radius: 8px;
-  width: 100%;
-  margin-top: 4px;
-  background: #FBFBFF;
-  height: 216px;
-  box-sizing: border-box;
-}
-
-.category-upload {
-  margin: 12px 64px 50px 64px;
-}
-
-.upload-buttons {
-  display: flex;
-}
-
-.upload-text {
-  font-family: "ApercuPro";
-  color: #9A9AA3;
-  font-weight: 600;
-  font-size: 16px;
+.category-image-inform {
+  margin: 8px 0 12px 0;
+  font-family: $font;
+  color: $black;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 150%;
-}
-
-.margin-or {
-  margin: 0 24px;
 }
 
 .category-file {
@@ -58,26 +34,71 @@
   line-height: 0;
 }
 
-.button-select {
-  display: flex;
-  align-items: center;
-  border: 1px solid $blueLightColor;
-  border-radius: 28px;
-  font-family: "ApercuPro", sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  color: $blueLightColor;
-  padding: 6px 36px;
-  background: white;
-  margin: 0;
-
-  &:disabled {
-    background: #FFFFFF;
-    opacity: 0.5;
-    border-radius: 28px;
-  }
-}
-
 .button-image {
   margin-right: 11px;
+  color: $white;
+}
+
+.category-image-line {
+  width: 100%;
+  height: 1px;
+  margin: 32px 0 0 0;
+  color: $greyDefault;
+}
+
+.upload-image {
+  margin: 24px 0 15px 0;
+  color: $black;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.image-add-field {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.select-image {
+  position: relative;
+  width: 80px;
+  height: 60px;
+  border-radius: 8px;
+}
+
+.image-data {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 0 44px 0 12px;
+}
+
+.category-buttons-field {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 8px;
+  position: relative;
+  margin-left: auto;
+}
+
+.select-image-name {
+  width: 100%;
+  margin-bottom: 4px;
+  color: $black;
+  word-break: break-all;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.select-image-size {
+  color: $greyDefault;
+  font-family: $font;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 150%;
 }

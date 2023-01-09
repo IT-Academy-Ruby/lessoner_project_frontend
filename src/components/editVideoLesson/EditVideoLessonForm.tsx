@@ -1,4 +1,5 @@
 import "./EditVideoLessonForm.scss";
+import AddSubtitle from"../icons/addSubtitle.svg";
 import { 
   BACKEND_URL_LESSONS, maxDescrHTCount,
   maxDescriptionLength, maxNameLength 
@@ -167,7 +168,8 @@ export const EditVideoLessonForm: FC = () => {
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.addsubtitles" })}
               className="button__fs16 disabled"
-              buttonIcon={<div className="svg__add"></div>}
+              buttonImage={AddSubtitle}
+              imageStyle="svg_add"
             />
           </div>
           <label className="evlf__label">

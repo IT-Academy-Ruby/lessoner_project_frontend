@@ -60,6 +60,18 @@
   }
 }
 
+.button-login-category {
+  padding: 6px 36px;
+  font-family: $font;
+  background: $blueLightColor;
+  color: $white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+}
+
 .button__page {
   display: flex;
   align-items: center;
@@ -143,7 +155,7 @@
 
 .button {
   margin-bottom: 28px;
-  font-family: $font;
+  font-family:$font;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -156,8 +168,13 @@
   cursor: pointer;
 }
 
-.button-form-user__page {
-  margin: 0;
+.button-delete {
+  color: $warningColor;
+  border-color: $warningColor;
+}
+
+.icon-button {
+  margin-right: 11px;
 }
 
 @media (max-width: $max-width-phone) {

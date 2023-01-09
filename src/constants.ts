@@ -19,8 +19,9 @@ const NAME_CATEGORY = {
   minSymbols: 1, maxSymbols: 64, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
 const DESCRIPTION_CATEGORY = {
-  minSymbols: 1, maxSymbols: 600, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
+  minSymbols: 1, maxSymbols: 300, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
+const IMAGE_DATA = {format: [".jpg", ".jpeg", ".png", ".gif"], size: 5242880};
 const SKELETON_AMOUT = 8;
 const NAVBAR_ADMIN = "admin";
 const NAVBAR_AUTORISED = "autorised";
@@ -28,10 +29,7 @@ const NAVBAR_NOT_AUTORISED = "not_autorised";
 
 export {
   BACKEND_URL, BACKEND_URL_LESSONS, CODE, DEFAULT_COUNTRY_CODE, EMAIL, FACEBOOK_APP, GOOGLE_APP,
-  PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength,
+  PASSWORD, REDIRECT_URL, USERNAME, VK_APP, maxNameLength,IMAGE_DATA,
   maxDescriptionLength, maxDescrHTCount, NAME_CATEGORY, DESCRIPTION_CATEGORY, SKELETON_AMOUT,
   NAVBAR_ADMIN, NAVBAR_AUTORISED, NAVBAR_NOT_AUTORISED
 };
-
-
-

@@ -1,13 +1,24 @@
 import "./categories.scss";
 import {FormattedMessage, useIntl} from "react-intl";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import Button from "../../../Button";
 import CategoriesAdmin from "./CategoriesAdmin";
 import CategoriesUser from "./CategoriesUser";
+import {getCategory} from "../../../../store/categorySlice/categorySlice";
+import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 
 const Categories = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const admin = useAppSelector(state => state.userDecodedName.session.admin);
+
+  useEffect(() => {
+    if (admin) {
+      dispatch(getCategory());
+    }
+  }, [admin, dispatch]);
 
   const nameColomn = [
     "ID",
@@ -29,19 +40,19 @@ const Categories = () => {
         <h1 className="category-title">
           <FormattedMessage id="app.categories"/>
         </h1>
-        <Button
+        {admin && <Button
           className="button-register"
           buttonText={intl.formatMessage({id: "app.button.categories"})}
           buttonType="button"
           onClick={addCategory}
-        />
+        />}
       </div>
       <div className="tab">
-        <div className="row-category">
+        {admin && <div className="row-category">
           {nameColomn.map(column => <div key={column} className="column-name">{column}</div>)}
-        </div>
-        <CategoriesAdmin/>
-        <CategoriesUser/>
+        </div>}
+        {admin && <CategoriesAdmin/>}
+        {!admin && <CategoriesUser/>}
       </div>
     </div>
   );

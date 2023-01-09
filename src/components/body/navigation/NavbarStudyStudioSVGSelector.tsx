@@ -15,6 +15,8 @@ import {ReactComponent as Management} from "../../icons/navbar/management.svg";
 import {ReactComponent as Menu} from "../../icons/navbar/menu.svg";
 import {ReactComponent as MyLesson} from "../../icons/navbar/my_lesson.svg";
 import { ReactComponent as Network } from "../../icons/navbar/network.svg";
+import { ReactComponent as SnowOff } from "../../icons/navbar/clouds.svg";
+import { ReactComponent as SnowOn } from "../../icons/navbar/snow.svg";
 import { ReactComponent as Subscription } from "../../icons/navbar/subscription.svg";
 import {ReactComponent as WatchLater} from "../../icons/navbar/watch_later.svg";
 
@@ -54,6 +56,10 @@ const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
     return <DarkTheme />;
   case "light_theme":
     return <LightTheme />;
+  case "snow_on":
+    return <SnowOn />;
+  case "snow_off":
+    return <SnowOff />;
   case "network":
     return <Network />;
   case "instagram":

@@ -25,7 +25,7 @@
 }
 
 .logo-name {
-  color: $blueLightColor;
+  color: var(--textLogo);
   display: flex;
   min-width: 230px;
   flex-wrap: wrap;
@@ -88,22 +88,25 @@
   cursor: pointer;
 
   &:hover {
-    background: $greyDefault;
+    background: var(--bgTextHoverDropDownMainPage);
   }
 }
 
 .user-link {
   text-decoration: none;
+  color: var(--textDropDownMainPage);
 }
 
 .log-out {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: var(--textDropDownMainPage);
 }
 
 #input-avatar:checked ~ .list-user {
   display: block;
+  background-color: var(--bgDropDownMainPage);
 }
 
 .language {
@@ -125,12 +128,17 @@
 
 .lang-registration {
   align-items: center;
+  color: var(--textDropDownMainPage);
 }
 
 .list {
   position: absolute;
   background: $white;
-  box-shadow: 0px 18px 80px rgba(39, 53, 141, 0.07), 0px 6.5703px 29.2013px rgba(39, 53, 141, 0.0292778), 0px 3.18976px 14.1767px rgba(39, 53, 141, 0.021578), 0px 1.56368px 6.94968px rgba(39, 53, 141, 0.0184521), 0px 0.618281px 2.74791px rgba(39, 53, 141, 0.0153621);
+  box-shadow: 0px 18px 80px rgba(39, 53, 141, 0.07),
+    0px 6.5703px 29.2013px rgba(39, 53, 141, 0.0292778),
+    0px 3.18976px 14.1767px rgba(39, 53, 141, 0.021578),
+    0px 1.56368px 6.94968px rgba(39, 53, 141, 0.0184521),
+    0px 0.618281px 2.74791px rgba(39, 53, 141, 0.0153621);
   font-family: $font;
   color: $black;
   font-weight: 400;

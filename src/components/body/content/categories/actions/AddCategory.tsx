@@ -1,26 +1,29 @@
 import "./addCategory.scss";
-import {DESCRIPTION_CATEGORY, NAME_CATEGORY} from "../../../../../constants";
+import {
+  DESCRIPTION_CATEGORY, IMAGE_DATA, NAME_CATEGORY
+} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {Link, useNavigate} from "react-router-dom";
 import {
-  addCategory,getCategory, updateCategory
+  addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
 import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
-import {useEffect} from "react";
+import ModalCategory from "./ModalCategory";
+import Successful from "../../../../icons/successful.svg";
+import {useNavigate} from "react-router-dom";
 
 interface FormValues {
-  id: number;
   name: string;
   description: string;
-  status: string;
+  image: string;
 }
 
 interface FormErrors {
@@ -28,45 +31,69 @@ interface FormErrors {
 }
 
 type TypeTitle = {
-  add: boolean
+  add: boolean;
 }
 const AddCategory = ({add}: TypeTitle) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [selectImage, setSelectImage] = useState({
+    name: "", type: "", size: 0, image:  undefined,
+  });
   const allCategories = useAppSelector((state) => state.categories.categories);
-
-  useEffect(() => {
-    if (!add) {
-      dispatch(getCategory());
-    }
-  }, [dispatch,add]);
+  const [category, setCategory] = useState({
+    name: "",
+    description: "",
+    id: 0,
+    image_url: "",
+    status: "active",
+    amount_lessons: 0,
+    created_at: "",
+    image_size: 0,
+    image_name: "",
+    image_type: "",
+  });
+  const [editCategory, setEditCategory] = useState({
+    name: "", type: "", size: 0, image: "",
+  });
+  const [isClose, setIsClose] = useState(false);
+  const [isSuccessful, setISuccessful] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const url = window.location.href;
   const idCategory = parseInt(url.slice(url.lastIndexOf("/") + 1));
-  let category = {name: "", description: ""};
 
-  if (!add && allCategories.length > 1) {
-    category = allCategories.filter(category => category.id === idCategory)[0];
-  }
+  useEffect(() => {
+    if (!add && allCategories.length <= 1) {
+      dispatch(getCategory());
+    }
+    if (!add && allCategories.length > 1) {
+      setCategory(allCategories.filter(category => category.id === idCategory)[0]);
+    }
+    setEditCategory({
+      image: category.image_url,
+      size: category.image_size,
+      name: category.image_name,
+      type: category.image_type,
+    });
+  }, [dispatch, add, allCategories, category, idCategory]);
 
   const initialValues: FormValues = {
-    id: 0,
-    name: add ? "" : category.name,
-    description: add ? "" : category.description,
-    status: "active",
+    name: category.name,
+    description: category.description,
+    image: editCategory.image,
   };
 
-  const nameLength=initialValues.name.length;
-  const descriptionLength=initialValues.name.length;
+  const nameLength = category.name.length;
+  const descriptionLength = category.name.length;
 
   return (
     <div className="add-category">
-      <Link to="/categories" className="button-back">
+      <div className="button-back" onClick={() => setIsClose(true)}>
         <span className="arrow-back">&#10094;</span>
         <FormattedMessage id="app.categories.back"/>
-      </Link>
-      {allCategories.length > 1 && <Formik
+      </div>
+      {(add || category.id > 0) && <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
@@ -90,17 +117,45 @@ const AddCategory = ({add}: TypeTitle) => {
             errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
               {symbols: DESCRIPTION_CATEGORY.maxSymbols});
           }
-
+          if (selectImage.type) {
+            const isFormat = IMAGE_DATA.format.some(format =>
+              "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1) === format);
+            if (!isFormat) {
+              errors.image = intl.formatMessage({id: "app.categories.imageError"});
+            }
+            if (selectImage.size > IMAGE_DATA.size) {
+              errors.image = intl.formatMessage({id: "app.categories.imageBigSize"});
+            }
+          }
+          if (!selectImage.name) {
+            errors.image = intl.formatMessage({id: "app.categories.selectFile"});
+          }
+          if (values.name && values.description && (selectImage.name || editCategory.name)
+            && !errors.name && !errors.description && !errors.image) {
+            setIsDisabled(false);
+          } else {
+            setIsDisabled(true);
+          }
           return errors;
+
         }}
         onSubmit={(values: FormValues) => {
-          values.name = values.name.trim();
-          values.description = values.description.trim();
-          if (add) {
-            dispatch(addCategory(values));
+          setISuccessful(true);
+          if (!editCategory.image) {
+            dispatch(addCategory({
+              image: selectImage.image,
+              name: values.name.trim(),
+              description: values.description.trim(),
+            }));
+            dispatch(getCategory());
           } else {
-            values.id = idCategory;
-            dispatch(updateCategory(values));
+            dispatch(updateCategory({
+              id: idCategory,
+              image: !editCategory.image ? selectImage.image : undefined,
+              name: values.name.trim(),
+              description: values.description.trim(),
+            }));
+            dispatch(getCategory());
           }
           navigate("/categories");
         }}>
@@ -118,7 +173,6 @@ const AddCategory = ({add}: TypeTitle) => {
                 component={CategoryName}
                 error={touched.name ? errors.name : undefined}
                 nameLength={nameLength}
-
               />
               <Field
                 name="description"
@@ -129,25 +183,48 @@ const AddCategory = ({add}: TypeTitle) => {
               <Field
                 name="image"
                 component={CategoryImage}
+                error={touched.image ? errors.image : undefined}
+                selectImage={selectImage}
+                setSelectImage={setSelectImage}
+                setEditCategory={setEditCategory}
+                editCategory={editCategory}
               />
+
               <div className="category-buttons">
                 <Button
                   buttonType="button"
                   buttonText={intl.formatMessage({id: "app.categories.button.cancel"})}
                   className="button-select button-cancel"
-                  onClick={() => navigate("/categories")}
+                  onClick={() => setIsClose(true)}
                 />
                 <Button
                   buttonType="submit"
                   buttonText={intl.formatMessage({id: "app.categories.button.save"})}
                   className="button-select"
-                  disabled={!!errors.description || !!errors.name}
+                  disabled={isDisabled}
                 />
               </div>
             </Form>
           );
         }}
       </Formik>}
+      {isClose && <ModalCategory
+        setIsClose={setIsClose}
+        onClickYes={() => navigate("/categories")}
+        title={intl.formatMessage({id: "app.categories.close.text"})}
+      />}
+      {isSuccessful && <div className="wrapper-modal">
+        <div className="field-modal">
+          <div className="field-successful">
+            <img src={Successful} alt="successful" className="successful-icon"/>
+            {add && <FormattedMessage id="app.categories.add.successful"/>}
+            {!add && <FormattedMessage id="app.categories.edit.successful"/>}
+            <div className="field-close-successful">
+              <span className="close-modal" onClick={() => setISuccessful(false)}/>
+            </div>
+          </div>
+        </div>
+      </div>}
     </div>
   );
 };

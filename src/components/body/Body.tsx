@@ -19,4 +19,5 @@ const Body = ({onLanguageSwitch}: BodyProps) => {
     </div>
   );
 };
+
 export default Body;

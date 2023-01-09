@@ -18,7 +18,7 @@
   left: 0;
   top: 0;
   text-decoration: none;
-
+  cursor: pointer;
   color: $greySearchColor;
   font-weight: 600;
   font-size: 16px;
@@ -29,7 +29,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 656px;
+  max-width: 656px;
+  width: 100%;
+  margin: 0 40px;
   background: $white;
   padding: 32px 48px 48px;
   box-shadow: 0px 0px 4px $greySearchColor;
@@ -112,8 +114,27 @@
   display: block;
   margin-top: 0.5em;
   font-family: $font;
-  font-style: normal;
   font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+.invisible {
+  display: none;
+}
+
+.invalid-input {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.amount-symbols {
+  position: absolute;
+  bottom: 7px;
+  right: 14px;
+  font-family: $font;
+  color: $greySearchColor;
+  font-weight: 700;
   font-size: 12px;
   line-height: 150%;
 }
@@ -122,15 +143,31 @@
   color: $warningColor;
 }
 
-.help {
-  color: $blueLightColor;
+.field-modal {
+  max-width: 280px;
+  width: 100%;
+  background: $white;
+  box-shadow: 0 0 4px $greySearchColor;
 }
 
-.invisible {
-  display: none
+.field-successful {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+  text-align: left;
+  font-family: 'ApercuPro';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
 }
 
-.invalid-input {
-  border: 1px solid $warningColor;
-  color: $warningColor;
+.successful-icon {
+  margin-right: 17px;
+}
+
+.field-close-successful {
+  margin-left: 12px;
+  width: 24px;
+  height: 24px;
+  text-align: end;
 }
