@@ -62,7 +62,7 @@ const CategoryImage = ({
         setErrorImage("");
       }
     }
-  }, [selectImage, intl, isChange]);
+  }, [selectImage, intl, isChange,setErrorImage]);
 
   const handleUpload = () => {
     if (fileRef.current) {

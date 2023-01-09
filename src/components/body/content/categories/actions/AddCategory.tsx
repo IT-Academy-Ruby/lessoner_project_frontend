@@ -1,24 +1,22 @@
 import "./addCategory.scss";
-import {
-  DESCRIPTION_CATEGORY, IMAGE_DATA, NAME_CATEGORY
-} from "../../../../../constants";
+import { DESCRIPTION_CATEGORY, NAME_CATEGORY } from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
-import {FormattedMessage, useIntl} from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import {
   addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
-import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {useEffect, useState} from "react";
+import { descriptionCategoryRegex, nameCategoryRegex } from "../../../../../validationRules";
+import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
+import { useEffect, useState } from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import ModalCategory from "./ModalCategory";
 import Successful from "../../../../icons/successful.svg";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface FormValues {
   name: string;
