@@ -14,6 +14,9 @@ import {useIntl} from "react-intl";
 import {useNavigate} from "react-router-dom";
 
 const CategoriesAdmin = () => {
+
+  // const [isGetCategory, setIsGetCategory] = useState(false);
+
   const [isClose, setIsClose] = useState(false);
   const [idCategory, setIdCategory] = useState(0);
   const intl = useIntl();
@@ -22,6 +25,7 @@ const CategoriesAdmin = () => {
   const allCategories = useAppSelector((state) => state.categories.categories);
   const loading = useAppSelector((state) => state.categories.loading);
   const formatter = new Intl.DateTimeFormat("ru");
+
   useEffect(() => {
     dispatch(getCategory());
   }, [dispatch]);

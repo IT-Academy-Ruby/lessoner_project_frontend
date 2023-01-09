@@ -1,10 +1,7 @@
 import "./input.scss";
-import React, {useEffect} from "react";
 import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
 import classNames from "classnames";
-import {getEmail} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
 
 type EmailProps = {
   field: {
@@ -13,17 +10,15 @@ type EmailProps = {
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string,
   };
+  isEmail: string | boolean;
   error?: string;
+  textError?: string;
 }
 
-const Email = ({field, error}: EmailProps): JSX.Element => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    if(field.value.length > 0){
-      dispatch(getEmail(field.value));
-    }
-  }, [dispatch,error,field.value]);
 
+const Email = ({
+  field, error, isEmail, textError
+}: EmailProps): JSX.Element => {
   return (
     <label className="input-label">
       <FormattedMessage id="app.email.name"/>
@@ -39,6 +34,9 @@ const Email = ({field, error}: EmailProps): JSX.Element => {
         {...field}
       />
       {error && <span className="error-message">{error}</span>}
+      {isEmail === false && !error && <span className="error-message">
+        {textError}
+      </span>}
     </label>
   );
 };

@@ -18,7 +18,7 @@ export const passwordRegex = new RegExp("^[-/=!#$%&'*+?^_`{|}~.A-Z0-9]{" +
 
 export const CodeRegex = new RegExp("[0-9a-z]{" + CODE.maxLength + "}", "i");
 
-export const UserRegex = new RegExp("[a-z0-9]", "i");
+export const UserRegex = new RegExp("[^0-9a-z]", "i");
 
 export const nameCategoryRegex = new RegExp("^[\"\\[\\]\\s-:)(/=!#$%&'*+?^_`{|}~.,<>@A-Z0-9А-Я]{" +
   NAME_CATEGORY.minSymbols + "," + NAME_CATEGORY.maxSymbols + "}$", "i");

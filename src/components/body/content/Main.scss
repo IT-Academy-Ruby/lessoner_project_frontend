@@ -1,4 +1,7 @@
 .main {
+  position: relative;
+  grid-column-start: 2;
+  grid-row-start: 2;
   box-sizing: border-box;
   display: flex;
   justify-content: center;

@@ -15,6 +15,7 @@ type BirthdayPickerProps<V = string, FormValues = string> = {
   setIsWrapper: (a:boolean)=>void;
   isWrapper:boolean;
 }
+
 const BirthdayPicker = ({
   form, field, error,setIsWrapper
 }: BirthdayPickerProps): JSX.Element => {
@@ -26,7 +27,7 @@ const BirthdayPicker = ({
     const {setFieldValue} = form;
     const {name: fieldName} = field;
     setBirthday(selectedDate);
-    setFieldValue(fieldName, selectedDate.toLocaleDateString(), true);
+    setFieldValue(fieldName, selectedDate, true);
   };
 
   const minYear = new Date((new Date()).getTime() -

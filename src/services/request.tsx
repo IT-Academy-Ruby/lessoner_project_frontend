@@ -10,7 +10,6 @@ const requestApi = async (
   file ? formData.append("image", file[0]) : null;
 
   const token = localStorage.getItem("JWT");
-
   if (typeRequest === "GET") {
     return await fetch(url, {headers: new Headers({"Authorization": `Bearer ${token}`})});
   }

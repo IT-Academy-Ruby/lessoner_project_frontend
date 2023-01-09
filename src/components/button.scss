@@ -96,6 +96,19 @@
   &:focus {
     background: $blueDarkColor;
   }
+
+  &:disabled {
+    background: #F3F3F3;
+    color: #D1D1D1;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(46, 51, 99, 0.43);
+  }
 }
 
 .button-login {

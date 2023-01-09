@@ -26,9 +26,7 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
   const user = useAppSelector(state => state.dataUser.user.name);
 
   useEffect(() => {
-    if (token) {
-      dispatch(nameDecodedUser());
-    }
+    dispatch(nameDecodedUser());
     if (nameDecode && !user) {
       dispatch(getUserData(nameDecode));
     }
