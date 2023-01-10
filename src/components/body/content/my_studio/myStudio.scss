@@ -1,0 +1,14 @@
+@import "./src/constants";
+
+.mystudio__wrapper {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mystudio__inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 24px;
+}

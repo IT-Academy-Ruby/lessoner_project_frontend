@@ -1,6 +1,10 @@
+import "./myStudioContent.scss";
+
 const MyStudioContent = () => {
   return (
-    <div />
+    <div className="mystudiocontent__wrapper">
+      
+    </div>
   );
 };
 

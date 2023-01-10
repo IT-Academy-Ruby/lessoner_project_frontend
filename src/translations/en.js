@@ -80,6 +80,7 @@ export const messages_en = {
   "app.button.addsubtitles": "Add subtitles",
   "app.button.cancel": "Cancel",
   "app.button.save": "Save",
+  "app.button.addNewLesson": "Add new lesson",
   "app.pagesTitle.registration": "Registration",
   "app.pagesTitle.phoneNumber": "Enter your phone number",
   "app.pagesTitle.enterCode": "Enter the code",

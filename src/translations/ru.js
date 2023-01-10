@@ -80,6 +80,7 @@ export const messages_ru = {
   "app.button.addsubtitles": "Добавить субтитры",
   "app.button.cancel": "Отменить",
   "app.button.save": "Сохранить",
+  "app.button.addNewLesson": "Добавить новый урок",
   "app.pagesTitle.registration": "Регистрация",
   "app.pagesTitle.confirm":
     "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
