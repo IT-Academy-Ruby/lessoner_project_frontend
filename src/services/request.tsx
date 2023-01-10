@@ -18,7 +18,7 @@ const requestApi = async (
     headers: new Headers(
       {"Authorization": `Bearer ${token}`, "Content-Type": "application/json;charset=utf-8"}
     ),
-    body: JSON.stringify(value) && formData,
+    body: JSON.stringify(value) || formData,
 
   });
 };

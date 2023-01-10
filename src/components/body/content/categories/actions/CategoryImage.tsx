@@ -12,6 +12,7 @@ type CategoryImageProps = {
   field: {
     name: string;
     onClick: () => void;
+    onChange: () => void;
     value: FileList;
   },
   selectImage: {
@@ -23,14 +24,16 @@ type CategoryImageProps = {
   setSelectImage: (object: object) => void;
   setEditCategory: (object: object) => void;
   editCategory: { image: string, name: string, type: string, size: number };
+  errorImage: string;
+  setErrorImage: (error: string) => void;
 };
 
 const CategoryImage = ({
-  selectImage, setSelectImage, setEditCategory, editCategory
+  selectImage, setSelectImage, setEditCategory, editCategory, errorImage, setErrorImage
 }: CategoryImageProps) => {
   const intl = useIntl();
   const fileRef = useRef<HTMLInputElement>(null);
-  const [errorImage, setErrorImage] = useState("");
+
   const [isChange, setIsChange] = useState(false);
 
   const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +62,7 @@ const CategoryImage = ({
         setErrorImage("");
       }
     }
-  }, [selectImage, intl, isChange]);
+  }, [selectImage, intl, isChange,setErrorImage]);
 
   const handleUpload = () => {
     if (fileRef.current) {

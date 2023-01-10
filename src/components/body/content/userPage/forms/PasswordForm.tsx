@@ -97,7 +97,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               component={PasswordAndConfirm}
               minSymbol={PASSWORD.minLength}
               maxSymbol={PASSWORD.maxLength}
-              isConfirm={false}
+              isConfirm={true}
               error={touched.password ? errors.password : undefined}
             />
             <Field
@@ -105,7 +105,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               component={PasswordAndConfirm}
               minSymbol={PASSWORD.minLength}
               maxSymbol={PASSWORD.maxLength}
-              isConfirm={true}
+              isConfirm={false}
               error={touched.confirmPassword ? errors.confirmPassword : undefined}
             />
             <Button
