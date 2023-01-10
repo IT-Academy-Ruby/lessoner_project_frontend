@@ -1,6 +1,6 @@
 @import "../constants.scss";
 
-.button__main, .button__page, .button__fs16, .button__fs16-white, .disabled {
+.button__main, .button__page, .button__fs16, .button__fs16-white, .button__fs16-red, .disabled {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,20 +13,31 @@
   cursor: pointer;
   transition: .2s;
   &:hover {
-    box-shadow: 0px 4px 6px rgba(46, 51, 99, 0.43);
+    box-shadow: var(--themeButtonHover);
   }
 }
 
-.button__fs16, .button__fs16-white {
+.button__fs16, .button__fs16-white,
+.button__fs16-red {
   padding: 6px 32px;
   font-size: 16px;
 }
 
-.button__fs16-white {
+.button__fs16-white,
+.button__fs16-red {
   border: 1px solid $borderColor;
-  color: $blueLightColor;
-  background: $white;
+  color: var(--iconsTextButtonColor);
+  background: var(--bgButtonColor);
   font-weight: 600;
+}
+
+.button__fs16-red {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.button__fs16-left {
+  margin-right: 16px;
 }
 
 .disabled {
