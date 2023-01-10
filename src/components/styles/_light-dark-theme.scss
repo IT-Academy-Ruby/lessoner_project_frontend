@@ -3,7 +3,7 @@
 $themes: (
   bgThemeColor1: (
     darkTheme: $darkMain,
-    lightTheme: $lightMain, 
+    lightTheme: $lightMain,
   ),
   textThemeColor1: (
     darkTheme: $grey100,
@@ -29,49 +29,64 @@ $themes: (
     darkTheme: $dark6,
     lightTheme: $light5,
   ),
-  bgEditVideoLessonColor: (darkTheme: $dark3,
+  bgEditVideoLessonColor: (
+    darkTheme: $dark3,
     lightTheme: $lightSideBar,
   ),
-  editVideoLessonShadow: (darkTheme: $EditVideoLessonShadowDark,
+  editVideoLessonShadow: (
+    darkTheme: $EditVideoLessonShadowDark,
     lightTheme: $EditVideoLessonShadowLight,
   ),
-  iconsTextEditVideoLessonColor: (darkTheme: $light2,
+  iconsTextEditVideoLessonColor: (
+    darkTheme: $light2,
     lightTheme: $dark1,
   ),
-  bgButtonColor: (darkTheme: $darkSideBar,
+  bgButtonColor: (
+    darkTheme: $darkSideBar,
     lightTheme: $lightSideBar,
   ),
-  bgFocusButtonColor: (darkTheme: $light6,
+  bgFocusButtonColor: (
+    darkTheme: $light6,
     lightTheme: $dark9,
   ),
-  shadowActiveButtonColor: (darkTheme: $ButtonActiveShadowDark,
+  shadowActiveButtonColor: (
+    darkTheme: $ButtonActiveShadowDark,
     lightTheme: $ButtonActiveShadowLight,
   ),
-  bgFocusButtonSecondaryColor: (darkTheme: $dark3,
+  bgFocusButtonSecondaryColor: (
+    darkTheme: $dark3,
     lightTheme: $light1,
   ),
-  iconsTextButtonColor: (darkTheme: $light2,
+  iconsTextButtonColor: (
+    darkTheme: $light2,
     lightTheme: $blue2,
   ),
-  iconsTextFocusButtonColor: (darkTheme: $dark1,
+  iconsTextFocusButtonColor: (
+    darkTheme: $dark1,
     lightTheme: $light1,
   ),
-  iconsTextActiveButtonColor: (darkTheme: $blue3,
+  iconsTextActiveButtonColor: (
+    darkTheme: $blue3,
     lightTheme: $light1,
   ),
-  iconsTextFocusButtonSecondaryColor: (darkTheme: $light7,
+  iconsTextFocusButtonSecondaryColor: (
+    darkTheme: $light7,
     lightTheme: $blue4,
   ),
-  iconsTextActiveButtonSecondaryColor: (darkTheme: $light8,
+  iconsTextActiveButtonSecondaryColor: (
+    darkTheme: $light8,
     lightTheme: $dark10,
   ),
-  borderFocusButtonSecondaryColor: (darkTheme: $light7,
+  borderFocusButtonSecondaryColor: (
+    darkTheme: $light7,
     lightTheme: $blue4,
   ),
-  borderActiveButtonSecondaryColor: (darkTheme: $light8,
+  borderActiveButtonSecondaryColor: (
+    darkTheme: $light8,
     lightTheme: $dark10,
   ),
-  themeButtonHover: (darkTheme: $ButtonHoverLight,
+  themeButtonHover: (
+    darkTheme: $ButtonHoverLight,
     lightTheme: $ButtonHoverDark,
   ),
   bgCardThemeColor: (
@@ -185,6 +200,10 @@ $themes: (
   bgVideoCard: (
     darkTheme: $dark3,
     lightTheme: $light1,
+  ),
+  textUserPageFields: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
   ),
 );
 
