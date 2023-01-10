@@ -32,7 +32,7 @@ const Content = () => {
   let controlRendering = 1;
   useEffect(() => {
     const registrationToken = url.lastIndexOf("confirm_email?token=");
-    const resetPasswordToken = url.lastIndexOf("reset_password?token=");
+    const resetPasswordToken = url.lastIndexOf("password/reset?token=");
     const updateEmaiToken = url.lastIndexOf("update_email?token=");
 
     if (registrationToken > 0 && controlRendering === 1) {

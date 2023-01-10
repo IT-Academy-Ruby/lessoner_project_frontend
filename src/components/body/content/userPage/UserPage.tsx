@@ -48,6 +48,7 @@ const UserPage = () => {
     {value: "**********",
       title: intl.formatMessage({id: "app.passwordAndConfirm.pass"})},
   ];
+
   const element = () => {
     switch (component) {
     case (intl.formatMessage({id: "app.UserName"})):
