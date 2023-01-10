@@ -1,12 +1,15 @@
+import "./myStudio.scss";
 import MyStudioContent from "./MyStudioContent";
 import MyStudioHead from "./MyStudioHead";
 
 const MyStudio = () => {
   return (
-    <>
-      <MyStudioHead/>
-      <MyStudioContent/>
-    </>
+    <div className="mystudio__wrapper">
+      <div className="mystudio__inner">
+        <MyStudioHead />
+        <MyStudioContent />
+      </div>
+    </div>
   );
 };
 

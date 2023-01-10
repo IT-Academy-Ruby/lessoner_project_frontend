@@ -102,6 +102,7 @@ export const messages_ru = {
   "app.button.delete": "Удалить",
   "app.button.uploadThumbnail": "Загрузить миниатюру",
   "app.or": "или",
+  "app.button.addNewLesson": "Добавить новый урок",
   "app.pagesTitle.registration": "Регистрация",
   "app.pagesTitle.confirm":
     "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",

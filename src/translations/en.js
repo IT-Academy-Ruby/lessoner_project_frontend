@@ -102,6 +102,7 @@ export const messages_en = {
   "app.button.delete": "Delete",
   "app.button.uploadThumbnail": "Upload thumbnail",
   "app.or": "or",
+  "app.button.addNewLesson": "Add new lesson",
   "app.pagesTitle.registration": "Registration",
   "app.pagesTitle.phoneNumber": "Enter your phone number",
   "app.pagesTitle.enterCode": "Enter the code",
