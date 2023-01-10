@@ -1,31 +1,37 @@
-@import "../constants.scss";
+@import "../constants.module.scss";
+
 .video__page_wrapper {
   margin-left: 66px;
   display: flex;
   padding: 0 24px;
 }
+
 .video__side_bar {
   width: 437px;
   height: 100vh;
   margin-left: 16px;
 }
+
 .videoplayer__wrapper {
   --plyr-captions-background: rgba(0, 0, 0, 0.8);
   --plyr-captions-text-color: white;
   flex: 1 0 auto;
 }
+
 .videoplayer__wrapper__info {
   margin-top: 28px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
 .videoplayer__wrapper__label {
   width: 59px;
   height: 29px;
   padding: 0;
   margin-bottom: 16px;
 }
+
 .videoplayer__wrapper__published {
   width: 158px;
   height: 24px;
@@ -36,50 +42,61 @@
   font-size: 16px;
   line-height: 150%;
   font-feature-settings: "liga" off;
+
   p {
     margin: 0;
   }
+
   span {
     font-family: $font;
     font-size: 16px;
   }
 }
+
 .videoplayer__wrapper__description {
   align-self: flex-start;
+
   span {
     font-family: $font;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 150%;
-    font-feature-settings: "liga" off;
+    font-feature-settings: "liga"off;
     color: #9a9aa3;
   }
 }
+
 .videoplayer__wrapper__info_bottom {
   display: flex;
 
   flex-direction: column;
 }
+
 .videoplayer__wrapper__info_top {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
   .info__top_right {
     display: flex;
     flex-direction: column;
   }
+
   .info__top_left {
     display: flex;
+
     img {
       width: 50px;
       height: 50px;
     }
+
     .info__top_left_text {
       display: flex;
       flex-direction: column;
       margin-left: 25px;
       align-items: flex-start;
+
       h2 {
         margin: 0;
         margin-bottom: 7px;
@@ -89,9 +106,10 @@
         font-size: 18px;
         line-height: 130%;
         align-items: center;
-        font-feature-settings: "liga" off;
+        font-feature-settings: "liga"off;
         color: #1b1b1f;
       }
+
       span {
         font-family: $font;
         font-style: normal;
@@ -99,7 +117,7 @@
         font-size: 16px;
         line-height: 150%;
         align-items: center;
-        font-feature-settings: "liga" off;
+        font-feature-settings: "liga"off;
         color: #9a9aa3;
       }
     }

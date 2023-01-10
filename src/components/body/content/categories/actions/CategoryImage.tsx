@@ -84,46 +84,48 @@ const CategoryImage = ({
         onBlur={() => setIsChange(true)}
       />
       {!selectImage.name && !editCategory.image && <>
-        <span className="category-image-inform">
+        <span className="category-image-description">
           <FormattedMessage id="app.categories.imageInform"/>
         </span>
-        <button
-          className="button-login-category"
-          onClick={handleUpload}
-          type="button"
-        >
-          <img src={Select} alt="Select file" className="button-image"/>
-          <FormattedMessage id="app.categories.button.select"/>
-        </button>
+        <div className="image-category-line">
+          <button
+            className="category-image-button-upload"
+            onClick={handleUpload}
+            type="button"
+          >
+            <img src={Select} alt="Select file" className="button-image" />
+            <FormattedMessage id="app.categories.uploadImage" />
+          </button>
+        </div>
       </>}
       {(!!selectImage.name || !!editCategory.image) && <>
-        <span className="upload-image">
-          <FormattedMessage id="app.categories.uploadImage"/>
+        <span className="category-image-uploading">
+          <FormattedMessage id="app.categories.uploadedFileCategoryImage"/>
         </span>
-        <div className="image-add-field">
-          <img
-            src={selectImage.image
-              ? URL.createObjectURL(selectImage.image) : editCategory.image}
-            alt={selectImage.name || editCategory.name}
-            className="select-image"/>
-          <div className="image-data">
-            <span className="select-image-name">
-              {selectImage.name || editCategory.name}
-            </span>
-            <span className="select-image-size">
-              {Math.floor((selectImage.size || editCategory.size) / 1048.576) / 1000} MB
-            </span>
+        <div className="image-category-field">
+          <div className="image-category">
+            <img
+              src={selectImage.image
+                ? URL.createObjectURL(selectImage.image) : editCategory.image}
+              alt={selectImage.name || editCategory.name}
+              className="select-image" />
+            <div className="image-data">
+              <span className="select-image-name">
+                {selectImage.name || editCategory.name}
+              </span>
+              <span className="select-image-size">
+                {Math.floor((selectImage.size || editCategory.size) / 1048.576) / 1000} MB
+              </span>
+            </div>
           </div>
-          <div className="category-buttons-field">
-            <Button
-              buttonType="button"
-              buttonText={intl.formatMessage({id: "app.categories.change"})}
-              className="button-select"
-              buttonImage={Change}
-              imageStyle="icon-button"
-              onClick={handleUpload}
-            />
-          </div>
+          <Button
+            buttonType="button"
+            buttonText={intl.formatMessage({ id: "app.categories.change" })}
+            className="button-select"
+            buttonImage={Change}
+            imageStyle="icon-button"
+            onClick={handleUpload}
+          />
         </div>
       </>
       }

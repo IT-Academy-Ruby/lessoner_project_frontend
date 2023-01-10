@@ -1,4 +1,4 @@
-@import "../constants.scss";
+@import "../constants.module.scss";
 
 .wrapper-terms {
   font-family: $font;
@@ -34,7 +34,7 @@
   margin: 16px;
   flex-direction: column;
   align-items: flex-start;
-  background: var(--bgFirstRegistrForm);;
+  background: var(--bgFirstRegistrForm);
   padding: 36px;
   box-shadow: var(--bgNavBarShadow);
   font-size: 14px;
@@ -55,12 +55,12 @@
   padding-left: 1rem;
   text-align: left;
 
-  > li > ul {
+  >li>ul {
     margin: 16px 0 16px 0;
     list-style: none;
     padding-left: 26px;
 
-    > li:before {
+    >li:before {
       content: '';
       display: inline-block;
       height: 3px;
@@ -88,10 +88,11 @@
     padding: 47px 37px;
     font-size: 12px;
   }
+
   .arrow-back {
     color: $black;
 
-    ~ span {
+    ~span {
       display: none;
     }
   }

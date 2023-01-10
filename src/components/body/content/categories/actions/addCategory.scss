@@ -1,4 +1,4 @@
-@import "../../../../../constants.scss";
+@import "../../../../../constants.module.scss";
 
 .add-category {
   font-family: $font;
@@ -35,7 +35,8 @@
   margin: 16px 16px 80px 16px;
   flex-direction: column;
   align-items: flex-start;
-  background: var(--bgFirstRegistrForm);;
+  background: var(--bgFirstRegistrForm);
+  ;
   padding: 36px;
   box-shadow: var(--bgNavBarShadow);
   font-size: 14px;
@@ -45,6 +46,7 @@
   color: $black;
   font-weight: 700;
   line-height: 130%;
+  font-size: 32px;
   margin-bottom: 32px;
   margin-top: 0;
 }
@@ -57,7 +59,14 @@
 }
 
 .button-cancel {
-  margin-right: 6px;
+  margin-right: 8px;
+  width: 154px;
+}
+
+.button-save {
+  width: 137px;
+  background-color: $blueLightColor;
+  color: $white;
 }
 
 .category-label {
@@ -123,6 +132,27 @@
   line-height: 150%;
 }
 
+.input-field {
+  display: flex;
+  width: 100%;
+}
+
+.field-length {
+  align-self: flex-end;
+  margin: 0 10px 5px -44px;
+  font-family: $font;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  color: $greySearchColor;
+
+  &-description {
+    @extend .field-length;
+    margin: 0 10px 7px -61px;
+  }
+}
+
 .invisible {
   display: none;
 }
@@ -176,25 +206,53 @@
   text-align: end;
 }
 
-@media (max-width: $max-width-tablet) {
+@media (max-width: 1024px) {
+  .add-category {
+    margin-top: 36px;
+  }
+
   .form-category {
+    width: 554px;
     border-radius: 8px;
     padding: 28px;
     margin-top: 57px;
   }
+
+  .button-back {
+    margin: 0 0 0 22px;
+    top: -36px;
+  }
+}
+
+@media (max-width: 704px) {
+  .form-category {
+    width: 506px;
+  }
+
+  .button-back {
+    margin: 0 0 0 48px;
+    top: -36px;
+  }
 }
 
 @media (max-width: $max-width-phone) {
-  .form-category {
-    margin: 0;
-    padding: 47px 37px;
-    font-size: 12px;
+  .add-title {
+    display: flex;
+    font-size: 24px;
+    align-self: center;
   }
-  .arrow-back {
-    color: $black;
 
-    ~ span {
-      display: none;
-    }
+  .form-category {
+    width: 328px;
+    padding: 16px 16px;
+  }
+
+  .button-back {
+    margin: 0 0 0 75px;
+    top: 20px;
+  }
+
+  .button-back-text {
+    display: none;
   }
 }
