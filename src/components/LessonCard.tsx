@@ -8,10 +8,9 @@ import { PopupMenu } from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
 
-
-
 type ThumbnailImageUrlProps = {
   imagePreview: string;
+  id?: number;
 };
 
 const POPUP_ITEMS = [
@@ -35,7 +34,7 @@ const POPUP_ITEMS = [
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
-      <Link to="/videopage">
+      <Link to={`/lessons/${props.id}`}>
         <img src={props.imagePreview} alt="Videopreview" />
       </Link>
     </div>
@@ -134,9 +133,8 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
       <div className="card">
         <div className="card__icon">
           {props.imagePreview && (
-            <ThumbnailImageUrl imagePreview={props.imagePreview} />
+            <ThumbnailImageUrl  id={props.id} imagePreview={props.imagePreview} />
           )}
-
           <Tag
             type="status"
             className="video__status"
@@ -151,7 +149,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} id={props.id} />
-            <MenuKebab idCard={props.id} />;
+            {/* <MenuKebab idCard={props.id} />; */}
           </div>
           <div className="details">
             <Published published={props.published} />

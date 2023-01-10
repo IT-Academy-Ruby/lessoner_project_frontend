@@ -1,7 +1,6 @@
 @import "../../../../constants.module.scss";
 
 .categories {
-  margin: 16px 24px;
   font-family: $font;
 }
 
@@ -15,7 +14,10 @@
 .category-title {
   font-family: $font;
   line-height: 130%;
-  margin: 0;
+  position: absolute;
+  width: 196px;
+  left: 13px;
+  top: -20px;
 }
 
 .tab {
@@ -51,7 +53,6 @@
   box-shadow: 0 0 4px $greySearchColor;
   background-color: $white;
   border: 0;
-
   &:focus {
     box-shadow: 0 0 20px $greySearchColor;
   }

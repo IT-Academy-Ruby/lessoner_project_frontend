@@ -1,7 +1,5 @@
 import "./VideoCard.scss";
-import {
-  MenuKebab, Published, Title 
-} from "../../../../components/LessonCard";
+import { Published, Title } from "../../../../components/LessonCard";
 import placeHolder from "../../../../assets/category-placeholder.png";
 
 interface VideoCardProps {
@@ -32,7 +30,7 @@ export const VideoCard = ({
           }}
         >
           <Title title={title} id={id} className="VideoCardTitle" />
-          <MenuKebab className="VideoCardKebab" />
+          {/* <MenuKebab className="VideoCardKebab" /> */}
         </div>
         <Published published={published} className="VideoCardPublished" />
       </div>
