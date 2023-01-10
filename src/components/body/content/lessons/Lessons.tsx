@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
+import { SKELETON_LESSONS_AMOUT } from "../../../../constants";
+import SkeletonLessons from "../../../SkeletonLessons";
+import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
@@ -72,10 +75,6 @@ const Lessons: React.FC = () => {
   useEffect(() => {
     if (!dataIsLoaded && categoriesIsLoaded) {
       const fetchSuccess = (data: Lesson[]) => {
-        data.map((elem) => {
-          elem.image_link =
-            "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg";
-        });
         const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
         setData(dataWithCategoryName);
         setDataIsLoaded(true);
@@ -96,14 +95,17 @@ const Lessons: React.FC = () => {
     }
   }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
 
+  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) =>
+    <SkeletonLessons key={index}/>);
+
   if (!categoriesIsLoaded || !dataIsLoaded)
     return (
-      <div>
-        <FormattedMessage id="app.lessons.loading" />
+      <div className="lessons">
+        {skeleton}
       </div>
     );
 
-  return (
+  return (   
     <div className="wrapper__lessons">
       <FormattedMessage id="app.lessons" />
       <div className="lessons">
@@ -113,7 +115,7 @@ const Lessons: React.FC = () => {
             title={obj.title}
             status={obj.status}
             duration={obj.duration}
-            imagePreview={obj.image_link}
+            imagePreview={obj.image_link ? obj.image_link : placeHolder } 
             id={obj.id}
             published={obj.created_at}
             view={obj.view}
@@ -123,7 +125,7 @@ const Lessons: React.FC = () => {
           />
         ))}
       </div>
-    </div>
+    </div> 
   );
 };
 export default Lessons;
