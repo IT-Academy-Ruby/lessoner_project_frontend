@@ -11,14 +11,12 @@ import {
 } from "formik";
 import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
+import AddSubtitle from"../icons/addSubtitle.svg";
 import Button from "../Button";
 import { ILessonBack } from "../types/types";
+import { Thumbnail } from "../Thumbnail";
 import classNames from "classnames";
-import frame85 from "../icons/Frame85.png";
-import frame86 from "../icons/Frame86.png";
-import frame87 from "../icons/Frame87.png";
-import frame88 from "../icons/Frame88.png";
-import request from "../../services/request";
+import sendInfoInLesson from "../../services/request";
 import { useIntl } from "react-intl";
 
 const hachTag = "#";
@@ -26,15 +24,11 @@ let countHashTag = 0;
 
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
-  const items = [
-    { id: 1, src: `${frame88}` },
-    { id: 2, src: `${frame87}` },
-    { id: 3, src: `${frame86}` },
-    { id: 4, src: `${frame85}` },
-  ];
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
   const params = useParams();
   const navigate = useNavigate();
+  const [imageURL, setImageURL] = useState("");
+  const formData = new FormData();
 
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS + params.id)
@@ -43,11 +37,31 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   }, [params.id]);
 
-  const addInfoToLessonObject = (values: {name: string; description: string;}) => {
-    const lessonFromEditForm = { title: `${values.name}`,
-      description: `${values.description}` };
-    request(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
+  const handleImageUrlChange  = (currentImageUrl: string) => {
+    setImageURL(currentImageUrl);
   };
+
+  const changeInfoInLesson = (values: {
+    name: string;
+    description: string;
+  }) => {
+    const lessonFromEditForm = {title: `${values.name}`,
+      description: `${values.description}`};
+    sendInfoInLesson(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
+    changeImageInLesson();
+  };
+
+  const changeImageInLesson = () => {
+    const token = localStorage.getItem("JWT");
+    formData.append("lesson_image", imageURL);
+    fetch(`${BACKEND_URL_LESSONS + params.id}`, {
+      method: "PUT",
+      headers: new Headers({ Authorization: `Bearer ${token}` }),
+      body: formData,
+    });
+  };
+
+
 
   const validateName = (title: string) => {
     if (!title) {
@@ -61,7 +75,7 @@ export const EditVideoLessonForm: FC = () => {
       );
     }
   };
-  
+
   const getHashTagCount = (description: string, hachTag: string) => {
     const hashTagArr = [];
     description
@@ -91,28 +105,35 @@ export const EditVideoLessonForm: FC = () => {
     }
   };
 
-  const thumbnailId = (id: number) => {
-    return id;
-  };
-
   const lessonValuesFromBack = {
-    name: `${lesson?.title}`,
+    name: `${
+      lesson?.title === undefined
+        ? 
+        intl.formatMessage({id: "app.editVideoLesson.loading"})
+        : 
+        lesson?.title
+    }`,
     category: "IT",
-    description: `${lesson?.description}`,
-    thumbnail: 1,
+    description: `${
+      lesson?.description === undefined
+        ? 
+        intl.formatMessage({id: "app.editVideoLesson.loading"})
+        : 
+        lesson?.description
+    }`,
+
   };
   const initialValues = {
     name: "",
     category: "IT",
     description: "",
-    thumbnail: 1,
   };
 
   return (
     <Formik
       initialValues={lessonValuesFromBack || initialValues}
       onSubmit={(values) => {
-        addInfoToLessonObject(values);
+        changeInfoInLesson(values);
         navigate("/lessons");
       }}
       enableReinitialize
@@ -167,60 +188,28 @@ export const EditVideoLessonForm: FC = () => {
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.addsubtitles" })}
               className="button__fs16 disabled"
-              buttonIcon={<div className="svg__add"></div>}
+              buttonImage={AddSubtitle}
+              imageStyle="svg_add"
             />
           </div>
-          <label className="evlf__label">
-            {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
-            <p className="evlf__text">
-              {intl.formatMessage({id: "app.editVideoLesson.lableThumbnailText"})}
-            </p>
-            <div className="evlth__wrapper">
-              <div className="evlth__inner">
-                <div className="evlth__inner-left">
-                  {items.map(
-                    (item: { id: number; src: string }) =>
-                      item.id <= 2 && (
-                        <div
-                          className="evlth__item"
-                          key={item.id}
-                          onClick={() => thumbnailId(item.id)}
-                        >
-                          <img
-                            className="evlth__item-img"
-                            src={item.src}
-                            alt="picture"
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
-                <div className="evlth__inner-right">
-                  {items.map(
-                    (item: { id: number; src: string }) =>
-                      item.id > 2 && (
-                        <div
-                          className="evlth__item"
-                          key={item.id}
-                          onClick={() => thumbnailId(item.id)}
-                        >
-                          <img
-                            className="evlth__item-img"
-                            src={item.src}
-                            alt="picture"
-                          />
-                        </div>
-                      )
-                  )}
-                </div>
-              </div>
-            </div>
-          </label>
+          <div className="evlf__label">
+            <label>
+              {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
+              <p className="evlf__text">
+                {intl.formatMessage({id: "app.editVideoLesson.lableThumbnailText"})}
+              </p>
+            </label>
+            <Thumbnail
+              lesson={lesson}
+              onImageUrlChange ={handleImageUrlChange }
+              imageURL={imageURL}
+            />
+          </div>
           <div className="evlf__btn-wrapper">
             <Button
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.cancel" })}
-              className="button__fs16-white button__fs16-white-evlt"
+              className="button__fs16-white button__fs16-left"
               onClick={() => navigate("/lessons")}
             />
             <Button
@@ -233,4 +222,4 @@ export const EditVideoLessonForm: FC = () => {
       )}
     </Formik>
   );
-};;
+};

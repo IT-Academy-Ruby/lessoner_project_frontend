@@ -2,9 +2,13 @@
 
 .side-bar {
   grid-column-start: 2;
-  position: relative;
-  align-items: center;
+  position: fixed;
+  margin-left: 76px;
+  left: 0;
+  right: 0;
   height: 64px;
+  background: var(--bgThemeNavBarColor);
+  z-index: 91;
 }
 
 .header {
@@ -21,13 +25,15 @@
 }
 
 .logo-name {
-  color: $blueLightColor;
+  color: var(--textLogo);
   display: flex;
   min-width: 230px;
   flex-wrap: wrap;
   align-content: center;
   text-decoration: none;
   margin-left: 27px;
+  position: relative;
+  z-index: 100;
 }
 
 .title-header {
@@ -43,18 +49,34 @@
 }
 
 .avatar {
+  position: relative;
   width: 32px;
   height: 32px;
-  border: 2px solid $blueLightColor;
   border-radius: 50%;
   cursor: pointer;
 }
 
+.user-avatar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 .first-letters {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid $blueLightColor;
+  border-radius: inherit;
   margin: 0;
   color: $blueLightColor;
   font-weight: bold;
   line-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-li {
@@ -65,22 +87,25 @@
   cursor: pointer;
 
   &:hover {
-    background: $greyDefault;
+    background: var(--bgTextHoverDropDownMainPage);
   }
 }
 
 .user-link {
   text-decoration: none;
+  color: var(--textDropDownMainPage);
 }
 
 .log-out {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  color: var(--textDropDownMainPage);
 }
 
 #input-avatar:checked ~ .list-user {
   display: block;
+  background-color: var(--bgDropDownMainPage);
 }
 
 .language {
@@ -102,12 +127,17 @@
 
 .lang-registration {
   align-items: center;
+  color: var(--textDropDownMainPage);
 }
 
 .list {
   position: absolute;
   background: $white;
-  box-shadow: 0px 18px 80px rgba(39, 53, 141, 0.07), 0px 6.5703px 29.2013px rgba(39, 53, 141, 0.0292778), 0px 3.18976px 14.1767px rgba(39, 53, 141, 0.021578), 0px 1.56368px 6.94968px rgba(39, 53, 141, 0.0184521), 0px 0.618281px 2.74791px rgba(39, 53, 141, 0.0153621);
+  box-shadow: 0px 18px 80px rgba(39, 53, 141, 0.07),
+    0px 6.5703px 29.2013px rgba(39, 53, 141, 0.0292778),
+    0px 3.18976px 14.1767px rgba(39, 53, 141, 0.021578),
+    0px 1.56368px 6.94968px rgba(39, 53, 141, 0.0184521),
+    0px 0.618281px 2.74791px rgba(39, 53, 141, 0.0153621);
   font-family: $font;
   color: $black;
   font-weight: 400;
@@ -122,6 +152,8 @@
   width: 210px;
   left: -16px;
   top: 30px;
+  background-color: var(--bgDropDownMainPage);
+  color: var(--textDropDownMainPage);
 }
 
 .no-registration-list {
@@ -129,6 +161,8 @@
   width: 140px;
   bottom: -70px;
   right: 0;
+  background-color: var(--bgDropDownMainPage);
+  color: var(--textDropDownMainPage);
 }
 
 .list-user {
@@ -137,6 +171,7 @@
   margin: 50px 24px 0 0;
   top: 0;
   right: 0;
+  z-index: 3;
 }
 
 .lang-name {
@@ -150,7 +185,7 @@
   cursor: pointer;
 
   &:hover {
-    background: $greyDefault;
+    background: var(--bgTextHoverDropDownMainPage);
   }
 }
 

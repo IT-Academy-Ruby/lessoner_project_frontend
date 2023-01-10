@@ -2,7 +2,10 @@
 
 .add-category {
   font-family: $font;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
@@ -18,7 +21,7 @@
   left: 0;
   top: 0;
   text-decoration: none;
-
+  cursor: pointer;
   color: $greySearchColor;
   font-weight: 600;
   font-size: 16px;
@@ -27,12 +30,16 @@
 
 .form-category {
   display: flex;
+  max-width: 753px;
+  width: 100%;
+  margin: 16px 16px 80px 16px;
   flex-direction: column;
   align-items: flex-start;
-  width: 656px;
-  background: $white;
-  padding: 32px 48px 48px;
-  box-shadow: 0px 0px 4px $greySearchColor;
+  background: var(--bgFirstRegistrForm);
+  ;
+  padding: 36px;
+  box-shadow: var(--bgNavBarShadow);
+  font-size: 14px;
 }
 
 .add-title {
@@ -120,7 +127,6 @@
   display: block;
   margin-top: 0.5em;
   font-family: $font;
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
@@ -147,21 +153,57 @@
   }
 }
 
-.error {
-  color: $warningColor;
-}
-
-.help {
-  color: $blueLightColor;
-}
-
 .invisible {
-  display: none
+  display: none;
 }
 
 .invalid-input {
   border: 1px solid $warningColor;
   color: $warningColor;
+}
+
+.amount-symbols {
+  position: absolute;
+  bottom: 7px;
+  right: 14px;
+  font-family: $font;
+  color: $greySearchColor;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+.error {
+  color: $warningColor;
+}
+
+.field-modal {
+  max-width: 280px;
+  width: 100%;
+  background: $white;
+  box-shadow: 0 0 4px $greySearchColor;
+}
+
+.field-successful {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px;
+  text-align: left;
+  font-family: 'ApercuPro';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.successful-icon {
+  margin-right: 17px;
+}
+
+.field-close-successful {
+  margin-left: 12px;
+  width: 24px;
+  height: 24px;
+  text-align: end;
 }
 
 @media (max-width: 1024px) {
@@ -171,6 +213,9 @@
 
   .form-category {
     width: 554px;
+    border-radius: 8px;
+    padding: 28px;
+    margin-top: 57px;
   }
 
   .button-back {
@@ -191,7 +236,6 @@
 }
 
 @media (max-width: $max-width-phone) {
-
   .add-title {
     display: flex;
     font-size: 24px;

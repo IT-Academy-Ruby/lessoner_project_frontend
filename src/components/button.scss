@@ -4,6 +4,7 @@
 .button__page,
 .button__fs16,
 .button__fs16-white,
+.button__fs16-red,
 .disabled {
   display: flex;
   align-items: center;
@@ -18,21 +19,32 @@
   transition: .2s;
 
   &:hover {
-    box-shadow: 0px 4px 6px rgba(46, 51, 99, 0.43);
+    box-shadow: var(--themeButtonHover);
   }
 }
 
 .button__fs16,
-.button__fs16-white {
+.button__fs16-white,
+.button__fs16-red {
   padding: 6px 32px;
   font-size: 16px;
 }
 
-.button__fs16-white {
+.button__fs16-white,
+.button__fs16-red {
   border: 1px solid $borderColor;
-  color: $blueLightColor;
-  background: $white;
+  color: var(--iconsTextButtonColor);
+  background: var(--bgButtonColor);
   font-weight: 600;
+}
+
+.button__fs16-red {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.button__fs16-left {
+  margin-right: 16px;
 }
 
 .disabled {
@@ -67,6 +79,18 @@
   }
 }
 
+.button-login-category {
+  padding: 6px 36px;
+  font-family: $font;
+  background: $blueLightColor;
+  color: $white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+}
+
 .button__page {
   display: flex;
   align-items: center;
@@ -90,6 +114,19 @@
 
   &:focus {
     background: $blueDarkColor;
+  }
+
+  &:disabled {
+    background: #F3F3F3;
+    color: #D1D1D1;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(46, 51, 99, 0.43);
   }
 }
 
@@ -163,6 +200,14 @@
   box-sizing: content-box;
 }
 
+.button-delete {
+  color: $warningColor;
+  border-color: $warningColor;
+}
+
+.icon-button {
+  margin-right: 11px;
+}
 
 @media (max-width: $max-width-phone) {
   .button__page {

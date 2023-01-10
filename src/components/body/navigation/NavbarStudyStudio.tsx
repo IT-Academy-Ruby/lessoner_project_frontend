@@ -1,133 +1,180 @@
 import "./NavbarStudyStudio.scss";
-import {FC, useState} from "react";
+import {
+  FC,
+  useContext,
+  useState
+} from "react";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
+import { snowContext } from "../../../App";
 import useDarkMode from "use-dark-mode";
 import {useIntl} from "react-intl";
 
+
 interface NavbarStudyStudioProps {
   menuType: string;
+  onSignOut: VoidFunction;
 }
 
-const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
+type itemType = {
+  id: number;
+  href: string;
+  valueId: string;
+  icon: string;
+  place: {
+    openclose?: string;
+    notAutorised?: string;
+    autorised?: string;
+    admin?: string;
+    logIn?: string;
+    logOut?: string;
+    darkTheme?: string;
+    lightTheme?: string;
+    snowOn?: string;
+    snowOff?: string;
+    contacts?: string;
+  };
+};
+
+const items = [
+  {
+    id: 1,
+    valueId: "Menu",
+    href: "#",
+    icon: "menu",
+    place: { openclose: "openclose" },
+  },
+  {
+    id: 2,
+    valueId: "app.navbarStudyStudio.home",
+    href: "/",
+    icon: "home",
+    place: {
+      notAutorised: "not_autorised",
+      autorised: "autorised",
+      admin: "admin",
+    },
+  },
+  {
+    id: 3,
+    valueId: "app.navbarStudyStudio.subscription",
+    href: "/myStudio",
+    icon: "subscription",
+    place: { autorised: "autorised", admin: "admin" },
+  },
+  {
+    id: 4,
+    valueId: "app.navbarStudyStudio.categories",
+    href: "/categories",
+    icon: "categories",
+    place: {
+      notAutorised: "not_autorised",
+      autorised: "autorised",
+      admin: "admin",
+    },
+  },
+  // To be added later...
+  // {
+  //   id: 5,
+  //   valueId: "app.navbarStudyStudio.management",
+  //   href: "#",
+  //   icon: "edit_categories",
+  //   place: { admin: "admin" },
+  // },
+  {
+    id: 6,
+    valueId: "app.navbarStudyStudio.aboutUs",
+    href: "/about",
+    icon: "about_us",
+    place: {
+      notAutorised: "not_autorised",
+      autorised: "autorised",
+      admin: "admin",
+    },
+  },
+  {
+    id: 7,
+    valueId: "app.navbarStudyStudio.logIn",
+    href: "#",
+    icon: "log_in",
+    place: { logIn: "log_in" },
+  },
+  {
+    id: 8,
+    valueId: "app.navbarStudyStudio.logOut",
+    href: "#",
+    icon: "log_out",
+    place: { logOut: "log_out" },
+  },
+  {
+    id: 9,
+    valueId: "app.navbarStudyStudio.darkTheme",
+    href: "#",
+    icon: "dark_theme",
+    place: { darkTheme: "dark_theme" },
+  },
+  {
+    id: 10,
+    valueId: "app.navbarStudyStudio.lightTheme",
+    href: "#",
+    icon: "light_theme",
+    place: { lightTheme: "light_theme" },
+  },
+  {
+    id: 11,
+    valueId: "app.navbarStudyStudio.snowOn",
+    href: "#",
+    icon: "snow_on",
+    place: { snowOn: "snow_on" },
+  },
+  {
+    id: 12,
+    valueId: "app.navbarStudyStudio.snowOff",
+    href: "#",
+    icon: "snow_off",
+    place: { snowOff: "snow_off" },
+  },
+  {
+    id: 13,
+    valueId: "app.navbarStudyStudio.management",
+    href: "https://www.grodno.it-academy.by/",
+    icon: "network",
+    place: { contacts: "contacts" },
+  },
+  {
+    id: 14,
+    valueId: "app.navbarStudyStudio.management",
+    href: "https://www.instagram.com/grodnoitacademypark/",
+    icon: "instagram",
+    place: { contacts: "contacts" },
+  },
+  {
+    id: 15,
+    valueId: "app.navbarStudyStudio.management",
+    href: "https://www.facebook.com/grodnoitacademypark",
+    icon: "facebook",
+    place: { contacts: "contacts" },
+  },
+  {
+    id: 16,
+    valueId: "app.navbarStudyStudio.management",
+    href: "https://www.linkedin.com/school/15248534/",
+    icon: "linkedin",
+    place: { contacts: "contacts" },
+  },
+];
+
+const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType, onSignOut}) => {
   const intl = useIntl();
-  const EMPTY_BUTTON_ID = 0;
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [buttonPressed, setButtonPressed] = useState(EMPTY_BUTTON_ID);
+  const [pressedButtonId, setPressedButtonId] = useState<number>();
   const darkMode = useDarkMode(true);
-  
-  const items = [
-    {
-      id: 1,
-      value: "Menu",
-      href: "#!",
-      icon: "menu",
-      place: { openclose: "openclose" },
-    },
-    {
-      id: 2,
-      value: `${intl.formatMessage({ id: "app.navbarStudyStudio.home" })}`,
-      href: "#!",
-      icon: "home",
-      place: {
-        notAutorised: "not_autorised",
-        autorised: "autorised",
-        admin: "admin",
-      },
-    },
-    {
-      id: 3,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.subscription"})}`,
-      href: "#!",
-      icon: "subscription",
-      place: { autorised: "autorised", admin: "admin" },
-    },
-    {
-      id: 4,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.categories"})}`,
-      href: "/categories",
-      icon: "categories",
-      place: {
-        notAutorised: "not_autorised",
-        autorised: "autorised",
-        admin: "admin",
-      },
-    },
-    {
-      id: 5,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
-      href: "#!",
-      icon: "edit_categories",
-      place: { admin: "admin" },
-    },
-    {
-      id: 6,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.aboutUs"})}`,
-      href: "#!",
-      icon: "about_us",
-      place: {
-        notAutorised: "not_autorised",
-        autorised: "autorised",
-        admin: "admin",
-      },
-    },
-    {
-      id: 7,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.logIn"})}`,
-      href: "#!",
-      icon: "log_in",
-      place: { logIn: "log_in" },
-    },
-    {
-      id: 8,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.logOut"})}`,
-      href: "#!",
-      icon: "log_out",
-      place: { logOut: "log_out" },
-    },
-    {
-      id: 9,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.darkTheme"})}`,
-      href: "#!",
-      icon: "dark_theme",
-      place: { darkTheme: "dark_theme" },
-    },
-    {
-      id: 10,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.lightTheme"})}`,
-      href: "#!",
-      icon: "light_theme",
-      place: { lightTheme: "light_theme" },
-    },
-    {
-      id: 11,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
-      href: "https://www.grodno.it-academy.by/",
-      icon: "network",
-      place: { contacts: "contacts" },
-    },
-    {
-      id: 12,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
-      href: "https://www.instagram.com/grodnoitacademypark/",
-      icon: "instagram",
-      place: { contacts: "contacts" },
-    },
-    {
-      id: 13,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
-      href: "https://www.facebook.com/grodnoitacademypark",
-      icon: "facebook",
-      place: { contacts: "contacts" },
-    },
-    {
-      id: 14,
-      value: `${intl.formatMessage({id: "app.navbarStudyStudio.management"})}`,
-      href: "https://www.linkedin.com/school/15248534/",
-      icon: "linkedin",
-      place: { contacts: "contacts" },
-    },
-  ];
+
+  const snow = useContext(snowContext);
+  const snowToggle = snow
+    ? () => snow.setSnow((value) => !value)
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    : () => {};
 
   const imageWrapperCN = classNames("image__wrapper", 
     {"image__wrapper--active": !isMenuActive});
@@ -150,54 +197,30 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
   const menuItemInnerCN = classNames("menu__item-inner", 
     {"menu__item-inner--active": isMenuActive});
 
-  type itemTypes = {
-    id: number;
-    href: string;
-    value: string;
-    icon: string;
-    place: {
-      openclose?: string;
-      notAutorised?: string;
-      autorised?: string;
-      admin?: string;
-      logIn?: string;
-      logOut?: string;
-      darkTheme?: string;
-      lightTheme?: string;
-      contacts?: string;
-    };
-  };
+  const renderTheme_LogInOut = (item: itemType) => {
+    const isActiveItem = item.id === pressedButtonId;
 
-  const renderTheme_LogInOut = (item: itemTypes) => {
     return (
       <li
         className={"menu__item menu__item-footer"}
         key={item.id}
-        onClick={() =>
-          item.id !== buttonPressed && setButtonPressed(item.id)
-        }
+        onClick={() => isActiveItem && setPressedButtonId(item.id)}
       >
         <a className={classNames({"menu__item-inner-theme": item.place.lightTheme || 
           item.place.darkTheme}, menuItemInnerCN,
-        {"menu__item-inner--selected": item.id === buttonPressed})} href={item.href}
+        {"menu__item-inner--selected": item.id === pressedButtonId})} href={item.href}
         >
           <span
             className={classNames((item.place.lightTheme || item.place.darkTheme) ? 
               imageWrapperThemeCN : imageWrapperCN, {"image__wrapper--selected": 
-            item.id === buttonPressed})}
+              isActiveItem})}
           >
-            <div className={classNames(svgItemCN, {"svg__item--selected": 
-              item.id === buttonPressed})}
-            >
+            <div className={classNames(svgItemCN, {"svg__item--selected": isActiveItem})}>
               <NavbarStudyStudioSVGSelector icon={item.icon} />
             </div>
           </span>
-          <span
-            className={`${menuTextCN} ${
-              item.id === buttonPressed ? "menu__text--selected" : ""
-            }`}
-          >
-            {item.value}
+          <span className={`${menuTextCN} ${isActiveItem ? "menu__text--selected" : ""}`}>
+            {intl.formatMessage({id: item.valueId})}
           </span>
         </a>
       </li>
@@ -219,34 +242,34 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
             </div>
           </div>
           <div className="navbar__main" >
-            {items.map((item: itemTypes) =>
+            {items.map((item: itemType) =>
               (item.place.admin === menuType || 
                 item.place.autorised === menuType || 
                 item.place.notAutorised === menuType)  && (
                 <li
                   className={"menu__item"}
                   key={item.id}
-                  onClick={() => item.id !== buttonPressed && setButtonPressed(item.id)}
+                  onClick={() => item.id !== pressedButtonId && setPressedButtonId(item.id)}
                 >
                   <a className={classNames(menuItemInnerCN, 
-                    {"menu__item-inner--selected": item.id === buttonPressed})} href={item.href}>
+                    {"menu__item-inner--selected": item.id === pressedButtonId})} href={item.href}>
                     <span
                       className={classNames(imageWrapperCN, 
-                        {"image__wrapper--selected": item.id === buttonPressed})}
+                        {"image__wrapper--selected": item.id === pressedButtonId})}
                     >
                       <div
                         className={classNames(svgItemCN, 
-                          {"svg__item--selected": item.id === buttonPressed})}
+                          {"svg__item--selected": item.id === pressedButtonId})}
                       >
                         <NavbarStudyStudioSVGSelector icon={item.icon} />
                       </div>
                     </span>
                     <span
                       className={`${menuTextCN} ${
-                        item.id === buttonPressed ? "menu__text--selected" : ""
+                        item.id === pressedButtonId ? "menu__text--selected" : ""
                       }`}
                     >
-                      {item.value}
+                      {intl.formatMessage({id: item.valueId})}
                     </span>
                   </a>
                 </li>
@@ -264,7 +287,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 </a>
               </div>
               <div className="footer__contacts-social">
-                {items.map((item: itemTypes) =>
+                {items.map((item: itemType) =>
                   item.place.contacts && (
                     <li
                       className={"footer__social-item"}
@@ -272,9 +295,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                     >
                       <a className={classNames(imageWrapperFooterCN)} 
                         href={item.href} target="_blank" rel="noreferrer">
-                        <div
-                          className={classNames(svgItemCN)}
-                        >
+                        <div className={classNames(svgItemCN)}>
                           <NavbarStudyStudioSVGSelector icon={item.icon} />
                         </div>
                       </a>
@@ -283,8 +304,8 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
                 )}
               </div>
             </div>
-            <div className={classNames(menuFooterLginoutCN)}>
-              {items.map((item: itemTypes) =>
+            <div className={classNames(menuFooterLginoutCN)} onClick={onSignOut}>
+              {items.map((item: itemType) =>
                 (menuType === "not_autorised") 
                   ? 
                   item.place.logIn && renderTheme_LogInOut(item)
@@ -293,12 +314,19 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType}) => {
               )}
             </div>
             <div className="menu__footer-theme" onClick={darkMode.toggle}>
-              {items.map((item: itemTypes) =>
+              {items.map((item: itemType) =>
                 darkMode.value 
                   ? 
                   item.place.lightTheme && renderTheme_LogInOut(item)
                   :
                   item.place.darkTheme && renderTheme_LogInOut(item)
+              )}
+            </div>
+            <div className="menu__footer-snow" onClick={snowToggle}>
+              {items.map((item: itemType) =>
+                snow?.snow
+                  ? item.place.snowOff && renderTheme_LogInOut(item)
+                  : item.place.snowOn && renderTheme_LogInOut(item)
               )}
             </div>
             <div className="menu__footer-rights">

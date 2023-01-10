@@ -1,39 +1,38 @@
 import "./Header.scss";
-import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import Language from "./Language";
 import {Link} from "react-router-dom";
 import Logout from "../../icons/logOut.svg";
-import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
+import {useAppSelector} from "../../../store/hooks";
 import {useState} from "react";
-
 
 type AvatarProps = {
   onLanguageSwitch: (arg: string) => void;
   setLanguage: (arg: string) => void;
   language: string;
+  onSignOut: VoidFunction;
 };
 
 const Avatar = ({
-  onLanguageSwitch,language,setLanguage
+  onLanguageSwitch, language, setLanguage, onSignOut
 }: AvatarProps) => {
-  const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
+  const userAvatar = useAppSelector(state => state.dataUser.user.avatar_url);
 
   const initialName = nameDecode.split(" ")
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
 
   const signOut = () => {
-    localStorage.setItem("JWT", "");
-    dispatch(nameDecodedUser());
+    onSignOut();
     setIsChecked(false);
   };
 
   return (
     <>
       <label htmlFor="input-avatar" className="avatar">
-        <p className="first-letters">{initialName}</p>
+        {!userAvatar && <p className="first-letters">{initialName}</p>}
+        {userAvatar && <img src={userAvatar} alt="avatar" className="user-avatar" />}
       </label>
       <input
         type="checkbox"
@@ -46,7 +45,7 @@ const Avatar = ({
       />
       <ul className="list list-user">
         <li className="user-li">
-          <Link to="/user/personalData" className="user-link">
+          <Link to="/user/userPage" className="user-link" onClick={()=>setIsChecked(false)}>
             <FormattedMessage id="app.avatar.personalData" />
           </Link>
         </li>
@@ -55,10 +54,11 @@ const Avatar = ({
             onLanguageSwitch={onLanguageSwitch}
             isRegistered={true}
             language={language}
-            setLanguage={setLanguage}/>
+            setLanguage={setLanguage}
+          />
         </li>
-        <li className="user-li">
-          <div className="log-out" onClick={signOut}>
+        <li className="user-li" onClick={signOut}>
+          <div className="log-out">
             <FormattedMessage id="app.avatar.logOut" />
             <img src={Logout} alt="logout" />
           </div>

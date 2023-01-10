@@ -11,15 +11,11 @@ type CategoryDescriptionProps = {
     value: string;
   },
   error?: string;
-  descriptionLength: number;
 }
 
-const CategoryDescription = ({
-  field, error, descriptionLength
-}: CategoryDescriptionProps): JSX.Element => {
+const CategoryDescription = (
+  { field, error }: CategoryDescriptionProps): JSX.Element => {
   const intl = useIntl();
-  const [letters, setLetters] =
-    useState<number>(DESCRIPTION_CATEGORY.maxSymbols - descriptionLength);
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
@@ -31,17 +27,16 @@ const CategoryDescription = ({
           placeholder={intl.formatMessage({ id: "app.categories.placeholder.description" })}
           onBlur={() => setIsFocus(false)}
           {...field}
-          onKeyUp={() => setLetters(DESCRIPTION_CATEGORY.maxSymbols - field.value.length)}
+          onBlurCapture={() => {
+            setIsFocus(false);
+          }}
           onFocus={() => setIsFocus(true)}
         />
-        <span className={classNames("field-length-description", { "error": error })}>
+        {isFocus && <span className={classNames("field-length-description", { "error": error })}>
           {`${field.value.length}/${DESCRIPTION_CATEGORY.maxSymbols}`}
-        </span>
+        </span>}
       </div>
       {error && <span className="error-message">{error}</span>}
-      {!error && <span className={classNames("message help", { "invisible": !isFocus })}>
-        {intl.formatMessage({ id: "app.categories.description.helper" }, { letters: letters })}
-      </span>}
     </label>
   );
 };

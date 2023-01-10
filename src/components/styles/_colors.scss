@@ -1,15 +1,39 @@
 // lessons page
-$darkMain: #1B1B1F;
-$lightMain: #FFFFFF;
+$darkMain: #1b1b1f;
+$lightMain: #ffffff;
 
-$darkSideBar: linear-gradient(0deg, rgba(185, 195, 255, 0.05), rgba(185, 195, 255, 0.05)), #232429;
-$lightSideBar: #FFFFFF;
-$lightCardText: #F6F5F6;
-$Surface5Dark: linear-gradient(0deg, rgba(185, 195, 255, 0.14), rgba(185, 195, 255, 0.14)), #333336;
-$Surface5Light: linear-gradient(0deg, rgba(104, 160, 211, 0.14), rgba(104, 160, 211, 0.14)), #FEFBFF;
+$darkSideBar: linear-gradient(
+    0deg,
+    rgba(185, 195, 255, 0.05),
+    rgba(185, 195, 255, 0.05)
+  ),
+  #232429;
+$lightSideBar: #ffffff;
+$lightCardText: #f6f5f6;
+$Surface5Dark: linear-gradient(
+    0deg,
+    rgba(185, 195, 255, 0.14),
+    rgba(185, 195, 255, 0.14)
+  ),
+  #333336;
+$Surface5Light: linear-gradient(
+    0deg,
+    rgba(104, 160, 211, 0.14),
+    rgba(104, 160, 211, 0.14)
+  ),
+  #fefbff;
 $SideBarShadowLight: 1px 1px 20px rgba(46, 53, 119, 0.07);
 $SideBarShadowDark: none;
 $bluePrimaryText: #455FCE;
+
+$EditVideoLessonShadowLight: 1px 1px 20px rgba(46, 51, 99, 0.1);
+$EditVideoLessonShadowDark: none;
+
+$ButtonHoverLight: 0px 4px 6px rgba(149, 152, 180, 0.43);
+$ButtonHoverDark: 0px 4px 6px rgba(46, 51, 99, 0.43);
+$ButtonActiveShadowLight: inset 0px 8px 6px rgba(0, 0, 0, 0.25);
+$ButtonActiveShadowDark: inset 0px 8px 6px rgba(0, 0, 0, 0.25);
+
 // Registration Pages 
 $dark1: #1B1B1F;
 $dark2: #45464F;
@@ -19,18 +43,27 @@ $dark5: #434659;
 $dark6: #464752;
 $dark7: #90909A;
 $dark8: #9A9AA3;
+$dark9: #171B2C;
+$dark10: #303034;
 
 $light1: #FFFFFF;
 $light2: #F6F5F6;
 $light3: #D1D1D1;
 $light4: #EEF3FE;
 $light5: #E9EEF9;
+$light6: #DFE1F9;
+$light7: #DDE1FF;
+$light8: #E4E1E6;
 
 $blue1: #3161DC;
+$blue2: #455FCE;
+$blue3: #152E89;
+$blue4: #001257;
 $black: #000;
 $grey100: #fdfcfc;
 $grey200: #f5f1f1;
 $purple100: #7a0bc0;
 $purple200: #650c9d;
-$themes: (
-);
+$lightBorderRadius: 44px;
+$darkBorderRadius: none;
+$themes: ();

@@ -4,36 +4,34 @@ import {
   Fragment, useEffect, useState
 } from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {showDefaultPage, showStudentPage} from "../../../store/header/headerSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import Avatar from "./Avatar";
 import Button from "../../Button";
 import Language from "./Language";
 import Logo from "../../icons/Logo.svg";
+import {getUserData} from "../../../store/loginName/loginSlice";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
 
 type HeaderProps = {
   onLanguageSwitch: (arg: string) => void;
+  onSignOut: VoidFunction;
 };
 
-const Header = ({onLanguageSwitch}: HeaderProps) => {
+const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [language, setLanguage] = useState("en");
-  const isRegistered = useAppSelector(state => state.value.isDefaultHeader);
-  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
-  const loading = useAppSelector(state => state.login.loading);
+  const dispatch = useAppDispatch();
+  const token = useAppSelector(state => state.dataUser.userToken);
+  const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
+  const user = useAppSelector(state => state.dataUser.user.name);
 
   useEffect(() => {
     dispatch(nameDecodedUser());
-    if (decodeUserName) {
-      dispatch(showStudentPage());
-    } else {
-      dispatch(showDefaultPage());
+    if (nameDecode && !user) {
+      dispatch(getUserData(nameDecode));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isRegistered, decodeUserName, loading]);
+  }, [token, dispatch, user, nameDecode]);
 
   return (
     <div className="side-bar">
@@ -45,11 +43,12 @@ const Header = ({onLanguageSwitch}: HeaderProps) => {
           </h4>
         </Link>
         <div className="header-buttons">
-          {isRegistered && <Avatar
+          {nameDecode && <Avatar
             onLanguageSwitch={onLanguageSwitch}
+            onSignOut={onSignOut}
             language={language}
             setLanguage={setLanguage}/>}
-          {!isRegistered && <Fragment>
+          {!nameDecode && <Fragment>
             <Language
               onLanguageSwitch={onLanguageSwitch}
               isRegistered={false}

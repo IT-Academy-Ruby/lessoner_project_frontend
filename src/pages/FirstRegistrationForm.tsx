@@ -6,16 +6,18 @@ import {
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
+import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
-import Facebook from "../components/icons/facebook.svg";
-import Google from "../components/icons/google.svg";
+// import Facebook from "../components/icons/facebook.svg";
+// import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import Phone from "../components/icons/phone.svg";
-import VK from "../components/icons/vk.svg";
-import { useAppSelector } from "../store/hooks";
+// import Phone from "../components/icons/phone.svg";
+// import VK from "../components/icons/vk.svg";
+import {getEmail} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
 
 interface FormValues {
   email: string;
@@ -39,8 +41,16 @@ const symbols = PASSWORD.symbols;
 
 const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
   const intl = useIntl();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isEmail = useAppSelector(state => state.login.isEmail);
+  const [isRegEmail, setIsRegEmail] = useState<string | unknown>("");
+
+  useEffect(() => {
+    if (isRegEmail) {
+      navigate("/user/reg_in/information");
+    }
+  }, [isRegEmail, navigate]);
+
   const initialValues: FormValues = {
     email: "",
     password: "",
@@ -53,30 +63,27 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
     const errors: FormErrors = {};
 
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
-      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.invalidationRules" });
+      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
-    if (isEmail) {
-      errors.email = intl.formatMessage({ id: "app.firstRegistrationForm.existsInDb" });
-    }
+
     if (!passwordRegex.test(values.password)) {
-      errors.password = intl.formatMessage({ id: "app.firstRegistrationForm.passwordRegEx" }, {
+      errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
         minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
       });
     }
     if (values.password.length > maxSymbol || values.password.length < minSymbol) {
       errors.password = intl.formatMessage(
-        { id: "app.firstRegistrationForm.passwordLength" }, { minSymbol: minSymbol, maxSymbol: maxSymbol }
+        {id: "app.firstRegistrationForm.passwordLength"}, {minSymbol: minSymbol, maxSymbol: maxSymbol}
       );
     }
     if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = intl.formatMessage({ id: "app.firstRegistrationForm.passwordConfrim" });
+      errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
     if (!(values.hasTermsAndConditions)) {
-      errors.hasTermsAndConditions = intl.formatMessage({ id: "app.firstRegistrationForm.termsAndConditions" });
+      errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;
   };
-
 
   return (
     <div className="log-content">
@@ -85,12 +92,16 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
         validateOnChange={false}
         validate={validate}
         onSubmit={(values: FormValues) => {
+          dispatch(getEmail(values.email))
+            .then((data) => data.payload)
+            .then((result) =>{
+              setIsRegEmail(!result);
+            });
           setUserEmail(values.email);
           setUserPassword(values.password);
-          navigate("/user/reg_in/information");
         }}
       >
-        {({ errors, touched }) => {
+        {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
@@ -100,7 +111,8 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
-                needEmail={false}
+                isEmail={isRegEmail}
+                textError={intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"})}
               />
               <Field
                 name="password"
@@ -115,39 +127,40 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined}
+                isConfirm={true}
+                error={touched.confirmPassword ? errors.confirmPassword : undefined}
               />
               <Field
                 name="hasTermsAndConditions"
                 component={Checkbox}
-                information={intl.formatMessage({ id: "app.checkbox" })}
-                link={intl.formatMessage({ id: "app.checkbox.terms" })}
+                information={intl.formatMessage({id: "app.checkbox"})}
+                link={intl.formatMessage({id: "app.checkbox.terms"})}
                 error={touched.hasTermsAndConditions ? errors.hasTermsAndConditions : undefined}
               />
               <Button
                 buttonType="submit"
-                buttonText={intl.formatMessage({ id: "app.button.next" })}
+                buttonText={intl.formatMessage({id: "app.button.next"})}
                 className="button__page"
               />
-              <div className="or">
-                <span className="line-right"></span>
-                <FormattedMessage id="app.or" />
-                <span className="line-left"></span>
-              </div>
-              <div className="apps-logs">
-                <Link to="/user/google" className="app-logo">
-                  <img src={Google} alt="google"/>
-                </Link>
-                <Link to="/user/facebook" className="app-logo">
-                  <img src={Facebook} alt="facebook"/>
-                </Link>
-                <Link to="/user/vk" className="app-logo">
-                  <img src={VK} alt="vk"/>
-                </Link>
-                <Link to="/user/sign_in/phone_numberR" className="app-logo">
-                  <img src={Phone} alt="phone"/>
-                </Link>
-              </div>
+              {/*<div className="or">*/}
+              {/*  <span className="line-right"></span>*/}
+              {/*  <FormattedMessage id="app.or" />*/}
+              {/*  <span className="line-left"></span>*/}
+              {/*</div>*/}
+              {/*<div className="apps-logs">*/}
+              {/*  <Link to="/user/google" className="app-logo">*/}
+              {/*    <img src={Google} alt="google" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/facebook" className="app-logo">*/}
+              {/*    <img src={Facebook} alt="facebook" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/vk" className="app-logo">*/}
+              {/*    <img src={VK} alt="vk" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/sign_in/phone_numberR" className="app-logo">*/}
+              {/*    <img src={Phone} alt="phone" />*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
               <p className="text">
                 <FormattedMessage id="app.firstRegistrationForm.haveAccount" />
                 <Link

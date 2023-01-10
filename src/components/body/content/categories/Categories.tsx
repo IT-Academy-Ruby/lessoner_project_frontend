@@ -14,18 +14,20 @@ const Categories = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [isAdmin, setIsAdmin] = useState(false);
   const [pageSize, setPageSize] = useState(getWindowDimensions());
-  const user = useAppSelector(state => state.userDecodedName.session);
+  const admin = useAppSelector(state => state.userDecodedName.session.admin);
 
   useEffect(() => {
-    if (user.name === "admin" && user.email === "lessonerteam@gmail.com") {
-      setIsAdmin(true);
-    } else {
-      setIsAdmin(false);
+    if (admin) {
       dispatch(getCategory());
-    };
-  }, [isAdmin, user, dispatch]);
+    }
+  }, [admin, dispatch]);
+
+  useEffect(() => {
+    if (admin) {
+      dispatch(getCategory());
+    }
+  }, [admin, dispatch]);
 
   const resizeHanlder = () => {
     const pageSize = getWindowDimensions();
@@ -77,35 +79,39 @@ const Categories = () => {
 
   return (
     <div className="categories">
-      {isAdmin && <div className="categories">
-        <div className="category-header">
-          <h1 className="category-title">
-            <FormattedMessage id="app.categories" />
-          </h1>
-          <Button
-            className="button-register"
-            buttonText={intl.formatMessage((pageSize.width > parseInt(styles.maxWidthPhone)) ?
-              { id: "app.button.categories.Add" } : { id: "app.button.categories.New" })}
-            buttonType="button"
-            onClick={addCategory}
-          />
+      {
+        admin && <div className="categories">
+          <div className="category-header">
+            <h1 className="category-title">
+              <FormattedMessage id="app.categories" />
+            </h1>
+            <Button
+              className="button-register"
+              buttonText={intl.formatMessage((pageSize.width > parseInt(styles.maxWidthPhone)) ?
+                { id: "app.button.categories.Add" } : { id: "app.button.categories.New" })}
+              buttonType="button"
+              onClick={addCategory}
+            />
+          </div>
+          <div className="tab">
+            {columnsHeaders()}
+            <CategoriesAdmin />
+          </div>
         </div>
-        <div className="tab">
-          {columnsHeaders()}
-          <CategoriesAdmin />
+      }
+      {
+        !admin && <div className="categories">
+          <div className="category-header">
+            <h1 className="category-title">
+              <FormattedMessage id="app.categories" />
+            </h1>
+          </div>
+          <div className="tab">
+            <CategoriesUser />
+          </div>
         </div>
-      </div>}
-      {!isAdmin && <div className="categories">
-        <div className="category-header">
-          <h1 className="category-title">
-            <FormattedMessage id="app.categories" />
-          </h1>
-        </div>
-        <div className="tab">
-          <CategoriesUser />
-        </div>
-      </div>}
-    </div>
+      }
+    </div >
   );
 };
 export default Categories;

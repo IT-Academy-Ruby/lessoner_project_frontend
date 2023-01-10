@@ -10,21 +10,16 @@ type ConfirmProps = {
 const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
-  const email = userEmail.slice(userEmail.lastIndexOf("@") + 1);
 
   const handleClick = () => {
-    if (registration) {
-      window.location.href = `https://${email}`;
-    } else {
-      navigate("/");
-    }
+    navigate("/");
   };
 
   return (
     <div className="log-content">
       <h2 className="inform">
         {registration ? intl.formatMessage({id: "app.ConfirmReg.info"}) :
-          intl.formatMessage({id: "app.resetPasswordPage.text"}, {email: "email"})
+          intl.formatMessage({id: "app.resetPasswordPage.text"}, {email: userEmail})
         }
       </h2>
       <Button

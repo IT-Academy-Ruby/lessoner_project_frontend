@@ -11,7 +11,7 @@ $transition: .2s;
     box-shadow: var(--bgNavBarShadow);
     background: var(--bgThemeNavBarColor);
     transition: .1s;
-    z-index: 1000;
+    z-index: 90;
 }
 
 .menu__content:hover, .menu__content--active {
@@ -204,7 +204,10 @@ $transition: .2s;
   border-radius: 50%;
   opacity: 1;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s; 
+}
+span {
+  margin-bottom: 0;
 }
 
 .image__wrapper-theme {

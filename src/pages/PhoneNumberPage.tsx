@@ -77,7 +77,6 @@ const PhoneNumberPage = ({registration}: PhoneProps) => {
                 isError={isError}
                 phoneNumber={phoneNumber}
                 setPhoneNumber={setPhoneNumber}
-                // isError={isError}
               />
               {registration && <Field
                 name="hasTermsAndConditions"
