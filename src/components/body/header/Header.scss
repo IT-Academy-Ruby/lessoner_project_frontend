@@ -34,7 +34,6 @@
   margin-left: 27px;
   position: relative;
   z-index: 100;
-
 }
 
 .title-header {
@@ -153,6 +152,8 @@
   width: 210px;
   left: -16px;
   top: 30px;
+  background-color: var(--bgDropDownMainPage);
+  color: var(--textDropDownMainPage);
 }
 
 .no-registration-list {
@@ -160,6 +161,8 @@
   width: 140px;
   bottom: -70px;
   right: 0;
+  background-color: var(--bgDropDownMainPage);
+  color: var(--textDropDownMainPage);
 }
 
 .list-user {
@@ -182,7 +185,7 @@
   cursor: pointer;
 
   &:hover {
-    background: $greyDefault;
+    background: var(--bgTextHoverDropDownMainPage);
   }
 }
 
