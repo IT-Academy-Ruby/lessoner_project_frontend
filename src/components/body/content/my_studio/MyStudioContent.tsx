@@ -6,10 +6,10 @@ import { SKELETON_LESSONS_AMOUT } from "../../../../constants";
 import SkeletonLessons from "../../../SkeletonLessons";
 import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
-import { useIntl } from "react-intl";
+import { useIntl } from "react-intl"; 
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
-export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/my_studio/lessons`;
 export interface Lesson {
   id: number;
   title: string;

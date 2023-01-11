@@ -9,7 +9,7 @@ import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
-export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`; 
 export interface Lesson {
   id: number;
   title: string;

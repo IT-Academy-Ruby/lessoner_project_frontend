@@ -12,7 +12,7 @@
 	font-weight: 700;
 	font-size: 32px;
 	line-height: 130%;
-	color: #1B1B1F;
+	color: var(--iconsTextEditVideoLessonColor);
 	margin: 0;
 }
 
@@ -45,13 +45,13 @@
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 150%;
-	color: #5A5D72;
+	color: var(--textMyStudioHead);
 	margin-right: 40px;
 	cursor: pointer;
 }
 
 .mystudiohead__lessons-item-active {
-	color: #455FCE;
+	color: var(--textMyStudioHeadActive);
 }
 
 .mystudiohead__lessons-item-underline {
@@ -74,13 +74,14 @@
 	min-width: 203px;
 	padding: 8px 16px;
 	background: var(--bgDropDownMainPage);
-	box-shadow: 2px 0px 10px rgba(16, 19, 45, 0.05);
+	box-shadow: 1px 1px 20px rgba(46, 53, 119, 0.07);
 	border-radius: 4px;
 	font-family: $font;
 	font-style: normal;
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 122%;
+	color: var(--textMyStudioHeadSelect);
 	border: none;
 	&:focus {
 		outline: 0;

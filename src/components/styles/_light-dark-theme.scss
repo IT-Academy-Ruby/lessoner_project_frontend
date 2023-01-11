@@ -205,6 +205,18 @@ $themes: (
     darkTheme: $light1,
     lightTheme: $dark1,
   ),
+  textMyStudioHead: (
+    darkTheme: $light9,
+    lightTheme: $light10,
+  ),
+  textMyStudioHeadActive: (
+    darkTheme: $light11,
+    lightTheme: $blue2,
+  ),
+    textMyStudioHeadSelect: (
+      darkTheme: $light11,
+      lightTheme: $dark1,
+    ),
 );
 
 @mixin styles($mode) {
