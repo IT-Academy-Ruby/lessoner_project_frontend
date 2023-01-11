@@ -6,6 +6,7 @@ const SelectCategory = () => {
   // eslint-disable-next-line prefer-const
   let id = useParams();
   console.log(id);
+  // eslint-disable-next-line prefer-const
   const getCategoryUrl = `${process.env.REACT_APP_BACKEND_URL}/categories/${id.id}`;
   console.log(getCategoryUrl);
   useEffect(() => {
