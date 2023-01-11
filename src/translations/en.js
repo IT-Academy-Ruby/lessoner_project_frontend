@@ -254,4 +254,11 @@ export const messages_en = {
     "<span>Teach</span> by studying. <br /> Study while teaching.",
   "app.hero.subtitle":
     "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills.",
+    "app.myStudio.statusAllLessons":"All lessons",
+    "app.myStudio.statusActive":"Active",
+    "app.myStudio.statusArchived":"Archived",
+    "app.myStudio.categoryAllLessons":"All lessons",
+    "app.myStudio.categoryIT":"IT",
+    "app.myStudio.categoryMusic":"Music",
+    "app.myStudio.categoryDesign":"Design",
 };

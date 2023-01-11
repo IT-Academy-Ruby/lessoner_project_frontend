@@ -22,8 +22,17 @@ const MyStudioHead = () => {
     setCategoryActive(category.value);
   };
 
-  const STATUSES = ["All lessons", "Active", "Archived"];
-  const CATEGORIES = ["All categories", "IT", "Music", "Design"];
+  const STATUSES = [
+    intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
+    intl.formatMessage({ id: "app.myStudio.statusActive" }),
+    intl.formatMessage({ id: "app.myStudio.statusArchived" }),
+  ];
+  const CATEGORIES = [
+    intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
+    intl.formatMessage({ id: "app.myStudio.categoryIT" }),
+    intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
+    intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
+  ];
   const elementsStatus = STATUSES.map((status) => {
     return (
       <div key={status} className="mystudiohead__lessons-item">
