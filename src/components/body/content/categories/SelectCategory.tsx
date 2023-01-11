@@ -18,7 +18,7 @@ const SelectCategory = () => {
       console.log(error);
     });
     console.log(catigoriesItems);
-  }, []);
+  },);
  
   return (
     <div>
