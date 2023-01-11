@@ -2,7 +2,7 @@ import "./myStudioContent.scss";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "../lessons/LessonsHelper";
-import LessonCard from "../../../LessonCard";
+import MyLessonCard from "../../../MyLessonCard";
 import requestApi from "../../../../services/request";
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
@@ -107,7 +107,7 @@ const MyStudioContent: React.FC = () => {
     <div className="mystudiocontent__wrapper">
       <div className="mystudiocontent__lessons">
         {data.map((obj) => (
-          <LessonCard
+          <MyLessonCard
             key={obj.id}
             title={obj.title}
             status={obj.status}
