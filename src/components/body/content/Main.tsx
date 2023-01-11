@@ -69,7 +69,7 @@ const Content = () => {
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudio />} />
-        <Route path="/myStudio/:id" element={<EditVideoLessonTitle />} />
+        <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"
           element={<AddCategory add={true} />}

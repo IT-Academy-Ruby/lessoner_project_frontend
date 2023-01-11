@@ -143,7 +143,9 @@ export const EditVideoLessonForm: FC = () => {
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableName" })}
             <Field
-              className={classNames("evlf__input", {["error-input"]: errors.name && errors.name})}
+              className={classNames("evlf__input", {
+                ["error-input"]: errors.name && errors.name,
+              })}
               name="name"
               validate={validateName}
             />
@@ -156,18 +158,23 @@ export const EditVideoLessonForm: FC = () => {
             <Field className="evlf__input" as="select" name="category">
               <option value="IT">IT</option>
               <option value="Music">
-                {intl.formatMessage({id: "app.editVideoLesson.lableCategoryMusic"})}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableCategoryMusic",
+                })}
               </option>
               <option value="Design">
-                {intl.formatMessage({id: "app.editVideoLesson.lableCategoryDesign"})}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableCategoryDesign",
+                })}
               </option>
             </Field>
           </label>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableDescription" })}
             <Field
-              className={classNames("evlf__input evlf__input-textarea", 
-                {["error-input"]: errors.description && errors.description})}
+              className={classNames("evlf__input evlf__input-textarea", {
+                ["error-input"]: errors.description && errors.description,
+              })}
               name="description"
               validate={validateDescription}
               as="textarea"
@@ -181,7 +188,9 @@ export const EditVideoLessonForm: FC = () => {
             <label>
               {intl.formatMessage({ id: "app.editVideoLesson.lableSubtitles" })}
               <p className="evlf__text">
-                {intl.formatMessage({id: "app.editVideoLesson.lableSubtitlesText"})}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableSubtitlesText",
+                })}
               </p>
             </label>
             <Button
@@ -196,12 +205,14 @@ export const EditVideoLessonForm: FC = () => {
             <label>
               {intl.formatMessage({ id: "app.editVideoLesson.lableThumbnail" })}
               <p className="evlf__text">
-                {intl.formatMessage({id: "app.editVideoLesson.lableThumbnailText"})}
+                {intl.formatMessage({
+                  id: "app.editVideoLesson.lableThumbnailText",
+                })}
               </p>
             </label>
             <Thumbnail
               lesson={lesson}
-              onImageUrlChange ={handleImageUrlChange }
+              onImageUrlChange={handleImageUrlChange}
               imageURL={imageURL}
             />
           </div>
@@ -210,7 +221,7 @@ export const EditVideoLessonForm: FC = () => {
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.cancel" })}
               className="button__fs16-white button__fs16-left"
-              onClick={() => navigate("/lessons")}
+              onClick={() => navigate("/myStudio")}
             />
             <Button
               buttonType="submit"
