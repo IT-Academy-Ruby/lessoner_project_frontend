@@ -122,6 +122,7 @@ const Lessons: React.FC = () => {
             category={obj.categoryName}
             rating={obj.rating}
             totalVotes={obj.votes_count}
+            edited={false}
           />
         ))}
       </div>

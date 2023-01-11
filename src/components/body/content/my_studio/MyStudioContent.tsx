@@ -1,9 +1,12 @@
 import "./myStudioContent.scss";
 import React, { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "../lessons/LessonsHelper";
-import MyLessonCard from "../../../MyLessonCard";
+import LessonCard from "../../../LessonCard";
+import { SKELETON_LESSONS_AMOUT } from "../../../../constants";
+import SkeletonLessons from "../../../SkeletonLessons";
+import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
+import { useIntl } from "react-intl";
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
 export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
@@ -42,6 +45,7 @@ export interface CategoriesResponce {
 }
 
 const MyStudioContent: React.FC = () => {
+  const intl = useIntl();
   const [categories, setCategories] = useState<Category[]>([]);
   const [data, setData] = useState<Lesson[]>([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
@@ -72,10 +76,6 @@ const MyStudioContent: React.FC = () => {
   useEffect(() => {
     if (!dataIsLoaded && categoriesIsLoaded) {
       const fetchSuccess = (data: Lesson[]) => {
-        data.map((elem) => {
-          elem.image_link =
-            "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg";
-        });
         const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
         setData(dataWithCategoryName);
         setDataIsLoaded(true);
@@ -96,29 +96,30 @@ const MyStudioContent: React.FC = () => {
     }
   }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
 
+  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) => (
+    <SkeletonLessons key={index} />
+  ));
+
   if (!categoriesIsLoaded || !dataIsLoaded)
-    return (
-      <div>
-        <FormattedMessage id="app.lessons.loading" />
-      </div>
-    );
+    return <div className="lessons">{skeleton}</div>;
 
   return (
     <div className="mystudiocontent__wrapper">
       <div className="mystudiocontent__lessons">
         {data.map((obj) => (
-          <MyLessonCard
+          <LessonCard
             key={obj.id}
             title={obj.title}
             status={obj.status}
             duration={obj.duration}
-            imagePreview={obj.image_link}
+            imagePreview={obj.image_link ? obj.image_link : placeHolder}
             id={obj.id}
             published={obj.created_at}
             view={obj.view}
             category={obj.categoryName}
             rating={obj.rating}
             totalVotes={obj.votes_count}
+            edited={true}
           />
         ))}
       </div>

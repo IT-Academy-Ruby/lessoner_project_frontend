@@ -22,7 +22,7 @@ const MyStudioHead = () => {
     setCategoryActive(category.value);
   };
 
-  const STATUSES = ["All lessons", "Published", "In review", "Draft", "Archived"];
+  const STATUSES = ["All lessons", "Active", "Archived"];
   const CATEGORIES = ["All categories", "IT", "Music", "Design"];
   const elementsStatus = STATUSES.map((status) => {
     return (
