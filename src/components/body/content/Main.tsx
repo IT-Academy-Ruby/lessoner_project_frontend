@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
 import Categories from "./categories/Categories";
+import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
 import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
@@ -62,12 +63,13 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
-        <Route path="/" element={<Lessoner/>} />
-        <Route path="/categories" element={<Categories/>} />
-        <Route path="/lessons" element={<Lessons/>} />
-        <Route path="/about" element={<About/>} />
+        <Route path="/" element={<Lessoner />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/lessons" element={<Lessons />} />
+        <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudio />} />
+        <Route path="/myStudio/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"
           element={<AddCategory add={true} />}
@@ -76,75 +78,64 @@ const Content = () => {
           path="/categories/updateCategory/:id"
           element={<AddCategory add={false} />}
         />
-        {decodeUserName &&
+        {decodeUserName && (
           <Route
-            path={decodeUserName?"/user/userPage":"/"}
+            path={decodeUserName ? "/user/userPage" : "/"}
             element={<UserPage />}
           />
-        }
+        )}
         <Route
           path="/user/sign_up"
-          element={<Pages pageType={"FirstRegistrationForm"}/>}
+          element={<Pages pageType={"FirstRegistrationForm"} />}
         />
         <Route
           path="/user/reg_in/information"
-          element={<Pages pageType={"YourselfPage"} registration={false}/>}
+          element={<Pages pageType={"YourselfPage"} registration={false} />}
         />
         <Route
           path="/user/reg_in/information/modR"
-          element={<Pages pageType={"ConfirmReg"} registration={true}/>}
+          element={<Pages pageType={"ConfirmReg"} registration={true} />}
         />
         <Route
           path="/user/sign_in/phone_numberR"
-          element={<Pages pageType={"PhoneNumberPage"} registration={true}/>}
+          element={<Pages pageType={"PhoneNumberPage"} registration={true} />}
         />
         <Route
           path="/user/sign_in/phone_numberR/code"
-          element={<Pages pageType={"Code"} registration={true}/>}
+          element={<Pages pageType={"Code"} registration={true} />}
         />
-        <Route
-          path="/user/sign_in"
-          element={<Pages pageType={"Login"}/>}
-        />
+        <Route path="/user/sign_in" element={<Pages pageType={"Login"} />} />
         <Route
           path="/user/sign_in/phone_numberA"
-          element={<Pages pageType={"PhoneNumberPage"} registration={false}/>}
+          element={<Pages pageType={"PhoneNumberPage"} registration={false} />}
         />
         <Route
           path="/user/sign_in/reset_password/reset"
-          element={<Pages pageType={"ConfirmReg"} registration={false}/>}
+          element={<Pages pageType={"ConfirmReg"} registration={false} />}
         />
         <Route
           path="/user/sign_in/phone_numberA/code"
-          element={<Pages pageType={"Code"} registration={false}/>}
+          element={<Pages pageType={"Code"} registration={false} />}
         />
         <Route
           path="/user/sign_in/reset_password"
-          element={<Pages pageType={"ResetPage"}/>}
+          element={<Pages pageType={"ResetPage"} />}
         />
         <Route
           path="/user/sign_in/reset_password/new_password"
-          element={<Pages pageType={"SetNewPassword"}/>}
+          element={<Pages pageType={"SetNewPassword"} />}
         />
         <Route
           path="/user/google"
-          element={<GoogleOAuthProvider
-            clientId={process.env.REACT_APP_GOOGLE_ID}>
-            <GoogleButton/>
-          </GoogleOAuthProvider>}
+          element={
+            <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
+              <GoogleButton />
+            </GoogleOAuthProvider>
+          }
         />
-        <Route
-          path="/user/facebook"
-          element={<FacebookButton/>}
-        />
-        <Route
-          path="/user/vk"
-          element={<VKButton/>}
-        />
-        <Route
-          path={"/user/sign_up/terms"}
-          element={<Terms/>}
-        />
+        <Route path="/user/facebook" element={<FacebookButton />} />
+        <Route path="/user/vk" element={<VKButton />} />
+        <Route path={"/user/sign_up/terms"} element={<Terms />} />
       </Routes>
     </div>
   );
