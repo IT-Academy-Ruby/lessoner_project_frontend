@@ -1,7 +1,7 @@
 import "./LessonCard.scss";
 import { Link , useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { KebabSvg } from "./svg/KebabSvg";
+import {ReactComponent as PencilEdit } from "./icons/pencilEdit.svg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
 import { PopupMenu } from "./PopupMenu";
@@ -51,7 +51,7 @@ export const Title: React.FC<TitleProps> = (props) => {
   return (
     <div className={`video__title ${props.className}`}>
       <Link to={`/lessons/${props.id}`}>
-        <p>{props.title}</p>
+        <p title={props.title}>{props.title}</p>
       </Link>
     </div>
   );
@@ -75,7 +75,7 @@ export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
   return (
     <>
       <div onClick={handleKebabClick} className={`kebab__menu ${className}`}>
-        <KebabSvg />
+        <PencilEdit />
       </div>
       <PopupMenu
         isOpen={isOpen}

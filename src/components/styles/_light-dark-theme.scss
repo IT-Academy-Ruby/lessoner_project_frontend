@@ -105,9 +105,13 @@ $themes: (
     darkTheme: $Surface5Dark,
     lightTheme: $Surface5Light,
   ),
-  KebabCardThemeColor: (
-    darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  KebabCardThemeColor: ( 
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  KebabCardThemeColorHover: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
   ),
   bgFirstRegistrForm: (
     darkTheme: $dark3,
