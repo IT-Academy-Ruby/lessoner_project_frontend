@@ -105,9 +105,13 @@ $themes: (
     darkTheme: $Surface5Dark,
     lightTheme: $Surface5Light,
   ),
-  KebabCardThemeColor: (
-    darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  KebabCardThemeColor: ( 
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  KebabCardThemeColorHover: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
   ),
   bgFirstRegistrForm: (
     darkTheme: $dark3,
@@ -205,6 +209,18 @@ $themes: (
     darkTheme: $light1,
     lightTheme: $dark1,
   ),
+  textMyStudioHead: (
+    darkTheme: $light9,
+    lightTheme: $light10,
+  ),
+  textMyStudioHeadActive: (
+    darkTheme: $light11,
+    lightTheme: $blue2,
+  ),
+    textMyStudioHeadSelect: (
+      darkTheme: $light11,
+      lightTheme: $dark1,
+    ),
 );
 
 @mixin styles($mode) {

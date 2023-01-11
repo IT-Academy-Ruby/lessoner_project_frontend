@@ -7,7 +7,7 @@
 .category-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-block: 16px;
 }
 
@@ -17,7 +17,6 @@
   position: absolute;
   width: 196px;
   left: 13px;
-  top: -20px;
 }
 
 .tab {

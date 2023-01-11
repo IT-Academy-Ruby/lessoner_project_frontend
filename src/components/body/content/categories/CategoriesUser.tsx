@@ -1,5 +1,6 @@
 import "./index.scss";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SKELETON_AMOUT } from "../../../../constants";
 import SkeletonCategory from "../../../SkeletonCategory";
 import UserCategory from "../../../UserCategory";
@@ -34,13 +35,16 @@ const CategoriesUser = () => {
 
   if (categories.length>0) {
     categorySet = categories.map((obj) => (
-      <UserCategory
-        key={obj.id}
-        id={obj.id}
-        imagePreview={obj.image_url}
-        name={obj.name}
-        description={obj.description}
-      />
+      <Link to={`/categories/${obj.id}`} key={obj.id}>
+        <UserCategory
+          key={obj.id}
+          id={obj.id}
+          imagePreview={obj.image_url}
+          name={obj.name}
+          description={obj.description}
+        />
+      </Link>
+      
     ));
   }
 
