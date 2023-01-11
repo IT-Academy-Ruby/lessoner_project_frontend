@@ -34,7 +34,9 @@ export const VideoViewPage = () => {
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
-  console.log(categoriesNames);
+  const [rating, setRating] = useState<undefined | number>();
+  // Написат начальное значение реальное
+
   useEffect(() => {
     // Get lessonData from lessonId
     const fetchSuccess = (data: Lesson) => {
@@ -230,21 +232,69 @@ export const VideoViewPage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName]);
-  console.log(categoryName);
+
+  useEffect(() => {
+    const fetchSuccess = (data: Lesson) => {
+      console.log(data.rating);
+      setRating(data.rating);
+    };
+    const fetchError = (errMessage: string) => {
+      alert(errMessage);
+    };
+
+    const fetchData = async () => {
+      const response = await requestApi(lessonsUrl + "/" + id);
+      if (!response.ok) {
+        fetchError("fetch error " + response.status);
+      } else {
+        const data = await response.json();
+        fetchSuccess(data);
+      }
+    };
+    fetchData();
+  },[])
+
   const changeIdState = (id: number) => {
     setId(String(id));
   };
-  console.log(lessonData);
+  const getNewRating=(rating: number) => {
+    const fetchSuccess = (data: Lesson) => {
+      console.log(data.rating);
+      setRating(data.rating);
+    };
+    const fetchError = (errMessage: string) => {
+      alert(errMessage);
+    };
+
+    const fetchData = async () => {
+      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {
+        rating,
+      });
+      if (!response.ok) {
+        fetchError("fetch error " + response.status);
+      } else {
+        const data = await response.json();
+        fetchSuccess(data);
+      }
+    };
+    fetchData();
+  };
 
   const sideBarTabs = [
     {
-      label: categoryName, id: 1, data: lessonsArr 
+      label: categoryName,
+      id: 1,
+      data: lessonsArr,
     },
     {
-      label: "New", id: 2, data: newLessonsArr 
+      label: "New",
+      id: 2,
+      data: newLessonsArr,
     },
     {
-      label: "Popular", id: 3, data: popularLessonsArr 
+      label: "Popular",
+      id: 3,
+      data: popularLessonsArr,
     },
   ];
 
@@ -254,11 +304,12 @@ export const VideoViewPage = () => {
     !lessonsArr ||
     !newLessonsArr ||
     !popularLessonsArr ||
-    !sideBarTabs
+    !sideBarTabs||
+    rating === undefined
   ) {
     return null;
   }
-  console.log(lessonData);
+
   return (
     <div className="video__page_wrapper">
       <div className="videoplayer__wrapper">
@@ -274,8 +325,9 @@ export const VideoViewPage = () => {
             </div>
             <div className="info__top_right">
               <VideoRating
-                ratingProp={lessonData.rating}
+                ratingProp={rating}
                 votesCount={lessonData.votes_count}
+                onGetNewRating={getNewRating}
               />
             </div>
           </div>
