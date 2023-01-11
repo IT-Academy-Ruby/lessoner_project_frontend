@@ -6,10 +6,10 @@ const SelectCategory = () => {
   // eslint-disable-next-line prefer-const
   let id = useParams();
   console.log(id);
-  const getCategoryUrl=`${process.env.REACT_APP_BACKEND_URL}/categories/${id.id}`;
+  const getCategoryUrl = `${process.env.REACT_APP_BACKEND_URL}/categories/${id.id}`;
   console.log(getCategoryUrl);
   useEffect(() => {
-    const catigoriesItems = requestApi(getCategoryUrl,"GET").then((response)=>{
+    const catigoriesItems = requestApi(getCategoryUrl,"GET").then((response) => {
       return response.json();
     }).then((json) => {
       console.log(json);
@@ -18,13 +18,13 @@ const SelectCategory = () => {
       console.log(error);
     });
     console.log(catigoriesItems);
-  },[]);
-
+  }, []);
+ 
   return (
     <div>
         Catigory id={id.id}
     </div>
-  )
+  );
 };
 
 export default SelectCategory;

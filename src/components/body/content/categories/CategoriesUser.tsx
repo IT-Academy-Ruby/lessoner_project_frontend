@@ -1,7 +1,7 @@
 import "./index.scss";
 import { useEffect, useState } from "react";
-import { SKELETON_AMOUT } from "../../../../constants";
 import { Link } from "react-router-dom";
+import { SKELETON_AMOUT } from "../../../../constants";
 import SkeletonCategory from "../../../SkeletonCategory";
 import UserCategory from "../../../UserCategory";
 import axios from "axios";

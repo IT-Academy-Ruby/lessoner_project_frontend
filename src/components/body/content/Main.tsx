@@ -1,6 +1,6 @@
 import "./Main.scss";
 import {
-  Route, Routes, useNavigate, useSearchParams
+  Route, Routes, useNavigate
 } from "react-router-dom";
 import {
   addToken, confirmTokenSlice, editUserEmail, resetUserData
@@ -32,11 +32,6 @@ const Content = () => {
   const url = window.location.href;
   const findTokenWordInURL = "token=";
   let controlRendering = 1;
-
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const id = searchParams.get("name");
-  // console.log(id);
-
   useEffect(() => {
     const registrationToken = url.lastIndexOf("confirm_email?token=");
     const resetPasswordToken = url.lastIndexOf("password/reset?token=");
