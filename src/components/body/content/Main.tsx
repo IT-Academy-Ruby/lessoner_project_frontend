@@ -76,7 +76,6 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
-        <Route path="/lessons/:id" element={<EditVideoLessonTitle />} />
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
@@ -84,6 +83,7 @@ const Content = () => {
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudio />} />
+        <Route path="/myStudio/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"
           element={<AddCategory add={true} />}

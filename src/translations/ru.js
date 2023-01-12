@@ -38,7 +38,7 @@ export const messages_ru = {
   "app.sign_in": "Войти",
   "app.sign_up": "Зарегистрироваться",
   "app.signUp": "Зарегистрироваться",
-  "app.birthdaylabel": "Когда у тебя день рождения?",
+  "app.birthdaylabel": "Когда у вас день рождения?",
   "app.checkbox":
     "Даю согласие на обработку моих персональных данных в соответствии с",
   "app.checkbox.terms": "Условиями",
@@ -92,7 +92,7 @@ export const messages_ru = {
   "app.navbarStudyStudio.policy": "Политика конфиденциальности.",
   "app.button.next": "Дальше",
   "app.button.ok": "Хорошо",
-  "app.button.finish": "Закончить",
+  "app.button.finish": "Завершить",
   "app.button.signIn": "Войти",
   "app.button.code": "Отправить код еще раз",
   "app.button.addsubtitles": "Добавить субтитры",
