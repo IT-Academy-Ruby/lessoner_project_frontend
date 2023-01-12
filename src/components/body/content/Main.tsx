@@ -77,10 +77,7 @@ const Content = () => {
               isRenderLessonTitle={true}
               isRenderLessonButton={false}
               isRenderLessonNav={true}
-              isRenderLessonContentEdited={false}
               renderLessonHeadTitle={"app.lessonsPageLessons"}
-              renderLessonContentCategoriesUrl={"/categories"}
-              renderLessonContentLessonsUrl={"/lessons"}
               renderLessonHeadStatuses={[
                 intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
                 intl.formatMessage({ id: "app.myStudio.statusActive" }),
@@ -92,6 +89,9 @@ const Content = () => {
                 intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
                 intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
               ]}
+              isRenderLessonContentEdited={false}
+              renderLessonContentCategoriesUrl={"/categories"}
+              renderLessonContentLessonsUrl={"/lessons"}
             />
           }
         />
@@ -101,17 +101,14 @@ const Content = () => {
           path="/myStudio"
           element={
             <RenderLessonPage
-              classNameWrapper={"mystudio__wrapper"}
+              classNameWrapper={"mystudio__wrapper"} 
               classNameInner={"mystudio__inner"}
               isHead={true}
               isRenderLessonHead={true}
               isRenderLessonTitle={true}
               isRenderLessonButton={true}
               isRenderLessonNav={true}
-              isRenderLessonContentEdited={true}
               renderLessonHeadTitle={"app.lessonsPageMyLessons"}
-              renderLessonContentCategoriesUrl={"/categories"}
-              renderLessonContentLessonsUrl={"/my_studio/lessons"}
               renderLessonHeadStatuses={[
                 intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
                 intl.formatMessage({ id: "app.myStudio.statusActive" }),
@@ -123,6 +120,9 @@ const Content = () => {
                 intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
                 intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
               ]}
+              isRenderLessonContentEdited={true}
+              renderLessonContentCategoriesUrl={"/categories"}
+              renderLessonContentLessonsUrl={"/my_studio/lessons"}
             />
           }
         />

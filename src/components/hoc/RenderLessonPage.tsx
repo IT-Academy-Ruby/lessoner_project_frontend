@@ -1,4 +1,4 @@
-import "../body/content/my_studio/myStudio.scss";
+import "./renderLessonPage.scss";
 import { 
   FC, useEffect, useState 
 } from "react";
@@ -6,7 +6,7 @@ import Add from "../icons/add.svg";
 import { BACKEND_URL_LESSONS } from "../../constants";
 import Button from "../Button";
 import Loader from "../Loader";
-import NoLessons from "../body/content/my_studio/img/noLessons.svg";
+import NoLessons from "../body/content/my_studio/img/noLessons.svg"; 
 import { RenderLessonContent } from "./RenderLessonContent";
 import { RenderLessonHead } from "./RenderLessonHead";
 import { useIntl } from "react-intl";
@@ -20,12 +20,12 @@ interface RenderLessonPageProps {
   isRenderLessonTitle: boolean;
   isRenderLessonButton: boolean;
   isRenderLessonNav: boolean;
-  isRenderLessonContentEdited: boolean;
   renderLessonHeadTitle: string;
-  renderLessonContentCategoriesUrl: string;
-  renderLessonContentLessonsUrl: string;
   renderLessonHeadStatuses: string[];
   renderLessonHeadCategories: string[];
+  isRenderLessonContentEdited: boolean;
+  renderLessonContentCategoriesUrl: string;
+  renderLessonContentLessonsUrl: string;
 }
 
 export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {

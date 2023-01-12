@@ -1,9 +1,9 @@
-import "../body/content/my_studio/myStudioHead.scss";
+import "./renderLessonHead.scss";
 import { FC, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Button from "../Button";
 import classNames from "classnames";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 interface RenderLessonHeadProps {
   statuses: string[];
