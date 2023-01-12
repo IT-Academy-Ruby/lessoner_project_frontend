@@ -1,12 +1,12 @@
 import "./lessoner.scss";
 import { Hero } from "../../../hero/hero";
-import { LessonPage } from "../../../renderLessonsPage/lessonPage";
+import { LessonsPage } from "../../../renderLessonsPage/lessonsPage";
 
 const Lessoner = () => {
   return (
     <div className="lessoner__wrapper">
       <Hero />
-      <LessonPage />
+      <LessonsPage isHomePage={true}/>
     </div>
   );
 };

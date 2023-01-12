@@ -20,10 +20,13 @@ interface RenderLessonPageProps {
   isRenderLessonTitle: boolean;
   isRenderLessonButton: boolean;
   isRenderLessonNav: boolean;
+  isRenderLessonHeadStatuses: boolean;
+  isRenderLessonHeadCategories: boolean;
   renderLessonHeadTitle: string;
   renderLessonHeadStatuses: string[];
   renderLessonHeadCategories: string[];
   isRenderLessonContentEdited: boolean;
+  isRenderLessonContentHasStatus: boolean;
   renderLessonContentCategoriesUrl: string;
   renderLessonContentLessonsUrl: string;
 }
@@ -49,9 +52,8 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
   return (
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
-        {isLoader && (
-          <Loader />
-        )} {isLesson ? (
+        {isLoader && <Loader />}{" "}
+        {isLesson ? (
           <>
             {renderProps.isHead && (
               <RenderLessonHead
@@ -61,6 +63,8 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 isHead={renderProps.isRenderLessonHead}
                 isTitle={renderProps.isRenderLessonTitle}
                 isButton={renderProps.isRenderLessonButton}
+                isStatuses={renderProps.isRenderLessonHeadStatuses}
+                isCategories={renderProps.isRenderLessonHeadCategories}
                 isNav={renderProps.isRenderLessonNav}
                 buttonType={"button"}
                 buttonText={"app.button.addNewLesson"}
@@ -86,7 +90,8 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               />
             )}
             <RenderLessonContent
-              edited={renderProps.isRenderLessonContentEdited}
+              isEditable={renderProps.isRenderLessonContentEdited}
+              hasStatus={renderProps.isRenderLessonContentHasStatus}
               classNameWrapper={"mystudiocontent__wrapper"}
               classNameInner={"mystudiocontent__lessons"}
               categoriesUrl={renderProps.renderLessonContentCategoriesUrl}
@@ -101,16 +106,18 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               </div>
               <p className="mystudio__nolessons-text">
                 <span>
-                  {intl.formatMessage({id: "app.myStudio.NoLessonTexp_1"})}
+                  {intl.formatMessage({ id: "app.lessons.NoLessonTexp_1" })}
                 </span>
                 <span>
-                  {intl.formatMessage({id: "app.myStudio.NoLessonTexp_2"})}
+                  {intl.formatMessage({ id: "app.lessons.NoLessonTexp_2" })}
                 </span>
               </p>
               <div className="mystudio__button">
                 <Button
                   buttonType="button"
-                  buttonText={intl.formatMessage({id: "app.button.addNewLesson"})}
+                  buttonText={intl.formatMessage({
+                    id: "app.button.addNewLesson",
+                  })}
                   className="button__fs16"
                   buttonImage={Add}
                   imageStyle="mystudiohead__svg-add"

@@ -126,6 +126,7 @@ type LessonCardsProps = {
   rating?: number;
   totalVotes?: number;
   isEditable: boolean;
+  hasStatus: boolean;
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
@@ -136,13 +137,14 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
           {props.imagePreview && (
             <ThumbnailImageUrl  id={props.id} imagePreview={props.imagePreview} />
           )}
-          <Tag
+          {props.hasStatus &&
+            <Tag
             type="status"
             className="video__status"
             text={props.status}
             iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
             videoStatus={true}
-          />
+          />}
           {props.duration && (
             <Tag className="video__time" type="time" text={props.duration} />
           )}

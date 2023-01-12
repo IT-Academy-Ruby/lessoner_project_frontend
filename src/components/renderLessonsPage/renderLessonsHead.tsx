@@ -11,6 +11,8 @@ interface RenderLessonHeadProps {
   isHead: boolean;
   isTitle: boolean;
   isButton: boolean;
+  isStatuses: boolean;
+  isCategories: boolean;
   isNav: boolean;
   buttonType: any; // eslint-disable-line
   buttonText: string;
@@ -50,8 +52,10 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
     setCategoryActive(category.value);
   };
 
-  const STATUSES = renderProps.statuses;
-  const CATEGORIES = renderProps.categories;
+  const STATUSES = renderProps.statuses.map((status) =>
+    intl.formatMessage({ id: status })
+  );
+  const CATEGORIES = renderProps.categories.map(category => intl.formatMessage({ id: category }));
 
   const elementsStatus = STATUSES.map((status: string) => {
     return (
@@ -80,7 +84,7 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
 
   return (
     <div className={renderProps.classNameWrapper}>
-      {renderProps.isHead &&
+      {renderProps.isHead && (
         <div className={renderProps.classNameHead}>
           {renderProps.isTitle && (
             <p className={renderProps.classNameTitle}>
@@ -99,20 +103,24 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
               />
             </div>
           )}
-        </div>}
-      {renderProps.isNav &&
-            <div className={renderProps.classNameNav}>
-              <div className={renderProps.classNameStatus}>{elementsStatus}</div>
-              <div className={renderProps.classNameCategories}>
-                <select
-                  name=""
-                  className={renderProps.classNameCategoriesSelect}
-                  onChange={(event) => handleCategoryToggle(event)}
-                >
-                  {elementsCategory}
-                </select>
-              </div>
-            </div>}
+        </div>
+      )}
+      {renderProps.isNav && (
+        <div className={renderProps.classNameNav}>
+          <div className={renderProps.classNameStatus}>
+            {renderProps.isStatuses && elementsStatus}
+          </div>
+          <div className={renderProps.classNameCategories}>
+            <select
+              name=""
+              className={renderProps.classNameCategoriesSelect}
+              onChange={(event) => handleCategoryToggle(event)}
+            >
+              {renderProps.isCategories &&  elementsCategory}
+            </select>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
