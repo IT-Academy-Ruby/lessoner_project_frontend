@@ -1,180 +1,14 @@
 import "./NavbarStudyStudio.scss";
-import {
-  FC,
-  useContext,
-  useState
-} from "react";
+import { FC, useState } from "react";
+import {Item, NavbarStudyStudioProps} from "./types.d";
+import {Link} from "react-router-dom";
 import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
-import { snowContext } from "../../../App";
-import useDarkMode from "use-dark-mode";
 import {useIntl} from "react-intl";
 
-
-interface NavbarStudyStudioProps {
-  menuType: string;
-  onSignOut: VoidFunction;
-}
-
-type itemType = {
-  id: number;
-  href: string;
-  valueId: string;
-  icon: string;
-  place: {
-    openclose?: string;
-    notAutorised?: string;
-    autorised?: string;
-    admin?: string;
-    logIn?: string;
-    logOut?: string;
-    darkTheme?: string;
-    lightTheme?: string;
-    snowOn?: string;
-    snowOff?: string;
-    contacts?: string;
-  };
-};
-
-const items = [
-  {
-    id: 1,
-    valueId: "Menu",
-    href: "#",
-    icon: "menu",
-    place: { openclose: "openclose" },
-  },
-  {
-    id: 2,
-    valueId: "app.navbarStudyStudio.home",
-    href: "/",
-    icon: "home",
-    place: {
-      notAutorised: "not_autorised",
-      autorised: "autorised",
-      admin: "admin",
-    },
-  },
-  {
-    id: 3,
-    valueId: "app.navbarStudyStudio.subscription",
-    href: "/myStudio",
-    icon: "subscription",
-    place: { autorised: "autorised", admin: "admin" },
-  },
-  {
-    id: 4,
-    valueId: "app.navbarStudyStudio.categories",
-    href: "/categories",
-    icon: "categories",
-    place: {
-      notAutorised: "not_autorised",
-      autorised: "autorised",
-      admin: "admin",
-    },
-  },
-  // To be added later...
-  // {
-  //   id: 5,
-  //   valueId: "app.navbarStudyStudio.management",
-  //   href: "#",
-  //   icon: "edit_categories",
-  //   place: { admin: "admin" },
-  // },
-  {
-    id: 6,
-    valueId: "app.navbarStudyStudio.aboutUs",
-    href: "/about",
-    icon: "about_us",
-    place: {
-      notAutorised: "not_autorised",
-      autorised: "autorised",
-      admin: "admin",
-    },
-  },
-  {
-    id: 7,
-    valueId: "app.navbarStudyStudio.logIn",
-    href: "#",
-    icon: "log_in",
-    place: { logIn: "log_in" },
-  },
-  {
-    id: 8,
-    valueId: "app.navbarStudyStudio.logOut",
-    href: "#",
-    icon: "log_out",
-    place: { logOut: "log_out" },
-  },
-  {
-    id: 9,
-    valueId: "app.navbarStudyStudio.darkTheme",
-    href: "#",
-    icon: "dark_theme",
-    place: { darkTheme: "dark_theme" },
-  },
-  {
-    id: 10,
-    valueId: "app.navbarStudyStudio.lightTheme",
-    href: "#",
-    icon: "light_theme",
-    place: { lightTheme: "light_theme" },
-  },
-  {
-    id: 11,
-    valueId: "app.navbarStudyStudio.snowOn",
-    href: "#",
-    icon: "snow_on",
-    place: { snowOn: "snow_on" },
-  },
-  {
-    id: 12,
-    valueId: "app.navbarStudyStudio.snowOff",
-    href: "#",
-    icon: "snow_off",
-    place: { snowOff: "snow_off" },
-  },
-  {
-    id: 13,
-    valueId: "app.navbarStudyStudio.management",
-    href: "https://www.grodno.it-academy.by/",
-    icon: "network",
-    place: { contacts: "contacts" },
-  },
-  {
-    id: 14,
-    valueId: "app.navbarStudyStudio.management",
-    href: "https://www.instagram.com/grodnoitacademypark/",
-    icon: "instagram",
-    place: { contacts: "contacts" },
-  },
-  {
-    id: 15,
-    valueId: "app.navbarStudyStudio.management",
-    href: "https://www.facebook.com/grodnoitacademypark",
-    icon: "facebook",
-    place: { contacts: "contacts" },
-  },
-  {
-    id: 16,
-    valueId: "app.navbarStudyStudio.management",
-    href: "https://www.linkedin.com/school/15248534/",
-    icon: "linkedin",
-    place: { contacts: "contacts" },
-  },
-];
-
-const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType, onSignOut}) => {
+const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config}) => {
   const intl = useIntl();
   const [isMenuActive, setIsMenuActive] = useState(false);
-  const [pressedButtonId, setPressedButtonId] = useState<number>();
-  const darkMode = useDarkMode(true);
-
-  const snow = useContext(snowContext);
-  const snowToggle = snow
-    ? () => snow.setSnow((value) => !value)
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    : () => {};
 
   const imageWrapperCN = classNames("image__wrapper", 
     {"image__wrapper--active": !isMenuActive});
@@ -197,21 +31,20 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType, onSignOut}) =>
   const menuItemInnerCN = classNames("menu__item-inner", 
     {"menu__item-inner--active": isMenuActive});
 
-  const renderTheme_LogInOut = (item: itemType) => {
-    const isActiveItem = item.id === pressedButtonId;
+  const renderTheme_LogInOut = (item: Item) => {
+    const isActiveItem = item.isHighlighted;
+    const isTheme = item.id === 9 || item.id === 10;
 
     return (
       <li
         className={"menu__item menu__item-footer"}
         key={item.id}
-        onClick={() => isActiveItem && setPressedButtonId(item.id)}
       >
-        <a className={classNames({"menu__item-inner-theme": item.place.lightTheme || 
-          item.place.darkTheme}, menuItemInnerCN,
-        {"menu__item-inner--selected": item.id === pressedButtonId})} href={item.href}
+        <Link className={classNames({"menu__item-inner-theme": isTheme}, menuItemInnerCN,
+          {"menu__item-inner--selected": isActiveItem})} to={item.href}
         >
           <span
-            className={classNames((item.place.lightTheme || item.place.darkTheme) ? 
+            className={classNames(isTheme ? 
               imageWrapperThemeCN : imageWrapperCN, {"image__wrapper--selected": 
               isActiveItem})}
           >
@@ -222,132 +55,114 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({menuType, onSignOut}) =>
           <span className={`${menuTextCN} ${isActiveItem ? "menu__text--selected" : ""}`}>
             {intl.formatMessage({id: item.valueId})}
           </span>
-        </a>
+        </Link>
       </li>
     );
   };
 
   return (
-    <div onClick={() => setIsMenuActive(false)}>
-      <div className={menuContentCN} onClick={(e) => e.stopPropagation()}>
-        <ul className="menu__inner">
-          <div
-            className="menu__item"
-            onClick={() => setIsMenuActive(!isMenuActive)}
-          >
-            <div className="image__wrapper image__wrapper--active">
-              <div className={classNames(svgMenuCN)}>
-                <NavbarStudyStudioSVGSelector icon="menu" />
-              </div>
+    <div className={menuContentCN} onClick={(e) => e.stopPropagation()}>
+      <ul className="menu__inner">
+        <div
+          className="menu__item"
+          onClick={() => setIsMenuActive(!isMenuActive)}
+        >
+          <div className="image__wrapper image__wrapper--active">
+            <div className={classNames(svgMenuCN)}>
+              <NavbarStudyStudioSVGSelector icon="menu" />
             </div>
           </div>
-          <div className="navbar__main" >
-            {items.map((item: itemType) =>
-              (item.place.admin === menuType || 
-                item.place.autorised === menuType || 
-                item.place.notAutorised === menuType)  && (
-                <li
-                  className={"menu__item"}
-                  key={item.id}
-                  onClick={() => item.id !== pressedButtonId && setPressedButtonId(item.id)}
-                >
-                  <a className={classNames(menuItemInnerCN, 
-                    {"menu__item-inner--selected": item.id === pressedButtonId})} href={item.href}>
-                    <span
-                      className={classNames(imageWrapperCN, 
-                        {"image__wrapper--selected": item.id === pressedButtonId})}
+        </div>
+        <div className="navbar__main">
+          {config.body.map(item => {
+            const isActiveItem = item.isHighlighted;
+            return (
+              <li
+                className={"menu__item"}
+                key={item.id}
+              >
+                <Link className={classNames(menuItemInnerCN, 
+                  {"menu__item-inner--selected": isActiveItem})} to={item.href}>
+                  <span
+                    className={classNames(imageWrapperCN, 
+                      {"image__wrapper--selected": isActiveItem})}
+                  >
+                    <div
+                      className={classNames(svgItemCN, 
+                        {"svg__item--selected": isActiveItem})}
                     >
-                      <div
-                        className={classNames(svgItemCN, 
-                          {"svg__item--selected": item.id === pressedButtonId})}
-                      >
+                      <NavbarStudyStudioSVGSelector icon={item.icon} />
+                    </div>
+                  </span>
+                  <span
+                    className={`${menuTextCN} ${
+                      isActiveItem ? "menu__text--selected" : ""
+                    }`}
+                  >
+                    {intl.formatMessage({id: item.valueId})}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </div>
+        <div className="menu__footer">
+          <div className={classNames(menuFooterContactsCN)}>
+            <div className="footer__contacts-content">
+              <p className={classNames(footerContactsTitleCN)}>
+                {intl.formatMessage({id: "app.navbarStudyStudio.contacts"})}
+              </p>
+              <a className={classNames(footerContactsNumberCN)} href="tel:+375 152 55 44 44">
+                +375 152 55 44 44 
+              </a>
+            </div>
+            <div className="footer__contacts-social">
+              {config.social.map((item) => {
+                return (
+                  <li
+                    className={"footer__social-item"}
+                    key={item.id}
+                  >
+                    <a className={classNames(imageWrapperFooterCN)} 
+                      href={item.href} target="_blank" rel="noreferrer">
+                      <div className={classNames(svgItemCN)}>
                         <NavbarStudyStudioSVGSelector icon={item.icon} />
                       </div>
-                    </span>
-                    <span
-                      className={`${menuTextCN} ${
-                        item.id === pressedButtonId ? "menu__text--selected" : ""
-                      }`}
-                    >
-                      {intl.formatMessage({id: item.valueId})}
-                    </span>
-                  </a>
-                </li>
-              )
-            )}
-          </div>
-          <div className="menu__footer">
-            <div className={classNames(menuFooterContactsCN)}>
-              <div className="footer__contacts-content">
-                <p className={classNames(footerContactsTitleCN)}>
-                  {intl.formatMessage({id: "app.navbarStudyStudio.contacts"})}
-                </p>
-                <a className={classNames(footerContactsNumberCN)} href="tel:+375 152 55 44 44">
-                  +375 152 55 44 44 
-                </a>
-              </div>
-              <div className="footer__contacts-social">
-                {items.map((item: itemType) =>
-                  item.place.contacts && (
-                    <li
-                      className={"footer__social-item"}
-                      key={item.id}
-                    >
-                      <a className={classNames(imageWrapperFooterCN)} 
-                        href={item.href} target="_blank" rel="noreferrer">
-                        <div className={classNames(svgItemCN)}>
-                          <NavbarStudyStudioSVGSelector icon={item.icon} />
-                        </div>
-                      </a>
-                    </li>
-                  )
-                )}
-              </div>
-            </div>
-            <div className={classNames(menuFooterLginoutCN)} onClick={onSignOut}>
-              {items.map((item: itemType) =>
-                (menuType === "not_autorised") 
-                  ? 
-                  item.place.logIn && renderTheme_LogInOut(item)
-                  :
-                  item.place.logOut && renderTheme_LogInOut(item)
-              )}
-            </div>
-            <div className="menu__footer-theme" onClick={darkMode.toggle}>
-              {items.map((item: itemType) =>
-                darkMode.value 
-                  ? 
-                  item.place.lightTheme && renderTheme_LogInOut(item)
-                  :
-                  item.place.darkTheme && renderTheme_LogInOut(item)
-              )}
-            </div>
-            <div className="menu__footer-snow" onClick={snowToggle}>
-              {items.map((item: itemType) =>
-                snow?.snow
-                  ? item.place.snowOff && renderTheme_LogInOut(item)
-                  : item.place.snowOn && renderTheme_LogInOut(item)
-              )}
-            </div>
-            <div className="menu__footer-rights">
-              <p className="menu__footer-date">
-                &reg; 2023<span className={classNames("menu__footer-text", 
-                  {"menu__footer-text--active": isMenuActive})}>.</span>{" "} 
-                <span className={classNames("menu__footer-text", 
-                  {"menu__footer-text--active": isMenuActive})}
-                >{intl.formatMessage({ id: "app.navbarStudyStudio.footer" })}</span>
-              </p>
-              <p className={classNames("menu__footer-text", 
-                {"menu__footer-text--active": isMenuActive})} >
-                <a className={classNames("menu__footer-text menu__footer-policy", 
-                  {"menu__footer-text--active": isMenuActive})} href="#!">
-                  {intl.formatMessage({ id: "app.navbarStudyStudio.policy" })}
-                </a>
-              </p>
+                    </a>
+                  </li>
+                );
+              })}
             </div>
           </div>
-        </ul>
-      </div>
+          {config.footer.map(item => {
+            return (
+              <div 
+                className={classNames(menuFooterLginoutCN)}
+                key={item.id} 
+                onClick={item.onClick}
+              >
+                {renderTheme_LogInOut(item)}
+              </div>
+            );
+          })}
+          <div className="menu__footer-rights">
+            <p className="menu__footer-date">
+              &reg; 2023<span className={classNames("menu__footer-text", 
+                {"menu__footer-text--active": isMenuActive})}>.</span>{" "} 
+              <span className={classNames("menu__footer-text", 
+                {"menu__footer-text--active": isMenuActive})}
+              >{intl.formatMessage({ id: "app.navbarStudyStudio.footer" })}</span>
+            </p>
+            <p className={classNames("menu__footer-text", 
+              {"menu__footer-text--active": isMenuActive})} >
+              <a className={classNames("menu__footer-text menu__footer-policy", 
+                {"menu__footer-text--active": isMenuActive})} href="#!">
+                {intl.formatMessage({ id: "app.navbarStudyStudio.policy" })}
+              </a>
+            </p>
+          </div>
+        </div>
+      </ul>
     </div>
   );
 };
