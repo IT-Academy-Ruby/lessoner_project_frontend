@@ -261,4 +261,6 @@ export const messages_en = {
     "app.myStudio.categoryIT":"IT",
     "app.myStudio.categoryMusic":"Music",
     "app.myStudio.categoryDesign":"Design",
+    "app.myStudio.NoLessonTexp_1":"Hmm... Seems that you have no lessons yet.",
+    "app.myStudio.NoLessonTexp_2":"Share your knowledge - publishe your first lesson.",
 };

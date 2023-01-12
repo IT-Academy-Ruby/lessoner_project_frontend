@@ -1,14 +1,16 @@
-import "./myStudioContent.scss";
+import "../body/content/my_studio/myStudioContent.scss";
+import "../body/content/my_studio/myStudio.scss";
+import "../body/content/my_studio/myStudioHead.scss";
+import "../body/content/lessons/lessons.scss";
 import React, { useEffect, useState } from "react";
-import { GetDataWithCategoryNames } from "../lessons/LessonsHelper";
-import LessonCard from "../../../LessonCard";
-import { SKELETON_LESSONS_AMOUT } from "../../../../constants";
-import SkeletonLessons from "../../../SkeletonLessons";
-import placeHolder from "../../../../../src/assets/category-placeholder.png";
-import requestApi from "../../../../services/request";
+import { GetDataWithCategoryNames } from "../body/content/lessons/LessonsHelper";
+import LessonCard from "../LessonCard";
+import { SKELETON_LESSONS_AMOUT } from "../../constants";
+import SkeletonLessons from "../SkeletonLessons";
+import placeHolder from "../../assets/category-placeholder.png";
+import requestApi from "../../services/request";
 
-export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
-export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/my_studio/lessons`;
+export const REACT_APP_BACKEND_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 export interface Lesson {
   id: number;
   title: string;
@@ -43,7 +45,15 @@ export interface CategoriesResponce {
   };
 }
 
-const MyStudioContent: React.FC = () => {
+interface RenderLessonContentProps {
+  edited: boolean;
+  classNameWrapper: string;
+  classNameInner: string;
+  categoriesUrl: string;
+  lessonsUrl: string;
+}
+
+export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [data, setData] = useState<Lesson[]>([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
@@ -59,7 +69,10 @@ const MyStudioContent: React.FC = () => {
         alert(errMessage);
       };
       const fetchData = async () => {
-        const response = await requestApi(categoriesUrl, "GET");
+        const response = await requestApi(
+          REACT_APP_BACKEND_URL + `${renderProps.categoriesUrl}`,
+          "GET"
+        );
         if (!response.ok) {
           fetchError("fetch error " + response.status);
         } else {
@@ -82,7 +95,10 @@ const MyStudioContent: React.FC = () => {
         alert(errMessage);
       };
       const fetchData = async () => {
-        const response = await requestApi(lessonsUrl, "GET");
+        const response = await requestApi(
+          REACT_APP_BACKEND_URL + `${renderProps.lessonsUrl}`,
+          "GET"
+        );
         if (!response.ok) {
           fetchError("fetch error " + response.status);
         } else {
@@ -102,8 +118,8 @@ const MyStudioContent: React.FC = () => {
     return <div className="lessons">{skeleton}</div>;
 
   return (
-    <div className="mystudiocontent__wrapper">
-      <div className="mystudiocontent__lessons">
+    <div className={renderProps.classNameWrapper}>
+      <div className={renderProps.classNameInner}>
         {data.map((obj) => (
           <LessonCard
             key={obj.id}
@@ -117,12 +133,10 @@ const MyStudioContent: React.FC = () => {
             category={obj.categoryName}
             rating={obj.rating}
             totalVotes={obj.votes_count}
-            edited={true}
+            edited={renderProps.edited}
           />
         ))}
       </div>
     </div>
   );
 };
-
-export default MyStudioContent;

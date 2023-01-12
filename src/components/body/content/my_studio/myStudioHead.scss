@@ -30,7 +30,7 @@
 	margin-bottom: 40px;
 }
 
-.mystudiohead__lessons {
+.mystudiohead__status {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -66,7 +66,7 @@
 	align-items: center;
 }
 
-.mystudiohead_select {
+.mystudiohead__categories-select {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: nowrap;
@@ -83,6 +83,7 @@
 	line-height: 122%;
 	color: var(--textMyStudioHeadSelect);
 	border: none;
+	cursor: pointer;
 	&:focus {
 		outline: 0;
 	}

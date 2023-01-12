@@ -20,9 +20,10 @@ import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
 import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
-import VKButton from "../../../components/VKButton";
+import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
 import { useEffect } from "react";
+import { RenderLessonContent } from "../../hoc/RenderLessonContent";
 
 const Content = () => {
   const dispatch = useAppDispatch();
@@ -66,6 +67,18 @@ const Content = () => {
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/lessons" element={<Lessons />} />
+        {/* <Route
+          path="/lessons"
+          element={
+            <RenderLessonContent
+              edited={false}
+              classNameWrapper={"wrapper__lessons"}
+              classNameInner={"lessons"}
+              categoriesUrl={"/categories"}
+              lessonsUrl={"/lessons"}
+            />
+          }
+        /> */}
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudio />} />

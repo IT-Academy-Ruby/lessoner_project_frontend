@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./lessons.scss";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";

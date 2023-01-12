@@ -8,7 +8,9 @@ import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BACKEND_URL_LESSONS } from "../../../../constants";
-import Loader  from "../../../Loader";
+import Loader  from "../../../Loader"; 
+import { RenderLessonContent } from "../../../hoc/RenderLessonContent";
+import { RenderLessonHead } from "../../../hoc/RenderLessonHead";
 
 const MyStudio = () => {
   const intl = useIntl();
@@ -31,10 +33,55 @@ const MyStudio = () => {
   return (
     <div className="mystudio__wrapper">
       <div className="mystudio__inner">
-        {isLoader ? <Loader /> : isLesson ? (
+        {isLoader ? (
+          <Loader />
+        ) : isLesson ? (
           <>
-            <MyStudioHead />
-            <MyStudioContent />
+            {/* <MyStudioHead /> */}
+            <RenderLessonHead
+              statuses={[
+                intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
+                intl.formatMessage({ id: "app.myStudio.statusActive" }),
+                intl.formatMessage({ id: "app.myStudio.statusArchived" }),
+              ]}
+              categories={[
+                intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
+                intl.formatMessage({ id: "app.myStudio.categoryIT" }),
+                intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
+                intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
+              ]}
+              title={"app.My lessons"}
+              isButton={true}
+              buttonType={"button"}
+              buttonText={"app.button.addNewLesson"}
+              buttonClassName={"button__fs16"}
+              buttonImage={Add}
+              buttonImageStyle={"mystudiohead__svg-add"}
+              buttonNavigatePath={"/myStudio/add_new_lesson"}
+              setStatusActive={"All lessons"}
+              setCategoryActive={"All categories"}
+              classNameWrapper={"mystudiohead__wrapper"}
+              classNameHead={"mystudiohead__head"}
+              classNameTitle={"mystudiohead__title"}
+              classNameButton={"mystudiohead__button"}
+              classNameNav={"mystudiohead__nav"}
+              classNameStatus={"mystudiohead__status"}
+              classNameCategories={"mystudiohead__categories"}
+              classNameCategoriesSelect={"mystudiohead__categories-select"}
+              classNameLessonItem={"mystudiohead__lessons-item"}
+              classNameLessonItemActive={"mystudiohead__lessons-item-active"}
+              classNameLessonItemUnderline={
+                "mystudiohead__lessons-item-underline"
+              }
+            />
+            {/* <MyStudioContent /> */}
+            <RenderLessonContent
+              edited={true}
+              classNameWrapper={"mystudiocontent__wrapper"}
+              classNameInner={"mystudiocontent__lessons"}
+              categoriesUrl={"/categories"}
+              lessonsUrl={"/my_studio/lessons"}
+            />
           </>
         ) : (
           isNoLesson && (
@@ -43,8 +90,16 @@ const MyStudio = () => {
                 <img src={NoLessons} alt="no Lessons" />
               </div>
               <p className="mystudio__nolessons-text">
-                <span>Hmm... Seems that you have no lessons yet.</span>
-                <span>Share your knowledge - publishe your first lesson</span>
+                <span>
+                  {intl.formatMessage({
+                    id: "app.myStudio.NoLessonTexp_1",
+                  })}
+                </span>
+                <span>
+                  {intl.formatMessage({
+                    id: "app.myStudio.NoLessonTexp_2",
+                  })}
+                </span>
               </p>
               <div className="mystudio__button">
                 <Button

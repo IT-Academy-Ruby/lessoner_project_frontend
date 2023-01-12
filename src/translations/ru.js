@@ -263,4 +263,6 @@ export const messages_ru = {
     "app.myStudio.categoryIT":"IT",
     "app.myStudio.categoryMusic":"Музыка",
     "app.myStudio.categoryDesign":"Дизайн",
+    "app.myStudio.NoLessonTexp_1":"Хм... Кажется, у вас еще нет уроков.",
+    "app.myStudio.NoLessonTexp_2":"Поделитесь своими знаниями - опубликуйте свой первый урок.",
 };
