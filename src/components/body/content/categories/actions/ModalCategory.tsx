@@ -25,7 +25,7 @@ const ModalCategory = ({
           <Button
             buttonType="button"
             buttonText={intl.formatMessage({id: "app.categories.button.yes"})}
-            className="button-login"
+            className="button-register"
             onClick={onClickYes}/>
           <Button
             buttonType="button"
