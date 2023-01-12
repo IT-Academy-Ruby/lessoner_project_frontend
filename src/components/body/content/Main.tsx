@@ -1,14 +1,20 @@
 import "./Main.scss";
-import {
-  Route, Routes, useNavigate
+import { 
+  Route, 
+  Routes, 
+  useNavigate
 } from "react-router-dom";
 import {
-  addToken, confirmTokenSlice, editUserEmail, resetUserData
+  addToken,
+  confirmTokenSlice,
+  editUserEmail,
+  resetUserData,
 } from "../../../store/loginName/loginSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
 import Categories from "./categories/Categories";
+import CategoryPage from "./categories/SelectCategory";
 import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
 import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
@@ -27,7 +33,9 @@ import { useEffect } from "react";
 const Content = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
+  const decodeUserName = useAppSelector(
+    (state) => state.userDecodedName.session.name
+  );
   const url = window.location.href;
   const findTokenWordInURL = "token=";
   let controlRendering = 1;
@@ -37,19 +45,25 @@ const Content = () => {
     const updateEmaiToken = url.lastIndexOf("update_email?token=");
 
     if (registrationToken > 0 && controlRendering === 1) {
-      const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
+      const token = url.slice(
+        url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length
+      );
       dispatch(confirmTokenSlice(token));
       navigate("/user/sign_in");
       controlRendering++;
     }
     if (resetPasswordToken > 0 && controlRendering === 1) {
-      const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
+      const token = url.slice(
+        url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length
+      );
       dispatch(addToken(token));
       navigate("/user/sign_in/reset_password/new_password");
       controlRendering++;
     }
     if (updateEmaiToken > 0 && controlRendering === 1) {
-      const token = url.slice(url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length);
+      const token = url.slice(
+        url.lastIndexOf(findTokenWordInURL) + findTokenWordInURL.length
+      );
       dispatch(editUserEmail(token));
       navigate("/user/sign_in");
       localStorage.setItem("JWT", "");
@@ -59,12 +73,12 @@ const Content = () => {
     }
   }, [controlRendering, dispatch, navigate, url]);
 
-
   return (
     <div className="main">
       <Routes>
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/lessons" element={<Lessons />} />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
