@@ -7,15 +7,20 @@ interface VideoRatingProps {
   ratingProp?: number;
   votesCount?: number;
   onGetNewRating: (rating: number) => void;
+  isAuthorized: boolean;
+  isRatingFreezen: boolean;
 }
 const VideoRating = ({
   ratingProp,
   votesCount,
   onGetNewRating,
+  isAuthorized,
+  isRatingFreezen,
 }: VideoRatingProps) => {
   const [rating, setRating] = useState(0);
   const [hover] = useState(0);
-  const token = localStorage.getItem("JWT");
+  // const token = localStorage.getItem("JWT");
+  console.log(isRatingFreezen);
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {
@@ -23,11 +28,11 @@ const VideoRating = ({
 
         return (
           <button
-            style={token ? { cursor: "pointer" } : { cursor: "auto" }}
+            style={isAuthorized && !isRatingFreezen? { cursor: "pointer" } : { cursor: "auto" }}
             type="button"
             key={ratingUnit}
             className={ratingUnit <= (hover || rating) ? "on" : "off"}
-            onClick={token?() => {
+            onClick={isAuthorized && !isRatingFreezen? () => {
               setRating(ratingUnit);
               onGetNewRating(ratingUnit);
             }:undefined}

@@ -7,13 +7,16 @@ import {
 } from "../components/body/content/lessons/Lessons";
 import { useEffect, useState } from "react";
 import { Published } from "../components/LessonCard";
+import { RootState } from "../store";
 import Tag from "../components/body/Tags/Tag";
 import { VideoPlayer } from "../../src/components/body/content/videoplayer/Videoplayer";
 import VideoRating from "../components/VideoRating";
 import { VideoSideBar } from "../../src/components/body/content/VideoSideBar/VideoSideBar";
+import { connect } from "react-redux";
 import img from "../Photo.png"; // В качестве примера
 import requestApi from "../services/request";
 import { useParams } from "react-router-dom";
+
 
 interface CategoriesResponce {
   records: Category[];
@@ -24,9 +27,15 @@ interface CategoriesResponce {
   };
 }
 
-export const VideoViewPage = () => {
-  const [id, setId] = useState<string | undefined>(useParams().id);
+type BodyProps = {
+  user?: {
+    id: number;
+    name: string;
+  };
+};
 
+const VideoViewPage = ({ user }: BodyProps) => {
+  const [id, setId] = useState<string | undefined>(useParams().id);
   const [lessonData, setLessonData] = useState<Lesson>();
   const [lessonCategoryId, setLessonCategoryId] = useState<number>();
   const [lessonsArr, setLessonsArr] = useState<Lesson[]>([]);
@@ -34,7 +43,9 @@ export const VideoViewPage = () => {
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
-  const [rating, setRating] = useState<undefined | number>();
+  const [rating, setRating]= useState<undefined|number>();
+  const [isAuthorized, setIsAuthorized]= useState(false);
+  const [isRatingFreezen, setIsRatingFreezen]= useState(false);
   // Написат начальное значение реальное
 
   useEffect(() => {
@@ -252,24 +263,30 @@ export const VideoViewPage = () => {
       }
     };
     fetchData();
-  },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setIsAuthorized(!!user?.id);
+
+  },[user]);
 
   const changeIdState = (id: number) => {
     setId(String(id));
   };
   const getNewRating=(rating: number) => {
+    setIsRatingFreezen(true);
+
     const fetchSuccess = (data: Lesson) => {
-      console.log(data.rating);
       setRating(data.rating);
+      setIsRatingFreezen(false);
     };
     const fetchError = (errMessage: string) => {
       alert(errMessage);
     };
 
     const fetchData = async () => {
-      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {
-        rating,
-      });
+      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {rating});
       if (!response.ok) {
         fetchError("fetch error " + response.status);
       } else {
@@ -304,7 +321,7 @@ export const VideoViewPage = () => {
     !lessonsArr ||
     !newLessonsArr ||
     !popularLessonsArr ||
-    !sideBarTabs||
+    !sideBarTabs ||
     rating === undefined
   ) {
     return null;
@@ -328,6 +345,8 @@ export const VideoViewPage = () => {
                 ratingProp={rating}
                 votesCount={lessonData.votes_count}
                 onGetNewRating={getNewRating}
+                isAuthorized={isAuthorized}
+                isRatingFreezen={isRatingFreezen}
               />
             </div>
           </div>
@@ -353,3 +372,7 @@ export const VideoViewPage = () => {
     </div>
   );
 };
+const mapStateToProps = (state: RootState) => {
+  return { user: state?.login?.user };
+};
+export default connect(mapStateToProps)(VideoViewPage);

@@ -5,7 +5,7 @@ import Body from "./components/body/Body";
 import { IntlProvider } from "react-intl";
 import { Snowfall } from "./components/Snowfall";
 import TranslationHelpers from "./translations/translationHelpers";
-import { VideoViewPage } from "./pages/VideoViewPage";
+import VideoViewPage from "./pages/VideoViewPage";
 
 type SetBooleanInnerFunction = (value: boolean) => boolean;
 
