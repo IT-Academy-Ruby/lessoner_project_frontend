@@ -14,18 +14,18 @@ import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
-import Lessons from "./lessons/Lessons";
-import MyStudio from "./my_studio/MyStudio";
 import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
+import { RenderLessonPage } from "../../hoc/RenderLessonPage";
 import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
 import { useEffect } from "react";
-import { RenderLessonContent } from "../../hoc/RenderLessonContent";
+import { useIntl } from "react-intl";
 
 const Content = () => {
+  const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
@@ -66,22 +66,66 @@ const Content = () => {
       <Routes>
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/lessons" element={<Lessons />} />
-        {/* <Route
+        <Route
           path="/lessons"
           element={
-            <RenderLessonContent
-              edited={false}
-              classNameWrapper={"wrapper__lessons"}
-              classNameInner={"lessons"}
-              categoriesUrl={"/categories"}
-              lessonsUrl={"/lessons"}
+            <RenderLessonPage
+              classNameWrapper={"mystudio__wrapper"}
+              classNameInner={"mystudio__inner"}
+              isHead={true}
+              isRenderLessonHead={true}
+              isRenderLessonTitle={true}
+              isRenderLessonButton={false}
+              isRenderLessonNav={true}
+              isRenderLessonContentEdited={false}
+              renderLessonHeadTitle={"app.lessonsPageLessons"}
+              renderLessonContentCategoriesUrl={"/categories"}
+              renderLessonContentLessonsUrl={"/lessons"}
+              renderLessonHeadStatuses={[
+                intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
+                intl.formatMessage({ id: "app.myStudio.statusActive" }),
+                intl.formatMessage({ id: "app.myStudio.statusArchived" }),
+              ]}
+              renderLessonHeadCategories={[
+                intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
+                intl.formatMessage({ id: "app.myStudio.categoryIT" }),
+                intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
+                intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
+              ]}
             />
           }
-        /> */}
+        />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
-        <Route path="/myStudio" element={<MyStudio />} />
+        <Route
+          path="/myStudio"
+          element={
+            <RenderLessonPage
+              classNameWrapper={"mystudio__wrapper"}
+              classNameInner={"mystudio__inner"}
+              isHead={true}
+              isRenderLessonHead={true}
+              isRenderLessonTitle={true}
+              isRenderLessonButton={true}
+              isRenderLessonNav={true}
+              isRenderLessonContentEdited={true}
+              renderLessonHeadTitle={"app.lessonsPageMyLessons"}
+              renderLessonContentCategoriesUrl={"/categories"}
+              renderLessonContentLessonsUrl={"/my_studio/lessons"}
+              renderLessonHeadStatuses={[
+                intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
+                intl.formatMessage({ id: "app.myStudio.statusActive" }),
+                intl.formatMessage({ id: "app.myStudio.statusArchived" }),
+              ]}
+              renderLessonHeadCategories={[
+                intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
+                intl.formatMessage({ id: "app.myStudio.categoryIT" }),
+                intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
+                intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
+              ]}
+            />
+          }
+        />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"

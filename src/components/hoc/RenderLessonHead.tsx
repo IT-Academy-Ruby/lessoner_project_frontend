@@ -1,18 +1,21 @@
 import "../body/content/my_studio/myStudioHead.scss";
+import { FC, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Button from "../Button";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
-import { FC, useState } from "react";
 
 interface RenderLessonHeadProps {
   statuses: string[];
   categories: string[];
+  isHead: boolean;
+  isTitle: boolean;
   isButton: boolean;
-  buttonType: any;
+  isNav: boolean;
+  buttonType: any; // eslint-disable-line
   buttonText: string;
   buttonClassName: string;
-  buttonImage: any;
+  buttonImage: any; // eslint-disable-line
   buttonImageStyle: string;
   buttonNavigatePath: string;
   setStatusActive: string;
@@ -77,35 +80,39 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
 
   return (
     <div className={renderProps.classNameWrapper}>
-      <div className={renderProps.classNameHead}>
-        <p className={renderProps.classNameTitle}>
-          <FormattedMessage id={renderProps.title} />
-        </p>
-        <div className={renderProps.classNameButton}>
-          {renderProps.isButton && (
-            <Button
-              buttonType={renderProps.buttonType}
-              buttonText={intl.formatMessage({ id: `${renderProps.buttonText}` })}
-              className={renderProps.buttonClassName}
-              buttonImage={renderProps.buttonImage}
-              imageStyle={renderProps.buttonImageStyle}
-              onClick={() => navigate(renderProps.buttonNavigatePath)}
-            />
+      {renderProps.isHead &&
+        <div className={renderProps.classNameHead}>
+          {renderProps.isTitle && (
+            <p className={renderProps.classNameTitle}>
+              <FormattedMessage id={renderProps.title} />
+            </p>
           )}
-        </div>
-      </div>
-      <div className={renderProps.classNameNav}>
-        <div className={renderProps.classNameStatus}>{elementsStatus}</div>
-        <div className={renderProps.classNameCategories}>
-          <select
-            name=""
-            className={renderProps.classNameCategoriesSelect}
-            onChange={(event) => handleCategoryToggle(event)}
-          >
-            {elementsCategory}
-          </select>
-        </div>
-      </div>
+          {renderProps.isButton && (
+            <div className={renderProps.classNameButton}>
+              <Button
+                buttonType={renderProps.buttonType}
+                buttonText={intl.formatMessage({id: `${renderProps.buttonText}`})}
+                className={renderProps.buttonClassName}
+                buttonImage={renderProps.buttonImage}
+                imageStyle={renderProps.buttonImageStyle}
+                onClick={() => navigate(renderProps.buttonNavigatePath)}
+              />
+            </div>
+          )}
+        </div>}
+      {renderProps.isNav &&
+            <div className={renderProps.classNameNav}>
+              <div className={renderProps.classNameStatus}>{elementsStatus}</div>
+              <div className={renderProps.classNameCategories}>
+                <select
+                  name=""
+                  className={renderProps.classNameCategoriesSelect}
+                  onChange={(event) => handleCategoryToggle(event)}
+                >
+                  {elementsCategory}
+                </select>
+              </div>
+            </div>}
     </div>
   );
 };

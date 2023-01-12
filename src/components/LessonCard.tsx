@@ -1,9 +1,9 @@
 import "./LessonCard.scss";
 import { Link , useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import {ReactComponent as PencilEdit } from "./icons/pencilEdit.svg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
+import {ReactComponent as PencilEdit } from "./icons/pencilEdit.svg";
 import { PopupMenu } from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";

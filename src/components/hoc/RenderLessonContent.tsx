@@ -82,7 +82,7 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
       };
       fetchData();
     }
-  }, [categories, categoriesIsLoaded]);
+  }, [renderProps.categoriesUrl, categoriesIsLoaded]);
 
   useEffect(() => {
     if (!dataIsLoaded && categoriesIsLoaded) {
@@ -108,7 +108,13 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
       };
       fetchData();
     }
-  }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
+  }, [
+    data,
+    categories,
+    renderProps.lessonsUrl,
+    categoriesIsLoaded,
+    dataIsLoaded,
+  ]);
 
   const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) => (
     <SkeletonLessons key={index} />
