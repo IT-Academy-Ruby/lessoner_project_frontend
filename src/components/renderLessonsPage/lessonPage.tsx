@@ -12,17 +12,25 @@ export const LessonPage = () => {
       isRenderLessonTitle={true}
       isRenderLessonButton={false}
       isRenderLessonNav={true}
+      isRenderLessonHeadStatuses={true}
+      isRenderLessonHeadCategories={true}
       renderLessonHeadTitle={"app.lessonsPageLessons"}
       renderLessonHeadStatuses={[
-        intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
-        intl.formatMessage({ id: "app.myStudio.statusActive" }),
-        intl.formatMessage({ id: "app.myStudio.statusArchived" }),
+        intl.formatMessage({ id: "app.lessons.statusAllLessons" }),
+        intl.formatMessage({ id: "app.lessons.statusNew" }),
+        intl.formatMessage({ id: "app.lessons.statusPopular" }),
       ]}
       renderLessonHeadCategories={[
-        intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
-        intl.formatMessage({ id: "app.myStudio.categoryIT" }),
-        intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
-        intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
+        intl.formatMessage({ id: "app.lessons.categoryAllLessons" }),
+        intl.formatMessage({ id: "app.lessons.categoryDesign" }),
+        intl.formatMessage({ id: "app.lessons.categoryIT" }),
+        intl.formatMessage({ id: "app.lessons.categoryMusic" }),
+        intl.formatMessage({ id: "app.lessons.categoryBusiness" }),
+        intl.formatMessage({ id: "app.lessons.categoryFitness" }),
+        intl.formatMessage({ id: "app.lessons.categoryMarketing" }),
+        intl.formatMessage({ id: "app.lessons.categoryFinance" }),
+        intl.formatMessage({ id: "app.lessons.categoryPsychology" }),
+        intl.formatMessage({ id: "app.lessons.categoryLanguages" }),
       ]}
       isRenderLessonContentEdited={false}
       renderLessonContentCategoriesUrl={"/categories"}
