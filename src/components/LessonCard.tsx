@@ -1,9 +1,9 @@
 import "./LessonCard.scss";
 import { Link , useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { KebabSvg } from "./svg/KebabSvg";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
+import {ReactComponent as PencilEdit } from "./icons/pencilEdit.svg";
 import { PopupMenu } from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
@@ -51,7 +51,7 @@ export const Title: React.FC<TitleProps> = (props) => {
   return (
     <div className={`video__title ${props.className}`}>
       <Link to={`/lessons/${props.id}`}>
-        <p>{props.title}</p>
+        <p title={props.title}>{props.title}</p>
       </Link>
     </div>
   );
@@ -69,13 +69,13 @@ export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
-    navigate("/lessons/" + idCard);
+    navigate("/myStudio/lesson/" + idCard);
   };
 
   return (
     <>
       <div onClick={handleKebabClick} className={`kebab__menu ${className}`}>
-        <KebabSvg />
+        <PencilEdit />
       </div>
       <PopupMenu
         isOpen={isOpen}
@@ -125,6 +125,7 @@ type LessonCardsProps = {
   category?: string;
   rating?: number;
   totalVotes?: number;
+  isEditable: boolean;
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
@@ -149,7 +150,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} id={props.id} />
-            {/* <MenuKebab idCard={props.id} />; */}
+            {props.isEditable && <MenuKebab idCard={props.id} />}
           </div>
           <div className="details">
             <Published published={props.published} />

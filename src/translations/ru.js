@@ -102,13 +102,15 @@ export const messages_ru = {
   "app.button.delete": "Удалить",
   "app.button.uploadThumbnail": "Загрузить миниатюру",
   "app.or": "или",
+  "app.button.addNewLesson": "Добавить новый урок",
   "app.pagesTitle.registration": "Регистрация",
   "app.pagesTitle.confirm":
     "Подтвердите регистрацию по ссылке, которую мы отправили вам на почту.",
   "app.pagesTitle.phoneNumber": "Введите свой номер телефона",
   "app.pagesTitle.enterCode": "Введите код",
   "app.pagesTitle.aboutYourself": "Расскажите нам о себе",
-  "app.My lessons": "Мои уроки",
+  "app.lessonsPageLessons": "Уроки",
+  "app.lessonsPageMyLessons": "Мои уроки",
   "app.Add new lesson": "Добавить новый урок",
   "app.resetPasswordPage.forgotPassword": "Забыли свой пароль?",
   "app.resetPasswordPage.enterEmailToRecoverPassword":
@@ -255,4 +257,13 @@ export const messages_ru = {
     "<span>Teach</span> by studying. <br /> Study while teaching.",
   "app.hero.subtitle":
     "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills.",
+  "app.myStudio.statusAllLessons":"Все уроки",
+  "app.myStudio.statusActive":"Активный",
+  "app.myStudio.statusArchived":"В архиве",
+  "app.myStudio.categoryAllLessons":"Все уроки",
+  "app.myStudio.categoryIT":"IT",
+  "app.myStudio.categoryMusic":"Музыка",
+  "app.myStudio.categoryDesign":"Дизайн",
+  "app.myStudio.NoLessonTexp_1":"Хм... Кажется, у вас еще нет уроков.",
+  "app.myStudio.NoLessonTexp_2":"Поделитесь своими знаниями - опубликуйте свой первый урок.",
 };

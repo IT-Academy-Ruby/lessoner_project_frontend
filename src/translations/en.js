@@ -102,11 +102,13 @@ export const messages_en = {
   "app.button.delete": "Delete",
   "app.button.uploadThumbnail": "Upload thumbnail",
   "app.or": "or",
+  "app.button.addNewLesson": "Add new lesson",
   "app.pagesTitle.registration": "Registration",
   "app.pagesTitle.phoneNumber": "Enter your phone number",
   "app.pagesTitle.enterCode": "Enter the code",
   "app.pagesTitle.aboutYourself": "Tell us about yourself",
-  "app.My lessons": "My lessons",
+  "app.lessonsPageLessons": "Lessons",
+  "app.lessonsPageMyLessons": "My lessons",
   "app.Add new lesson": "Add new lesson",
   "app.resetPasswordPage.forgotPassword": "Forgot your password?",
   "app.resetPasswordPage.enterEmailToRecoverPassword":
@@ -253,4 +255,13 @@ export const messages_en = {
     "<span>Teach</span> by studying. <br /> Study while teaching.",
   "app.hero.subtitle":
     "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills.",
+  "app.myStudio.statusAllLessons":"All lessons",
+  "app.myStudio.statusActive":"Active",
+  "app.myStudio.statusArchived":"Archived",
+  "app.myStudio.categoryAllLessons":"All lessons",
+  "app.myStudio.categoryIT":"IT",
+  "app.myStudio.categoryMusic":"Music",
+  "app.myStudio.categoryDesign":"Design",
+  "app.myStudio.NoLessonTexp_1":"Hmm... Seems that you have no lessons yet.",
+  "app.myStudio.NoLessonTexp_2":"Share your knowledge - publishe your first lesson.",
 };

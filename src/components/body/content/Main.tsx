@@ -20,13 +20,12 @@ import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
-import Lessons from "./lessons/Lessons";
-import MyStudio from "./my_studio/MyStudio";
+import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
 import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
 import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
-import VKButton from "../../../components/VKButton";
+import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
 import { useEffect } from "react";
 
@@ -79,11 +78,10 @@ const Content = () => {
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
-        <Route path="/lessons" element={<Lessons />} />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
-        <Route path="/myStudio" element={<MyStudio />} />
-        <Route path="/myStudio/:id" element={<EditVideoLessonTitle />} />
+        <Route path="/myStudio" element={<MyStudioPage />} />
+        <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"
           element={<AddCategory add={true} />}
