@@ -4,7 +4,7 @@ import {
   useEffect, useRef, useState
 } from "react";
 import Button from "../../../../Button";
-import Change from "../../../../icons/Change.svg";
+import Change from "../../../../icons/change.svg";
 import {IMAGE_DATA} from "../../../../../constants";
 import Select from "../../../../icons/select.svg";
 
