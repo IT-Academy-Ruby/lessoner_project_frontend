@@ -49,9 +49,9 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
   return (
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
-        {isLoader ? (
+        {isLoader && (
           <Loader />
-        ) : isLesson ? (
+        )} {isLesson ? (
           <>
             {renderProps.isHead && (
               <RenderLessonHead

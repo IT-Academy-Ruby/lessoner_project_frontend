@@ -138,7 +138,7 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
             category={obj.categoryName}
             rating={obj.rating}
             totalVotes={obj.votes_count}
-            edited={renderProps.edited}
+            isEditable={renderProps.edited}
           />
         ))}
       </div>

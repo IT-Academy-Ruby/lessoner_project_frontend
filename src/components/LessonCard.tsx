@@ -125,7 +125,7 @@ type LessonCardsProps = {
   category?: string;
   rating?: number;
   totalVotes?: number;
-  edited: boolean;
+  isEditable: boolean;
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
@@ -150,7 +150,7 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} id={props.id} />
-            {props.edited && <MenuKebab idCard={props.id} />}
+            {props.isEditable && <MenuKebab idCard={props.id} />}
           </div>
           <div className="details">
             <Published published={props.published} />
