@@ -18,9 +18,8 @@ const VideoRating = ({
   isRatingFreezen,
 }: VideoRatingProps) => {
   const [rating, setRating] = useState(0);
-  const [hover] = useState(0);
-  // const token = localStorage.getItem("JWT");
-  console.log(isRatingFreezen);
+  const [hover]=useState(0);
+  
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {

@@ -246,7 +246,6 @@ const VideoViewPage = ({ user }: BodyProps) => {
 
   useEffect(() => {
     const fetchSuccess = (data: Lesson) => {
-      console.log(data.rating);
       setRating(data.rating);
     };
     const fetchError = (errMessage: string) => {

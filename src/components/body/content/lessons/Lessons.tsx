@@ -22,7 +22,7 @@ export interface Lesson {
   created_at: string;
   image_link?: string;
   view?: number;
-  rating: number;
+  rating?: number;
   votes_count?: number;
   categoryName?: string;
   author_avatar_url?: string;
