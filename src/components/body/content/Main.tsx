@@ -14,18 +14,16 @@ import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
+import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
 import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
-import { RenderLessonPage } from "../../hoc/RenderLessonPage";
 import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
 import { useEffect } from "react";
-import { useIntl } from "react-intl";
 
 const Content = () => {
-  const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const decodeUserName = useAppSelector(state => state.userDecodedName.session.name);
@@ -66,66 +64,9 @@ const Content = () => {
       <Routes>
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
-        <Route
-          path="/lessons"
-          element={
-            <RenderLessonPage
-              classNameWrapper={"mystudio__wrapper"}
-              classNameInner={"mystudio__inner"}
-              isHead={true}
-              isRenderLessonHead={true}
-              isRenderLessonTitle={true}
-              isRenderLessonButton={false}
-              isRenderLessonNav={true}
-              renderLessonHeadTitle={"app.lessonsPageLessons"}
-              renderLessonHeadStatuses={[
-                intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
-                intl.formatMessage({ id: "app.myStudio.statusActive" }),
-                intl.formatMessage({ id: "app.myStudio.statusArchived" }),
-              ]}
-              renderLessonHeadCategories={[
-                intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
-                intl.formatMessage({ id: "app.myStudio.categoryIT" }),
-                intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
-                intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
-              ]}
-              isRenderLessonContentEdited={false}
-              renderLessonContentCategoriesUrl={"/categories"}
-              renderLessonContentLessonsUrl={"/lessons"}
-            />
-          }
-        />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
-        <Route
-          path="/myStudio"
-          element={
-            <RenderLessonPage
-              classNameWrapper={"mystudio__wrapper"} 
-              classNameInner={"mystudio__inner"}
-              isHead={true}
-              isRenderLessonHead={true}
-              isRenderLessonTitle={true}
-              isRenderLessonButton={true}
-              isRenderLessonNav={true}
-              renderLessonHeadTitle={"app.lessonsPageMyLessons"}
-              renderLessonHeadStatuses={[
-                intl.formatMessage({ id: "app.myStudio.statusAllLessons" }),
-                intl.formatMessage({ id: "app.myStudio.statusActive" }),
-                intl.formatMessage({ id: "app.myStudio.statusArchived" }),
-              ]}
-              renderLessonHeadCategories={[
-                intl.formatMessage({ id: "app.myStudio.categoryAllLessons" }),
-                intl.formatMessage({ id: "app.myStudio.categoryIT" }),
-                intl.formatMessage({ id: "app.myStudio.categoryMusic" }),
-                intl.formatMessage({ id: "app.myStudio.categoryDesign" }),
-              ]}
-              isRenderLessonContentEdited={true}
-              renderLessonContentCategoriesUrl={"/categories"}
-              renderLessonContentLessonsUrl={"/my_studio/lessons"}
-            />
-          }
-        />
+        <Route path="/myStudio" element={<MyStudioPage />} />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"

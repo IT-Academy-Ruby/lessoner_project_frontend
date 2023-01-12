@@ -1,4 +1,4 @@
-import "./renderLessonHead.scss";
+import "./renderLessonsHead.scss";
 import { FC, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Button from "../Button";

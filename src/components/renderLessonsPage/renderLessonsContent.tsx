@@ -1,6 +1,6 @@
-import "./renderLessonContent.scss";
-import "./renderLessonPage.scss";
-import "./renderLessonHead.scss";
+import "./renderLessonsContent.scss";
+import "./renderLessonsPage.scss";
+import "./renderLessonsHead.scss";
 import React, { useEffect, useState } from "react";
 import { GetDataWithCategoryNames } from "../body/content/lessons/LessonsHelper";
 import LessonCard from "../LessonCard";

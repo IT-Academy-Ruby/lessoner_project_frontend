@@ -1,4 +1,4 @@
-import "./renderLessonPage.scss";
+import "./renderLessonsPage.scss";
 import { 
   FC, useEffect, useState 
 } from "react";
@@ -7,8 +7,8 @@ import { BACKEND_URL_LESSONS } from "../../constants";
 import Button from "../Button";
 import Loader from "../Loader";
 import NoLessons from "../body/content/my_studio/img/noLessons.svg"; 
-import { RenderLessonContent } from "./RenderLessonContent";
-import { RenderLessonHead } from "./RenderLessonHead";
+import { RenderLessonContent } from "./renderLessonsContent";
+import { RenderLessonHead } from "./renderLessonsHead";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
