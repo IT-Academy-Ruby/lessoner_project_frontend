@@ -105,7 +105,7 @@ const Lessons: React.FC = () => {
       </div>
     );
 
-  return (   
+  return (
     <div className="wrapper__lessons">
       <FormattedMessage id="app.lessons" />
       <div className="lessons">
@@ -115,7 +115,7 @@ const Lessons: React.FC = () => {
             title={obj.title}
             status={obj.status}
             duration={obj.duration}
-            imagePreview={obj.image_link ? obj.image_link : placeHolder } 
+            imagePreview={obj.image_link ? obj.image_link : placeHolder}
             id={obj.id}
             published={obj.created_at}
             view={obj.view}
@@ -123,10 +123,11 @@ const Lessons: React.FC = () => {
             rating={obj.rating}
             totalVotes={obj.votes_count}
             isEditable={false}
+            hasStatus={true}
           />
         ))}
       </div>
-    </div> 
+    </div>
   );
 };
 export default Lessons;

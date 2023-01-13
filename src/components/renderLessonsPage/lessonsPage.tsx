@@ -29,41 +29,47 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
     "app.lessons.categoryLanguages",
   ];
 
-  const HOME_PAGE_SETTINGS = [{ 
-    classNameWrapper: "mystudio__wrapper",
-    classNameInner: "mystudio__inner",
-    isHead: true,
-    isRenderLessonHead: false,
-    isRenderLessonTitle: true,
-    isRenderLessonButton: false,
-    isRenderLessonNav: true,
-    isRenderLessonHeadStatuses: true,
-    isRenderLessonHeadCategories: true,
-    renderLessonHeadTitle: "app.lessonsPageLessons",
-    renderLessonHeadStatuses: HOME_PAGE_STATUSES,
-    renderLessonHeadCategories: CATEGORIES,
-    isRenderLessonContentEdited: false,
-    renderLessonContentCategoriesUrl: "/categories",
-    renderLessonContentLessonsUrl: "/lessons",
-  }];
+  const HOME_PAGE_SETTINGS = [
+    {
+      classNameWrapper: "mystudio__wrapper",
+      classNameInner: "mystudio__inner",
+      isHead: true,
+      isRenderLessonHead: false,
+      isRenderLessonTitle: true,
+      isRenderLessonButton: false,
+      isRenderLessonNav: true,
+      isRenderLessonHeadStatuses: true,
+      isRenderLessonHeadCategories: true,
+      renderLessonHeadTitle: "app.lessonsPageLessons",
+      renderLessonHeadStatuses: HOME_PAGE_STATUSES,
+      renderLessonHeadCategories: CATEGORIES,
+      isRenderLessonContentEdited: false,
+      isRenderLessonContentHasStatus: false,
+      renderLessonContentCategoriesUrl: "/categories",
+      renderLessonContentLessonsUrl: "/lessons",
+    },
+  ];
 
-  const MY_STUDIO_SETTINGS = [{ 
-    classNameWrapper: "mystudio__wrapper",
-    classNameInner: "mystudio__inner",
-    isHead: true,
-    isRenderLessonHead: true,
-    isRenderLessonTitle: true,
-    isRenderLessonButton: true,
-    isRenderLessonNav: true,
-    isRenderLessonHeadStatuses: false,
-    isRenderLessonHeadCategories: true,
-    renderLessonHeadTitle: "app.lessonsPageMyLessons",
-    renderLessonHeadStatuses: MY_STUDIO_STATUSES,
-    renderLessonHeadCategories: CATEGORIES,
-    isRenderLessonContentEdited: true,
-    renderLessonContentCategoriesUrl: "/categories",
-    renderLessonContentLessonsUrl: "/my_studio/lessons",
-  }];
+  const MY_STUDIO_SETTINGS = [
+    {
+      classNameWrapper: "mystudio__wrapper",
+      classNameInner: "mystudio__inner",
+      isHead: true,
+      isRenderLessonHead: true,
+      isRenderLessonTitle: true,
+      isRenderLessonButton: true,
+      isRenderLessonNav: true,
+      isRenderLessonHeadStatuses: false,
+      isRenderLessonHeadCategories: true,
+      renderLessonHeadTitle: "app.lessonsPageMyLessons",
+      renderLessonHeadStatuses: MY_STUDIO_STATUSES,
+      renderLessonHeadCategories: CATEGORIES,
+      isRenderLessonContentEdited: true,
+      isRenderLessonContentHasStatus: true,
+      renderLessonContentCategoriesUrl: "/categories",
+      renderLessonContentLessonsUrl: "/my_studio/lessons",
+    },
+  ];
 
   const getLessonsPageSettings = () => {
     return props.isHomePage ?  HOME_PAGE_SETTINGS : MY_STUDIO_SETTINGS;
@@ -87,6 +93,9 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
           renderLessonHeadStatuses={setting.renderLessonHeadStatuses}
           renderLessonHeadCategories={setting.renderLessonHeadCategories}
           isRenderLessonContentEdited={setting.isRenderLessonContentEdited}
+          isRenderLessonContentHasStatus={
+            setting.isRenderLessonContentHasStatus
+          }
           renderLessonContentCategoriesUrl={
             setting.renderLessonContentCategoriesUrl
           }

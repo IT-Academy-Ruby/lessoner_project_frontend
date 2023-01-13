@@ -45,7 +45,8 @@ export interface CategoriesResponce {
 }
 
 interface RenderLessonContentProps {
-  edited: boolean;
+  isEditable: boolean;
+  hasStatus: boolean;
   classNameWrapper: string;
   classNameInner: string;
   categoriesUrl: string;
@@ -138,7 +139,8 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
             category={obj.categoryName}
             rating={obj.rating}
             totalVotes={obj.votes_count}
-            isEditable={renderProps.edited}
+            isEditable={renderProps.isEditable}
+            hasStatus={renderProps.hasStatus}
           />
         ))}
       </div>
