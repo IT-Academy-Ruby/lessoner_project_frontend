@@ -20,7 +20,7 @@ import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
-import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
+import { LessonsPage } from "../../renderLessonsPage/lessonsPage";
 import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
 import Terms from "../../../pages/Terms";
@@ -80,7 +80,7 @@ const Content = () => {
         <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
-        <Route path="/myStudio" element={<MyStudioPage />} />
+        <Route path="/myStudio" element={<LessonsPage isHomePage={false} />} />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"

@@ -52,8 +52,10 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
     setCategoryActive(category.value);
   };
 
-  const STATUSES = renderProps.statuses;
-  const CATEGORIES = renderProps.categories;
+  const STATUSES = renderProps.statuses.map((status) =>
+    intl.formatMessage({ id: status })
+  );
+  const CATEGORIES = renderProps.categories.map(category => intl.formatMessage({ id: category }));
 
   const elementsStatus = STATUSES.map((status: string) => {
     return (
@@ -93,9 +95,7 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
             <div className={renderProps.classNameButton}>
               <Button
                 buttonType={renderProps.buttonType}
-                buttonText={intl.formatMessage({
-                  id: `${renderProps.buttonText}`,
-                })}
+                buttonText={intl.formatMessage({id: `${renderProps.buttonText}`})}
                 className={renderProps.buttonClassName}
                 buttonImage={renderProps.buttonImage}
                 imageStyle={renderProps.buttonImageStyle}
