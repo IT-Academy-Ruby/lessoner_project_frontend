@@ -45,8 +45,7 @@ const VideoViewPage = ({ user }: BodyProps) => {
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
   const [rating, setRating]= useState<undefined|number>();
   const [isAuthorized, setIsAuthorized]= useState(false);
-  const [isRatingFreezen, setIsRatingFreezen]= useState(false);
-  // Написат начальное значение реальное
+  const [isRatingFrozen, setIsRatingFrozen]= useState(false);
 
   useEffect(() => {
     // Get lessonData from lessonId
@@ -274,11 +273,11 @@ const VideoViewPage = ({ user }: BodyProps) => {
     setId(String(id));
   };
   const getNewRating=(rating: number) => {
-    setIsRatingFreezen(true);
+    setIsRatingFrozen(true);
 
     const fetchSuccess = (data: Lesson) => {
       setRating(data.rating);
-      setIsRatingFreezen(false);
+      setIsRatingFrozen(false);
     };
     const fetchError = (errMessage: string) => {
       alert(errMessage);
@@ -345,7 +344,7 @@ const VideoViewPage = ({ user }: BodyProps) => {
                 votesCount={lessonData.votes_count}
                 onGetNewRating={getNewRating}
                 isAuthorized={isAuthorized}
-                isRatingFreezen={isRatingFreezen}
+                isRatingFrozen={isRatingFrozen}
               />
             </div>
           </div>
@@ -371,7 +370,9 @@ const VideoViewPage = ({ user }: BodyProps) => {
     </div>
   );
 };
+
 const mapStateToProps = (state: RootState) => {
   return { user: state?.login?.user };
 };
+
 export default connect(mapStateToProps)(VideoViewPage);

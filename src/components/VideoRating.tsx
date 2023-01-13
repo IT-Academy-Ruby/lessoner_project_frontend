@@ -8,18 +8,18 @@ interface VideoRatingProps {
   votesCount?: number;
   onGetNewRating: (rating: number) => void;
   isAuthorized: boolean;
-  isRatingFreezen: boolean;
+  isRatingFrozen: boolean;
 }
 const VideoRating = ({
   ratingProp,
   votesCount,
   onGetNewRating,
   isAuthorized,
-  isRatingFreezen,
+  isRatingFrozen: isRatingFrozen,
 }: VideoRatingProps) => {
   const [rating, setRating] = useState(0);
-  const [hover]=useState(0);
-  
+  const [hover] = useState(0);
+  const isRatingEnabled = isAuthorized && !isRatingFrozen;
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {
@@ -27,11 +27,11 @@ const VideoRating = ({
 
         return (
           <button
-            style={isAuthorized && !isRatingFreezen? { cursor: "pointer" } : { cursor: "auto" }}
+            style={isRatingEnabled? { cursor: "pointer" } : { cursor: "auto" }}
             type="button"
             key={ratingUnit}
             className={ratingUnit <= (hover || rating) ? "on" : "off"}
-            onClick={isAuthorized && !isRatingFreezen? () => {
+            onClick={isRatingEnabled? () => {
               setRating(ratingUnit);
               onGetNewRating(ratingUnit);
             }:undefined}
