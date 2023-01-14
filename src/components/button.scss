@@ -12,6 +12,7 @@
   text-decoration: none;
   cursor: pointer;
   transition: .2s;
+
   &:hover {
     box-shadow: var(--themeButtonHover);
   }
@@ -53,21 +54,21 @@
 .button-select {
   display: flex;
   align-items: center;
-  border: 1px solid $blueLightColor;
+  border: 1px solid var(--iconsTextButtonColor);
   border-radius: 28px;
   font-family: $font;
   font-weight: 600;
   font-size: 16px;
-  color: $blueLightColor;
+  color: var(--iconsTextButtonColor);
   padding: 6px 36px;
-  background: $white;
+  background: var(--bgButtonColor);
 
   &:disabled {
-    background: $white;
+    background: var(--bgButtonColor);
     opacity: 0.5;
     border-radius: 28px;
     border: none;
-    color: $greySearchColor;
+    color: var(--shadowActiveButtonColor);
   }
 }
 
@@ -148,8 +149,8 @@
 .button-register {
   font-size: 16px;
   font-family: $font;
-  background: $blueLightColor;
-  color: $white;
+  background: var(--iconsTextButtonColor);
+  color: var(--bgButtonColor);
   padding: 6px 36px;
   border: none;
   border-radius: 28px;
@@ -166,7 +167,7 @@
 
 .button {
   margin-bottom: 28px;
-  font-family:$font;
+  font-family: $font;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -186,6 +187,27 @@
 
 .icon-button {
   margin-right: 11px;
+}
+
+.button-no {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 28px;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--bgButtonColor);
+  padding: 6px 36px;
+  background: var(--iconsTextButtonColor);
+
+  &:disabled {
+    background: $white;
+    opacity: 0.5;
+    border-radius: 28px;
+    border: none;
+    color: $greySearchColor;
+  }
 }
 
 @media (max-width: $max-width-phone) {

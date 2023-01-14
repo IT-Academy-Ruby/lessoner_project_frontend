@@ -1,5 +1,5 @@
 import "./addCategory.scss";
-import {FormattedMessage, useIntl} from "react-intl";
+import {FormattedMessage} from "react-intl";
 import {NAME_CATEGORY} from "../../../../../constants";
 import classNames from "classnames";
 import {useState} from "react";
@@ -10,21 +10,24 @@ type CategoryNameProps = {
     onChange: React.ChangeEventHandler<HTMLInputElement>;
     value: string;
   },
+  label: string;
+  placeholder: string;
   error?: string;
+  disabled?:boolean
 }
-const CategoryName = ({field, error}: CategoryNameProps): JSX.Element => {
-  const intl = useIntl();
+const CategoryName = ({field, error, label, placeholder,disabled}: CategoryNameProps): JSX.Element => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   return (
     <label className="category-label">
-      <FormattedMessage id="app.categories.name"/>
+      {label}
       <input
         type="text"
         className={classNames("category-input", {"invalid-input": error})}
-        placeholder={intl.formatMessage({id: "app.categories.name"})}
+        placeholder={placeholder}
         {...field}
         onFocus={() => {setIsFocus(true);}}
         onBlurCapture={() => {setIsFocus(false);}}
+        disabled={disabled}
       />
       {isFocus && <span
         className={classNames("amount-symbols",

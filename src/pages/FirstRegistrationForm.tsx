@@ -119,7 +119,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={false}
+                isConfirm={true}
                 error={touched.password ? errors.password : undefined}
               />
               <Field
@@ -127,7 +127,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={true}
+                isConfirm={false}
                 error={touched.confirmPassword ? errors.confirmPassword : undefined}
               />
               <Field

@@ -16,9 +16,9 @@ import {GoogleOAuthProvider} from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
 import Lessons from "./lessons/Lessons";
 import MyStudio from "./my_studio/MyStudio";
-import NewLesson from "./add_new_lesson/NewLesson";
+import AddLesson from "./my_studio/AddLesson";
 import Pages from "../../../components/Pages";
-import Terms from "../../../pages/Terms";
+// import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
@@ -64,11 +64,12 @@ const Content = () => {
     <div className="main">
       <Routes>
         <Route path="/lessons/:id" element={<EditVideoLessonTitle />} />
-        <Route path="/" element={<Lessoner/>} />
-        <Route path="/categories" element={<Categories/>} />
-        <Route path="/lessons" element={<Lessons/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
+        <Route path="/" element={<Lessoner />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/lessons" element={<Lessons />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/myStudio/add_new_lesson" element={<AddLesson add={true}/>} />
+        <Route path="/myStudio/update_lesson/:id" element={<AddLesson add={false}/>} />
         <Route path="/myStudio" element={<MyStudio />} />
         <Route
           path="/categories/addCategory"
@@ -86,67 +87,67 @@ const Content = () => {
         }
         <Route
           path="/user/sign_up"
-          element={<Pages pageType={"FirstRegistrationForm"}/>}
+          element={<Pages pageType={"FirstRegistrationForm"} />}
         />
         <Route
           path="/user/reg_in/information"
-          element={<Pages pageType={"YourselfPage"} registration={false}/>}
+          element={<Pages pageType={"YourselfPage"} registration={false} />}
         />
         <Route
           path="/user/reg_in/information/modR"
-          element={<Pages pageType={"ConfirmReg"} registration={true}/>}
+          element={<Pages pageType={"ConfirmReg"} registration={true} />}
         />
         <Route
           path="/user/sign_in/phone_numberR"
-          element={<Pages pageType={"PhoneNumberPage"} registration={true}/>}
+          element={<Pages pageType={"PhoneNumberPage"} registration={true} />}
         />
         <Route
           path="/user/sign_in/phone_numberR/code"
-          element={<Pages pageType={"Code"} registration={true}/>}
+          element={<Pages pageType={"Code"} registration={true} />}
         />
         <Route
           path="/user/sign_in"
-          element={<Pages pageType={"Login"}/>}
+          element={<Pages pageType={"Login"} />}
         />
         <Route
           path="/user/sign_in/phone_numberA"
-          element={<Pages pageType={"PhoneNumberPage"} registration={false}/>}
+          element={<Pages pageType={"PhoneNumberPage"} registration={false} />}
         />
         <Route
           path="/user/sign_in/reset_password/reset"
-          element={<Pages pageType={"ConfirmReg"} registration={false}/>}
+          element={<Pages pageType={"ConfirmReg"} registration={false} />}
         />
         <Route
           path="/user/sign_in/phone_numberA/code"
-          element={<Pages pageType={"Code"} registration={false}/>}
+          element={<Pages pageType={"Code"} registration={false} />}
         />
         <Route
           path="/user/sign_in/reset_password"
-          element={<Pages pageType={"ResetPage"}/>}
+          element={<Pages pageType={"ResetPage"} />}
         />
         <Route
           path="/user/sign_in/reset_password/new_password"
-          element={<Pages pageType={"SetNewPassword"}/>}
+          element={<Pages pageType={"SetNewPassword"} />}
         />
         <Route
           path="/user/google"
           element={<GoogleOAuthProvider
             clientId={process.env.REACT_APP_GOOGLE_ID}>
-            <GoogleButton/>
+            <GoogleButton />
           </GoogleOAuthProvider>}
         />
         <Route
           path="/user/facebook"
-          element={<FacebookButton/>}
+          element={<FacebookButton />}
         />
         <Route
           path="/user/vk"
-          element={<VKButton/>}
+          element={<VKButton />}
         />
-        <Route
-          path={"/user/sign_up/terms"}
-          element={<Terms/>}
-        />
+        {/*<Route*/}
+        {/*  path={"/user/sign_up/terms"}*/}
+        {/*  element={<Terms />}*/}
+        {/*/>*/}
       </Routes>
     </div>
   );

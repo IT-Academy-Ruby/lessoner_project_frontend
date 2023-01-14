@@ -28,18 +28,18 @@ const Step2 = ( props:any ) => {
   const [ description, setDescription ] = useState("");
   const intl = useIntl();
 
-  useEffect(() => {
-    const lessons = requestApi(getCategoriesUrl,"GET").then((response)=>{
-      return response.json();
-    }).then((json) => {
-      setAllCategories(json);
-      console.log(json);
-      return json; 
-    }).catch(error => {
-      console.log(error);
-    });
-    console.log(lessons);
-  },[]);
+  // useEffect(() => {
+  //   const lessons = requestApi(getCategoriesUrl,"GET").then((response)=>{
+  //     return response.json();
+  //   }).then((json) => {
+  //     setAllCategories(json);
+  //     console.log(json);
+  //     return json;
+  //   }).catch(error => {
+  //     console.log(error);
+  //   });
+  //   console.log(lessons);
+  // },[]);
   
 
   useEffect(()=>{ 

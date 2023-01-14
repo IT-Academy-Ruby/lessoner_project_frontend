@@ -3,6 +3,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import decodeReducer from "./header/decodeJwtSlice";
 import linksReducer from "./links/linksSlise";
 import loginReducer from "./loginName/loginSlice";
+import lessonsReducer from "./lessonSlice/lessonSlice";
 
 const store = configureStore(
   {reducer: {
@@ -12,6 +13,7 @@ const store = configureStore(
     userDecodedExp: decodeReducer,
     link: linksReducer,
     categories: categoriesReducer,
+    lessons:lessonsReducer,
   }}
 );
 

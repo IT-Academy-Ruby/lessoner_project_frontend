@@ -23,7 +23,6 @@ export const UserRegex = new RegExp("[^0-9a-z]", "i");
 export const nameCategoryRegex = new RegExp("^[\"\\[\\]\\s-:)(/=!#$%&'*+?^_`{|}~.,<>@A-Z0-9А-Я]{" +
   NAME_CATEGORY.minSymbols + "," + NAME_CATEGORY.maxSymbols + "}$", "i");
 
-
 export const descriptionCategoryRegex =
   new RegExp("^[\"\\[\\]\\s-:)(/=!#$%&'*+?^_`{|}~.,<>@A-Z0-9А-Я]{" +
   DESCRIPTION_CATEGORY.minSymbols + "," + DESCRIPTION_CATEGORY.maxSymbols + "}$", "i");
@@ -31,3 +30,7 @@ export const descriptionCategoryRegex =
 export const RegExpName = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]]+$/i;
 
 export const RegExpDescription = /^[а-яА-ЯёЁa-zA-Z0-9( )!$%&'""*+-/=?^_`{|}~.,@<>:[\]#]+$/i;
+
+export const RegExpVideo = new RegExp("^(((ht|f)tp(s?))\\://)?(www.|[a-zA-Z].)[a-zA-Z0-9\\-\\.]+\\." +
+  "(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk|ru|by)(\\:[0-9]+)*(/($|[a-zA-Z0-9\\.\\,\\;\\?\\'" +
+  "\\\\\\+&amp;%\\$#\\=~_\\-]+))*$")

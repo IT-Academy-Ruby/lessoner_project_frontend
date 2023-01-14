@@ -1,0 +1,53 @@
+@import "../../../../../constants.scss";
+
+.css-b62m3t-container {
+  width: 100%;
+  text-align: left;
+  margin-top: 4px;
+  border: 1px solid #9A9AA3;
+  border-radius: 8px;
+
+  &:active {
+
+  }
+}
+
+div > .css-t3ipsp-control {
+  border: none;
+}
+
+div > .css-1jqq78o-placeholder {
+  font-family: $font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #9A9AA3;
+}
+
+.css-1u9des2-indicatorSeparator {
+  display: none;
+}
+
+div > .css-13cymwt-control {
+  border-radius: 8px;
+  border: none;
+}
+
+div > .css-tr4s17-option {
+  background: #EEF3FE;
+  color: var(--textThemeColor1);
+}
+
+div > .css-15lsz6c-indicatorContainer {
+  color: #455FCE;
+}
+
+div > .css-1xc3v61-indicatorContainer:hover {
+  color: #455FCE;
+}
+
+.select-arrow {
+  color: #455FCE;
+  transform: rotate(180deg);
+}

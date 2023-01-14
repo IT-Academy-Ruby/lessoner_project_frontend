@@ -10,11 +10,12 @@ type CategoryDescriptionProps = {
     onChange: React.ChangeEventHandler<HTMLTextAreaElement>,
     value: string;
   },
+  placeholder:string;
   error?: string;
 }
 
 const CategoryDescription = (
-  {field, error}: CategoryDescriptionProps): JSX.Element => {
+  {field, placeholder, error}: CategoryDescriptionProps): JSX.Element => {
   const intl = useIntl();
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
@@ -23,7 +24,7 @@ const CategoryDescription = (
       <FormattedMessage id="app.categories.description"/>
       <textarea
         className={classNames("category-input category-textarea", {"invalid-input": error})}
-        placeholder={intl.formatMessage({id: "app.categories.placeholder.description"})}
+        placeholder={placeholder}
         onBlur={() => setIsFocus(false)}
         {...field}
         onFocus={() => {

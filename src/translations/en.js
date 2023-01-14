@@ -212,7 +212,7 @@ export const messages_en = {
     "New category is created and added to the list",
   "app.categories.edit.successful": "Changes have been saved",
   "app.categories.textDelete": "Are you sure you want to delete the category?",
-  "app.AddNewLesson": "Add new Lesson",
+  "app.AddNewLesson": "Add new lesson",
   "app.ChooseACategory": "Choose a category",
   "app.nameCategory.it": "IT",
   "app.nameCategory.design": "Design",
@@ -243,7 +243,7 @@ export const messages_en = {
     "Add subtitles to reach bigger audience",
   "app.Thumbnail": "Thumbnail",
   "app.SelectOrUploadAPictureThatShowsWhatsInYourVideo":
-    "Select or upload a picture that shows whats in your video",
+    "Upload a picture that shows whats in your video",
   "app.NextStep": "Next step",
   "app.cancel": "Cancel",
   "app.Lessonname": "Lesson name",
@@ -251,4 +251,12 @@ export const messages_en = {
     "<span>Teach</span> by studying. <br /> Study while teaching.",
   "app.hero.subtitle":
     "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills.",
+  "app.VideoSize": "maximal size: 35Mb",
+  "app.incorrectVideoFile": "Please upload another file",
+  "app.addNewLesson": "+ Add new lesson",
+  "app.lessons.placeholder.description": "Lesson desсription",
+  "app.uploadThumbnail": "Upload thumbnail",
+  "app.SelectSubtitlesLanguage": "Select subtitle language and upload the file",
+  "app.SubtitleLanguage": "Subtitle language",
+  "app.EditLesson": "Edit the lesson",
 };

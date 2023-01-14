@@ -2,13 +2,17 @@ import "./terms.scss";
 import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";
 
-const Terms = () => {
+type TermsProps={
+  setIsTerms: (boolean:boolean)=>void;
+}
+
+const Terms = ({setIsTerms}:TermsProps) => {
   return (
     <div className="wrapper-terms">
-      <Link to="/user/sign_up" className="button-back">
+      <div onClick={()=>setIsTerms(false)} className="button-back">
         <span className="arrow-back">&#10094;</span>
         <span><FormattedMessage id="app.categories.back"/></span>
-      </Link>
+      </div>
       <div className="page-terms">
         <span className="terms">
           <h3 className="terms-title">
