@@ -1,7 +1,7 @@
 import "./addLesson.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
-  addVideo, getLessons, updateLesson
+  addVideo, getLessons, updateLesson, deleteLesson
 } from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
@@ -60,7 +60,7 @@ const AddLesson = ({add}: AddLessonProps) => {
 
   useEffect(() => {
     if (!add && allLessons.length <= 1) {
-      dispatch(getLessons());
+    dispatch(getLessons());
     }
     if (!add && allLessons.length > 1) {
       setLesson(allLessons.filter(videoCategory => videoCategory.id === idLesson)[0]);
@@ -105,6 +105,7 @@ const AddLesson = ({add}: AddLessonProps) => {
       userLesson.lesson_video = videoLink;
     }
     dispatch(addVideo(userLesson));
+    navigate("/myStudio");
   };
 
   const editLesson = () => {
@@ -128,16 +129,17 @@ const AddLesson = ({add}: AddLessonProps) => {
       navigate("/myStudio");
     } else {
       dispatch(updateLesson(userLesson));
+      navigate("/myStudio");
     }
   };
 
   useEffect(() => {
-    if (!add && lesson.title) {
+    if (!add && lesson.description) {
       setVideoName(lesson.title);
       setVideoLink(lesson.video_link);
       setVideoDescription(lesson.description);
     }
-  }, [add, lesson.description, lesson.video_link, lesson.title]);
+  }, [add, lesson]);
 
   return (
     <div className="add-lesson">

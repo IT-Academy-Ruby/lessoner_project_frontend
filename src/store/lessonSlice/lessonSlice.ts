@@ -54,10 +54,10 @@ export const addVideo = createAsyncThunk(
 export const updateLesson = createAsyncThunk(
   "lesson/updateLesson",
   async (userLesson: {
-    id:number,
+    id: number,
     title: string,
     description: string,
-    lesson_video: Blob| null | undefined | string,
+    lesson_video: Blob | null | undefined | string,
     category_id: string,
     author_id: string,
     lesson_image: Blob | null | undefined | string,
@@ -67,7 +67,9 @@ export const updateLesson = createAsyncThunk(
     formData.append("description", userLesson.description);
     formData.append("category_id", userLesson.category_id);
     formData.append("author_id", userLesson.author_id);
-    formData.append("lesson_image", userLesson.lesson_image!);
+    if (typeof userLesson.lesson_image !== "string") {
+      formData.append("lesson_image", userLesson.lesson_image!);
+    }
     if (typeof userLesson.lesson_video === "string") {
       formData.append("video_link", userLesson.lesson_video);
     } else {
