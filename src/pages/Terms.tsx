@@ -1,12 +1,14 @@
 import "./terms.scss";
 import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";
+import PersonalTerms from "./PtrsonalTerms";
 
 type TermsProps={
   setIsTerms: (boolean:boolean)=>void;
 }
 
 const Terms = ({setIsTerms}:TermsProps) => {
+
   return (
     <div className="wrapper-terms">
       <div onClick={()=>setIsTerms(false)} className="button-back">
@@ -21,9 +23,9 @@ const Terms = ({setIsTerms}:TermsProps) => {
           <span>
             Настоящим я, Субъект персональных данных, в соответствии с требованиями статьи 5 и
             абзаца второго пункта первого статьи 9
-            <Link to="https://pravo.by/upload/docs/op/H12100099_1620939600.pdf" className="link">
+            <span className="link">
               Закона Республики Беларусь от 7 мая 2021 г. №99-З «О защите персональных данных»,
-            </Link>
+            </span>
             выражаю свое свободное, однозначное и информированное согласие по оказанию услуг
             платформы на обработку, в том числе трансграничную передачу моих персональных данных
             в соответствии с условиями настоящего согласия (далее - Согласие).
@@ -75,12 +77,10 @@ const Terms = ({setIsTerms}:TermsProps) => {
           не обеспечивается надлежащий уровень защиты прав субъектов персональных данных.
           Перечень иностранных государств, на территории которых обеспечивается надлежащий
           уровень защиты прав субъектов персональных данных, установлен
-          <Link
-            to="https://etalonline.by/document/?regnum=u621e3030&q_id=4388578"
-            className="link">
+          <span className="link">
             Приказом Национального центра защиты персональных данных Республики Беларусь
             от 15 ноября2021 г. № 14 «О трансграничной передаче персональных данных»
-          </Link>
+          </span>
           (далее – Приказ № 14).
         </span>
 
@@ -115,7 +115,7 @@ const Terms = ({setIsTerms}:TermsProps) => {
               </li>
               <li>
                 3.2. я ознакомлен с
-                <Link to="" className="link">
+                <Link to="/personalTerms" className="link">
                   Политикой в отношении обработки персональных данных,
                 </Link>
                 размещенной в неограниченном доступе на Интернет-сайте.

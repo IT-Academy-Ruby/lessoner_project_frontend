@@ -75,6 +75,21 @@
   }
 }
 
+.main-li{
+  font-weight: 700;
+  margin-block: 0.5rem;
+}
+
+.marker-ol{
+  margin-top: 0.2rem ;
+  list-style-type: lower-latin;
+}
+
+.subtext{
+  display: block;
+  margin: 0 0 0.5rem -1rem;
+}
+
 @media (max-width: $max-width-tablet) {
   .page-terms {
     border-radius: 8px;

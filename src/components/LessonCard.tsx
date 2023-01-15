@@ -69,7 +69,7 @@ export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
-    navigate("/myStudio/lesson/" + idCard);
+    navigate("/myStudio/update_lesson/" + idCard);
   };
 
   return (

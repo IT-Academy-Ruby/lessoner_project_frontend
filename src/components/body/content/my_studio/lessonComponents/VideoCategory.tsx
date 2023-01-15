@@ -47,13 +47,13 @@ const VideoCategory = ({
     }
   };
 
-  const arrow = document.getElementsByClassName("css-tj5bde-Svg")[0];
-  const openList = () => {
-    arrow.classList.add("select-arrow");
-  };
-  const closeList = () => {
-    arrow.classList.remove("select-arrow");
-  };
+  // const arrow = document.getElementsByClassName("css-tj5bde-Svg")[0];
+  // const openList = () => {
+  //   arrow.classList.add("select-arrow");
+  // };
+  // const closeList = () => {
+  //   arrow.classList.remove("select-arrow");
+  // };
 
   return (
     <label className="category-label">
@@ -63,8 +63,8 @@ const VideoCategory = ({
         onChange={handleChange}
         options={options}
         defaultValue={videoCategory}
-        onMenuOpen={openList}
-        onMenuClose={closeList}
+        // onMenuOpen={openList}
+        // onMenuClose={closeList}
       />}
       {error && <span className="message error">{error}</span>}
     </label>

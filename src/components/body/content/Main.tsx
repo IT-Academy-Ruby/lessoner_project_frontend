@@ -21,15 +21,10 @@ import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
-// <<<<<<< HEAD
-// import Lessons from "./lessons/Lessons";
-// import MyStudio from "./my_studio/MyStudio";
-
-// =======
 import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
 import NewLesson from "./add_new_lesson/NewLesson";
-// >>>>>>> develop
 import Pages from "../../../components/Pages";
+import PersonalTerms from "../../../pages/PtrsonalTerms";
 import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
@@ -81,11 +76,7 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
-        {/*<Route path="/lessons/:id" element={<EditVideoLessonTitle />} />*/}
-        {/*<Route path="/" element={<Lessoner />} />*/}
-        {/*<Route path="/categories" element={<Categories />} />*/}
-        {/*<Route path="/lessons" element={<Lessons />} />*/}
-        {/*<Route path="/about" element={<About />} />*/}
+        <Route path="/personalTerms" element={<PersonalTerms />} />
         <Route path="/myStudio/add_new_lesson" element={<AddLesson add={true}/>} />
         <Route path="/myStudio/update_lesson/:id" element={<AddLesson add={false}/>} />
         <Route path="/" element={<Lessoner />} />
