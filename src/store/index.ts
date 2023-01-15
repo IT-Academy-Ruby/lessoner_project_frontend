@@ -1,9 +1,9 @@
 import categoriesReducer from "./categorySlice/categorySlice";
 import {configureStore} from "@reduxjs/toolkit";
 import decodeReducer from "./header/decodeJwtSlice";
+import lessonsReducer from "./lessonSlice/lessonSlice";
 import linksReducer from "./links/linksSlise";
 import loginReducer from "./loginName/loginSlice";
-import lessonsReducer from "./lessonSlice/lessonSlice";
 
 const store = configureStore(
   {reducer: {

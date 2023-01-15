@@ -103,8 +103,9 @@ const NewLesson = () => {
             <div className="second-div-active"><FormattedMessage id="app.GetStarted"/></div>
           </div>
           <div className="div-arrow">
-            <svg width="8" height="13" viewBox="0 0 8 13" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="8" height="13" viewBox="0 0 8 13" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
               <path d="M1.28957 10.38L5.16957 6.49998L1.28957 2.61998C0.89957
                 2.22998 0.89957 1.59998 1.28957 1.20998C1.67957 0.81998 2.30957
                 0.81998 2.69957 1.20998L7.28957 5.79998C7.67957 6.18998 7.67957
@@ -127,24 +128,27 @@ const NewLesson = () => {
             setCategoryId={setCategoryId}/>}
         <div className="foot-div">
           <Link to="/myStudio">
-            <input type="button"
-                   className="button-shape cansel"
-                   value={intl.formatMessage({id: "app.cancel"})}></input>
+            <input
+              type="button"
+              className="button-shape cansel"
+              value={intl.formatMessage({id: "app.cancel"})}></input>
           </Link>
 
           {step === 1 ? <div>{nextStepButtonDisabled == true ?
-              <input type="button"
-                     disabled={nextStepButtonDisabled}
-                     className="next-step-button  button-shape-2 "
-                     value={intl.formatMessage({id: "app.NextStep"})}
-                     onClick={swapStepForm}
-                     id="btn-add-new-lesson-next-step"></input> :
-              <input type="button"
-                     disabled={nextStepButtonDisabled}
-                     className="next-step-button  button-shape-2 active-step "
-                     value={intl.formatMessage({id: "app.NextStep"})}
-                     onClick={swapStepForm}
-                     id="btn-add-new-lesson-next-step"></input>}</div> :
+              <input
+                type="button"
+                disabled={nextStepButtonDisabled}
+                className="next-step-button  button-shape-2 "
+                value={intl.formatMessage({id: "app.NextStep"})}
+                onClick={swapStepForm}
+                id="btn-add-new-lesson-next-step"></input> :
+              <input
+                type="button"
+                disabled={nextStepButtonDisabled}
+                className="next-step-button  button-shape-2 active-step "
+                value={intl.formatMessage({id: "app.NextStep"})}
+                onClick={swapStepForm}
+                id="btn-add-new-lesson-next-step"></input>}</div> :
             <div>{step !== 1 ?
               <div>{addNewLessonDisabled == true ?
                 <input

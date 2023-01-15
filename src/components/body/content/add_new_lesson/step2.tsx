@@ -6,7 +6,7 @@ import { LoadGrey } from "../../../svg/LoadGrey";
 import { Loader } from "react-feather";
 import { Modal } from "react-responsive-modal";
 import { TopArrow } from "../../../svg/top-arrow";
-import requestApi from "../../../../services/request";
+// import requestApi from "../../../../services/request";
 import { useFormik } from "formik";
 
 type categoriesType = {
@@ -19,7 +19,7 @@ const formData2 = {
   category:"",description:"",subtitles:"",subtitlesFile:"", id:0
 };
 let simbolsLeft = 0;
-const getCategoriesUrl=`${process.env.REACT_APP_BACKEND_URL}/categories`;
+// const getCategoriesUrl=`${process.env.REACT_APP_BACKEND_URL}/categories`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Step2 = ( props:any ) => {
@@ -165,7 +165,7 @@ const Step2 = ( props:any ) => {
       <form onSubmit={formik.handleSubmit} className="formik-form-step-1">
         <div className="form-step-2">
           {
-            allCategories.length 
+            allCategories.length
               ?
               <div className="input-category marg-bot-32 w100">
                 <select id="category" 
@@ -177,7 +177,7 @@ const Step2 = ( props:any ) => {
                   <option defaultValue={intl.formatMessage({id: "app.ChooseACategory"})} selected hidden >
                     <FormattedMessage id="app.ChooseACategory"/>
                   </option>
-                  {categoriesElements} 
+                  {categoriesElements}
                 </select>
                 <div className="div-error-msg">{msgErrorCategory}</div>
               </div> 

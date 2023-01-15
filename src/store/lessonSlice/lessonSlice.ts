@@ -12,7 +12,7 @@ export const getLessons = createAsyncThunk(
       return `errror ${responce.status}`;
     }
   }
-)
+);
 
 export const addVideo = createAsyncThunk(
   "lesson/addVideo",

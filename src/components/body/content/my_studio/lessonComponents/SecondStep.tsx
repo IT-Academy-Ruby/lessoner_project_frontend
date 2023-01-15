@@ -48,6 +48,7 @@ const SecondStep = ({
 }: StepTwoProp) => {
   const intl = useIntl();
   const [errorImage, setErrorImage] = useState("");
+  const [isTerm, setIsTerm] = useState(false);
 
   const initialValues: FormValues = {
     category: "",
@@ -57,10 +58,12 @@ const SecondStep = ({
   };
 
   useEffect(() => {
-    if (add && videoCategory.value && videoDescription && selectImage.name && !errorImage) {
+    if (add && videoCategory.value && videoDescription
+      && selectImage.name && !errorImage && isTerm) {
       setIsDisabledStep2(false);
     }
-    if (add && (!videoCategory.value || !videoDescription && !selectImage.name && errorImage)) {
+    if (add && (!videoCategory.value || !isTerm
+      || !videoDescription && !selectImage.name && errorImage)) {
       setIsDisabledStep2(true);
     }
     if (!add && videoDescription && (selectImage.name || editThubnail.name) && !errorImage) {
@@ -70,7 +73,7 @@ const SecondStep = ({
       setIsDisabledStep2(true);
     }
   }, [add, videoCategory, videoDescription, editThubnail,
-    setIsDisabledStep2, selectImage.name, errorImage]);
+    setIsDisabledStep2, selectImage.name, errorImage, isTerm]);
 
   return (<>
     {(add || lesson.description) && <Formik
@@ -86,6 +89,11 @@ const SecondStep = ({
         if (values.description.length > DESCRIPTION_CATEGORY.maxSymbols) {
           errors.description = intl.formatMessage({id: "app.activeCategories.errorMaxLength"},
             {symbols: DESCRIPTION_CATEGORY.maxSymbols});
+        }
+        if(values.hasTermsAndConditions){
+          setIsTerm(true);
+        }else{
+          setIsTerm(false);
         }
         if (!errors.description) {
           setVideoDescription(values.description);

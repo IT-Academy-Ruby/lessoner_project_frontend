@@ -1,7 +1,6 @@
 import "./checkbox.scss";
 import Terms from "../pages/Terms";
 import {useState} from "react";
-import {useEffect} from "react";
 
 type CheckboxProps = {
   field?: {
@@ -15,15 +14,10 @@ type CheckboxProps = {
   error?: string;
 }
 const Checkbox = ({
-                    field, error, information, link
-                  }: CheckboxProps): JSX.Element => {
+  field, error, information, link
+}: CheckboxProps): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
   const [isTerms, setIsTerms] = useState(false);
-  useEffect(() => {
-    if (field!.value === "true") {
-      setIsChecked(true)
-    }
-  }, [field])
   return (
     <span className="checkbox">
       <input
