@@ -143,7 +143,8 @@ export const EditVideoLessonForm: FC = () => {
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableName" })}
             <Field
-              className={classNames("evlf__input", {["error-input"]: errors.name && errors.name})}
+              className={classNames("evlf__input", 
+                {["error-input"]: errors.name && errors.name})}
               name="name"
               validate={validateName}
             />
@@ -201,7 +202,7 @@ export const EditVideoLessonForm: FC = () => {
             </label>
             <Thumbnail
               lesson={lesson}
-              onImageUrlChange ={handleImageUrlChange }
+              onImageUrlChange={handleImageUrlChange}
               imageURL={imageURL}
             />
           </div>
@@ -210,7 +211,7 @@ export const EditVideoLessonForm: FC = () => {
               buttonType="button"
               buttonText={intl.formatMessage({ id: "app.button.cancel" })}
               className="button__fs16-white button__fs16-left"
-              onClick={() => navigate("/lessons")}
+              onClick={() => navigate("/myStudio")}
             />
             <Button
               buttonType="submit"

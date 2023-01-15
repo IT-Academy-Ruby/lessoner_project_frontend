@@ -1,4 +1,4 @@
-@import "../../constants";
+@import "../../constants.module.scss";
 
 $imageHeight: 340px;
 $imageWidth: 429px;
@@ -31,13 +31,14 @@ $imageWidth: 429px;
     font-size: 24px;
 }
 
-.hero__image, .hero__image img {
+.hero__image,
+.hero__image img {
     height: $imageHeight;
     width: $imageWidth;
 }
 
 .hero__button {
-    height: 40px; 
+    height: 40px;
     font-size: 16px;
     font-family: $font;
     background: $blueLightColor;

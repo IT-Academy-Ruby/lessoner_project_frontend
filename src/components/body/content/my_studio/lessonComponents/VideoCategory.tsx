@@ -35,7 +35,7 @@ const VideoCategory = ({
   }, [allCategories]);
 
   useEffect(() => {
-    if (options && !videoCategory.value) {
+    if (options && !videoCategory.value && lesson.category_id) {
       setVideoCategory(options.filter(category => category.value ===
         lesson.category_id.toString())[0]);
     }

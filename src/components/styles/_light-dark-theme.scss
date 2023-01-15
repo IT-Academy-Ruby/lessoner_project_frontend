@@ -3,7 +3,7 @@
 $themes: (
   bgThemeColor1: (
     darkTheme: $darkMain,
-    lightTheme: $lightMain, 
+    lightTheme: $lightMain,
   ),
   textThemeColor1: (
     darkTheme: $grey100,
@@ -29,49 +29,64 @@ $themes: (
     darkTheme: $dark6,
     lightTheme: $light5,
   ),
-  bgEditVideoLessonColor: (darkTheme: $dark3,
+  bgEditVideoLessonColor: (
+    darkTheme: $dark3,
     lightTheme: $lightSideBar,
   ),
-  editVideoLessonShadow: (darkTheme: $EditVideoLessonShadowDark,
+  editVideoLessonShadow: (
+    darkTheme: $EditVideoLessonShadowDark,
     lightTheme: $EditVideoLessonShadowLight,
   ),
-  iconsTextEditVideoLessonColor: (darkTheme: $light2,
+  iconsTextEditVideoLessonColor: (
+    darkTheme: $light2,
     lightTheme: $dark1,
   ),
-  bgButtonColor: (darkTheme: $darkSideBar,
+  bgButtonColor: (
+    darkTheme: $darkSideBar,
     lightTheme: $lightSideBar,
   ),
-  bgFocusButtonColor: (darkTheme: $light6,
+  bgFocusButtonColor: (
+    darkTheme: $light6,
     lightTheme: $dark9,
   ),
-  shadowActiveButtonColor: (darkTheme: $ButtonActiveShadowDark,
+  shadowActiveButtonColor: (
+    darkTheme: $ButtonActiveShadowDark,
     lightTheme: $ButtonActiveShadowLight,
   ),
-  bgFocusButtonSecondaryColor: (darkTheme: $dark3,
+  bgFocusButtonSecondaryColor: (
+    darkTheme: $dark3,
     lightTheme: $light1,
   ),
-  iconsTextButtonColor: (darkTheme: $light2,
+  iconsTextButtonColor: (
+    darkTheme: $light2,
     lightTheme: $blue2,
   ),
-  iconsTextFocusButtonColor: (darkTheme: $dark1,
+  iconsTextFocusButtonColor: (
+    darkTheme: $dark1,
     lightTheme: $light1,
   ),
-  iconsTextActiveButtonColor: (darkTheme: $blue3,
+  iconsTextActiveButtonColor: (
+    darkTheme: $blue3,
     lightTheme: $light1,
   ),
-  iconsTextFocusButtonSecondaryColor: (darkTheme: $light7,
+  iconsTextFocusButtonSecondaryColor: (
+    darkTheme: $light7,
     lightTheme: $blue4,
   ),
-  iconsTextActiveButtonSecondaryColor: (darkTheme: $light8,
+  iconsTextActiveButtonSecondaryColor: (
+    darkTheme: $light8,
     lightTheme: $dark10,
   ),
-  borderFocusButtonSecondaryColor: (darkTheme: $light7,
+  borderFocusButtonSecondaryColor: (
+    darkTheme: $light7,
     lightTheme: $blue4,
   ),
-  borderActiveButtonSecondaryColor: (darkTheme: $light8,
+  borderActiveButtonSecondaryColor: (
+    darkTheme: $light8,
     lightTheme: $dark10,
   ),
-  themeButtonHover: (darkTheme: $ButtonHoverLight,
+  themeButtonHover: (
+    darkTheme: $ButtonHoverLight,
     lightTheme: $ButtonHoverDark,
   ),
   bgCardThemeColor: (
@@ -90,9 +105,13 @@ $themes: (
     darkTheme: $Surface5Dark,
     lightTheme: $Surface5Light,
   ),
-  KebabCardThemeColor: (
-    darkTheme: $lightMain,
-    lightTheme: $darkMain,
+  KebabCardThemeColor: ( 
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  KebabCardThemeColorHover: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
   ),
   bgFirstRegistrForm: (
     darkTheme: $dark3,
@@ -161,6 +180,102 @@ $themes: (
   bgTextHoverDropDownMainPage: (
     darkTheme: $dark5,
     lightTheme: $light4,
+  ),
+  bgCategoriesButtons: (
+    darkTheme: $dark1,
+    lightTheme: $light2,
+  ),
+  textCategoriesButtons: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgCategoryActiveButton: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  textCategoryActiveButton: (
+    darkTheme: $dark1,
+    lightTheme: $light2,
+  ),
+  categoriesBorder: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgVideoCard: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textUserPageFields: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
+  ),
+  textMyStudioHead: (
+    darkTheme: $light9,
+    lightTheme: $light10,
+  ),
+  textMyStudioHeadActive: (
+    darkTheme: $light11,
+    lightTheme: $blue2,
+  ),
+  textMyStudioHeadSelect: (
+      darkTheme: $light11,
+      lightTheme: $dark1,
+  ),
+  textCategoriesAdmin: (
+    darkTheme: $light2,
+    lightTheme: $dark4,
+  ),
+  bgRowCategoriesAdmin: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  bgRowShadowCategoriesAdmin: (
+    darkTheme: $dark3,
+    lightTheme: $CategoriesAdminRowShadowLight,
+  ),
+  bgFocusedRowCategoriesAdmin: (
+    darkTheme: $dark6,
+    lightTheme: $light1,
+  ),
+  bgFocusedRowShadowCategoriesAdmin: (
+    darkTheme: $dark6,
+    lightTheme: $CategoriesAdminActiveRowShadowLight,
+  ),
+  addNewCategoryText: (
+    darkTheme: $light2,
+    lightTheme: $black,
+  ),
+  addNewCategoryPlaceholder: (
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  bgAddNewCategoryInput: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  bgAddNewCategoryBorderHover: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgAddNewCategorySaveButtonDisabled: (
+    darkTheme: $dark3,
+    lightTheme: $blue2,
+  ),
+  addNewCategorySaveButtonDisabledText: (
+    darkTheme: $dark7,
+    lightTheme: $light1,
+  ),
+  addNewCategoryImgSizeText: (
+    darkTheme: $dark2,
+    lightTheme: $light3,
+  ),
+  addNewCategoryImgLine: (
+    darkTheme: $dark3,
+    lightTheme: $light3,
+  ),
+  bgModalShadow: (
+    darkTheme: $ModalShadowDark,
+    lightTheme: $ModalShadowLight,
   ),
 );
 

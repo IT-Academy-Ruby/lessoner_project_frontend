@@ -1,4 +1,4 @@
-@import "src/constants.scss";
+@import "src/constants.module.scss";
 
 .wrapper-user_page {
   display: flex;
@@ -19,7 +19,7 @@
   width: 100%;
   margin: 0 0 24px 0;
   font-family: $font;
-  color: $black;
+  color: var(--textUserPageFields);
   font-weight: 600;
   line-height: 130%;
 }
@@ -45,9 +45,6 @@
   border-radius: 50px;
   width: 100%;
 }
-.first-letters-{
-
-}
 
 .upload-field {
   position: absolute;
@@ -56,14 +53,14 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #455FCE;
+  background: #455fce;
 }
 
 .inform-avatar {
   max-width: 530px;
   font-family: $font;
   color: #757575;
-  font-feature-settings: 'liga' off;
+  font-feature-settings: "liga" off;
   font-size: 12px;
   line-height: 150%;
   margin-left: 24px;
@@ -85,7 +82,7 @@
 
 .label-user-page {
   font-family: $font;
-  color: $black;
+  color: var(--textUserPageFields);
   font-weight: 600;
   line-height: 150%;
   margin: 0;
@@ -93,7 +90,7 @@
 
 .user-page-data {
   font-family: $font;
-  color: $black;
+  color: var(--textUserPageFields);
   margin: 14px 0 10px 0;
 }
 
@@ -166,9 +163,9 @@
   font-weight: 600;
   font-size: 32px;
   line-height: 130%;
-  color: #1B1B1F;
+  color: #1b1b1f;
 }
-.inVisible{
+.inVisible {
   display: none;
 }
 @media (max-width: $max-width-phone) {

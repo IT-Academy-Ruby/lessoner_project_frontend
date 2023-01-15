@@ -1,6 +1,11 @@
-@import "../constants.scss";
+@import "../constants.module.scss";
 
-.button__main, .button__page, .button__fs16, .button__fs16-white, .button__fs16-red, .disabled {
+.button__main,
+.button__page,
+.button__fs16,
+.button__fs16-white,
+.button__fs16-red,
+.disabled {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +23,8 @@
   }
 }
 
-.button__fs16, .button__fs16-white,
+.button__fs16,
+.button__fs16-white,
 .button__fs16-red {
   padding: 6px 32px;
   font-size: 16px;
@@ -54,6 +60,7 @@
 .button-select {
   display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid var(--iconsTextButtonColor);
   border-radius: 28px;
   font-family: $font;
@@ -180,6 +187,19 @@
   cursor: pointer;
 }
 
+.button-add-category {
+  height: 32px;
+  width: 187px;
+  font-family: $font;
+  background: $blueLightColor;
+  color: $white;
+  border: none;
+  border-radius: 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+}
+
 .button-delete {
   color: $warningColor;
   border-color: $warningColor;
@@ -214,5 +234,9 @@
   .button__page {
     font-size: 16px;
     margin-bottom: 14px;
+  }
+
+  .button-add-category {
+    width: 122px;
   }
 }

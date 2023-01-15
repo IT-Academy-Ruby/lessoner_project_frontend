@@ -4,8 +4,7 @@ import {
   useEffect, useRef, useState
 } from "react";
 import Button from "../../../../Button";
-import Change from "../../../../icons/Change.svg";
-
+import Change from "../../../../icons/change.svg";
 import Select from "../../../../icons/select.svg";
 
 type CategoryImageProps = {
@@ -28,18 +27,9 @@ type CategoryImageProps = {
 };
 
 const CategoryImage = ({
-                         selectImage,
-                         setSelectImage,
-                         setEditCategory,
-                         editCategory,
-                         errorImage,
-                         setErrorImage,
-                         isCategory,
-                         title,
-                         inform,
-                         textButton,
-                         imageData
-                       }: CategoryImageProps) => {
+  selectImage, setSelectImage, setEditCategory, editCategory, errorImage,
+  setErrorImage, isCategory, title, inform, textButton, imageData
+}: CategoryImageProps) => {
   const intl = useIntl();
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -71,7 +61,7 @@ const CategoryImage = ({
         setErrorImage("");
       }
     }
-  }, [selectImage, intl, isChange, setErrorImage]);
+  }, [imageData.format, imageData.size, selectImage, intl, isChange, setErrorImage]);
 
   const handleUpload = () => {
     if (fileRef.current) {
@@ -106,33 +96,33 @@ const CategoryImage = ({
         />
       </>}
       {(!!selectImage.name || !!editCategory.image) && <>
-        <span className="upload-image">
-          <FormattedMessage id="app.categories.uploadImage"/>
+        <span className="category-image-uploading">
+          <FormattedMessage id="app.categories.uploadedFileCategoryImage"/>
         </span>
-        <div className="image-add-field">
-          <img
-            src={selectImage.image
-              ? URL.createObjectURL(selectImage.image) : editCategory.image}
-            alt={selectImage.name || editCategory.name}
-            className="select-image"/>
-          <div className="image-data">
-            <span className="select-image-name">
-              {selectImage.name || editCategory.name}
-            </span>
-            <span className="select-image-size">
-              {Math.floor((selectImage.size || editCategory.size) / 1048.576) / 1000} MB
-            </span>
+        <div className="image-category-field">
+          <div className="image-category">
+            <img
+              src={selectImage.image
+                ? URL.createObjectURL(selectImage.image) : editCategory.image}
+              alt={selectImage.name || editCategory.name}
+              className="select-image" />
+            <div className="image-data">
+              <span className="select-image-name">
+                {selectImage.name || editCategory.name}
+              </span>
+              <span className="select-image-size">
+                {Math.floor((selectImage.size || editCategory.size) / 1048.576) / 1000} MB
+              </span>
+            </div>
           </div>
-          <div className="category-buttons-field">
-            <Button
-              buttonType="button"
-              buttonText={intl.formatMessage({id: "app.categories.change"})}
-              className="button-select"
-              buttonImage={Change}
-              imageStyle="icon-button"
-              onClick={handleUpload}
-            />
-          </div>
+          <Button
+            buttonType="button"
+            buttonText={intl.formatMessage({ id: "app.categories.change" })}
+            className="button-select"
+            buttonImage={Change}
+            imageStyle="icon-button"
+            onClick={handleUpload}
+          />
         </div>
       </>
       }

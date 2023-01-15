@@ -1,8 +1,7 @@
 import "./addCategory.scss";
-import {FormattedMessage} from "react-intl";
 import {NAME_CATEGORY} from "../../../../../constants";
 import classNames from "classnames";
-import {useState} from "react";
+import { useState } from "react";
 
 type CategoryNameProps = {
   field: {
@@ -15,7 +14,10 @@ type CategoryNameProps = {
   error?: string;
   disabled?:boolean
 }
-const CategoryName = ({field, error, label, placeholder,disabled}: CategoryNameProps): JSX.Element => {
+
+const CategoryName = ({
+  field, error, label, placeholder,disabled
+}: CategoryNameProps): JSX.Element => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   return (
     <label className="category-label">

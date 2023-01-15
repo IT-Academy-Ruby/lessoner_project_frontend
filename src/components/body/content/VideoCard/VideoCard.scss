@@ -1,22 +1,27 @@
-@import "../../../../constants.scss";
+@import "../../../../constants.module.scss";
+
 .VideoCardTitle {
   width: 164px;
   height: auto;
   text-align: left;
 }
+
 .preview__img {
   width: 208px;
   height: 132px;
+
   img {
     border-radius: 8px 0px 0px 8px;
-    width: 208px;
   }
 }
+
 .info {
   width: 229px;
   height: 132px;
-  margin-left: 14px;
+  background-color: var(--bgVideoCard);
+  padding-left: 14px;
 }
+
 .VideoCardPublished {
   width: 136px;
   height: 17px;
@@ -28,6 +33,7 @@
   color: #9a9aa3;
   margin-left: 0px;
   white-space: nowrap;
+
   p {
     span {
       margin-left: 3px;
@@ -40,6 +46,7 @@
   margin-top: 8px;
   justify-content: space-between;
 }
+
 .VideoCardKebab {
   position: static;
   margin-left: 0;

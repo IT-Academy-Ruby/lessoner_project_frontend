@@ -1,8 +1,8 @@
 import "./addCategory.scss";
-import {FormattedMessage, useIntl} from "react-intl";
-import {DESCRIPTION_CATEGORY} from "../../../../../constants";
+import { DESCRIPTION_CATEGORY } from "../../../../../constants";
+import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
-import {useState} from "react";
+import { useState } from "react";
 
 type CategoryDescriptionProps = {
   field: {
@@ -14,9 +14,9 @@ type CategoryDescriptionProps = {
   error?: string;
 }
 
-const CategoryDescription = (
-  {field, placeholder, error}: CategoryDescriptionProps): JSX.Element => {
-  const intl = useIntl();
+const CategoryDescription = ({
+  field, placeholder, error
+}: CategoryDescriptionProps): JSX.Element => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
   return (
