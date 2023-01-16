@@ -59,11 +59,18 @@
 
 div > .react-select__single-value {
   color: var(--textCategoriesAdmin);
+  z-index: 5;
 }
 
-.react-select__menu {
+div > .react-select__menu {
   text-align: left;
-  box-shadow: var(--bgNavBarShadow);
+  box-shadow: var(--themeButtonHover);
+  background: var(--bgFirstRegistrForm);
+}
+
+div > .react-select__option--is-focused {
+  color: var(--textCalendarDayHover);
+  background: var(--iconsTextThemeNavBarColor);
 }
 
 .react-select__indicator-separator {

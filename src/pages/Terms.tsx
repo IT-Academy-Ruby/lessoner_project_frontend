@@ -1,7 +1,6 @@
 import "./terms.scss";
 import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";
-import PersonalTerms from "./PtrsonalTerms";
 
 type TermsProps={
   setIsTerms: (boolean:boolean)=>void;

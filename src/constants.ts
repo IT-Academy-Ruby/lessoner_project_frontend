@@ -33,6 +33,7 @@ const VIDEO_DATA = {
   size: 35 * 1024 * 1024,
   minSymbols: 1,
   maxSymbols: 64,
+  /* eslint-disable-next-line */
   symbols: `( )! $ % & ' " " * + - / = ? ^ _  { | } ~ ., @ [ ] < >`
 };
 const SKELETON_LESSONS_AMOUT = 12;

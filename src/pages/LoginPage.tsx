@@ -5,8 +5,6 @@ import {
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
-import {getEmail, getLogin} from "../store/loginName/loginSlice";
-import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
@@ -16,7 +14,9 @@ import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 // import Phone from "../components/icons/phone.svg";
 // import VK from "../components/icons/vk.svg";
+import {getLogin} from "../store/loginName/loginSlice";
 import {useAppDispatch} from "../store/hooks";
+import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -32,19 +32,7 @@ const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [value, setValue] = useState({email: "", password: ""});
   const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
-
-  useEffect(() => {
-    if (isLogEmail) {
-      dispatch(getLogin(value))
-        .then(() => {
-          if (localStorage.getItem("JWT")) {
-            navigate("/"); // Redirects to main page
-          }
-        });
-    }
-  }, [dispatch, navigate, value, isLogEmail]);
 
   const initialValues: FormValues = {
     email: "",
@@ -78,11 +66,11 @@ const LoginPage = () => {
           return errors;
         }}
         onSubmit={(values: FormValues) => {
-          setValue(values);
-          dispatch(getEmail(values.email))
-            .then((data) => data.payload)
-            .then((result) => {
-              setIslogEmail(result);
+          dispatch(getLogin(values))
+            .then(() => {
+              if (localStorage.getItem("JWT")) {
+                navigate("/"); // Redirects to main page
+              }else{setIslogEmail(false);}
             });
         }}>
         {({errors, touched}) => {
@@ -96,7 +84,7 @@ const LoginPage = () => {
                 component={Email}
                 error={touched.email ? errors.email : undefined}
                 isEmail={isLogEmail}
-                textError={intl.formatMessage({id: "app.email.notFound"})}
+                textError={intl.formatMessage({id: "app.incorectEmailOrPassword"})}
               />
               <Field
                 name="password"

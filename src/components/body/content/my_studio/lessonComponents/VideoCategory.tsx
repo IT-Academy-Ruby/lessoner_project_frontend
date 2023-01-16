@@ -63,8 +63,8 @@ const VideoCategory = ({
             defaultValue={videoCategory}
             className="select"
             classNamePrefix="react-select"
-            onMenuOpen={()=>{setIsChecked(true)}}
-            onMenuClose={()=>{setIsChecked(false)}}
+            onMenuOpen={()=>{setIsChecked(true);}}
+            onMenuClose={()=>{setIsChecked(false);}}
           />
         </>}
 
