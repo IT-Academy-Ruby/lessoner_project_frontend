@@ -18,55 +18,68 @@ import team from "../../../../assets/team.png";
 import { teamMembers } from "../../../../teamMembers";
 import { useState } from "react";
 
+type tabProperties = {
+  title: string,
+  key: string
+}
+
 const About = () => {
   const theme = useTheme();
   const imageLogo = theme === THEME.DARK ? aboutUsDark : aboutUsLight;
   const imageStars = theme === THEME.DARK ? starsDark : starsLight;
   const intl = useIntl();
-  const [activeTab, setActiveTab] = useState(intl.formatMessage({ id: "app.about.tab.team" }));
 
   const ourTeamTabsNames = [
-    intl.formatMessage({ id: "app.about.tab.team" }),
-    intl.formatMessage({ id: "app.about.tab.founders" }),
-    intl.formatMessage({ id: "app.about.tab.projectManagement" }),
-    intl.formatMessage({ id: "app.about.tab.businessAnalysis" }),
-    intl.formatMessage({ id: "app.about.tab.design" }),
-    intl.formatMessage({ id: "app.about.tab.backend" }),
-    intl.formatMessage({ id: "app.about.tab.frontend" }),
-    intl.formatMessage({ id: "app.about.tab.qa" }),
+    { title: intl.formatMessage({ id: "app.about.tab.team" }),
+      key: "team" },
+    { title: intl.formatMessage({ id: "app.about.tab.founders" }),
+      key: "founders" },
+    { title: intl.formatMessage({ id: "app.about.tab.projectManagement" }),
+      key: "projectManagement" },
+    { title: intl.formatMessage({ id: "app.about.tab.businessAnalysis" }),
+      key: "businessAnalysis" },
+    { title: intl.formatMessage({ id: "app.about.tab.design" }),
+      key: "design" },
+    { title: intl.formatMessage({ id: "app.about.tab.backend" }),
+      key: "backend" },
+    { title: intl.formatMessage({ id: "app.about.tab.frontend" }),
+      key: "frontend" },
+    { title: intl.formatMessage({ id: "app.about.tab.qa" }),
+      key: "qa" },
   ];
+  const [activeTab, setActiveTab] = useState(ourTeamTabsNames[0]);
 
   const getTeamByRole = (role: string) => {
     switch (role) {
-    case intl.formatMessage({ id: "app.about.tab.founders" }):
+    case "founders":
       return (
         teamMembers.filter(member => member.role.includes("IT-Academy") || 
           member.role.includes("PO"))
       );
-    case intl.formatMessage({ id: "app.about.tab.projectManagement" }):
+    case "projectManagement":
       return (
         teamMembers.filter(member => member.role.includes("Project"))
       );
-    case intl.formatMessage({ id: "app.about.tab.businessAnalysis" }):
+    case "businessAnalysis":
       return (
         teamMembers.filter(member => member.role.includes("Business"))
       );
-    case intl.formatMessage({ id: "app.about.tab.design" }):
+    case "design":
       return (
         teamMembers.filter(member => member.role.includes("Designer") ||
           member.role.includes("UX/UI designer"))
       );
-    case intl.formatMessage({ id: "app.about.tab.backend" }):
+    case "backend":
       return (
         teamMembers.filter(member => member.role.includes("Backend") ||
           member.secondRole && member.secondRole.includes("Backend"))
       );
-    case intl.formatMessage({ id: "app.about.tab.frontend" }):
+    case "frontend":
       return (
         teamMembers.filter(member => member.role.includes("Frontend") ||
           member.secondRole && member.secondRole.includes("Frontend"))
       );
-    case intl.formatMessage({ id: "app.about.tab.qa" }):
+    case "qa":
       return (
         teamMembers.filter(member => member.role.includes("QA"))
       );
@@ -75,17 +88,16 @@ const About = () => {
     }
   };
 
-  const ourTeamTabs = (tabs: Array<string>) => {
+  const ourTeamTabs = (tabs: Array<tabProperties>) => {
     return tabs.map(tab => {
       return (
-        <div key={tab}>
+        <div key={tab.key}>
           <Button
             buttonType="button"
-            buttonText={tab}
+            buttonText={tab.title}
             onClick={() => setActiveTab(tab)}
             className={classNames("button-about-team", 
-              { "button-about-team-active": activeTab === tab })}
-            name={tab}
+              { "button-about-team-active": activeTab.key === tab.key })}
           />
         </div>
       );
@@ -93,7 +105,7 @@ const About = () => {
   };
 
   const tabContent = () => {
-    if (activeTab === intl.formatMessage({ id: "app.about.tab.team" })) {
+    if (activeTab.key === ourTeamTabsNames[0].key) {
       return (
         <div className="about-team-content">
           <div>
@@ -109,9 +121,9 @@ const About = () => {
     } else {
       return (
         <div className="about-team-roles">
-          <div className="about-team-role-title">{activeTab}</div>
+          <div className="about-team-role-title">{activeTab.title}</div>
           <div className="about-team-cards">
-            {getTeamByRole(activeTab).map(member => 
+            {getTeamByRole(activeTab.key).map(member => 
               <TeamMemberCard key={member.id} 
                 name={member.name} 
                 city={member.city} 
