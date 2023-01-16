@@ -12,7 +12,7 @@ type ButtonProps = {
 }
 
 const Button = ({
-  buttonType, buttonText, onClick, className, disabled = false, buttonImage, imageStyle,
+  buttonType, buttonText, onClick, className, disabled = false, buttonImage, imageStyle
 }: ButtonProps) => {
   return (
     <Fragment>

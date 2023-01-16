@@ -209,6 +209,37 @@
   margin-right: 11px;
 }
 
+.button-about-team {
+  font-family: $font;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--textThemeColor2);
+  border: 1px solid var(--textThemeColor2);
+  background: none;
+  border-radius: 28px;
+  min-height: 28px;
+  padding: 0px 28px;
+  text-align: center;
+  line-height: 20px;
+
+  &:focus {
+    color: var(--bgThemeColor1);
+    background: var(--textThemeColor2);
+  }
+}
+
+.button-about-team-active {
+  color: var(--bgThemeColor1);
+  background: var(--textThemeColor2);
+}
+
+.button-about-cources {
+  @extend .button-about-team;
+  color: $black;
+  border: 1px solid $black;
+}
+
 .button-no {
   display: flex;
   align-items: center;
