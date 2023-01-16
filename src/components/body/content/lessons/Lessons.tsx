@@ -93,7 +93,7 @@ const Lessons: React.FC = () => {
       };
       fetchData();
     }
-  }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
+  }, [data, categories, categoriesIsLoaded, dataIsLoaded,]);
 
   const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) =>
     <SkeletonLessons key={index}/>);
