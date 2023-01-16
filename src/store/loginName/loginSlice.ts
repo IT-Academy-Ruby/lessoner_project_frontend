@@ -122,6 +122,9 @@ export const editUserData = createAsyncThunk(
   async (items: { name: number | string, object: object }) => {
     const response = await requestApi(
       `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
+    if (response.status !== 200) {
+      return false;
+    }
     const data = response.json();
     return data;
   }

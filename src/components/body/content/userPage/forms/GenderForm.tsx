@@ -79,10 +79,11 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
               options={gender}
               component={Gender}
               error={touched.gender ? errors.gender : undefined}
+              text={intl.formatMessage({id: "app.userPage.gender"})}
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.userPage.form..button.gender"})}
+              buttonText={intl.formatMessage({id: "app.button.save"})}
               className="button__page button-form-user__page"
               disabled={isDisable}
             />

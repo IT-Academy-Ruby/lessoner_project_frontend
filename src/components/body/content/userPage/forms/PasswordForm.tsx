@@ -110,7 +110,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.userPage.form.button.password"})}
+              buttonText={intl.formatMessage({id: "app.button.save"})}
               className="button__page button-form-user__page"
               disabled={isDisable}
             />
