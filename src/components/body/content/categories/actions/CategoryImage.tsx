@@ -4,11 +4,7 @@ import {
   useEffect, useRef, useState
 } from "react";
 import Button from "../../../../Button";
-<<<<<<< HEAD
-//import Change from "../../../../icons/Change.svg";
-=======
 import Change from "../../../../icons/change.svg";
->>>>>>> 1ebc9fe (Update menu sidebar (#107))
 import {IMAGE_DATA} from "../../../../../constants";
 import Select from "../../../../icons/select.svg";
 
@@ -126,7 +122,7 @@ const CategoryImage = ({
             buttonType="button"
             buttonText={intl.formatMessage({ id: "app.categories.change" })}
             className="button-select"
-            //buttonImage={Change}
+            buttonImage={Change}
             imageStyle="icon-button"
             onClick={handleUpload}
           />

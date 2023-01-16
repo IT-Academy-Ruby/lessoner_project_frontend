@@ -79,7 +79,6 @@ const Content = () => {
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
-        <Route path="/lessons" element={<Lessons />} />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<LessonsPage isHomePage={false} />} />
