@@ -7,10 +7,10 @@ import {
 } from "../components/body/content/lessons/Lessons";
 import { useEffect, useState } from "react";
 import { Published } from "../components/LessonCard";
+import RatingCounter from "../components/ratingCounter/ratingCounter";
 import { RootState } from "../store";
 import Tag from "../components/body/Tags/Tag";
 import { VideoPlayer } from "../../src/components/body/content/videoplayer/Videoplayer";
-import VideoRating from "../components/VideoRating";
 import { VideoSideBar } from "../../src/components/body/content/VideoSideBar/VideoSideBar";
 import { connect } from "react-redux";
 import img from "../Photo.png"; // В качестве примера
@@ -46,6 +46,7 @@ const VideoViewPage = ({ user }: BodyProps) => {
   const [rating, setRating]= useState<undefined|number>();
   const [isAuthorized, setIsAuthorized]= useState(false);
   const [isRatingFrozen, setIsRatingFrozen]= useState(false);
+  const [userRating, setUserRating] = useState(0);
 
   useEffect(() => {
     // Get lessonData from lessonId
@@ -274,6 +275,7 @@ const VideoViewPage = ({ user }: BodyProps) => {
   };
   const getNewRating=(rating: number) => {
     setIsRatingFrozen(true);
+    setUserRating(rating);
 
     const fetchSuccess = (data: Lesson) => {
       setRating(data.rating);
@@ -339,12 +341,12 @@ const VideoViewPage = ({ user }: BodyProps) => {
               </div>
             </div>
             <div className="info__top_right">
-              <VideoRating
-                ratingProp={rating}
-                votesCount={lessonData.votes_count}
-                onGetNewRating={getNewRating}
-                isAuthorized={isAuthorized}
-                isRatingFrozen={isRatingFrozen}
+              <RatingCounter
+                globalRating={rating}
+                userRating={userRating}
+                totalVotes={lessonData.votes_count}
+                onRatingSet={isAuthorized ? getNewRating : undefined}
+                isDisabled={!isAuthorized || isRatingFrozen}
               />
             </div>
           </div>
