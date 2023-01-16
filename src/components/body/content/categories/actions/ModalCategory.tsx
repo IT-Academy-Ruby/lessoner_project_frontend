@@ -14,7 +14,7 @@ const ModalCategory = ({
   const intl = useIntl();
   return (
     <div className="wrapper-modal">
-      <div className="cansel-modal">
+      <div className="cancel-modal">
         <div className="field-close">
           <span className="close-modal" onClick={() => setIsClose(false)}/>
         </div>
@@ -25,7 +25,7 @@ const ModalCategory = ({
           <Button
             buttonType="button"
             buttonText={intl.formatMessage({id: "app.categories.button.yes"})}
-            className="button-register"
+            className="button-no"
             onClick={onClickYes}/>
           <Button
             buttonType="button"

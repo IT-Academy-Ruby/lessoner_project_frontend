@@ -5,16 +5,9 @@ import {
 } from "react";
 import Button from "../../../../Button";
 import Change from "../../../../icons/change.svg";
-import {IMAGE_DATA} from "../../../../../constants";
 import Select from "../../../../icons/select.svg";
 
 type CategoryImageProps = {
-  field: {
-    name: string;
-    onClick: () => void;
-    onChange: () => void;
-    value: FileList;
-  },
   selectImage: {
     size: number;
     image: Blob;
@@ -26,10 +19,16 @@ type CategoryImageProps = {
   editCategory: { image: string, name: string, type: string, size: number };
   errorImage: string;
   setErrorImage: (error: string) => void;
+  isCategory: boolean;
+  title: string;
+  inform: string;
+  textButton: string;
+  imageData:{format:[],size:number};
 };
 
 const CategoryImage = ({
-  selectImage, setSelectImage, setEditCategory, editCategory, errorImage, setErrorImage
+  selectImage, setSelectImage, setEditCategory, editCategory, errorImage,
+  setErrorImage, isCategory, title, inform, textButton, imageData
 }: CategoryImageProps) => {
   const intl = useIntl();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -50,9 +49,9 @@ const CategoryImage = ({
 
   useEffect(() => {
     if (selectImage.type) {
-      const isFormat = IMAGE_DATA.format.some(format => format ===
+      const isFormat = imageData.format.some(format => format ===
         "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1));
-      if (selectImage.size > IMAGE_DATA.size) {
+      if (selectImage.size >imageData.size ) {
         setErrorImage(intl.formatMessage({id: "app.categories.imageBigSize"}));
       } else if (!isFormat) {
         setErrorImage(intl.formatMessage({id: "app.categories.imageError"}));
@@ -62,7 +61,7 @@ const CategoryImage = ({
         setErrorImage("");
       }
     }
-  }, [selectImage, intl, isChange,setErrorImage]);
+  }, [imageData.format, imageData.size, selectImage, intl, isChange, setErrorImage]);
 
   const handleUpload = () => {
     if (fileRef.current) {
@@ -72,7 +71,7 @@ const CategoryImage = ({
 
   return (
     <div className="category-label">
-      <FormattedMessage id="app.categories.uploadCategoryImage"/>
+      {title}
       <input
         ref={fileRef}
         type="file"
@@ -84,19 +83,17 @@ const CategoryImage = ({
         onBlur={() => setIsChange(true)}
       />
       {!selectImage.name && !editCategory.image && <>
-        <span className="category-image-description">
-          <FormattedMessage id="app.categories.imageInform"/>
+        <span className="category-image-inform">
+          {inform}
         </span>
-        <div className="image-category-line">
-          <button
-            className="category-image-button-upload"
-            onClick={handleUpload}
-            type="button"
-          >
-            <img src={Select} alt="Select file" className="button-image" />
-            <FormattedMessage id="app.categories.uploadImage" />
-          </button>
-        </div>
+        <Button
+          buttonType="button"
+          className="button-login-category"
+          onClick={handleUpload}
+          buttonImage={Select}
+          imageStyle="button-image"
+          buttonText={textButton}
+        />
       </>}
       {(!!selectImage.name || !!editCategory.image) && <>
         <span className="category-image-uploading">
@@ -132,7 +129,7 @@ const CategoryImage = ({
       {errorImage && <span className="error message">
         {errorImage}
       </span>}
-      <hr className="category-image-line"/>
+      {isCategory && <hr className="category-image-line"/>}
     </div>
   );
 };
