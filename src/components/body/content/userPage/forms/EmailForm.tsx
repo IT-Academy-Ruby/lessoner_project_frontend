@@ -20,12 +20,17 @@ interface FormErrors {
 type EmailFormProps = {
   userName: string;
   handleClose: () => void;
+  setEmail: (email: string) => void;
+  handleEdit: (title: string) => void;
 }
 
-const EmailForm = ({userName, handleClose}: EmailFormProps) => {
+const EmailForm = ({
+  userName, handleClose, setEmail, handleEdit
+}: EmailFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const initialValues: FormValues = {email: ""};
 
@@ -44,19 +49,30 @@ const EmailForm = ({userName, handleClose}: EmailFormProps) => {
         } else {
           setIsDisable(true);
         }
-
         return errors;
       }}
 
       onSubmit={(values) => {
         const items = {name: userName, object: {email: values.email}};
-        dispatch(editUserData(items));
-
+        setEmail(values.email);
+        dispatch(editUserData(items)).then((error) => {
+          if (!error.payload) {
+            setIsError(true);
+          } else {
+            setIsError(false);
+            handleEdit("infEmail");
+          }
+        });
       }}>
       {({errors, touched}) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={() => handleClose()}>
+            <div
+              className="close-modal-form"
+              onClick={() =>{
+                handleClose();
+                setIsError(false);
+              }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
@@ -65,12 +81,13 @@ const EmailForm = ({userName, handleClose}: EmailFormProps) => {
             <Field
               name="email"
               component={Email}
-              error={touched.email ? errors.email : undefined}
+              error={isError ? intl.formatMessage({id: "app.errorRequest"}) : isError ||
+              touched.email ? errors.email : undefined}
               needEmail={true}
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.userPage.form.button.email"})}
+              buttonText={intl.formatMessage({id: "app.button.save"})}
               className="button__page button-form-user__page"
               disabled={isDisable}
             />

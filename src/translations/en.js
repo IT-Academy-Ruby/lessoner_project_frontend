@@ -39,6 +39,7 @@ export const messages_en = {
   "app.sign_up": "Sign_up",
   "app.signUp": "Sign up",
   "app.birthdaylabel": "When is your birthday?",
+  "app.birthday": "Date of Birth",
   "app.checkbox":
     "I agree to the processing of my personal data in accordance with the",
   "app.checkbox.terms": "Terms",
@@ -59,7 +60,7 @@ export const messages_en = {
   "app.firstRegistrationForm.passwordConfrim": "Passwords do not match ",
   "app.firstRegistrationForm.termsAndConditions":
     "You must consent to the processing of your personal data, in accordance with the Terms",
-  "app.firstRegistrationForm.haveAccount": "Alredy have an account",
+  "app.firstRegistrationForm.haveAccount": "Alredy have an account?",
   "app.genderSelector.gender": "Select Your Gender",
   "app.passwordAndConfirm.pass": "Password",
   "app.passwordAndConfirm.confirmPass": "Confirm password",
@@ -273,4 +274,7 @@ export const messages_en = {
   "app.myStudio.NoLessonTexp_1": "Hmm... Seems that you have no lessons yet.",
   "app.myStudio.NoLessonTexp_2": "Share your knowledge - publishe your first lesson.",
   "app.incorectEmailOrPassword": "Sorry, your email or password is incorrect",
+  "app.bigAvater": "Please upload another image",
+  "app.InformEmail": "A letter with a confirmation link has been sent to the specified Email address. Please, check your address {email}",
+  "app.errorRequest": "An error has occurred",
 };
