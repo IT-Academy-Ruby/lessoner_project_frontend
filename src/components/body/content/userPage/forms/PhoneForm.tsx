@@ -4,7 +4,6 @@ import {
 import {FormattedMessage, useIntl} from "react-intl";
 import {useEffect, useState} from "react";
 import Button from "../../../../Button";
-import {DEFAULT_COUNTRY_CODE} from "../../../../../constants";
 import Phone from "../../../../PhoneNumber";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
@@ -17,16 +16,18 @@ type PhoneFormProps = {
   userName: string;
   handleClose: () => void;
   handleEdit: (title: string) => void;
+  phoneNumber: string;
+  setPhoneNumber: (phone:string) => void;
 }
 
 const PhoneForm = ({
-  userName, handleClose, handleEdit
+  userName, handleClose, handleEdit, phoneNumber, setPhoneNumber
 }: PhoneFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
   const [isError, setIsError] = useState(true);
-  const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
+
 
   useEffect(() => {
     if (!isError) {
@@ -35,6 +36,7 @@ const PhoneForm = ({
       setIsDisable(true);
     }
   }, [isError, phoneNumber]);
+
   const initialValues: FormValues = {phone: phoneNumber};
 
   return (

@@ -1,4 +1,5 @@
 import "./userPage.scss";
+import {AVATAR, DEFAULT_COUNTRY_CODE} from "../../../../constants";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getUserData, uploadFile} from "../../../../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
@@ -10,6 +11,7 @@ import Button from "../../../Button";
 import CodeForm from "./forms/CodeForm";
 import EmailForm from "./forms/EmailForm";
 import GenderForm from "./forms/GenderForm";
+import InformEmail from "./forms/InformEmail";
 import NameForm from "./forms/NameForm";
 import PasswordForm from "./forms/PasswordForm";
 import PhoneForm from "./forms/PhoneForm";
@@ -25,6 +27,9 @@ const UserPage = () => {
   const track = useAppSelector(state => state.dataUser.updateAfterRequest);
   const [isVisible, setIsVisible] = useState(false);
   const [component, setComponent] = useState("");
+  const [isErrorSize, setIsErrorSize] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
+  const [email, setEmail] = useState("");
 
   const formatter = new Intl.DateTimeFormat("ru");
 
@@ -58,14 +63,36 @@ const UserPage = () => {
     case (intl.formatMessage({id: "app.userPage.gender"})):
       return <GenderForm userName={user.name} handleClose={handleClose}/>;
     case (intl.formatMessage({id: "app.email.name"})):
-      return <EmailForm userName={user.name} handleClose={handleClose}/>;
+      return <EmailForm
+        userName={user.name}
+        handleClose={handleClose}
+        setEmail={setEmail}
+        handleEdit={handleEdit}
+      />;
     case (intl.formatMessage({id: "app.phoneNumber.label"})):
-      return <PhoneForm userName={user.name} handleClose={handleClose} handleEdit={handleEdit}/>;
+      return <PhoneForm
+        userName={user.name}
+        handleClose={handleClose}
+        handleEdit={handleEdit}
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
+      />;
     case (intl.formatMessage({id: "app.passwordAndConfirm.pass"})):
       return <PasswordForm userName={user.name} handleClose={handleClose}/>;
     case ("code"):
-      return <CodeForm userName={user.name} handleClose={handleClose}/>;
-    };
+      return <CodeForm
+        userName={user.name}
+        handleClose={handleClose}
+        handleEdit={handleEdit}
+        phoneNumber={phoneNumber}
+      />;
+    case ("infEmail"):
+      return <InformEmail
+        handleClose={handleClose}
+        email={email}
+      />;
+    }
+    ;
   };
 
   let keyField = dataUser.length;
@@ -85,9 +112,15 @@ const UserPage = () => {
   };
 
   const handleSelectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && user.name) {
-      const userData = {name: user.name, file: event.target.files};
-      dispatch(uploadFile(userData));
+    const image = event.target.files;
+    if (image && user.name) {
+      const userData = {name: user.name, file: image};
+      if (image[0].size > AVATAR.size) {
+        setIsErrorSize(true);
+      } else {
+        setIsErrorSize(false);
+        dispatch(uploadFile(userData));
+      }
     }
   };
 
@@ -95,7 +128,7 @@ const UserPage = () => {
     <div className="wrapper-user_page">
       <div className="user-page">
         <h1 className="title-user-page">
-          <FormattedMessage id="app.userPage.editInformation" />
+          <FormattedMessage id="app.userPage.editInformation"/>
         </h1>
         <div className="avatar-field">
           <input
@@ -115,11 +148,14 @@ const UserPage = () => {
             />}
             {!user.avatar_url && <p className="first-letters">{user.name}</p>}
             <div className="upload-field" onClick={handleUpload}>
-              <img src={Upload} alt="upload" className="upload-avater" />
+              <img src={Upload} alt="upload" className="upload-avater"/>
             </div>
           </div>
           <span className="inform-avatar">
-            <FormattedMessage id="app.userPage.avatarInformation" />
+            <FormattedMessage id="app.userPage.avatarInformation"/>
+            {isErrorSize && <span className="error-message">
+              <FormattedMessage id="app.bigAvater"/>
+            </span>}
           </span>
         </div>
         {dataUser.map(data => {
@@ -141,10 +177,10 @@ const UserPage = () => {
                 onClick={() => handleEdit(data.title)}
               />
             </div>
-            {keyField !== 0 && <hr className="line-user-page" />}
+            {keyField !== 0 && <hr className="line-user-page"/>}
           </div>);
         }
-        )};
+        )}
       </div>
       <div className={classNames("wrapper-form-user-page", {"inVisible": !isVisible})}>
         {element()}

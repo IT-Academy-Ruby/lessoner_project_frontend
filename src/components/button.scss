@@ -60,22 +60,22 @@
 .button-select {
   display: flex;
   align-items: center;
-  border: 1px solid $blueLightColor;
+  justify-content: center;
+  border: 1px solid var(--iconsTextButtonColor);
   border-radius: 28px;
   font-family: $font;
   font-weight: 600;
   font-size: 16px;
-  padding: 6px 36px;
-  justify-content: center;
-  background-color: var(--bgFocusButtonSecondaryColor);
   color: var(--iconsTextButtonColor);
+  padding: 6px 36px;
+  background: var(--bgButtonColor);
 
   &:disabled {
-    background: $greyDisabled;
+    background: var(--bgButtonColor);
     opacity: 0.5;
     border-radius: 28px;
     border: none;
-    color: $greyDefault;
+    color: var(--shadowActiveButtonColor);
   }
 }
 
@@ -156,8 +156,8 @@
 .button-register {
   font-size: 16px;
   font-family: $font;
-  background: $blueLightColor;
-  color: $white;
+  background: var(--iconsTextButtonColor);
+  color: var(--bgButtonColor);
   padding: 6px 36px;
   border: none;
   border-radius: 28px;
@@ -238,6 +238,27 @@
   @extend .button-about-team;
   color: $black;
   border: 1px solid $black;
+}
+
+.button-no {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 28px;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--bgButtonColor);
+  padding: 6px 36px;
+  background: var(--iconsTextButtonColor);
+
+  &:disabled {
+    background: $white;
+    opacity: 0.5;
+    border-radius: 28px;
+    border: none;
+    color: $greySearchColor;
+  }
 }
 
 @media (max-width: $max-width-phone) {

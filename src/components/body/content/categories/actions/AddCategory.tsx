@@ -1,22 +1,24 @@
 import "./addCategory.scss";
-import { DESCRIPTION_CATEGORY, NAME_CATEGORY } from "../../../../../constants";
+import {
+  DESCRIPTION_CATEGORY, IMAGE_DATA, NAME_CATEGORY
+} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
-import { FormattedMessage, useIntl } from "react-intl";
+import {FormattedMessage, useIntl} from "react-intl";
 import {
   addCategory, getCategory, updateCategory
 } from "../../../../../store/categorySlice/categorySlice";
-import { descriptionCategoryRegex, nameCategoryRegex } from "../../../../../validationRules";
-import { useAppDispatch, useAppSelector } from "../../../../../store/hooks";
-import { useEffect, useState } from "react";
+import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import ModalCategory from "./ModalCategory";
 import Successful from "../../../../icons/successful.svg";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 interface FormValues {
   name: string;
@@ -28,10 +30,11 @@ interface FormErrors {
   [key: string]: string;
 }
 
-type TypeTitle = {
+type addCategoryProps = {
   add: boolean;
 }
-const AddCategory = ({ add }: TypeTitle) => {
+
+const AddCategory = ({add}: addCategoryProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -135,7 +138,6 @@ const AddCategory = ({ add }: TypeTitle) => {
             setIsErrorValue(false);
           }
           return errors;
-
         }}
         onSubmit={(values: FormValues) => {
           setISuccessful(true);
@@ -169,7 +171,9 @@ const AddCategory = ({ add }: TypeTitle) => {
               </h1>
               <Field
                 name="name"
+                label={intl.formatMessage({id: "app.categories.name"})}
                 component={CategoryName}
+                placeholder={intl.formatMessage({id: "app.categories.name"})}
                 error={touched.name ? errors.name : undefined}
                 nameLength={nameLength}
               />
@@ -178,17 +182,22 @@ const AddCategory = ({ add }: TypeTitle) => {
                 component={CategoryDescription}
                 error={touched.description ? errors.description : undefined}
                 descriptionLength={descriptionLength}
+                placeholder={intl.formatMessage({id: "app.categories.placeholder.description"})}
               />
               <Field
                 name="image"
                 component={CategoryImage}
-                error={touched.image ? errors.image : undefined}
                 selectImage={selectImage}
                 setSelectImage={setSelectImage}
                 setEditCategory={setEditCategory}
                 editCategory={editCategory}
                 errorImage={errorImage}
                 setErrorImage={setErrorImage}
+                isCategory={true}
+                title={intl.formatMessage({id: "app.categories.uploadCategoryImage"})}
+                inform={intl.formatMessage({id: "app.categories.imageInform"})}
+                textButton={intl.formatMessage({id: "app.categories.button.select"})}
+                imageData={IMAGE_DATA}
               />
 
               <div className="category-buttons">

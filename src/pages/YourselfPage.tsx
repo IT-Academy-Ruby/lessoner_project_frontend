@@ -129,12 +129,14 @@ const YourselfPage = ({
                 error={touched.birthday ? errors.birthday : undefined}
                 setIsWrapper={setIsWrapper}
                 isWrapper={isWrapper}
+                text={intl.formatMessage({id: "app.birthdaylabel"})}
               />
               <Field
                 name="gender"
                 options={gender}
                 component={GenderSelector}
                 error={touched.gender ? errors.gender : undefined}
+                text={intl.formatMessage({id: "app.genderSelector.gender"})}
               />
               <Button
                 buttonType="submit"

@@ -78,7 +78,7 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.userPage.form..button.username"})}
+              buttonText={intl.formatMessage({id: "app.button.save"})}
               className="button__page button-form-user__page"
               disabled={isDisable}
             />

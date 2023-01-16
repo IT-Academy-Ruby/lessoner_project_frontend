@@ -13,6 +13,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
+import AddLesson from "./my_studio/AddLesson";
 import Categories from "./categories/Categories";
 import CategoryPage from "./categories/SelectCategory";
 import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
@@ -21,9 +22,8 @@ import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
 import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
-import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
-import Terms from "../../../pages/Terms";
+import PersonalTerms from "../../../pages/PtrsonalTerms";
 import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
@@ -75,11 +75,13 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
+        <Route path="/personalTerms" element={<PersonalTerms />} />
+        <Route path="/myStudio/add_new_lesson" element={<AddLesson add={true}/>} />
+        <Route path="/myStudio/update_lesson/:id" element={<AddLesson add={false}/>} />
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudioPage />} />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
@@ -139,6 +141,7 @@ const Content = () => {
         />
         <Route
           path="/user/google"
+
           element={
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
               <GoogleButton />
@@ -147,7 +150,6 @@ const Content = () => {
         />
         <Route path="/user/facebook" element={<FacebookButton />} />
         <Route path="/user/vk" element={<VKButton />} />
-        <Route path={"/user/sign_up/terms"} element={<Terms />} />
       </Routes>
     </div>
   );

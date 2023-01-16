@@ -1,5 +1,4 @@
 import "./genderSelector.scss";
-import {FormattedMessage} from "react-intl";
 
 type GenderProps = {
   options: [];
@@ -11,17 +10,18 @@ type GenderProps = {
   };
   error: string;
   label: string;
+  text:string;
 }
 
 const GenderSelector = ({
-  field, error, options
+  field, error, options, text
 }: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     field.value = event.currentTarget.value;
   };
   return (
     <div className="input-label">
-      <FormattedMessage id="app.genderSelector.gender"/>
+      {text}
       <div className="radio-wrapper">
         {options ? (
           options.map((option: {
