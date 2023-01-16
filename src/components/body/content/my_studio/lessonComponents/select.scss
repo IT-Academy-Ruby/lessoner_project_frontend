@@ -1,53 +1,87 @@
 @import "../../../../../constants.module";
 
-.css-b62m3t-container {
+.select {
   width: 100%;
-  text-align: left;
-  margin-top: 4px;
-  border: 1px solid #9A9AA3;
+}
+
+.react-select__control {
+  background-color: var(--bgFirstRegistrForm) !important;
+  transition: background-color 0.5s ease;
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid var(--iconsTextThemeNavBarColor);
   border-radius: 8px;
+  margin-top: 4px;
+  text-align: left;
+  @include fieldsFont;
+
+  &:default {
+    border: 1px solid var(--textCalendarOutsideMonth);
+
+    &::placeholder {
+      color: var(--textCalendarOutsideMonth);
+    }
+  }
+
+  &:disabled {
+    border: 1px solid var(--iconsTextThemeNavBarColor);
+
+    &::placeholder {
+      color: var(--iconsTextThemeNavBarColor);
+    }
+  }
 
   &:active {
+    outline: none;
+    border: 1px solid var(--iconsTextButtonColor);
+  }
 
+  &:focus {
+    outline: none;
+    border: 1px solid var(--iconsTextButtonColor);
+  }
+
+  &:hover {
+    outline: none;
+    border: 1px solid var(--bgFocusButtonColor);
+  }
+
+  &::placeholder {
+    font-family: $font;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--themeNavBarBgHover);
   }
 }
 
-div > .css-t3ipsp-control {
-  border: none;
+div > .react-select__single-value {
+  color: var(--textCategoriesAdmin);
 }
 
-div > .css-1jqq78o-placeholder {
-  font-family: $font;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
-  color: #9A9AA3;
+.react-select__menu {
+  text-align: left;
+  box-shadow: var(--bgNavBarShadow);
 }
 
-.css-1u9des2-indicatorSeparator {
+.react-select__indicator-separator {
   display: none;
 }
 
-div > .css-13cymwt-control {
-  border-radius: 8px;
-  border: none;
-}
-
-div > .css-tr4s17-option {
-  background: #EEF3FE;
+div > .react-select__option--is-selected {
+  background-color: var(--textPhoneNumberCountryListHover);
   color: var(--textThemeColor1);
 }
 
-div > .css-15lsz6c-indicatorContainer {
-  color: #455FCE;
+div > .react-select__indicator {
+  display: none;
 }
 
-div > .css-1xc3v61-indicatorContainer:hover {
-  color: #455FCE;
-}
-
-.select-arrow {
-  color: #455FCE;
-  transform: rotate(180deg);
+.arrow-category {
+  margin-left: 100%;
+  transform: translate(-38px, 38px);
+  padding: 9px;
+  z-index: 3;
 }

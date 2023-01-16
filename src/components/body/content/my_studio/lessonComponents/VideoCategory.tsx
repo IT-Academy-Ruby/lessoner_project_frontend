@@ -2,6 +2,8 @@ import "./select.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import {useEffect, useState} from "react";
+import ArrowDown from "../../../../icons/arrowDown.svg";
+import ArrowUp from "../../../../icons/arrowUp.svg";
 import Select from "react-select";
 import {getCategory} from "../../../../../store/categorySlice/categorySlice";
 
@@ -21,6 +23,7 @@ const VideoCategory = ({
   const dispatch = useAppDispatch();
   const allCategories = useAppSelector((state) => state.categories.categories);
   const [options, setOptions] = useState<{ value: string, label: string }[]>();
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     dispatch(getCategory());
@@ -47,25 +50,24 @@ const VideoCategory = ({
     }
   };
 
-  // const arrow = document.getElementsByClassName("css-tj5bde-Svg")[0];
-  // const openList = () => {
-  //   arrow.classList.add("select-arrow");
-  // };
-  // const closeList = () => {
-  //   arrow.classList.remove("select-arrow");
-  // };
-
   return (
     <label className="category-label">
       <FormattedMessage id="app.categories.category"/>
-      {(add || videoCategory.label) && < Select
-        placeholder={intl.formatMessage({id: "app.ChooseACategory"})}
-        onChange={handleChange}
-        options={options}
-        defaultValue={videoCategory}
-        // onMenuOpen={openList}
-        // onMenuClose={closeList}
-      />}
+      {(add || videoCategory.label) &&
+        <>
+          <img src={isChecked?ArrowUp:ArrowDown} alt="arrow" className="arrow-category"/>
+          < Select
+            placeholder={intl.formatMessage({id: "app.ChooseACategory"})}
+            onChange={handleChange}
+            options={options}
+            defaultValue={videoCategory}
+            className="select"
+            classNamePrefix="react-select"
+            onMenuOpen={()=>{setIsChecked(true)}}
+            onMenuClose={()=>{setIsChecked(false)}}
+          />
+        </>}
+
       {error && <span className="message error">{error}</span>}
     </label>
   );

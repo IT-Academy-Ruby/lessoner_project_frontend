@@ -211,7 +211,9 @@ const AddLesson = ({add}: AddLessonProps) => {
           />}
           {isStep2 && <Button
             buttonType="button"
-            buttonText={intl.formatMessage({id: "app.addNewLesson"})}
+            buttonText={
+            add ? intl.formatMessage({id: "app.addNewLesson"})
+              :intl.formatMessage({id: "app.EditLesson"})}
             className="button-select"
             disabled={isDisabledStep2}
             onClick={add ? addLesson : editLesson}
