@@ -1,0 +1,95 @@
+@import "./src/constants.module.scss";
+
+.mystudiohead__head{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 32px;
+}
+
+.mystudiohead__title {
+	font-family: $font;
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 130%;
+	color: var(--iconsTextEditVideoLessonColor);
+	margin: 0;
+}
+
+.mystudiohead__svg-add {
+	width: 14px;
+	height: 14px;
+	margin-right: 8px;
+}
+
+.mystudiohead__nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 40px;
+}
+
+.mystudiohead__status {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-content: center;
+	padding-top: 4px;
+}
+
+.mystudiohead__lessons-item {
+	font-family: $font;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 150%;
+	color: var(--textMyStudioHead);
+	margin-right: 40px;
+	cursor: pointer;
+}
+
+.mystudiohead__lessons-item-active {
+	color: var(--textMyStudioHeadActive);
+}
+
+.mystudiohead__lessons-item-underline {
+	height: 2px;
+	background-color: #455FCE;
+	width: 100%;
+	
+}
+
+.mystudiohead__categories {
+	display: flex;
+	align-items: center;
+}
+
+.mystudiohead__categories-select {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	align-items: center;
+	min-width: 203px;
+	padding: 8px 16px;
+	background: var(--bgDropDownMainPage);
+	box-shadow: 1px 1px 20px rgba(46, 53, 119, 0.07);
+	border-radius: 4px;
+	font-family: $font;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 122%;
+	color: var(--textMyStudioHeadSelect);
+	border: none;
+	cursor: pointer;
+	&:focus {
+		outline: 0;
+	}
+}
+
+
+
+
+

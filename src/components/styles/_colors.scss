@@ -3,25 +3,24 @@ $darkMain: #1b1b1f;
 $lightMain: #ffffff;
 
 $darkSideBar: linear-gradient(
-    0deg,
-    rgba(185, 195, 255, 0.05),
-    rgba(185, 195, 255, 0.05)
-  ),
-  #232429;
+  0deg,
+  rgba(185, 195, 255, 0.05),
+  rgba(185, 195, 255, 0.05)),
+#232429;
 $lightSideBar: #ffffff;
 $lightCardText: #f6f5f6;
 $Surface5Dark: linear-gradient(
-    0deg,
-    rgba(185, 195, 255, 0.14),
-    rgba(185, 195, 255, 0.14)
+  0deg,
+  rgba(185, 195, 255, 0.14),
+  rgba(185, 195, 255, 0.14)
   ),
-  #333336;
+#333336;
 $Surface5Light: linear-gradient(
-    0deg,
-    rgba(104, 160, 211, 0.14),
-    rgba(104, 160, 211, 0.14)
+  0deg,
+  rgba(104, 160, 211, 0.14),
+  rgba(104, 160, 211, 0.14)
   ),
-  #fefbff;
+#fefbff;
 $SideBarShadowLight: 1px 1px 20px rgba(46, 53, 119, 0.07);
 $SideBarShadowDark: none;
 $bluePrimaryText: #455FCE;
@@ -33,6 +32,14 @@ $ButtonHoverLight: 0px 4px 6px rgba(149, 152, 180, 0.43);
 $ButtonHoverDark: 0px 4px 6px rgba(46, 51, 99, 0.43);
 $ButtonActiveShadowLight: inset 0px 8px 6px rgba(0, 0, 0, 0.25);
 $ButtonActiveShadowDark: inset 0px 8px 6px rgba(0, 0, 0, 0.25);
+
+$CategoriesAdminRowShadowLight: 2px 0px 15px rgba(16, 19, 45, 0.1);
+$CategoriesAdminActiveRowShadowLight: 0px 0px 20px rgba(69, 95, 206, 0.1),
+1px 1px 30px rgba(0, 0, 0, 0.08),
+1px 1px 10px rgba(55, 72, 146, 0.2);
+
+$ModalShadowLight: rgba(0, 0, 0, 0.2);
+$ModalShadowDark: rgba(0, 0, 0, 0.7);
 
 // Registration Pages 
 $dark1: #1B1B1F;
@@ -54,6 +61,9 @@ $light5: #E9EEF9;
 $light6: #DFE1F9;
 $light7: #DDE1FF;
 $light8: #E4E1E6;
+$light9: #A9AFC5;
+$light10: #5A5D72;
+$light11: #F6F5F7;
 
 $blue1: #3161DC;
 $blue2: #455FCE;

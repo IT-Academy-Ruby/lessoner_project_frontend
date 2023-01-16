@@ -7,7 +7,7 @@
 .category-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-block: 16px;
 }
 
@@ -17,7 +17,6 @@
   position: absolute;
   width: 196px;
   left: 13px;
-  top: -20px;
 }
 
 .tab {
@@ -42,7 +41,7 @@
 }
 
 .column-name {
-  color: $black;
+  color: var(--textCategoriesAdmin);
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -50,16 +49,18 @@
 }
 
 .tab-category {
-  box-shadow: 0 0 4px $greySearchColor;
-  background-color: $white;
+  box-shadow: var(--bgRowShadowCategoriesAdmin);
+  background-color: var(--bgRowCategoriesAdmin);
   border: 0;
+
   &:focus {
-    box-shadow: 0 0 20px $greySearchColor;
+    box-shadow: var(--bgFocusedRowShadowCategoriesAdmin);
+    background-color: var(--bgFocusedRowCategoriesAdmin);
   }
 }
 
 .category-text {
-  color: $black;
+  color: var(--textCategoriesAdmin);
   font-weight: 400;
   font-size: 14px;
   line-height: 150%;
@@ -76,14 +77,14 @@
 }
 
 .category-name {
-  color: $black;
+  color: var(--textCategoriesAdmin);
   font-weight: 700;
   font-size: 18px;
   line-height: 150%;
 }
 
 .category-date {
-  color: $black;
+  color: var(--textCategoriesAdmin);
   font-weight: 600;
   font-size: 14px;
   line-height: 150%;

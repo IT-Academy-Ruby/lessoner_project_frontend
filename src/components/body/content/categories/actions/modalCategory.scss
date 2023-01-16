@@ -9,15 +9,15 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bgModalShadow);
 }
 
-.cansel-modal {
+.cancel-modal {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: $white;
+  background: var(--bgFocusButtonSecondaryColor);
   max-width: 379px;
   width: 100%;
   box-shadow: 0 0 4px $greySearchColor;
@@ -61,7 +61,7 @@
 
 .close-text {
   margin: 40px 48px 24px 48px;
-  color: $black;
+  color: var(--textThemeColor1);
   font-family: $font;
   font-weight: 700;
   font-size: 14px;
@@ -71,4 +71,8 @@
 .field-button {
   display: flex;
   margin-bottom: 32px;
+
+  .button-register {
+    margin-right: 8px;
+  }
 }

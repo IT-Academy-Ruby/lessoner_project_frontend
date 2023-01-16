@@ -1,4 +1,4 @@
-import "./index.scss";
+import "./lessons.scss";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
@@ -9,7 +9,7 @@ import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
-export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`; 
 export interface Lesson {
   id: number;
   title: string;
@@ -122,6 +122,7 @@ const Lessons: React.FC = () => {
             category={obj.categoryName}
             rating={obj.rating}
             totalVotes={obj.votes_count}
+            isEditable={false}
           />
         ))}
       </div>

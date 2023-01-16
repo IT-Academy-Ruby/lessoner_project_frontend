@@ -36,14 +36,13 @@
   flex-direction: column;
   align-items: flex-start;
   background: var(--bgFirstRegistrForm);
-  ;
   padding: 36px;
   box-shadow: var(--bgNavBarShadow);
   font-size: 14px;
 }
 
 .add-title {
-  color: $black;
+  color: var(--textCategoriesAdmin);
   font-weight: 700;
   line-height: 130%;
   font-size: 32px;
@@ -67,11 +66,16 @@
   width: 137px;
   background-color: $blueLightColor;
   color: $white;
+
+  &:disabled {
+    background-color: var(--bgAddNewCategorySaveButtonDisabled);
+    color: var(--addNewCategorySaveButtonDisabledText);
+  }
 }
 
 .category-label {
   font-family: $font;
-  color: $black;
+  color: var(--textCategoriesAdmin);
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -95,7 +99,8 @@
   border-radius: 8px;
   box-sizing: border-box;
   font-family: $font;
-  color: $black;
+  color: var(--textCategoriesAdmin);
+  background-color: var(--bgAddNewCategoryInput);
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -112,12 +117,12 @@
 
   &:hover {
     outline: none;
-    border: 1px solid $black;
+    border: 1px solid var(--bgAddNewCategoryBorderHover);
   }
 
   &::placeholder {
     font-family: $font;
-    color: $greySearchColor;
+    color: var(--addNewCategoryPlaceholder);
   }
 }
 
