@@ -28,7 +28,6 @@ import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
 import { useEffect } from "react";
-import Lessons from "./lessons/Lessons";
 
 const Content = () => {
   const dispatch = useAppDispatch();

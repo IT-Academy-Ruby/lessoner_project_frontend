@@ -115,9 +115,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               <div className="mystudio__button">
                 <Button
                   buttonType="button"
-                  buttonText={intl.formatMessage({
-                    id: "app.button.addNewLesson",
-                  })}
+                  buttonText={intl.formatMessage({id: "app.button.addNewLesson"})}
                   className="button__fs16"
                   buttonImage={Add}
                   imageStyle="mystudiohead__svg-add"

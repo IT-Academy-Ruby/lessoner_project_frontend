@@ -139,12 +139,12 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
           )}
           {props.hasStatus &&
             <Tag
-            type="status"
-            className="video__status"
-            text={props.status}
-            iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
-            videoStatus={true}
-          />}
+              type="status"
+              className="video__status"
+              text={props.status}
+              iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
+              videoStatus={true}
+            />}
           {props.duration && (
             <Tag className="video__time" type="time" text={props.duration} />
           )}
