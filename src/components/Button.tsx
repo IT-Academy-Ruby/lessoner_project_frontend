@@ -9,10 +9,11 @@ type ButtonProps = {
   disabled?: boolean;
   buttonImage?: string;
   imageStyle?: string;
+  name?: string;
 }
 
 const Button = ({
-  buttonType, buttonText, onClick, className, disabled = false, buttonImage, imageStyle,
+  buttonType, buttonText, onClick, className, disabled = false, buttonImage, imageStyle, name
 }: ButtonProps) => {
   return (
     <Fragment>
@@ -21,6 +22,7 @@ const Button = ({
         className={className}
         onClick={onClick}
         disabled={disabled}
+        name={name}
       >
         {buttonImage && <img src={buttonImage} alt="icon" className={imageStyle}/>}
         {buttonText}

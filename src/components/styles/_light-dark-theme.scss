@@ -9,6 +9,10 @@ $themes: (
     darkTheme: $grey100,
     lightTheme: $black,
   ),
+  textThemeColor2: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
   bgThemeNavBarColor: (
     darkTheme: $darkSideBar,
     lightTheme: $lightSideBar,
@@ -276,6 +280,10 @@ $themes: (
   bgModalShadow: (
     darkTheme: $ModalShadowDark,
     lightTheme: $ModalShadowLight,
+  ),
+  bgAboutTeam: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
   ),
 );
 

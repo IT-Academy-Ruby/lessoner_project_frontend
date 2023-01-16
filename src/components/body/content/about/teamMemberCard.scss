@@ -1,0 +1,147 @@
+@import "../../../../constants.module.scss";
+@import "../../../styles/colors";
+
+.team-member-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px 5px;
+  box-sizing: content-box;
+  width: 190px;
+  height: 218px;
+  background: $light4;
+  border-radius: 8px;
+  color: $black;
+
+  &:hover {
+    background: #455FCE;
+    color: $white;
+
+    .team-it-academy-role {
+      color: $white;
+    }
+
+    .team-mentor-lead-role {
+      color: $white;
+    }
+
+    .team-member-card-city {
+      color: $white;
+
+      svg {
+        fill: $white;
+      }
+    }
+  }
+}
+
+.team-mentor {
+  background: $light1;
+}
+
+.team-it-academy-roles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-member-card-photo {
+  width: 90px;
+  height: 90px;
+
+  div {
+    position: relative;
+  }
+
+  img {
+    position: absolute;
+  }
+
+  a {
+    display: block;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: $white;
+    border-radius: 32px;
+    top: 55px;
+    left: 55px;
+    z-index: 5;
+  }
+
+  svg {
+    width: 17px;
+    height: 16px;
+    fill: $dark8;
+    position: absolute;
+    z-index: 10;
+    top: 9px;
+    left: 9px;
+
+    &:hover {
+      fill: $black;
+    }
+
+    &:active {
+      fill: $black;
+    }
+  }
+}
+
+.team-member-card-city {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 18px;
+  color: $dark8;
+  font-family: $font;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 4px 0;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    fill: $dark8;
+  }
+}
+
+.team-member-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: $font;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  padding-bottom: 13px;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.team-member-name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+}
+
+.team-mentor-lead-doubled-roles {
+  text-align: center;
+}
+
+.team-it-academy-role {
+  color: $blue2;
+  font-weight: 600;
+}
+
+.team-mentor-lead-role {
+  color: $blue2;
+}
