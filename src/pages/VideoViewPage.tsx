@@ -34,7 +34,7 @@ export const VideoViewPage = () => {
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
-  console.log(categoriesNames);
+  // console.log(categoriesNames);
   useEffect(() => {
     // Get lessonData from lessonId
     const fetchSuccess = (data: Lesson) => {
@@ -230,11 +230,11 @@ export const VideoViewPage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName]);
-  console.log(categoryName);
+  // console.log(categoryName);
   const changeIdState = (id: number) => {
     setId(String(id));
   };
-  console.log(lessonData);
+  // console.log(lessonData);
 
   const sideBarTabs = [
     {
@@ -258,7 +258,7 @@ export const VideoViewPage = () => {
   ) {
     return null;
   }
-  console.log(lessonData);
+  // console.log(lessonData);
   return (
     <div className="video__page_wrapper">
       <div className="videoplayer__wrapper">

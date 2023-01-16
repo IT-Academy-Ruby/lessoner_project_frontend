@@ -35,10 +35,11 @@ const Language = ({
         className={classNames("lang", {"lang-registration": isRegistered})}>
         <img src={Globe} alt="language" className="globe"/>
         {isRegistered ? <FormattedMessage id="app.header.language"/> : language}
+        <div className="wrapper-arrow">
+          <img src={!isChecked ? ArrowRight : Arrow} alt="arrow" className="arrow-language"/>
+        </div>
       </label>
-      <div className="wrapper-arrow">
-        <img src={!isChecked ? ArrowRight : Arrow} alt="arrow" className="arrow-language"/>
-      </div>
+      
       <input
         type="checkbox"
         className="input-lang"

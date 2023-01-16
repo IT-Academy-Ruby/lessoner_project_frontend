@@ -204,7 +204,7 @@ export const messages_ru = {
   "app.userPage.form.email": "Введите адрес электронной почты",
   "app.userPage.form.button.email": "Изменить адрес электронной почты",
   "app.userPage.form.phone": "Введите свой телефонный номер",
-  "app.userPage.form..button.phone": "Отправить код",
+  "app.userPage.form.button.phone": "Отправить код",
   "app.userPage.form.password": "Введите новый пароль",
   "app.userPage.form.button.password": "Изменить пароль",
   "app.userPage.form.code": "Введите код",
