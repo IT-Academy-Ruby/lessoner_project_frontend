@@ -35,8 +35,8 @@ const PasswordAndConfirm = ({
 
   return (
     <label className="input-label">
-      {isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}
       {isConfirm === true && intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
+      {isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}
       {isConfirm === "currentPassword" && intl.formatMessage(
         {id: "app.userPage.form.currentPassword"})}
       <input
