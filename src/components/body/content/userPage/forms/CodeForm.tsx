@@ -2,12 +2,11 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {editUserData, sendUserCode} from "../../../../../store/loginName/loginSlice";
 import Button from "../../../../Button";
 import {CODE} from "../../../../../constants";
 import Code from "../../../../Code";
 import {CodeRegex} from "../../../../../validationRules";
-import {Link} from "react-router-dom";
-import {sendUserCode} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
 
@@ -22,9 +21,13 @@ interface FormErrors {
 type CodeFormProps = {
   userName: string;
   handleClose: () => void;
+  handleEdit: (title: string) => void;
+  phoneNumber: string;
 }
 
-const CodeForm = ({handleClose}: CodeFormProps) => {
+const CodeForm = ({
+  handleClose, handleEdit, phoneNumber, userName
+}: CodeFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isDisable, setIsDisable] = useState(true);
@@ -48,7 +51,6 @@ const CodeForm = ({handleClose}: CodeFormProps) => {
         } else {
           setIsDisable(true);
         }
-
         return errors;
       }}
 
@@ -67,9 +69,11 @@ const CodeForm = ({handleClose}: CodeFormProps) => {
             </h2>
             <p className="text">
               <FormattedMessage id="app.code.inform" />
-              <Link to="/users/sign_in/phone_number" className="link">
+              <span className="link" onClick={()=>{
+                handleEdit(intl.formatMessage({id: "app.phoneNumber.label"}));
+              }}>
                 <FormattedMessage id="app.code.phoneNumber" />
-              </Link>
+              </span>
             </p>
             <Field
               name="code"
@@ -80,6 +84,9 @@ const CodeForm = ({handleClose}: CodeFormProps) => {
               buttonType="button"
               buttonText={intl.formatMessage({id: "app.button.code"})}
               className="button"
+              onClick={()=>{
+                dispatch(editUserData({name: userName, object: {phone:"+"+phoneNumber}}));
+              }}
             />
             <Button
               buttonType="submit"

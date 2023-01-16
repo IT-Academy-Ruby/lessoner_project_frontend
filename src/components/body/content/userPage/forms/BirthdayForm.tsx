@@ -63,10 +63,11 @@ const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
               error={touched.birthday ? errors.birthday : undefined}
               setIsWrapper={setIsWrapper}
               isWrapper={isWrapper}
+              text={intl.formatMessage({id: "app.birthday"})}
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.userPage.form..button.birthday"})}
+              buttonText={intl.formatMessage({id: "app.button.save"})}
               className="button__page button-form-user__page"
               disabled={isDisable}
             />
