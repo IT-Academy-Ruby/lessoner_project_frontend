@@ -22,7 +22,6 @@ import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
 import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
-import NewLesson from "./add_new_lesson/NewLesson";
 import Pages from "../../../components/Pages";
 import PersonalTerms from "../../../pages/PtrsonalTerms";
 import UserPage from "./userPage/UserPage";
@@ -83,7 +82,6 @@ const Content = () => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/myStudio/add_new_lesson" element={<NewLesson />} />
         <Route path="/myStudio" element={<MyStudioPage />} />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route

@@ -1,7 +1,7 @@
 import "./addLesson.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
-  addVideo, getLessons, updateLesson, deleteLesson
+  addVideo, getLessons, updateLesson
 } from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
@@ -60,7 +60,7 @@ const AddLesson = ({add}: AddLessonProps) => {
 
   useEffect(() => {
     if (!add && allLessons.length <= 1) {
-    dispatch(getLessons());
+      dispatch(getLessons());
     }
     if (!add && allLessons.length > 1) {
       setLesson(allLessons.filter(videoCategory => videoCategory.id === idLesson)[0]);
@@ -212,8 +212,8 @@ const AddLesson = ({add}: AddLessonProps) => {
           {isStep2 && <Button
             buttonType="button"
             buttonText={
-            add ? intl.formatMessage({id: "app.addNewLesson"})
-              :intl.formatMessage({id: "app.EditLesson"})}
+              add ? intl.formatMessage({id: "app.addNewLesson"})
+                :intl.formatMessage({id: "app.EditLesson"})}
             className="button-select"
             disabled={isDisabledStep2}
             onClick={add ? addLesson : editLesson}

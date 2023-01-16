@@ -68,11 +68,14 @@ export const updateLesson = createAsyncThunk(
     formData.append("category_id", userLesson.category_id);
     formData.append("author_id", userLesson.author_id);
     if (typeof userLesson.lesson_image !== "string") {
+      /* eslint-disable-next-line */
       formData.append("lesson_image", userLesson.lesson_image!);
     }
     if (typeof userLesson.lesson_video === "string") {
+      /* eslint-disable-next-line */
       formData.append("video_link", userLesson.lesson_video);
     } else {
+      /* eslint-disable-next-line */
       formData.append("lesson_video", userLesson.lesson_video!);
     }
 
