@@ -3,7 +3,7 @@ import { RenderLessonPage } from "./renderLessonsPage";
 
 interface LessonsPageProps {
   isHomePage: boolean;
-}
+} 
 
 export const LessonsPage: FC<LessonsPageProps> = (props) => {
   const HOME_PAGE_STATUSES = [
