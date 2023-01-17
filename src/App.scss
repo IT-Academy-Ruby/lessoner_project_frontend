@@ -10,8 +10,10 @@ a {
 }
 
 .App {
+  //display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  overflow: hidden;
 }
 
 .App-header {
@@ -26,9 +28,16 @@ a {
 .App-link {
   color: #61dafb;
 }
+
 .authorization {
   display: flex;
   flex-direction: column;
+}
+
+.body-page{
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  grid-auto-rows: 64px 2fr;
 }
 
 @keyframes App-logo-spin {

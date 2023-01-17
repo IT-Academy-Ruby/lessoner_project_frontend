@@ -1,13 +1,15 @@
-import "./index.scss";
+import "./lessons.scss";
 import React, { useEffect, useState } from "react";
-import { BACKEND_URL } from "../../../../constants";
 import { FormattedMessage } from "react-intl";
 import { GetDataWithCategoryNames } from "./LessonsHelper";
 import LessonCard from "../../../LessonCard";
+import { SKELETON_LESSONS_AMOUT } from "../../../../constants";
+import SkeletonLessons from "../../../SkeletonLessons";
+import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
 
-const categoriesUrl = `${BACKEND_URL}/categories`;
-const lessonsUrl = `${BACKEND_URL}/lessons`;
+export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`; 
 export interface Lesson {
   id: number;
   title: string;
@@ -18,17 +20,28 @@ export interface Lesson {
   author_id: number;
   category_id: number;
   created_at: string;
-  imagePreview?: string;
+  image_link?: string;
   view?: number;
   rating?: number;
-  totalVotes?: number;
+  votes_count?: number;
   categoryName?: string;
+  author_avatar_url?: string;
+  author_name?: string;
 }
 export interface Category {
   id: number;
   name: string;
   description: string;
   status: string;
+}
+
+export interface CategoriesResponce {
+  records: Category[];
+  pagy_metadata: {
+    count_pages: number;
+    page: number;
+    per_page: number;
+  };
 }
 
 const Lessons: React.FC = () => {
@@ -39,8 +52,8 @@ const Lessons: React.FC = () => {
 
   useEffect(() => {
     if (!categoriesIsLoaded) {
-      const fetchSuccess = (data: Category[]) => {
-        setCategories(data);
+      const fetchSuccess = (responseData: CategoriesResponce) => {
+        setCategories(responseData?.records || []);
         setCategoriesIsLoaded(true);
       };
       const fetchError = (errMessage: string) => {
@@ -62,10 +75,6 @@ const Lessons: React.FC = () => {
   useEffect(() => {
     if (!dataIsLoaded && categoriesIsLoaded) {
       const fetchSuccess = (data: Lesson[]) => {
-        data.map((elem) => {
-          elem.imagePreview =
-            "https://i.ytimg.com/vi/jS4aFq5-91M/maxresdefault.jpg";
-        });
         const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
         setData(dataWithCategoryName);
         setDataIsLoaded(true);
@@ -84,12 +93,15 @@ const Lessons: React.FC = () => {
       };
       fetchData();
     }
-  }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
+  }, [data, categories, categoriesIsLoaded, dataIsLoaded,]);
+
+  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) =>
+    <SkeletonLessons key={index}/>);
 
   if (!categoriesIsLoaded || !dataIsLoaded)
     return (
-      <div>
-        <FormattedMessage id="app.lessons.loading" />
+      <div className="lessons">
+        {skeleton}
       </div>
     );
 
@@ -103,17 +115,20 @@ const Lessons: React.FC = () => {
             title={obj.title}
             status={obj.status}
             duration={obj.duration}
-            imagePreview={obj.imagePreview}
+            imagePreview={obj.image_link ? obj.image_link : placeHolder}
             id={obj.id}
             published={obj.created_at}
             view={obj.view}
             category={obj.categoryName}
             rating={obj.rating}
-            totalVotes={obj.totalVotes}
+            totalVotes={obj.votes_count}
+            isEditable={false}
+            hasStatus={true}
           />
         ))}
       </div>
     </div>
   );
 };
+
 export default Lessons;

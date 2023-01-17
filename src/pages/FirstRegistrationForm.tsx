@@ -4,18 +4,20 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {Link, useNavigate} from "react-router-dom";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
+import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
-import Facebook from "../components/icons/facebook.svg";
-import Google from "../components/icons/google.svg";
-import {Link} from "react-router-dom";
+// import Facebook from "../components/icons/facebook.svg";
+// import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import Phone from "../components/icons/phone.svg";
-import VK from "../components/icons/vk.svg";
-import {useAppSelector} from "../store/hooks";
+// import Phone from "../components/icons/phone.svg";
+// import VK from "../components/icons/vk.svg";
+import {getEmail} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
 
 interface FormValues {
   email: string;
@@ -28,13 +30,27 @@ interface FormErrors {
   [key: string]: string;
 }
 
+type FirstRegistrationFormProps = {
+  setUserPassword: (str: string) => void;
+  setUserEmail: (str: string) => void;
+}
+
 const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
 const symbols = PASSWORD.symbols;
 
-const FirstRegistrationForm = () => {
+const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
   const intl = useIntl();
-  const isEmail = useAppSelector(state => state.login.isEmail);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [isRegEmail, setIsRegEmail] = useState<string | unknown>("");
+
+  useEffect(() => {
+    if (isRegEmail) {
+      navigate("/user/reg_in/information");
+    }
+  }, [isRegEmail, navigate]);
+
   const initialValues: FormValues = {
     email: "",
     password: "",
@@ -49,9 +65,7 @@ const FirstRegistrationForm = () => {
     if (emailInvalidationRules.some(rule => rule.test(values.email))) {
       errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
-    if (isEmail) {
-      errors.email = intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"});
-    }
+
     if (!passwordRegex.test(values.password)) {
       errors.password = intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
         minSymbol: minSymbol, maxSymbol: maxSymbol, symbols: symbols
@@ -71,36 +85,41 @@ const FirstRegistrationForm = () => {
     return errors;
   };
 
-  const submitFirstStepForm = (values: FormValues) => {
-    console.log(values);
-  };
-
   return (
     <div className="log-content">
       <Formik
         initialValues={initialValues}
         validateOnChange={false}
         validate={validate}
-        onSubmit={submitFirstStepForm}
+        onSubmit={(values: FormValues) => {
+          dispatch(getEmail(values.email))
+            .then((data) => data.payload)
+            .then((result) =>{
+              setIsRegEmail(!result);
+            });
+          setUserEmail(values.email);
+          setUserPassword(values.password);
+        }}
       >
         {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.firstRegistrationForm.title"/>
+                <FormattedMessage id="app.firstRegistrationForm.title" />
               </h2>
               <Field
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
-                needEmail={false}
+                isEmail={isRegEmail}
+                textError={intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"})}
               />
               <Field
                 name="password"
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={false}
+                isConfirm={true}
                 error={touched.password ? errors.password : undefined}
               />
               <Field
@@ -108,7 +127,8 @@ const FirstRegistrationForm = () => {
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={true} error={touched.confirmPassword ? errors.confirmPassword : undefined}
+                isConfirm={false}
+                error={touched.confirmPassword ? errors.confirmPassword : undefined}
               />
               <Field
                 name="hasTermsAndConditions"
@@ -122,32 +142,32 @@ const FirstRegistrationForm = () => {
                 buttonText={intl.formatMessage({id: "app.button.next"})}
                 className="button__page"
               />
-              <div className="or">
-                <span className="line-right"></span>
-                <FormattedMessage id="app.or"/>
-                <span className="line-left"></span>
-              </div>
-              <div className="apps-logs">
-                <div className="app-logo">
-                  <img src={Google} alt="google"/>
-                </div>
-                <div className="app-logo">
-                  <img src={Facebook} alt="facebook"/>
-                </div>
-                <div className="app-logo">
-                  <img src={VK} alt="vk"/>
-                </div>
-                <div className="app-logo">
-                  <img src={Phone} alt="phone"/>
-                </div>
-              </div>
+              {/*<div className="or">*/}
+              {/*  <span className="line-right"></span>*/}
+              {/*  <FormattedMessage id="app.or" />*/}
+              {/*  <span className="line-left"></span>*/}
+              {/*</div>*/}
+              {/*<div className="apps-logs">*/}
+              {/*  <Link to="/user/google" className="app-logo">*/}
+              {/*    <img src={Google} alt="google" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/facebook" className="app-logo">*/}
+              {/*    <img src={Facebook} alt="facebook" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/vk" className="app-logo">*/}
+              {/*    <img src={VK} alt="vk" />*/}
+              {/*  </Link>*/}
+              {/*  <Link to="/user/sign_in/phone_numberR" className="app-logo">*/}
+              {/*    <img src={Phone} alt="phone" />*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
               <p className="text">
-                <FormattedMessage id="app.firstRegistrationForm.haveAccount"/>
+                <FormattedMessage id="app.firstRegistrationForm.haveAccount" />
                 <Link
-                  to={"/users/sign_in"}
+                  to={"/user/sign_in"}
                   className="link"
                 >
-                  <FormattedMessage id="app.header.login"/>
+                  <FormattedMessage id="app.header.login" />
                 </Link>
               </p>
             </Form>

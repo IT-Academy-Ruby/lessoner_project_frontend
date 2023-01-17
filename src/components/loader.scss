@@ -1,5 +1,7 @@
+@import "../constants.module.scss";
+
 .lds-spinner {
-  color: white;
+  color: $white;
   display: inline-block;
   position: fixed;
   width: 70px;

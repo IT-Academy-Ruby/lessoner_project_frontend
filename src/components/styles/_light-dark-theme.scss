@@ -2,23 +2,295 @@
 
 $themes: (
   bgThemeColor1: (
-    darkTheme: $blue700,
-    lightTheme: $grey100,
-  ),
-  bgThemeColor2: (
-    darkTheme: $blue600,
-    lightTheme: $grey200,
+    darkTheme: $darkMain,
+    lightTheme: $lightMain,
   ),
   textThemeColor1: (
     darkTheme: $grey100,
     lightTheme: $black,
+  ),
+  textThemeColor2: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgThemeNavBarColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  bgNavBarShadow: (
+    darkTheme: $SideBarShadowDark,
+    lightTheme: $SideBarShadowLight,
+  ),
+  iconsTextThemeNavBarColor: (
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  themeNavBarColorHover: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  themeNavBarBgHover: (
+    darkTheme: $dark6,
+    lightTheme: $light5,
+  ),
+  bgEditVideoLessonColor: (
+    darkTheme: $dark3,
+    lightTheme: $lightSideBar,
+  ),
+  editVideoLessonShadow: (
+    darkTheme: $EditVideoLessonShadowDark,
+    lightTheme: $EditVideoLessonShadowLight,
+  ),
+  iconsTextEditVideoLessonColor: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgButtonColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  bgFocusButtonColor: (
+    darkTheme: $light6,
+    lightTheme: $dark9,
+  ),
+  shadowActiveButtonColor: (
+    darkTheme: $ButtonActiveShadowDark,
+    lightTheme: $ButtonActiveShadowLight,
+  ),
+  bgFocusButtonSecondaryColor: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  iconsTextButtonColor: (
+    darkTheme: $light2,
+    lightTheme: $blue2,
+  ),
+  iconsTextFocusButtonColor: (
+    darkTheme: $dark1,
+    lightTheme: $light1,
+  ),
+  iconsTextActiveButtonColor: (
+    darkTheme: $blue3,
+    lightTheme: $light1,
+  ),
+  iconsTextFocusButtonSecondaryColor: (
+    darkTheme: $light7,
+    lightTheme: $blue4,
+  ),
+  iconsTextActiveButtonSecondaryColor: (
+    darkTheme: $light8,
+    lightTheme: $dark10,
+  ),
+  borderFocusButtonSecondaryColor: (
+    darkTheme: $light7,
+    lightTheme: $blue4,
+  ),
+  borderActiveButtonSecondaryColor: (
+    darkTheme: $light8,
+    lightTheme: $dark10,
+  ),
+  themeButtonHover: (
+    darkTheme: $ButtonHoverLight,
+    lightTheme: $ButtonHoverDark,
+  ),
+  bgCardThemeColor: (
+    darkTheme: $darkSideBar,
+    lightTheme: $lightSideBar,
+  ),
+  titleCardThemeColor: (
+    darkTheme: $lightCardText,
+    lightTheme: $darkMain,
+  ),
+  categoryTextCardThemeColor: (
+    darkTheme: $lightCardText,
+    lightTheme: $bluePrimaryText,
+  ),
+  categorybgCardThemeColor: (
+    darkTheme: $Surface5Dark,
+    lightTheme: $Surface5Light,
+  ),
+  KebabCardThemeColor: ( 
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  KebabCardThemeColorHover: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
+  ),
+  bgFirstRegistrForm: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  borderRadiusFirstRegistrForm: (
+    darkTheme: $darkBorderRadius,
+    lightTheme: $lightBorderRadius,
+  ),
+  titlesFirstRegistrForm: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  inputTextFirstRegistrForm: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgCalendar: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textCalendar: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
+  ),
+  textCalendarOutsideMonth: (
+    darkTheme: $dark4,
+    lightTheme: $light3,
+  ),
+  textCalendarDayHover: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
+  textConfirmReg: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgPhoneNumberCountryList: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textPhoneNumberCountryList: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  textPhoneNumberCountryListHover: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
+  bgGenderSelectorRadio: (
+    darkTheme: $dark1,
+    lightTheme: $light1,
+  ),
+  textLogo: (
+    darkTheme: $light2,
+    lightTheme: $blue1,
+  ),
+  bgDropDownMainPage: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textDropDownMainPage: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgTextHoverDropDownMainPage: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
+  ),
+  bgCategoriesButtons: (
+    darkTheme: $dark1,
+    lightTheme: $light2,
+  ),
+  textCategoriesButtons: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgCategoryActiveButton: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  textCategoryActiveButton: (
+    darkTheme: $dark1,
+    lightTheme: $light2,
+  ),
+  categoriesBorder: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgVideoCard: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  textUserPageFields: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
+  ),
+  textMyStudioHead: (
+    darkTheme: $light9,
+    lightTheme: $light10,
+  ),
+  textMyStudioHeadActive: (
+    darkTheme: $light11,
+    lightTheme: $blue2,
+  ),
+  textMyStudioHeadSelect: (
+      darkTheme: $light11,
+      lightTheme: $dark1,
+  ),
+  textCategoriesAdmin: (
+    darkTheme: $light2,
+    lightTheme: $dark4,
+  ),
+  bgRowCategoriesAdmin: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  bgRowShadowCategoriesAdmin: (
+    darkTheme: $dark3,
+    lightTheme: $CategoriesAdminRowShadowLight,
+  ),
+  bgFocusedRowCategoriesAdmin: (
+    darkTheme: $dark6,
+    lightTheme: $light1,
+  ),
+  bgFocusedRowShadowCategoriesAdmin: (
+    darkTheme: $dark6,
+    lightTheme: $CategoriesAdminActiveRowShadowLight,
+  ),
+  addNewCategoryText: (
+    darkTheme: $light2,
+    lightTheme: $black,
+  ),
+  addNewCategoryPlaceholder: (
+    darkTheme: $dark7,
+    lightTheme: $dark8,
+  ),
+  bgAddNewCategoryInput: (
+    darkTheme: $dark3,
+    lightTheme: $light1,
+  ),
+  bgAddNewCategoryBorderHover: (
+    darkTheme: $light2,
+    lightTheme: $dark1,
+  ),
+  bgAddNewCategorySaveButtonDisabled: (
+    darkTheme: $dark3,
+    lightTheme: $blue2,
+  ),
+  addNewCategorySaveButtonDisabledText: (
+    darkTheme: $dark7,
+    lightTheme: $light1,
+  ),
+  addNewCategoryImgSizeText: (
+    darkTheme: $dark2,
+    lightTheme: $light3,
+  ),
+  addNewCategoryImgLine: (
+    darkTheme: $dark3,
+    lightTheme: $light3,
+  ),
+  bgModalShadow: (
+    darkTheme: $ModalShadowDark,
+    lightTheme: $ModalShadowLight,
+  ),
+  bgAboutTeam: (
+    darkTheme: $dark5,
+    lightTheme: $light4,
   ),
 );
 
 @mixin styles($mode) {
   @each $key, $map in $themes {
     @each $prop, $color in $map {
-      @if $prop == $mode {
+      @if $prop ==$mode {
         --#{$key}: #{$color};
       }
     }

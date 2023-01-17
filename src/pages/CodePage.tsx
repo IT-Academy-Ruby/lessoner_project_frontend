@@ -17,9 +17,14 @@ interface FormValue {
   code: string;
 }
 
-const CodePage = () => {
+type CodePageProps = {
+  registration: boolean | undefined;
+}
+
+const CodePage = ({registration}: CodePageProps) => {
   const intl = useIntl();
   const initialValue: FormValue = {code: ""};
+
   return (
     <div className="log-content">
       <Formik
@@ -30,12 +35,14 @@ const CodePage = () => {
             errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
           }
           if (values.code.length < CODE.maxLength) {
-            errors.code += intl.formatMessage({id: "app.code.errorLength"});
+            errors.code += intl.formatMessage(
+              {id: "app.code.errorLength"}, {maxSymbol: CODE.maxLength});
           }
           return errors;
         }}
-        onSubmit={(values: object) => {
-          console.log(values); //for example that working
+
+        onSubmit={(values) => {
+          console.log(values);
         }}>
         {({errors, touched}) => {
           return (
@@ -45,7 +52,9 @@ const CodePage = () => {
               </h2>
               <p className="text">
                 <FormattedMessage id="app.code.inform"/>
-                <Link to="/users/sign_in/phone_number" className="link">
+                <Link
+                  to={registration ? "/user/sign_in/phone_numberR" : "/user/sign_in/phone_numberA"}
+                  className="link">
                   <FormattedMessage id="app.code.phoneNumber"/>
                 </Link>
               </p>

@@ -1,6 +1,8 @@
-@import "src/constants";
+@import "src/constants.module.scss";
 
 .input-label {
+  color: var(--titlesFirstRegistrForm) !important;
+  transition: color 0.5s ease;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -15,6 +17,9 @@
 }
 
 .input {
+  color: var(--inputTextFirstRegistrForm) !important;
+  background-color: var(--bgFirstRegistrForm) !important;
+  transition: background-color  0.5s ease;
   width: 100%;
   height: 40px;
   box-sizing: border-box;

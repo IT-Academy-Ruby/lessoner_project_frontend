@@ -1,4 +1,4 @@
-@import "../constants.scss";
+@import "../constants.module.scss";
 
 .user_wrapper {
     width: 320px;
@@ -8,7 +8,7 @@
     font-weight: normal;
 }
 
-.user_card{
+.user_card {
     position: relative;
     height: 100%;
     border-radius: 8px;
@@ -25,6 +25,11 @@
     background: $borderColor; 
 }
 
+.category__image {
+    width: 320px;
+    height: 240px;
+}
+
 .category__image-transparent {
     opacity: 0.15;
 }
@@ -37,13 +42,13 @@
     top: 24px;
     left:16px;
     overflow: hidden;
-    font-size: 60px;
+    font-size: 56px;
     font-weight: bold;
     text-align: left;
 }
 
 .user_card-title--hovered {
-    color: #FFFFFF;
+    color: $white;
 }
 
 .category__info {
@@ -54,56 +59,12 @@
     left: 16px;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: $white;
     text-align: left;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-
-.user_card-blue {
-    background: #DDE9FF;
-    img {
-        position: absolute;
-        width: 355px;
-        height: 287px;
-        left: 25px;
-        top: 16px;
-    }
-}
-
-.user_card-pink {
-    background: #FFDAD6;
-    img {
-        position: absolute;
-        width: 318.74px;
-        height: 235px;
-        left: 23px;
-        top: 32px;
-    }
-}
-
-.user_card-grey {
-    background: #EAF8DE;
-    img {
-        position: absolute;
-        width: 267px;
-        height: 208.51px;
-        left: 48px;
-        top: 48px;
-    }
-}
-
-.user_card-orange {
-    background: #FFDF92;
-    img {
-        position: absolute;
-        width: 242px;
-        height: 191px;
-        left: 39px;
-        top: 100px;
-    }
 }
 
 .user_card__icon-bg--hovered {

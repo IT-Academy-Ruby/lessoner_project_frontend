@@ -1,5 +1,5 @@
 import "./checkbox.scss";
-import {Link} from "react-router-dom";
+import Terms from "../pages/Terms";
 import {useState} from "react";
 
 type CheckboxProps = {
@@ -9,14 +9,15 @@ type CheckboxProps = {
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string
   };
-  error?: string;
   information: string;
   link: string;
+  error?: string;
 }
 const Checkbox = ({
   field, error, information, link
 }: CheckboxProps): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
+  const [isTerms, setIsTerms] = useState(false);
   return (
     <span className="checkbox">
       <input
@@ -33,9 +34,10 @@ const Checkbox = ({
         className="label-checkbox"
       >
         {information}
-        {link ? <Link to={"/users/sign_in/terms"} className="link">{link}</Link> : null}
+        {link ? <span onClick={() => setIsTerms(true)} className="link">{link}</span> : null}
         {error && <span className="error-message">{error}</span>}
       </label>
+      {isTerms && <Terms setIsTerms={setIsTerms}/>}
     </span>
   );
 };

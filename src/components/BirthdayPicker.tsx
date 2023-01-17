@@ -4,7 +4,6 @@ import "./birthday.scss";
 import DatePicker, {registerLocale} from "react-datepicker";
 import {FieldInputProps, FormikProps} from "formik";
 import Birthday from "./icons/Date.svg";
-import {FormattedMessage} from "react-intl";
 import {enGB} from "date-fns/locale";
 import {useState} from "react";
 
@@ -12,11 +11,13 @@ type BirthdayPickerProps<V = string, FormValues = string> = {
   field: FieldInputProps<V>;
   form: FormikProps<FormValues>;
   error: string;
-  setIsWrapper: (a:boolean)=>void;
-  isWrapper:boolean;
+  setIsWrapper: (a:boolean) => void;
+  isWrapper: boolean;
+  text: string;
 }
+
 const BirthdayPicker = ({
-  form, field, error,setIsWrapper
+  form, field, error,setIsWrapper, text
 }: BirthdayPickerProps): JSX.Element => {
   registerLocale("enGB", enGB);
 
@@ -34,7 +35,7 @@ const BirthdayPicker = ({
 
   return (
     <label className="input-label">
-      <FormattedMessage id="app.birthdaylabel"/>
+      {text}
       <DatePicker
         placeholderText="--.--.----"
         dateFormat="dd.MM.yyyy"

@@ -1,4 +1,4 @@
-@import "../constants.scss";
+@import "../constants.module.scss";
 
 .reg__wrapper {
   position: absolute;
@@ -14,10 +14,10 @@
   justify-content: center;
   width: 100%;
   max-width: 1322px;
+  min-height: 843px;
   border-radius: 44px;
-  box-shadow: 5px 10px 10px $black;
-  background: $white;
-  margin: 90px 60px;
+  box-shadow: var(--bgNavBarShadow);
+  margin: 30px;
 }
 
 .close__wrapper {
@@ -41,7 +41,8 @@
 .close:after {
   position: absolute;
   width: 16px;
-  border: 2px solid $black;
+  border: 2px solid var(--KebabCardThemeColor);
+  background: var(--KebabCardThemeColor);
   content: "";
 }
 
@@ -59,12 +60,14 @@
   width: 50%;
   border-radius: 44px 0 0 44px;
   background: url(../components/icons/background1440.svg) right;
+  background-color: var(--bgFirstRegistrForm);
+  background-repeat: no-repeat;
   background-size: cover;
+  transition: background-color 0.5s ease;
 }
 
 .reg__logo {
   max-width: 321px;
-
 }
 
 .reg__content {
@@ -72,6 +75,8 @@
   justify-content: center;
   align-items: center;
   width: 50%;
+  border-radius: 0 44px 44px 0;
+  background-color: var(--bgFirstRegistrForm);
 }
 
 @media (min-width: $max-width-tablet) {

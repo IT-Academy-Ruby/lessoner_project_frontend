@@ -1,0 +1,14 @@
+.wrapper__lessons {
+  width: 100%;
+  // margin: auto;
+}
+
+.lessons {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

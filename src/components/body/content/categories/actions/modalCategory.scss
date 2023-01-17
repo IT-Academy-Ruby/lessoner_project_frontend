@@ -1,0 +1,78 @@
+@import "../../../../../constants.module.scss";
+
+.wrapper-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--bgModalShadow);
+}
+
+.cancel-modal {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bgFocusButtonSecondaryColor);
+  max-width: 379px;
+  width: 100%;
+  box-shadow: 0 0 4px $greySearchColor;
+  border-radius: 8px;
+}
+
+.field-close {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  position: relative;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+}
+
+.close-modal {
+  position: relative;
+  top: 9px;
+  left: -9px;
+  width: 16px;
+  z-index: 3;
+}
+
+.close-modal:before,
+.close-modal:after {
+  position: absolute;
+  width: 10px;
+  border: 1px solid $greySearchColor;
+  background: $greySearchColor;
+  content: "";
+}
+
+.close-modal:before {
+  transform: rotate(45deg);
+}
+
+.close-modal:after {
+  transform: rotate(-45deg);
+}
+
+.close-text {
+  margin: 40px 48px 24px 48px;
+  color: var(--textThemeColor1);
+  font-family: $font;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.field-button {
+  display: flex;
+  margin-bottom: 32px;
+
+  .button-register {
+    margin-right: 8px;
+  }
+}

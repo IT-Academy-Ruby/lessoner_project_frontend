@@ -1,9 +1,9 @@
 import "./input.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
-import {useEffect, useState} from "react";
+import {USERNAME} from "../constants";
 import classNames from "classnames";
-import {getUser} from "../store/loginName/userSlice";
+import {getUser} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
 
 type UserNameProps = {
   field: {
@@ -15,34 +15,28 @@ type UserNameProps = {
 }
 const UserName = ({field, error}: UserNameProps): JSX.Element => {
   const intl = useIntl();
-  const [extraStyle, setExtraStyle] = useState("");
-  const [busyName, setBusyName] = useState("");
   const dispatch = useAppDispatch();
-  const userStatus = useAppSelector((state) => state.user.isLogged);
 
   const fieldHandler = (e: React.FormEvent<HTMLInputElement>) => {
     dispatch(getUser(e.currentTarget.value));
   };
-
-  useEffect(() => {
-    if (userStatus) {
-      setBusyName(intl.formatMessage({ id:"app.userName.nameExists"}));
-      setExtraStyle("redBorder");
-    }
-  }, [userStatus,intl]);
 
   return (
     <label className="input-label">
       <FormattedMessage id="app.UserName"/>
       <input
         type="text"
-        className={classNames("input", {[`${extraStyle}`]: error})}
+        className={classNames("input",
+          {"invalid-input": error},
+          {"success-input": !error && field.value}
+        )}
         onKeyUp={fieldHandler}
-        placeholder={intl.formatMessage({ id: "app.code.invalidationRules" })}
+        placeholder={intl.formatMessage(
+          { id: "app.UserName.placeholder" },
+          {minSymbol: USERNAME.minLength, maxSymbol: USERNAME.maxLength})}
         {...field}
       />
       {(error) && <span className="error-message">{error}</span>}
-      {(busyName) && <span className="error-message">{busyName}</span>}
     </label>
   );
 };

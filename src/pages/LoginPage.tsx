@@ -1,24 +1,22 @@
 import "./modal.scss";
 import {
-  Field, Form, Formik,
+  Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {
-  buttonEvent, getLogin, lookEvent
-} from "../store/loginName/loginSlice";
+import {Link, useNavigate} from "react-router-dom";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
-import {useAppDispatch, useAppSelector} from "../store/hooks";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
-import Facebook from "../components/icons/facebook.svg";
-import Google from "../components/icons/google.svg";
-import {Link} from "react-router-dom";
-import Loader from "../components/Loader";
+// import Facebook from "../components/icons/facebook.svg";
+// import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import Phone from "../components/icons/phone.svg";
-import VK from "../components/icons/vk.svg";
+// import Phone from "../components/icons/phone.svg";
+// import VK from "../components/icons/vk.svg";
+import {getLogin} from "../store/loginName/loginSlice";
+import {useAppDispatch} from "../store/hooks";
+import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -32,8 +30,9 @@ interface FormErrors {
 
 const LoginPage = () => {
   const intl = useIntl();
-  const loading = useAppSelector(state => state.login.loading);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
 
   const initialValues: FormValues = {
     email: "",
@@ -43,7 +42,6 @@ const LoginPage = () => {
 
   return (
     <div className="log-content">
-      {loading && <Loader/>}
       <Formik
         initialValues={initialValues}
         validate={async (values: FormValues) => {
@@ -54,31 +52,39 @@ const LoginPage = () => {
           }
           if (!passwordRegex.test(values.password)) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"});
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordRegEx"}, {
+                minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength,
+                symbols: PASSWORD.symbols
+              });
           }
           if (values.password.length > PASSWORD.maxLength
             || values.password.length < PASSWORD.minLength) {
             errors.password =
-              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"});
+              intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"},
+                {minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength});
           }
           return errors;
         }}
-        onSubmit={(values: { email: string, password: string }) => {
-          dispatch(getLogin(values));
-          dispatch(buttonEvent());
-          dispatch(lookEvent());
+        onSubmit={(values: FormValues) => {
+          dispatch(getLogin(values))
+            .then(() => {
+              if (localStorage.getItem("JWT")) {
+                navigate("/"); // Redirects to main page
+              }else{setIslogEmail(false);}
+            });
         }}>
         {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.login.title"/>
+                <FormattedMessage id="app.login.title" />
               </h2>
               <Field
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
-                needEmail={true}
+                isEmail={isLogEmail}
+                textError={intl.formatMessage({id: "app.incorectEmailOrPassword"})}
               />
               <Field
                 name="password"
@@ -98,35 +104,35 @@ const LoginPage = () => {
                 buttonText={intl.formatMessage({id: "app.button.signIn"})}
                 className="button__page"
               />
-              <Link to={"/users/sign_in/reset_password"} className="password-link">
-                <FormattedMessage id="app.loginPage.password"/>
+              <Link to="/user/sign_in/reset_password" className="password-link">
+                <FormattedMessage id="app.loginPage.password" />
               </Link>
-              <div className="or">
-                <span className="line-right"></span>
-                <FormattedMessage id="app.or"/>
-                <span className="line-left"></span>
-              </div>
-              <div className="apps-logs">
-                <div className="app-logo">
-                  <img src={Google} alt="google"/>
-                </div>
-                <div className="app-logo">
-                  <img src={Facebook} alt="facebook"/>
-                </div>
-                <div className="app-logo">
-                  <img src={VK} alt="vk"/>
-                </div>
-                <div className="app-logo">
-                  <img src={Phone} alt="phone"/>
-                </div>
-              </div>
+              {/*<div className="or">*/}
+              {/*  <span className="line-right"></span>*/}
+              {/*  <FormattedMessage id="app.or" />*/}
+              {/*  <span className="line-left"></span>*/}
+              {/*</div>*/}
+              {/*<div className="apps-logs">*/}
+              {/*  <div className="app-logo">*/}
+              {/*    <img src={Google} alt="google" />*/}
+              {/*  </div>*/}
+              {/*  <div className="app-logo">*/}
+              {/*    <img src={Facebook} alt="facebook" />*/}
+              {/*  </div>*/}
+              {/*  <div className="app-logo">*/}
+              {/*    <img src={VK} alt="vk" />*/}
+              {/*  </div>*/}
+              {/*  <Link to="/user/sign_in/phone_numberA" className="app-logo">*/}
+              {/*    <img src={Phone} alt="phone" />*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
               <p className="text">
-                <FormattedMessage id="app.don'tAccount"/>
+                <FormattedMessage id="app.don'tAccount" />
                 <Link
-                  to={"/users/sign_up"}
+                  to={"/user/sign_up"}
                   className="link"
                 >
-                  <FormattedMessage id="app.signUp"/>
+                  <FormattedMessage id="app.signUp" />
                 </Link>
               </p>
             </Form>

@@ -1,4 +1,5 @@
 import "./input.scss";
+import {PASSWORD} from "../constants";
 import classNames from "classnames";
 import close_eye from "./icons/close_eye.svg";
 import open_eye from "./icons/open_eye.svg";
@@ -8,7 +9,7 @@ import {useState} from "react";
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
-  isConfirm: boolean;
+  isConfirm: boolean | string;
   field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
@@ -33,23 +34,26 @@ const PasswordAndConfirm = ({
   };
 
   return (
-    <label className="input-label">{isConfirm ?
-      intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"}) :
-      intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
-    <input
-      type={visiblePassword ? "text" : "password"}
-      className={classNames("input", {"invalid-input": error},
-        {"success-input": !error && field.value})}
-      {...field}
-      placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"})}
-    />
-    <img
-      className="image-input"
-      alt="eye"
-      src={visiblePassword ? open_eye : close_eye}
-      onClick={showPassword}
-    />
-    {error && <span className="error-message">{error}</span>}
+    <label className="input-label">
+      {isConfirm === true && intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
+      {isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}
+      {isConfirm === "currentPassword" && intl.formatMessage(
+        {id: "app.userPage.form.currentPassword"})}
+      <input
+        type={visiblePassword ? "text" : "password"}
+        className={classNames("input", {"invalid-input": error},
+          {"success-input": !error && field.value})}
+        {...field}
+        placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
+          {minSymbol: PASSWORD.minLength})}
+      />
+      {isConfirm !== "currentPassword" && <img
+        className="image-input"
+        alt="eye"
+        src={visiblePassword ? open_eye : close_eye}
+        onClick={showPassword}
+      />}
+      {error && <span className="error-message">{error}</span>}
     </label>
   );
 };

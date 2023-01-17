@@ -1,14 +1,16 @@
 import "./LessonCard.scss";
-import { KebabSvg } from "./svg/KebabSvg";
+import { Link , useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
-import PopupMenu from "./PopupMenu";
+import {ReactComponent as PencilEdit } from "./icons/pencilEdit.svg";
+import { PopupMenu } from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
-import React from "react";
 import Tag from "./body/Tags/Tag";
 
 type ThumbnailImageUrlProps = {
   imagePreview: string;
+  id?: number;
 };
 
 const POPUP_ITEMS = [
@@ -32,39 +34,48 @@ const POPUP_ITEMS = [
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <div>
-      <a href="/lessons">
+      <Link to={`/lessons/${props.id}`}>
         <img src={props.imagePreview} alt="Videopreview" />
-      </a>
+      </Link>
     </div>
   );
 };
 
 type TitleProps = {
   title: string;
+  id?: number;
+  className?: string;
 };
 
-const Title: React.FC<TitleProps> = (props) => {
+export const Title: React.FC<TitleProps> = (props) => {
   return (
-    <div className="video__title">
-      <a href="#">
-        <p>{props.title}</p>
-      </a>
+    <div className={`video__title ${props.className}`}>
+      <Link to={`/lessons/${props.id}`}>
+        <p title={props.title}>{props.title}</p>
+      </Link>
     </div>
   );
 };
 
-const MenuKebab = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+export type MenuKebabProps = {
+  className?: string;
+  idCard?: number;
+};
+
+export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
+    navigate("/myStudio/update_lesson/" + idCard);
   };
 
   return (
     <>
-      <div onClick={handleKebabClick} className="kebab__menu">
-        <KebabSvg />
+      <div onClick={handleKebabClick} className={`kebab__menu ${className}`}>
+        <PencilEdit />
       </div>
       <PopupMenu
         isOpen={isOpen}
@@ -77,11 +88,12 @@ const MenuKebab = () => {
 
 type PublishedDataProps = {
   published: string;
+  className?: string;
 };
 
-const Published: React.FC<PublishedDataProps> = (props) => {
+export const Published: React.FC<PublishedDataProps> = (props) => {
   return (
-    <div className="details__date">
+    <div className={`details__date ${props.className}`}>
       <p>
         Published:
         <Moment element="span" format="YYYY.MM.DD" date={props.published} />
@@ -113,6 +125,8 @@ type LessonCardsProps = {
   category?: string;
   rating?: number;
   totalVotes?: number;
+  isEditable: boolean;
+  hasStatus: boolean;
 };
 
 const LessonCard: React.FC<LessonCardsProps> = (props) => {
@@ -121,24 +135,25 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
       <div className="card">
         <div className="card__icon">
           {props.imagePreview && (
-            <ThumbnailImageUrl imagePreview={props.imagePreview} />
+            <ThumbnailImageUrl  id={props.id} imagePreview={props.imagePreview} />
           )}
-
-          <Tag
-            type="status"
-            className="video__status"
-            text={props.status}
-            iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
-            videoStatus={true}
-          />
+          {props.hasStatus &&
+            <Tag
+              type="status"
+              className="video__status"
+              text={props.status}
+              iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
+              videoStatus={true}
+            />
+          }
           {props.duration && (
             <Tag className="video__time" type="time" text={props.duration} />
           )}
         </div>
         <div className="card__info">
           <div className="card__info-top">
-            <Title title={props.title} />
-            <MenuKebab />
+            <Title title={props.title} id={props.id} />
+            {props.isEditable && <MenuKebab idCard={props.id} />}
           </div>
           <div className="details">
             <Published published={props.published} />
