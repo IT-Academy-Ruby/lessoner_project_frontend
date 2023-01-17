@@ -1,4 +1,5 @@
 import "./UserCategory.scss";
+import { FormattedMessage, useIntl } from "react-intl";
 import React from "react";
 import classNames from "classnames";
 
@@ -33,10 +34,11 @@ type CategoryNameProps = {
 
 const CategoryName: React.FC<CategoryNameProps> = (props) => {
   return (
-    <div className={props.className}>{props.name}</div>
+    <div className={props.className}>
+      {<FormattedMessage id={"app.nameCategory."+props.name} />}
+    </div>
   );
 };
-
 type CategoryInfoProps = {
   text: string;
 };
