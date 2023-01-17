@@ -279,6 +279,7 @@ const VideoViewPage = ({ user }: BodyProps) => {
 
     const fetchSuccess = (data: Lesson) => {
       setRating(data.rating);
+      setLessonData(data);
       setIsRatingFrozen(false);
     };
     const fetchError = (errMessage: string) => {
