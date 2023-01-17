@@ -1,5 +1,5 @@
 import "./UserCategory.scss";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import React from "react";
 import classNames from "classnames";
 
