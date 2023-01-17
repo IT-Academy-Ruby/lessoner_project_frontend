@@ -93,7 +93,7 @@ export const messages_en = {
   "app.phoneNumber.label": "Phone number",
   "app.phoneNumber.incorrect": "Phone number incorrect",
   "app.loginPage.title": "Login to the Lessoner",
-  "app.loginPage.checkbox": "S tay logged in",
+  "app.loginPage.checkbox": "Stay logged in",
   "app.loginPage.password": "Forgot your password?",
   "app.header.placeholder": "Search",
   "app.phoneNumber.err": "Phone number incorrect",
