@@ -116,7 +116,7 @@
 .form-user-page {
   position: relative;
   width: 469px;
-  background: $white;
+  background: var(--bgPhoneNumberCountryList);
   border-radius: 8px;
   padding: 48px;
   box-sizing: border-box;
@@ -163,7 +163,7 @@
   font-weight: 600;
   font-size: 32px;
   line-height: 130%;
-  color: #1b1b1f;
+  color: var(--titlesFirstRegistrForm);
 }
 .inVisible {
   display: none;

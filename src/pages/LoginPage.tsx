@@ -91,7 +91,7 @@ const LoginPage = () => {
                 component={PasswordAndConfirm}
                 minSymbol={PASSWORD.minLength}
                 maxSymbol={PASSWORD.maxLength}
-                isConfirm={false}
+                isConfirm={true}
                 error={touched.password ? errors.password : undefined}
               />
               <Field

@@ -41,14 +41,37 @@
   font-size: 14px;
 }
 
+.link-terms {
+  font-family: $font;
+  font-weight: 600;
+  color: #455FCE;
+  text-decoration: none;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
 .terms {
   margin-bottom: 16px;
   text-align: left;
   font-family: $font;
 }
 
+.politic {
+  margin-top: 20px;
+}
+
 .terms-title {
   margin: 0 0 20px 0;
+}
+
+.alignment {
+  list-style: none;
+  padding: 0;
+  margin-block: 0.5rem;
+
+  > li {
+    margin-block: 0.5rem;
+  }
 }
 
 .ol-terms {
@@ -56,12 +79,12 @@
   padding-left: 1rem;
   text-align: left;
 
-  >li>ul {
+  > li > ul {
     margin: 16px 0 16px 0;
     list-style: none;
     padding-left: 26px;
 
-    >li:before {
+    > li:before {
       content: '';
       display: inline-block;
       height: 3px;
@@ -75,17 +98,17 @@
   }
 }
 
-.main-li{
+.main-li {
   font-weight: 700;
   margin-block: 0.5rem;
 }
 
-.marker-ol{
-  margin-top: 0.2rem ;
+.marker-ol {
+  margin-top: 0.2rem;
   list-style-type: lower-latin;
 }
 
-.subtext{
+.subtext {
   display: block;
   margin: 0 0 0.5rem -1rem;
 }
@@ -108,7 +131,7 @@
   .arrow-back {
     color: $black;
 
-    ~span {
+    ~ span {
       display: none;
     }
   }

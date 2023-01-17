@@ -41,8 +41,8 @@
 .close:after {
   position: absolute;
   width: 16px;
-  border: 2px solid var(--KebabCardThemeColor);
-  background: var(--KebabCardThemeColor);
+  border: 2px solid var(--bgThemeColor1);
+  background: var(--bgThemeColor1);
   content: "";
 }
 
@@ -119,6 +119,7 @@
   .reg__content {
     width: 100%;
     max-width: 448px;
+    background: var(--bgThemeColor);
   }
 }
 

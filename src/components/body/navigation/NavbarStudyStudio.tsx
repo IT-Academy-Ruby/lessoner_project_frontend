@@ -156,7 +156,7 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config}) => {
             <p className={classNames("menu__footer-text", 
               {"menu__footer-text--active": isMenuActive})} >
               <a className={classNames("menu__footer-text menu__footer-policy", 
-                {"menu__footer-text--active": isMenuActive})} href="#!">
+                {"menu__footer-text--active": isMenuActive})} href="/terms">
                 {intl.formatMessage({ id: "app.navbarStudyStudio.policy" })}
               </a>
             </p>
