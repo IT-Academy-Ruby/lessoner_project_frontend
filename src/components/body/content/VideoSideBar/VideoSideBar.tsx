@@ -21,7 +21,7 @@ export const VideoSideBar = (props: VideoSideBarProps) => {
   const [activeData, setActiveData] = useState<Lesson[] | undefined>(
     initialData
   );
-
+  
   useEffect(() => {
     if (activeTabId != null) {
       setActiveData(tabs.find((tab) => tab.id === activeTabId)?.data);

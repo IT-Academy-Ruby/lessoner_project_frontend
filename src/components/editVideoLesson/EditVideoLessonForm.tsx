@@ -30,6 +30,25 @@ export const EditVideoLessonForm: FC = () => {
   const [imageURL, setImageURL] = useState("");
   const formData = new FormData();
 
+  const CATEGORIES = [
+    "app.lessons.categoryDesign",
+    "app.lessons.categoryIT",
+    "app.lessons.categoryMusic",
+    "app.lessons.categoryBusiness",
+    "app.lessons.categoryFitness",
+    "app.lessons.categoryMarketing",
+    "app.lessons.categoryFinance",
+    "app.lessons.categoryPsychology",
+    "app.lessons.categoryLanguages",
+  ];
+  const elementsCategory = CATEGORIES.map((category: string) => {
+    return (
+      <option key={category} id={category}>
+        {intl.formatMessage({ id: category })}
+      </option>
+    );
+  });
+
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS + params.id)
       .then((response) => response.json())
@@ -155,13 +174,7 @@ export const EditVideoLessonForm: FC = () => {
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableCategory" })}
             <Field className="evlf__input" as="select" name="category">
-              <option value="IT">IT</option>
-              <option value="Music">
-                {intl.formatMessage({id: "app.editVideoLesson.lableCategoryMusic"})}
-              </option>
-              <option value="Design">
-                {intl.formatMessage({id: "app.editVideoLesson.lableCategoryDesign"})}
-              </option>
+              {elementsCategory}
             </Field>
           </label>
           <label className="evlf__label">
