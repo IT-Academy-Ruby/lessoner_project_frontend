@@ -7,13 +7,16 @@ import {
 } from "../components/body/content/lessons/Lessons";
 import { useEffect, useState } from "react";
 import { Published } from "../components/LessonCard";
+import RatingCounter from "../components/ratingCounter/ratingCounter";
+import { RootState } from "../store";
 import Tag from "../components/body/Tags/Tag";
 import { VideoPlayer } from "../../src/components/body/content/videoplayer/Videoplayer";
-import VideoRating from "../components/VideoRating";
 import { VideoSideBar } from "../../src/components/body/content/VideoSideBar/VideoSideBar";
+import { connect } from "react-redux";
 import img from "../Photo.png"; // В качестве примера
 import requestApi from "../services/request";
 import { useParams } from "react-router-dom";
+
 
 interface CategoriesResponce {
   records: Category[];
@@ -24,9 +27,15 @@ interface CategoriesResponce {
   };
 }
 
-export const VideoViewPage = () => {
-  const [id, setId] = useState<string | undefined>(useParams().id);
+type BodyProps = {
+  user?: {
+    id: number;
+    name: string;
+  };
+};
 
+const VideoViewPage = ({ user }: BodyProps) => {
+  const [id, setId] = useState<string | undefined>(useParams().id);
   const [lessonData, setLessonData] = useState<Lesson>();
   const [lessonCategoryId, setLessonCategoryId] = useState<number>();
   const [lessonsArr, setLessonsArr] = useState<Lesson[]>([]);
@@ -34,7 +43,11 @@ export const VideoViewPage = () => {
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
-  // console.log(categoriesNames);
+  const [rating, setRating]= useState<undefined|number>();
+  const [isAuthorized, setIsAuthorized]= useState(false);
+  const [isRatingFrozen, setIsRatingFrozen]= useState(false);
+  const [userRating, setUserRating] = useState(0);
+
   useEffect(() => {
     // Get lessonData from lessonId
     const fetchSuccess = (data: Lesson) => {
@@ -230,21 +243,75 @@ export const VideoViewPage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryName]);
-  // console.log(categoryName);
+
+  useEffect(() => {
+    const fetchSuccess = (data: Lesson) => {
+      setRating(data.rating);
+    };
+    const fetchError = (errMessage: string) => {
+      alert(errMessage);
+    };
+
+    const fetchData = async () => {
+      const response = await requestApi(lessonsUrl + "/" + id);
+      if (!response.ok) {
+        fetchError("fetch error " + response.status);
+      } else {
+        const data = await response.json();
+        fetchSuccess(data);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setIsAuthorized(!!user?.id);
+
+  },[user]);
+
   const changeIdState = (id: number) => {
     setId(String(id));
   };
-  // console.log(lessonData);
+  const getNewRating=(rating: number) => {
+    setIsRatingFrozen(true);
+    setUserRating(rating);
+
+    const fetchSuccess = (data: Lesson) => {
+      setRating(data.rating);
+      setIsRatingFrozen(false);
+    };
+    const fetchError = (errMessage: string) => {
+      alert(errMessage);
+    };
+
+    const fetchData = async () => {
+      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {rating});
+      if (!response.ok) {
+        fetchError("fetch error " + response.status);
+      } else {
+        const data = await response.json();
+        fetchSuccess(data);
+      }
+    };
+    fetchData();
+  };
 
   const sideBarTabs = [
     {
-      label: categoryName, id: 1, data: lessonsArr 
+      label: categoryName,
+      id: 1,
+      data: lessonsArr,
     },
     {
-      label: "New", id: 2, data: newLessonsArr 
+      label: "New",
+      id: 2,
+      data: newLessonsArr,
     },
     {
-      label: "Popular", id: 3, data: popularLessonsArr 
+      label: "Popular",
+      id: 3,
+      data: popularLessonsArr,
     },
   ];
 
@@ -254,11 +321,12 @@ export const VideoViewPage = () => {
     !lessonsArr ||
     !newLessonsArr ||
     !popularLessonsArr ||
-    !sideBarTabs
+    !sideBarTabs ||
+    rating === undefined
   ) {
     return null;
   }
-  // console.log(lessonData);
+
   return (
     <div className="video__page_wrapper">
       <div className="videoplayer__wrapper">
@@ -273,9 +341,12 @@ export const VideoViewPage = () => {
               </div>
             </div>
             <div className="info__top_right">
-              <VideoRating
-                ratingProp={lessonData.rating}
-                votesCount={lessonData.votes_count}
+              <RatingCounter
+                globalRating={rating}
+                userRating={userRating}
+                totalVotes={lessonData.votes_count}
+                onRatingSet={isAuthorized ? getNewRating : undefined}
+                isDisabled={!isAuthorized || isRatingFrozen}
               />
             </div>
           </div>
@@ -301,3 +372,9 @@ export const VideoViewPage = () => {
     </div>
   );
 };
+
+const mapStateToProps = (state: RootState) => {
+  return { user: state?.login?.user };
+};
+
+export default connect(mapStateToProps)(VideoViewPage);
