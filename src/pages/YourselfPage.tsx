@@ -61,6 +61,8 @@ const YourselfPage = ({
   const dispatch = useAppDispatch();
   const isUser = useAppSelector((state) => state.login.isLogged);
   const [isWrapper, setIsWrapper] = useState(false);
+  const formatter = new Intl.DateTimeFormat("ru");
+
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
     if (UserRegex.test(values.name)) {
@@ -103,6 +105,7 @@ const YourselfPage = ({
         }}
         validate={validate}
         onSubmit={(values: FormValues) => {
+          values.birthday=formatter.format(new Date(values.birthday));
           dispatch(signUpSlice(values));
           navigate("/user/reg_in/information/modR");
         }}

@@ -17,8 +17,6 @@ import { useNavigate } from "react-router-dom";
 
 const CategoriesAdmin = () => {
 
-  // const [isGetCategory, setIsGetCategory] = useState(false);
-
   const [isClose, setIsClose] = useState(false);
   const [idCategory, setIdCategory] = useState(0);
   const intl = useIntl();

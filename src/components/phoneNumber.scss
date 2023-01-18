@@ -15,28 +15,33 @@
   padding: 1px 46px 1px 84px;
   width: 100%;
   border-color: $blueLightColor;
-  color:var(--textThemeColor1) !important;
+  color: var(--textThemeColor1) !important;
   background: none;
 }
 
 .react-tel-input .flag-dropdown {
-  padding-left:45px;
-  left:1px;
-  background: var(--bgThemeColor1) !important;
+  padding-left: 45px;
+  left: 1px;
+  background: var(--bgPhoneNumberCountryList);
   border: none;
   height: 90%;
   top: 2px;
 }
 
-.react-tel-input .flag-dropdown.open{
+.react-tel-input .flag-dropdown.open {
   z-index: 0;
   width: 99%;
+  background-color: var(--bgPhoneNumberCountryList);
 }
 
 .react-tel-input .flag-dropdown.open .selected-flag {
-  background-color: var(--bgThemeColor1);
+  background-color: var(--bgPhoneNumberCountryList);
   border-radius: 0;
-  }
+}
+
+.selected-flag open {
+  background-color: var(--bgPhoneNumberCountryList);
+}
 
 .react-tel-input .country-list {
   background: var(--bgPhoneNumberCountryList);
@@ -48,16 +53,22 @@
   width: 100%;
   
   .dial-code{
+    width: 100%;
     color: var(--textPhoneNumberCountryList) !important;
   }
-  .country:hover{
-    background-color: var(--textPhoneNumberCountryListHover) !important;
+
+  .country{
+    width: 100%;
+    text-align: left;
+    &:hover{
+      background: var(--KebabCardThemeColor);
+    }
   }
 }
 
 .react-tel-input .selected-flag:hover, .react-tel-input .selected-flag:focus {
   border-radius: 0;
-  background-color: var(--bgThemeColor1);
+  background-color: var(--bgPhoneNumberCountryList);
 }
 
 .arrow {
