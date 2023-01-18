@@ -15,7 +15,6 @@ import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
 import AddLesson from "./my_studio/AddLesson";
 import Categories from "./categories/Categories";
-import CategoryPage from "./categories/SelectCategory";
 import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
 import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
@@ -24,6 +23,7 @@ import Lessoner from "./lessoner/Lessoner";
 import { LessonsPage } from "../../renderLessonsPage/lessonsPage";
 import Pages from "../../../components/Pages";
 import PersonalTerms from "../../../pages/PtrsonalTerms";
+import { SelectCategory } from "./categories/SelectCategory";
 import UserPage from "./userPage/UserPage";
 import VKButton from "../../../components/VKButton"; 
 import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
@@ -86,7 +86,7 @@ const Content = () => {
         />
         <Route path="/" element={<Lessoner />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:id" element={<CategoryPage />} />
+        <Route path="/categories/:id" element={<SelectCategory />} />
         <Route path="/about" element={<About />} />
         <Route path="/myStudio" element={<LessonsPage isHomePage={false} />} />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />

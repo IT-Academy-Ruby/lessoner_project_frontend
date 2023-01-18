@@ -3,6 +3,7 @@ import { RenderLessonPage } from "./renderLessonsPage";
 
 interface LessonsPageProps {
   isHomePage: boolean;
+  category?: string;
 }
 
 export const LessonsPage: FC<LessonsPageProps> = (props) => {
@@ -17,7 +18,7 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
     "app.lessons.statusArchived",
   ];
   const CATEGORIES = [
-    "app.lessons.categoryAllLessons",
+    "app.lessons.categoryAllCategories",
     "app.lessons.categoryDesign",
     "app.lessons.categoryIT",
     "app.lessons.categoryMusic",
@@ -47,6 +48,7 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       isRenderLessonContentHasStatus: false,
       renderLessonContentCategoriesUrl: "/categories",
       renderLessonContentLessonsUrl: "/lessons",
+      category: props.category,
     },
   ];
 
@@ -68,12 +70,11 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       isRenderLessonContentHasStatus: true,
       renderLessonContentCategoriesUrl: "/categories",
       renderLessonContentLessonsUrl: "/my_studio/lessons",
+      category: props.category,
     },
   ];
 
-  const getLessonsPageSettings = () => {
-    return props.isHomePage ? HOME_PAGE_SETTINGS : MY_STUDIO_SETTINGS;
-  };
+  const getLessonsPageSettings = () => props.isHomePage ? HOME_PAGE_SETTINGS : MY_STUDIO_SETTINGS;
 
   return (
     <>
@@ -100,6 +101,7 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
             setting.renderLessonContentCategoriesUrl
           }
           renderLessonContentLessonsUrl={setting.renderLessonContentLessonsUrl}
+          category={props.category}
         />
       ))}
     </>

@@ -4,13 +4,10 @@ import {
 } from "react";
 import Add from "../icons/add.svg";
 import { BACKEND_URL_LESSONS } from "../../constants";
-import Button from "../Button";
 import Loader from "../Loader";
-import NoLessons from "../body/content/my_studio/img/noLessons.svg"; 
+import { NoLessonsPage } from "./noLessonsPage";
 import { RenderLessonContent } from "./renderLessonsContent";
 import { RenderLessonHead } from "./renderLessonsHead";
-import { useIntl } from "react-intl";
-import { useNavigate } from "react-router-dom";
 
 interface RenderLessonPageProps {
   classNameWrapper: string;
@@ -29,11 +26,10 @@ interface RenderLessonPageProps {
   isRenderLessonContentHasStatus: boolean;
   renderLessonContentCategoriesUrl: string;
   renderLessonContentLessonsUrl: string;
+  category?: string
 }
 
 export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
-  const intl = useIntl();
-  const navigate = useNavigate();
   const [isLesson, setIsLesson] = useState(false);
   const [isNoLesson, setIsNoLesson] = useState(false);
   const [isLoader, setIsLoader] = useState(true);
@@ -96,34 +92,11 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               classNameInner={"mystudiocontent__lessons"}
               categoriesUrl={renderProps.renderLessonContentCategoriesUrl}
               lessonsUrl={renderProps.renderLessonContentLessonsUrl}
+              category={renderProps.category}
             />
           </>
         ) : (
-          isNoLesson && (
-            <div className="mystudio__nolessons">
-              <div className="mystudio__nolessons-picture">
-                <img src={NoLessons} alt="no Lessons" />
-              </div>
-              <p className="mystudio__nolessons-text">
-                <span>
-                  {intl.formatMessage({ id: "app.lessons.NoLessonTexp_1" })}
-                </span>
-                <span>
-                  {intl.formatMessage({ id: "app.lessons.NoLessonTexp_2" })}
-                </span>
-              </p>
-              <div className="mystudio__button">
-                <Button
-                  buttonType="button"
-                  buttonText={intl.formatMessage({id: "app.button.addNewLesson"})}
-                  className="button__fs16"
-                  buttonImage={Add}
-                  imageStyle="mystudiohead__svg-add"
-                  onClick={() => navigate("/myStudio/add_new_lesson")}
-                />
-              </div>
-            </div>
-          )
+          isNoLesson && <NoLessonsPage isOnLessonsPage={true} />
         )}
       </div>
     </div>
