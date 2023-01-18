@@ -47,7 +47,7 @@ const PasswordAndConfirm = ({
         placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
           {minSymbol: PASSWORD.minLength})}
       />
-       <img
+      <img
         className="image-input"
         alt="eye"
         src={visiblePassword ? open_eye : close_eye}
