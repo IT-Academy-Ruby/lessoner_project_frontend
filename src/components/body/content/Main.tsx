@@ -21,7 +21,7 @@ import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
-import { MyStudioPage } from "../../renderLessonsPage/myStudioPage";
+import { LessonsPage } from "../../renderLessonsPage/lessonsPage";
 import Pages from "../../../components/Pages";
 import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
@@ -83,7 +83,7 @@ const Content = () => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<CategoryPage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/myStudio" element={<MyStudioPage />} />
+        <Route path="/myStudio" element={<LessonsPage isHomePage={false} />} />
         <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
         <Route
           path="/categories/addCategory"
@@ -142,7 +142,6 @@ const Content = () => {
         />
         <Route
           path="/user/google"
-
           element={
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
               <GoogleButton />
