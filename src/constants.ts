@@ -1,7 +1,5 @@
-console.log('process.env', process.env);
-console.log('process.env.REACT_APP_BACKEND_URL', process.env.REACT_APP_BACKEND_URL);
-
 const BACKEND_URL_LESSONS = process.env.REACT_APP_BACKEND_URL + "/lessons/";
+console.log('BACKEND_URL_LESSONS', BACKEND_URL_LESSONS);
 const CODE = {maxLength: 5};
 const DEFAULT_COUNTRY_CODE = "";
 const EMAIL = {minLength: 3, maxLength: 256};
