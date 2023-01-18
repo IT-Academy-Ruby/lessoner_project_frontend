@@ -50,17 +50,13 @@
   flex-direction: column;
   align-items: flex-start;
   left: 1px;
-<<<<<<< HEAD
   width: 100%;
-
-  .dial-code {
-=======
-  width: 100%;  
   
   .dial-code{
->>>>>>> 8e9ee0430d2d400c6f855bf3d2dedd6ede1b5c4e
+    width: 100%;
     color: var(--textPhoneNumberCountryList) !important;
   }
+
   .country{
     width: 100%;
     text-align: left;
