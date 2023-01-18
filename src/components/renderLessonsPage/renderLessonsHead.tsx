@@ -43,6 +43,9 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [categoryActive, setCategoryActive] = useState(renderProps.setCategoryActive);
 
+  console.log("renderProps.setCategoryActive: ", renderProps.setCategoryActive);
+  console.log("categoryActive: ", categoryActive);
+
   const handleStatusToggle = (status: string) => {
     setStatusActive(status);
   };
@@ -78,7 +81,7 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   });
   const elementsCategory = CATEGORIES.map((category: string) => {
     return (
-      <option key={category} id={category} >
+      <option key={category} id={category} value={category}>
         {category}
       </option>
     );
@@ -97,7 +100,9 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
             <div className={renderProps.classNameButton}>
               <Button
                 buttonType={renderProps.buttonType}
-                buttonText={intl.formatMessage({id: `${renderProps.buttonText}`})}
+                buttonText={intl.formatMessage({
+                  id: `${renderProps.buttonText}`,
+                })}
                 className={renderProps.buttonClassName}
                 buttonImage={renderProps.buttonImage}
                 imageStyle={renderProps.buttonImageStyle}
@@ -114,6 +119,7 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
           </div>
           <div className={renderProps.classNameCategories}>
             <select
+              value={categoryActive}
               name=""
               className={renderProps.classNameCategoriesSelect}
               onChange={(event) => handleCategoryToggle(event)}

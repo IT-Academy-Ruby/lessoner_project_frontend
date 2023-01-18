@@ -69,7 +69,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 buttonImageStyle={"mystudiohead__svg-add"}
                 buttonNavigatePath={"/myStudio/add_new_lesson"}
                 setStatusActive={"All lessons"}
-                setCategoryActive={"All categories"}
+                setCategoryActive={`${renderProps.category}`}
                 classNameWrapper={"mystudiohead__wrapper"}
                 classNameHead={"mystudiohead__head"}
                 classNameTitle={"mystudiohead__title"}
