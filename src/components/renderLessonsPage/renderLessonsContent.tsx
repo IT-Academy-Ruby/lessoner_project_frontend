@@ -4,6 +4,7 @@ import "./renderLessonsHead.scss";
 import React, { useEffect, useState } from "react";
 import { GetDataWithCategoryNames } from "../body/content/lessons/LessonsHelper";
 import LessonCard from "../LessonCard";
+import { NoLessonsPage } from "./noLessonsPage";
 import { SKELETON_LESSONS_AMOUT } from "../../constants";
 import SkeletonLessons from "../SkeletonLessons";
 import placeHolder from "../../assets/category-placeholder.png";
@@ -51,6 +52,7 @@ interface RenderLessonContentProps {
   classNameInner: string;
   categoriesUrl: string;
   lessonsUrl: string;
+  category?: string;
 }
 
 export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderProps) => {
@@ -58,6 +60,9 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
   const [data, setData] = useState<Lesson[]>([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const lessonsByCategory = data.filter(
+    (categoryName) => categoryName.categoryName === renderProps.category
+  );
 
   useEffect(() => {
     if (!categoriesIsLoaded) {
@@ -123,26 +128,33 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
   if (!categoriesIsLoaded || !dataIsLoaded)
     return <div className="lessons">{skeleton}</div>;
 
+    
+  const getRenderParameter = () => renderProps.category ? lessonsByCategory : data;
+
   return (
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
-        {data.map((obj) => (
-          <LessonCard
-            key={obj.id}
-            title={obj.title}
-            status={obj.status}
-            duration={obj.duration}
-            imagePreview={obj.image_link ? obj.image_link : placeHolder}
-            id={obj.id}
-            published={obj.created_at}
-            view={obj.view}
-            category={obj.categoryName}
-            rating={obj.rating}
-            totalVotes={obj.votes_count}
-            isEditable={renderProps.isEditable}
-            hasStatus={renderProps.hasStatus}
-          />
-        ))}
+        {(renderProps.category && lessonsByCategory.length === 0) 
+          ? 
+          <NoLessonsPage isOnLessonsPage={false}/> 
+          :
+          getRenderParameter().map((obj) => (
+            <LessonCard
+              key={obj.id}
+              title={obj.title}
+              status={obj.status}
+              duration={obj.duration}
+              imagePreview={obj.image_link ? obj.image_link : placeHolder}
+              id={obj.id}
+              published={obj.created_at}
+              view={obj.view}
+              category={obj.categoryName}
+              rating={obj.rating}
+              totalVotes={obj.votes_count}
+              isEditable={renderProps.isEditable}
+              hasStatus={renderProps.hasStatus}
+            />
+          ))}
       </div>
     </div>
   );
