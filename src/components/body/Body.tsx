@@ -5,6 +5,7 @@ import {
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Main from "./content/Main";
+import Menu from "./menu/Menu";
 import NavbarStudyStudio from "./navigation/NavbarStudyStudio";
 import { RootState } from "../../store/index";
 import {buildMainSidebarConfig} from "./navigation/mainSidebarHelper";
@@ -33,6 +34,7 @@ const Body = (props: BodyProps) => {
   const [isDark, setIsDark] = useState(darkMode.value);
   const [isAuthorized, setIsAthorized] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false);
   const dispatch = useAppDispatch();
   
   const handleSignOut = () => {
@@ -76,8 +78,14 @@ const Body = (props: BodyProps) => {
 
   return (
     <div className="body-page">
-      <Header onLanguageSwitch={onLanguageSwitch} onSignOut={handleSignOut} />
-      <NavbarStudyStudio config={mainSidebarConfig} />
+      <Menu setIsMenuActive={setIsMenuActive}
+        isMenuActive={isMenuActive}
+      />
+      <Header
+        onLanguageSwitch={onLanguageSwitch}
+        onSignOut={handleSignOut}
+      />
+      <NavbarStudyStudio config={mainSidebarConfig} isMenuActive={isMenuActive}/>
       <Main />
       <Footer />
     </div>
