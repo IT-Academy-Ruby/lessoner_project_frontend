@@ -37,12 +37,10 @@ export const buildVideoSrc = (
       },
     ],
     // Preview example
-    previewThumbnails: {
-      enabled: true,
+    previewThumbnails: {enabled: true,
       src: [
         "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
         "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
-      ],
-    },
+      ],},
   };
 };
