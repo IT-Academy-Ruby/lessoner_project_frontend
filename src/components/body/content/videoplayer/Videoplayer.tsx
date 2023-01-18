@@ -12,12 +12,14 @@ const optionsVideoplayer = {
     options: [1080, 720, 576, 480, 360, 240],
     forced: true,
   },
-  markers: {enabled: true,
+  markers: {
+    enabled: true,
     points: [
       { time: 15, label: "Test" },
       { time: 23, label: "Test" },
       { time: 31, label: "<strong>Test</strong> marker" },
-    ],},
+    ],
+  },
   controls: [
     "play-large", // The large play button in the center
     "restart", // Restart playback
@@ -43,25 +45,34 @@ const optionsVideoplayer = {
 };
 interface VideoPlayerProps {
   src: string;
+  onAddViewer: () => void;
+  isViewed: boolean;
+  previewImg?: string;
 }
-
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({
+  src,
+  onAddViewer,
+  isViewed,
+  previewImg,
+}) => {
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<Plyr.SourceInfo | null>(null);
+
   useEffect(() => {
     setDataIsLoaded(false);
   }, [src]);
+
   useEffect(() => {
     if (!dataIsLoaded) {
-      setVideoSrc(buildVideoSrc(src));
+      setVideoSrc(buildVideoSrc(src, previewImg));
       setDataIsLoaded(true);
     }
-  }, [dataIsLoaded, src]);
+  }, [dataIsLoaded, src, previewImg]);
 
   return (
     <>
       {videoSrc && dataIsLoaded ? (
-        <div className="player">
+        <div className="player" onClick={!isViewed ? onAddViewer : undefined}>
           <Plyr options={optionsVideoplayer} source={videoSrc} />
         </div>
       ) : (

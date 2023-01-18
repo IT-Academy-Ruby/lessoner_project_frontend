@@ -9,7 +9,7 @@ import placeHolder from "../../../../../src/assets/category-placeholder.png";
 import requestApi from "../../../../services/request";
 
 export const categoriesUrl = `${process.env.REACT_APP_BACKEND_URL}/categories`;
-export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`; 
+export const lessonsUrl = `${process.env.REACT_APP_BACKEND_URL}/lessons`;
 export interface Lesson {
   id: number;
   title: string;
@@ -27,6 +27,7 @@ export interface Lesson {
   categoryName?: string;
   author_avatar_url?: string;
   author_name?: string;
+  views_count?: number;
 }
 export interface Category {
   id: number;
@@ -93,17 +94,14 @@ const Lessons: React.FC = () => {
       };
       fetchData();
     }
-  }, [data, categories, categoriesIsLoaded, dataIsLoaded,]);
+  }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
 
-  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) =>
-    <SkeletonLessons key={index}/>);
+  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) => (
+    <SkeletonLessons key={index} />
+  ));
 
   if (!categoriesIsLoaded || !dataIsLoaded)
-    return (
-      <div className="lessons">
-        {skeleton}
-      </div>
-    );
+    return <div className="lessons">{skeleton}</div>;
 
   return (
     <div className="wrapper__lessons">

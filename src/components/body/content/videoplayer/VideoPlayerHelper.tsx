@@ -1,12 +1,15 @@
 import { Lesson } from "../../content/lessons/Lessons";
-
+import placeHolder from "../../../../assets/category-placeholder.png";
 export const getSrcFromId = (lessonsArr: Lesson[], id: number | undefined) => {
   const foundElem = lessonsArr.find((elem) => elem.id === id);
   if (foundElem) return foundElem.video_link;
   return lessonsArr[1].video_link;
 };
 
-export const buildVideoSrc = (src: string): Plyr.SourceInfo | null => {
+export const buildVideoSrc = (
+  src: string,
+  previewImg?: string
+): Plyr.SourceInfo | null => {
   return {
     type: "video" as const,
     title: "Elephants",
@@ -17,9 +20,7 @@ export const buildVideoSrc = (src: string): Plyr.SourceInfo | null => {
         size: 1080,
       },
     ],
-    poster:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/" +
-      "Elephants_Dream_cover.jpg/1200px-Elephants_Dream_cover.jpg?20060831021346",
+    poster: previewImg ?? placeHolder,
     tracks: [
       {
         kind: "captions" as const,
@@ -36,10 +37,12 @@ export const buildVideoSrc = (src: string): Plyr.SourceInfo | null => {
       },
     ],
     // Preview example
-    previewThumbnails: {enabled: true,
+    previewThumbnails: {
+      enabled: true,
       src: [
         "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
         "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
-      ],},
+      ],
+    },
   };
 };
