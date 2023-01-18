@@ -1,5 +1,10 @@
 @import "./src/constants.module.scss";
 
+.mystudiocontent__wrapper {
+  display: flex;
+  width: 100%;
+}
+
 .mystudiocontent__lessons {
   display: flex;
   flex-wrap: wrap;
