@@ -293,7 +293,7 @@ export const messages_en = {
   "app.lessons.statusArchived":"Archived",
   "app.lessons.statusNew":"New",
   "app.lessons.statusPopular":"Popular",
-  "app.lessons.categoryAllLessons":"All lessons",
+  "app.lessons.categoryAllCategories":"All categories",
   "app.lessons.categoryDesign":"Design",
   "app.lessons.categoryIT":"IT",
   "app.lessons.categoryMusic":"Music",

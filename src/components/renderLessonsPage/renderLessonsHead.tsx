@@ -78,7 +78,7 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   });
   const elementsCategory = CATEGORIES.map((category: string) => {
     return (
-      <option key={category} id={category}>
+      <option key={category} id={category} >
         {category}
       </option>
     );

@@ -26,4 +26,5 @@ export type Config = {
 
 export interface NavbarStudyStudioProps {
     config: Config;
+    isMenuActive: boolean;
 }

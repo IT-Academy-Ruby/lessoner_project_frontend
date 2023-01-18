@@ -17,7 +17,6 @@ import img from "../Photo.png"; // В качестве примера
 import requestApi from "../services/request";
 import { useParams } from "react-router-dom";
 
-
 interface CategoriesResponce {
   records: Category[];
   pagy_metadata: {
@@ -43,10 +42,11 @@ const VideoViewPage = ({ user }: BodyProps) => {
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
-  const [rating, setRating]= useState<undefined|number>();
-  const [isAuthorized, setIsAuthorized]= useState(false);
-  const [isRatingFrozen, setIsRatingFrozen]= useState(false);
+  const [rating, setRating] = useState<undefined | number>();
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isRatingFrozen, setIsRatingFrozen] = useState(false);
   const [userRating, setUserRating] = useState(0);
+  const [isViewed, setIsViewed] = useState(false);
 
   useEffect(() => {
     // Get lessonData from lessonId
@@ -267,18 +267,18 @@ const VideoViewPage = ({ user }: BodyProps) => {
 
   useEffect(() => {
     setIsAuthorized(!!user?.id);
-
-  },[user]);
+  }, [user]);
 
   const changeIdState = (id: number) => {
     setId(String(id));
   };
-  const getNewRating=(rating: number) => {
+  const getNewRating = (rating: number) => {
     setIsRatingFrozen(true);
     setUserRating(rating);
 
     const fetchSuccess = (data: Lesson) => {
       setRating(data.rating);
+      setLessonData(data);
       setIsRatingFrozen(false);
     };
     const fetchError = (errMessage: string) => {
@@ -286,12 +286,33 @@ const VideoViewPage = ({ user }: BodyProps) => {
     };
 
     const fetchData = async () => {
-      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {rating});
+      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {rating,});
       if (!response.ok) {
         fetchError("fetch error " + response.status);
       } else {
         const data = await response.json();
         fetchSuccess(data);
+      }
+    };
+    fetchData();
+  };
+
+  const addViewer = () => {
+    setIsViewed(true);
+    const fetchError = (errMessage: string) => {
+      alert(errMessage);
+    };
+    const fetchData = async () => {
+      // eslint-disable-next-line max-len
+      const response = await requestApi(
+        `${process.env.REACT_APP_BACKEND_URL}/add_lesson_view`,
+        "POST",
+        { lesson_id: id }
+      );
+      if (!response.ok) {
+        fetchError("fetch error " + response.status);
+      } else {
+        return;
       }
     };
     fetchData();
@@ -330,7 +351,12 @@ const VideoViewPage = ({ user }: BodyProps) => {
   return (
     <div className="video__page_wrapper">
       <div className="videoplayer__wrapper">
-        <VideoPlayer src={lessonData.video_link} />
+        <VideoPlayer
+          src={lessonData.video_link}
+          onAddViewer={addViewer}
+          isViewed={isViewed}
+          previewImg={lessonData.image_link}
+        />
         <div className="videoplayer__wrapper__info">
           <div className="videoplayer__wrapper__info_top">
             <div className="info__top_left">
@@ -356,10 +382,15 @@ const VideoViewPage = ({ user }: BodyProps) => {
               type="category"
               text={categoryName}
             />
-            <Published
-              published={lessonData.created_at}
-              className="videoplayer__wrapper__published"
-            />
+            <div className="published__views_wrapper">
+              <Published
+                published={lessonData.created_at}
+                className="videoplayer__wrapper__published"
+              />
+              <div className="videoplayer__wrapper__views">
+                <span>{`${lessonData.views_count} views`}</span>
+              </div>
+            </div>
             <div className="videoplayer__wrapper__description">
               <span>{lessonData.description}</span>
             </div>

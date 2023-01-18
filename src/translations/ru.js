@@ -295,7 +295,7 @@ export const messages_ru = {
   "app.lessons.statusArchived":"В архиве",
   "app.lessons.statusNew":"Новый",
   "app.lessons.statusPopular":"Популярный",
-  "app.lessons.categoryAllLessons":"Все уроки",
+  "app.lessons.categoryAllCategories":"Все категории",
   "app.lessons.categoryDesign":"Дизайн",
   "app.lessons.categoryIT":"IT",
   "app.lessons.categoryMusic":"Музыка",
