@@ -43,25 +43,34 @@ const optionsVideoplayer = {
 };
 interface VideoPlayerProps {
   src: string;
+  onAddViewer: () => void;
+  isViewed: boolean;
+  previewImg?: string;
 }
-
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({ src }) => {
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({
+  src,
+  onAddViewer,
+  isViewed,
+  previewImg,
+}) => {
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<Plyr.SourceInfo | null>(null);
+
   useEffect(() => {
     setDataIsLoaded(false);
   }, [src]);
+
   useEffect(() => {
     if (!dataIsLoaded) {
-      setVideoSrc(buildVideoSrc(src));
+      setVideoSrc(buildVideoSrc(src, previewImg));
       setDataIsLoaded(true);
     }
-  }, [dataIsLoaded, src]);
+  }, [dataIsLoaded, src, previewImg]);
 
   return (
     <>
       {videoSrc && dataIsLoaded ? (
-        <div className="player">
+        <div className="player" onClick={!isViewed ? onAddViewer : undefined}>
           <Plyr options={optionsVideoplayer} source={videoSrc} />
         </div>
       ) : (
