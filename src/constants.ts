@@ -1,3 +1,6 @@
+console.log('process.env', process.env);
+console.log('process.env.REACT_APP_BACKEND_URL', process.env.REACT_APP_BACKEND_URL);
+
 const BACKEND_URL_LESSONS = process.env.REACT_APP_BACKEND_URL + "/lessons/";
 const CODE = {maxLength: 5};
 const DEFAULT_COUNTRY_CODE = "";
