@@ -1,17 +1,57 @@
 @import "../../../constants.module.scss";
 
 $transition: .2s;
+.main-menu {
+  grid-column-start: 1;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  z-index: 91;
+  width: 76px;
+  height: 64px;
+  background: var(--bgThemeNavBarColor);
+}
 
 .menu__content {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 76px;
-    height: 100%;
-    box-shadow: var(--bgNavBarShadow);
-    background: var(--bgThemeNavBarColor);
-    transition: .1s;
-    z-index: 90;
+  grid-column-start: 1;
+  grid-row-start: 2;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 76px;
+  height: 100%;
+  box-shadow: var(--bgNavBarShadow);
+  background: var(--bgThemeNavBarColor);
+  transition: .1s;
+  z-index: 90;
+}
+
+.wrapper-menu {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  top: 54px;
+  padding-top: 10px;
+  padding-left: 15px;
+
+  &:hover {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  &::-webkit-scrollbar {
+    position: relative;
+    background-color: var(--themeNavBarBgHover);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--KebabCardThemeColor);
+  }
+}
+
+.wrapper-menu-active {
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .menu__content:hover, .menu__content--active {
@@ -22,7 +62,6 @@ $transition: .2s;
 .menu__inner {
   position: absolute;
   top: 0;
-  left: 15px;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -77,24 +116,23 @@ $transition: .2s;
 }
 
 .menu__footer {
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 20px;
   width: 100%;
 }
 
 .menu__footer-contacts {
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 0;
-  opacity: 0;
+  display: none;
   transition: $transition;
 }
 
 .menu__footer-contacts--active, .menu__content:hover .menu__footer-contacts {
   width: 232px;
-  opacity: 1;
+  display: flex;
   border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
 }
 
@@ -194,7 +232,7 @@ $transition: .2s;
   text-decoration: underline;
 }
 
-.image__wrapper, .image__wrapper-theme, .image__wrapper-footer, .menu__content:hover .image__wrapper-footer  {
+.image__wrapper, .image__wrapper-theme, .image__wrapper-footer, .menu__content:hover .image__wrapper-footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,8 +242,9 @@ $transition: .2s;
   border-radius: 50%;
   opacity: 1;
   cursor: pointer;
-  transition: 0.2s; 
+  transition: 0.2s;
 }
+
 span {
   margin-bottom: 0;
 }
@@ -231,6 +270,7 @@ span {
   background: var(--themeNavBarBgHover);
   transition: $transition;
 }
+
 .image__wrapper-theme--active:hover {
   border: 1px solid var(--themeNavBarColorHover);
   transition: $transition;
@@ -244,7 +284,7 @@ span {
   border: 1px solid var(--themeNavBarColorHover);
 }
 
-.menu__content:hover .image__wrapper, .menu__content:hover .image__wrapper-theme{
+.menu__content:hover .image__wrapper, .menu__content:hover .image__wrapper-theme {
   background: none;
 }
 

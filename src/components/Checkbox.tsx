@@ -17,7 +17,7 @@ const Checkbox = ({
   field, error, information, link
 }: CheckboxProps): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
-  const [isTerms, setIsTerms] = useState(false);
+  const [isOpenTerms, setIsOpenTerms] = useState(false);
   return (
     <span className="checkbox">
       <input
@@ -34,10 +34,10 @@ const Checkbox = ({
         className="label-checkbox"
       >
         {information}
-        {link ? <span onClick={() => setIsTerms(true)} className="link">{link}</span> : null}
+        {link ? <span onClick={() => setIsOpenTerms(true)} className="link">{link}</span> : null}
         {error && <span className="error-message">{error}</span>}
       </label>
-      {isTerms && <Terms setIsTerms={setIsTerms}/>}
+      {isOpenTerms && <Terms setIsOpenTerms={setIsOpenTerms} isPolitic={false}/>}
     </span>
   );
 };
