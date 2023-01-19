@@ -248,9 +248,9 @@
   font-family: $font;
   font-weight: 600;
   font-size: 16px;
-  color: var(--bgButtonColor);
+  color: $white;
   padding: 6px 36px;
-  background: var(--iconsTextButtonColor);
+  background: $blueLightColor;
 
   &:disabled {
     background: $white;

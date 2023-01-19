@@ -1,7 +1,8 @@
 import "./index.scss";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { SKELETON_AMOUT } from "../../../../constants";
+import {useEffect, useState} from "react";
+import {FormattedMessage} from "react-intl";
+import {Link} from "react-router-dom";
+import {SKELETON_AMOUT} from "../../../../constants";
 import SkeletonCategory from "../../../SkeletonCategory";
 import UserCategory from "../../../UserCategory";
 import axios from "axios";
@@ -33,7 +34,7 @@ const CategoriesUser = () => {
 
   let categorySet;
 
-  if (categories.length>0) {
+  if (categories.length > 0) {
     categorySet = categories.map((obj) => (
       <Link to={`/categories/${obj.id}`} key={obj.id}>
         <UserCategory
@@ -44,7 +45,7 @@ const CategoriesUser = () => {
           description={obj.description}
         />
       </Link>
-      
+
     ));
   }
 
@@ -52,9 +53,18 @@ const CategoriesUser = () => {
     <SkeletonCategory key={index}/>);
 
   return (
-    <div className="wrapper__categories">
-      <div className="categories__block">
-        {isLoading ? skeleton : categorySet}
+    <div className="categories">
+      <div className="category-header">
+        <h1 className="category-title">
+          <FormattedMessage id="app.categories"/>
+        </h1>
+      </div>
+      <div className="tab">
+        <div className="wrapper__categories">
+          <div className="categories__block">
+            {isLoading ? skeleton : categorySet}
+          </div>
+        </div>
       </div>
     </div>
   );

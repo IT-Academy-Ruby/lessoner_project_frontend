@@ -5,17 +5,17 @@ import {
   categoriesUrl,
   lessonsUrl,
 } from "../components/body/content/lessons/Lessons";
-import { useEffect, useState } from "react";
-import { Published } from "../components/LessonCard";
+import {useEffect, useState} from "react";
+import {Published} from "../components/LessonCard";
 import RatingCounter from "../components/ratingCounter/ratingCounter";
-import { RootState } from "../store";
+import {RootState} from "../store";
 import Tag from "../components/body/Tags/Tag";
-import { VideoPlayer } from "../../src/components/body/content/videoplayer/Videoplayer";
-import { VideoSideBar } from "../../src/components/body/content/VideoSideBar/VideoSideBar";
-import { connect } from "react-redux";
+import {VideoPlayer} from "../../src/components/body/content/videoplayer/Videoplayer";
+import {VideoSideBar} from "../../src/components/body/content/VideoSideBar/VideoSideBar";
+import {connect} from "react-redux";
 import img from "../Photo.png"; // В качестве примера
 import requestApi from "../services/request";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 interface CategoriesResponce {
   records: Category[];
@@ -33,7 +33,7 @@ type BodyProps = {
   };
 };
 
-const VideoViewPage = ({ user }: BodyProps) => {
+const VideoViewPage = ({user}: BodyProps) => {
   const [id, setId] = useState<string | undefined>(useParams().id);
   const [lessonData, setLessonData] = useState<Lesson>();
   const [lessonCategoryId, setLessonCategoryId] = useState<number>();
@@ -307,7 +307,7 @@ const VideoViewPage = ({ user }: BodyProps) => {
       const response = await requestApi(
         `${process.env.REACT_APP_BACKEND_URL}/add_lesson_view`,
         "POST",
-        { lesson_id: id }
+        {lesson_id: id}
       );
       if (!response.ok) {
         fetchError("fetch error " + response.status);
@@ -398,14 +398,14 @@ const VideoViewPage = ({ user }: BodyProps) => {
         </div>
       </div>
       <div className="video__side_bar">
-        <VideoSideBar tabs={sideBarTabs} changeIdState={changeIdState} />
+        <VideoSideBar tabs={sideBarTabs} changeIdState={changeIdState}/>
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state: RootState) => {
-  return { user: state?.login?.user };
+  return {user: state?.login?.user};
 };
 
 export default connect(mapStateToProps)(VideoViewPage);

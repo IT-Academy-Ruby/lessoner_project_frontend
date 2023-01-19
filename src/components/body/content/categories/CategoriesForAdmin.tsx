@@ -1,27 +1,20 @@
 import "./categories.scss";
-import { FormattedMessage, useIntl } from "react-intl";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
-import { useEffect, useState } from "react";
+import {FormattedMessage, useIntl} from "react-intl";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../Button";
 import CategoriesAdmin from "./CategoriesAdmin";
-import CategoriesUser from "./CategoriesUser";
-import { getCategory } from "../../../../store/categorySlice/categorySlice";
+import {getCategory} from "../../../../store/categorySlice/categorySlice";
 import getWindowDimensions from "../../../../helpers/getWindowDimensions";
 import styles from "../../../../constants.module.scss";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-const Categories = () => {
+const CategoriesForAdmin = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [pageSize, setPageSize] = useState(getWindowDimensions());
   const admin = useAppSelector(state => state.userDecodedName.session.admin);
-
-  useEffect(() => {
-    if (admin) {
-      dispatch(getCategory());
-    }
-  }, [admin, dispatch]);
 
   useEffect(() => {
     if (admin) {
@@ -48,11 +41,11 @@ const Categories = () => {
       return (
         <div className="row-category categories-header">
           {[
-            intl.formatMessage({ id: "app.categories.categoryID" }),
-            intl.formatMessage({ id: "app.categories.image" }),
-            intl.formatMessage({ id: "app.categories.description" }),
-            intl.formatMessage({ id: "app.categories.amountDate" }),
-            intl.formatMessage({ id: "app.categories.actions" }),
+            intl.formatMessage({id: "app.categories.categoryID"}),
+            intl.formatMessage({id: "app.categories.image"}),
+            intl.formatMessage({id: "app.categories.description"}),
+            intl.formatMessage({id: "app.categories.amountDate"}),
+            intl.formatMessage({id: "app.categories.actions"}),
           ].map(column => <div key={column} className="column-name">{column}</div>)}
         </div>
       );
@@ -61,12 +54,12 @@ const Categories = () => {
         <div className="row-category categories-header">
           {[
             "ID",
-            intl.formatMessage({ id: "app.categories.image" }),
-            intl.formatMessage({ id: "app.categories.category" }),
-            intl.formatMessage({ id: "app.categories.description" }),
-            intl.formatMessage({ id: "app.categories.date" }),
-            intl.formatMessage({ id: "app.categories.amount" }),
-            intl.formatMessage({ id: "app.categories.actions" }),
+            intl.formatMessage({id: "app.categories.image"}),
+            intl.formatMessage({id: "app.categories.category"}),
+            intl.formatMessage({id: "app.categories.description"}),
+            intl.formatMessage({id: "app.categories.date"}),
+            intl.formatMessage({id: "app.categories.amount"}),
+            intl.formatMessage({id: "app.categories.actions"}),
           ].map(column => <div key={column} className="column-name">{column}</div>)}
         </div>
       );
@@ -83,35 +76,23 @@ const Categories = () => {
         admin && <div className="categories">
           <div className="category-header">
             <h1 className="category-title">
-              <FormattedMessage id="app.categories" />
+              <FormattedMessage id="app.categories"/>
             </h1>
             <Button
               className="button-register"
               buttonText={intl.formatMessage((pageSize.width > parseInt(styles.maxWidthPhone)) ?
-                { id: "app.button.categories.Add" } : { id: "app.button.categories.New" })}
+                {id: "app.button.categories.Add"} : {id: "app.button.categories.New"})}
               buttonType="button"
               onClick={addCategory}
             />
           </div>
           <div className="tab">
             {columnsHeaders()}
-            <CategoriesAdmin />
+            <CategoriesAdmin/>
           </div>
         </div>
       }
-      {
-        !admin && <div className="categories">
-          <div className="category-header">
-            <h1 className="category-title">
-              <FormattedMessage id="app.categories" />
-            </h1>
-          </div>
-          <div className="tab">
-            <CategoriesUser />
-          </div>
-        </div>
-      }
-    </div >
+    </div>
   );
 };
-export default Categories;
+export default CategoriesForAdmin;
