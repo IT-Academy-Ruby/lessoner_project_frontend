@@ -21,6 +21,17 @@ function getLanguageByCode(code: string | undefined) {
   return LANGUAGES.find(lang => lang.code === code?.toLowerCase());
 }
 
-const TranslationHelpers = {getLanguageMessages, getCurrentLanguageCode};
+function hasTranslationKey(key: string): boolean {
+  const defaultLanguage = getDefaultLanguage();
+  const defaultMessages = defaultLanguage.messages as {[key: string]: string};
+
+  return !!defaultMessages[key];
+}
+
+const TranslationHelpers = {
+  getLanguageMessages,
+  getCurrentLanguageCode,
+  hasTranslationKey,
+};
 
 export default TranslationHelpers;
