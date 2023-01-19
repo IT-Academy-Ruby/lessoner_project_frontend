@@ -1,6 +1,8 @@
 import "./UserCategory.scss";
 import React from "react";
+import TranslationHelpers from "../translations/translationHelpers";
 import classNames from "classnames";
+import {useIntl} from "react-intl";
 
 type CategoryImageProps = {
   imagePreview: string;
@@ -32,8 +34,16 @@ type CategoryNameProps = {
 };
 
 const CategoryName: React.FC<CategoryNameProps> = (props) => {
+  const intl = useIntl();
+  const { className, name } = props;
+  const nameKey = `app.nameCategory.${name}`;
+  const nameHasTranslation = TranslationHelpers.hasTranslationKey(nameKey);
+  const nameTranslated = nameHasTranslation ? intl.formatMessage({id: nameKey}) : name;
+
   return (
-    <div className={props.className}>{props.name}</div>
+    <div className={className}>
+      {nameTranslated}
+    </div>
   );
 };
 
