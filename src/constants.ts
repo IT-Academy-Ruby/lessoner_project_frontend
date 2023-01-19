@@ -1,6 +1,6 @@
 const BACKEND_URL_LESSONS = process.env.REACT_APP_BACKEND_URL + "/lessons/";
 const CODE = {maxLength: 5};
-const DEFAULT_COUNTRY_CODE = "";
+const DEFAULT_COUNTRY_CODE = "375";
 const EMAIL = {minLength: 3, maxLength: 256};
 const PASSWORD = {
   minLength: 6, maxLength: 256, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"

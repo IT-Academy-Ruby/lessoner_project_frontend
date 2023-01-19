@@ -1,7 +1,7 @@
 import {
-  Config, Item, Status 
+  Config, Item, Status
 } from "./types.d";
-import { filterItems, highlightActiveItem } from "./sidebarHelper";
+import {filterItems, highlightActiveItem} from "./sidebarHelper";
 
 type Callbacks = {
   snowToggle: VoidFunction;
@@ -14,7 +14,7 @@ export const buildMainSidebarConfig = (
   const bodyItems = [
     {
       id: 2,
-      valueId:"app.navbarStudyStudio.home",
+      valueId: "app.navbarStudyStudio.home",
       href: "/",
       icon: "home",
     },
@@ -34,7 +34,7 @@ export const buildMainSidebarConfig = (
     {
       id: 5,
       valueId: "app.navbarStudyStudio.management",
-      href: "/categories",
+      href: "/categories/management",
       icon: "edit_categories",
       includeIn: "admin"
     },
@@ -67,7 +67,7 @@ export const buildMainSidebarConfig = (
       valueId: "app.navbarStudyStudio.darkTheme",
       href: "#",
       icon: "dark_theme",
-      place: { darkTheme: "dark_theme" },
+      place: {darkTheme: "dark_theme"},
       includeIn: "lightTheme",
       onClick: callbacks.toggleTheme,
     },

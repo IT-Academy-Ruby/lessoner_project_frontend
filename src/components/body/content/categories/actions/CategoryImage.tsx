@@ -133,5 +133,6 @@ const CategoryImage = ({
     </div>
   );
 };
+
 CategoryImage.displayName = "CategoryImage";
 export default CategoryImage;

@@ -51,7 +51,11 @@
   align-items: flex-start;
   left: 1px;
   width: 100%;
-  
+
+  .country.highlight{
+    background: none;
+  }
+
   .dial-code{
     width: 100%;
     color: var(--textPhoneNumberCountryList) !important;

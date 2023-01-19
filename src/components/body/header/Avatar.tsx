@@ -1,7 +1,7 @@
 import "./Header.scss";
 import {FormattedMessage} from "react-intl";
+import {Link, useNavigate} from "react-router-dom";
 import Language from "./Language";
-import {Link} from "react-router-dom";
 import Logout from "../../icons/logOut.svg";
 import {useAppSelector} from "../../../store/hooks";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -20,6 +20,7 @@ const Avatar = ({
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
   const userAvatar = useAppSelector(state => state.dataUser.user.avatar_url);
+  const navigate = useNavigate();
 
   const closeMenu = (): void => setIsChecked(false);
   const ref = useOnclickOutside(() => closeMenu());
@@ -30,6 +31,7 @@ const Avatar = ({
   const signOut = () => {
     onSignOut();
     setIsChecked(false);
+    navigate("/");
   };
 
   return (
