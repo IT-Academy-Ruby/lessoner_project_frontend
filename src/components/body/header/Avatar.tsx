@@ -20,7 +20,6 @@ const Avatar = ({
   const [isChecked, setIsChecked] = useState(false);
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
   const userAvatar = useAppSelector(state => state.dataUser.user.avatar_url);
-  const navigate = useNavigate();
 
   const closeMenu = (): void => setIsChecked(false);
   const ref = useOnclickOutside(() => closeMenu());
@@ -31,7 +30,6 @@ const Avatar = ({
   const signOut = () => {
     onSignOut();
     setIsChecked(false);
-    navigate("/");
   };
 
   return (
