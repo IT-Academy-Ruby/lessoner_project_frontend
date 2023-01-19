@@ -56,6 +56,9 @@
 
 .videoplayer__wrapper__description {
   align-self: flex-start;
+  width: 100%;
+  word-wrap: break-word;
+  text-align: left;
 
   span {
     font-family: $font;
@@ -71,6 +74,7 @@
 .videoplayer__wrapper__info_bottom {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .videoplayer__wrapper__info_top {
@@ -124,8 +128,10 @@
     }
   }
 }
+
 .published__views_wrapper {
   display: flex;
+
   .videoplayer__wrapper__views {
     font-family: $font;
     font-style: normal;

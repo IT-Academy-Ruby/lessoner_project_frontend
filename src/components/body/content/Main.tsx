@@ -1,7 +1,7 @@
 import "./Main.scss";
-import { 
-  Route, 
-  Routes, 
+import {
+  Route,
+  Routes,
   useNavigate
 } from "react-router-dom";
 import {
@@ -10,24 +10,25 @@ import {
   editUserEmail,
   resetUserData,
 } from "../../../store/loginName/loginSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import About from "./about/About";
 import AddCategory from "./categories/actions/AddCategory";
 import AddLesson from "./my_studio/AddLesson";
-import Categories from "./categories/Categories";
-import { EditVideoLessonTitle } from "../../editVideoLesson/EditVideoLessonTitle";
+import CategoriesForAdmin from "./categories/CategoriesForAdmin";
+import CategoriesUser from "./categories/CategoriesUser";
+import {EditVideoLessonTitle} from "../../editVideoLesson/EditVideoLessonTitle";
 import FacebookButton from "../../../components/FacebookButton";
 import GoogleButton from "../../../components/GoogleButton";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import {GoogleOAuthProvider} from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
-import { LessonsPage } from "../../renderLessonsPage/lessonsPage";
+import {LessonsPage} from "../../renderLessonsPage/lessonsPage";
 import Pages from "../../../components/Pages";
-import { SelectCategory } from "./categories/SelectCategory";
+import {SelectCategory} from "./categories/SelectCategory";
 import Terms from "../../../pages/Terms";
 import UserPage from "./userPage/UserPage";
-import VKButton from "../../../components/VKButton"; 
-import { nameDecodedUser } from "../../../store/header/decodeJwtSlice";
-import { useEffect } from "react";
+import VKButton from "../../../components/VKButton";
+import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
+import {useEffect} from "react";
 
 const Content = () => {
   const dispatch = useAppDispatch();
@@ -76,80 +77,81 @@ const Content = () => {
   return (
     <div className="main">
       <Routes>
-        <Route path="/terms" element={<Terms isPolitic={true}/>} />
-        <Route path="/myStudio/add_new_lesson" element={<AddLesson add={true}/>} />
-        <Route path="/myStudio/update_lesson/:id" element={<AddLesson add={false}/>} />
-        <Route path="/" element={<Lessoner />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/:id" element={<SelectCategory />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/myStudio" element={<LessonsPage isHomePage={false} />} />
-        <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle />} />
+        <Route path="/terms" element={<Terms isPolitic={true}/>}/>
+        <Route path="/myStudio/add_new_lesson" element={<AddLesson add={true}/>}/>
+        <Route path="/myStudio/update_lesson/:id" element={<AddLesson add={false}/>}/>
+        <Route path="/" element={<Lessoner/>}/>
+        <Route path="/categories/management" element={<CategoriesForAdmin/>}/>
+        <Route path="/categories" element={<CategoriesUser/>}/>
+        <Route path="/categories/:id" element={<SelectCategory/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/myStudio" element={<LessonsPage isHomePage={false}/>}/>
+        <Route path="/myStudio/lesson/:id" element={<EditVideoLessonTitle/>}/>
         <Route
           path="/categories/addCategory"
-          element={<AddCategory add={true} />}
+          element={<AddCategory add={true}/>}
         />
         <Route
           path="/categories/updateCategory/:id"
-          element={<AddCategory add={false} />}
+          element={<AddCategory add={false}/>}
         />
         {decodeUserName && (
           <Route
             path={decodeUserName ? "/user/userPage" : "/"}
-            element={<UserPage />}
+            element={<UserPage/>}
           />
         )}
         <Route
           path="/user/sign_up"
-          element={<Pages pageType={"FirstRegistrationForm"} />}
+          element={<Pages pageType={"FirstRegistrationForm"}/>}
         />
         <Route
           path="/user/reg_in/information"
-          element={<Pages pageType={"YourselfPage"} registration={false} />}
+          element={<Pages pageType={"YourselfPage"} registration={false}/>}
         />
         <Route
           path="/user/reg_in/information/modR"
-          element={<Pages pageType={"ConfirmReg"} registration={true} />}
+          element={<Pages pageType={"ConfirmReg"} registration={true}/>}
         />
         <Route
           path="/user/sign_in/phone_numberR"
-          element={<Pages pageType={"PhoneNumberPage"} registration={true} />}
+          element={<Pages pageType={"PhoneNumberPage"} registration={true}/>}
         />
         <Route
           path="/user/sign_in/phone_numberR/code"
-          element={<Pages pageType={"Code"} registration={true} />}
+          element={<Pages pageType={"Code"} registration={true}/>}
         />
-        <Route path="/user/sign_in" element={<Pages pageType={"Login"} />} />
+        <Route path="/user/sign_in" element={<Pages pageType={"Login"}/>}/>
         <Route
           path="/user/sign_in/phone_numberA"
-          element={<Pages pageType={"PhoneNumberPage"} registration={false} />}
+          element={<Pages pageType={"PhoneNumberPage"} registration={false}/>}
         />
         <Route
           path="/user/sign_in/reset_password/reset"
-          element={<Pages pageType={"ConfirmReg"} registration={false} />}
+          element={<Pages pageType={"ConfirmReg"} registration={false}/>}
         />
         <Route
           path="/user/sign_in/phone_numberA/code"
-          element={<Pages pageType={"Code"} registration={false} />}
+          element={<Pages pageType={"Code"} registration={false}/>}
         />
         <Route
           path="/user/sign_in/reset_password"
-          element={<Pages pageType={"ResetPage"} />}
+          element={<Pages pageType={"ResetPage"}/>}
         />
         <Route
           path="/user/sign_in/reset_password/new_password"
-          element={<Pages pageType={"SetNewPassword"} />}
+          element={<Pages pageType={"SetNewPassword"}/>}
         />
         <Route
           path="/user/google"
           element={
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_ID}>
-              <GoogleButton />
+              <GoogleButton/>
             </GoogleOAuthProvider>
           }
         />
-        <Route path="/user/facebook" element={<FacebookButton />} />
-        <Route path="/user/vk" element={<VKButton />} />
+        <Route path="/user/facebook" element={<FacebookButton/>}/>
+        <Route path="/user/vk" element={<VKButton/>}/>
       </Routes>
     </div>
   );
