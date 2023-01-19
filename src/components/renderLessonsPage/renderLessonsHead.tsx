@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 interface RenderLessonHeadProps {
   statuses: string[];
-  categories: string[];
+  categories: string[][];
   isHead: boolean;
   isTitle: boolean;
   isButton: boolean;
@@ -21,7 +21,6 @@ interface RenderLessonHeadProps {
   buttonImageStyle: string;
   buttonNavigatePath: string;
   setStatusActive: string;
-  setCategoryActive: string;
   classNameWrapper: string;
   classNameHead: string;
   classNameTitle: string;
@@ -34,14 +33,17 @@ interface RenderLessonHeadProps {
   classNameLessonItemActive: string;
   classNameLessonItemUnderline: string;
   title?: string;
+  onCategoryChange: (arg: string) => void;
+  category: string;
+  setCategoryActive: string;
 }
 
 export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const onCategoryChange = renderProps.onCategoryChange;
   const [statusActive, setStatusActive] = useState(renderProps.setStatusActive);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [categoryActive, setCategoryActive] = useState(renderProps.setCategoryActive);
 
   const handleStatusToggle = (status: string) => {
     setStatusActive(status);
@@ -49,14 +51,15 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
 
   const handleCategoryToggle = (event: React.ChangeEvent) => {
     const category = event.target as HTMLInputElement;
-    setCategoryActive(category.value);
+    onCategoryChange(category.value);
   };
 
   const STATUSES = renderProps.statuses.map((status) =>
     intl.formatMessage({ id: status })
   );
-  const CATEGORIES = renderProps.categories.map((category) =>
-    intl.formatMessage({ id: category })
+
+  const CATEGORIES_VALUE = renderProps.categories[1].map(
+    (category) => category
   );
 
   const elementsStatus = STATUSES.map((status: string) => {
@@ -65,7 +68,8 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
         <span
           onClick={() => handleStatusToggle(status)}
           className={classNames(
-            status === statusActive && `${renderProps.classNameLessonItemActive}`
+            status === statusActive &&
+              `${renderProps.classNameLessonItemActive}`
           )}
         >
           {status}
@@ -76,9 +80,9 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
       </div>
     );
   });
-  const elementsCategory = CATEGORIES.map((category: string) => {
+  const elementsCategory = CATEGORIES_VALUE.map((category: string) => {
     return (
-      <option key={category} id={category} >
+      <option key={category} id={category} value={category}>
         {category}
       </option>
     );
@@ -114,6 +118,11 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
           </div>
           <div className={renderProps.classNameCategories}>
             <select
+              value={
+                renderProps.setCategoryActive === ""
+                  ? renderProps.category
+                  : renderProps.setCategoryActive
+              }
               name=""
               className={renderProps.classNameCategoriesSelect}
               onChange={(event) => handleCategoryToggle(event)}

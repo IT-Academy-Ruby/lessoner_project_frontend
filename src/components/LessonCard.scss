@@ -20,21 +20,22 @@
   background:  var(--bgCardThemeColor);
 }
 
-.card__icon {
+.card__icon, .card__icon-link {
   position: relative;
   background-repeat: repeat;
-  width: 288px;
-  height: 143px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 288px;
+  height: 143px;
   border-radius: 8px 8px 0px 0px;
+}
 
-  img {
-    width: 288px;
-    height: 142px;
-    border-radius: 8px 8px 0px 0px;
-  }
+.card__icon-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0px 0px;
+  object-fit: cover;
 }
 
 .video__status {

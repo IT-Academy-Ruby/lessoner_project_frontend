@@ -1,21 +1,26 @@
+import "./renderLessonsPage.scss";
+import { THEME, useTheme } from "../../utils/useTheme";
 import Add from "../icons/add.svg";
 import Button from "../Button";
 import { FC } from "react";
-import NoLessons from "../body/content/my_studio/img/noLessons.svg";
+import NoLessonsdark from "../body/content/my_studio/img/noLessons-dark.svg";
+import NoLessonslight from "../body/content/my_studio/img/noLessons-light.svg";
 import { useIntl } from "react-intl";
 import { useNavigate } from "react-router-dom";
 
-interface noLessonsPageProps  {
+interface noLessonsPageProps {
   isOnLessonsPage: boolean;
 }
 
 export const NoLessonsPage: FC<noLessonsPageProps> = (props) => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const image = theme === THEME.DARK ? NoLessonsdark : NoLessonslight;
   return (
     <div className="mystudio__nolessons">
       <div className="mystudio__nolessons-picture">
-        <img src={NoLessons} alt="no Lessons" />
+        <img src={image} alt="no Lessons" />
       </div>
       <p className="mystudio__nolessons-text">
         <span>{intl.formatMessage({ id: "app.lessons.NoLessonTexp_1" })}</span>
@@ -25,7 +30,7 @@ export const NoLessonsPage: FC<noLessonsPageProps> = (props) => {
         {props.isOnLessonsPage && (
           <Button
             buttonType="button"
-            buttonText={intl.formatMessage({id: "app.button.addNewLesson"})}
+            buttonText={intl.formatMessage({ id: "app.button.addNewLesson" })}
             className="button__fs16"
             buttonImage={Add}
             imageStyle="mystudiohead__svg-add"

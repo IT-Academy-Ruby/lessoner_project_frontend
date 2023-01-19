@@ -33,11 +33,9 @@ const POPUP_ITEMS = [
 
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
-    <div>
-      <Link to={`/lessons/${props.id}`}>
-        <img src={props.imagePreview} alt="Videopreview" />
-      </Link>
-    </div>
+    <Link className="card__icon-link" to={`/lessons/${props.id}`}>
+      <img className="card__icon-img" src={props.imagePreview} alt="Videopreview" />
+    </Link>
   );
 };
 
@@ -135,17 +133,20 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
       <div className="card">
         <div className="card__icon">
           {props.imagePreview && (
-            <ThumbnailImageUrl  id={props.id} imagePreview={props.imagePreview} />
+            <ThumbnailImageUrl
+              id={props.id}
+              imagePreview={props.imagePreview}
+            />
           )}
-          {props.hasStatus &&
+          {props.hasStatus && (
             <Tag
               type="status"
               className="video__status"
               text={props.status}
-              iconLeft={props.status == "Draft" ? <LetterSvg /> : ""}
+              iconLeft={props.status === "Draft" ? <LetterSvg /> : ""}
               videoStatus={true}
             />
-          }
+          )}
           {props.duration && (
             <Tag className="video__time" type="time" text={props.duration} />
           )}
@@ -153,7 +154,9 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         <div className="card__info">
           <div className="card__info-top">
             <Title title={props.title} id={props.id} />
-            {props.isEditable && <MenuKebab idCard={props.id} />}
+            {(props.isEditable && props.status !== "archived") && (
+              <MenuKebab idCard={props.id} />
+            )}
           </div>
           <div className="details">
             <Published published={props.published} />
