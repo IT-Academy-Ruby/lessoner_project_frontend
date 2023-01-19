@@ -4,7 +4,7 @@ import {
 import {
   archiveCategory, deleteCategory, getCategory
 } from "../../../../store/categorySlice/categorySlice";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import Add from "../../../icons/add.svg";
 import Delete from "../../../icons/delete.svg";
 import Edit from "../../../icons/edit.svg";
@@ -12,8 +12,8 @@ import Loader from "../../../Loader";
 import ModalCategory from "./actions/ModalCategory";
 import getWindowDimensions from "../../../../helpers/getWindowDimensions";
 import styles from "../../../../constants.module.scss";
-import { useIntl } from "react-intl";
-import { useNavigate } from "react-router-dom";
+import {useIntl} from "react-intl";
+import {useNavigate} from "react-router-dom";
 
 const CategoriesAdmin = () => {
 
@@ -48,9 +48,9 @@ const CategoriesAdmin = () => {
   };
 
   const handleDelete = async (category:
-    {
-      id: number, name: string, description: string, status: string, amount_lessons: number
-    }
+  {
+    id: number, name: string, description: string, status: string, amount_lessons: number
+  }
   ) => {
     setIdCategory(category.id);
     if (category.amount_lessons > 0) {
@@ -61,15 +61,15 @@ const CategoriesAdmin = () => {
   };
 
   const categoryRow = (category:
-    {
-      id: number, image_url: string, name: string, description: string, status: string,
-      created_at: string, amount_lessons: number
-    }) => {
+  {
+    id: number, image_url: string, name: string, description: string, status: string,
+    created_at: string, amount_lessons: number
+  }) => {
     if (pageSize.width < parseInt(styles.maxWidthPhone)) {
       return (
         <button key={category.id} className="tile-category tab-category">
           <div className="category-image-name-id-actions">
-            <img src={category.image_url} alt={category.name} className="category-img" />
+            <img src={category.image_url} alt={category.name} className="category-img"/>
             <div className="category-name-id-actions">
               <div className="category-name-id">
                 <div className="category-name">{category.name}</div>
@@ -88,7 +88,7 @@ const CategoriesAdmin = () => {
                   alt={category.status === "active" ? "delete" : "add"}
                   className="icon-delete"
                   id={category.id.toString()}
-                  onClick={() => handleDelete(category)} />
+                  onClick={() => handleDelete(category)}/>
               </div>
             </div>
           </div>
@@ -105,11 +105,11 @@ const CategoriesAdmin = () => {
       pageSize.width > parseInt(styles.maxWidthPhone)) {
       return (
         <button key={category.id} className="row-category tab-category">
-          <div >
+          <div>
             <div className="category-name category-doubled-cell">{category.name}</div>
             <div className="category-text">{category.id}</div>
           </div>
-          <img src={category.image_url} alt={category.name} className="category-img" />
+          <img src={category.image_url} alt={category.name} className="category-img"/>
           <div className="category-text category-description">{category.description}</div>
           <div>
             <div className="category-text category-doubled-cell">{category.amount_lessons}</div>
@@ -130,7 +130,7 @@ const CategoriesAdmin = () => {
               alt={category.status === "active" ? "delete" : "add"}
               className="icon-delete"
               id={category.id.toString()}
-              onClick={() => handleDelete(category)} />
+              onClick={() => handleDelete(category)}/>
           </div>
         </button>
       );
@@ -138,7 +138,7 @@ const CategoriesAdmin = () => {
       return (
         <button key={category.id} className="row-category tab-category">
           <div className="category-text">{category.id}</div>
-          <img src={category.image_url} alt={category.name} className="category-img" />
+          <img src={category.image_url} alt={category.name} className="category-img"/>
           <div className="category-name">{category.name}</div>
           <div className="category-text category-description">{category.description}</div>
           <div className="category-date">{formatter.format(new Date(category.created_at))}</div>
@@ -156,7 +156,7 @@ const CategoriesAdmin = () => {
               alt={category.status === "active" ? "delete" : "add"}
               className="icon-delete"
               id={category.id.toString()}
-              onClick={() => handleDelete(category)} />
+              onClick={() => handleDelete(category)}/>
           </div>
         </button>
       );
@@ -165,7 +165,7 @@ const CategoriesAdmin = () => {
 
   return (
     <>
-      {loading && <Loader />}
+      {loading && <Loader/>}
       {allCategories.length > 1 && allCategories.map(category => categoryRow(category))}
       {isClose && <ModalCategory
         setIsClose={setIsClose}
@@ -174,7 +174,7 @@ const CategoriesAdmin = () => {
           dispatch(getCategory());
           setIsClose(false);
         }}
-        title={intl.formatMessage({ id: "app.categories.textDelete" })}
+        title={intl.formatMessage({id: "app.categories.textDelete"})}
       />}
     </>
   );

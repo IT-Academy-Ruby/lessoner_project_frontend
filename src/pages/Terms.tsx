@@ -25,9 +25,9 @@ const Terms = ({setIsOpenTerms, isPolitic}: TermsProps) => {
       {!isTerms &&
         <div className="page-terms">
           <span className="terms">
-            <h3 className="terms-title">
+            <h2 className="terms-title">
               Согласие на обработку персональных данных
-            </h3>
+            </h2>
             <span>
               Настоящим я, Субъект персональных данных, в соответствии с требованиями статьи 5 и
               абзаца второго пункта первого статьи 9

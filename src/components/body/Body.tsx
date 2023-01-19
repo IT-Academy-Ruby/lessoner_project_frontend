@@ -2,6 +2,7 @@ import "./Body.scss";
 import {
   useContext, useEffect, useState
 } from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Main from "./content/Main";
@@ -16,7 +17,6 @@ import {resetUserData} from "../../store/loginName/loginSlice";
 import { snowContext } from "../../App";
 import {useAppDispatch} from "../../store/hooks";
 import useDarkMode from "use-dark-mode";
-import {useLocation} from "react-router-dom";
 
 type BodyProps = {
   onLanguageSwitch: (arg: string) => void;
@@ -36,12 +36,14 @@ const Body = (props: BodyProps) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isMenuActive, setIsMenuActive] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   
   const handleSignOut = () => {
     localStorage.removeItem("JWT");
     dispatch(nameDecodedUser());
     dispatch(resetUserData());
     setIsAthorized(false);
+    navigate("/");
   };
 
   useEffect(() => {
