@@ -21,7 +21,7 @@ interface RenderLessonPageProps {
   isRenderLessonHeadCategories: boolean;
   renderLessonHeadTitle: string;
   renderLessonHeadStatuses: string[];
-  renderLessonHeadCategories: string[];
+  renderLessonHeadCategories: string[][];
   isRenderLessonContentEdited: boolean;
   isRenderLessonContentHasStatus: boolean;
   renderLessonContentCategoriesUrl: string;
@@ -33,6 +33,12 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
   const [isLesson, setIsLesson] = useState(false);
   const [isNoLesson, setIsNoLesson] = useState(false);
   const [isLoader, setIsLoader] = useState(true);
+  const [categoryActive, setCategoryActive] = useState("");
+
+  const handleCategoryChange = (currentCategory: string) => {
+    setCategoryActive(currentCategory);
+  };
+
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS)
       .then((response) => response.json())
@@ -53,6 +59,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
           <>
             {renderProps.isHead && (
               <RenderLessonHead
+                onCategoryChange={handleCategoryChange}
                 statuses={renderProps.renderLessonHeadStatuses}
                 categories={renderProps.renderLessonHeadCategories}
                 title={renderProps.renderLessonHeadTitle}
@@ -69,7 +76,6 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 buttonImageStyle={"mystudiohead__svg-add"}
                 buttonNavigatePath={"/myStudio/add_new_lesson"}
                 setStatusActive={"All lessons"}
-                setCategoryActive={`${renderProps.category}`}
                 classNameWrapper={"mystudiohead__wrapper"}
                 classNameHead={"mystudiohead__head"}
                 classNameTitle={"mystudiohead__title"}
@@ -83,6 +89,8 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 classNameLessonItemUnderline={
                   "mystudiohead__lessons-item-underline"
                 }
+                category={`${renderProps.category}`}
+                setCategoryActive={`${categoryActive}`}
               />
             )}
             <RenderLessonContent
@@ -93,6 +101,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               categoriesUrl={renderProps.renderLessonContentCategoriesUrl}
               lessonsUrl={renderProps.renderLessonContentLessonsUrl}
               category={renderProps.category}
+              categoryActive={categoryActive}
             />
           </>
         ) : (

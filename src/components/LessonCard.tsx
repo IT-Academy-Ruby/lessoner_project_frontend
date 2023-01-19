@@ -33,11 +33,9 @@ const POPUP_ITEMS = [
 
 const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
   return (
-    <div>
-      <Link to={`/lessons/${props.id}`}>
-        <img src={props.imagePreview} alt="Videopreview" />
-      </Link>
-    </div>
+    <Link className="card__icon-link" to={`/lessons/${props.id}`}>
+      <img className="card__icon-img" src={props.imagePreview} alt="Videopreview" />
+    </Link>
   );
 };
 
