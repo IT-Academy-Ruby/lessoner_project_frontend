@@ -68,8 +68,6 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
     (categoryName) => categoryName.categoryName === renderProps.categoryActive
   );
   
-  console.log("renderProps.categoryActive: ", renderProps.categoryActive === "All categories");
-
   useEffect(() => {
     if (!categoriesIsLoaded) {
       const fetchSuccess = (responseData: CategoriesResponce) => {
