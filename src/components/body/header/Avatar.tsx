@@ -1,6 +1,6 @@
 import "./Header.scss";
-import {FormattedMessage} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
+import {FormattedMessage} from "react-intl";
 import Language from "./Language";
 import Logout from "../../icons/logOut.svg";
 import {useAppSelector} from "../../../store/hooks";
