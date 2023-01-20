@@ -42,7 +42,9 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const onCategoryChange = renderProps.onCategoryChange;
-  const [statusActive, setStatusActive] = useState(renderProps.setStatusActive);
+  const [statusActive, setStatusActive] = useState(
+    intl.formatMessage({ id: renderProps.setStatusActive})
+  );
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   const handleStatusToggle = (status: string) => {

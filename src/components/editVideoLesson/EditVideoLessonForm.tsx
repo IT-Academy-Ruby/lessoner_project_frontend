@@ -2,7 +2,7 @@ import "./EditVideoLessonForm.scss";
 import { 
   BACKEND_URL_LESSONS, maxDescrHTCount,
   maxDescriptionLength, maxNameLength 
-} from "../../constants";
+} from "../../constants"; 
 import { 
   FC, useEffect, useState 
 } from "react";
@@ -31,20 +31,21 @@ export const EditVideoLessonForm: FC = () => {
   const formData = new FormData();
 
   const CATEGORIES = [
-    "app.lessons.categoryDesign",
-    "app.lessons.categoryIT",
-    "app.lessons.categoryMusic",
-    "app.lessons.categoryBusiness",
-    "app.lessons.categoryFitness",
-    "app.lessons.categoryMarketing",
-    "app.lessons.categoryFinance",
-    "app.lessons.categoryPsychology",
-    "app.lessons.categoryLanguages",
+    "All categories",
+    "Design",
+    "IT",
+    "Music",
+    "Business",
+    "Fitness",
+    "Marketing",
+    "Finance",
+    "Psychology",
+    "Languages",
   ];
   const elementsCategory = CATEGORIES.map((category: string) => {
     return (
       <option key={category} id={category}>
-        {intl.formatMessage({ id: category })}
+        {category}
       </option>
     );
   });
@@ -64,8 +65,7 @@ export const EditVideoLessonForm: FC = () => {
     name: string;
     description: string;
   }) => {
-    const lessonFromEditForm = {title: `${values.name}`,
-      description: `${values.description}`};
+    const lessonFromEditForm = { title: `${values.name}`, description: `${values.description}`};
     sendInfoInLesson(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
     changeImageInLesson();
   };
@@ -79,8 +79,6 @@ export const EditVideoLessonForm: FC = () => {
       body: formData,
     });
   };
-
-
 
   const validateName = (title: string) => {
     if (!title) {
@@ -153,7 +151,7 @@ export const EditVideoLessonForm: FC = () => {
       initialValues={lessonValuesFromBack || initialValues}
       onSubmit={(values) => {
         changeInfoInLesson(values);
-        navigate("/lessons");
+        navigate("/myStudio");
       }}
       enableReinitialize
     >
@@ -173,7 +171,10 @@ export const EditVideoLessonForm: FC = () => {
           </label>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableCategory" })}
-            <Field className="evlf__input" as="select" name="category">
+            <Field 
+              className="evlf__input" 
+              as="select" 
+              name="category">
               {elementsCategory}
             </Field>
           </label>

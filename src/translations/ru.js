@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-export const messages_ru = {
+export const messages_ru = { 
   "app.name": "The Lessoner",
   "app.Name": "Имя",
   "app.studio": "Моя студия",
@@ -310,4 +310,6 @@ export const messages_ru = {
   "app.bigAvater": "Пожалуйста, загрузите другое изображение",
   "app.InformEmail": "На указанный адрес электронной почты отправлено письмо со ссылкой для подтверждения. Пожалуйста, проверьте свой адрес {email}",
   "app.errorRequest": "Произошла ошибка",
+  "app.lessonCard.Published":"Опубликован:",
+  "app.lessonCard.Views":"просмотров",
 };

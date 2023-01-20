@@ -42,11 +42,12 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS)
       .then((response) => response.json())
-      .then((lesson) =>
+      .then((lesson) =>{
         lesson !== undefined && lesson.records.length > 0
           ? (setIsLesson(true), setIsLoader(false))
           : (lesson.records.length === 0 && setIsNoLesson(true),
-          setIsLoader(false))
+          setIsLoader(false));
+      }
       )
       .catch((error) => console.log(error));
   }, []);
@@ -75,7 +76,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 buttonImage={Add}
                 buttonImageStyle={"mystudiohead__svg-add"}
                 buttonNavigatePath={"/myStudio/add_new_lesson"}
-                setStatusActive={"All lessons"}
+                setStatusActive={"app.lessons.statusAllLessons"}
                 classNameWrapper={"mystudiohead__wrapper"}
                 classNameHead={"mystudiohead__head"}
                 classNameTitle={"mystudiohead__title"}
