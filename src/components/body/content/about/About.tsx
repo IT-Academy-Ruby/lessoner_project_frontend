@@ -14,7 +14,8 @@ import logo from "../../../../assets/about-who-we-are.svg";
 import rocket from "../../../../assets/about-our-mission.svg";
 import starsDark from "../../../../assets/about-us-stars-dark.svg";
 import starsLight from "../../../../assets/about-us-stars-light.svg";
-import team from "../../../../assets/team.png";
+import teamDark from "../../../../assets/Team-dark.svg";
+import teamLight from "../../../../assets/Team-light.svg";
 import { teamMembers } from "../../../../teamMembers";
 import { useState } from "react";
 
@@ -27,11 +28,12 @@ const About = () => {
   const theme = useTheme();
   const imageLogo = theme === THEME.DARK ? aboutUsDark : aboutUsLight;
   const imageStars = theme === THEME.DARK ? starsDark : starsLight;
+  const team = theme === THEME.DARK ? teamDark : teamLight;
   const intl = useIntl();
 
   const ourTeamTabsNames = [
-    { title: intl.formatMessage({ id: "app.about.tab.team" }),
-      key: "team" },
+    { title: intl.formatMessage({ id: "app.about.tab.aboutUs" }),
+      key: "aboutUs" },
     { title: intl.formatMessage({ id: "app.about.tab.founders" }),
       key: "founders" },
     { title: intl.formatMessage({ id: "app.about.tab.projectManagement" }),
@@ -53,7 +55,7 @@ const About = () => {
     switch (role) {
     case "founders":
       return (
-        teamMembers.filter(member => member.role.includes("IT-Academy") || 
+        teamMembers.filter(member => member.role.includes("IT-Academy") ||
           member.role.includes("PO"))
       );
     case "projectManagement":
@@ -96,7 +98,7 @@ const About = () => {
             buttonType="button"
             buttonText={tab.title}
             onClick={() => setActiveTab(tab)}
-            className={classNames("button-about-team", 
+            className={classNames("button-about-team",
               { "button-about-team-active": activeTab.key === tab.key })}
           />
         </div>
@@ -110,10 +112,10 @@ const About = () => {
         <div className="about-team-content">
           <div>
             <div className="about-our-team-header">
-              {<FormattedMessage id="app.about.ourTeam" />}
+              {<FormattedMessage id="app.about.aboutUs" />}
               <img src={imageStars} />
             </div>
-            {<FormattedMessage id="app.about.ourTeamDescription" />}
+            {<FormattedMessage id="app.about.aboutUsDescription" />}
           </div>
           <img src={team} alt="our team" />
         </div>
@@ -123,14 +125,15 @@ const About = () => {
         <div className="about-team-roles">
           <div className="about-team-role-title">{activeTab.title}</div>
           <div className="about-team-cards">
-            {getTeamByRole(activeTab.key).map(member => 
-              <TeamMemberCard key={member.id} 
-                name={member.name} 
-                city={member.city} 
-                secondRole={member.secondRole} 
-                role={member.role} 
-                photo={member.photo} 
-                link={member.link} />)}
+            {getTeamByRole(activeTab.key).map(member =>
+              <TeamMemberCard key={member.id}
+                name={member.name}
+                city={member.city}
+                secondRole={member.secondRole}
+                role={member.role}
+                photo={member.photo}
+                link={member.link}
+                linkToCources={member.linkToCources} />)}
           </div>
         </div>
       );
@@ -139,40 +142,42 @@ const About = () => {
 
   return (
     <div className="about-us-wrapper">
-      <div className="about-us-block">
-        <div className="about-us-text">
-          <div className="about-us-title">
-            {<FormattedMessage id="app.about" />}
+      <div className="about-content">
+        <div className="about-us-team">
+          <div className="about-team-tabs">
+            {ourTeamTabs(ourTeamTabsNames)}
           </div>
-          <span>{<FormattedMessage id="app.aboutDescription" />}</span>
+          {tabContent()}
         </div>
-        <div className="about-us-illustration"><img src={imageLogo} /></div>
-      </div>
-      <div className="about-us-details">
-        <div className="about-us-details-tile about-who-are-we">
-          <img src={logo} />
-          <div>
-            <div className="about-us-details-title">
-              {<FormattedMessage id="app.about.whoAreWe" />}
+        <div className="about-us-block">
+          <div className="about-us-illustration"><img src={imageLogo} /></div>
+          <div className="about-us-text">
+            <div className="about-us-title">
+              {<FormattedMessage id="app.about.whatIsTheLessoner" />}
             </div>
-            <span>{<FormattedMessage id="app.about.whoAreWeDescription" />}</span>
+            <span>{<FormattedMessage id="app.aboutDescription" />}</span>
           </div>
         </div>
-        <div className="about-us-details-tile about-our-mission">
-          <img src={rocket} />
-          <div>
-            <div className="about-us-details-title">
-              {<FormattedMessage id="app.about.OurMission" />}
+        <div className="about-us-details">
+          <div className="about-us-details-tile about-who-are-we">
+            <img src={logo} />
+            <div>
+              <div className="about-us-details-title">
+                {<FormattedMessage id="app.about.whoAreWe" />}
+              </div>
+              <span>{<FormattedMessage id="app.about.whoAreWeDescription" />}</span>
             </div>
-            <span>{<FormattedMessage id="app.about.OurMissionDescription" />}</span>
+          </div>
+          <div className="about-us-details-tile about-our-mission">
+            <img src={rocket} />
+            <div>
+              <div className="about-us-details-title">
+                {<FormattedMessage id="app.about.OurMission" />}
+              </div>
+              <span>{<FormattedMessage id="app.about.OurMissionDescription" />}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="about-us-team">
-        <div className="about-team-tabs">
-          {ourTeamTabs(ourTeamTabsNames)}
-        </div>
-        {tabContent()}
       </div>
       <div className="about-contact-information">
         <a href="tel:+ 375 33 900-44-44">+ 375 33 900-44-44</a>

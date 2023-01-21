@@ -6,7 +6,8 @@ export const teamMembers = [
     role: "PO /",
     secondRole: "Backend mentor",
     photo: "participants/artsiom.png",
-    link: "https://www.linkedin.com/in/артём-дубровник-813750146/"
+    link: "https://www.linkedin.com/in/артём-дубровник-813750146/",
+    linkToCources: "https://www.grodno.it-academy.by/course/veb-razrabotka-na-ruby-on-rails/"
   },
   {
     id: 2,
@@ -41,7 +42,9 @@ export const teamMembers = [
     city: "Grodno",
     role: "Project Manager mentor",
     photo: "participants/sergei-pm-mentor.png",
-    link: "https://www.linkedin.com/in/sergei-batura-103603128/"
+    link: "https://www.linkedin.com/in/sergei-batura-103603128/",
+    linkToCources:
+      "https://www.grodno.it-academy.by/course/upravlenie-proektami/upravlenie-it-proektami/"
   },
   {
     id: 6,
@@ -65,7 +68,8 @@ export const teamMembers = [
     city: "Grodno",
     role: "Business-analyst mentor",
     photo: "participants/svetlana-ba-mentor.png",
-    link: "https://www.linkedin.com/in/svetlana-naumova-a39602173/"
+    link: "https://www.linkedin.com/in/svetlana-naumova-a39602173/",
+    linkToCources: "https://www.grodno.it-academy.by/course/biznes-analiz-v-it/"
   },
   {
     id: 9,
@@ -73,7 +77,8 @@ export const teamMembers = [
     city: "Grodno",
     role: "Business-analyst mentor",
     photo: "participants/anatolii-ba-mentor.png",
-    link: "https://www.linkedin.com/in/anatoli-valakhanovich-00846085/"
+    link: "https://www.linkedin.com/in/anatoli-valakhanovich-00846085/",
+    linkToCources: "https://www.grodno.it-academy.by/course/biznes-analiz-v-it/"
   },
   {
     id: 10,
@@ -129,7 +134,8 @@ export const teamMembers = [
     city: "Żyrardów",
     role: "Designer mentor",
     photo: "participants/vitali-ux-ui-mentor.png",
-    link: "https://www.linkedin.com/in/vitaly-bogdel-211036164/"
+    link: "https://www.linkedin.com/in/vitaly-bogdel-211036164/",
+    linkToCources: "https://www.grodno.it-academy.by/course/ui-ux-dizayner1/"
   },
   {
     id: 17,
@@ -203,7 +209,8 @@ export const teamMembers = [
     city: "Grodno",
     role: "Frontend mentor",
     photo: "participants/evgeniy-fe-mentor.png",
-    link: "https://www.linkedin.com/in/evgeniy-volkovskiy/"
+    link: "https://www.linkedin.com/in/evgeniy-volkovskiy/",
+    linkToCources: "https://www.grodno.it-academy.by/course/front-end-developer/"
   },
   {
     id: 26,
@@ -211,7 +218,8 @@ export const teamMembers = [
     city: "Istanbul",
     role: "Frontend mentor",
     photo: "participants/aliaksandr-fe-mentor.png",
-    link: "https://www.linkedin.com/in/aliaksandr-klimiankou-05299b54/"
+    link: "https://www.linkedin.com/in/aliaksandr-klimiankou-05299b54/",
+    linkToCources: "https://www.grodno.it-academy.by/course/front-end-developer/"
   },
   {
     id: 27,
@@ -267,7 +275,8 @@ export const teamMembers = [
     city: "Grodno",
     role: "QA engineer mentor",
     photo: "participants/ksenia-qa-mentor.png",
-    link: "https://www.linkedin.com/in/ksenia-khaliava-156688118/"
+    link: "https://www.linkedin.com/in/ksenia-khaliava-156688118/",
+    linkToCources: "https://www.grodno.it-academy.by/course/software-testing-engineer/"
   },
   {
     id: 34,

@@ -236,8 +236,8 @@
 
 .button-about-cources {
   @extend .button-about-team;
-  color: $black;
-  border: 1px solid $black;
+  color: var(--btnSignUpCourcesText);
+  border: 1px solid var(--btnSignUpCourcesBorder);
 }
 
 .button-no {

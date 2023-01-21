@@ -286,8 +286,32 @@ $themes: (
     lightTheme: $ModalShadowLight,
   ),
   bgAboutTeam: (
-    darkTheme: $dark5,
+    darkTheme: $dark11,
+    lightTheme: $light12,
+  ),
+  bgTeamMemberCard: (
+    darkTheme: $dark11,
     lightTheme: $light4,
+  ),
+  bgMentorCard: (
+    darkTheme: $dark5,
+    lightTheme: $light1,
+  ),
+  mentorRoleCard: (
+    darkTheme: $light2,
+    lightTheme: $blue2,
+  ),
+  btnSignUpCourcesText: (
+    darkTheme: $light11,
+    lightTheme: $dark1,
+  ),
+  btnSignUpCourcesBorder: (
+    darkTheme: $blue2,
+    lightTheme: $dark1,
+  ),
+  btnHoverSignUpCourcesBorder: (
+    darkTheme: $light1,
+    lightTheme: $dark1,
   ),
 );
 
