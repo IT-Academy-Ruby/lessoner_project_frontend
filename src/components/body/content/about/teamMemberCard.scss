@@ -9,9 +9,8 @@
   box-sizing: content-box;
   width: 190px;
   height: 218px;
-  background: $light4;
+  background: var(--bgTeamMemberCard);
   border-radius: 8px;
-  color: $black;
 
   &:hover {
     background: #455FCE;
@@ -32,11 +31,15 @@
         fill: $white;
       }
     }
+
+    .button-about-cources {
+      border: 1px solid var(--btnHoverSignUpCourcesBorder);
+    }
   }
 }
 
 .team-mentor {
-  background: $light1;
+  background: var(--bgMentorCard);
 }
 
 .team-it-academy-roles {
@@ -143,5 +146,5 @@
 }
 
 .team-mentor-lead-role {
-  color: $blue2;
+  color: var(--mentorRoleCard);
 }

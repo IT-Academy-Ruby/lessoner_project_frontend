@@ -12,7 +12,7 @@ import { useIntl } from "react-intl";
 interface ThumbnailProps {
   lesson?: ILessonBack | null;
   onImageUrlChange : (arg: string) => void;
-  imageURL: string;
+  imageURL: string; 
 }
 
 interface imageTypes {

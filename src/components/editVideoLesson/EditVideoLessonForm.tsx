@@ -20,7 +20,7 @@ import sendInfoInLesson from "../../services/request";
 import { useIntl } from "react-intl";
 
 const hachTag = "#";
-let countHashTag = 0;
+let countHashTag = 0; 
 
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();

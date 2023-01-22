@@ -28,6 +28,7 @@ export interface Lesson {
   author_avatar_url?: string;
   author_name?: string;
   views_count?: number;
+  user_rating?: number;
 }
 export interface Category {
   id: number;

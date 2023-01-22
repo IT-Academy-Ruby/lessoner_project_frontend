@@ -5,78 +5,30 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 16px 24px 42px;
   text-align: start;
   font-family: $font;
   font-style: normal;
 }
 
-.about-us-block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0px 111px;
-  gap: 16px;
-  height: 384px;
-}
-
-.about-us-text {
+.about-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
-  width: 539px;
-  height: 210px;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 150%;
-  text-align: start;
-}
-
-.about-us-title {
-  font-weight: 700;
-  font-size: 60px;
-  line-height: 130%;
-}
-
-.about-us-details {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 90px 111px 140px;
-  gap: 16px;
-}
-
-.about-us-details-tile {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 28px;
-  width: 538px;
-  height: 267px;
-
-  span {
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 150%;
-  }
-
-  .about-us-details-title {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 130%;
-  }
+  background: var(--bgAboutTeam);
+  margin: 16px 24px 0;
+  border-radius: 28px;
+  width: 1316px;
 }
 
 .about-us-team {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 60px 111px 0px;
+  padding-left: 111px;
+  padding-top: 60px;
+  ;
   height: 640px;
   max-width: 1095px;
-  background: var(--bgAboutTeam);
-  border-radius: 28px;
   min-height: 640px;
 }
 
@@ -93,16 +45,16 @@
   flex-direction: row;
   align-items: center;
   gap: 16px;
-  width: 1094px;
-  height: 334px;
+  margin-top: 24px;
+  margin-right: 23px;
+  width: 1182px;
+  height: 539px;
   font-size: 18px;
-  line-height: 150%;
+  line-height: 27px;
   font-weight: 600;
-  margin-top: 100px;
 
   img {
-    height: 334px;
-    border-radius: 20px;
+    height: 539px;
   }
 }
 
@@ -136,7 +88,7 @@
 
 .about-our-team-header {
   font-weight: 700;
-  font-size: 45px;
+  font-size: 60px;
   line-height: 130%;
 
   img {
@@ -146,17 +98,78 @@
   }
 }
 
+.about-us-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 111px;
+  gap: 16px;
+  height: 330px;
+}
+
+.about-us-illustration {
+  width: 539px;
+  height: 330px;
+}
+
+.about-us-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 539px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: start;
+}
+
+.about-us-title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 47px;
+}
+
+.about-us-details {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 80px 111px 120px;
+  gap: 16px;
+}
+
+.about-us-details-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  width: 538px;
+  height: 272px;
+
+  span {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+  }
+
+  .about-us-details-title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 130%;
+  }
+}
+
 .about-contact-information {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 42px 24px;
   gap: 100px;
-  width: 100%;
+  width: 1316px;
   color: $dark7;
   font-weight: 400;
   font-size: 14px;
-  margin-top: 20px;
 
   a {
     color: $dark7;

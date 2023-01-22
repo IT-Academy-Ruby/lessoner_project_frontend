@@ -11,11 +11,12 @@ export type personalData = {
   role: string,
   secondRole?: string,
   photo: string,
-  link: string
+  link: string,
+  linkToCources?: string
 }
 
 const TeamMemberCard = ({
-  name, city, role, photo, link, secondRole
+  name, city, role, photo, link, secondRole, linkToCources
 }: personalData) => {
   const intl = useIntl();
   const isMentor = role.includes("mentor") || (secondRole && secondRole.includes("mentor"));
@@ -38,7 +39,7 @@ const TeamMemberCard = ({
       </div>
       <div className="team-member-card-info">
         <div className="team-member-name">{name}</div>
-        <div className={classNames({ "team-mentor-lead-doubled-roles": isMentor},
+        <div className={classNames({ "team-mentor-lead-doubled-roles": isMentor },
           { "team-mentor-lead-doubled-roles": isTeamLead },
           { "team-it-academy-roles": isITAcademy })}>
           <span className={classNames({ "team-mentor-lead-role": role.includes("mentor") },
@@ -54,7 +55,7 @@ const TeamMemberCard = ({
         </div>
       </div>
       {isMentor && (
-        <a href="https://www.grodno.it-academy.by/">
+        <a href={linkToCources ? linkToCources : "https://www.grodno.it-academy.by/"}>
           <Button
             buttonType="button"
             buttonText={intl.formatMessage({ id: "app.about.button.signUpForCources" })}
