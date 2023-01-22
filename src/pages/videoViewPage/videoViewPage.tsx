@@ -1,20 +1,20 @@
-import "./VideoViewPage.scss";
+import "./videoViewPage.scss";
 import {
   Category,
   Lesson,
   categoriesUrl,
   lessonsUrl,
-} from "../components/body/content/lessons/Lessons";
+} from "../../components/body/content/lessons/Lessons";
 import {useEffect, useState} from "react";
-import {Published} from "../components/LessonCard";
-import RatingCounter from "../components/ratingCounter/ratingCounter";
-import {RootState} from "../store";
-import Tag from "../components/body/Tags/Tag";
-import {VideoPlayer} from "../../src/components/body/content/videoplayer/Videoplayer";
-import {VideoSideBar} from "../../src/components/body/content/VideoSideBar/VideoSideBar";
+import {Published} from "../../components/LessonCard";
+import RatingCounter from "../../components/ratingCounter/ratingCounter";
+import {RootState} from "../../store";
+import Tag from "../../components/body/Tags/Tag";
+import {VideoPlayer} from "../../../src/components/body/content/videoplayer/Videoplayer";
+import {VideoSideBar} from "../../../src/components/body/content/VideoSideBar/VideoSideBar";
 import {connect} from "react-redux";
-import img from "../Photo.png"; // В качестве примера
-import requestApi from "../services/request";
+import img from "../../Photo.png"; // В качестве примера
+import requestApi from "../../services/request";
 import {useParams} from "react-router-dom";
 
 interface CategoriesResponce {
@@ -34,7 +34,7 @@ type BodyProps = {
 };
 
 const VideoViewPage = ({user}: BodyProps) => {
-  const [id, setId] = useState<string | undefined>(useParams().id);
+  const [currentLessonId, setCurrentLessonId] = useState<string | undefined>(useParams().id);
   const [lessonData, setLessonData] = useState<Lesson>();
   const [lessonCategoryId, setLessonCategoryId] = useState<number>();
   const [lessonsArr, setLessonsArr] = useState<Lesson[]>([]);
@@ -42,10 +42,12 @@ const VideoViewPage = ({user}: BodyProps) => {
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [categoriesNames, setCategoriesNames] = useState<Category[]>();
-  const [rating, setRating] = useState<undefined | number>();
   const [isAuthorized, setIsAuthorized] = useState(false);
+
   const [isRatingFrozen, setIsRatingFrozen] = useState(false);
   const [userRating, setUserRating] = useState(0);
+  const [rating, setRating] = useState<undefined | number>();
+
   const [isViewed, setIsViewed] = useState(false);
 
   useEffect(() => {
@@ -53,12 +55,14 @@ const VideoViewPage = ({user}: BodyProps) => {
     const fetchSuccess = (data: Lesson) => {
       setLessonData(data);
       setLessonCategoryId(data.category_id);
+      setUserRating(data.user_rating || 0);
     };
     const fetchError = (errMessage: string) => {
       alert(errMessage);
     };
     const fetchData = async () => {
-      const response = await requestApi(lessonsUrl + "/" + id, "GET");
+      const response = await requestApi(lessonsUrl + "/" + currentLessonId, "GET");
+
       if (!response.ok) {
         fetchError("fetch error " + response.status);
       } else {
@@ -67,7 +71,8 @@ const VideoViewPage = ({user}: BodyProps) => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [currentLessonId]);
+
 
   useEffect(() => {
     //Get lessonsArr from CategoryId
@@ -92,7 +97,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       fetchData();
     }
-  }, [lessonsArr, lessonCategoryId, id]);
+  }, [lessonsArr, lessonCategoryId, currentLessonId]);
 
   useEffect(() => {
     //Get  Array sorted by newest
@@ -253,7 +258,7 @@ const VideoViewPage = ({user}: BodyProps) => {
     };
 
     const fetchData = async () => {
-      const response = await requestApi(lessonsUrl + "/" + id);
+      const response = await requestApi(lessonsUrl + "/" + currentLessonId);
       if (!response.ok) {
         fetchError("fetch error " + response.status);
       } else {
@@ -270,7 +275,7 @@ const VideoViewPage = ({user}: BodyProps) => {
   }, [user]);
 
   const changeIdState = (id: number) => {
-    setId(String(id));
+    setCurrentLessonId(String(id));
   };
   const getNewRating = (rating: number) => {
     setIsRatingFrozen(true);
@@ -286,7 +291,7 @@ const VideoViewPage = ({user}: BodyProps) => {
     };
 
     const fetchData = async () => {
-      const response = await requestApi(lessonsUrl + "/" + id, "PUT", {rating,});
+      const response = await requestApi(lessonsUrl + "/" + currentLessonId, "PUT", {rating,});
       if (!response.ok) {
         fetchError("fetch error " + response.status);
       } else {
@@ -307,7 +312,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       const response = await requestApi(
         `${process.env.REACT_APP_BACKEND_URL}/add_lesson_view`,
         "POST",
-        {lesson_id: id}
+        {lesson_id: currentLessonId}
       );
       if (!response.ok) {
         fetchError("fetch error " + response.status);
@@ -337,7 +342,7 @@ const VideoViewPage = ({user}: BodyProps) => {
   ];
 
   if (
-    !id ||
+    !currentLessonId ||
     !lessonData ||
     !lessonsArr ||
     !newLessonsArr ||
