@@ -1,12 +1,13 @@
 import "./LessonCard.scss";
 import { Link , useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { LetterSvg } from "../components/svg/LetterSvg";
 import Moment from "react-moment";
 import {ReactComponent as PencilEdit } from "./icons/pencilEdit.svg";
 import { PopupMenu } from "./PopupMenu";
 import Rating from "./body/content/Rating/Rating";
 import Tag from "./body/Tags/Tag";
+import { useIntl } from "react-intl";
 
 type ThumbnailImageUrlProps = {
   imagePreview: string;
@@ -31,11 +32,31 @@ const POPUP_ITEMS = [
   },
 ];
 
-const ThumbnailImageUrl: React.FC<ThumbnailImageUrlProps> = (props) => {
+const ThumbnailImageUrl: FC<ThumbnailImageUrlProps> = (props) => {
   return (
     <Link className="card__icon-link" to={`/lessons/${props.id}`}>
       <img className="card__icon-img" src={props.imagePreview} alt="Videopreview" />
     </Link>
+  );
+};
+
+
+type AuthorInfoProps = {
+  avatar?: string;
+  name?: string;
+};
+
+export const AuthorInfo: FC<AuthorInfoProps> = (props) => {
+  return (
+    <>
+      <div className="card__author-avatar">
+        {props.avatar &&
+          (<img className="card__author-img" src={props.avatar} alt="avatar" />)}
+      </div>
+      <div className="card__author-name">
+        <p>{props.name}</p>
+      </div>
+    </>
   );
 };
 
@@ -45,7 +66,7 @@ type TitleProps = {
   className?: string;
 };
 
-export const Title: React.FC<TitleProps> = (props) => {
+export const Title: FC<TitleProps> = (props) => {
   return (
     <div className={`video__title ${props.className}`}>
       <Link to={`/lessons/${props.id}`}>
@@ -60,14 +81,14 @@ export type MenuKebabProps = {
   idCard?: number;
 };
 
-export const MenuKebab: React.FC<MenuKebabProps> = ({ className, idCard }) => {
+export const MenuKebab: FC<MenuKebabProps> = ({ className, idCard }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleKebabClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
-    navigate("/myStudio/update_lesson/" + idCard);
+    navigate("/myStudio/lesson/" + idCard);
   };
 
   return (
@@ -89,11 +110,14 @@ type PublishedDataProps = {
   className?: string;
 };
 
-export const Published: React.FC<PublishedDataProps> = (props) => {
+export const Published: FC<PublishedDataProps> = (props) => {
+  const intl = useIntl();
   return (
     <div className={`details__date ${props.className}`}>
       <p>
-        Published:
+        <span className="details__date-name">
+          {intl.formatMessage({ id: "app.lessonCard.Published" })}
+        </span>
         <Moment element="span" format="YYYY.MM.DD" date={props.published} />
       </p>
     </div>
@@ -101,13 +125,19 @@ export const Published: React.FC<PublishedDataProps> = (props) => {
 };
 
 type ViewProps = {
-  view: number;
+  viewsCount?: number;
 };
 
-const View: React.FC<ViewProps> = (props) => {
+const View: FC<ViewProps> = (props) => {
+  const intl = useIntl();
   return (
-    <div className="details__view">
-      <p>{props.view} views</p>
+    <div className="card__details-view">
+      <p>
+        <span className="card__details-view-count">
+          {props.viewsCount}
+        </span>
+        {intl.formatMessage({ id: "app.lessonCard.Views" })}
+      </p>
     </div>
   );
 };
@@ -125,12 +155,16 @@ type LessonCardsProps = {
   totalVotes?: number;
   isEditable: boolean;
   hasStatus: boolean;
+  authorAvatarUrl?: string;
+  authorName?: string;
+  viewsCount?: number;
 };
 
-const LessonCard: React.FC<LessonCardsProps> = (props) => {
+const LessonCard: FC<LessonCardsProps> = (props) => {
+
   return (
-    <div className="wrapper">
-      <div className="card">
+    <div className="card__wrapper">
+      <div className="card__inner">
         <div className="card__icon">
           {props.imagePreview && (
             <ThumbnailImageUrl
@@ -153,20 +187,48 @@ const LessonCard: React.FC<LessonCardsProps> = (props) => {
         </div>
         <div className="card__info">
           <div className="card__info-top">
-            <Title title={props.title} id={props.id} />
-            {(props.isEditable && props.status !== "archived") && (
-              <MenuKebab idCard={props.id} />
+            {!props.isEditable && (
+              <div className="card__info-author">
+                <AuthorInfo
+                  avatar={props.authorAvatarUrl}
+                  name={props.authorName}
+                />
+              </div>
             )}
+            <div className="card__info-title">
+              <Title title={props.title} id={props.id} />
+              {props.isEditable && props.status !== "archived" && (
+                <MenuKebab idCard={props.id} />
+              )}
+            </div>
           </div>
-          <div className="details">
-            <Published published={props.published} />
-            {props.view && <View view={props.view} />}
-          </div>
-          <div className="categories__raiting">
-            <Tag className="categories" type="category" text={props.category} />
-            {props.rating && props.totalVotes && (
-              <Rating rating={props.rating} totalVotes={props.totalVotes} />
-            )}
+          <div className="card__info-bottom">
+            <div className="card__details">
+              <Published published={props.published} />
+              {props.viewsCount !== undefined && props.viewsCount >= 0 && (
+                <View viewsCount={props.viewsCount} />
+              )}
+            </div>
+            <div className="card__categories-raiting">
+              <div className="card__categories-inner">
+                <Tag
+                  className="categories"
+                  type="category"
+                  text={props.category}
+                />
+              </div>
+              {props.rating !== undefined &&
+                props.rating >= 0 &&
+                props.totalVotes !== undefined &&
+                props.totalVotes >= 0 && (
+                <div className="card__rating-inner">
+                  <Rating
+                    rating={props.rating && +props.rating.toFixed(1)}
+                    totalVotes={props.totalVotes}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
