@@ -1,4 +1,4 @@
-@import "../constants.module.scss";
+@import "../../constants.module.scss";
 
 .wrapper-terms {
   font-family: $font;
@@ -54,6 +54,7 @@
   margin-bottom: 16px;
   text-align: left;
   font-family: $font;
+  text-align: justify;
 }
 
 .politic {
@@ -113,6 +114,10 @@
   margin: 0 0 0.5rem -1rem;
 }
 
+.ntind {
+  text-indent: 30px;
+}
+
 @media (max-width: $max-width-tablet) {
   .page-terms {
     border-radius: 8px;
@@ -126,6 +131,7 @@
     margin: 0;
     padding: 47px 37px;
     font-size: 12px;
+    line-height: 150%;
   }
 
   .arrow-back {
