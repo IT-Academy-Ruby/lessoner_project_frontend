@@ -51,7 +51,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "BUILD_PATH='./docs' npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "lint": "eslint src/**.tsx src/**.ts",
+    "fix-lint": "eslint src/**.tsx src/**.ts --fix",
+    "format": "npx prettier --write ."
   },
   "eslintConfig": {
     "extends": [
