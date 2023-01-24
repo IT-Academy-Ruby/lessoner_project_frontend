@@ -8,6 +8,7 @@ import Loader from "../Loader";
 import { NoLessonsPage } from "./noLessonsPage";
 import { RenderLessonContent } from "./renderLessonsContent";
 import { RenderLessonHead } from "./renderLessonsHead";
+import { useIntl } from "react-intl";
 
 interface RenderLessonPageProps {
   classNameWrapper: string;
@@ -30,13 +31,20 @@ interface RenderLessonPageProps {
 }
 
 export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
+  const intl = useIntl();
   const [isLesson, setIsLesson] = useState(false);
   const [isNoLesson, setIsNoLesson] = useState(false);
   const [isLoader, setIsLoader] = useState(true);
   const [categoryActive, setCategoryActive] = useState("");
+  const [statusActive, setStatusActive] = useState(
+    intl.formatMessage({ id: "app.lessons.statusAllLessons"}));
 
   const handleCategoryChange = (currentCategory: string) => {
     setCategoryActive(currentCategory);
+  };
+
+  const handleStatusChange = (currentStatus: string) => {
+    setStatusActive(currentStatus);
   };
 
   useEffect(() => {
@@ -61,6 +69,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
             {renderProps.isHead && (
               <RenderLessonHead
                 onCategoryChange={handleCategoryChange}
+                onStatusChange={handleStatusChange}
                 statuses={renderProps.renderLessonHeadStatuses}
                 categories={renderProps.renderLessonHeadCategories}
                 title={renderProps.renderLessonHeadTitle}
@@ -76,7 +85,6 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 buttonImage={Add}
                 buttonImageStyle={"mystudiohead__svg-add"}
                 buttonNavigatePath={"/myStudio/add_new_lesson"}
-                setStatusActive={"app.lessons.statusAllLessons"}
                 classNameWrapper={"mystudiohead__wrapper"}
                 classNameHead={"mystudiohead__head"}
                 classNameTitle={"mystudiohead__title"}
@@ -92,6 +100,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 }
                 category={`${renderProps.category}`}
                 setCategoryActive={`${categoryActive}`}
+                setStatusActive={`${statusActive}`}
               />
             )}
             <RenderLessonContent
@@ -103,6 +112,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               lessonsUrl={renderProps.renderLessonContentLessonsUrl}
               category={renderProps.category}
               categoryActive={categoryActive}
+              statusActive={statusActive}
             />
           </>
         ) : (
