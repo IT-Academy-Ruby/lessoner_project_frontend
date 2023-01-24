@@ -66,6 +66,7 @@ div > .react-select__menu {
   text-align: left;
   box-shadow: var(--themeButtonHover);
   background: var(--bgFirstRegistrForm);
+  
 }
 
 div > .react-select__option--is-focused {
@@ -91,4 +92,5 @@ div > .react-select__indicator {
   transform: translate(-38px, 38px);
   padding: 9px;
   z-index: 3;
+  cursor: pointer;
 }
