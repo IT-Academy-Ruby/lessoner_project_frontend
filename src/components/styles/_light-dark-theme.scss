@@ -321,6 +321,10 @@ $themes: (
     darkTheme: $light1,
     lightTheme: $dark1,
   ),
+  textVideoViewPage: (
+    darkTheme: $light11,
+    lightTheme: $dark1,
+  ),
 );
 
 @mixin styles($mode) {
