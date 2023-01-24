@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
-import "./index.scss";
+import "./videoPlayer.scss";
 import "plyr-react/plyr.css";
 import React, { useEffect, useState } from "react";
+import PlayerHelper from "./helpers";
 import Plyr from "plyr-react";
-import { buildVideoSrc } from "./VideoPlayerHelper";
 
 const optionsVideoplayer = {
   quality: {
@@ -43,18 +43,17 @@ const optionsVideoplayer = {
 };
 interface VideoPlayerProps {
   src: string;
-  onAddViewer: () => void;
-  isViewed: boolean;
+  onClick: () => void;
   previewImg?: string;
 }
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({
-  src,
-  onAddViewer,
-  isViewed,
-  previewImg,
-}) => {
+
+export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
+  const {
+    src, onClick, previewImg 
+  } = props;
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const [videoSrc, setVideoSrc] = useState<Plyr.SourceInfo | null>(null);
+  const [isYoutubeSrc, setIsYoutubeSrc] = useState(false);
 
   useEffect(() => {
     setDataIsLoaded(false);
@@ -62,20 +61,41 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   useEffect(() => {
     if (!dataIsLoaded) {
-      setVideoSrc(buildVideoSrc(src, previewImg));
+      if (PlayerHelper.isYoutubeSource(src)) {
+        setIsYoutubeSrc(true);
+      } else {
+        setVideoSrc(PlayerHelper.buildVideoSrc(src, previewImg));
+      }
+
       setDataIsLoaded(true);
     }
   }, [dataIsLoaded, src, previewImg]);
 
-  return (
-    <>
-      {videoSrc && dataIsLoaded ? (
-        <div className="player" onClick={!isViewed ? onAddViewer : undefined}>
-          <Plyr options={optionsVideoplayer} source={videoSrc} />
-        </div>
-      ) : (
-        <h1>Загрузка данных</h1>
-      )}
-    </>
-  );
+  useEffect(() => {
+    if (isYoutubeSrc) {
+      onClick(); // for youtube we increment views counter with page loading
+    }
+  }, [isYoutubeSrc, onClick]);
+
+
+  if (isYoutubeSrc) {
+    return (
+      <div className="video-player__wrapper" id="player" key="plyr-youtube">
+        <iframe
+          src={`${src}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1`}
+          allowFullScreen
+        />
+      </div>
+    );
+  }
+
+  if (videoSrc && dataIsLoaded) {
+    return (
+      <div className="player" onClick={onClick}>
+        <Plyr options={optionsVideoplayer} source={videoSrc} />
+      </div>
+    );
+  }
+
+  return null;
 };
