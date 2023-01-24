@@ -1,7 +1,7 @@
 import "./renderLessonsHead.scss";
-import { FC, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Button from "../Button";
+import { FC } from "react";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom"; 
 
@@ -20,7 +20,6 @@ interface RenderLessonHeadProps {
   buttonImage: any; // eslint-disable-line
   buttonImageStyle: string;
   buttonNavigatePath: string;
-  setStatusActive: string;
   classNameWrapper: string;
   classNameHead: string;
   classNameTitle: string;
@@ -34,21 +33,20 @@ interface RenderLessonHeadProps {
   classNameLessonItemUnderline: string;
   title?: string;
   onCategoryChange: (arg: string) => void;
+  onStatusChange: (arg: string) => void;
   category: string;
   setCategoryActive: string;
+  setStatusActive: string;
 }
 
 export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const onCategoryChange = renderProps.onCategoryChange;
-  const [statusActive, setStatusActive] = useState(
-    intl.formatMessage({ id: renderProps.setStatusActive})
-  );
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onStatusChange = renderProps.onStatusChange;
 
   const handleStatusToggle = (status: string) => {
-    setStatusActive(status);
+    onStatusChange(status);
   };
 
   const handleCategoryToggle = (event: React.ChangeEvent) => {
@@ -70,12 +68,12 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
         <span
           onClick={() => handleStatusToggle(status)}
           className={classNames(
-            status === statusActive &&
+            status === renderProps.setStatusActive &&
               `${renderProps.classNameLessonItemActive}`
           )}
         >
           {status}
-          {status === statusActive && (
+          {status === renderProps.setStatusActive && (
             <div className={renderProps.classNameLessonItemUnderline}></div>
           )}
         </span>

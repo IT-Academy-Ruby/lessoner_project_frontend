@@ -69,6 +69,7 @@
   color: var(--iconsTextButtonColor);
   padding: 6px 36px;
   background: var(--bgButtonColor);
+  cursor: pointer;
 
   &:disabled {
     background: var(--bgButtonColor);
@@ -89,6 +90,7 @@
   font-weight: 600;
   font-size: 16px;
   box-sizing: content-box;
+  cursor: pointer;
 }
 
 .button__page {
@@ -139,6 +141,8 @@
   border: none;
   margin-left: 12px;
   padding: 6px 26px;
+  cursor: pointer;
+  
 
   &:focus {
     border: 1px solid $greyDefault;
@@ -162,6 +166,7 @@
   border: none;
   border-radius: 28px;
   margin-left: 8px;
+  cursor: pointer;
 
   &:active {
     background: $blueDarkColor;
@@ -198,15 +203,18 @@
   font-weight: 600;
   font-size: 16px;
   box-sizing: content-box;
+  cursor: pointer;
 }
 
 .button-delete {
   color: $warningColor;
   border-color: $warningColor;
+  cursor: pointer;
 }
 
 .icon-button {
   margin-right: 11px;
+  cursor: pointer;
 }
 
 .button-about-team {
@@ -222,6 +230,7 @@
   padding: 0px 28px;
   text-align: center;
   line-height: 20px;
+  cursor: pointer;
 
   &:focus {
     color: var(--bgThemeColor1);
@@ -232,12 +241,14 @@
 .button-about-team-active {
   color: var(--bgThemeColor1);
   background: var(--textThemeColor2);
+  cursor: pointer;
 }
 
 .button-about-cources {
   @extend .button-about-team;
   color: var(--btnSignUpCourcesText);
   border: 1px solid var(--btnSignUpCourcesBorder);
+  cursor: pointer;
 }
 
 .button-no {
@@ -251,6 +262,7 @@
   color: $white;
   padding: 6px 36px;
   background: $blueLightColor;
+  cursor: pointer;
 
   &:disabled {
     background: $white;
