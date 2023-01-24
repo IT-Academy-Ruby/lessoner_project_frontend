@@ -104,6 +104,11 @@
 
 .icon-edit {
   margin-right: 23px;
+  cursor: pointer;
+}
+
+.icon-delete {
+  cursor: pointer;
 }
 
 @media (max-width: $max-width-phone) {

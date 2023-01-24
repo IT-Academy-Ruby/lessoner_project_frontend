@@ -115,7 +115,7 @@
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  cursor: pointer;
+  // cursor: pointer;
 }
 
 .globe {
@@ -125,6 +125,7 @@
 
 .lang {
   display: flex;
+  cursor: pointer;
 }
 
 .lang-registration {
