@@ -128,6 +128,9 @@ $transition: .2s;
 
 .menu__footer {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   padding-top: 10px;
   left: 0;
   bottom: 64px;
@@ -212,19 +215,13 @@ $transition: .2s;
   transition: $transition;
 }
 
-//.menu__footer-rights {
-//  min-height: 52px;
-//}
-
 .menu__footer-text {
-  //width: 0;
   display: none;
   text-align: left;
   font-weight: 400;
   font-size: 0;
   line-height: 150%;
   color: var(--iconsTextThemeNavBarColor);
-  //opacity: 0;
   text-decoration: none;
   transition: .1s;
 }

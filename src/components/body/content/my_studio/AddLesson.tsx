@@ -105,8 +105,8 @@ const AddLesson = ({add}: AddLessonProps) => {
       userLesson.lesson_video = videoLink;
     }
     dispatch(addVideo(userLesson));
-    dispatch(getLessons());
     navigate("/myStudio");
+    dispatch(getLessons());
   };
 
   const editLesson = () => {
@@ -130,8 +130,8 @@ const AddLesson = ({add}: AddLessonProps) => {
       navigate("/myStudio");
     } else {
       dispatch(updateLesson(userLesson));
-      dispatch(getLessons());
       navigate("/myStudio");
+      dispatch(getLessons());
     }
   };
 

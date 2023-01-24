@@ -33,6 +33,7 @@ const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
+  const [autoComplete, setAutoComplete] = useState("off");
 
   const initialValues: FormValues = {
     email: "",
@@ -46,7 +47,7 @@ const LoginPage = () => {
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
-          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+          if (!emailInvalidationRules.test(values.email)) {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
@@ -85,6 +86,7 @@ const LoginPage = () => {
                 error={touched.email ? errors.email : undefined}
                 isEmail={isLogEmail}
                 textError={intl.formatMessage({id: "app.incorectEmailOrPassword"})}
+                remember={autoComplete}
               />
               <Field
                 name="password"

@@ -30,6 +30,7 @@ const Email = ({
           {"invalid-input": error},
           {"success-input": !error && field.value},
         )}
+        autoComplete={"off"}
         placeholder="username@gmail.com"
         {...field}
       />
