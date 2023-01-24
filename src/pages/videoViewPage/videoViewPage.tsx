@@ -395,8 +395,8 @@ const VideoViewPage = ({user}: BodyProps) => {
                 <span>{`${lessonData.views_count} views`}</span>
               </div>
             </div>
-            <div className="videoplayer__wrapper__description">
-              <span>{lessonData.description}</span>
+            <div>
+              <p className="videoplayer__wrapper__description">{lessonData.description}</p>
             </div>
           </div>
         </div>

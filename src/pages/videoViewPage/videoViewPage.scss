@@ -15,7 +15,7 @@
 .videoplayer__wrapper {
   --plyr-captions-background: rgba(0, 0, 0, 0.8);
   --plyr-captions-text-color: white;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
 }
 
 .videoplayer__wrapper__info {
@@ -23,11 +23,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 0 8px;
 }
 
 .videoplayer__wrapper__label {
   width: 59px;
   height: 29px;
+  line-height: 29px;
   padding: 0;
   margin-bottom: 16px;
 }
@@ -54,32 +56,28 @@
 }
 
 .videoplayer__wrapper__description {
-  align-self: flex-start;
-  width: 100%;
-  word-wrap: break-word;
-  text-align: left;
-
-  span {
-    font-family: $font;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 150%;
-    font-feature-settings: "liga" off;
-    color: #9a9aa3;
-  }
+  font-family: $font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #9a9aa3;
+  text-align: justify;
 }
 
 .videoplayer__wrapper__info_bottom {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 24px 0 100px 0;
 }
 
 .videoplayer__wrapper__info_top {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid #f3f3f3;
+  padding: 0 0 24px 0;
 
   .info__top_right {
     display: flex;
