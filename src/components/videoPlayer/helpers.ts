@@ -1,15 +1,4 @@
-import { Lesson } from "../../content/lessons/Lessons";
-import placeHolder from "../../../../assets/category-placeholder.png";
-export const getSrcFromId = (lessonsArr: Lesson[], id: number | undefined) => {
-  const foundElem = lessonsArr.find((elem) => elem.id === id);
-  if (foundElem) return foundElem.video_link;
-  return lessonsArr[1].video_link;
-};
-
-export const buildVideoSrc = (
-  src: string,
-  previewImg?: string
-): Plyr.SourceInfo | null => {
+function buildVideoSrc (src: string, previewImg?: string): Plyr.SourceInfo | null {
   return {
     type: "video" as const,
     title: "Elephants",
@@ -20,7 +9,7 @@ export const buildVideoSrc = (
         size: 1080,
       },
     ],
-    poster: previewImg ?? placeHolder,
+    poster: previewImg,
     tracks: [
       {
         kind: "captions" as const,
@@ -43,4 +32,11 @@ export const buildVideoSrc = (
         "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
       ],},
   };
-};
+}
+
+function isYoutubeSource (src: string): boolean {
+  return src.toLowerCase().includes("/embed/");
+}
+
+export default {buildVideoSrc,
+  isYoutubeSource,};

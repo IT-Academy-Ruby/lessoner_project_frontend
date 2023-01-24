@@ -12,22 +12,25 @@ import requestApi from "../../services/request";
 
 export const REACT_APP_BACKEND_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 export interface Lesson {
-  id: number;
-  title: string;
-  description: string;
-  duration?: string;
-  video_link: string;
-  status: string;
+  author_avatar_url?: string;
   author_id: number;
+  author_name?: string;
   category_id: number;
   created_at: string;
+  description: string;
+  id: number;
   image_link?: string;
-  view?: number;
+  image_name?: string;
+  image_size?: number;
   rating?: number;
+  status: string;
+  title: string;
+  video_link: string;
+  view?: number;
+  views_count?: number;
   votes_count?: number;
+  duration?: string;
   categoryName?: string;
-  author_avatar_url?: string;
-  author_name?: string;
 }
 export interface Category {
   id: number;
@@ -132,7 +135,6 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
   if (!categoriesIsLoaded || !dataIsLoaded)
     return <div className="lessons">{skeleton}</div>;
 
-    
   const getRenderParameter = () =>
     renderProps.categoryActive === "All categories"
       ? data
@@ -146,8 +148,9 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
         {(renderProps.category && lessonsByCategory.length === 0) ||
-        (renderProps.categoryActive && lessonsBycategoryActive.length === 0) &&
-        (renderProps.categoryActive !== "All categories") ? (
+        (renderProps.categoryActive &&
+          lessonsBycategoryActive.length === 0 &&
+          renderProps.categoryActive !== "All categories") ? (
             <NoLessonsPage isOnLessonsPage={false} />
           ) : (
             getRenderParameter().map((obj) => (
@@ -163,6 +166,9 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
                 category={obj.categoryName}
                 rating={obj.rating}
                 totalVotes={obj.votes_count}
+                authorAvatarUrl={obj.author_avatar_url}
+                authorName={obj.author_name}
+                viewsCount={obj.views_count}
                 isEditable={renderProps.isEditable}
                 hasStatus={renderProps.hasStatus}
               />

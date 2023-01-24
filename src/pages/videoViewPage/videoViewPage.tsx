@@ -10,7 +10,7 @@ import {Published} from "../../components/LessonCard";
 import RatingCounter from "../../components/ratingCounter/ratingCounter";
 import {RootState} from "../../store";
 import Tag from "../../components/body/Tags/Tag";
-import {VideoPlayer} from "../../../src/components/body/content/videoplayer/Videoplayer";
+import {VideoPlayer} from "../../components/videoPlayer/videoPlayer";
 import {VideoSideBar} from "../../../src/components/body/content/VideoSideBar/VideoSideBar";
 import {connect} from "react-redux";
 import img from "../../Photo.png"; // В качестве примера
@@ -358,8 +358,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       <div className="videoplayer__wrapper">
         <VideoPlayer
           src={lessonData.video_link}
-          onAddViewer={addViewer}
-          isViewed={isViewed}
+          onClick={() => {!isViewed && addViewer();}}
           previewImg={lessonData.image_link}
         />
         <div className="videoplayer__wrapper__info">
