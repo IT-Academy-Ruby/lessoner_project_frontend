@@ -32,12 +32,16 @@ interface RenderLessonPageProps {
 
 export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
   const intl = useIntl();
+  const FIRST_STATUS = intl.formatMessage({id: "app.lessons.statusAllLessons"});
   const [isLesson, setIsLesson] = useState(false);
   const [isNoLesson, setIsNoLesson] = useState(false);
   const [isLoader, setIsLoader] = useState(true);
   const [categoryActive, setCategoryActive] = useState("");
-  const [statusActive, setStatusActive] = useState(
-    intl.formatMessage({ id: "app.lessons.statusAllLessons"}));
+  const [statusActive, setStatusActive] = useState(FIRST_STATUS);
+
+  useEffect(() => {
+    setStatusActive(FIRST_STATUS);
+  }, [FIRST_STATUS]);
 
   const handleCategoryChange = (currentCategory: string) => {
     setCategoryActive(currentCategory);
