@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import requestApi from "../../services/request";
 
 export const getUser = createAsyncThunk(
@@ -64,7 +64,7 @@ export const confirmTokenSlice = createAsyncThunk(
 export const getLogin = createAsyncThunk(
   "user/getLoginStatus",
   async (val: { email: string, password: string }) => {
-    const email=encodeURIComponent(val.email);
+    const email = encodeURIComponent(val.email);
     const response =
       await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/login?email=${email}&password=${val.password}`,
@@ -155,7 +155,7 @@ export const uploadFile = createAsyncThunk(
   async (user: { name: string, file: FileList }) => {
     const formData = new FormData();
     formData.append("avatar", user.file[0]);
-    const token = localStorage.getItem("JWT");
+    const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.name}`, {
       method: "PUT",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
@@ -191,6 +191,7 @@ type Login = {
   loading: boolean;
   isLogged: boolean;
   token: string;
+  stayIsLoggedIn: boolean;
 };
 
 const initialState: Login = {
@@ -214,26 +215,34 @@ const initialState: Login = {
   loading: false,
   isLogged: false,
   token: "",
+  stayIsLoggedIn: false,
 };
 
 const loginSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {resetUserData: (state) => {state.user = {
-    id: 0,
-    name: "",
-    description: "",
-    email: "",
-    avatar_url: "",
-    phone: "",
-    gender: "",
-    birthday: "",
-    password: "",
-    created_at: ""
-  };},
-  addToken: (state, action) => {
-    state.token = action.payload;
-  }},
+  reducers: {
+    resetUserData: (state) => {
+      state.user = {
+        id: 0,
+        name: "",
+        description: "",
+        email: "",
+        avatar_url: "",
+        phone: "",
+        gender: "",
+        birthday: "",
+        password: "",
+        created_at: ""
+      };
+    },
+    addToken: (state, action) => {
+      state.token = action.payload;
+    },
+    changedStayLoggedIn: (state, action) => {
+      state.stayIsLoggedIn = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
@@ -242,8 +251,11 @@ const loginSlice = createSlice({
     builder.addCase(getLogin.fulfilled, (state, action) => {
       state.userToken = action.payload;
       state.loading = false;
-      if (state.userToken) {
+      if (state.userToken && state.stayIsLoggedIn) {
         localStorage.setItem("JWT", `${state.userToken}`);
+      }
+      if (state.userToken && !state.stayIsLoggedIn) {
+        sessionStorage.setItem("JWT", `${state.userToken}`);
       }
     });
     builder.addCase(getLogin.pending, (state) => {
@@ -279,5 +291,7 @@ const loginSlice = createSlice({
   }
 });
 
-export const {addToken, resetUserData} = loginSlice.actions;
+export const {
+  addToken, resetUserData, changedStayLoggedIn
+} = loginSlice.actions;
 export default loginSlice.reducer;

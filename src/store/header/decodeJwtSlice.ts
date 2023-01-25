@@ -26,7 +26,7 @@ const initialState: UserSession = {session: {
 }};
 
 const decode = () => {
-  const token = localStorage.getItem("JWT");
+  const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
   const todaySec = Date.now() / 1000;
   if (token) {
     const sessionJWT: UserSession = {session: jwt_decode(token)};

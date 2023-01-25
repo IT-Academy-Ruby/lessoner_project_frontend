@@ -71,7 +71,7 @@ export const EditVideoLessonForm: FC = () => {
   };
 
   const changeImageInLesson = () => {
-    const token = localStorage.getItem("JWT");
+    const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     formData.append("lesson_image", imageURL);
     fetch(`${BACKEND_URL_LESSONS + params.id}`, {
       method: "PUT",
