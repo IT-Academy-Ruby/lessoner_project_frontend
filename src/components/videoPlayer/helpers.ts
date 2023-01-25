@@ -10,27 +10,28 @@ function buildVideoSrc (src: string, previewImg?: string): Plyr.SourceInfo | nul
       },
     ],
     poster: previewImg,
+    //Subtitles
     tracks: [
       {
         kind: "captions" as const,
         label: "Russian",
-        src: "../examples/plyr/subtitles/subtitles-ru.vtt",
+        src: "",
         default: true,
       },
       {
         kind: "captions" as const,
         label: "English",
 
-        src: "../examples/plyr/subtitles/subtitles-en.vtt",
+        src: "",
         default: true,
       },
     ],
     // Preview example
-    previewThumbnails: {enabled: true,
-      src: [
-        "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
-        "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
-      ],},
+    // previewThumbnails: {enabled: true,
+    //   src: [
+    //     "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
+    //     "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
+    //   ],},
   };
 }
 

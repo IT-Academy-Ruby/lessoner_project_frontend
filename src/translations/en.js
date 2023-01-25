@@ -310,4 +310,5 @@ export const messages_en = {
   "app.errorRequest": "An error has occurred",
   "app.lessonCard.Published":"Published:",
   "app.lessonCard.Views":"views",
+  "app.hero.buttonText":"Let’s go",
 };
