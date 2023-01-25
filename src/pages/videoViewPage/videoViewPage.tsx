@@ -85,7 +85,8 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       const fetchData = async () => {
         const response = await requestApi(
-          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&category_id=${lessonCategoryId}`,
+          // eslint-disable-next-line max-len
+          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&category_id=${lessonCategoryId}&items=24`,
           "GET"
         );
         if (!response.ok) {
@@ -110,7 +111,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       const fetchData = async () => {
         const response = await requestApi(
-          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=created_at`,
+          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=created_at&items=24`,
           "GET"
         );
         if (!response.ok) {
@@ -134,7 +135,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       const fetchData = async () => {
         const response = await requestApi(
-          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=views_count`,
+          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=views_count&items=24`,
           "GET"
         );
         if (!response.ok) {
