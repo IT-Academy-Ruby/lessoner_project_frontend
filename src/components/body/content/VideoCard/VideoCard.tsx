@@ -1,5 +1,6 @@
 import "./VideoCard.scss";
 import { Published, Title } from "../../../../components/LessonCard";
+import { Link } from "react-router-dom";
 import placeHolder from "../../../../assets/category-placeholder.png";
 
 interface VideoCardProps {
@@ -19,12 +20,17 @@ export const VideoCard = ({
 }: VideoCardProps) => {
   return (
     <>
-      <div className="preview__img">
-        {img ? <img src={img} /> : <img src={placeHolder} />}
-      </div>
+      <Link to={`/lessons/${id}`}>
+        <div className="preview__img" 
+          onClick={() => {
+            changeIdState(id);
+          }}
+        >
+          {img ? <img src={img} /> : <img src={placeHolder} />}
+        </div>
+      </Link>
       <div className="info">
-        <div
-          className="info__title"
+        <div className="info__title"
           onClick={() => {
             changeIdState(id);
           }}
