@@ -11,6 +11,7 @@ import { SKELETON_LESSONS_AMOUT } from "../../constants";
 import SkeletonLessons from "../SkeletonLessons";
 import placeHolder from "../../assets/category-placeholder.png";
 import requestApi from "../../services/request";
+import { useIntl } from "react-intl";
 
 export const REACT_APP_BACKEND_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 export interface Lesson {
@@ -63,6 +64,7 @@ interface RenderLessonContentProps {
 }
 
 export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) => {
+  const intl = useIntl();
   const [categories, setCategories] = useState<Category[]>([]);
   const [data, setData] = useState<Lesson[]>([]);
   const [newLessonsArr, setNewLessonsArr] = useState<Lesson[]>([]);
@@ -239,11 +241,14 @@ export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) =
           : popularLessonsArr;
 
   const getRenderByCurrentCategoryAndStatus = () =>
-    renderProps.statusActive === "All lessons"
+    renderProps.statusActive ===
+    intl.formatMessage({ id: "app.lessons.statusAllLessons" })
       ? getLessonsByCurrentCategory()
-      : renderProps.statusActive === "New"
+      : renderProps.statusActive ===
+        intl.formatMessage({ id: "app.lessons.statusNew" })
         ? getNewLessonsByCurrentCategory()
-        : renderProps.statusActive === "Popular"
+        : renderProps.statusActive ===
+          intl.formatMessage({ id: "app.lessons.statusPopular" })
           ? getPopularLessonsByCurrentCategory()
           : data;
 
