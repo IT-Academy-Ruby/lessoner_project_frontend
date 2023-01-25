@@ -81,9 +81,9 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       renderLessonHeadStatuses: MY_STUDIO_STATUSES,
       renderLessonHeadCategories: CATEGORIES,
       isRenderLessonContentEdited: true,
-      isRenderLessonContentHasStatus: false,
+      isRenderLessonContentHasStatus: true,
       renderLessonContentCategoriesUrl: "/categories",
-      renderLessonContentLessonsUrl: "/my_studio/lessons",
+      renderLessonContentLessonsUrl: "/my_studio/lessons?page=1&items=120",
       category: props.category,
     },
   ];

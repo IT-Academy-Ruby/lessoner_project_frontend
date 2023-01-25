@@ -13,11 +13,55 @@ import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
 import AddSubtitle from"../icons/addSubtitle.svg";
 import Button from "../Button";
+import { GetDataWithCategoryNames } from "../body/content/lessons/LessonsHelper";
 import { ILessonBack } from "../types/types";
+import { REACT_APP_BACKEND_URL } from "../renderLessonsPage/renderLessonsContent";
 import { Thumbnail } from "../Thumbnail";
 import classNames from "classnames";
-import sendInfoInLesson from "../../services/request";
+import requestApi from "../../services/request";
 import { useIntl } from "react-intl";
+
+interface Lesson {
+  author_avatar_url?: string;
+  author_id: number;
+  author_name?: string;
+  category_id: number;
+  created_at: string;
+  description: string;
+  id: number;
+  image_link?: string;
+  image_name?: string;
+  image_size?: number;
+  rating?: number;
+  status: string;
+  title: string;
+  video_link: string;
+  view?: number;
+  views_count?: number;
+  votes_count?: number;
+  duration?: string;
+  categoryName?: string;
+}
+
+interface CategoriesResponce {
+  records: Category[];
+  pagy_metadata: {
+    count_pages: number;
+    page: number;
+    per_page: number;
+  };
+}
+
+interface Category {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+}
+
+interface Map {
+  [key: number]: string;
+}
 
 const hachTag = "#";
 let countHashTag = 0; 
@@ -25,13 +69,32 @@ let countHashTag = 0;
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
   const [lesson, setLesson] = useState<ILessonBack | null>(null);
+  const [data, setData] = useState<Lesson[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
+  const [dataIsLoaded, setDataIsLoaded] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
   const [imageURL, setImageURL] = useState("");
   const formData = new FormData();
-
+  const categoryName = data
+    .filter((item) => params.id !== undefined && item.id === +params.id)
+    .map((categoryName) => categoryName.categoryName)[0];
+  const [categoryActive, setCategoryActive] = useState<string | undefined>(categoryName);
+  const handleCategoryToggle = (event: React.ChangeEvent) => {
+    const category = event.target as HTMLInputElement;
+    setCategoryActive(category.value);
+  };
+  const categoriesMap = categories.reduce((map: Map, cat: Category) => {
+    map[cat.id] = cat.name;
+    return map;
+  }, {});
+  const iDCurrentCategory: number[] = [];
+  for (const category_id in categoriesMap) {
+    categoriesMap[category_id] === categoryActive &&
+      iDCurrentCategory.push(+category_id);
+  }
   const CATEGORIES = [
-    "All categories",
     "Design",
     "IT",
     "Music",
@@ -45,11 +108,65 @@ export const EditVideoLessonForm: FC = () => {
   const elementsCategory = CATEGORIES.map((category: string) => {
     return (
       <option key={category} id={category}>
-        {category}
+        {categoryName === undefined
+          ? intl.formatMessage({ id: "app.editVideoLesson.loading" })
+          : category}
       </option>
     );
   });
 
+  useEffect(() => {
+    if (!categoriesIsLoaded) {
+      const fetchSuccess = (responseData: CategoriesResponce) => {
+        setCategories(responseData?.records || []);
+        setCategoriesIsLoaded(true);
+      };
+      const fetchError = (errMessage: string) => {
+        alert(errMessage);
+      };
+      const fetchData = async () => {
+        const response = await requestApi(
+          REACT_APP_BACKEND_URL + "/categories",
+          "GET"
+        );
+        if (!response.ok) {
+          fetchError("fetch error " + response.status);
+        } else {
+          const data = await response.json();
+          fetchSuccess(data);
+        }
+      };
+      fetchData();
+    }
+  }, [categoriesIsLoaded]);
+
+  useEffect(() => {
+    if (!dataIsLoaded && categoriesIsLoaded) {
+      const fetchSuccess = (data: Lesson[]) => {
+        const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
+        setData(dataWithCategoryName);
+        setDataIsLoaded(true);
+      };
+      const fetchError = (errMessage: string) => {
+        alert(errMessage);
+      };
+
+      const fetchData = async () => {
+        const response = await requestApi(
+          `${REACT_APP_BACKEND_URL + "/my_studio/lessons"}`,
+          "GET"
+        );
+        if (!response.ok) {
+          fetchError("fetch error " + response.status);
+        } else {
+          const data = await response.json();
+          fetchSuccess(data.records);
+        }
+      };
+      fetchData();
+    }
+  }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
+  
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS + params.id)
       .then((response) => response.json())
@@ -64,10 +181,15 @@ export const EditVideoLessonForm: FC = () => {
   const changeInfoInLesson = (values: {
     name: string;
     description: string;
+    category: string;
   }) => {
-    const lessonFromEditForm = { title: `${values.name}`, description: `${values.description}`};
-    sendInfoInLesson(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
-    changeImageInLesson();
+    const lessonFromEditForm = {
+      title: `${values.name}`,
+      description: `${values.description}`,
+      category_id: iDCurrentCategory[0],
+    };
+    requestApi(BACKEND_URL_LESSONS + params.id, "PUT", lessonFromEditForm);
+    imageURL !== "" && changeImageInLesson();
   };
 
   const changeImageInLesson = () => {
@@ -125,24 +247,21 @@ export const EditVideoLessonForm: FC = () => {
   const lessonValuesFromBack = {
     name: `${
       lesson?.title === undefined
-        ? 
-        intl.formatMessage({id: "app.editVideoLesson.loading"})
-        : 
-        lesson?.title
+        ? intl.formatMessage({ id: "app.editVideoLesson.loading" })
+        : lesson?.title
     }`,
-    category: "IT",
+    category: `${ 
+      categoryActive !== undefined ? categoryActive : categoryName
+    }`,
     description: `${
       lesson?.description === undefined
-        ? 
-        intl.formatMessage({id: "app.editVideoLesson.loading"})
-        : 
-        lesson?.description
+        ? intl.formatMessage({ id: "app.editVideoLesson.loading" })
+        : lesson?.description
     }`,
-
   };
   const initialValues = {
     name: "",
-    category: "IT",
+    category: "",
     description: "",
   };
 
@@ -171,10 +290,14 @@ export const EditVideoLessonForm: FC = () => {
           </label>
           <label className="evlf__label">
             {intl.formatMessage({ id: "app.editVideoLesson.lableCategory" })}
-            <Field 
-              className="evlf__input" 
-              as="select" 
-              name="category">
+            <Field
+              className="evlf__input"
+              as="select"
+              name="category"
+              onChange={(event: React.ChangeEvent) =>
+                handleCategoryToggle(event)
+              }
+            >
               {elementsCategory}
             </Field>
           </label>
