@@ -31,7 +31,7 @@ const VIDEO_DATA = {
   /* eslint-disable-next-line */
   symbols: `( )! $ % & ' " " * + - / = ? ^ _  { | } ~ ., @ [ ] < >`
 };
-const SKELETON_LESSONS_AMOUT = 12;
+const SKELETON_LESSONS_AMOUT = 15;
 const AVATAR = {size: 5 * 1024 * 1024};
 
 export { 

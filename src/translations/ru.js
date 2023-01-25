@@ -278,7 +278,7 @@ export const messages_ru = {
   "app.cancel": "Отмена",
   "app.Lessonname": "Имя урока",
   "app.hero.title":
-    "<span>Обучай</span> учась. <br /> Учи обучая.",
+    "<span>Обучай</span> учась. <br /> Учись обучая.",
   "app.hero.subtitle":
     "Идеально начинающим, соискателям <br />и желающим научиться или научить новому.",
   "app.VideoSize": "Максимальный размер: 35Мб",
