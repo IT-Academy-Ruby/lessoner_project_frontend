@@ -262,12 +262,12 @@ export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) =
   return (
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
-        {(renderProps.category && lessonsByCategory.length === 0) ||
-        (renderProps.categoryActive &&
-          lessonsBycategoryActive.length === 0 &&
-          renderProps.categoryActive !== "All categories") ? (
-            <NoLessonsPage isOnLessonsPage={false} />
-          ) : (
+        { (renderProps.category === undefined && lessonsByCategory.length === 0) 
+          || (renderProps.categoryActive === "") 
+          || (renderProps.categoryActive !== "All categories" 
+            && lessonsBycategoryActive.length === 0) 
+          ? (<NoLessonsPage isOnLessonsPage={false} />) 
+          : (
             getRenderByCurrentCategoryAndStatus().map((obj) => (
               <LessonCard
                 key={obj.id}
