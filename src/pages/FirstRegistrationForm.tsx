@@ -62,7 +62,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
 
     const errors: FormErrors = {};
 
-    if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+    if (!emailInvalidationRules.test(values.email)) {
       errors.email = intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
     }
 
@@ -79,7 +79,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = intl.formatMessage({id: "app.firstRegistrationForm.passwordConfrim"});
     }
-    if (!(values.hasTermsAndConditions)) {
+    if (!values.hasTermsAndConditions) {
       errors.hasTermsAndConditions = intl.formatMessage({id: "app.firstRegistrationForm.termsAndConditions"});
     }
     return errors;

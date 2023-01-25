@@ -46,7 +46,7 @@ const LoginPage = () => {
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
-          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+          if (!emailInvalidationRules.test(values.email)) {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
