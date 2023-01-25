@@ -23,7 +23,7 @@ export const addCategory = createAsyncThunk(
     }
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
-    const token = localStorage.getItem("JWT");
+    const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
       method: "POST",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
@@ -63,7 +63,7 @@ export const updateCategory = createAsyncThunk(
     }
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
-    const token = localStorage.getItem("JWT");
+    const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     const responce =
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories/${dataCategory.id}`, {
         method: "PUT",

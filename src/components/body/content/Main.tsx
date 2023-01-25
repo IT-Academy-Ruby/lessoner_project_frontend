@@ -67,7 +67,12 @@ const Content = () => {
       );
       dispatch(editUserEmail(token));
       navigate("/user/sign_in");
-      localStorage.setItem("JWT", "");
+      if(localStorage.getItem("JWT")) {
+        localStorage.setItem("JWT", "");
+      }
+      if(sessionStorage.getItem("JWT")){
+        sessionStorage.setItem("JWT", "");
+      }
       dispatch(nameDecodedUser());
       dispatch(resetUserData());
       controlRendering++;

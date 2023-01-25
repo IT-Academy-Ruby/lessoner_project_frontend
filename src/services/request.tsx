@@ -9,7 +9,7 @@ const requestApi = async (
   const formData = new FormData();
   file ? formData.append("image", file[0]) : null;
 
-  const token = localStorage.getItem("JWT");
+  const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
   if (typeRequest === "GET") {
     return await fetch(url, {headers: new Headers({"Authorization": `Bearer ${token}`})});
   }
