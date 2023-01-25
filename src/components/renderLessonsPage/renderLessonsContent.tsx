@@ -262,40 +262,43 @@ export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) =
   return (
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
-        { (renderProps.category &&
-          renderProps.category === undefined &&
-          lessonsByCategory.length === 0) 
+        {
+          (data.length === 0 && dataIsLoaded) 
+          ||
+          (renderProps.category &&
+            renderProps.category === undefined &&
+            lessonsByCategory.length === 0) 
           ||
           (renderProps.categoryActive &&
-          lessonsBycategoryActive.length === 0 &&
-          renderProps.categoryActive === "")
+            lessonsBycategoryActive.length === 0 &&
+            renderProps.categoryActive === "") 
           ||
           (renderProps.categoryActive &&
-          lessonsBycategoryActive.length === 0 &&
-          renderProps.categoryActive !== "All categories") 
-          ? (<NoLessonsPage isOnLessonsPage={false} />)
-          : (
-            getRenderByCurrentCategoryAndStatus().map((obj) => (
-              <LessonCard
-                key={obj.id}
-                title={obj.title}
-                status={obj.status}
-                duration={obj.duration}
-                imagePreview={obj.image_link ? obj.image_link : placeHolder}
-                id={obj.id}
-                published={obj.created_at}
-                view={obj.view}
-                category={obj.categoryName}
-                rating={obj.rating}
-                totalVotes={obj.votes_count}
-                authorAvatarUrl={obj.author_avatar_url}
-                authorName={obj.author_name}
-                viewsCount={obj.views_count}
-                isEditable={renderProps.isEditable}
-                hasStatus={renderProps.hasStatus}
-              />
-            ))
-          )}
+            lessonsBycategoryActive.length === 0 &&
+            renderProps.categoryActive !== "All categories") 
+            ? (<NoLessonsPage isOnLessonsPage={false} />) 
+            : (
+              getRenderByCurrentCategoryAndStatus().map((obj) => (
+                <LessonCard
+                  key={obj.id}
+                  title={obj.title}
+                  status={obj.status}
+                  duration={obj.duration}
+                  imagePreview={obj.image_link ? obj.image_link : placeHolder}
+                  id={obj.id}
+                  published={obj.created_at}
+                  view={obj.view}
+                  category={obj.categoryName}
+                  rating={obj.rating}
+                  totalVotes={obj.votes_count}
+                  authorAvatarUrl={obj.author_avatar_url}
+                  authorName={obj.author_name}
+                  viewsCount={obj.views_count}
+                  isEditable={renderProps.isEditable}
+                  hasStatus={renderProps.hasStatus}
+                />
+              ))
+            )}
       </div>
     </div>
   );
