@@ -85,7 +85,8 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       const fetchData = async () => {
         const response = await requestApi(
-          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&category_id=${lessonCategoryId}`,
+          // eslint-disable-next-line max-len
+          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&category_id=${lessonCategoryId}&items=24`,
           "GET"
         );
         if (!response.ok) {
@@ -110,7 +111,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       const fetchData = async () => {
         const response = await requestApi(
-          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=created_at`,
+          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=created_at&items=24`,
           "GET"
         );
         if (!response.ok) {
@@ -134,7 +135,7 @@ const VideoViewPage = ({user}: BodyProps) => {
       };
       const fetchData = async () => {
         const response = await requestApi(
-          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=views_count`,
+          `${process.env.REACT_APP_BACKEND_URL}/lessons?page=1&sort_field=views_count&items=24`,
           "GET"
         );
         if (!response.ok) {
@@ -358,16 +359,24 @@ const VideoViewPage = ({user}: BodyProps) => {
       <div className="videoplayer__wrapper">
         <VideoPlayer
           src={lessonData.video_link}
-          onClick={() => {!isViewed && addViewer();}}
+          onClick={() => {
+            !isViewed && addViewer();
+          }}
           previewImg={lessonData.image_link}
         />
         <div className="videoplayer__wrapper__info">
           <div className="videoplayer__wrapper__info_top">
             <div className="info__top_left">
-              <img src={lessonData.author_avatar_url ?? img}></img>
-              <div className="info__top_left_text">
-                <h2>{lessonData.title}</h2>
-                <span>{lessonData.author_name}</span>
+              <div className="info__top_left-picture">
+                <img src={lessonData.author_avatar_url ?? img}></img>
+              </div>
+              <div className="info__top_left-content">
+                <h2 className="info__top_left-title" title={lessonData.title}>
+                  {lessonData.title}
+                </h2>
+                <p className="info__top_left-authorname">
+                  {lessonData.author_name}
+                </p>
               </div>
             </div>
             <div className="info__top_right">
@@ -381,28 +390,30 @@ const VideoViewPage = ({user}: BodyProps) => {
             </div>
           </div>
           <div className="videoplayer__wrapper__info_bottom">
-            <Tag
-              className={"videoplayer__wrapper__label"}
-              type="category"
-              text={categoryName}
-            />
+            <div className="videoplayer__label-wrapper">
+              <Tag
+                className={"videoplayer__wrapper__label"}
+                type="category"
+                text={categoryName}
+              />
+            </div>
             <div className="published__views_wrapper">
               <Published
                 published={lessonData.created_at}
                 className="videoplayer__wrapper__published"
               />
               <div className="videoplayer__wrapper__views">
-                <span>{`${lessonData.views_count} views`}</span>
+                <p>{`${lessonData.views_count} views`}</p>
               </div>
             </div>
-            <div>
-              <p className="videoplayer__wrapper__description">{lessonData.description}</p>
+            <div className="videoplayer__wrapper__description">
+              <p>{lessonData.description}</p>
             </div>
           </div>
         </div>
       </div>
       <div className="video__side_bar">
-        <VideoSideBar tabs={sideBarTabs} changeIdState={changeIdState}/>
+        <VideoSideBar tabs={sideBarTabs} changeIdState={changeIdState} />
       </div>
     </div>
   );

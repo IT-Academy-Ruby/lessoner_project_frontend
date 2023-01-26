@@ -1,7 +1,9 @@
 import "./renderLessonsContent.scss";
 import "./renderLessonsPage.scss";
 import "./renderLessonsHead.scss";
-import React, { useEffect, useState } from "react";
+import { 
+  FC, useEffect, useState 
+} from "react";
 import { GetDataWithCategoryNames } from "../body/content/lessons/LessonsHelper";
 import LessonCard from "../LessonCard";
 import { NoLessonsPage } from "./noLessonsPage";
@@ -9,6 +11,7 @@ import { SKELETON_LESSONS_AMOUT } from "../../constants";
 import SkeletonLessons from "../SkeletonLessons";
 import placeHolder from "../../assets/category-placeholder.png";
 import requestApi from "../../services/request";
+import { useIntl } from "react-intl";
 
 export const REACT_APP_BACKEND_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 export interface Lesson {
@@ -57,19 +60,28 @@ interface RenderLessonContentProps {
   lessonsUrl: string;
   category?: string;
   categoryActive?: string;
+  statusActive?: string;
 }
 
-export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderProps) => {
+export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) => {
+  const intl = useIntl();
   const [categories, setCategories] = useState<Category[]>([]);
   const [data, setData] = useState<Lesson[]>([]);
+  const [newLessonsArr, setNewLessonsArr] = useState<Lesson[]>([]);
+  const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
-  const lessonsByCategory = data.filter(
-    (categoryName) => categoryName.categoryName === renderProps.category
-  );
-  const lessonsBycategoryActive = data.filter(
-    (categoryName) => categoryName.categoryName === renderProps.categoryActive
-  );
+  const allLessonsUrlStatus = `${REACT_APP_BACKEND_URL + renderProps.lessonsUrl}`;
+  const newUrlStatus = `${
+    REACT_APP_BACKEND_URL +
+    renderProps.lessonsUrl +
+    "?page=1&sort_field=created_at"
+  }`;
+  const popularUrlStatus = `${
+    REACT_APP_BACKEND_URL +
+    renderProps.lessonsUrl +
+    "?page=1&sort_field=views_count"
+  }`;
   
   useEffect(() => {
     if (!categoriesIsLoaded) {
@@ -106,11 +118,33 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
       const fetchError = (errMessage: string) => {
         alert(errMessage);
       };
+
       const fetchData = async () => {
-        const response = await requestApi(
-          REACT_APP_BACKEND_URL + `${renderProps.lessonsUrl}`,
-          "GET"
-        );
+        const response = await requestApi(`${allLessonsUrlStatus}`, "GET");
+        if (!response.ok) {
+          fetchError("fetch error " + response.status);
+        } else {
+          const data = await response.json();
+          fetchSuccess(data.records);
+        }
+      };
+      fetchData();
+    }
+  }, [data, categories, allLessonsUrlStatus, categoriesIsLoaded, dataIsLoaded]);
+
+  useEffect(() => {
+    //Get  Array sorted by newest
+    if (!newLessonsArr.length && categoriesIsLoaded) {
+      const fetchSuccess = (data: Lesson[]) => {
+        const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
+        setNewLessonsArr(dataWithCategoryName);
+        setDataIsLoaded(true);
+      };
+      const fetchError = (errMessage: string) => {
+        alert(errMessage);
+      };
+      const fetchData = async () => {
+        const response = await requestApi(`${newUrlStatus}`, "GET");
         if (!response.ok) {
           fetchError("fetch error " + response.status);
         } else {
@@ -123,19 +157,63 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
   }, [
     data,
     categories,
-    renderProps.lessonsUrl,
+    newUrlStatus,
     categoriesIsLoaded,
     dataIsLoaded,
+    newLessonsArr.length,
   ]);
 
-  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) => (
-    <SkeletonLessons key={index} />
-  ));
+  useEffect(() => {
+    //Get  Array sorted by popular
+    if (!popularLessonsArr.length && categoriesIsLoaded) {
+      const fetchSuccess = (data: Lesson[]) => {
+        const dataWithCategoryName = GetDataWithCategoryNames(categories, data);
+        setPopularLessonsArr(dataWithCategoryName);
+        setDataIsLoaded(true);
+      };
+      const fetchError = (errMessage: string) => {
+        alert(errMessage);
+      };
+      const fetchData = async () => {
+        const response = await requestApi(`${popularUrlStatus}`, "GET");
+        if (!response.ok) {
+          fetchError("fetch error " + response.status);
+        } else {
+          const data = await response.json();
+          fetchSuccess(data.records);
+        }
+      };
+      fetchData();
+    }
+  }, [
+    data,
+    categories,
+    popularUrlStatus,
+    categoriesIsLoaded,
+    dataIsLoaded,
+    popularLessonsArr.length,
+  ]);
 
-  if (!categoriesIsLoaded || !dataIsLoaded)
-    return <div className="lessons">{skeleton}</div>;
+  const lessonsByCategory = data.filter(
+    (item) => item.categoryName === renderProps.category
+  );
+  const lessonsBycategoryActive = data.filter(
+    (item) => item.categoryName === renderProps.categoryActive
+  );
+  const popularLessonsArrByCategory = popularLessonsArr.filter(
+    (item) => item.categoryName === renderProps.category
+  );
+  const popularLessonsArrByCategoryActive = popularLessonsArr.filter(
+    (item) => item.categoryName === renderProps.categoryActive
+  );
+  const newLessonsArrByCategory = newLessonsArr.filter(
+    (item) => item.categoryName === renderProps.category
+  );
+  const newLessonsArrByCategoryActive = newLessonsArr.filter(
+    (item) => item.categoryName === renderProps.categoryActive
+  );
 
-  const getRenderParameter = () =>
+  const getLessonsByCurrentCategory = () =>
     renderProps.categoryActive === "All categories"
       ? data
       : renderProps.categoryActive
@@ -144,36 +222,83 @@ export const RenderLessonContent: React.FC<RenderLessonContentProps> = (renderPr
           ? lessonsByCategory
           : data;
 
+  const getNewLessonsByCurrentCategory = () =>
+    renderProps.categoryActive === "All categories"
+      ? newLessonsArr
+      : renderProps.categoryActive
+        ? newLessonsArrByCategoryActive
+        : renderProps.category
+          ? newLessonsArrByCategory
+          : newLessonsArr;
+
+  const getPopularLessonsByCurrentCategory = () =>
+    renderProps.categoryActive === "All categories"
+      ? popularLessonsArr
+      : renderProps.categoryActive
+        ? popularLessonsArrByCategoryActive
+        : renderProps.category
+          ? popularLessonsArrByCategory
+          : popularLessonsArr;
+
+  const getRenderByCurrentCategoryAndStatus = () =>
+    renderProps.statusActive ===
+    intl.formatMessage({ id: "app.lessons.statusAllLessons" })
+      ? getLessonsByCurrentCategory()
+      : renderProps.statusActive ===
+        intl.formatMessage({ id: "app.lessons.statusNew" })
+        ? getNewLessonsByCurrentCategory()
+        : renderProps.statusActive ===
+          intl.formatMessage({ id: "app.lessons.statusPopular" })
+          ? getPopularLessonsByCurrentCategory()
+          : data;
+
+  const skeleton = [...new Array(SKELETON_LESSONS_AMOUT)].map((_, index) => (
+    <SkeletonLessons key={index} />
+  ));
+
+  if (!categoriesIsLoaded || !dataIsLoaded)
+    return <div className="lessons">{skeleton}</div>;
+
   return (
     <div className={renderProps.classNameWrapper}>
       <div className={renderProps.classNameInner}>
-        {(renderProps.category && lessonsByCategory.length === 0) ||
-        (renderProps.categoryActive &&
-          lessonsBycategoryActive.length === 0 &&
-          renderProps.categoryActive !== "All categories") ? (
-            <NoLessonsPage isOnLessonsPage={false} />
-          ) : (
-            getRenderParameter().map((obj) => (
-              <LessonCard
-                key={obj.id}
-                title={obj.title}
-                status={obj.status}
-                duration={obj.duration}
-                imagePreview={obj.image_link ? obj.image_link : placeHolder}
-                id={obj.id}
-                published={obj.created_at}
-                view={obj.view}
-                category={obj.categoryName}
-                rating={obj.rating}
-                totalVotes={obj.votes_count}
-                authorAvatarUrl={obj.author_avatar_url}
-                authorName={obj.author_name}
-                viewsCount={obj.views_count}
-                isEditable={renderProps.isEditable}
-                hasStatus={renderProps.hasStatus}
-              />
-            ))
-          )}
+        {
+          (data.length === 0 && dataIsLoaded) 
+          ||
+          (renderProps.category &&
+            renderProps.category === undefined &&
+            lessonsByCategory.length === 0) 
+          ||
+          (renderProps.categoryActive &&
+            lessonsBycategoryActive.length === 0 &&
+            renderProps.categoryActive === "") 
+          ||
+          (renderProps.categoryActive &&
+            lessonsBycategoryActive.length === 0 &&
+            renderProps.categoryActive !== "All categories") 
+            ? (<NoLessonsPage isOnLessonsPage={false} />) 
+            : (
+              getRenderByCurrentCategoryAndStatus().map((obj) => (
+                <LessonCard
+                  key={obj.id}
+                  title={obj.title}
+                  status={obj.status}
+                  duration={obj.duration}
+                  imagePreview={obj.image_link ? obj.image_link : placeHolder}
+                  id={obj.id}
+                  published={obj.created_at}
+                  view={obj.view}
+                  category={obj.categoryName}
+                  rating={obj.rating}
+                  totalVotes={obj.votes_count}
+                  authorAvatarUrl={obj.author_avatar_url}
+                  authorName={obj.author_name}
+                  viewsCount={obj.views_count}
+                  isEditable={renderProps.isEditable}
+                  hasStatus={renderProps.hasStatus}
+                />
+              ))
+            )}
       </div>
     </div>
   );

@@ -74,14 +74,14 @@ const SetNewPasswordPage = () => {
                 name="password" component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={false}
+                isConfirm={true}
                 error={touched.password ? errors.password : undefined}/>
               <Field
                 name="confirmPassword"
                 component={PasswordAndConfirm}
                 minSymbol={minSymbol}
                 maxSymbol={maxSymbol}
-                isConfirm={true}
+                isConfirm={false}
                 error={touched.confirmPassword ? errors.confirmPassword : undefined}/>
               <Button
                 buttonType="submit"

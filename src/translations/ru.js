@@ -278,9 +278,9 @@ export const messages_ru = {
   "app.cancel": "Отмена",
   "app.Lessonname": "Имя урока",
   "app.hero.title":
-    "<span>Teach</span> by studying. <br /> Study while teaching.",
+    "<span>Обучай</span> учась. <br /> Учись обучая.",
   "app.hero.subtitle":
-    "Perfect for beginners, career switchers <br />and everyone who want learn or teach new skills.",
+    "Идеально начинающим, соискателям <br />и желающим научиться или научить новому.",
   "app.VideoSize": "Максимальный размер: 35Мб",
   "app.incorrectVideoFile": "Пожалуйста, загрузите другой файл",
   "app.addNewLesson": "+ Добавить новый урок",
@@ -312,4 +312,5 @@ export const messages_ru = {
   "app.errorRequest": "Произошла ошибка",
   "app.lessonCard.Published":"Опубликован:",
   "app.lessonCard.Views":"просмотров",
+  "app.hero.buttonText":"Приступить",
 };

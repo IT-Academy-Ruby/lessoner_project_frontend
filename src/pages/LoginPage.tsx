@@ -4,6 +4,7 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
+import {changedStayLoggedIn, getLogin} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
@@ -14,7 +15,6 @@ import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 // import Phone from "../components/icons/phone.svg";
 // import VK from "../components/icons/vk.svg";
-import {getLogin} from "../store/loginName/loginSlice";
 import {useAppDispatch} from "../store/hooks";
 import {useState} from "react";
 
@@ -46,7 +46,7 @@ const LoginPage = () => {
         initialValues={initialValues}
         validate={async (values: FormValues) => {
           const errors: FormErrors = {};
-          if (emailInvalidationRules.some(rule => rule.test(values.email))) {
+          if (!emailInvalidationRules.test(values.email)) {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
@@ -63,12 +63,14 @@ const LoginPage = () => {
               intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"},
                 {minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength});
           }
+
           return errors;
         }}
         onSubmit={(values: FormValues) => {
+          dispatch(changedStayLoggedIn(values.remember));
           dispatch(getLogin(values))
             .then(() => {
-              if (localStorage.getItem("JWT")) {
+              if (sessionStorage.getItem("JWT") || localStorage.getItem("JWT")) {
                 navigate("/"); // Redirects to main page
               }else{setIslogEmail(false);}
             });

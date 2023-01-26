@@ -60,8 +60,8 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       renderLessonHeadCategories: CATEGORIES,
       isRenderLessonContentEdited: false,
       isRenderLessonContentHasStatus: false,
-      renderLessonContentCategoriesUrl: "/categories/",
-      renderLessonContentLessonsUrl: "/lessons/",
+      renderLessonContentCategoriesUrl: "/categories",
+      renderLessonContentLessonsUrl: "/lessons?page=1&items=120",
       category: props.category,
     },
   ];
@@ -81,9 +81,9 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       renderLessonHeadStatuses: MY_STUDIO_STATUSES,
       renderLessonHeadCategories: CATEGORIES,
       isRenderLessonContentEdited: true,
-      isRenderLessonContentHasStatus: false,
+      isRenderLessonContentHasStatus: true,
       renderLessonContentCategoriesUrl: "/categories",
-      renderLessonContentLessonsUrl: "/my_studio/lessons/",
+      renderLessonContentLessonsUrl: "/my_studio/lessons?page=1&items=120",
       category: props.category,
     },
   ];

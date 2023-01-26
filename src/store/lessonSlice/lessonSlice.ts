@@ -36,7 +36,7 @@ export const addVideo = createAsyncThunk(
       formData.append("lesson_video", userLesson.lesson_video);
     }
 
-    const token = localStorage.getItem("JWT");
+    const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lessons`, {
       method: "POST",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
@@ -79,7 +79,7 @@ export const updateLesson = createAsyncThunk(
       formData.append("lesson_video", userLesson.lesson_video!);
     }
 
-    const token = localStorage.getItem("JWT");
+    const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lessons/${userLesson.id}`, {
       method: "PUT",
       headers: new Headers({"Authorization": `Bearer ${token}`}),

@@ -16,6 +16,7 @@ export const Hero = () => {
 
   const title = intl.formatMessage({id: "app.hero.title"});
   const subtitle = intl.formatMessage({id: "app.hero.subtitle"});
+  const buttonTextHero = intl.formatMessage({id: "app.hero.buttonText"});
 
   return (
     <section className="hero">
@@ -25,7 +26,8 @@ export const Hero = () => {
 
         {!user && <Button
           buttonType="button"
-          buttonText="Let’s go"
+          buttonText = {buttonTextHero}
+          
           onClick={() => navigate("/user/sign_up")}
           className="hero__button"
         />}

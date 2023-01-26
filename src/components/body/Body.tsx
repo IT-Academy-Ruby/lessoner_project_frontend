@@ -39,7 +39,11 @@ const Body = (props: BodyProps) => {
   const navigate = useNavigate();
   
   const handleSignOut = () => {
-    localStorage.removeItem("JWT");
+    if (sessionStorage.getItem("JWT")){
+      sessionStorage.removeItem("JWT");
+    } else {
+      localStorage.removeItem("JWT");
+    }
     dispatch(nameDecodedUser());
     dispatch(resetUserData());
     setIsAthorized(false);
@@ -49,7 +53,7 @@ const Body = (props: BodyProps) => {
   useEffect(() => {
     setIsAthorized(!!user?.id);
 
-    const jwt = localStorage.getItem("JWT");
+    const jwt = sessionStorage.getItem("JWT") ||  localStorage.getItem("JWT");
 
     if (jwt) {
       const jwtDecoded = jwt_decode(jwt) as {admin: boolean};
