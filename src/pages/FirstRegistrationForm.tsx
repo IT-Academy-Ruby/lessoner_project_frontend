@@ -47,7 +47,7 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
 
   useEffect(() => {
     if (isRegEmail) {
-      navigate("/user/reg_in/information");
+      navigate("/user/reg_in/information/modR");
     }
   }, [isRegEmail, navigate]);
 

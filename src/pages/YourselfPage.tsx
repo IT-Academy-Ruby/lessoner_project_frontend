@@ -107,7 +107,7 @@ const YourselfPage = ({
         onSubmit={(values: FormValues) => {
           values.birthday=formatter.format(new Date(values.birthday));
           dispatch(signUpSlice(values));
-          navigate("/user/reg_in/information/modR");
+          navigate("/user/reg_in/information");
         }}
       >
         {({errors, touched}) => {
