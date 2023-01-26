@@ -205,7 +205,6 @@ $transition: .2s;
 .menu__footer-lginout {
   width: 44px;
   border-bottom: 1px solid var(--iconsTextThemeNavBarColor);
-  margin: 0 0 16px 0;
   transition: .1s;
 }
 
@@ -224,6 +223,10 @@ $transition: .2s;
   color: var(--iconsTextThemeNavBarColor);
   text-decoration: none;
   transition: .1s;
+}
+
+.menu__footer-rights {
+  margin-bottom: 16px;
 }
 
 .menu__footer-text--active, .menu__content:hover .menu__footer-text, .menu__footer-date {
