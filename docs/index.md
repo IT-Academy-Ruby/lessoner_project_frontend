@@ -6,7 +6,7 @@
   - [Autoformat on save](#autoformat-on-save)
 - [FE code rules](#fe-code-rules)
   - [Files \& Folders Naming](#files--folders-naming)
-  - [Files Architecture](#files-architecture)
+  - [Project Architecture](#project-architecture)
   - [Imports \& Exports](#imports--exports)
     - [Imports paths](#imports-paths)
   - [process.env usage - at the constants.ts only](#processenv-usage---at-the-constantsts-only)
@@ -42,7 +42,7 @@
 - папки, содержащие компонент - следует называть по имени этого компонента. Если компонент `SomeComponent.tsx` - то и название папки - `SomeComponent`
 - папки, содержащие папки с компонентами - название в `camelCase` - например: `components`
 
-## Files Architecture
+## Project Architecture
 
 **TBD**
 
