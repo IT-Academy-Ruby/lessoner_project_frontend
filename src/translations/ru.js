@@ -103,7 +103,7 @@ export const messages_ru = {
   "app.navbarStudyStudio.myLessons": "Мои уроки",
   "app.navbarStudyStudio.watchLater": "Смотреть позже",
   "app.navbarStudyStudio.myLesson": "Мой урок",
-  "app.navbarStudyStudio.management": "Управление",
+  "app.navbarStudyStudio.management": "Редактировать категории",
   "app.navbarStudyStudio.contacts": "Контакты",
   "app.navbarStudyStudio.aboutUs": "О нас",
   "app.navbarStudyStudio.darkTheme": "Темная тема",

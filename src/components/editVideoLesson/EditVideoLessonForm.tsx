@@ -1,8 +1,10 @@
 import "./EditVideoLessonForm.scss";
-import { 
-  BACKEND_URL_LESSONS, maxDescrHTCount,
-  maxDescriptionLength, maxNameLength 
-} from "../../constants"; 
+import {
+  BACKEND_URL_LESSONS,
+  maxDescrHTCount,
+  maxDescriptionLength,
+  maxNameLength,
+} from "../../constants";
 import { 
   FC, useEffect, useState 
 } from "react";
@@ -11,7 +13,7 @@ import {
 } from "formik";
 import { RegExpDescription, RegExpName } from "../../validationRules";
 import { useNavigate, useParams } from "react-router-dom";
-import AddSubtitle from"../icons/addSubtitle.svg";
+import AddSubtitle from "../icons/addSubtitle.svg";
 import Button from "../Button";
 import { GetDataWithCategoryNames } from "../body/content/lessons/LessonsHelper";
 import { ILessonBack } from "../types/types";
@@ -64,7 +66,7 @@ interface Map {
 }
 
 const hachTag = "#";
-let countHashTag = 0; 
+let countHashTag = 0;
 
 export const EditVideoLessonForm: FC = () => {
   const intl = useIntl();
@@ -80,7 +82,9 @@ export const EditVideoLessonForm: FC = () => {
   const categoryName = data
     .filter((item) => params.id !== undefined && item.id === +params.id)
     .map((categoryName) => categoryName.categoryName)[0];
-  const [categoryActive, setCategoryActive] = useState<string | undefined>(categoryName);
+  const [categoryActive, setCategoryActive] = useState<string | undefined>(
+    categoryName
+  );
   const handleCategoryToggle = (event: React.ChangeEvent) => {
     const category = event.target as HTMLInputElement;
     setCategoryActive(category.value);
@@ -94,21 +98,16 @@ export const EditVideoLessonForm: FC = () => {
     categoriesMap[category_id] === categoryActive &&
       iDCurrentCategory.push(+category_id);
   }
-  const CATEGORIES = [
-    "Design",
-    "IT",
-    "Music",
-    "Business",
-    "Fitness",
-    "Marketing",
-    "Finance",
-    "Psychology",
-    "Languages",
-  ];
+  const categoryNames: string[] = [];
+  for (const categoryName in categoriesMap) {
+    categoryNames.push(categoriesMap[categoryName]);
+  }
+
+  const CATEGORIES = categories.map((cat) => cat.name);
   const elementsCategory = CATEGORIES.map((category: string) => {
     return (
       <option key={category} id={category}>
-        {categoryName === undefined
+        {categories.length === 0
           ? intl.formatMessage({ id: "app.editVideoLesson.loading" })
           : category}
       </option>
@@ -166,7 +165,7 @@ export const EditVideoLessonForm: FC = () => {
       fetchData();
     }
   }, [data, categories, categoriesIsLoaded, dataIsLoaded]);
-  
+
   useEffect(() => {
     fetch(BACKEND_URL_LESSONS + params.id)
       .then((response) => response.json())
@@ -174,7 +173,7 @@ export const EditVideoLessonForm: FC = () => {
       .catch((error) => console.log(error));
   }, [params.id]);
 
-  const handleImageUrlChange  = (currentImageUrl: string) => {
+  const handleImageUrlChange = (currentImageUrl: string) => {
     setImageURL(currentImageUrl);
   };
 
@@ -250,9 +249,7 @@ export const EditVideoLessonForm: FC = () => {
         ? intl.formatMessage({ id: "app.editVideoLesson.loading" })
         : lesson?.title
     }`,
-    category: `${ 
-      categoryActive !== undefined ? categoryActive : categoryName
-    }`,
+    category: `${categoryActive !== undefined ? categoryActive : categoryName}`,
     description: `${
       lesson?.description === undefined
         ? intl.formatMessage({ id: "app.editVideoLesson.loading" })

@@ -1,13 +1,15 @@
 import "./renderLessonsHead.scss";
+import { 
+  FC, useEffect, useState 
+} from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import Button from "../Button";
-import { FC } from "react";
 import classNames from "classnames";
 import { useNavigate } from "react-router-dom"; 
 
 interface RenderLessonHeadProps {
   statuses: string[];
-  categories: string[][];
+  categories: string[];
   isHead: boolean;
   isTitle: boolean;
   isButton: boolean;
@@ -40,6 +42,7 @@ interface RenderLessonHeadProps {
 }
 
 export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
+  const [categoryNames, setCategoryNames] = useState<string[]>([]);
   const intl = useIntl();
   const navigate = useNavigate();
   const onCategoryChange = renderProps.onCategoryChange;
@@ -57,10 +60,10 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
   const STATUSES = renderProps.statuses.map((status) =>
     intl.formatMessage({ id: status })
   );
-
-  const CATEGORIES_VALUE = renderProps.categories[1].map(
-    (category) => category
-  );
+  
+  useEffect(() => {
+    setCategoryNames(["All categories", ...renderProps.categories]);
+  }, [renderProps.categories]);
 
   const elementsStatus = STATUSES.map((status: string) => {
     return (
@@ -80,7 +83,7 @@ export const RenderLessonHead: FC<RenderLessonHeadProps> = (renderProps) => {
       </div>
     );
   });
-  const elementsCategory = CATEGORIES_VALUE.map((category: string) => {
+  const elementsCategory = categoryNames.map((category: string) => {
     return (
       <option key={category} id={category} value={category}>
         {category}

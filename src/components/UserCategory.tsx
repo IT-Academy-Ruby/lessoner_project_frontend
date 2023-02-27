@@ -41,7 +41,7 @@ const CategoryName: React.FC<CategoryNameProps> = (props) => {
   const nameTranslated = nameHasTranslation ? intl.formatMessage({id: nameKey}) : name;
 
   return (
-    <div className={className}>
+    <div className={className} title={nameTranslated}>
       {nameTranslated}
     </div>
   );
