@@ -22,6 +22,7 @@ import GoogleButton from "../../../components/GoogleButton";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Lessoner from "./lessoner/Lessoner";
 import { LessonsPage } from "../../renderLessonsPage/lessonsPage";
+import Loader from "../../Loader";
 import Pages from "../../../components/Pages";
 import { SelectCategory } from "./categories/SelectCategory";
 import Terms from "../../../pages/terms/Terms";
@@ -33,6 +34,7 @@ import { useEffect } from "react";
 const Content = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const loading = useAppSelector((state) => state.categories.loading);
   const decodeUserName = useAppSelector(
     (state) => state.userDecodedName.session.name
   );
@@ -81,6 +83,7 @@ const Content = () => {
 
   return (
     <div className="main">
+      {loading && <Loader/>}
       <Routes>
         <Route path="/terms" element={<Terms isPolitic={true} />} />
         <Route

@@ -88,8 +88,9 @@ div > .react-select__indicator {
 }
 
 .arrow-category {
-  margin-left: 100%;
-  transform: translate(-38px, 38px);
+  position: absolute;
+  bottom: 7px;
+  right: 0;
   padding: 9px;
   z-index: 3;
   cursor: pointer;

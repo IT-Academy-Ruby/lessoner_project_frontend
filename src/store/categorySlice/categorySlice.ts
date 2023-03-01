@@ -24,16 +24,18 @@ export const addCategory = createAsyncThunk(
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
       method: "POST",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,
     });
-    const data = await responce.json();
-    if (responce.status === 200) {
+    const data = await response.json();
+    console.log(data)
+    if (response.status === 200 || response.status === 422) {
+      console.log(data)
       return data;
     } else {
-      return `errror ${responce.status}`;
+      return `errror ${response.status}`;
     }
   }
 );
@@ -41,13 +43,13 @@ export const addCategory = createAsyncThunk(
 export const deleteCategory = createAsyncThunk(
   "category/addCategory",
   async (id: number) => {
-    const responce =
+    const response =
       await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${id}`, "DELETE");
-    const data = await responce.json();
-    if (responce.status === 200) {
+    const data = await response.json();
+    if (response.status === 200) {
       return data;
     } else {
-      return `errror ${responce.status}`;
+      return `errror ${response.status}`;
     }
   }
 );
@@ -64,17 +66,17 @@ export const updateCategory = createAsyncThunk(
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const responce =
+    const response =
       await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories/${dataCategory.id}`, {
         method: "PUT",
         headers: new Headers({"Authorization": `Bearer ${token}`}),
         body: formData,
       });
-    const data = await responce.json();
-    if (responce.status === 200) {
+    const data = await response.json();
+    if (response.status === 200 || response.status === 422) {
       return data;
     } else {
-      return `errror ${responce.status}`;
+      return  `errror ${response.status}`;
     }
   }
 );
@@ -93,40 +95,46 @@ export const archiveCategory = createAsyncThunk(
     if (responce.status === 200) {
       return data;
     } else {
-      return `errror ${responce.status}`;
+      data.error = `errror ${responce.status}`;
+      return data.error;
     }
   }
 );
 
+type Category = {
+  amount_lessons: number;
+  id: number;
+  image_url: string;
+  name: string;
+  description: string;
+  status: string;
+  created_at: string;
+  image_size: number;
+  image_name: string;
+  image_type: string;
+};
+
 type Categories = {
-  categories: [{
-    amount_lessons: number;
-    id: number;
-    image_url: string;
-    name: string;
-    description: string;
-    status: string;
-    created_at: string;
-    image_size: number;
-    image_name: string;
-    image_type: string;
-  }],
+  categories: [Category];
   loading: boolean;
 };
 
-const initialState: Categories = {categories: [{
-  amount_lessons: 0,
-  image_url: "",
-  id: 0,
-  name: "",
-  description: "",
-  status: "",
-  created_at: "",
-  image_size: 0,
-  image_name: "",
-  image_type: "",
-}],
-loading: false};
+const initialState: Categories = {
+  categories: [
+    {
+      amount_lessons: 0,
+      image_url: "",
+      id: 0,
+      name: "",
+      description: "",
+      status: "",
+      created_at: "",
+      image_size: 0,
+      image_name: "",
+      image_type: "",
+    }],
+  loading: false
+};
 
 const categorySlice = createSlice({
   name: "category",

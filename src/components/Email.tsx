@@ -15,7 +15,6 @@ type EmailProps = {
   textError?: string;
 }
 
-
 const Email = ({
   field, error, isEmail, textError
 }: EmailProps): JSX.Element => {

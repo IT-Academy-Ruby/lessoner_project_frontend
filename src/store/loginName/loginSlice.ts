@@ -288,6 +288,9 @@ const loginSlice = createSlice({
     builder.addCase(uploadFile.fulfilled, (state, action) => {
       state.user = action.payload;
     });
+    builder.addCase(sendPasswordResetLink.fulfilled, (state, action) => {
+      state.isEmail = action.payload;
+    });
   }
 });
 

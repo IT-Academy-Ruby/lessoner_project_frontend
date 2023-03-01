@@ -8,7 +8,6 @@ import {CODE} from "../../../../../constants";
 import Code from "../../../../Code";
 import {CodeRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   code: string;
@@ -30,7 +29,6 @@ const CodeForm = ({
 }: CodeFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {code: ""};
 
@@ -44,12 +42,7 @@ const CodeForm = ({
           errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
         }
         if (values.code.length < CODE.maxLength) {
-          errors.code += intl.formatMessage({id: "app.code.errorLength"});
-        }
-        if (values.code && !errors.code) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
+          errors.code += intl.formatMessage({id: "app.code.errorLength"}, {maxSymbol: CODE.maxLength});
         }
         return errors;
       }}
@@ -92,7 +85,6 @@ const CodeForm = ({
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form.button.code"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}

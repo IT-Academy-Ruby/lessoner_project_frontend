@@ -52,6 +52,7 @@ const CategoriesAdmin = () => {
     id: number, name: string, description: string, status: string, amount_lessons: number
   }
   ) => {
+    console.log(category.amount_lessons)
     setIdCategory(category.id);
     if (category.amount_lessons > 0) {
       await dispatch(archiveCategory(category));

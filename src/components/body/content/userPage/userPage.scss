@@ -46,8 +46,15 @@
   width: 100%;
 }
 
+.size-letters {
+  font-size: 40px;
+}
+
 .upload-field {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   right: 8px;
   width: 24px;
@@ -55,6 +62,10 @@
   border-radius: 50%;
   background: #455fce;
   cursor: pointer;
+}
+
+.upload-avatar {
+  width: 11px;
 }
 
 .inform-avatar {
@@ -167,9 +178,11 @@
   line-height: 130%;
   color: var(--titlesFirstRegistrForm);
 }
+
 .inVisible {
   display: none;
 }
+
 @media (max-width: $max-width-phone) {
   .close-modal-form {
     margin: 8px;

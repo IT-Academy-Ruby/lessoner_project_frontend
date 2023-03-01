@@ -74,6 +74,7 @@
 }
 
 .category-label {
+  position: relative;
   font-family: $font;
   color: var(--textCategoriesAdmin);
   font-style: normal;
@@ -124,6 +125,10 @@
     font-family: $font;
     color: var(--addNewCategoryPlaceholder);
   }
+}
+
+.category-image-inform {
+  margin-bottom: 12px;
 }
 
 .message {
@@ -187,6 +192,7 @@
   width: 100%;
   background: $white;
   box-shadow: 0 0 4px $greySearchColor;
+  border-radius: 8px;
 }
 
 .field-successful {

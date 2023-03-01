@@ -8,7 +8,6 @@ import PasswordAndConfirm from "../../../../PasswordAndConfirm";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   current_password: string;
@@ -28,7 +27,6 @@ type PasswordFormProps = {
 const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {
     current_password: "",
@@ -59,12 +57,6 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
           errors.confirmPassword = errors.code =
             intl.formatMessage(
               {id: "app.firstRegistrationForm.passwordConfrim"});
-        }
-        if (values.password && !errors.password && values.confirmPassword
-          && !errors.confirmPassword) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
         }
 
         return errors;
@@ -110,9 +102,8 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.button.save"})}
+              buttonText={intl.formatMessage({id: "app.userPage.form.button.password"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}

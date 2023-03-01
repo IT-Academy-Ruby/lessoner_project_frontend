@@ -15,7 +15,7 @@ import InformEmail from "./forms/InformEmail";
 import NameForm from "./forms/NameForm";
 import PasswordForm from "./forms/PasswordForm";
 import PhoneForm from "./forms/PhoneForm";
-import Upload from "../../../icons/upload.svg";
+import Pencil from "../../../icons/pencilWhite.svg";
 import classNames from "classnames";
 
 const UserPage = () => {
@@ -38,6 +38,9 @@ const UserPage = () => {
       dispatch(getUserData(nameDecode));
     }
   }, [dispatch, nameDecode, track]);
+
+  const initialName = nameDecode.split(" ")
+    .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
 
   const dataUser = [
     {value: user.name,
@@ -146,9 +149,9 @@ const UserPage = () => {
               className="user-avatar"
               alt="avatar"
             />}
-            {!user.avatar_url && <p className="first-letters">{user.name}</p>}
+            {!user.avatar_url && <p className="first-letters size-letters">{initialName}</p>}
             <div className="upload-field" onClick={handleUpload}>
-              <img src={Upload} alt="upload" className="upload-avater"/>
+              <img src={Pencil} alt="upload" className="upload-avatar"/>
             </div>
           </div>
           <span className="inform-avatar">

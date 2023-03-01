@@ -1,18 +1,10 @@
 @import "../constants.module.scss";
 
-.magmagnifying_glas {
-  position: absolute;
-  left: 16px;
-  top: 32px;
-  z-index: 5;
-}
-
 .react-tel-input {
   @include fieldsFont;
 }
 
 .react-tel-input > .form-control {
-  padding: 1px 46px 1px 84px;
   width: 100%;
   border-color: $blueLightColor;
   color: var(--textThemeColor1) !important;
@@ -20,7 +12,6 @@
 }
 
 .react-tel-input .flag-dropdown {
-  padding-left: 45px;
   left: 1px;
   background: var(--bgPhoneNumberCountryList);
   border: none;
@@ -43,6 +34,28 @@
   background-color: var(--bgPhoneNumberCountryList);
 }
 
+.react-tel-input .country-list .search {
+  background: var(--bgPhoneNumberCountryList);
+}
+
+.react-tel-input .selected-flag .arrow {
+  border-top: 4px solid var(--textThemeColor1);
+}
+
+.react-tel-input .selected-flag .arrow.up {
+  border-bottom: 4px solid var(--textThemeColor1);
+}
+
+.react-tel-input .country-list .search-box {
+  background: var(--bgPhoneNumberCountryList);
+  border-color: $blueLightColor;
+  color: var(--textThemeColor1);
+}
+
+.search-box::placeholder {
+  color: var(--textThemeColor1);
+}
+
 .react-tel-input .country-list {
   background: var(--bgPhoneNumberCountryList);
   color: var(--textPhoneNumberCountryList);
@@ -52,19 +65,20 @@
   left: 1px;
   width: 100%;
 
-  .country.highlight{
+  .country.highlight {
     background: none;
   }
 
-  .dial-code{
+  .dial-code {
     width: 100%;
     color: var(--textPhoneNumberCountryList) !important;
   }
 
-  .country{
+  .country {
     width: 100%;
     text-align: left;
-    &:hover{
+
+    &:hover {
       background: var(--KebabCardThemeColor);
     }
   }
@@ -75,18 +89,3 @@
   background-color: var(--bgPhoneNumberCountryList);
 }
 
-.arrow {
-  visibility: hidden;
-}
-
-.symbol {
-  width: 24px;
-  height: 24px;
-  color: $blueLightColor;
-  transform: rotate(90deg);
-  position: absolute;
-  top: 30px;
-  right: 8px;
-  cursor: pointer;
-  z-index: 2;
-}

@@ -186,6 +186,9 @@ export const messages_ru = {
     "Поле ввода содержит запрещенные символы.",
   "app.don'tAccount": "У вас нет аккаунта?",
   "app.code.name": "Код",
+  "app.сode.placeholder": "Введите {maxSymbol}-значный код",
+  "app.categories.nameOccupied": "Такое имя уже существует",
+  "app.categories.descriptionOccupied": "Такое описание уже существует",
   "app.code.errorLength": "Код должен содержать {maxSymbol} символов. ",
   "app.code.invalidationRules": "В коде присутствует недопустимый символ. ",
   "app.code.inform":
@@ -197,7 +200,7 @@ export const messages_ru = {
   "app.resetPasswordPage.text":
     "Мы отправили ссылку для восстановления доступа к вашему аккаунту на адрес ",
   "app.setNewPasswordPage.title": "Сброс твоего пароля",
-  "app.YourselfPage.errorIncorrectName": "Неверное имя пользователя",
+  "app.YourselfPage.errorIncorrectName": "Введено недопустимое имя пользователя",
   "app.YourselfPage.errorFieldEmpty": "Поле не должно быть пустым",
   "app.YourselfPage.errorSmallName":
     "Имя пользователя должно быть длинее {minSymbol} символов",
@@ -222,11 +225,11 @@ export const messages_ru = {
   "app.userPage.edit": "Изменить",
   "app.userPage.gender": "Пол",
   "app.userPage.form.username": "Введите новое имя пользователя",
-  "app.userPage.form..button.username": "Изменить имя пользователя",
+  "app.userPage.form.button.username": "Изменить имя пользователя",
   "app.userPage.form.birthday": "Введите свою дату рождения",
-  "app.userPage.form..button.birthday": "изменить свою дату рождения",
+  "app.userPage.form.button.birthday": "Изменить свою дату рождения",
   "app.userPage.form.gender": "Введите свой пол",
-  "app.userPage.form..button.gender": "Изменить свой пол",
+  "app.userPage.form.button.gender": "Изменить свой пол",
   "app.userPage.form.email": "Введите адрес электронной почты",
   "app.userPage.form.button.email": "Изменить адрес электронной почты",
   "app.userPage.form.phone": "Введите свой телефонный номер",
@@ -313,4 +316,5 @@ export const messages_ru = {
   "app.lessonCard.Published":"Опубликован:",
   "app.lessonCard.Views":"просмотров",
   "app.hero.buttonText":"Приступить",
+  "app.add.lesson.successful": "Ваш урок был успешно загружен и получил статус \"Черновик\"",
 };

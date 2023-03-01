@@ -25,7 +25,6 @@ const ResetPasswordPage = () => {
   const navigate = useNavigate();
   const loading = useAppSelector(state => state.login.loading);
   const isEmail = useAppSelector(state => state.login.isEmail);
-
   return (
     <div className="log-content">
       {loading && <Loader/>}
@@ -37,14 +36,13 @@ const ResetPasswordPage = () => {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
-          if (!isEmail && isEmail !== "") {
-            errors.email = intl.formatMessage({id: "app.email.notFound"});
-          }
           return errors;
         }}
         onSubmit={(values: { email: string }) => {
           dispatch(sendPasswordResetLink(values.email));
-          navigate("/user/sign_in/reset_password/reset");
+          if (isEmail) {
+            navigate("/user/sign_in/reset_password/reset");
+          }
         }}>
         {({errors, touched}) => {
           return (
@@ -59,6 +57,8 @@ const ResetPasswordPage = () => {
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
+                isEmail={isEmail}
+                textError={intl.formatMessage({id: "app.email.notFound"})}
               />
               <Button
                 buttonType="submit"

@@ -29,7 +29,6 @@ const EmailForm = ({
 }: EmailFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
   const [isError, setIsError] = useState(false);
 
   const initialValues: FormValues = {email: ""};
@@ -43,11 +42,6 @@ const EmailForm = ({
         if (!emailInvalidationRules.test(values.email)) {
           errors.email =
             intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
-        }
-        if (values.email && !errors.email) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
         }
         return errors;
       }}
@@ -87,9 +81,8 @@ const EmailForm = ({
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.button.save"})}
+              buttonText={intl.formatMessage({id: "app.userPage.form.button.email"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}

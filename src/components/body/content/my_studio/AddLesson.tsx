@@ -9,6 +9,7 @@ import Button from "../../../Button";
 import FirstStep from "./lessonComponents/FirstStep";
 import ModalCategory from "../categories/actions/ModalCategory";
 import SecondStep from "./lessonComponents/SecondStep";
+import SuccessfulModal from "../categories/actions/SuccessfulModal";
 import classNames from "classnames";
 import {useNavigate} from "react-router-dom";
 
@@ -34,7 +35,7 @@ const AddLesson = ({add}: AddLessonProps) => {
     name: "", type: "", size: 0, image: "",
   });
   const [isDisabledStep2, setIsDisabledStep2] = useState(true);
-
+  const [isSuccessful, setIsSuccessful] = useState(false);
   const author = useAppSelector(state => state.dataUser.user);
   const allLessons = useAppSelector(state => state.lessons.records);
 
@@ -92,7 +93,7 @@ const AddLesson = ({add}: AddLessonProps) => {
     }
   };
 
-  const addLesson = () => {
+  const addLesson = async () => {
     const userLesson = {
       title: videoName,
       description: videoDescription,
@@ -104,12 +105,17 @@ const AddLesson = ({add}: AddLessonProps) => {
     if (!selectVideo.name) {
       userLesson.lesson_video = videoLink;
     }
-    dispatch(addVideo(userLesson));
-    navigate("/myStudio");
-    dispatch(getLessons());
+    const response = await dispatch(addVideo(userLesson));
+    if (!response.payload.errors) {
+      setIsSuccessful(true);
+      dispatch(getLessons());
+    }else{
+      alert(response.payload.errors);
+    }
+
   };
 
-  const editLesson = () => {
+  const editLesson = async () => {
     const userLesson = {
       id: idLesson,
       author_id: author.id.toString(),
@@ -129,7 +135,7 @@ const AddLesson = ({add}: AddLessonProps) => {
       && editThubnail.image === lesson.image_link) {
       navigate("/myStudio");
     } else {
-      dispatch(updateLesson(userLesson));
+      await dispatch(updateLesson(userLesson));
       navigate("/myStudio");
       dispatch(getLessons());
     }
@@ -215,7 +221,7 @@ const AddLesson = ({add}: AddLessonProps) => {
             buttonType="button"
             buttonText={
               add ? intl.formatMessage({id: "app.addNewLesson"})
-                :intl.formatMessage({id: "app.EditLesson"})}
+                : intl.formatMessage({id: "app.EditLesson"})}
             className="button-select"
             disabled={isDisabledStep2}
             onClick={add ? addLesson : editLesson}
@@ -224,10 +230,15 @@ const AddLesson = ({add}: AddLessonProps) => {
       </div>
       {isClose && <ModalCategory
         setIsClose={setIsClose}
-        onClickYes={() => navigate("/myStudio")}
+        onClickYes={() => navigate(-1)}
         title={intl.formatMessage({id: "app.categories.close.text"})}
       />
       }
+      {isSuccessful && <SuccessfulModal
+        text={intl.formatMessage({ id: "app.add.lesson.successful"})}
+        url="/myStudio"
+        setIsSuccessful={setIsSuccessful}
+      />}
     </div>
   );
 };
