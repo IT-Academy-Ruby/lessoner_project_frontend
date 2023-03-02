@@ -21,6 +21,7 @@
   height: 132px;
   background-color: var(--bgVideoCard);
   padding-left: 14px;
+  border-radius: 0px 8px 8px 0px;
 }
 
 .VideoCardPublished {
@@ -53,4 +54,45 @@
   margin-left: 0;
   width: auto;
   margin-right: 24px;
+}
+
+.videoCard__view {
+  width: 34%;
+  font-family: $font;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  color: var(--nameDetailsCardThemeColor);
+  white-space: nowrap;
+  margin-left: -11px;
+  margin-top: -8px;
+}
+
+.card__rating{
+  height: 24px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-left: -18px;
+  margin-top: -6px;
+  .raiting {
+    display: flex;
+    align-items: center;
+    img {
+      width: 16px;
+      height: 16px;
+    }
+     
+    p {
+      margin: 0 0 0 6px;
+      font-family: $font;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: var(--ratingCardThemeColor);
+      white-space: nowrap;
+    }
+  }
 }

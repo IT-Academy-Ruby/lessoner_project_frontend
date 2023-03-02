@@ -128,13 +128,13 @@ type ViewProps = {
   viewsCount?: number;
 };
 
-const View: FC<ViewProps> = (props) => {
+export const View: FC<ViewProps> = (props) => {
   const intl = useIntl();
   return (
     <div className="card__details-view">
       <p>
         <span className="card__details-view-count">
-          {props.viewsCount}
+          {props.viewsCount}&nbsp;
         </span>
         {intl.formatMessage({ id: "app.lessonCard.Views" })}
       </p>
@@ -211,11 +211,14 @@ const LessonCard: FC<LessonCardsProps> = (props) => {
             </div>
             <div className="card__categories-raiting">
               <div className="card__categories-inner">
-                <Tag
-                  className="categories"
-                  type="category"
-                  text={props.category}
-                />
+                <Link to={`/categories/${props.category}`} 
+                  style={{ textDecoration: "none" }}>
+                  <Tag
+                    className="categories"
+                    type="category"
+                    text={props.category}
+                  />
+                </Link>
               </div>
               {props.rating !== undefined &&
                 props.rating >= 0 &&

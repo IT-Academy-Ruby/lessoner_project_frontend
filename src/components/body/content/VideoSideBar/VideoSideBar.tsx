@@ -59,6 +59,9 @@ export const VideoSideBar = (props: VideoSideBarProps) => {
               img={lessonItem.image_link}
               title={lessonItem.title}
               published={lessonItem.created_at}
+              viewsCount={lessonItem.views_count}
+              rating={lessonItem.rating && + lessonItem.rating.toFixed(1)}
+              votes_count={lessonItem.votes_count}
               changeIdState={changeIdState}
             />
           </div>
