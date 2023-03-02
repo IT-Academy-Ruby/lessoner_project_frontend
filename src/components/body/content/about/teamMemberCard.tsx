@@ -25,9 +25,8 @@ const TeamMemberCard = ({
 
   return (
     <div
-      className={classNames("team-member-card-wrapper", {
-        "team-mentor": isMentor,
-      })}
+      className={classNames("team-member-card-wrapper", 
+        { "team-mentor": isMentor })}
     >
       <div className="team-member-card-photo">
         <div>
@@ -74,9 +73,7 @@ const TeamMemberCard = ({
         >
           <Button
             buttonType="button"
-            buttonText={intl.formatMessage({
-              id: "app.about.button.signUpForCources",
-            })}
+            buttonText={intl.formatMessage({id: "app.about.button.signUpForCources"})}
             className="button-about-cources"
           />
         </a>

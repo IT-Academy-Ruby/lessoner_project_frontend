@@ -99,7 +99,7 @@ export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) =
       categoryNamesArray.push(categoriesMap[categoryName]);
     }
     onCategoriesNames(categoryNamesArray);
-  }, [categories]);
+  }, [categories, onCategoriesNames]);
 
   useEffect(() => {
     if (!categoriesIsLoaded) {
