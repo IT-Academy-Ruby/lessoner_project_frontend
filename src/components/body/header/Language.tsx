@@ -7,13 +7,13 @@ import Globe from "../../icons/Globe.svg";
 import LANGUAGES from "../../../translations/constants";
 import classNames from "classnames";
 
-
 type LanguageProps = {
   onLanguageSwitch: (arg: string) => void;
   isRegistered: boolean;
   language: string;
   setLanguage: (arg: string) => void;
 }
+
 const Language = ({
   onLanguageSwitch, isRegistered, language, setLanguage
 }: LanguageProps) => {
@@ -70,4 +70,5 @@ const Language = ({
     </div>
   );
 };
+
 export default Language;
