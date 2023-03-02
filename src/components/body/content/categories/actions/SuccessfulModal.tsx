@@ -1,4 +1,4 @@
-import "./modalCategory.scss";
+import "./successfulModal.scss";
 import Successful from "../../../../icons/successful.svg";
 import {useNavigate} from "react-router-dom";
 
@@ -13,13 +13,13 @@ const SuccessfulModal = ({
 }: SuccessfulModalProps) => {
   const navigate = useNavigate();
   return (
-    <div className="wrapper-modal">
-      <div className="field-modal">
-        <div className="field-successful">
-          <img src={Successful} alt="successful" className="successful-icon"/>
+    <div className="wrapper__modal">
+      <div className="modal">
+        <div className="modal__successful">
+          <img src={Successful} alt="successful" className="modal__icon"/>
           {text}
-          <div className="field-close-successful">
-            <span className="close-modal" onClick={() => {
+          <div className="cross">
+            <span className="cross__element" onClick={() => {
               setIsSuccessful(false);
               navigate(url);
             }}/>
