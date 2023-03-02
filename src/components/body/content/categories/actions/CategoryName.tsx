@@ -8,7 +8,7 @@ type CategoryNameProps = {
     name: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
     value: string;
-  },
+  };
   label: string;
   placeholder: string;
   error?: string;
@@ -40,4 +40,5 @@ const CategoryName = ({
     </label>
   );
 };
+
 export default CategoryName;
