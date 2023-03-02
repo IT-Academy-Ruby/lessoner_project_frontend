@@ -24,12 +24,15 @@ const TeamMemberCard = ({
   const isITAcademy = role.includes("IT-Academy");
 
   return (
-    <div className={
-      classNames("team-member-card-wrapper", { "team-mentor": isMentor })
-    }>
+    <div
+      className={classNames("team-member-card-wrapper", 
+        { "team-mentor": isMentor })}
+    >
       <div className="team-member-card-photo">
         <div>
-          <a href={link}><Linkedin /></a>
+          <a href={link} target="_blank" rel="noreferrer">
+            <Linkedin />
+          </a>
           <img src={photo} />
         </div>
       </div>
@@ -39,12 +42,20 @@ const TeamMemberCard = ({
       </div>
       <div className="team-member-card-info">
         <div className="team-member-name">{name}</div>
-        <div className={classNames({ "team-mentor-lead-doubled-roles": isMentor },
-          { "team-mentor-lead-doubled-roles": isTeamLead },
-          { "team-it-academy-roles": isITAcademy })}>
-          <span className={classNames({ "team-mentor-lead-role": role.includes("mentor") },
-            { "team-mentor-lead-role": isTeamLead },
-            { "team-it-academy-role": isITAcademy })}>
+        <div
+          className={classNames(
+            { "team-mentor-lead-doubled-roles": isMentor },
+            { "team-mentor-lead-doubled-roles": isTeamLead },
+            { "team-it-academy-roles": isITAcademy }
+          )}
+        >
+          <span
+            className={classNames(
+              { "team-mentor-lead-role": role.includes("mentor") },
+              { "team-mentor-lead-role": isTeamLead },
+              { "team-it-academy-role": isITAcademy }
+            )}
+          >
             {role}
           </span>
           {secondRole && (
@@ -55,10 +66,14 @@ const TeamMemberCard = ({
         </div>
       </div>
       {isMentor && (
-        <a href={linkToCources ? linkToCources : "https://www.grodno.it-academy.by/"}>
+        <a
+          href={
+            linkToCources ? linkToCources : "https://www.grodno.it-academy.by/"
+          }
+        >
           <Button
             buttonType="button"
-            buttonText={intl.formatMessage({ id: "app.about.button.signUpForCources" })}
+            buttonText={intl.formatMessage({id: "app.about.button.signUpForCources"})}
             className="button-about-cources"
           />
         </a>

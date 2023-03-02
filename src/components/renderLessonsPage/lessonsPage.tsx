@@ -17,32 +17,6 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
     "app.lessons.statusActive",
     "app.lessons.statusArchived",
   ];
-  const CATEGORIES = [
-    [
-      "app.lessons.categoryAllCategories",
-      "app.lessons.categoryDesign",
-      "app.lessons.categoryIT",
-      "app.lessons.categoryMusic",
-      "app.lessons.categoryBusiness",
-      "app.lessons.categoryFitness",
-      "app.lessons.categoryMarketing",
-      "app.lessons.categoryFinance",
-      "app.lessons.categoryPsychology",
-      "app.lessons.categoryLanguages",
-    ],
-    [
-      "All categories",
-      "Design",
-      "IT",
-      "Music",
-      "Business",
-      "Fitness",
-      "Marketing",
-      "Finance",
-      "Psychology",
-      "Languages",
-    ],
-  ];
 
   const HOME_PAGE_SETTINGS = [
     {
@@ -57,7 +31,6 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       isRenderLessonHeadCategories: true,
       renderLessonHeadTitle: "app.lessonsPageLessons",
       renderLessonHeadStatuses: HOME_PAGE_STATUSES,
-      renderLessonHeadCategories: CATEGORIES,
       isRenderLessonContentEdited: false,
       isRenderLessonContentHasStatus: false,
       renderLessonContentCategoriesUrl: "/categories",
@@ -79,7 +52,6 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
       isRenderLessonHeadCategories: true,
       renderLessonHeadTitle: "app.lessonsPageMyLessons",
       renderLessonHeadStatuses: MY_STUDIO_STATUSES,
-      renderLessonHeadCategories: CATEGORIES,
       isRenderLessonContentEdited: true,
       isRenderLessonContentHasStatus: true,
       renderLessonContentCategoriesUrl: "/categories",
@@ -106,7 +78,6 @@ export const LessonsPage: FC<LessonsPageProps> = (props) => {
           isRenderLessonHeadCategories={setting.isRenderLessonHeadCategories}
           renderLessonHeadTitle={setting.renderLessonHeadTitle}
           renderLessonHeadStatuses={setting.renderLessonHeadStatuses}
-          renderLessonHeadCategories={setting.renderLessonHeadCategories}
           isRenderLessonContentEdited={setting.isRenderLessonContentEdited}
           isRenderLessonContentHasStatus={
             setting.isRenderLessonContentHasStatus

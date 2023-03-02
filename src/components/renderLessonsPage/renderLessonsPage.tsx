@@ -22,7 +22,6 @@ interface RenderLessonPageProps {
   isRenderLessonHeadCategories: boolean;
   renderLessonHeadTitle: string;
   renderLessonHeadStatuses: string[];
-  renderLessonHeadCategories: string[][];
   isRenderLessonContentEdited: boolean;
   isRenderLessonContentHasStatus: boolean;
   renderLessonContentCategoriesUrl: string;
@@ -38,10 +37,15 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
   const [isLoader, setIsLoader] = useState(true);
   const [categoryActive, setCategoryActive] = useState("");
   const [statusActive, setStatusActive] = useState(FIRST_STATUS);
+  const [categoryNames, setCategoryNames] = useState<string[]>([]);
 
   useEffect(() => {
     setStatusActive(FIRST_STATUS);
   }, [FIRST_STATUS]);
+
+  const handleCategoryNamesChange = (categoryNames: string[]) => {
+    setCategoryNames(categoryNames);
+  };
 
   const handleCategoryChange = (currentCategory: string) => {
     setCategoryActive(currentCategory);
@@ -75,7 +79,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
                 onCategoryChange={handleCategoryChange}
                 onStatusChange={handleStatusChange}
                 statuses={renderProps.renderLessonHeadStatuses}
-                categories={renderProps.renderLessonHeadCategories}
+                categories={categoryNames}
                 title={renderProps.renderLessonHeadTitle}
                 isHead={renderProps.isRenderLessonHead}
                 isTitle={renderProps.isRenderLessonTitle}
@@ -108,6 +112,7 @@ export const RenderLessonPage: FC<RenderLessonPageProps> = (renderProps) => {
               />
             )}
             <RenderLessonContent
+              onCategoriesNames ={handleCategoryNamesChange}
               isEditable={renderProps.isRenderLessonContentEdited}
               hasStatus={renderProps.isRenderLessonContentHasStatus}
               classNameWrapper={"mystudiocontent__wrapper"}

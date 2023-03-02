@@ -70,6 +70,9 @@
     top: 55px;
     left: 55px;
     z-index: 5;
+    &:hover svg {
+        fill: $black;
+      }
   }
 
   svg {

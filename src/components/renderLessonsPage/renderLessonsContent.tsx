@@ -61,6 +61,11 @@ interface RenderLessonContentProps {
   category?: string;
   categoryActive?: string;
   statusActive?: string;
+  onCategoriesNames: (arg: string[]) => void;
+} 
+
+interface Map {
+  [key: number]: string;
 }
 
 export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) => {
@@ -71,6 +76,7 @@ export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) =
   const [popularLessonsArr, setPopularLessonsArr] = useState<Lesson[]>([]);
   const [categoriesIsLoaded, setCategoriesIsLoaded] = useState(false);
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const onCategoriesNames = renderProps.onCategoriesNames;
   const allLessonsUrlStatus = `${REACT_APP_BACKEND_URL + renderProps.lessonsUrl}`;
   const newUrlStatus = `${
     REACT_APP_BACKEND_URL +
@@ -82,7 +88,19 @@ export const RenderLessonContent: FC<RenderLessonContentProps> = (renderProps) =
     renderProps.lessonsUrl +
     "?page=1&sort_field=views_count"
   }`;
-  
+
+  useEffect(() => {
+    const categoriesMap = categories.reduce((map: Map, cat: Category) => {
+      map[cat.id] = cat.name;
+      return map;
+    }, {});
+    const categoryNamesArray: string[] = [];
+    for (const categoryName in categoriesMap) {
+      categoryNamesArray.push(categoriesMap[categoryName]);
+    }
+    onCategoriesNames(categoryNamesArray);
+  }, [categories, onCategoriesNames]);
+
   useEffect(() => {
     if (!categoriesIsLoaded) {
       const fetchSuccess = (responseData: CategoriesResponce) => {

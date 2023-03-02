@@ -45,6 +45,9 @@
     font-size: 56px;
     font-weight: bold;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .user_card-title--hovered {

@@ -103,7 +103,7 @@ export const messages_en = {
   "app.navbarStudyStudio.myLessons": "My lessons",
   "app.navbarStudyStudio.watchLater": "Watch later",
   "app.navbarStudyStudio.myLesson": "My lesson",
-  "app.navbarStudyStudio.management": "Management",
+  "app.navbarStudyStudio.management": "Edit categories",
   "app.navbarStudyStudio.contacts": "Contacts",
   "app.navbarStudyStudio.aboutUs": "About us",
   "app.navbarStudyStudio.darkTheme": "Dark theme",
