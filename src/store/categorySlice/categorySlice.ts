@@ -30,9 +30,7 @@ export const addCategory = createAsyncThunk(
       body: formData,
     });
     const data = await response.json();
-    console.log(data)
     if (response.status === 200 || response.status === 422) {
-      console.log(data)
       return data;
     } else {
       return `errror ${response.status}`;
@@ -119,22 +117,19 @@ type Categories = {
   loading: boolean;
 };
 
-const initialState: Categories = {
-  categories: [
-    {
-      amount_lessons: 0,
-      image_url: "",
-      id: 0,
-      name: "",
-      description: "",
-      status: "",
-      created_at: "",
-      image_size: 0,
-      image_name: "",
-      image_type: "",
-    }],
-  loading: false
-};
+const initialState: Categories = {categories: [{
+  amount_lessons: 0,
+  image_url: "",
+  id: 0,
+  name: "",
+  description: "",
+  status: "",
+  created_at: "",
+  image_size: 0,
+  image_name: "",
+  image_type: "",
+}],
+loading: false};
 
 const categorySlice = createSlice({
   name: "category",

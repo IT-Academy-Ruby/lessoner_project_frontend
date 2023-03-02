@@ -3,7 +3,6 @@ import "./input.scss";
 import "./phoneNumber.scss";
 import {FieldInputProps, FormikProps} from "formik";
 import {FormattedMessage} from "react-intl";
-import Magmagnifying from "./icons/magnifying_glass.svg";
 import PhoneInput from "react-phone-input-2";
 import React from "react";
 

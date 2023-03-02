@@ -11,13 +11,14 @@ import {
 } from "../../../../../store/categorySlice/categorySlice";
 import {descriptionCategoryRegex, nameCategoryRegex} from "../../../../../validationRules";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {useEffect, useRef, useState} from "react";
+import {
+  useEffect, useRef, useState
+} from "react";
 import Button from "../../../../Button";
 import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import ModalCategory from "./ModalCategory";
-import Successful from "../../../../icons/successful.svg";
 import SuccessfulModal from "./SuccessfulModal";
 import {useNavigate} from "react-router-dom";
 
@@ -165,7 +166,8 @@ const AddCategory = ({add}: addCategoryProps) => {
               nameRef.current?.focus();
             }
             if (response.payload.errors.description) {
-              setIsOccupiedDescription(intl.formatMessage({id: "app.categories.descriptionOccupied"}));
+              setIsOccupiedDescription(intl.formatMessage(
+                {id: "app.categories.descriptionOccupied"}));
               descriptionRef.current?.focus();
             }
           }

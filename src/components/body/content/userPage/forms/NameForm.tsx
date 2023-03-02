@@ -28,7 +28,6 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
   const isUser = useAppSelector((state) => state.login.isLogged);
 
   const initialValues: FormValues = {name: ""};
-  console.log(intl.locale)
   return (
     <Formik
       initialValues={initialValues}

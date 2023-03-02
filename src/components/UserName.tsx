@@ -14,7 +14,9 @@ type UserNameProps = {
   error?: string;
   nameRef?:()=>void;
 }
-const UserName = ({field, error, nameRef}: UserNameProps): JSX.Element => {
+const UserName = ({
+  field, error, nameRef
+}: UserNameProps): JSX.Element => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 

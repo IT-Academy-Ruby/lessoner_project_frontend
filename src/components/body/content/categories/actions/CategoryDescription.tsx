@@ -25,7 +25,8 @@ const CategoryDescription = ({
     <label className="category-label">
       <FormattedMessage id="app.categories.description"/>
       <textarea
-        className={classNames("category-input category-textarea", {"invalid-input": error || isOccupiedDescription})}
+        className={classNames("category-input category-textarea",
+          {"invalid-input": error || isOccupiedDescription})}
         placeholder={placeholder}
         onBlur={() => setIsFocus(false)}
         ref={descriptionRef}

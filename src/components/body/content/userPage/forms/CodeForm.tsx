@@ -42,7 +42,8 @@ const CodeForm = ({
           errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
         }
         if (values.code.length < CODE.maxLength) {
-          errors.code += intl.formatMessage({id: "app.code.errorLength"}, {maxSymbol: CODE.maxLength});
+          errors.code +=
+            intl.formatMessage({id: "app.code.errorLength"}, {maxSymbol: CODE.maxLength});
         }
         return errors;
       }}

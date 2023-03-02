@@ -3,8 +3,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./birthday.scss";
 import DatePicker, {registerLocale} from "react-datepicker";
 import {FieldInputProps, FormikProps} from "formik";
-import Birthday from "./icons/Date.svg";
 import {enGB, ru} from "date-fns/locale";
+import Birthday from "./icons/Date.svg";
 import {useIntl} from "react-intl";
 import {useState} from "react";
 

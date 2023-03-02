@@ -14,8 +14,8 @@ import GenderForm from "./forms/GenderForm";
 import InformEmail from "./forms/InformEmail";
 import NameForm from "./forms/NameForm";
 import PasswordForm from "./forms/PasswordForm";
-import PhoneForm from "./forms/PhoneForm";
 import Pencil from "../../../icons/pencilWhite.svg";
+import PhoneForm from "./forms/PhoneForm";
 import classNames from "classnames";
 
 const UserPage = () => {

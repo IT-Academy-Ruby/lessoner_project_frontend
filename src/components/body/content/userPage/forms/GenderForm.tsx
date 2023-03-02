@@ -6,7 +6,6 @@ import Button from "../../../../Button";
 import Gender from "../../../../GenderSelector";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 const gender = [
   {

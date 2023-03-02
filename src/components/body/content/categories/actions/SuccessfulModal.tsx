@@ -8,7 +8,9 @@ type SuccessfulModalProps = {
   url: string;
 }
 
-const SuccessfulModal = ({text, setIsSuccessful, url}: SuccessfulModalProps) => {
+const SuccessfulModal = ({
+  text, setIsSuccessful, url
+}: SuccessfulModalProps) => {
   const navigate = useNavigate();
   return (
     <div className="wrapper-modal">
@@ -17,15 +19,15 @@ const SuccessfulModal = ({text, setIsSuccessful, url}: SuccessfulModalProps) => 
           <img src={Successful} alt="successful" className="successful-icon"/>
           {text}
           <div className="field-close-successful">
-              <span className="close-modal" onClick={() => {
-                setIsSuccessful(false);
-                navigate(url);
-              }}/>
+            <span className="close-modal" onClick={() => {
+              setIsSuccessful(false);
+              navigate(url);
+            }}/>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SuccessfulModal;
