@@ -1,8 +1,8 @@
 import Raiting from "../../../../assets/reiting.png";
 
 type RatingProps = {
-  rating: number;
-  totalVotes: number;
+  rating?: number;
+  totalVotes?: number;
 };
 
 const Rating: React.FC<RatingProps> = (props: RatingProps) => {

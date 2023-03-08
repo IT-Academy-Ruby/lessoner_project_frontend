@@ -71,3 +71,4 @@ const CategoriesUser = () => {
 };
 
 export default CategoriesUser;
+

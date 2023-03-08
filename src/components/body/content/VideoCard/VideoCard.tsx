@@ -1,6 +1,9 @@
 import "./VideoCard.scss";
-import { Published, Title } from "../../../../components/LessonCard";
+import {
+  Published, Title, View 
+} from "../../../../components/LessonCard";
 import { Link } from "react-router-dom";
+import Rating from "../Rating/Rating";
 import placeHolder from "../../../../assets/category-placeholder.png";
 
 interface VideoCardProps {
@@ -8,6 +11,9 @@ interface VideoCardProps {
   img?: string;
   title: string;
   published: string;
+  rating?: number;
+  votes_count?: number;
+  viewsCount?: number;
   changeIdState: (id: number) => void;
 }
 
@@ -16,6 +22,9 @@ export const VideoCard = ({
   img,
   title,
   published,
+  rating,
+  votes_count,
+  viewsCount,
   changeIdState,
 }: VideoCardProps) => {
   return (
@@ -39,6 +48,14 @@ export const VideoCard = ({
           {/* <MenuKebab className="VideoCardKebab" /> */}
         </div>
         <Published published={published} className="VideoCardPublished" />
+        <div className="videoCard-view">
+          <View viewsCount={viewsCount}  />
+        </div>
+        <div className="card__rating">
+          <Rating  rating={rating} 
+            totalVotes={votes_count}/>
+        </div>
+        
       </div>
     </>
   );
