@@ -22,16 +22,21 @@ const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
   const navigate = useNavigate();
   const [language, setLanguage] = useState("en");
   const dispatch = useAppDispatch();
-  const token = useAppSelector(state => state.dataUser.userToken);
-  const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
-  const user = useAppSelector(state => state.dataUser.user.name);
+  const user = useAppSelector(state => state.login.user.name);
+  const decodeUserData = useAppSelector(state => state.userDecodedName.session);
+  const tokenStorage = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
 
   useEffect(() => {
-    dispatch(nameDecodedUser());
-    if (nameDecode && !user) {
-      dispatch(getUserData(nameDecode));
+    if(tokenStorage){
+      dispatch(nameDecodedUser());
     }
-  }, [token, dispatch, user, nameDecode]);
+  }, [dispatch, tokenStorage]);
+
+  useEffect(() => {
+    if (decodeUserData.name && !user) {
+      dispatch(getUserData(decodeUserData.name));
+    }
+  }, [dispatch, user, decodeUserData]);
 
   return (
     <div className="side-bar">
@@ -43,12 +48,12 @@ const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
           </h4>
         </Link>
         <div className="header-buttons">
-          {nameDecode && <Avatar
+          {decodeUserData.name && <Avatar
             onLanguageSwitch={onLanguageSwitch}
             onSignOut={onSignOut}
             language={language}
             setLanguage={setLanguage}/>}
-          {!nameDecode && <Fragment>
+          {!decodeUserData.name && <Fragment>
             <Language
               onLanguageSwitch={onLanguageSwitch}
               isRegistered={false}

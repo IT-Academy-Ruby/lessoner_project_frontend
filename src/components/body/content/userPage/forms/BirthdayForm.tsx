@@ -42,7 +42,6 @@ const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
         if(typeof values.birthday !== "string") {
           const items = {name: userName, object: {birthday: values.birthday.toDateString()}};
           dispatch(editUserData(items));
-          handleClose();
         }
       }}>
       {({errors, touched}) => {

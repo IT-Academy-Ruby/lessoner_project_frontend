@@ -11,8 +11,8 @@ type UserSession = {
     description: string;
     exp: number;
     admin: boolean;
-  }
-}
+  };
+};
 
 const initialState: UserSession = {session: {
   name: "",
@@ -40,8 +40,24 @@ const decode = () => {
 const sessionJWTSlice = createSlice({
   name: "sessionJWT",
   initialState,
-  reducers: {nameDecodedUser: (state) => {state.session = decode();}},
-});
+  reducers:
+      {nameDecodedUser: (state) => {
+        state.session = decode();
+      },
+      resetDecodeUser: (state) => {
+        state.session = {
+          name: "",
+          email: "",
+          gender: "",
+          birthday: "",
+          phone: "",
+          description: "",
+          exp: 0,
+          admin: false,
+        };
+      }},
+}
+);
 
-export const {nameDecodedUser} = sessionJWTSlice.actions;
+export const {nameDecodedUser, resetDecodeUser} = sessionJWTSlice.actions;
 export default sessionJWTSlice.reducer;

@@ -72,8 +72,7 @@ const SecondStep = ({
     if (!add && (!videoDescription || (!selectImage.name && !editThubnail.name) || errorImage)) {
       setIsDisabledStep2(true);
     }
-  }, [add, videoCategory, videoDescription, editThubnail,
-    setIsDisabledStep2, selectImage.name, errorImage, isTerm]);
+  }, [add, videoCategory, videoDescription, editThubnail, selectImage.name, errorImage, isTerm]);
 
   return (<>
     {(add || lesson.description) && <Formik

@@ -1,5 +1,9 @@
 @import "./src/constants.module.scss";
 
+.category-image-inform {
+  margin: 8px 0 12px;
+}
+
 .image-category-field {
   display: flex;
   justify-content: space-between;
@@ -117,7 +121,7 @@
   height: 32px;
 }
 
-.category-image-line{
+.category-image-line {
   margin-top: 32px;
   width: 100%;
   background: $greyDefault;

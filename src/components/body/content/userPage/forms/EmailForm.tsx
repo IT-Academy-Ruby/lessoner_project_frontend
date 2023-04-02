@@ -49,23 +49,16 @@ const EmailForm = ({
       onSubmit={(values) => {
         const items = {name: userName, object: {email: values.email}};
         setEmail(values.email);
-        dispatch(editUserData(items)).then((error) => {
-          if (!error.payload) {
-            setIsError(true);
-          } else {
-            setIsError(false);
-            handleEdit("infEmail");
-          }
-        });
+        dispatch(editUserData(items));
       }}>
+
       {({errors, touched}) => {
         return (
           <Form className="form-user-page">
             <div
               className="close-modal-form"
-              onClick={() =>{
+              onClick={() => {
                 handleClose();
-                setIsError(false);
               }}>
               <span className="close-form"></span>
             </div>
@@ -75,8 +68,7 @@ const EmailForm = ({
             <Field
               name="email"
               component={Email}
-              error={isError ? intl.formatMessage({id: "app.errorRequest"}) : isError ||
-              touched.email ? errors.email : undefined}
+              error={touched.email ? errors.email : undefined}
               needEmail={true}
             />
             <Button

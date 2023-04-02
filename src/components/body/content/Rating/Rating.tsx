@@ -1,4 +1,4 @@
-import Raiting from "../../../../assets/reiting.png";
+import Raiting from "../../../icons/reiting.png";
 
 type RatingProps = {
   rating: number;

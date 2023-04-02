@@ -2,12 +2,13 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {editUserData} from "../../../../../store/loginName/loginSlice";
+import {useAppDispatch} from "../../../../../store/hooks";
+import {useState} from "react";
 import Button from "../../../../Button";
 import {PASSWORD} from "../../../../../constants";
 import PasswordAndConfirm from "../../../../PasswordAndConfirm";
-import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
-import {useAppDispatch} from "../../../../../store/hooks";
 
 interface FormValues {
   current_password: string;
@@ -62,11 +63,15 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
         return errors;
       }}
 
-      onSubmit = {(values) => {
-        const items = {name: userName, object:
-          {password: values.password, current_password: values.current_password}};
+      onSubmit={(values) => {
+        const items = {
+          name: userName, object:
+            {password: values.password, current_password: values.current_password}
+        };
         dispatch(editUserData(items));
-        handleClose();
+        values.current_password = "";
+        values.password = "";
+        values.confirmPassword = "";
       }}>
       {({errors, touched}) => {
         return (
@@ -75,7 +80,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.password" />
+              <FormattedMessage id="app.userPage.form.password"/>
             </h2>
             <Field
               name="current_password"

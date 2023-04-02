@@ -1,4 +1,4 @@
-function buildVideoSrc (src: string, previewImg?: string): Plyr.SourceInfo | null {
+const buildVideoSrc = (src: string, previewImg?: string): Plyr.SourceInfo | null => {
   return {
     type: "video" as const,
     title: "Elephants",
@@ -33,11 +33,6 @@ function buildVideoSrc (src: string, previewImg?: string): Plyr.SourceInfo | nul
     //     "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
     //   ],},
   };
-}
+};
 
-function isYoutubeSource (src: string): boolean {
-  return src.toLowerCase().includes("/embed/");
-}
-
-export default {buildVideoSrc,
-  isYoutubeSource,};
+export default {buildVideoSrc};

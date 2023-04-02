@@ -146,10 +146,10 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) =
               </p>
               <p className={classNames("menu__footer-text",
                 {"menu__footer-text--active": isMenuActive})}>
-                <a className={classNames("menu__footer-text menu__footer-policy",
-                  {"menu__footer-text--active": isMenuActive})} href="/terms">
+                <Link className={classNames("menu__footer-text menu__footer-policy",
+                  {"menu__footer-text--active": isMenuActive})} to="/terms">
                   {intl.formatMessage({id: "app.navbarStudyStudio.policy"})}
-                </a>
+                </Link>
               </p>
             </div>
           </div>

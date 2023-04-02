@@ -2,11 +2,12 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {clearError, editUserData} from "../../../../../store/loginName/loginSlice";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../../../../Button";
 import Phone from "../../../../PhoneNumber";
-import {editUserData} from "../../../../../store/loginName/loginSlice";
-import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
+import {uploadModalData} from "../../../../../store/modalSlice/modalSlice";
 
 type PhoneFormProps = {
   userName: string;
@@ -21,7 +22,23 @@ const PhoneForm = ({
 }: PhoneFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.login.user);
   const [isError, setIsError] = useState(true);
+
+  useEffect(()=>{
+    if(user.error){
+      dispatch(uploadModalData({
+        text: user.error,
+        isOpen: true,
+        typeModal: true
+      }));
+      dispatch(clearError());
+    }
+    if(user.error === ""){
+      handleClose();
+      handleEdit("code");
+    }
+  },[user]);
 
   interface FormValues {
     phone: string;
@@ -49,8 +66,6 @@ const PhoneForm = ({
       onSubmit={() => {
         const items = {name: userName, object: {phone: "+" + phoneNumber}};
         dispatch(editUserData(items));
-        handleClose();
-        handleEdit("code");
       }}>
       {({errors, touched}) => {
         return (

@@ -19,7 +19,9 @@ import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import ModalCategory from "./ModalCategory";
-import SuccessfulModal from "./SuccessfulModal";
+import {resetUserData} from "../../../../../store/loginName/loginSlice";
+import {resetDecodeUser} from "../../../../../store/header/decodeJwtSlice";
+import {uploadModalData} from "../../../../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
 
 interface FormValues {
@@ -64,7 +66,6 @@ const AddCategory = ({add}: addCategoryProps) => {
   });
 
   const [isClose, setIsClose] = useState(false);
-  const [isSuccessful, setISuccessful] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isErrorValue, setIsErrorValue] = useState(false);
   const [errorImage, setErrorImage] = useState("");
@@ -160,7 +161,19 @@ const AddCategory = ({add}: addCategoryProps) => {
               description: values.description.trim(),
             }));
           }
+
           if (response.payload.errors) {
+            let valueError: string[] = [];
+            for (const key in response.payload.errors) {
+              const error = key + " - " + response.payload.errors[key];
+              valueError = [...valueError, error];
+            }
+            dispatch(uploadModalData({
+              text: valueError.join(", "),
+              isOpen: true,
+              typeModal: true,
+            }));
+
             if (response.payload.errors.name) {
               setIsOccupiedName(intl.formatMessage({id: "app.categories.nameOccupied"}));
               nameRef.current?.focus();
@@ -171,9 +184,26 @@ const AddCategory = ({add}: addCategoryProps) => {
               descriptionRef.current?.focus();
             }
           }
-          if (!response.payload.errors) {
-            dispatch(getCategory());
-            setISuccessful(true);
+          if (response.payload.error === "You don't have permission to access") {
+            dispatch(resetDecodeUser());
+            dispatch(resetUserData());
+            dispatch(uploadModalData({
+              text: response.payload.error,
+              isOpen: true,
+              typeModal: true,
+              urlNavigate: "/user/sign_in",
+            }));
+            localStorage.removeItem("JWT");
+            sessionStorage.removeItem("JWT");
+          }
+          if (!response.payload.errors && !response.payload.error) {
+            dispatch(uploadModalData({
+              text: add ? intl.formatMessage({id: "app.categories.add.successful"}) :
+                intl.formatMessage({id: "app.categories.edit.successful"}),
+              isOpen: true,
+              typeModal: undefined,
+              urlNavigate: "/categories/management"
+            }));
           }
         }}>
         {({errors, touched}) => {
@@ -242,14 +272,6 @@ const AddCategory = ({add}: addCategoryProps) => {
         setIsClose={setIsClose}
         onClickYes={() => navigate("/categories/management")}
         title={intl.formatMessage({id: "app.categories.close.text"})}
-      />}
-      {isSuccessful && <SuccessfulModal
-        text={
-          add ? intl.formatMessage({id: "app.categories.add.successful"}) :
-            intl.formatMessage({id: "app.categories.edit.successful"})
-        }
-        url="/categories/management"
-        setIsSuccessful={setISuccessful}
       />}
     </div>
   );

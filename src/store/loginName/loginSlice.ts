@@ -40,9 +40,6 @@ export const signUpSlice = createAsyncThunk(
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(value),
     });
-    if (response.status !== 201) {
-      return response.status;
-    }
     const data = await response.json();
     return data;
   }
@@ -53,9 +50,6 @@ export const confirmTokenSlice = createAsyncThunk(
   async (value: string) => {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/sign_up/confirm_email?token=${value}`);
-    if (response.status != 200) {
-      return response.status;
-    }
     const data = await response.json();
     return data;
   }
@@ -70,41 +64,34 @@ export const getLogin = createAsyncThunk(
         `${process.env.REACT_APP_BACKEND_URL}/login?email=${email}&password=${val.password}`,
         {method: "POST"});
     const data = await response.json();
-    if (response.status === 200) {
-      return data.jwt;
-    } else {
-      return "";
-    }
+    return data;
   }
 );
 
 export const sendPasswordResetLink = createAsyncThunk(
   "user/sendPasswordResetLinkStatus",
-  async (email: string): Promise<boolean> => {
+  async (email: string): Promise<{ error: string, alert: string }> => {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({email: email})
     });
-    if (response.status !== 200) {
-      return false;
-    }
-    return true;
+    const data = response.json();
+    return data;
   });
 
 export const changePassword = createAsyncThunk(
   "user/changePasswordStatus",
-  async (value: { token: string, password: string }): Promise<string> => {
+  async (value: {
+    token: string, password: string
+  }): Promise<{ status: string, error: string }> => {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/reset`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({token: value.token, password: value.password})
     });
-    if (response.status !== 200) {
-      throw new Error(`Error code ${response.status}`);
-    }
     const data = await response.json();
-    return data.email_exists;
+    return data;
   }
 );
 
@@ -112,8 +99,12 @@ export const getUserData = createAsyncThunk(
   "user/getUserDataStatus",
   async (name: string) => {
     const response = await requestApi(`${process.env.REACT_APP_BACKEND_URL}/users/${name}`);
-    const data = response.json();
-    return data;
+    if (response.status === 401) {
+      return false;
+    } else {
+      const data = response.json();
+      return data;
+    }
   }
 );
 
@@ -122,11 +113,12 @@ export const editUserData = createAsyncThunk(
   async (items: { name: number | string, object: object }) => {
     const response = await requestApi(
       `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
-    if (response.status !== 200) {
+    if (response.status === 401) {
       return false;
+    } else {
+      const data = response.json();
+      return data;
     }
-    const data = response.json();
-    return data;
   }
 );
 
@@ -171,7 +163,6 @@ export const uploadFile = createAsyncThunk(
 );
 
 type Login = {
-  updateAfterRequest: boolean;
   user: {
     id: number;
     name: string;
@@ -183,19 +174,22 @@ type Login = {
     birthday: string;
     password: string;
     created_at: string;
+    errors?: [];
+    error?: string;
+    deliver?: string;
   };
-  userToken: string;
+  userToken: { error: string, jwt: string };
+  checkEmail: { alert: string, error: string };
+  responsePassword: { status: string, error: string };
   event: boolean;
   lookButton: boolean;
   isEmail: boolean | string;
   loading: boolean;
   isLogged: boolean;
   token: string;
-  stayIsLoggedIn: boolean;
 };
 
 const initialState: Login = {
-  updateAfterRequest: false,
   user: {
     id: 0,
     name: "",
@@ -207,15 +201,19 @@ const initialState: Login = {
     birthday: "",
     password: "",
     created_at: "",
+    errors: [],
+    error: "",
+    deliver: "",
   },
-  userToken: "",
+  userToken: {error: "", jwt: ""},
+  checkEmail: {alert: "", error: ""},
+  responsePassword: {status: "", error: ""},
   event: false,
   lookButton: false,
   isEmail: "",
   loading: false,
   isLogged: false,
   token: "",
-  stayIsLoggedIn: false,
 };
 
 const loginSlice = createSlice({
@@ -235,14 +233,25 @@ const loginSlice = createSlice({
         password: "",
         created_at: ""
       };
+      state.loading = false;
+      state.userToken.jwt = "";
     },
     addToken: (state, action) => {
       state.token = action.payload;
     },
-    changedStayLoggedIn: (state, action) => {
-      state.stayIsLoggedIn = action.payload;
-    }
+    clearError: (state) => {
+      state.userToken.error = "";
+      state.user.errors = undefined;
+      state.user.deliver = undefined;
+      state.user.error = undefined;
+      state.checkEmail = {alert: "", error: ""};
+      state.responsePassword = {status: "", error: ""};
+    },
+    clearIsEmail: (state) => {
+      state.isEmail = "";
+    },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(getUser.fulfilled, (state, action) => {
@@ -251,14 +260,15 @@ const loginSlice = createSlice({
     builder.addCase(getLogin.fulfilled, (state, action) => {
       state.userToken = action.payload;
       state.loading = false;
-      if (state.userToken && state.stayIsLoggedIn) {
-        localStorage.setItem("JWT", `${state.userToken}`);
-      }
-      if (state.userToken && !state.stayIsLoggedIn) {
-        sessionStorage.setItem("JWT", `${state.userToken}`);
-      }
     });
     builder.addCase(getLogin.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(confirmTokenSlice.fulfilled, (state, action) => {
+      state.userToken = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(confirmTokenSlice.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(getEmail.fulfilled, (state, action) => {
@@ -276,25 +286,56 @@ const loginSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getUserData.fulfilled, (state, action) => {
-      state.user = action.payload;
+      if (!action.payload) {
+        state.user.error = "unregistered user";
+      } else {
+        state.user = action.payload;
+      }
       state.loading = false;
     });
     builder.addCase(getUserData.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(editUserData.fulfilled, (state) => {
-      state.updateAfterRequest = !state.updateAfterRequest;
+    builder.addCase(editUserData.fulfilled, (state, action) => {
+      if (!action.payload) {
+        state.user.error = "unregistered user";
+      }
+      else if (action.payload.error) {
+        state.user.error = action.payload.error;
+      }
+      else if (action.payload) {
+        state.user = action.payload;
+        state.user.error = "";
+      }
+      else if (action.payload.deliver) {
+        state.user.deliver = action.payload.deliver;
+      }
+      state.loading = false;
+    });
+    builder.addCase(editUserData.pending, (state) => {
+      state.loading = true;
     });
     builder.addCase(uploadFile.fulfilled, (state, action) => {
       state.user = action.payload;
     });
     builder.addCase(sendPasswordResetLink.fulfilled, (state, action) => {
-      state.isEmail = action.payload;
+      state.checkEmail = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(sendPasswordResetLink.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(changePassword.fulfilled, (state, action) => {
+      state.responsePassword = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(changePassword.pending, (state) => {
+      state.loading = true;
     });
   }
 });
 
 export const {
-  addToken, resetUserData, changedStayLoggedIn
+  addToken, resetUserData, clearError, clearIsEmail
 } = loginSlice.actions;
 export default loginSlice.reducer;

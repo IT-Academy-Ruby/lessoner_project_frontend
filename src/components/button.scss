@@ -142,7 +142,7 @@
   margin-left: 12px;
   padding: 6px 26px;
   cursor: pointer;
-  
+
 
   &:focus {
     border: 1px solid $greyDefault;
@@ -271,6 +271,22 @@
     border: none;
     color: $greySearchColor;
   }
+}
+
+.button-modal-response {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 202px;
+  height: 46px;
+  padding: 10px 32px;
+  border-radius: 28px;
+  border: none;
+  background: $blueLightColor;
+  font-family: "ApercuPro", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: $white;
 }
 
 @media (max-width: $max-width-phone) {

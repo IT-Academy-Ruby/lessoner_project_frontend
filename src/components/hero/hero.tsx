@@ -12,8 +12,7 @@ export const Hero = () => {
   const navigate = useNavigate();
   const image = theme === THEME.DARK ? heroDark : heroLight;
   const intl = useIntl();
-  const user = useAppSelector(state => state.dataUser.user.name);
-
+  const user = useAppSelector(state => state.login.user.name);
   const title = intl.formatMessage({id: "app.hero.title"});
   const subtitle = intl.formatMessage({id: "app.hero.subtitle"});
   const buttonTextHero = intl.formatMessage({id: "app.hero.buttonText"});
@@ -23,11 +22,9 @@ export const Hero = () => {
       <div className="hero__body">
         <p className="hero__title" dangerouslySetInnerHTML={{__html: title}}/>
         <p className="hero__subtitle" dangerouslySetInnerHTML={{__html: subtitle}} />
-
         {!user && <Button
           buttonType="button"
           buttonText = {buttonTextHero}
-          
           onClick={() => navigate("/user/sign_up")}
           className="hero__button"
         />}

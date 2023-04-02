@@ -118,7 +118,7 @@ const FirstStep = ({
           errors.link = "";
         }
         return (
-          <Form className="step-content">
+          <Form className="step__content">
             <Field
               name="name"
               label={intl.formatMessage({id: "app.Name"})}

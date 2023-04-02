@@ -3,7 +3,9 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {clearError, signUpSlice} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {useEffect, useState} from "react";
 import BirthdayPicker from "../components/BirthdayPicker";
 import Button from "../components/Button";
 import Email from "../components/Email";
@@ -11,24 +13,23 @@ import GenderSelector from "../components/GenderSelector";
 import {USERNAME} from "../constants";
 import UserName from "../components/UserName";
 import {UserRegex} from "../validationRules";
-import {signUpSlice} from "../store/loginName/loginSlice";
+import {uploadModalData} from "../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
-import {useState} from "react";
 
 const gender = [
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.male" />,
+    label: <FormattedMessage id="app.gender.male"/>,
     genderValue: "male"
   },
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.female" />,
+    label: <FormattedMessage id="app.gender.female"/>,
     genderValue: "female"
   },
   {
     name: "gender",
-    label: <FormattedMessage id="app.gender.other" />,
+    label: <FormattedMessage id="app.gender.other"/>,
     genderValue: "other"
   }];
 
@@ -60,8 +61,23 @@ const YourselfPage = ({
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isUser = useAppSelector((state) => state.login.isLogged);
+  const dataUser = useAppSelector((state) => state.login.user);
   const [isWrapper, setIsWrapper] = useState(false);
   const formatter = new Intl.DateTimeFormat("ru");
+
+  useEffect(() => {
+    if (dataUser.name) {
+      navigate("/user/reg_in/information/modR");
+    }
+    if (dataUser.errors?.length) {
+      dispatch(uploadModalData({
+        text: dataUser.errors.join(", "),
+        typeModal: true,
+        isOpen: true,
+      }));
+      dispatch(clearError());
+    }
+  }, [dispatch, navigate, dataUser]);
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
@@ -104,17 +120,16 @@ const YourselfPage = ({
           password: userPassword,
         }}
         validate={validate}
-        onSubmit={(values: FormValues) => {
-          values.birthday=formatter.format(new Date(values.birthday));
-          dispatch(signUpSlice(values));
-          navigate("/user/reg_in/information/modR");
+        onSubmit={async (values: FormValues) => {
+          values.birthday = formatter.format(new Date(values.birthday));
+          await dispatch(signUpSlice(values));
         }}
       >
         {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.pagesTitle.aboutYourself" />
+                <FormattedMessage id="app.pagesTitle.aboutYourself"/>
               </h2>
               {registration && <Field
                 name="email"

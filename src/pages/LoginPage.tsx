@@ -4,8 +4,10 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
-import {changedStayLoggedIn, getLogin} from "../store/loginName/loginSlice";
+import {clearError, getLogin} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {useEffect, useState} from "react";
 import Button from "../components/Button";
 import Checkbox from "../components/Checkbox";
 import Email from "../components/Email";
@@ -15,8 +17,7 @@ import {PASSWORD} from "../constants";
 import PasswordAndConfirm from "../components/PasswordAndConfirm";
 // import Phone from "../components/icons/phone.svg";
 // import VK from "../components/icons/vk.svg";
-import {useAppDispatch} from "../store/hooks";
-import {useState} from "react";
+import {uploadModalData} from "../store/modalSlice/modalSlice";
 
 interface FormValues {
   email: string;
@@ -32,13 +33,38 @@ const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [isLogEmail, setIslogEmail] = useState<string | unknown>("");
+  const [isLogEmail, setIslogEmail] = useState(false);
+  // const [isModal, setIsModal] = useState(false);
+  const [isRemember, setIsRemember] = useState(false);
+  const loginResponse = useAppSelector(state => state.login.userToken);
 
   const initialValues: FormValues = {
     email: "",
     password: "",
     remember: false,
   };
+
+  useEffect(() => {
+    if (loginResponse.error) {
+      dispatch(uploadModalData({
+        text: loginResponse.error,
+        typeModal: true,
+        isOpen: true,
+      }));
+      dispatch(clearError());
+      setIslogEmail(true);
+    }
+    if(loginResponse.jwt){
+      if(isRemember){
+        localStorage.setItem("JWT", loginResponse.jwt);
+      }
+      if(!isRemember){
+        sessionStorage.setItem("JWT", loginResponse.jwt);
+      }
+      navigate("/");
+      setIslogEmail(false);
+    }
+  }, [dispatch, isRemember, navigate, loginResponse]);
 
   return (
     <div className="log-content">
@@ -63,23 +89,20 @@ const LoginPage = () => {
               intl.formatMessage({id: "app.firstRegistrationForm.passwordLength"},
                 {minSymbol: PASSWORD.minLength, maxSymbol: PASSWORD.maxLength});
           }
+          if(values.remember){
+            setIsRemember(true);
+          }
 
           return errors;
         }}
         onSubmit={(values: FormValues) => {
-          dispatch(changedStayLoggedIn(values.remember));
-          dispatch(getLogin(values))
-            .then(() => {
-              if (sessionStorage.getItem("JWT") || localStorage.getItem("JWT")) {
-                navigate("/"); // Redirects to main page
-              }else{setIslogEmail(false);}
-            });
+          dispatch(getLogin(values));
         }}>
         {({errors, touched}) => {
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.login.title" />
+                <FormattedMessage id="app.login.title"/>
               </h2>
               <Field
                 name="email"
@@ -95,6 +118,7 @@ const LoginPage = () => {
                 maxSymbol={PASSWORD.maxLength}
                 isConfirm={true}
                 error={touched.password ? errors.password : undefined}
+                wrongPassword={isLogEmail}
               />
               <Field
                 name="remember"
@@ -107,7 +131,7 @@ const LoginPage = () => {
                 className="button__page"
               />
               <Link to="/user/sign_in/reset_password" className="password-link">
-                <FormattedMessage id="app.loginPage.password" />
+                <FormattedMessage id="app.loginPage.password"/>
               </Link>
               {/*<div className="or">*/}
               {/*  <span className="line-right"></span>*/}
@@ -129,12 +153,12 @@ const LoginPage = () => {
               {/*  </Link>*/}
               {/*</div>*/}
               <p className="text">
-                <FormattedMessage id="app.don'tAccount" />
+                <FormattedMessage id="app.don'tAccount"/>
                 <Link
                   to={"/user/sign_up"}
                   className="link"
                 >
-                  <FormattedMessage id="app.signUp" />
+                  <FormattedMessage id="app.signUp"/>
                 </Link>
               </p>
             </Form>

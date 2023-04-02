@@ -1,0 +1,198 @@
+@import "../../constants.module.scss";
+
+.lesson__card {
+  display: flex;
+  width: 100%;
+  box-shadow: 2px 2px 15px rgba(16, 19, 45, 0.1);
+  background: var(--bgCardThemeColor);
+  border-radius: 8px;
+}
+
+.lessonsPage__card {
+  flex-direction: column;
+  height: 288px;
+}
+
+.myStudio__card {
+  flex-direction: column;
+  height: 271px;
+}
+
+.sideBar__card {
+  flex-direction: row;
+  align-items: center;
+}
+
+.lesson__thumbnail {
+  position: relative;
+}
+
+.lessonsPage__thumbnail, .myStudio__thumbnail {
+  width: 100%;
+  height: 142px;
+  margin-bottom: 8px;
+}
+
+.sideBar__thumbnail {
+  position: relative;
+  width: 208px;
+  height: 132px;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.lesson__icon {
+  width: 100%;
+  height: 100%;
+}
+
+.lessonsPage__icon, .myStudio__icon {
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+
+.sideBar__icon {
+  border-radius: 8px 0 0 8px;
+}
+
+.lesson__status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 4px 12px;
+  margin: 12px;
+  border-radius: 4px;
+  background: $blueLightColor;
+  color: $white;
+}
+
+.lesson__data {
+  display: flex;
+  flex-direction: column;
+}
+
+.lessonsPage__data, .myStudio__data {
+  padding: 0 12px;
+}
+
+.sideBar__data {
+  padding: 8px 14px;
+  gap: 4px;
+}
+
+.lesson__author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lesson__author-avatar {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.lesson__author-nick {
+  color: var(--nameDetailsCardThemeColor);
+  font-family: $font;
+  line-height: 150%;
+  margin-bottom: 3px;
+}
+
+.myStudio__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson__edit {
+  cursor: pointer;
+}
+
+.lesson__name {
+  height: 42px;
+  overflow: hidden;
+  text-align: left;
+  color: var(--titleCardThemeColor);
+  -webkit-line-clamp: 2;
+  line-height: 21px;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-decoration: none;
+  font-family: $font;
+  font-size: 14px;
+  font-weight: 600;
+  justify-content: flex-start;
+}
+
+.sideBar__name {
+  width: 192px;
+  height: 42px;
+}
+
+.myStudio__name {
+  width: 250px;
+}
+
+.lesson__info {
+  display: flex;
+  font-size: 14px;
+  font-family: $font;
+  color: var(--nameDetailsCardThemeColor);
+  justify-content: space-between;
+}
+
+.lessonsPage__info, .lessonsPage__rating, .myStudio__info, .myStudio__rating {
+  flex-direction: row;
+  align-items: center;
+  margin-block: 5px;
+}
+
+.sideBar__info {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lesson__info-date, .lesson__info-views {
+  margin: 0;
+}
+
+.lesson__rating {
+  display: flex;
+}
+
+.sideBar__rating {
+  justify-content: flex-end;
+  height: 21px;
+}
+
+.myStudio__rating, .lessonsPage__rating {
+  flex-direction: row;
+  align-items: center;
+  margin-block: 5px;
+  justify-content: space-between;
+}
+
+.raiting {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  p {
+    margin: 0 0 0 5px;
+  }
+}
+
+.lesson__category {
+  padding: 4px 6px;
+  margin: 0;
+  border-radius: 4px;
+  color: var(--categoryTextCardThemeColor);
+  background: var(--categorybgCardThemeColor);
+  cursor: pointer;
+}
+
+

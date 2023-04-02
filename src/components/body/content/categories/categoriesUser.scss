@@ -1,0 +1,21 @@
+.field__categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 16px 24px;
+}
+
+.categories__title {
+  width: 196px;
+  margin: 0 0 16px;
+  font-family: "ApercuPro", sans-serif;
+}
+
+.categories__user {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(317px, 317px));
+  grid-gap: 16px;
+}

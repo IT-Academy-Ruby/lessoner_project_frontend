@@ -12,7 +12,7 @@ import { RootState } from "../../store/index";
 import {buildMainSidebarConfig} from "./navigation/mainSidebarHelper";
 import {connect} from "react-redux";
 import jwt_decode from "jwt-decode";
-import {nameDecodedUser} from "../../store/header/decodeJwtSlice";
+import {resetDecodeUser} from "../../store/header/decodeJwtSlice";
 import {resetUserData} from "../../store/loginName/loginSlice";
 import { snowContext } from "../../App";
 import {useAppDispatch} from "../../store/hooks";
@@ -44,8 +44,8 @@ const Body = (props: BodyProps) => {
     } else {
       localStorage.removeItem("JWT");
     }
-    dispatch(nameDecodedUser());
     dispatch(resetUserData());
+    dispatch(resetDecodeUser());
     setIsAthorized(false);
     navigate("/");
   };

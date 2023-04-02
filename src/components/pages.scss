@@ -41,8 +41,8 @@
 .close:after {
   position: absolute;
   width: 16px;
-  border: 2px solid $greySearchColor;
-  background: $greySearchColor;
+  border: 2px solid var(--textThemeColor1);
+  background: var(--textThemeColor1);
   content: "";
 }
 

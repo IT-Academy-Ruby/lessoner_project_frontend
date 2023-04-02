@@ -30,11 +30,7 @@ export const addCategory = createAsyncThunk(
       body: formData,
     });
     const data = await response.json();
-    if (response.status === 200 || response.status === 422) {
-      return data;
-    } else {
-      return `errror ${response.status}`;
-    }
+    return data;
   }
 );
 
@@ -71,11 +67,7 @@ export const updateCategory = createAsyncThunk(
         body: formData,
       });
     const data = await response.json();
-    if (response.status === 200 || response.status === 422) {
-      return data;
-    } else {
-      return  `errror ${response.status}`;
-    }
+    return data;
   }
 );
 
@@ -114,42 +106,76 @@ type Category = {
 
 type Categories = {
   categories: [Category];
+  selectedCategory: {
+    name: string;
+    id: string;
+  };
+  error?: string;
+  errors?: [];
   loading: boolean;
+  skeleton: boolean;
 };
 
-const initialState: Categories = {categories: [{
-  amount_lessons: 0,
-  image_url: "",
-  id: 0,
-  name: "",
-  description: "",
-  status: "",
-  created_at: "",
-  image_size: 0,
-  image_name: "",
-  image_type: "",
-}],
-loading: false};
+const initialState: Categories = {
+  categories: [{
+    amount_lessons: 0,
+    image_url: "",
+    id: 0,
+    name: "",
+    description: "",
+    status: "",
+    created_at: "",
+    image_size: 0,
+    image_name: "",
+    image_type: "",
+  }],
+  selectedCategory: {
+    name: "",
+    id: "",
+  },
+  errors: [],
+  error: "",
+  loading: false,
+  skeleton: false
+};
 
 const categorySlice = createSlice({
   name: "category",
   initialState,
-  reducers: {},
+  reducers: {
+    selectedCategory: (state,action) =>{
+      state.selectedCategory=action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getCategory.fulfilled, (state, action) => {
       state.categories = action.payload;
-      state.loading = false;
+      state.skeleton = false;
     });
     builder.addCase(getCategory.pending, (state) => {
-      state.loading = true;
+      state.skeleton = true;
     });
-    builder.addCase(addCategory.fulfilled, (state) => {
+    builder.addCase(addCategory.fulfilled, (state, action) => {
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else if (action.payload.errors) {
+        state.errors = action.payload.errors;
+      } else {
+        state.categories = action.payload;
+      }
       state.loading = false;
     });
     builder.addCase(addCategory.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(updateCategory.fulfilled, (state) => {
+    builder.addCase(updateCategory.fulfilled, (state, action) => {
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else if (action.payload.errors) {
+        state.errors = action.payload.errors;
+      } else {
+        state.categories = action.payload;
+      }
       state.loading = false;
     });
     builder.addCase(updateCategory.pending, (state) => {
@@ -164,4 +190,5 @@ const categorySlice = createSlice({
   }
 });
 
+export const {selectedCategory} = categorySlice.actions;
 export default categorySlice.reducer;

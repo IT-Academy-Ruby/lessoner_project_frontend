@@ -1,12 +1,11 @@
 import "./select.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import {useEffect, useState} from "react";
 import ArrowDown from "../../../../icons/arrowDown.svg";
 import ArrowUp from "../../../../icons/arrowUp.svg";
 import Select from "react-select";
 import {getCategory} from "../../../../../store/categorySlice/categorySlice";
-
+import {useAppSelector} from "../../../../../store/hooks";
 
 type VideoCategoryProps = {
   setVideoCategory: (object: { value: string, label: string }) => void;
@@ -20,14 +19,9 @@ const VideoCategory = ({
   setVideoCategory, videoCategory, error, lesson, add
 }: VideoCategoryProps) => {
   const intl = useIntl();
-  const dispatch = useAppDispatch();
   const allCategories = useAppSelector((state) => state.categories.categories);
   const [options, setOptions] = useState<{ value: string, label: string }[]>();
   const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    dispatch(getCategory());
-  }, [dispatch]);
 
   useEffect(() => {
     if (allCategories.length > 1) {

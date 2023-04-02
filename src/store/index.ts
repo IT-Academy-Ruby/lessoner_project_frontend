@@ -4,16 +4,16 @@ import decodeReducer from "./header/decodeJwtSlice";
 import lessonsReducer from "./lessonSlice/lessonSlice";
 import linksReducer from "./links/linksSlise";
 import loginReducer from "./loginName/loginSlice";
+import modalReducer from "./modalSlice/modalSlice";
 
 const store = configureStore(
   {reducer: {
     login: loginReducer,
-    dataUser: loginReducer,
     userDecodedName: decodeReducer,
-    userDecodedExp: decodeReducer,
     link: linksReducer,
     categories: categoriesReducer,
     lessons:lessonsReducer,
+    modalData: modalReducer,
   }}
 );
 

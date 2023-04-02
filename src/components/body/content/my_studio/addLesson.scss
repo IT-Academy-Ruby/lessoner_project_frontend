@@ -1,6 +1,6 @@
 @import "../../../../constants.module";
 
-.add-lesson {
+.lesson__wrapper {
   font-family: $font;
   position: absolute;
   top: 0;
@@ -10,12 +10,7 @@
   justify-content: center;
 }
 
-.arrow-back {
-  margin-right: 19px;
-  color: $greySearchColor;
-}
-
-.button-back {
+.lesson__buttonBack {
   position: absolute;
   margin: 16px 24px;
   left: 0;
@@ -28,20 +23,26 @@
   line-height: 150%;
 }
 
-.form-lesson {
+.lesson__arrowBack {
+  margin-right: 19px;
+  color: $greySearchColor;
+}
+
+.lesson__form {
   display: flex;
   max-width: 753px;
   width: 100%;
-  margin: 16px 16px 80px 16px;
+  margin: 16px 16px 49px 16px;
   flex-direction: column;
   align-items: flex-start;
   background: var(--bgFirstRegistrForm);;
   padding: 36px;
+  border-radius: 8px;
   box-shadow: var(--bgNavBarShadow);
   font-size: 14px;
 }
 
-.title-add-lesson {
+.lesson__title {
   color: var(--textCategoriesAdmin);
   font-weight: 700;
   line-height: 130%;
@@ -92,7 +93,7 @@
   color: #5A5D72;
 }
 
-.step-content {
+.step__content {
   width: 100%;
 }
 

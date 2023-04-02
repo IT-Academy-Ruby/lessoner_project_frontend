@@ -10,7 +10,7 @@ type EmailProps = {
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string,
   };
-  isEmail: string | boolean;
+  isEmail: boolean;
   error?: string;
   textError?: string;
 }
@@ -26,14 +26,14 @@ const Email = ({
         minLength={EMAIL.minLength}
         maxLength={EMAIL.maxLength}
         className={classNames("input",
-          {"invalid-input": error},
+          {"invalid-input": error || isEmail},
           {"success-input": !error && field.value},
         )}
         placeholder="username@gmail.com"
         {...field}
       />
       {error && <span className="error-message">{error}</span>}
-      {isEmail === false && !error && <span className="error-message">
+      {isEmail && !error && <span className="error-message">
         {textError}
       </span>}
     </label>

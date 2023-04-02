@@ -1,7 +1,7 @@
 import "./userPage.scss";
 import {AVATAR, DEFAULT_COUNTRY_CODE} from "../../../../constants";
 import {FormattedMessage, useIntl} from "react-intl";
-import {getUserData, uploadFile} from "../../../../store/loginName/loginSlice";
+import {clearError, uploadFile} from "../../../../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {
   useEffect, useRef, useState
@@ -17,14 +17,17 @@ import PasswordForm from "./forms/PasswordForm";
 import Pencil from "../../../icons/pencilWhite.svg";
 import PhoneForm from "./forms/PhoneForm";
 import classNames from "classnames";
+import {uploadModalData} from "../../../../store/modalSlice/modalSlice";
+import {useNavigate} from "react-router-dom";
 
 const UserPage = () => {
+  const navigate = useNavigate();
   const fileRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
-  const user = useAppSelector(state => state.dataUser.user);
-  const track = useAppSelector(state => state.dataUser.updateAfterRequest);
+  const user = useAppSelector(state => state.login.user);
+  // const track = useAppSelector(state => state.login.updateAfterRequest);
   const [isVisible, setIsVisible] = useState(false);
   const [component, setComponent] = useState("");
   const [isErrorSize, setIsErrorSize] = useState(false);
@@ -34,10 +37,31 @@ const UserPage = () => {
   const formatter = new Intl.DateTimeFormat("ru");
 
   useEffect(() => {
-    if (nameDecode) {
-      dispatch(getUserData(nameDecode));
+    if (user.error) {
+      dispatch(uploadModalData({
+        text: user.error,
+        isOpen: true,
+        typeModal: true
+      }));
+      dispatch(clearError());
     }
-  }, [dispatch, nameDecode, track]);
+    if(user.error === ""){
+      if(component === "Phone number"){
+        handleEdit("code");
+      }
+      handleClose();
+    }
+    if(user.deliver){
+      handleEdit("infEmail");
+      dispatch(clearError());
+    }
+  }, [dispatch, component, user]);
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {
+      navigate("/user/sign_in");
+    }
+  }, [navigate, user.name]);
 
   const initialName = nameDecode.split(" ")
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
@@ -95,7 +119,6 @@ const UserPage = () => {
         email={email}
       />;
     }
-    ;
   };
 
   let keyField = dataUser.length;
