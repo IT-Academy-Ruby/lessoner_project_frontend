@@ -105,7 +105,8 @@ const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
         .finally(() => setLoading(false));
       setNumberPage(numberPage + 1);
     }
-  }, [countPages, dispatch, numberPage, chosenCategory, data, type, loading]);
+    /* eslint-disable-next-line */
+  }, [dispatch, chosenCategory, data, type, loading]);
 
   useEffect(() => {
     if (type === "myStudio" && !sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {
