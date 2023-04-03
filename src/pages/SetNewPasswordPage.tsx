@@ -1,13 +1,13 @@
-import "./modal.scss";
+import "./modal.module.scss";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {changePassword, clearError} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import Button from "../components/Button";
+import {Button} from "../components/Button";
 import {PASSWORD} from "../constants";
-import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import {PasswordAndConfirm} from "../components/PasswordAndConfirm";
 import {passwordRegex} from "../validationRules";
 import {uploadModalData} from "../store/modalSlice/modalSlice";
 import {useEffect} from "react";
@@ -21,7 +21,7 @@ interface FormErrors {
   [key: string]: string
 }
 
-const SetNewPasswordPage = () => {
+export const SetNewPasswordPage = () => {
   const minSymbol = PASSWORD.minLength;
   const maxSymbol = PASSWORD.maxLength;
   const symbols = PASSWORD.symbols;
@@ -116,5 +116,3 @@ const SetNewPasswordPage = () => {
     </div>
   );
 };
-
-export default SetNewPasswordPage;

@@ -1,11 +1,12 @@
-import "./lessonPage.scss";
+import "./lessonPage.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import {useEffect, useState} from "react";import MainLesson from "./mainLesson/MainLesson";
-import SideBarLessons from "./sideBarLessons/SideBarLessons";
+import {useEffect, useState} from "react";
+import {MainLesson} from "./mainLesson/MainLesson";
+import {SideBarLessons} from "./sideBarLessons/SideBarLessons";
 import {getLesson} from "../../../store/lessonSlice/lessonSlice";
 import {useParams} from "react-router-dom";
 
-const LessonPage = () => {
+export const LessonPage = () => {
   const dataLesson = useAppSelector(state => state.lessons.lesson);
   const categories = useAppSelector(state => state.categories.categories);
   const dispatch = useAppDispatch();
@@ -27,5 +28,3 @@ const LessonPage = () => {
     </div>
   );
 };
-
-export default LessonPage;

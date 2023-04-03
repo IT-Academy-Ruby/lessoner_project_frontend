@@ -1,0 +1,109 @@
+@import "../../../../constants.module.scss";
+
+.mainLesson {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 444px);
+}
+
+.mainLesson__data {
+  display: grid;
+  grid-template-columns: 1fr 8fr 2fr;
+  margin: 28px 0 16px;
+  border-bottom: 1px solid $greySearchColor;
+}
+
+.mainLesson__authorAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.mainLesson__dataTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 16px;
+}
+
+.mainLesson__title {
+  align-items: center;
+  width: 100%;
+  margin: 0 0 7px 0;
+  color: var(--textVideoViewPage);
+  font-family: $font;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: left;
+  white-space: break-spaces;
+}
+
+.mainLesson__author {
+  align-items: center;
+  margin: 0;
+  color: $greySearchColor;
+  font-family: $font;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.mainLesson__category {
+  width: 65px;
+  height: 23px;
+  padding: 0 8px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  background: var(--categorybgCardThemeColor);
+  color: var(--categoryTextCardThemeColor);
+  font-family: $font;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 23px;
+}
+
+.mainLesson__create {
+  display: flex;
+  margin-bottom: 12px;
+  color: var(--textVideoViewPage);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.mainLesson__date {
+  margin: 0;
+}
+
+.mainLesson__views {
+  margin-left: 20px;
+}
+
+.mainLesson__description {
+  margin: 0;
+  text-align: start;
+  color: var(--textVideoViewPage);
+  font-family: $font;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  word-wrap: break-word;
+  overflow: hidden;
+
+}
+
+.mainLesson__description-more {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.mainLesson__showDescription {
+  align-self: flex-start;
+  padding: 8px 8px 8px 0;
+  color: $greySearchColor;
+  font-family: $font;
+  cursor: pointer;
+}

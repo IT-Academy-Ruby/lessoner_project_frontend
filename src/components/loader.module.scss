@@ -1,0 +1,37 @@
+@import "../constants.module.scss";
+
+.lds-spinner {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  top: 50%;
+  left: 50%;
+  color: $white;
+  z-index: 3;
+}
+
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 3s linear infinite;
+}
+
+.lds-spinner div:after {
+  position: absolute;
+  display: block;
+  top: 3px;
+  left: 37px;
+  width: 3px;
+  height: 15px;
+  border-radius: 20%;
+  background: var(--titlesFirstRegistrForm);
+  content: " ";
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

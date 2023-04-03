@@ -1,13 +1,13 @@
-import "./Body.scss";
+import "./body.module.scss";
 import {
   useContext, useEffect, useState
 } from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import Footer from "./footer/Footer";
-import Header from "./header/Header";
-import Main from "./content/Main";
-import Menu from "./menu/Menu";
-import NavbarStudyStudio from "./navigation/NavbarStudyStudio";
+import {Footer} from "./footer/Footer";
+import {Header} from "./header/Header";
+import {Content} from "./content/Main";
+import {Menu} from "./menu/Menu";
+import {NavbarStudyStudio} from "./navigation/NavbarStudyStudio";
 import { RootState } from "../../store/index";
 import {buildMainSidebarConfig} from "./navigation/mainSidebarHelper";
 import {connect} from "react-redux";
@@ -92,7 +92,7 @@ const Body = (props: BodyProps) => {
         onSignOut={handleSignOut}
       />
       <NavbarStudyStudio config={mainSidebarConfig} isMenuActive={isMenuActive}/>
-      <Main />
+      <Content />
       <Footer />
     </div>
   );

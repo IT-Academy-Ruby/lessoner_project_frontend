@@ -1,0 +1,38 @@
+@import "./src/constants.module.scss";
+
+.mainLessons {
+  font-family: $font;
+  font-weight: 700;
+  line-height: 150%;
+  color: var(--textMyStudioHead);
+  margin-right: 40px;
+  cursor: pointer;
+}
+
+.mainLessons__status-active {
+  color: var(--textMyStudioHeadActive);
+  text-decoration-line: underline;
+  text-underline-offset: 5px;
+}
+
+.lessonSort {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin-left: 10px;
+  padding: 0 28px;
+  border: 1px solid var(--categoriesBorder);
+  border-radius: 28px;
+  background: var(--bgCategoriesButtons);
+  color: var(--textCategoriesButtons);
+  cursor: pointer;
+}
+
+.lessonSort__status-active {
+  background-color: var(--bgCategoryActiveButton);
+  color: var(--textCategoryActiveButton);
+}
+
+

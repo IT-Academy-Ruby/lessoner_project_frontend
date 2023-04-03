@@ -1,14 +1,14 @@
-import "./categories.scss";
+import "./categories.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../../../Button";
-import CategoriesAdmin from "./CategoriesAdmin";
-import getWindowDimensions from "../../../../helpers/getWindowDimensions";
+import {Button} from "../../../Button";
+import {CategoriesAdmin} from "./CategoriesAdmin";
+import {getWindowDimensions} from "../../../../helpers/getWindowDimensions";
 import styles from "../../../../constants.module.scss";
 import {useNavigate} from "react-router-dom";
 
-const CategoriesForAdmin = () => {
+export const CategoriesForAdmin = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -94,4 +94,3 @@ const CategoriesForAdmin = () => {
     </div>
   );
 };
-export default CategoriesForAdmin;

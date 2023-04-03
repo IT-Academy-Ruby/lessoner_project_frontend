@@ -1,3 +1,4 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
@@ -5,8 +6,8 @@ import {FormattedMessage, useIntl} from "react-intl";
 import {clearError, editUserData} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../../../../Button";
-import Phone from "../../../../PhoneNumber";
+import {Button} from "../../../../Button";
+import {PhoneNumber} from "../../../../PhoneNumber";
 import {uploadModalData} from "../../../../../store/modalSlice/modalSlice";
 
 type PhoneFormProps = {
@@ -17,7 +18,7 @@ type PhoneFormProps = {
   setPhoneNumber: (phone: string) => void;
 }
 
-const PhoneForm = ({
+export const PhoneForm = ({
   userName, handleClose, handleEdit, phoneNumber, setPhoneNumber
 }: PhoneFormProps) => {
   const intl = useIntl();
@@ -78,7 +79,7 @@ const PhoneForm = ({
             </h2>
             <Field
               name="phone"
-              component={Phone}
+              component={PhoneNumber}
               error={touched.phone ? errors.phone : undefined}
               setIsError={setIsError}
               phoneNumber={phoneNumber}
@@ -95,5 +96,3 @@ const PhoneForm = ({
     </Formik>
   );
 };
-
-export default PhoneForm;

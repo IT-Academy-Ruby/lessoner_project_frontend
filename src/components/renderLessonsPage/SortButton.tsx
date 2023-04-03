@@ -1,4 +1,4 @@
-import "./sortButton.scss";
+import "./sortButton.module.scss";
 import {Fragment} from "react";
 import classNames from "classnames";
 
@@ -10,7 +10,7 @@ type SortButtonPropd = {
   setLoading: (loading: boolean) => void;
 };
 
-const SortButton = ({
+export const SortButton = ({
   object, setLoading, status, setStatus, setNumberPage
 }: SortButtonPropd) => {
   return (
@@ -31,5 +31,3 @@ const SortButton = ({
     </Fragment>
   );
 };
-
-export default SortButton;

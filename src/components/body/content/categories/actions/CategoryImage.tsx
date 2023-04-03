@@ -1,9 +1,9 @@
-import "./categoryImage.scss";
+import "./categoryImage.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   useEffect, useRef, useState
 } from "react";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import Change from "../../../../icons/change.svg";
 import Select from "../../../../icons/select.svg";
 
@@ -26,7 +26,7 @@ type CategoryImageProps = {
   imageData: { format: [], size: number };
 };
 
-const CategoryImage = ({
+export const CategoryImage = ({
   selectImage, setSelectImage, setEditCategory, editCategory, errorImage,
   setErrorImage, isCategory, title, inform, textButton, imageData
 }: CategoryImageProps) => {
@@ -136,4 +136,3 @@ const CategoryImage = ({
 };
 
 CategoryImage.displayName = "CategoryImage";
-export default CategoryImage;

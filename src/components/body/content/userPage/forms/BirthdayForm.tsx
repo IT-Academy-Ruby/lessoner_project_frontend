@@ -1,9 +1,10 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Birthday from "../../../../BirthdayPicker";
-import Button from "../../../../Button";
+import {BirthdayPicker} from "../../../../BirthdayPicker";
+import {Button} from "../../../../Button";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
 import {useState} from "react";
@@ -20,7 +21,7 @@ type BirthdayFormProps = {
   userName: string;
   handleClose: () => void;
 }
-const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
+export const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isWrapper, setIsWrapper] = useState(false);
@@ -55,7 +56,7 @@ const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
             </h2>
             <Field
               name="birthday"
-              component={Birthday}
+              component={BirthdayPicker}
               error={touched.birthday ? errors.birthday : undefined}
               setIsWrapper={setIsWrapper}
               isWrapper={isWrapper}
@@ -71,5 +72,3 @@ const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
     </Formik>
   );
 };
-
-export default BirthdayForm;

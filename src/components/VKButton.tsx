@@ -1,9 +1,9 @@
-import "../pages/modal.scss";
+import "../pages/modal.module.scss";
 import VK from "../components/icons/vk.svg";
-import getParameterValue from "../helpers/parseUrl";
+import {getParameterValue} from "../helpers/parseUrl";
 import { useEffect } from "react";
 
-const VKButton = () => {
+export const VKButton = () => {
   const {
     REACT_APP_REDIRECT_URL, REACT_APP_FRONTEND, REACT_APP_VK_ID
   } = process.env;
@@ -31,5 +31,3 @@ const VKButton = () => {
     </div>
   );
 };
-
-export default VKButton;

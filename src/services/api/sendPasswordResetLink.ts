@@ -1,4 +1,4 @@
-const sendPasswordResetLink = async (email: string): Promise<string> => {
+export const sendPasswordResetLink = async (email: string): Promise<string> => {
   const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -15,5 +15,3 @@ const sendPasswordResetLink = async (email: string): Promise<string> => {
   console.log(data)
   return data.alert;
 };
-
-export { sendPasswordResetLink };

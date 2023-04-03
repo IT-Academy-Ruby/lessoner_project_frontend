@@ -1,4 +1,4 @@
-import "./terms.scss";
+import "./terms.module.scss";
 import {FormattedMessage} from "react-intl";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
@@ -8,7 +8,7 @@ type TermsProps = {
   isPolitic: boolean;
 }
 
-const Terms = ({setIsOpenTerms, isPolitic}: TermsProps) => {
+export const Terms = ({setIsOpenTerms, isPolitic}: TermsProps) => {
   const [isTerms, setIsTerms] = useState(isPolitic);
   const navigate = useNavigate();
   return (
@@ -434,5 +434,3 @@ const Terms = ({setIsOpenTerms, isPolitic}: TermsProps) => {
     </div>
   );
 };
-
-export default Terms;

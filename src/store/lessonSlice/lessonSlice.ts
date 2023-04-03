@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {URL} from "../../constants";
-import request from "../../services/request";
+import {requestApi} from "../../services/request";
 
 export const getLessons = createAsyncThunk(
   "lesson/getLessons",
@@ -17,7 +17,7 @@ export const getLessons = createAsyncThunk(
     const myStudio = value.myStudio ? "my_studio/lessons" : "lessons";
     const status = `&status=${value.status}&`;
     /*eslint-disable-next-line max-len */
-    const response = await request(`${URL}/${myStudio}?page=${value.page}&items=${value.perPage}?${category}${sort}${status}`);
+    const response = await requestApi(`${URL}/${myStudio}?page=${value.page}&items=${value.perPage}?${category}${sort}${status}`);
     if (response.status === 200) {
       const data = response.json();
       return data;
@@ -31,7 +31,7 @@ export const getLessons = createAsyncThunk(
 export const getLesson = createAsyncThunk(
   "lessons/getLesson",
   async (id: string | undefined) => {
-    const response = await request(`${URL}/lessons/${id}`);
+    const response = await requestApi(`${URL}/lessons/${id}`);
     if (response.status === 200) {
       const data = response.json();
       return data;
@@ -151,7 +151,7 @@ export const deleteLesson = createAsyncThunk(
   "lesson/deleteLesson",
   async (id: number) => {
     const response =
-      await request(`${URL}/lessons/${id}`, "DELETE");
+      await requestApi(`${URL}/lessons/${id}`, "DELETE");
     const data = response.json();
     return data;
   }

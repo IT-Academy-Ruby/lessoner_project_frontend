@@ -1,0 +1,52 @@
+@import "../../../../constants.module.scss";
+
+.headerLessons {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.headerLessons__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.headerLessons__title {
+  margin: 0;
+  color: var(--iconsTextEditVideoLessonColor);
+  font-family: $font;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.headerLessons__buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  float: left;
+  padding-top: 4px;
+}
+
+.headerLessons__select {
+  flex-wrap: nowrap;
+  align-items: center;
+  float: right;
+  min-width: 203px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;background: var(--bgDropDownMainPage);
+  color: var(--textMyStudioHeadSelect);
+  box-shadow: 1px 1px 20px rgba(46, 53, 119, 0.07);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+}

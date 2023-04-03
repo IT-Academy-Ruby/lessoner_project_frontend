@@ -1,9 +1,10 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
-import Email from "../../../../Email";
+import {Button} from "../../../../Button";
+import {Email} from "../../../../Email";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {emailInvalidationRules} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
@@ -23,7 +24,7 @@ type EmailFormProps = {
   handleEdit: (title: string) => void;
 }
 
-const EmailForm = ({
+export const EmailForm = ({
   userName, handleClose, setEmail
 }: EmailFormProps) => {
   const intl = useIntl();
@@ -79,5 +80,3 @@ const EmailForm = ({
     </Formik>
   );
 };
-
-export default EmailForm;

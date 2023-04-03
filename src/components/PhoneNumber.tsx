@@ -1,6 +1,6 @@
 import "react-phone-input-2/lib/style.css";
-import "./input.scss";
-import "./phoneNumber.scss";
+import "./input.module.scss";
+import "./phoneNumber.module.scss";
 import {FieldInputProps, FormikProps} from "formik";
 import {FormattedMessage} from "react-intl";
 import PhoneInput from "react-phone-input-2";
@@ -25,7 +25,7 @@ type countryType = {
   name: string
 }
 
-const PhoneNumber = ({
+export const PhoneNumber = ({
   field, error, form, setIsError, phoneNumber, setPhoneNumber
 }: PhoneNumberProps) => {
 
@@ -63,5 +63,3 @@ const PhoneNumber = ({
     </label>
   );
 };
-
-export default PhoneNumber;

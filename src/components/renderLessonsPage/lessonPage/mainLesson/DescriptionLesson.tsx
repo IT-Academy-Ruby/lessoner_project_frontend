@@ -1,3 +1,4 @@
+import "./mainLesson.module.scss";
 import classnames from "classnames";
 import {useState} from "react";
 
@@ -5,7 +6,7 @@ type DescriptionLessonProps = {
   description: string;
 };
 
-const DescriptionLesson = ({description}: DescriptionLessonProps) => {
+export const DescriptionLesson = ({description}: DescriptionLessonProps) => {
   const [isShowDescription, setIsShowDescription] = useState(true);
   const showDescription = () => {
     if (isShowDescription) {
@@ -31,5 +32,3 @@ const DescriptionLesson = ({description}: DescriptionLessonProps) => {
     </>
   );
 };
-
-export default DescriptionLesson;

@@ -1,0 +1,75 @@
+@import "../constants.module.scss";
+
+.user_wrapper {
+    width: 320px;
+    height: 240px;
+    color: #171B2C;
+    font-family: $font;
+}
+
+.user_card {
+    position: relative;
+    height: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.bg__hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $borderColor; 
+}
+
+.category__image {
+    width: 320px;
+    height: 240px;
+}
+
+.category__image-transparent {
+    opacity: 0.15;
+}
+
+.user_card-title {
+    position: absolute;
+    height: 78px;
+    width: 288px;
+    top: 24px;
+    left:16px;
+    font-size: 56px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 78px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user_card-title--hovered {
+    color: $white;
+}
+
+.category__info {
+    display: -webkit-box;
+    position: absolute;
+    width: 288px;
+    height: 102px;
+    bottom: 18px;
+    left: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    color: $white;
+    text-align: left;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.user_card__icon-bg--hovered {
+    position: absolute;
+    background: $borderColor;
+    isolation: isolate;
+}

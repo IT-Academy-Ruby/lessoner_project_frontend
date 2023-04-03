@@ -1,4 +1,4 @@
-import LANGUAGES from "./constants";
+import {LANGUAGES} from "./constants";
 
 function getCurrentLanguageCode() {
   const pathName = window?.location?.pathname;
@@ -28,10 +28,8 @@ function hasTranslationKey(key: string): boolean {
   return !!defaultMessages[key];
 }
 
-const TranslationHelpers = {
+export const TranslationHelpers = {
   getLanguageMessages,
   getCurrentLanguageCode,
   hasTranslationKey,
 };
-
-export default TranslationHelpers;

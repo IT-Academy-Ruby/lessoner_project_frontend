@@ -1,22 +1,21 @@
-import "./addLesson.scss";
+import "./addLesson.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {addVideo, updateLesson} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../../../Button";
-import FirstStep from "./lessonComponents/FirstStep";
-import ModalCategory from "../categories/actions/ModalCategory";
-import SecondStep from "./lessonComponents/SecondStep";
+import {Button} from "../../../Button";
+import {FirstStep} from "./lessonComponents/FirstStep";
+import {ModalCategory} from "../categories/actions/ModalCategory";
+import {SecondStep} from "./lessonComponents/SecondStep";
 import classNames from "classnames";
 import {uploadModalData} from "../../../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
-
 
 type AddLessonProps = {
   add: boolean;
 }
 
-const AddLesson = ({add}: AddLessonProps) => {
+export const AddLesson = ({add}: AddLessonProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -242,5 +241,3 @@ const AddLesson = ({add}: AddLessonProps) => {
     </div>
   );
 };
-
-export default AddLesson;

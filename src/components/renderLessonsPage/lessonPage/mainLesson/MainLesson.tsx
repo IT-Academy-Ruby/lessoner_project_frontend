@@ -1,8 +1,8 @@
-import "./mainLesson.scss";
-import DescriptionLesson from "./DescriptionLesson";
+import "./mainLesson.module.scss";
+import {DescriptionLesson} from "./DescriptionLesson";
 import {FormattedMessage} from "react-intl";
 import Logo from "../../../icons/Logo.svg";
-import RatingStars from "../../../ratingCounter/RatingStars";
+import {RatingStars} from "../../../ratingCounter/RatingStars";
 import {VideoPlayer} from "../../../videoPlayer/VideoPlayer";
 import {useAppSelector} from "../../../../store/hooks";
 
@@ -10,7 +10,7 @@ type MainLessonProps = {
   category: string;
 }
 
-const MainLesson = ({category}: MainLessonProps) => {
+export const MainLesson = ({category}: MainLessonProps) => {
   const dataLesson = useAppSelector(state => state.lessons.lesson);
   const formatter = new Intl.DateTimeFormat("ru");
   return (
@@ -46,5 +46,3 @@ const MainLesson = ({category}: MainLessonProps) => {
     </div>
   );
 };
-
-export default MainLesson;

@@ -1,11 +1,12 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {editUserData, sendUserCode} from "../../../../../store/loginName/loginSlice";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import {CODE} from "../../../../../constants";
-import Code from "../../../../Code";
+import {Code} from "../../../../Code";
 import {CodeRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
 
@@ -24,7 +25,7 @@ type CodeFormProps = {
   phoneNumber: string;
 }
 
-const CodeForm = ({
+export const CodeForm = ({
   handleClose, handleEdit, phoneNumber, userName
 }: CodeFormProps) => {
   const intl = useIntl();
@@ -93,5 +94,3 @@ const CodeForm = ({
 
   );
 };
-
-export default CodeForm;

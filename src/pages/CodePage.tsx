@@ -1,11 +1,11 @@
-import "./modal.scss";
+import "./modal.module.scss";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../components/Button";
+import {Button} from "../components/Button";
 import {CODE} from "../constants";
-import Code from "../components/Code";
+import {Code} from "../components/Code";
 import {CodeRegex} from "../validationRules";
 import {Link} from "react-router-dom";
 
@@ -21,7 +21,7 @@ type CodePageProps = {
   registration: boolean | undefined;
 }
 
-const CodePage = ({registration}: CodePageProps) => {
+export const CodePage = ({registration}: CodePageProps) => {
   const intl = useIntl();
   const initialValue: FormValue = {code: ""};
 
@@ -80,5 +80,3 @@ const CodePage = ({registration}: CodePageProps) => {
     </div>
   );
 };
-
-export default CodePage;

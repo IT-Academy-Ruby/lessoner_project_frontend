@@ -1,4 +1,4 @@
-const buildVideoSrc = (src: string, previewImg?: string): Plyr.SourceInfo | null => {
+export const buildVideoSrc = (src: string, previewImg?: string): Plyr.SourceInfo | null => {
   return {
     type: "video" as const,
     title: "Elephants",
@@ -26,13 +26,5 @@ const buildVideoSrc = (src: string, previewImg?: string): Plyr.SourceInfo | null
         default: true,
       },
     ],
-    // Preview example
-    // previewThumbnails: {enabled: true,
-    //   src: [
-    //     "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
-    //     "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
-    //   ],},
   };
 };
-
-export default {buildVideoSrc};

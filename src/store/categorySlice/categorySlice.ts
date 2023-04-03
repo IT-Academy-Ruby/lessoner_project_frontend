@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {URL} from "../../constants";
-import request from "../../services/request";
+import {requestApi} from "../../services/request";
 
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async () => {
-    const responce = await request(`${URL}/categories`);
+    const responce = await requestApi(`${URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
       return data.records;
@@ -39,7 +39,7 @@ export const deleteCategory = createAsyncThunk(
   "category/addCategory",
   async (id: number) => {
     const response =
-      await request(`${URL}/categories/${id}`, "DELETE");
+      await requestApi(`${URL}/categories/${id}`, "DELETE");
     const data = await response.json();
     if (response.status === 200) {
       return data;
@@ -81,7 +81,7 @@ export const archiveCategory = createAsyncThunk(
       status: value.status === "active" ? "archived" : "active",
     };
     const responce =
-      await request(`${URL}/categories/${value.id}`, "PUT", category);
+      await requestApi(`${URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;

@@ -1,0 +1,195 @@
+@import "../../../../constants.module.scss";
+@import "../../../styles/colors";
+
+.about-us-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+  font-family: $font;
+  font-style: normal;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 16px 24px 0;
+  width: 1316px;
+  background: var(--bgAboutTeam);
+  border-radius: 28px;
+}
+
+.about-us-team {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 640px;
+  min-height: 640px;
+  max-width: 1095px;
+  padding-left: 111px;
+  padding-top: 60px;;
+}
+
+.about-team-tabs {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 12px;
+  height: 28px;
+}
+
+.about-team-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  height: 539px;
+  width: 1182px;
+  margin-top: 24px;
+  margin-right: 23px;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+
+  img {
+    height: 539px;
+  }
+}
+
+.about-team-roles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  min-height: 301px;
+  margin-top: 32px;
+}
+
+.about-team-cards {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1095px;
+  min-height: 230px;
+}
+
+.about-team-role-title {
+  font-family: $font;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.about-our-team-header {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 130%;
+
+  img {
+    height: 32px;
+    width: 32px;
+    padding-left: 8px;
+  }
+}
+
+.about-us-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  height: 330px;
+  padding: 0px 111px;
+}
+
+.about-us-illustration {
+  width: 539px;
+  height: 330px;
+}
+
+.about-us-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 539px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: start;
+}
+
+.about-us-title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 47px;
+}
+
+.about-us-details {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 80px 111px 120px;
+  gap: 16px;
+}
+
+.about-us-details-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  width: 538px;
+  height: 272px;
+
+  span {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+  }
+
+  .about-us-details-title {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 130%;
+  }
+}
+
+.about-contact-information {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+  width: 1316px;
+  padding: 42px 24px;
+  color: $dark7;
+  font-weight: 400;
+  font-size: 14px;
+
+  a {
+    color: $dark7;
+    text-decoration: none;
+  }
+}
+
+.about-contact-icons {
+  display: flex;
+  gap: 20px;
+  height: 24px;
+
+  :hover {
+    svg {
+      fill: var(--themeNavBarColorHover);
+    }
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $dark7;
+  }
+}

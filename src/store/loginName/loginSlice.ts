@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {URL} from "../../constants";
-import requestApi from "../../services/request";
+import {requestApi} from "../../services/request";
 
 export const getUser = createAsyncThunk(
   "user/getUserStatus",

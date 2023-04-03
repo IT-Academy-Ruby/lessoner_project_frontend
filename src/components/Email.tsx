@@ -1,4 +1,4 @@
-import "./input.scss";
+import "./input.module.scss";
 import {EMAIL} from "../constants";
 import {FormattedMessage} from "react-intl";
 import classNames from "classnames";
@@ -15,7 +15,7 @@ type EmailProps = {
   textError?: string;
 }
 
-const Email = ({
+export const Email = ({
   field, error, isEmail, textError
 }: EmailProps): JSX.Element => {
   return (
@@ -39,5 +39,3 @@ const Email = ({
     </label>
   );
 };
-
-export default Email;

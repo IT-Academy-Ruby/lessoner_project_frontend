@@ -8,14 +8,14 @@ import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import Add from "../../../icons/add.svg";
 import Delete from "../../../icons/delete.svg";
 import Edit from "../../../icons/edit.svg";
-import Loader from "../../../Loader";
-import ModalCategory from "./actions/ModalCategory";
-import getWindowDimensions from "../../../../helpers/getWindowDimensions";
+import {Loader} from "../../../Loader";
+import {ModalCategory} from "./actions/ModalCategory";
+import {getWindowDimensions} from "../../../../helpers/getWindowDimensions";
 import styles from "../../../../constants.module.scss";
 import {useIntl} from "react-intl";
 import {useNavigate} from "react-router-dom";
 
-const CategoriesAdmin = () => {
+export const CategoriesAdmin = () => {
 
   const [isClose, setIsClose] = useState(false);
   const [idCategory, setIdCategory] = useState(0);
@@ -179,4 +179,3 @@ const CategoriesAdmin = () => {
     </>
   );
 };
-export default CategoriesAdmin;

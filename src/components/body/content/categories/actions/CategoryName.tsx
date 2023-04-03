@@ -1,4 +1,4 @@
-import "./addCategory.scss";
+import "./addCategory.module.scss";
 import {NAME_CATEGORY} from "../../../../../constants";
 import classNames from "classnames";
 import { useState } from "react";
@@ -16,7 +16,7 @@ type CategoryNameProps = {
   isOccupiedName: string;
 }
 
-const CategoryName = ({
+export const CategoryName = ({
   field, error, label, placeholder, nameRef, isOccupiedName
 }: CategoryNameProps): JSX.Element => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -40,5 +40,3 @@ const CategoryName = ({
     </label>
   );
 };
-
-export default CategoryName;

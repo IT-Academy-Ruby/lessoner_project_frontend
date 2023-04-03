@@ -1,13 +1,13 @@
-import "./ratingStars.scss";
+import "./ratingStars.module.scss";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {useEffect, useState} from "react";
-import Rating from "../body/content/Rating/Rating";
+import {Rating} from "../body/content/Rating/Rating";
 import {STARS} from "../../constants";
 import Star from "../icons/StarRating.svg";
 import YellowStar from "../icons/reiting.png";
 import {updateRating} from "../../store/lessonSlice/lessonSlice";
 
-const RatingStars = () => {
+export const RatingStars = () => {
   const dispatch = useAppDispatch();
   const lesson = useAppSelector(state => state.lessons.lesson);
   const user = useAppSelector(state => state.userDecodedName.session.name);
@@ -71,5 +71,3 @@ const RatingStars = () => {
     </div>
   );
 };
-
-export default RatingStars;

@@ -1,13 +1,13 @@
-import "./Header.scss";
+import "./header.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   Fragment, useEffect, useState
 } from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import Avatar from "./Avatar";
-import Button from "../../Button";
-import Language from "./Language";
+import {Avatar} from "./Avatar";
+import {Button} from "../../Button";
+import {Language} from "./Language";
 import Logo from "../../icons/Logo.svg";
 import {getUserData} from "../../../store/loginName/loginSlice";
 import {nameDecodedUser} from "../../../store/header/decodeJwtSlice";
@@ -17,7 +17,7 @@ type HeaderProps = {
   onSignOut: VoidFunction;
 };
 
-const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
+export const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const [language, setLanguage] = useState("en");
@@ -78,5 +78,3 @@ const Header = ({onLanguageSwitch, onSignOut}: HeaderProps) => {
     </div>
   );
 };
-
-export default Header;

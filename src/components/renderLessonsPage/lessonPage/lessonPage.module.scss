@@ -1,0 +1,9 @@
+.lessonPage{
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 428px;
+  grid-gap: 15px;
+  width: 100%;
+  height: 100%;
+  margin: 15px;
+}

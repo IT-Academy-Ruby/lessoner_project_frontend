@@ -1,4 +1,4 @@
-import "../body/content/my_studio/addLesson.scss";
+import "../body/content/my_studio/addLesson.module.scss";
 import {
   DESCRIPTION_CATEGORY, THUMBNAIL_DATA, VIDEO_DATA
 } from "../../constants";
@@ -7,10 +7,10 @@ import {
 } from "formik";
 import {descriptionCategoryRegex, nameCategoryRegex} from "../../validationRules";
 import {useEffect, useState} from "react";
-import CategoryDescription from "../body/content/categories/actions/CategoryDescription";
-import CategoryImage from "../body/content/categories/actions/CategoryImage";
-import CategoryName from "../body/content/categories/actions/CategoryName";
-import VideoCategory from "../body/content/my_studio/lessonComponents/VideoCategory";
+import {CategoryDescription} from "../body/content/categories/actions/CategoryDescription";
+import {CategoryImage} from "../body/content/categories/actions/CategoryImage";
+import {CategoryName} from "../body/content/categories/actions/CategoryName";
+import {VideoCategory} from "../body/content/my_studio/lessonComponents/VideoCategory";
 import {useIntl} from "react-intl";
 
 interface FormValues {
@@ -45,7 +45,7 @@ type EditLessonProps = {
   lessonName: string;
   lessonDescription: string;
 }
-const EditLesson = ({
+export const EditLesson = ({
   lesson,
   setLessonName,
   lessonName,
@@ -163,5 +163,3 @@ const EditLesson = ({
       }}
     </Formik>);
 };
-
-export default EditLesson;

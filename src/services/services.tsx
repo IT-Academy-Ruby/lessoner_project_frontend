@@ -1,7 +1,7 @@
 /**
  * @deprecated seems like it's not needed and should be removed
  */
-const getData = async () => {
+export const getData = async () => {
   await fetch("https://jsonplaceholder.typicode.com/posts/1")
     .then((response) => response.json())
     .then((response) => {
@@ -11,4 +11,3 @@ const getData = async () => {
       console.log(err);
     });
 };
-export { getData };

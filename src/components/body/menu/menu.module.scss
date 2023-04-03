@@ -1,0 +1,15 @@
+.main-menu {
+  grid-column-start: 1;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 64px;
+  background: var(--bgThemeNavBarColor);
+  cursor: pointer;
+}
+
+.main-menu > svg > path {
+  stroke: var(    --KebabCardThemeColorHover);
+}

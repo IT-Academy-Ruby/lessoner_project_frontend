@@ -1,4 +1,4 @@
-import "./input.scss";
+import "./input.module.scss";
 import {PASSWORD} from "../constants";
 import classNames from "classnames";
 import close_eye from "./icons/close_eye.svg";
@@ -20,7 +20,7 @@ type PasswordProps = {
   wrongPassword?:boolean;
 }
 
-const PasswordAndConfirm = ({
+export const PasswordAndConfirm = ({
   isConfirm, field, error, wrongPassword
 }: PasswordProps): JSX.Element => {
   const intl = useIntl();
@@ -58,5 +58,3 @@ const PasswordAndConfirm = ({
     </label>
   );
 };
-
-export default PasswordAndConfirm;

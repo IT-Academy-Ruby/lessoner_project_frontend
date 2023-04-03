@@ -1,4 +1,4 @@
-import "./select.scss";
+import "./select.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useEffect, useState} from "react";
 import ArrowDown from "../../../../icons/arrowDown.svg";
@@ -14,7 +14,7 @@ type VideoCategoryProps = {
   error?: string;
 }
 
-const VideoCategory = ({
+export const VideoCategory = ({
   setVideoCategory, videoCategory, error, lesson, add
 }: VideoCategoryProps) => {
   const intl = useIntl();
@@ -65,5 +65,3 @@ const VideoCategory = ({
     </label>
   );
 };
-
-export default VideoCategory;

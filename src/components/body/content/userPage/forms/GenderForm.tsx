@@ -1,9 +1,10 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
-import Gender from "../../../../GenderSelector";
+import {Button} from "../../../../Button";
+import {GenderSelector} from "../../../../GenderSelector";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
 
@@ -37,7 +38,7 @@ type GenderFormProps = {
   handleClose: () => void;
 }
 
-const GenderForm = ({userName, handleClose}: GenderFormProps) => {
+export const GenderForm = ({userName, handleClose}: GenderFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -71,7 +72,7 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
             <Field
               name="name"
               options={gender}
-              component={Gender}
+              component={GenderSelector}
               error={touched.gender ? errors.gender : undefined}
               text={intl.formatMessage({id: "app.userPage.gender"})}
             />
@@ -85,5 +86,3 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
     </Formik>
   );
 };
-
-export default GenderForm;

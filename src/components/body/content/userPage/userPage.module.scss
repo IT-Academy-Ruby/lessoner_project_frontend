@@ -1,0 +1,207 @@
+@import "src/constants.module.scss";
+
+.wrapper-user_page {
+  display: flex;
+  justify-content: center;
+}
+
+.user-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  width: 100%;
+  margin: 16px 46px;
+}
+
+.title-user-page {
+  display: flex;
+  width: 100%;
+  margin: 0 0 24px 0;
+  color: var(--textUserPageFields);
+  font-family: $font;
+  font-weight: 600;
+  line-height: 130%;
+}
+
+.avatar-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 44px;
+}
+
+.avatar-user-page {
+  position: relative;
+  display: flex;
+  flex: none;
+  justify-content: center;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+}
+
+.user-avatar {
+  width: 100%;
+  border-radius: 50px;
+}
+
+.size-letters {
+  font-size: 40px;
+}
+
+.upload-field {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #455fce;
+  cursor: pointer;
+}
+
+.upload-avatar {
+  width: 11px;
+}
+
+.inform-avatar {
+  max-width: 530px;
+  margin-left: 24px;
+  color: $greyColor;
+  font-family: $font;
+  font-feature-settings: "liga" off;
+  font-size: 12px;
+  line-height: 150%;
+  text-align: left;
+}
+
+.user-page-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name-user-page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label-user-page {
+  margin: 0;
+  color: var(--textUserPageFields);
+  font-family: $font;
+  font-weight: 600;
+  line-height: 150%;
+}
+
+.user-page-data {
+  margin: 14px 0 10px 0;
+  color: var(--textUserPageFields);
+  font-family: $font;
+}
+
+.line-user-page {
+  width: 100%;
+  size: 1px;
+  margin: 20px 0;
+  color: $greyDefault;
+}
+
+.wrapper-form-user-page {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.form-user-page {
+  position: relative;
+  width: 469px;
+  padding: 48px;
+  margin: 22px;
+  border-radius: 8px;
+  background: var(--bgPhoneNumberCountryList);
+  box-sizing: border-box;
+}
+
+.close-modal-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.close-form {
+  position: relative;
+  top: 9px;
+  left: -9px;
+  width: 16px;
+  z-index: 3;
+}
+
+.close-form:before,
+.close-form:after {
+  position: absolute;
+  width: 16px;
+  border: 2px solid $greySearchColor;
+  background: $greySearchColor;
+  content: "";
+}
+
+.close-form:before {
+  transform: rotate(45deg);
+}
+
+.close-form:after {
+  transform: rotate(-45deg);
+}
+
+.form-title-user-page {
+  margin: 0 0 25px 0;
+  color: var(--titlesFirstRegistrForm);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 130%;
+}
+
+.inVisible {
+  display: none;
+}
+
+@media (max-width: $max-width-phone) {
+  .close-modal-form {
+    margin: 8px;
+  }
+}
+
+@media (max-width: $max-width-phone) {
+  .user-page {
+    margin: 16px;
+  }
+
+  .avatar-field {
+    flex-direction: column;
+  }
+
+  .avatar-user-page {
+    margin-bottom: 30px;
+  }
+
+  .inform-avatar {
+    text-align: center;
+    margin: 0;
+  }
+}

@@ -1,19 +1,19 @@
-import "./sideBarLessons.scss";
+import "./sideBarLessons.module.scss";
 import {
   Fragment, useEffect, useState
 } from "react";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {LESSONPAGE} from "../../../../constants";
-import LessonCard from "../../LessonCard";
-import SortButton from "../../SortButton";
+import {LessonCard} from "../../LessonCard";
+import {SortButton} from "../../SortButton";
 import {useIntl} from "react-intl";
 
 type SideBarLessonsProps = {
   categoryName: string;
 }
 
-const SideBarLessons = ({categoryName}: SideBarLessonsProps) => {
+export const SideBarLessons = ({categoryName}: SideBarLessonsProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const lessons = useAppSelector(state => state.lessons.records);
@@ -117,5 +117,3 @@ const SideBarLessons = ({categoryName}: SideBarLessonsProps) => {
     </div>
   );
 };
-
-export default SideBarLessons;

@@ -1,0 +1,51 @@
+@import "../constants.module.scss";
+
+.radio-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.radio-label {
+  display: flex;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.radio {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  margin-right: 6px;
+}
+
+.radio::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box;
+  border: 2px solid $blueLightColor;
+  border-radius: 50%;
+  background-color: var(--bgGenderSelectorRadio);
+  color: $white;
+  transform: translate(-50%, -50%);
+  content: '';
+}
+
+.radio:checked::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: $blueLightColor;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  content: '';
+}

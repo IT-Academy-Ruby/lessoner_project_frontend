@@ -1,8 +1,8 @@
-import "./lessonCard.scss";
+import "./lessonCard.module.scss";
 import {Link, useNavigate} from "react-router-dom";
 import Edit from "../icons/edit.svg";
 import {FormattedMessage} from "react-intl";
-import Rating from "../body/content/Rating/Rating";
+import {Rating} from "../body/content/Rating/Rating";
 import {selectedCategory} from "../../store/categorySlice/categorySlice";
 import {useAppDispatch} from "../../store/hooks";
 
@@ -22,7 +22,7 @@ type LesonCardProps = {
   categoryId?: number;
 }
 
-const LessonCard = ({
+export const LessonCard = ({
   id, thumbnailUrl, status, authorAvatarUrl, authorName, title,
   published, viewsCount, category, rating, totalVotes, type, categoryId
 }: LesonCardProps) => {
@@ -85,5 +85,3 @@ const LessonCard = ({
     </div>
   );
 };
-
-export default LessonCard;

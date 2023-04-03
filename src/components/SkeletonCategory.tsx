@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-const SkeletonCategory = () => (
+export const SkeletonCategory = () => (
   <ContentLoader className="skeleton"
     speed={2}
     width={320}
@@ -14,5 +14,3 @@ const SkeletonCategory = () => (
     <rect x="0" y="0" rx="8" ry="8" width="320" height="240" />
   </ContentLoader>
 );
-
-export default SkeletonCategory;

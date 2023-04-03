@@ -1,4 +1,4 @@
-import "./Main.scss";
+import "./main.module.scss";
 import {
   Route,
   Routes,
@@ -12,29 +12,29 @@ import {
 } from "../../../store/loginName/loginSlice";
 import {nameDecodedUser, resetDecodeUser} from "../../../store/header/decodeJwtSlice";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
-import About from "./about/About";
-import AddCategory from "./categories/actions/AddCategory";
-import AddLesson from "./my_studio/AddLesson";
-import CategoriesForAdmin from "./categories/CategoriesForAdmin";
-import CategoriesUser from "./categories/CategoriesUser";
+import {About} from "./about/About";
+import {AddCategory} from "./categories/actions/AddCategory";
+import {AddLesson} from "./my_studio/AddLesson";
+import {CategoriesForAdmin} from "./categories/CategoriesForAdmin";
+import {CategoriesUser} from "./categories/CategoriesUser";
 import {EditVideoLessonTitle} from "../../editVideoLesson/EditVideoLessonTitle";
-import FacebookButton from "../../../components/FacebookButton";
-import GoogleButton from "../../../components/GoogleButton";
+import {FacebookButton} from "../../../components/FacebookButton";
+import {GoogleButton} from "../../../components/GoogleButton";
 import {GoogleOAuthProvider} from "@react-oauth/google";
-import LessonPage from "../../renderLessonsPage/lessonPage/LessonPage";
-import LessonsPage from "../../renderLessonsPage/mainLessonPage/LessonsPage";
-import Loader from "../../Loader";
-import ModalResponse from "../../modalResponse/ModalResponse";
-import Pages from "../../../components/Pages";
-import Terms from "../../../pages/terms/Terms";
-import UserPage from "./userPage/UserPage";
-import VKButton from "../../../components/VKButton";
+import {LessonPage} from "../../renderLessonsPage/lessonPage/LessonPage";
+import {LessonsPage} from "../../renderLessonsPage/mainLessonPage/LessonsPage";
+import {Loader} from "../../Loader";
+import {ModalResponse} from "../../modalResponse/ModalResponse";
+import {Pages} from "../../../components/Pages";
+import {Terms} from "../../../pages/terms/Terms";
+import {UserPage} from "./userPage/UserPage";
+import {VKButton} from "../../../components/VKButton";
 import {getCategory} from "../../../store/categorySlice/categorySlice";
 import {resetError} from "../../../store/lessonSlice/lessonSlice";
 import {uploadModalData} from "../../../store/modalSlice/modalSlice";
 import {useEffect} from "react";
 
-const Content = () => {
+export const Content = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const loadingCategories = useAppSelector((state) => state.categories.loading);
@@ -204,5 +204,3 @@ const Content = () => {
     </div>
   );
 };
-
-export default Content;

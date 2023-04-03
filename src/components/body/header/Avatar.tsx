@@ -1,6 +1,6 @@
-import "./Header.scss";
+import "./avatar.module.scss";
 import {FormattedMessage} from "react-intl";
-import Language from "./Language";
+import {Language} from "./Language";
 import {Link} from "react-router-dom";
 import Logout from "../../icons/logOut.svg";
 import {useAppSelector} from "../../../store/hooks";
@@ -14,7 +14,7 @@ type AvatarProps = {
   onSignOut: VoidFunction;
 };
 
-const Avatar = ({
+export const Avatar = ({
   onLanguageSwitch, language, setLanguage, onSignOut
 }: AvatarProps) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -72,5 +72,3 @@ const Avatar = ({
     </>
   );
 };
-
-export default Avatar;

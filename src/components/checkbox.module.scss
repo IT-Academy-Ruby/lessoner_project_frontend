@@ -1,0 +1,56 @@
+@import "../constants.module.scss";
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.unchecked {
+  border: 2px solid $greySearchColor;
+}
+
+.checked {
+  border: 2px solid $borderColor;
+  background: $borderColor;
+
+}
+
+.unchecked, .checked {
+  height: 18px;
+  width: 18px;
+  border-radius: 2px;
+  box-sizing: border-box;
+  appearance: none;
+  cursor: pointer;
+}
+
+.checked::before {
+  position: relative;
+  right: 1px;
+  top: -5px;
+  font-size: 1rem;
+  color: $white;
+  content: "\2714";
+}
+
+.label-checkbox {
+  width: 100%;
+  margin-left: 12px;
+  color: var(--titlesFirstRegistrForm) !important;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  @include fieldsFont;
+}
+
+@media (max-width: $max-width-phone) {
+  .checkbox {
+    margin-bottom: 12px;
+  }
+  .label-checkbox {
+    font-size: 12px;
+  }
+}

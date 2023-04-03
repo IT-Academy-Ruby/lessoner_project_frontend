@@ -1,6 +1,6 @@
-import "./input.scss";
+import "./input.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
-import "./birthday.scss";
+import "./birthday.module.scss";
 import DatePicker, {registerLocale} from "react-datepicker";
 import {FieldInputProps, FormikProps} from "formik";
 import {enGB, ru} from "date-fns/locale";
@@ -17,7 +17,7 @@ type BirthdayPickerProps<V = string, FormValues = string> = {
   text: string;
 }
 
-const BirthdayPicker = ({
+export const BirthdayPicker = ({
   form, field, error, setIsWrapper, text
 }: BirthdayPickerProps): JSX.Element => {
   const intl = useIntl();
@@ -67,5 +67,3 @@ const BirthdayPicker = ({
 
   );
 };
-
-export default BirthdayPicker;

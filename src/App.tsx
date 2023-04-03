@@ -1,9 +1,9 @@
-import "./App.scss";
+import "./App.module.scss";
 import { createContext, useState } from "react";
 import Body from "./components/body/Body";
 import { IntlProvider } from "react-intl";
 import { Snowfall } from "./components/Snowfall";
-import TranslationHelpers from "./translations/translationHelpers";
+import {TranslationHelpers} from "./translations/translationHelpers";
 type SetBooleanInnerFunction = (value: boolean) => boolean;
 
 export const snowContext = createContext<{

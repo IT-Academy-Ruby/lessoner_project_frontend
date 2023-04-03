@@ -1,4 +1,4 @@
-import "./input.scss";
+import "./input.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {CODE} from "../constants";
 import classNames from "classnames";
@@ -13,7 +13,7 @@ type CodeProps = {
   error?: string;
 }
 
-const Code = ({field, error}: CodeProps) => {
+export const Code = ({field, error}: CodeProps) => {
   const intl = useIntl();
   return (
     <label className="input-label">
@@ -31,5 +31,3 @@ const Code = ({field, error}: CodeProps) => {
     </label>
   );
 };
-
-export default Code;

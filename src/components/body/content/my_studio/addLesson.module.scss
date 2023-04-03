@@ -1,0 +1,132 @@
+@import "../../../../constants.module.scss";
+
+.lesson__wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  font-family: $font;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.lesson__buttonBack {
+  position: absolute;
+  margin: 16px 24px;
+  left: 0;
+  top: 0;
+  color: $greySearchColor;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lesson__arrowBack {
+  margin-right: 19px;
+  color: $greySearchColor;
+}
+
+.lesson__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 753px;
+  width: 100%;
+  padding: 36px;
+  margin: 16px 16px 49px 16px;
+  border-radius: 8px;
+  background: var(--bgFirstRegistrForm);;
+  box-shadow: var(--bgNavBarShadow);
+  font-size: 14px;
+}
+
+.lesson__title {
+  margin-bottom: 32px;
+  margin-top: 0;
+  color: var(--textCategoriesAdmin);
+  font-weight: 700;
+  line-height: 130%;
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name-step {
+  margin-bottom: 8px;
+  color: $greySearchColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.name-active {
+  color: $blueMaxLightColor;
+}
+
+.title-step {
+  color: $greyColor;
+  font-family: $font;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.title-active {
+  color: $blueLightColor;
+}
+
+.step-arrow {
+  padding: 7px;
+  color: $greyColor;
+  margin-inline: 40px;
+}
+
+.step__content {
+  width: 100%;
+}
+
+.or {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 28px;
+  color: $greySearchColor;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  @include fieldsFont;
+}
+
+div > .line-left, div > .line-right {
+  width: 100%;
+  height: 2px;
+  margin-block: auto;
+  border-color: $greySearchColor;
+  background: $greySearchColor;
+}
+
+.line-right {
+  margin-right: 21px;
+}
+
+.line-left {
+  margin-left: 21px;
+}
+
+.lesson-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

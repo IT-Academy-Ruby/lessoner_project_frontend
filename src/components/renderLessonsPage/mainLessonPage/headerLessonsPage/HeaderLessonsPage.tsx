@@ -1,12 +1,12 @@
-import "./headerLessonsPage.scss";
+import "./headerLessonsPage.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../../../Button";
+import {Button} from "../../../Button";
 import {LESSONSPAGE} from "../../../../constants";
 import Plus from "../../../icons/add.svg";
-import SortButton from "../../SortButton";
+import {SortButton} from "../../SortButton";
 import {selectedCategory} from "../../../../store/categorySlice/categorySlice";
 import {useNavigate} from "react-router-dom";
 
@@ -14,7 +14,7 @@ type HeaderLessonsPageProps = {
   type: string;
 }
 
-const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
+export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -163,5 +163,3 @@ const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     </div>
   );
 };
-
-export default HeaderLessonsPage;

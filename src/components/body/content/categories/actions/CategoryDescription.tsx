@@ -1,4 +1,4 @@
-import "./addCategory.scss";
+import "./addCategory.module.scss";
 import { DESCRIPTION_CATEGORY } from "../../../../../constants";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";
@@ -16,7 +16,7 @@ type CategoryDescriptionProps = {
   isOccupiedDescription?:string;
 }
 
-const CategoryDescription = ({
+export const CategoryDescription = ({
   field, placeholder, error, descriptionRef, isOccupiedDescription
 }: CategoryDescriptionProps): JSX.Element => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -46,4 +46,3 @@ const CategoryDescription = ({
     </label>
   );
 };
-export default CategoryDescription;

@@ -4,7 +4,7 @@ type YouTubePlayerProps = {
   videoId: string;
   onClick: ()=>void;
 };
-const YouTubePlayer = ({videoId, onClick}: YouTubePlayerProps) => {
+export const YouTubePlayer = ({videoId, onClick}: YouTubePlayerProps) => {
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     event.target.pauseVideo();
   };
@@ -16,5 +16,3 @@ const YouTubePlayer = ({videoId, onClick}: YouTubePlayerProps) => {
   };
   return <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} onPlay={onClick}/>;
 };
-
-export default YouTubePlayer;

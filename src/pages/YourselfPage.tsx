@@ -1,4 +1,4 @@
-import "./modal.scss";
+import "./modal.module.scss";
 import {
   Field, Form, Formik
 } from "formik";
@@ -6,12 +6,12 @@ import {FormattedMessage, useIntl} from "react-intl";
 import {clearError, signUpSlice} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
-import BirthdayPicker from "../components/BirthdayPicker";
-import Button from "../components/Button";
-import Email from "../components/Email";
-import GenderSelector from "../components/GenderSelector";
+import {BirthdayPicker} from "../components/BirthdayPicker";
+import {Button} from "../components/Button";
+import {Email} from "../components/Email";
+import {GenderSelector} from "../components/GenderSelector";
 import {USERNAME} from "../constants";
-import UserName from "../components/UserName";
+import {UserName} from "../components/UserName";
 import {UserRegex} from "../validationRules";
 import {uploadModalData} from "../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
@@ -52,7 +52,7 @@ type YourselfPageProps = {
   userEmail: string;
 };
 
-const YourselfPage = ({
+export const YourselfPage = ({
   registration, userEmail, userPassword
 }: YourselfPageProps) => {
   const minSymbol = USERNAME.minLength;
@@ -169,5 +169,3 @@ const YourselfPage = ({
     </div>
   );
 };
-
-export default YourselfPage;

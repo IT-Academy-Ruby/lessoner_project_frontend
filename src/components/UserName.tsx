@@ -1,4 +1,4 @@
-import "./input.scss";
+import "./input.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {USERNAME} from "../constants";
 import classNames from "classnames";
@@ -14,7 +14,8 @@ type UserNameProps = {
   error?: string;
   nameRef?:()=>void;
 }
-const UserName = ({
+
+export const UserName = ({
   field, error, nameRef
 }: UserNameProps): JSX.Element => {
   const intl = useIntl();
@@ -44,5 +45,3 @@ const UserName = ({
     </label>
   );
 };
-
-export default UserName;

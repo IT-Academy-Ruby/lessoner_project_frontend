@@ -1,0 +1,130 @@
+@import "./src/constants.module.scss";
+
+.category-image-inform {
+  margin: 8px 0 12px;
+}
+
+.image-category-field {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 38px;
+  border-bottom: 1px solid var(--addNewCategoryImgLine);
+  box-sizing: border-box;
+
+  img {
+    max-height: 60px;
+  }
+
+  button {
+    height: 32px;
+  }
+}
+
+.image-add-field img {
+  max-height: 60px;
+}
+
+.category-image-button-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 188px;
+  height: 32px;
+  margin: 0;
+  border: 1px solid $blueLightColor;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+  &:disabled {
+    border-radius: 28px;
+    background: $white;
+    opacity: 0.5;
+  }
+}
+
+.category-image-description {
+  display: flex;
+  text-align: start;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+
+.category-image-uploading {
+  margin-top: 24px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.image-category {
+  display: flex;
+  justify-content: flex-start;
+
+  img {
+    margin-right: 12px;
+    border-radius: 8px;
+  }
+
+  .image-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.select-image-name {
+  font-size: 14px;
+}
+
+.select-image-size {
+  color: var(--addNewCategoryImgSizeText);
+  font-size: 12px;
+}
+
+.category-image-button-delete {
+  align-items: center;
+  justify-content: center;
+  width: 138px;
+  height: 32px;
+  margin: 0;
+  border: 1px solid $warningColor;
+  border-radius: 28px;
+  background: $white;
+  color: $warningColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.category-image-button-change {
+  align-items: center;
+  justify-content: center;
+  width: 145px;
+  height: 32px;
+  padding: 6px 6px 10px;
+  margin: 0;
+  border: 1px solid $blueLightColor;
+  border-radius: 28px;
+  background: $white;
+  color: $blueLightColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.category-image-line {
+  width: 100%;
+  margin-top: 32px;
+  background: $greyDefault;
+}
+
+.button-image {
+  margin-right: 11px;
+}

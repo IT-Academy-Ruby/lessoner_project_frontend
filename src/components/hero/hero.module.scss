@@ -1,0 +1,49 @@
+@import "../../constants.module.scss";
+
+$imageHeight: 340px;
+$imageWidth: 429px;
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 28px;
+  font-family: $font;
+}
+
+.hero__body {
+  text-align: left;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: 60px;
+  font-weight: bold;
+
+  & span {
+    color: $blueLightColor;
+    font-size: inherit;
+  }
+}
+
+.hero__subtitle {
+  font-size: 24px;
+}
+
+.hero__image,
+.hero__image img {
+  height: $imageHeight;
+  width: $imageWidth;
+}
+
+.hero__button {
+  height: 40px;
+  padding: 6px 92px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-size: 16px;
+  font-family: $font;
+  cursor: pointer;
+}

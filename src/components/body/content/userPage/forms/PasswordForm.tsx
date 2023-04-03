@@ -1,10 +1,11 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import {PASSWORD} from "../../../../../constants";
-import PasswordAndConfirm from "../../../../PasswordAndConfirm";
+import {PasswordAndConfirm} from "../../../../PasswordAndConfirm";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
@@ -24,7 +25,7 @@ type PasswordFormProps = {
   handleClose: () => void;
 }
 
-const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
+export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -112,5 +113,3 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
     </Formik>
   );
 };
-
-export default PasswordForm;

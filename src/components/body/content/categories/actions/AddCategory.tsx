@@ -1,4 +1,4 @@
-import "./addCategory.scss";
+import "./addCategory.module.scss";
 import {
   DESCRIPTION_CATEGORY, IMAGE_DATA, NAME_CATEGORY
 } from "../../../../../constants";
@@ -14,11 +14,11 @@ import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import {
   useEffect, useRef, useState
 } from "react";
-import Button from "../../../../Button";
-import CategoryDescription from "./CategoryDescription";
-import CategoryImage from "./CategoryImage";
-import CategoryName from "./CategoryName";
-import ModalCategory from "./ModalCategory";
+import {Button} from "../../../../Button";
+import {CategoryDescription} from "./CategoryDescription";
+import {CategoryImage} from "./CategoryImage";
+import {CategoryName} from "./CategoryName";
+import {ModalCategory} from "./ModalCategory";
 import {resetDecodeUser} from "../../../../../store/header/decodeJwtSlice";
 import {resetUserData} from "../../../../../store/loginName/loginSlice";
 import {uploadModalData} from "../../../../../store/modalSlice/modalSlice";
@@ -38,7 +38,7 @@ type addCategoryProps = {
   add: boolean;
 }
 
-const AddCategory = ({add}: addCategoryProps) => {
+export const AddCategory = ({add}: addCategoryProps) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
@@ -276,5 +276,3 @@ const AddCategory = ({add}: addCategoryProps) => {
     </div>
   );
 };
-
-export default AddCategory;

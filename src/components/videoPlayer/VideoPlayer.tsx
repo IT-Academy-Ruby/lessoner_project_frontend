@@ -1,9 +1,9 @@
-import "./videoPlayer.scss";
+import "./videoPlayer.module.scss";
 import "plyr-react/plyr.css";
-import PlayerHelper from "./helpers";
+import {buildVideoSrc} from "./helpers";
 import Plyr from "plyr-react";
 import React from "react";
-import YouTubePlayer from "./YouTubePlayer";
+import {YouTubePlayer} from "./YouTubePlayer";
 import {addLessonView} from "../../store/lessonSlice/lessonSlice";
 import {useAppDispatch} from "../../store/hooks";
 
@@ -74,7 +74,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = (props) => {
         <YouTubePlayer videoId={videoId} onClick={addView}/>
       </div>}
       {!isYoutubeSource && <div className="player" onClick={addView}>
-        <Plyr options={optionsVideoplayer} source={PlayerHelper.buildVideoSrc(src, previewImg)}/>
+        <Plyr options={optionsVideoplayer} source={buildVideoSrc(src, previewImg)}/>
       </div>}
     </div>
   );

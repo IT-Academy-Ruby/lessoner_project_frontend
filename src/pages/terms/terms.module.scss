@@ -1,0 +1,141 @@
+@import "../../constants.module.scss";
+
+.wrapper-terms {
+
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bgCategoriesButtons);
+  font-family: $font;
+}
+
+.arrow-back {
+  margin-right: 19px;
+  color: $greySearchColor;
+}
+
+.button-back {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 16px 24px;
+  color: $greySearchColor;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.page-terms {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 753px;
+  width: 100%;
+  padding: 36px;
+  margin: 16px;
+  background: var(--bgFirstRegistrForm);
+  font-size: 14px;
+  z-index: 10;
+}
+
+.link-terms {
+  padding: 0 8px;
+  font-family: $font;
+  font-weight: 600;
+  color: $blueLightColor;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.terms {
+  margin-block: 0.5rem;
+  font-family: $font;
+  text-align: justify;
+ }
+
+.politic {
+  margin-top: 20px;
+}
+
+.terms-title {
+  margin: 0 0 20px 0;
+}
+
+.alignment {
+  padding: 0;
+  margin-block: 0.5rem;
+  list-style: none;
+
+  > li {
+    margin-block: 0.5rem;
+    text-indent: 30px;
+  }
+}
+
+.ol-terms {
+  margin: 0;
+  padding-left: 1rem;
+  text-align: left;
+
+  > li > ul {
+    margin: 16px 0 16px 0;
+    padding-left: 26px;
+    list-style: none;
+
+    > li:before {
+      position: relative;
+      display: inline-block;
+      height: 3px;
+      width: 3px;
+      left: -16px;
+      vertical-align: middle;
+      border-radius: 50%;
+      background-color: var(--titlesFirstRegistrForm);
+      content: '';
+    }
+  }
+}
+
+.main-li {
+  margin-block: 0.5rem;
+  font-weight: 700;
+}
+
+.marker-ol {
+  margin-top: 0.2rem;
+  list-style-type: lower-latin;
+}
+
+.subtext {
+  display: block;
+  margin: 0 0 0.5rem -1rem;
+}
+
+@media (max-width: $max-width-tablet) {
+  .page-terms {
+    padding: 28px;
+    margin-top: 57px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: $max-width-phone) {
+  .page-terms {
+    margin: 0;
+    padding: 47px 37px;
+    font-size: 12px;
+    line-height: 150%;
+  }
+
+  .arrow-back {
+    color: $black;
+
+    ~ span {
+      display: none;
+    }
+  }
+}

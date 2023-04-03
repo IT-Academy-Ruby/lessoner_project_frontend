@@ -1,12 +1,12 @@
-import "./NavbarStudyStudio.scss";
+import "./navbarStudyStudio.module.scss";
 import {Item, NavbarStudyStudioProps} from "./types.d";
 import {FC} from "react";
 import {Link} from "react-router-dom";
-import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
+import {NavbarStudyStudioSVGSelector} from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
 import {useIntl} from "react-intl";
 
-const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) => {
+export const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) => {
   const intl = useIntl();
 
   const imageWrapperCN = classNames("image__wrapper",
@@ -158,5 +158,3 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) =
     </div>
   );
 };
-
-export default NavbarStudyStudio;

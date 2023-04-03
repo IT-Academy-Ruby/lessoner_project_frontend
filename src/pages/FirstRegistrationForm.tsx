@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import "./modal.scss";
+import "./modal.module.scss";
 import {
   Field, Form, Formik
 } from "formik";
@@ -8,13 +8,13 @@ import {Link, useNavigate} from "react-router-dom";
 import {clearIsEmail, getEmail} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import Button from "../components/Button";
-import Checkbox from "../components/Checkbox";
-import Email from "../components/Email";
+import {Button} from "../components/Button";
+import {Checkbox} from "../components/Checkbox";
+import {Email} from "../components/Email";
 // import Facebook from "../components/icons/facebook.svg";
 // import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
-import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import {PasswordAndConfirm} from "../components/PasswordAndConfirm";
 // import Phone from "../components/icons/phone.svg";
 // import VK from "../components/icons/vk.svg";
 import {useEffect} from "react";
@@ -39,7 +39,7 @@ const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
 const symbols = PASSWORD.symbols;
 
-const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
+export const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -179,5 +179,3 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
     </div>
   );
 };
-
-export default FirstRegistrationForm;

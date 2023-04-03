@@ -1,13 +1,13 @@
-import "./lessonsPage.scss";
-import ContentLessonsPage from "./contentLessonPage/ContentLessonsPage";
-import HeaderLessonsPage from "./headerLessonsPage/HeaderLessonsPage";
-import {Hero} from "../../hero/hero";
+import "./lessonsPage.module.scss";
+import {ContentLessonsPage} from "./contentLessonPage/ContentLessonsPage";
+import {HeaderLessonsPage} from "./headerLessonsPage/HeaderLessonsPage";
+import {Hero} from "../../hero/Hero";
 
 type LessonContentProps={
   type: string;
 };
 
-const LessonsPage = ({type}:LessonContentProps) => {
+export const LessonsPage = ({type}:LessonContentProps) => {
   return(
     <div className="lessons__page">
       {type === "lessonsPage" && <Hero/>}
@@ -16,5 +16,3 @@ const LessonsPage = ({type}:LessonContentProps) => {
     </div>
   );
 };
-
-export default LessonsPage;

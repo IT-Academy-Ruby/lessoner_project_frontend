@@ -1,6 +1,6 @@
-import "./loader.scss";
+import "./loader.module.scss";
 
-const Loader = () => {
+export const Loader = () => {
   const speed = 3;
   const elements = 30;
   const array = [];
@@ -16,4 +16,3 @@ const Loader = () => {
     </div>
   );
 };
-export default Loader;

@@ -1,6 +1,6 @@
 import ContentLoader from "react-content-loader";
 
-const SkeletonLessons = () => (
+export const SkeletonLessons = () => (
   <ContentLoader className="skeleton"
     speed={2}
     width={317}
@@ -11,5 +11,3 @@ const SkeletonLessons = () => (
     <rect x="1" y="1" rx="8" ry="8" width="317" height="288" />
   </ContentLoader>
 );
-
-export default SkeletonLessons;

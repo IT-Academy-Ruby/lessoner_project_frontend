@@ -1,0 +1,91 @@
+@import "./src/constants.module.scss";
+
+.video-label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 48px;
+  color: var(--textCategoriesAdmin);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.field-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 4px;
+  border: 1px dashed var(--iconsTextButtonColor);
+  border-radius: 8px;
+  background: var(--bgAddNewCategoryInput);
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 68px 28px 68px;
+}
+
+.cloud-video {
+  width: 48px;
+  margin: 8px 0 12px 0;
+}
+
+.upload-video {
+  margin-bottom: 4px;
+  color: $greySearchColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+.video-size {
+  color: $greySearchColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 150%;
+}
+
+.video-buttons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 34px;
+}
+
+.upload-text {
+  color: $greySearchColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.or-upload {
+  margin-inline: 24px;
+}
+
+.video-size {
+  margin-inline: 8px;
+  color: $black;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 150%;
+}
+
+.video-cross {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  padding: 7px;
+}

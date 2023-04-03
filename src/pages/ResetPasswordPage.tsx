@@ -1,4 +1,4 @@
-import "./modal.scss";
+import "./modal.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
@@ -6,8 +6,8 @@ import {FormattedMessage, useIntl} from "react-intl";
 import {clearError, sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../components/Button";
-import Email from "../components/Email";
+import {Button} from "../components/Button";
+import {Email} from "../components/Email";
 import {emailInvalidationRules} from "../validationRules";
 import {uploadModalData} from "../store/modalSlice/modalSlice";
 
@@ -19,7 +19,7 @@ interface FormErrors {
   [key: string]: string;
 }
 
-const ResetPasswordPage = () => {
+export const ResetPasswordPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isEmail, setIsEmail] = useState(false);
@@ -91,5 +91,3 @@ const ResetPasswordPage = () => {
     </div>
   );
 };
-
-export default ResetPasswordPage;

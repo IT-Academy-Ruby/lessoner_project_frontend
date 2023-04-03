@@ -1,13 +1,13 @@
-import "./modalResponse.scss";
+import "./modalResponse.module.scss";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import Alarm from "../icons/neutral.svg";
-import Button from "../Button";
+import {Button} from "../Button";
 import Error from "../icons/negative.svg";
 import Successful from "../icons/positive.svg";
 import {uploadModalData} from "../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
 
-const ModalResponse = () => {
+export const ModalResponse = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const dataModal = useAppSelector(state => state.modalData.data);
@@ -55,5 +55,3 @@ const ModalResponse = () => {
     </div>
   );
 };
-
-export default ModalResponse;

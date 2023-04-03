@@ -1,10 +1,11 @@
+import "./language.module.scss";
 import {useEffect, useState} from "react";
 import Arrow from "../../icons/arrowDown.svg";
 import ArrowRight from "../../icons/arrowRight.svg";
 import Check from "../../icons/check.svg";
 import {FormattedMessage} from "react-intl";
 import Globe from "../../icons/Globe.svg";
-import LANGUAGES from "../../../translations/constants";
+import {LANGUAGES} from "../../../translations/constants";
 import classNames from "classnames";
 
 type LanguageProps = {
@@ -14,7 +15,7 @@ type LanguageProps = {
   setLanguage: (arg: string) => void;
 }
 
-const Language = ({
+export const Language = ({
   onLanguageSwitch, isRegistered, language, setLanguage
 }: LanguageProps) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -51,7 +52,7 @@ const Language = ({
       <ul className={classNames("list",
         {"list-language": isRegistered},
         {"no-registration-list": !isRegistered})}>
-        {LANGUAGES.map(lang => {
+        {LANGUAGES.map((lang:{label: string, code: string}) => {
           return <li
             key={lang.code}
             className="lang-name"
@@ -70,5 +71,3 @@ const Language = ({
     </div>
   );
 };
-
-export default Language;

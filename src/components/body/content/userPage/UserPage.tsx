@@ -1,4 +1,4 @@
-import "./userPage.scss";
+import "./userPage.module.scss";
 import {AVATAR, DEFAULT_COUNTRY_CODE} from "../../../../constants";
 import {FormattedMessage, useIntl} from "react-intl";
 import {clearError, uploadFile} from "../../../../store/loginName/loginSlice";
@@ -6,28 +6,27 @@ import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {
   useEffect, useRef, useState
 } from "react";
-import BirthdayForm from "./forms/BirthdayForm";
-import Button from "../../../Button";
-import CodeForm from "./forms/CodeForm";
-import EmailForm from "./forms/EmailForm";
-import GenderForm from "./forms/GenderForm";
-import InformEmail from "./forms/InformEmail";
-import NameForm from "./forms/NameForm";
-import PasswordForm from "./forms/PasswordForm";
+import {BirthdayForm} from "./forms/BirthdayForm";
+import {Button} from "../../../Button";
+import {CodeForm} from "./forms/CodeForm";
+import {EmailForm} from "./forms/EmailForm";
+import {GenderForm} from "./forms/GenderForm";
+import {InformEmail} from "./forms/InformEmail";
+import {NameForm} from "./forms/NameForm";
+import {PasswordForm} from "./forms/PasswordForm";
 import Pencil from "../../../icons/pencilWhite.svg";
-import PhoneForm from "./forms/PhoneForm";
+import {PhoneForm} from "./forms/PhoneForm";
 import classNames from "classnames";
 import {uploadModalData} from "../../../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
 
-const UserPage = () => {
+export const UserPage = () => {
   const navigate = useNavigate();
   const fileRef = useRef<HTMLInputElement>(null);
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
   const user = useAppSelector(state => state.login.user);
-  // const track = useAppSelector(state => state.login.updateAfterRequest);
   const [isVisible, setIsVisible] = useState(false);
   const [component, setComponent] = useState("");
   const [isErrorSize, setIsErrorSize] = useState(false);
@@ -214,5 +213,3 @@ const UserPage = () => {
     </div>
   );
 };
-
-export default UserPage;

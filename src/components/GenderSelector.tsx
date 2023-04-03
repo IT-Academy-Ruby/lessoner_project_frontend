@@ -1,4 +1,4 @@
-import "./genderSelector.scss";
+import "./genderSelector.module.scss";
 
 type GenderProps = {
   options: [];
@@ -13,7 +13,7 @@ type GenderProps = {
   text:string;
 }
 
-const GenderSelector = ({
+export const GenderSelector = ({
   field, error, options, text
 }: GenderProps) => {
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -47,5 +47,3 @@ const GenderSelector = ({
     </div>
   );
 };
-
-export default GenderSelector;

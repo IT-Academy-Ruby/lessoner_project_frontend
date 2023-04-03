@@ -1,0 +1,297 @@
+@import "../constants.module.scss";
+
+.button__main,
+.button__page,
+.button__fs16,
+.button__fs16-white,
+.button__fs16-red,
+.disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  border: none;
+  background: $blueLightColor;
+  color: $white;
+  text-decoration: none;
+  font-family: $font;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover {
+    box-shadow: var(--themeButtonHover);
+  }
+}
+
+.button__fs16,
+.button__fs16-white,
+.button__fs16-red {
+  padding: 6px 32px;
+  font-size: 16px;
+}
+
+.button__fs16-white,
+.button__fs16-red {
+  background: var(--bgButtonColor);
+  color: var(--iconsTextButtonColor);
+  border: 1px solid $borderColor;
+  font-weight: 600;
+}
+
+.button__fs16-red {
+  border: 1px solid $warningColor;
+  color: $warningColor;
+}
+
+.button__fs16-left {
+  margin-right: 16px;
+}
+
+.disabled {
+  border: 1px solid $greySearchColor;
+  background: none;
+  color: $greySearchColor;
+}
+
+.btn__temporary {
+  width: 300px;
+}
+
+.button-select {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 36px;
+  border: 1px solid var(--iconsTextButtonColor);
+  border-radius: 28px;
+  background: var(--bgButtonColor);
+  color: var(--iconsTextButtonColor);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px; cursor: pointer;
+
+  &:disabled {
+    border: none;
+    border-radius: 28px;
+    background: var(--bgButtonColor);
+    color: var(--shadowActiveButtonColor);
+    opacity: 0.5;
+  }
+}
+
+.button-login-category {
+  padding: 6px 36px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.button__page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 36px;
+  margin-bottom: 28px;
+  border-radius: 28px;
+  border: none;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  cursor: pointer;
+
+  &:active {
+    background: $blueDarkColor;
+  }
+
+  &:focus {
+    background: $blueDarkColor;
+  }
+
+  &:disabled {
+    background: var(--bgCategoriesButtons);
+    color: $greyDefault;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 4px 6px rgba(46, 51, 99, 0.43);
+  }
+}
+
+.button-login {
+  padding: 6px 26px;
+  margin-left: 12px;
+  width: 100%;
+  border: none;
+  background: none;
+  color: $blueLightColor;
+  font-size: 16px;
+  font-family: $font;
+  cursor: pointer;
+
+  &:focus {
+    border: 1px solid $greyDefault;
+    border-radius: 28px;
+    color: $blueLightColor;
+  }
+
+  &:active {
+    border: 1px solid $greyDefault;
+    border-radius: 28px;
+    color: $blueLightColor;
+  }
+}
+
+.button-register {
+  padding: 6px 36px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: var(--bgButtonColor);
+  font-family: $font;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:active {
+    background: $blueDarkColor;
+  }
+
+  &:focus {
+    background: $blueDarkColor;
+  }
+}
+
+.button {
+  align-self: center;
+  margin-bottom: 28px;
+  padding: 0;
+  width: 95px;
+  border: none;
+  background: none;
+  color: $blueLightColor;
+  font-family: $font;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-add-category {
+  height: 32px;
+  width: 187px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+
+.button-delete {
+  border-color: $warningColor;
+  color: $warningColor;
+  cursor: pointer;
+}
+
+.icon-button {
+  margin-right: 11px;
+  cursor: pointer;
+}
+
+.button-about-team {
+  padding: 0px 24px;
+  min-height: 28px;
+  border: 1px solid var(--textThemeColor2);
+  border-radius: 28px;
+  background: none;
+  color: var(--textThemeColor2);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+
+  &:focus {
+    background: var(--textThemeColor2);
+    color: var(--bgThemeColor1);
+  }
+}
+
+.button-about-team-active {
+  background: var(--textThemeColor2);
+  color: var(--bgThemeColor1);
+  cursor: pointer;
+}
+
+.button-about-cources {
+  @extend .button-about-team;
+  border: 1px solid var(--btnSignUpCourcesBorder);
+  color: var(--btnSignUpCourcesText);
+  cursor: pointer;
+}
+
+.button-no {
+  display: flex;
+  align-items: center;
+  padding: 6px 36px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:disabled {
+    border: none;
+    border-radius: 28px;
+    background: $white;
+    color: $greySearchColor;
+    opacity: 0.5;
+  }
+}
+
+.button-modal-response {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 202px;
+  height: 46px;
+  padding: 10px 32px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 22px;
+  color: $white;
+}
+
+@media (max-width: $max-width-phone) {
+  .button__page {
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+
+  .button-add-category {
+    width: 122px;
+  }
+}

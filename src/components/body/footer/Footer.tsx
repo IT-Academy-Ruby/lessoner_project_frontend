@@ -1,7 +1,6 @@
-const Footer = () => {
+import "./footer.module.scss";
+export const Footer = () => {
   return (
     <footer></footer>
   );
 };
-
-export default Footer;

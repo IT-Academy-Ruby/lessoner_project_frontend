@@ -1,6 +1,6 @@
 type requestType = "GET" | "POST" | "PUT" | "DELETE";
 
-const requestApi = async (
+export const requestApi = async (
   url: string,
   typeRequest: requestType = "GET",
   value?: object,
@@ -22,5 +22,3 @@ const requestApi = async (
 
   });
 };
-
-export default requestApi;

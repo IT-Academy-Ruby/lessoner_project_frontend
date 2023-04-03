@@ -1,5 +1,5 @@
-import "./checkbox.scss";
-import Terms from "../pages/terms/Terms";
+import "./checkbox.module.scss";
+import {Terms} from "../pages/terms/Terms";
 import { useState } from "react";
 
 type CheckboxProps = {
@@ -13,7 +13,8 @@ type CheckboxProps = {
   link: string;
   error?: string;
 };
-const Checkbox = ({
+
+export const Checkbox = ({
   field,
   error,
   information,
@@ -47,5 +48,3 @@ const Checkbox = ({
     </span>
   );
 };
-
-export default Checkbox;

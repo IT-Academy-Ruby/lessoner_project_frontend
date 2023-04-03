@@ -1,15 +1,15 @@
-import "./contentLessonsPage.scss";
+import "./contentLessonsPage.module.scss";
 import {LESSONSPAGE} from "../../../../constants";
-import LessonCard from "../../LessonCard";
-import NoLessonsPage from "../../noLessonsPage";
-import SkeletonLessons from "../../../SkeletonLessons";
+import {LessonCard} from "../../LessonCard";
+import {NoLessonsPage} from "../../NoLessonsPage";
+import {SkeletonLessons} from "../../../SkeletonLessons";
 import {useAppSelector} from "../../../../store/hooks";
 
-type ContentLessonsPage = {
+type ContentLessonsPageProps = {
   type: string;
 }
 
-const ContentLessonsPage = ({type}: ContentLessonsPage) => {
+export const ContentLessonsPage = ({type}: ContentLessonsPageProps) => {
   const lessons = useAppSelector(state => state.lessons.records);
   const skeleton = useAppSelector(state => state.lessons.skeleton);
   const categories = useAppSelector(state => state.categories.categories);
@@ -55,5 +55,3 @@ const ContentLessonsPage = ({type}: ContentLessonsPage) => {
     </div>
   );
 };
-
-export default ContentLessonsPage;

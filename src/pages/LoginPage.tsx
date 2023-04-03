@@ -1,4 +1,4 @@
-import "./modal.scss";
+import "./modal.module.scss";
 import {
   Field, Form, Formik
 } from "formik";
@@ -8,13 +8,13 @@ import {clearError, getLogin} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../components/Button";
-import Checkbox from "../components/Checkbox";
-import Email from "../components/Email";
+import {Button} from "../components/Button";
+import {Checkbox} from "../components/Checkbox";
+import {Email} from "../components/Email";
 // import Facebook from "../components/icons/facebook.svg";
 // import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
-import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import {PasswordAndConfirm} from "../components/PasswordAndConfirm";
 // import Phone from "../components/icons/phone.svg";
 // import VK from "../components/icons/vk.svg";
 import {uploadModalData} from "../store/modalSlice/modalSlice";
@@ -29,7 +29,7 @@ interface FormErrors {
   [key: string]: string;
 }
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -168,5 +168,3 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export default LoginPage;

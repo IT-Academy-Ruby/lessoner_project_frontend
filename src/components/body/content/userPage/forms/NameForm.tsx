@@ -1,11 +1,12 @@
+import "../userPage.module.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import {USERNAME} from "../../../../../constants";
-import UserName from "../../../../UserName";
+import {UserName} from "../../../../UserName";
 import {UserRegex} from "../../../../../validationRules";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 
@@ -22,7 +23,7 @@ type NameFormProps = {
   handleClose: () => void;
 }
 
-const NameForm = ({userName, handleClose}: NameFormProps) => {
+export const NameForm = ({userName, handleClose}: NameFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const isUser = useAppSelector((state) => state.login.isLogged);
@@ -81,5 +82,3 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
     </Formik>
   );
 };
-
-export default NameForm;

@@ -1,4 +1,4 @@
-import "../body/content/my_studio/addLesson.scss";
+import "../body/content/my_studio/addLesson.module.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   getLesson, resetLesson, updateLesson
@@ -6,9 +6,9 @@ import {
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import Button from "../Button";
-import EditLesson from "./EditLesson";
-import ModalCategory from "../body/content/categories/actions/ModalCategory";
+import {Button} from "../Button";
+import {EditLesson} from "./EditLesson";
+import {ModalCategory} from "../body/content/categories/actions/ModalCategory";
 import {uploadModalData} from "../../store/modalSlice/modalSlice";
 
 export const EditVideoLessonTitle = () => {

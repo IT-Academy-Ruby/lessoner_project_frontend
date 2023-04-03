@@ -1,10 +1,10 @@
-import "./categoriesUser.scss";
+import "./categoriesUser.module.scss";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";
 import {SKELETON_AMOUT} from "../../../../constants";
-import SkeletonCategory from "../../../SkeletonCategory";
-import UserCategory from "../../../UserCategory";
+import {SkeletonCategory} from "../../../SkeletonCategory";
+import {UserCategory} from "../../../UserCategory";
 import {selectedCategory} from "../../../../store/categorySlice/categorySlice";
 
 export interface Category {
@@ -14,7 +14,7 @@ export interface Category {
   description: string;
 };
 
-const CategoriesUser = () => {
+export const CategoriesUser = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(state => state.categories.categories);
   const skeleton = useAppSelector(state => state.categories.skeleton);
@@ -47,5 +47,3 @@ const CategoriesUser = () => {
     </div>
   );
 };
-
-export default CategoriesUser;
