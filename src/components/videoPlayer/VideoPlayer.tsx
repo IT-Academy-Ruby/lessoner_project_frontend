@@ -1,10 +1,10 @@
 import "./videoPlayer.module.scss";
 import "plyr-react/plyr.css";
-import {buildVideoSrc} from "./helpers";
 import Plyr from "plyr-react";
 import React from "react";
 import {YouTubePlayer} from "./YouTubePlayer";
 import {addLessonView} from "../../store/lessonSlice/lessonSlice";
+import {buildVideoSrc} from "./helpers";
 import {useAppDispatch} from "../../store/hooks";
 
 const optionsVideoplayer = {

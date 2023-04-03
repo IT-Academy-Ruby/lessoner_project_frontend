@@ -3,9 +3,9 @@ import {
   useContext, useEffect, useState
 } from "react";
 import {useLocation, useNavigate} from "react-router-dom";
+import {Content} from "./content/Main";
 import {Footer} from "./footer/Footer";
 import {Header} from "./header/Header";
-import {Content} from "./content/Main";
 import {Menu} from "./menu/Menu";
 import {NavbarStudyStudio} from "./navigation/NavbarStudyStudio";
 import { RootState } from "../../store/index";
