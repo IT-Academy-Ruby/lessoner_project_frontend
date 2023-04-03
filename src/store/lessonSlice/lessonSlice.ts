@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {URL} from "../../constants";
 import request from "../../services/request";
 
 export const getLessons = createAsyncThunk(
@@ -16,7 +17,7 @@ export const getLessons = createAsyncThunk(
     const myStudio = value.myStudio ? "my_studio/lessons" : "lessons";
     const status = `&status=${value.status}&`;
     /*eslint-disable-next-line max-len */
-    const response = await request(`${process.env.REACT_APP_BACKEND_URL}/${myStudio}?page=${value.page}&items=${value.perPage}?${category}${sort}${status}`);
+    const response = await request(`${URL}/${myStudio}?page=${value.page}&items=${value.perPage}?${category}${sort}${status}`);
     if (response.status === 200) {
       const data = response.json();
       return data;
@@ -30,7 +31,7 @@ export const getLessons = createAsyncThunk(
 export const getLesson = createAsyncThunk(
   "lessons/getLesson",
   async (id: string | undefined) => {
-    const response = await request(`${process.env.REACT_APP_BACKEND_URL}/lessons/${id}`);
+    const response = await request(`${URL}/lessons/${id}`);
     if (response.status === 200) {
       const data = response.json();
       return data;
@@ -63,7 +64,7 @@ export const addVideo = createAsyncThunk(
       formData.append("lesson_video", userLesson.lesson_video);
     }
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lessons`, {
+    const response = await fetch(`${URL}/lessons`, {
       method: "POST",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,
@@ -114,7 +115,7 @@ export const updateLesson = createAsyncThunk(
       }
     }
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lessons/${userLesson.id}`, {
+    const response = await fetch(`${URL}/lessons/${userLesson.id}`, {
       method: "PUT",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,
@@ -132,7 +133,7 @@ export const updateRating = createAsyncThunk(
       formData.append("rating", lesson.rating);
     }
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/lessons/${lesson.id}`, {
+    const response = await fetch(`${URL}/lessons/${lesson.id}`, {
       method: "PUT",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,
@@ -150,7 +151,7 @@ export const deleteLesson = createAsyncThunk(
   "lesson/deleteLesson",
   async (id: number) => {
     const response =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/lessons/${id}`, "DELETE");
+      await request(`${URL}/lessons/${id}`, "DELETE");
     const data = response.json();
     return data;
   }
@@ -159,7 +160,7 @@ export const deleteLesson = createAsyncThunk(
 export const addLessonView = createAsyncThunk(
   "lesson/addLessonView",
   async (id: number) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/add_lesson_view`, {
+    const response = await fetch(`${URL}/add_lesson_view`, {
       method: "POST",
       headers: {"Content-Type": "application/json;charset=utf-8"},
       body: JSON.stringify({lesson_id: id})

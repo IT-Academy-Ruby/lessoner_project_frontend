@@ -1,11 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {URL} from "../../constants";
 import requestApi from "../../services/request";
 
 export const getUser = createAsyncThunk(
   "user/getUserStatus",
   async (userName: string) => {
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/check_username?name=${userName}`);
+      `${URL}/check_username?name=${userName}`);
     const data = await response.json();
     if (response.status === 200) {
       return data.username_exists;
@@ -19,7 +20,7 @@ export const getEmail = createAsyncThunk(
   "user/getEmailStatus",
   async (email: string): Promise<boolean> => {
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/check_email?email=${encodeURIComponent(email)}`
+      `${URL}/check_email?email=${encodeURIComponent(email)}`
     );
     if (!response.ok) {
       throw new Error(`Error code ${response.status}`);
@@ -35,7 +36,7 @@ export const signUpSlice = createAsyncThunk(
     name: string, phone?: string, gender: string, email: string,
     birthday: string, password: string
   }) => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/sign_up`, {
+    const response = await fetch(`${URL}/sign_up`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(value),
@@ -49,7 +50,7 @@ export const confirmTokenSlice = createAsyncThunk(
   "users/confirmTokenSliceStatus",
   async (value: string) => {
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/sign_up/confirm_email?token=${value}`);
+      `${URL}/sign_up/confirm_email?token=${value}`);
     const data = await response.json();
     return data;
   }
@@ -61,7 +62,7 @@ export const getLogin = createAsyncThunk(
     const email = encodeURIComponent(val.email);
     const response =
       await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/login?email=${email}&password=${val.password}`,
+        `${URL}/login?email=${email}&password=${val.password}`,
         {method: "POST"});
     const data = await response.json();
     return data;
@@ -71,7 +72,7 @@ export const getLogin = createAsyncThunk(
 export const sendPasswordResetLink = createAsyncThunk(
   "user/sendPasswordResetLinkStatus",
   async (email: string): Promise<{ error: string, alert: string }> => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/forgot`, {
+    const response = await fetch(`${URL}/password/forgot`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({email: email})
@@ -85,7 +86,7 @@ export const changePassword = createAsyncThunk(
   async (value: {
     token: string, password: string
   }): Promise<{ status: string, error: string }> => {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/reset`, {
+    const response = await fetch(`${URL}/password/reset`, {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({token: value.token, password: value.password})
@@ -98,7 +99,7 @@ export const changePassword = createAsyncThunk(
 export const getUserData = createAsyncThunk(
   "user/getUserDataStatus",
   async (name: string) => {
-    const response = await requestApi(`${process.env.REACT_APP_BACKEND_URL}/users/${name}`);
+    const response = await requestApi(`${URL}/users/${name}`);
     if (response.status === 401) {
       return false;
     } else {
@@ -112,7 +113,7 @@ export const editUserData = createAsyncThunk(
   "user/editUserDataStatus",
   async (items: { name: number | string, object: object }) => {
     const response = await requestApi(
-      `${process.env.REACT_APP_BACKEND_URL}/users/${items.name}`, "PUT", items.object);
+      `${URL}/users/${items.name}`, "PUT", items.object);
     if (response.status === 401) {
       return false;
     } else {
@@ -126,7 +127,7 @@ export const editUserEmail = createAsyncThunk(
   "user/editUserEmailStatus",
   async (token: string) => {
     const response = await requestApi(
-      `${process.env.REACT_APP_BACKEND_URL}/users/update_email?token=${token}`);
+      `${URL}/users/update_email?token=${token}`);
     const data = response.json();
     return data;
   }
@@ -136,7 +137,7 @@ export const sendUserCode = createAsyncThunk(
   "user/sendUserCodeStatus",
   async (verif: object) => {
     const response = await requestApi(
-      `${process.env.REACT_APP_BACKEND_URL}/verify`, "POST", verif);
+      `${URL}/verify`, "POST", verif);
     const data = response.json();
     return data;
   }
@@ -148,7 +149,7 @@ export const uploadFile = createAsyncThunk(
     const formData = new FormData();
     formData.append("avatar", user.file[0]);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${user.name}`, {
+    const responce = await fetch(`${URL}/users/${user.name}`, {
       method: "PUT",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,

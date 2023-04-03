@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {URL} from "../../constants";
 import request from "../../services/request";
 
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async () => {
-    const responce = await request(`${process.env.REACT_APP_BACKEND_URL}/categories`);
+    const responce = await request(`${URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
       return data.records;
@@ -24,7 +25,7 @@ export const addCategory = createAsyncThunk(
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
+    const response = await fetch(`${URL}/categories`, {
       method: "POST",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,
@@ -38,7 +39,7 @@ export const deleteCategory = createAsyncThunk(
   "category/addCategory",
   async (id: number) => {
     const response =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${id}`, "DELETE");
+      await request(`${URL}/categories/${id}`, "DELETE");
     const data = await response.json();
     if (response.status === 200) {
       return data;
@@ -61,7 +62,7 @@ export const updateCategory = createAsyncThunk(
     formData.append("description", dataCategory.description);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
     const response =
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories/${dataCategory.id}`, {
+      await fetch(`${URL}/categories/${dataCategory.id}`, {
         method: "PUT",
         headers: new Headers({"Authorization": `Bearer ${token}`}),
         body: formData,
@@ -80,7 +81,7 @@ export const archiveCategory = createAsyncThunk(
       status: value.status === "active" ? "archived" : "active",
     };
     const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
+      await request(`${URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
