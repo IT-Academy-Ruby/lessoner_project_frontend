@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import ArrowDown from "../../../../icons/arrowDown.svg";
 import ArrowUp from "../../../../icons/arrowUp.svg";
 import Select from "react-select";
-import {getCategory} from "../../../../../store/categorySlice/categorySlice";
 import {useAppSelector} from "../../../../../store/hooks";
 
 type VideoCategoryProps = {
