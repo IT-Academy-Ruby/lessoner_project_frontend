@@ -38,7 +38,7 @@ const PhoneForm = ({
       handleClose();
       handleEdit("code");
     }
-  },[user]);
+  },[dispatch, handleClose, handleEdit, user]);
 
   interface FormValues {
     phone: string;

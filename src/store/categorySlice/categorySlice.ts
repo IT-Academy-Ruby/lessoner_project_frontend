@@ -129,10 +129,7 @@ const initialState: Categories = {
     image_name: "",
     image_type: "",
   }],
-  selectedCategory: {
-    name: "",
-    id: "",
-  },
+  selectedCategory: {name: "", id: "",},
   errors: [],
   error: "",
   loading: false,
@@ -142,11 +139,9 @@ const initialState: Categories = {
 const categorySlice = createSlice({
   name: "category",
   initialState,
-  reducers: {
-    selectedCategory: (state,action) =>{
-      state.selectedCategory=action.payload;
-    }
-  },
+  reducers: {selectedCategory: (state,action) =>{
+    state.selectedCategory=action.payload;
+  }},
   extraReducers: (builder) => {
     builder.addCase(getCategory.fulfilled, (state, action) => {
       state.categories = action.payload;

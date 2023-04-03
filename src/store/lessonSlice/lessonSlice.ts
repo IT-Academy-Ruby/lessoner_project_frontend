@@ -343,7 +343,7 @@ const lessonSlice = createSlice({
         state.skeleton = false;
       }
     });
-    builder.addCase(getLessons.pending, (state, action) => {
+    builder.addCase(getLessons.pending, (state) => {
       state.skeleton = true;
     });
     builder.addCase(getLesson.fulfilled, (state, action) => {
@@ -368,12 +368,11 @@ const lessonSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(updateRating.fulfilled, (state, action) => {
-      //     state.lesson = action.payload;
       if (!action.payload) {
         state.error = "Error: 401";
       }
-    })
-    builder.addCase(deleteLesson.fulfilled, (state, action) => {
+    });
+    builder.addCase(deleteLesson.fulfilled, (state) => {
       state.loading = false;
     });
     builder.addCase(deleteLesson.pending, (state) => {
@@ -382,6 +381,7 @@ const lessonSlice = createSlice({
   }
 });
 
-export const {resetLessons, resetLesson, resetError} = lessonSlice.actions;
+export const {
+  resetLessons, resetLesson, resetError
+} = lessonSlice.actions;
 export default lessonSlice.reducer;
-

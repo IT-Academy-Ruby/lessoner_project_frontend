@@ -1,11 +1,13 @@
 import "./sideBarLessons.scss";
-import {FormattedMessage, useIntl} from "react-intl";
-import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
+import {
+  Fragment, useEffect, useState
+} from "react";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
-import LessonCard from "../../LessonCard";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {LESSONPAGE} from "../../../../constants";
+import LessonCard from "../../LessonCard";
 import SortButton from "../../SortButton";
-import {Fragment, useEffect, useState} from "react";
+import {useIntl} from "react-intl";
 
 type SideBarLessonsProps = {
   categoryName: string;
@@ -48,10 +50,12 @@ const SideBarLessons = ({categoryName}: SideBarLessonsProps) => {
     dispatch(resetLessons());
     setLoading(true);
     setNumberPage(1);
-  }, [window.location.href]);
+  }, [dispatch]);
 
   useEffect(() => {
-    if (((loading && countPages === 0) || (loading && countPages >= numberPage)) && lesson.category_id) {
+    if (((loading && countPages === 0)
+      || (loading && countPages >= numberPage))
+      && lesson.category_id) {
       dispatch(getLessons({
         myStudio: false,
         page: numberPage,
@@ -63,10 +67,13 @@ const SideBarLessons = ({categoryName}: SideBarLessonsProps) => {
         .finally(() => setLoading(false));
       setNumberPage(numberPage + 1);
     }
-  }, [status, loading, lesson.category_id]);
+    /* eslint-disable-next-line */
+  }, [dispatch, status, loading, lesson.category_id]);
 
   const scrollHandler = (): void => {
-    if ((document.documentElement.scrollHeight - document.documentElement.scrollTop - window.innerHeight) < 300) {
+    if ((document.documentElement.scrollHeight
+      - document.documentElement.scrollTop
+      - window.innerHeight) < 300) {
       setLoading(true);
     }
   };
@@ -103,7 +110,7 @@ const SideBarLessons = ({categoryName}: SideBarLessonsProps) => {
               rating={les.rating}
               totalVotes={les.votes_count}
               type="sideBar"
-              />
+            />
           )}
         </div>
       </Fragment>}

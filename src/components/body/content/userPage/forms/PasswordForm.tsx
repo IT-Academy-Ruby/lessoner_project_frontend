@@ -2,13 +2,12 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {editUserData} from "../../../../../store/loginName/loginSlice";
-import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 import Button from "../../../../Button";
 import {PASSWORD} from "../../../../../constants";
 import PasswordAndConfirm from "../../../../PasswordAndConfirm";
+import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
+import {useAppDispatch} from "../../../../../store/hooks";
 
 interface FormValues {
   current_password: string;
@@ -64,10 +63,8 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
       }}
 
       onSubmit={(values) => {
-        const items = {
-          name: userName, object:
-            {password: values.password, current_password: values.current_password}
-        };
+        const items = {name: userName,
+          object: {password: values.password, current_password: values.current_password}};
         dispatch(editUserData(items));
         values.current_password = "";
         values.password = "";

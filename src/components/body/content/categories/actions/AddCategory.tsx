@@ -19,8 +19,8 @@ import CategoryDescription from "./CategoryDescription";
 import CategoryImage from "./CategoryImage";
 import CategoryName from "./CategoryName";
 import ModalCategory from "./ModalCategory";
-import {resetUserData} from "../../../../../store/loginName/loginSlice";
 import {resetDecodeUser} from "../../../../../store/header/decodeJwtSlice";
+import {resetUserData} from "../../../../../store/loginName/loginSlice";
 import {uploadModalData} from "../../../../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
 

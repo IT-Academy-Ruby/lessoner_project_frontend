@@ -6,7 +6,6 @@ import {SKELETON_AMOUT} from "../../../../constants";
 import SkeletonCategory from "../../../SkeletonCategory";
 import UserCategory from "../../../UserCategory";
 import {selectedCategory} from "../../../../store/categorySlice/categorySlice";
-import {useEffect} from "react";
 
 export interface Category {
   id: number;
@@ -30,7 +29,11 @@ const CategoriesUser = () => {
       </h1>
       <div className="categories__user">
         {categories.length > 1 && categories.map((obj) => (
-          <Link to={`/`} key={obj.id} onClick={() => dispatch(selectedCategory({name: obj.name, id: obj.id}))}>
+          <Link
+            to={"/"}
+            key={obj.id}
+            onClick={() => dispatch(selectedCategory({name: obj.name, id: obj.id}))}
+          >
             <UserCategory
               key={obj.id}
               id={obj.id}

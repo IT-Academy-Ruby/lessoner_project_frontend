@@ -7,7 +7,6 @@ import Email from "../../../../Email";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {emailInvalidationRules} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -25,11 +24,10 @@ type EmailFormProps = {
 }
 
 const EmailForm = ({
-  userName, handleClose, setEmail, handleEdit
+  userName, handleClose, setEmail
 }: EmailFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isError, setIsError] = useState(false);
 
   const initialValues: FormValues = {email: ""};
 

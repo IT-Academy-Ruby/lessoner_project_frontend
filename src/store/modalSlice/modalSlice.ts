@@ -9,23 +9,19 @@ type DataModal = {
   }
 }
 
-const initialState: DataModal = {
-  data: {
-    text: "",
-    isOpen: false,
-    urlNavigate: "",
-    typeModal: undefined,
-  }
-};
+const initialState: DataModal = {data: {
+  text: "",
+  isOpen: false,
+  urlNavigate: "",
+  typeModal: undefined,
+}};
 
 const uploadDataSlice = createSlice({
   name: "uploadData",
   initialState,
-  reducers: {
-    uploadModalData: (state, action) => {
-      state.data = action.payload;
-    }
-  },
+  reducers: {uploadModalData: (state, action) => {
+    state.data = action.payload;
+  }},
 });
 
 export const {uploadModalData} = uploadDataSlice.actions;
