@@ -1,4 +1,4 @@
-import "./mainLesson.module.scss";
+import "./mainLesson.scss";
 import {DescriptionLesson} from "./DescriptionLesson";
 import {FormattedMessage} from "react-intl";
 import Logo from "../../../icons/Logo.svg";

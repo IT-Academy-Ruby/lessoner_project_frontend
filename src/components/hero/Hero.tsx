@@ -1,4 +1,4 @@
-import "./hero.module.scss";
+import "./hero.scss";
 import { THEME, useTheme } from "../../utils/useTheme";
 import {Button} from "../Button";
 import heroDark from "../../assets/hero-dark.png";

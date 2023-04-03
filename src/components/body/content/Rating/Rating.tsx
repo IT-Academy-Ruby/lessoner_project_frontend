@@ -1,4 +1,4 @@
-import "./rating.module.scss";
+import "./rating.scss";
 import Raiting from "../../../icons/reiting.png";
 
 type RatingProps = {

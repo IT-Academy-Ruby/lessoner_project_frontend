@@ -1,6 +1,6 @@
-import "./input.module.scss";
+import "./input.scss";
 import "react-datepicker/dist/react-datepicker.css";
-import "./birthday.module.scss";
+import "./birthday.scss";
 import DatePicker, {registerLocale} from "react-datepicker";
 import {FieldInputProps, FormikProps} from "formik";
 import {enGB, ru} from "date-fns/locale";

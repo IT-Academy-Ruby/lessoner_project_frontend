@@ -1,4 +1,4 @@
-import "../pages/modal.module.scss";
+import "../pages/modal.scss";
 import VK from "../components/icons/vk.svg";
 import {getParameterValue} from "../helpers/parseUrl";
 import { useEffect } from "react";

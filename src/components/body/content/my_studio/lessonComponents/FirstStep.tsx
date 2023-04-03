@@ -1,4 +1,4 @@
-import "../addLesson.module.scss";
+import "../addLesson.scss";
 import {
   Field, Form, Formik
 } from "formik";

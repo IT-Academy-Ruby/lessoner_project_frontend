@@ -1,4 +1,4 @@
-import "../userPage.module.scss";
+import "../userPage.scss";
 import {Button} from "../../../../Button";
 import {useIntl} from "react-intl";
 

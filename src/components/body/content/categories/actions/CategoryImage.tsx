@@ -1,4 +1,4 @@
-import "./categoryImage.module.scss";
+import "./categoryImage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   useEffect, useRef, useState

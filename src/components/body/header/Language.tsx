@@ -1,4 +1,4 @@
-import "./language.module.scss";
+import "./language.scss";
 import {useEffect, useState} from "react";
 import Arrow from "../../icons/arrowDown.svg";
 import ArrowRight from "../../icons/arrowRight.svg";

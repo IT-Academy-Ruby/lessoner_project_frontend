@@ -1,4 +1,4 @@
-import "./categoriesUser.module.scss";
+import "./categoriesUser.scss";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";

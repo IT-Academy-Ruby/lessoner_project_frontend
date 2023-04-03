@@ -1,4 +1,4 @@
-import "./header.module.scss";
+import "./header.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   Fragment, useEffect, useState

@@ -1,4 +1,4 @@
-import "./menu.module.scss";
+import "./menu.scss";
 import {ReactComponent as MenuIcon} from "../../icons/menu.svg";
 
 type MenuProps = {

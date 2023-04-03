@@ -1,4 +1,4 @@
-import "./body.module.scss";
+import "./body.scss";
 import {
   useContext, useEffect, useState
 } from "react";
@@ -83,7 +83,7 @@ const Body = (props: BodyProps) => {
   const mainSidebarConfig = buildMainSidebarConfig(sidebarStatus, callbacks, location.pathname);
 
   return (
-    <div className="body-page">
+    <div className="body">
       <Menu setIsMenuActive={setIsMenuActive}
         isMenuActive={isMenuActive}
       />

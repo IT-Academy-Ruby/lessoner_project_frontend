@@ -1,4 +1,4 @@
-import "./about.module.scss";
+import "./about.scss";
 import { FormattedMessage, useIntl } from "react-intl";
 import { THEME, useTheme } from "../../../../utils/useTheme";
 import {Button} from "../../../Button";

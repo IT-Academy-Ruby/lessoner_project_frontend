@@ -1,4 +1,4 @@
-import "../pages/modal.module.scss";
+import "../pages/modal.scss";
 import { ReactFacebookFailureResponse, ReactFacebookLoginInfo } from "react-facebook-login";
 import Facebook from "../components/icons/facebook.svg";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";

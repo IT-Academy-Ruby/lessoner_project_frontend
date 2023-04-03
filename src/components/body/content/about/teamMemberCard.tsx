@@ -1,4 +1,4 @@
-import "./teamMemberCard.module.scss";
+import "./teamMemberCard.scss";
 import {Button} from "../../../Button";
 import { ReactComponent as Geo } from "../../../icons/geo.svg";
 import { ReactComponent as Linkedin } from "../../../icons/navbar/linkedin.svg";

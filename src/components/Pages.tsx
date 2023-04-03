@@ -1,4 +1,4 @@
-import "./pages.module.scss";
+import "./pages.scss";
 import {FC,useState} from "react";
 import {CodePage} from "../pages/CodePage";
 import {ConfirmReg} from "../pages/ConfirmReg";

@@ -1,4 +1,4 @@
-import "./App.module.scss";
+import "./App.scss";
 import { createContext, useState } from "react";
 import Body from "./components/body/Body";
 import { IntlProvider } from "react-intl";

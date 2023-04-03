@@ -1,4 +1,4 @@
-import "./lessonsPage.module.scss";
+import "./lessonsPage.scss";
 import {ContentLessonsPage} from "./contentLessonPage/ContentLessonsPage";
 import {HeaderLessonsPage} from "./headerLessonsPage/HeaderLessonsPage";
 import {Hero} from "../../hero/Hero";

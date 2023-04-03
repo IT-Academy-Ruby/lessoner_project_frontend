@@ -1,4 +1,4 @@
-import "./genderSelector.module.scss";
+import "./genderSelector.scss";
 
 type GenderProps = {
   options: [];

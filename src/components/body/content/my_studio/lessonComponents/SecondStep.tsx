@@ -1,4 +1,4 @@
-import "../addLesson.module.scss";
+import "../addLesson.scss";
 
 import {DESCRIPTION_CATEGORY, THUMBNAIL_DATA} from "../../../../../constants";
 import {

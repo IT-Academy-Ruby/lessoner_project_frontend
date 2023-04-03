@@ -1,4 +1,4 @@
-import "../body/content/my_studio/addLesson.module.scss";
+import "../body/content/my_studio/addLesson.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   getLesson, resetLesson, updateLesson

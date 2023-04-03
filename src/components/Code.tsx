@@ -1,4 +1,4 @@
-import "./input.module.scss";
+import "./input.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {CODE} from "../constants";
 import classNames from "classnames";

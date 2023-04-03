@@ -1,4 +1,4 @@
-import "./headerLessonsPage.module.scss";
+import "./headerLessonsPage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";

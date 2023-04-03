@@ -1,4 +1,4 @@
-import "./videoLesson.module.scss";
+import "./videoLesson.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {
   useEffect, useRef, useState

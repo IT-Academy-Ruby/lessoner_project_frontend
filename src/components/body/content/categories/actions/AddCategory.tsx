@@ -1,4 +1,4 @@
-import "./addCategory.module.scss";
+import "./addCategory.scss";
 import {
   DESCRIPTION_CATEGORY, IMAGE_DATA, NAME_CATEGORY
 } from "../../../../../constants";

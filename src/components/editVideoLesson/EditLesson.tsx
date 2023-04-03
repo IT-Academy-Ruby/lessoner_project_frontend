@@ -1,4 +1,4 @@
-import "../body/content/my_studio/addLesson.module.scss";
+import "../body/content/my_studio/addLesson.scss";
 import {
   DESCRIPTION_CATEGORY, THUMBNAIL_DATA, VIDEO_DATA
 } from "../../constants";

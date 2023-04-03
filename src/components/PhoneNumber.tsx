@@ -1,6 +1,6 @@
 import "react-phone-input-2/lib/style.css";
-import "./input.module.scss";
-import "./phoneNumber.module.scss";
+import "./input.scss";
+import "./phoneNumber.scss";
 import {FieldInputProps, FormikProps} from "formik";
 import {FormattedMessage} from "react-intl";
 import PhoneInput from "react-phone-input-2";

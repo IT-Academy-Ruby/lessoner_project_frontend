@@ -1,4 +1,4 @@
-import "./modalCategory.module.scss";
+import "./modalCategory.scss";
 import {Button} from "../../../../Button";
 import {useIntl} from "react-intl";
 

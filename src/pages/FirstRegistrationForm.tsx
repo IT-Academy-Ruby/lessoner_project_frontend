@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import "./modal.module.scss";
+import "./modal.scss";
 import {
   Field, Form, Formik
 } from "formik";

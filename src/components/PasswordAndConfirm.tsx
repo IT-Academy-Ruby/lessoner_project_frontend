@@ -1,4 +1,4 @@
-import "./input.module.scss";
+import "./input.scss";
 import {PASSWORD} from "../constants";
 import classNames from "classnames";
 import close_eye from "./icons/close_eye.svg";

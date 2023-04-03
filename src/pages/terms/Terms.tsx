@@ -1,4 +1,4 @@
-import "./terms.module.scss";
+import "./terms.scss";
 import {FormattedMessage} from "react-intl";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";

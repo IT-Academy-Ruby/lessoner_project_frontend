@@ -1,4 +1,4 @@
-import "./sortButton.module.scss";
+import "./sortButton.scss";
 import {Fragment} from "react";
 import classNames from "classnames";
 

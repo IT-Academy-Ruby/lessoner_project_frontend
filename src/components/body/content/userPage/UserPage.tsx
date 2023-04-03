@@ -1,4 +1,4 @@
-import "./userPage.module.scss";
+import "./userPage.scss";
 import {AVATAR, DEFAULT_COUNTRY_CODE} from "../../../../constants";
 import {FormattedMessage, useIntl} from "react-intl";
 import {clearError, uploadFile} from "../../../../store/loginName/loginSlice";

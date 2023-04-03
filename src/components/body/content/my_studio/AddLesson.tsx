@@ -1,4 +1,4 @@
-import "./addLesson.module.scss";
+import "./addLesson.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {addVideo, updateLesson} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";

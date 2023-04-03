@@ -1,4 +1,4 @@
-import "./addCategory.module.scss";
+import "./addCategory.scss";
 import {NAME_CATEGORY} from "../../../../../constants";
 import classNames from "classnames";
 import { useState } from "react";

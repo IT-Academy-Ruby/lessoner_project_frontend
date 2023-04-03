@@ -1,4 +1,4 @@
-import "./lessonCard.module.scss";
+import "./lessonCard.scss";
 import {Link, useNavigate} from "react-router-dom";
 import Edit from "../icons/edit.svg";
 import {FormattedMessage} from "react-intl";

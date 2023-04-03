@@ -1,4 +1,4 @@
-import "../userPage.module.scss";
+import "../userPage.scss";
 import {
   Field, Form, Formik,
 } from "formik";

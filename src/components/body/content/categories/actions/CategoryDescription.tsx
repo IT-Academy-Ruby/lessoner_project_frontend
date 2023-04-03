@@ -1,4 +1,4 @@
-import "./addCategory.module.scss";
+import "./addCategory.scss";
 import { DESCRIPTION_CATEGORY } from "../../../../../constants";
 import { FormattedMessage } from "react-intl";
 import classNames from "classnames";

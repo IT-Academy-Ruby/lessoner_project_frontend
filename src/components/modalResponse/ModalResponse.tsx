@@ -1,4 +1,4 @@
-import "./modalResponse.module.scss";
+import "./modalResponse.scss";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import Alarm from "../icons/neutral.svg";
 import {Button} from "../Button";

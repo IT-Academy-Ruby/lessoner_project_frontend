@@ -1,4 +1,4 @@
-import "./loader.module.scss";
+import "./loader.scss";
 
 export const Loader = () => {
   const speed = 3;

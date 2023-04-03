@@ -1,4 +1,4 @@
-import "./select.module.scss";
+import "./select.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useEffect, useState} from "react";
 import ArrowDown from "../../../../icons/arrowDown.svg";

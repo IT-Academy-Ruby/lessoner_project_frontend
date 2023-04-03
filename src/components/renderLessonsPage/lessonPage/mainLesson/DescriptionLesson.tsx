@@ -1,4 +1,4 @@
-import "./mainLesson.module.scss";
+import "./mainLesson.scss";
 import classnames from "classnames";
 import {useState} from "react";
 

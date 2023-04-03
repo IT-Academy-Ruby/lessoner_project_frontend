@@ -1,4 +1,4 @@
-import "./sideBarLessons.module.scss";
+import "./sideBarLessons.scss";
 import {
   Fragment, useEffect, useState
 } from "react";

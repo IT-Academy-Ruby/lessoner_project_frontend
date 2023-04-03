@@ -1,4 +1,4 @@
-import "./videoPlayer.module.scss";
+import "./videoPlayer.scss";
 import "plyr-react/plyr.css";
 import Plyr from "plyr-react";
 import React from "react";

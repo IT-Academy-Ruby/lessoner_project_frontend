@@ -1,4 +1,4 @@
-import "./noLessonsPage.module.scss";
+import "./noLessonsPage.scss";
 import {THEME, useTheme} from "../../utils/useTheme";
 import Add from "../icons/add.svg";
 import {Button} from "../Button";

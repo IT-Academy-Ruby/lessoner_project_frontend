@@ -1,4 +1,4 @@
-import "./ratingStars.module.scss";
+import "./ratingStars.scss";
 import {useAppDispatch, useAppSelector} from "../../store/hooks";
 import {useEffect, useState} from "react";
 import {Rating} from "../body/content/Rating/Rating";

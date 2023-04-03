@@ -1,4 +1,4 @@
-import "./avatar.module.scss";
+import "./avatar.scss";
 import {FormattedMessage} from "react-intl";
 import {Language} from "./Language";
 import {Link} from "react-router-dom";

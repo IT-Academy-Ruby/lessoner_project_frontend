@@ -1,4 +1,4 @@
-import "./navbarStudyStudio.module.scss";
+import "./navbarStudyStudio.scss";
 import {Item, NavbarStudyStudioProps} from "./types.d";
 import {FC} from "react";
 import {Link} from "react-router-dom";

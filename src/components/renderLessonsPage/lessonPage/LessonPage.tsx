@@ -1,4 +1,4 @@
-import "./lessonPage.module.scss";
+import "./lessonPage.scss";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {useEffect, useState} from "react";
 import {MainLesson} from "./mainLesson/MainLesson";

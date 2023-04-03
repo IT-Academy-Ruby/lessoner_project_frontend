@@ -1,4 +1,4 @@
-import "./contentLessonsPage.module.scss";
+import "./contentLessonsPage.scss";
 import {LESSONSPAGE} from "../../../../constants";
 import {LessonCard} from "../../LessonCard";
 import {NoLessonsPage} from "../../NoLessonsPage";

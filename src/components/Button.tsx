@@ -1,4 +1,4 @@
-import "./button.module.scss";
+import "./button.scss";
 import {Fragment, MouseEventHandler} from "react";
 
 type ButtonProps = {

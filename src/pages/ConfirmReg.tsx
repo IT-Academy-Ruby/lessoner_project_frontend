@@ -1,4 +1,4 @@
-import "./modal.module.scss";
+import "./modal.scss";
 import {Button} from "../components/Button";
 import {useIntl} from "react-intl";
 import {useNavigate} from "react-router-dom";

@@ -1,4 +1,4 @@
-import "./main.module.scss";
+import "./main.scss";
 import {
   Route,
   Routes,

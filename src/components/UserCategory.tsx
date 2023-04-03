@@ -1,4 +1,4 @@
-import "./userCategory.module.scss";
+import "./userCategory.scss";
 import React from "react";
 import {TranslationHelpers} from "../translations/translationHelpers";
 import classNames from "classnames";

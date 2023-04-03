@@ -1,4 +1,4 @@
-import "../pages/modal.module.scss";
+import "../pages/modal.scss";
 import Google from "../components/icons/google.svg";
 import { useGoogleLogin } from "@react-oauth/google";
 

@@ -1,4 +1,4 @@
-import "./checkbox.module.scss";
+import "./checkbox.scss";
 import {Terms} from "../pages/terms/Terms";
 import { useState } from "react";
 
