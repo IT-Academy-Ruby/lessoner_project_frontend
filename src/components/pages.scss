@@ -2,9 +2,9 @@
 
 .reg__wrapper {
   position: absolute;
-  top: 0;
   display: flex;
   justify-content: center;
+  top: 0;
   width: 100%;
 }
 
@@ -15,15 +15,15 @@
   width: 100%;
   max-width: 1322px;
   min-height: 843px;
+  margin: 30px;
   border-radius: 44px;
   box-shadow: var(--bgNavBarShadow);
-  margin: 30px;
 }
 
 .close__wrapper {
+  position: absolute;
   width: 24px;
   height: 24px;
-  position: absolute;
   right: 45px;
   top: 45px;
   cursor: pointer;
@@ -41,8 +41,8 @@
 .close:after {
   position: absolute;
   width: 16px;
-  border: 2px solid $greySearchColor;
-  background: $greySearchColor;
+  border: 2px solid var(--textThemeColor1);
+  background: var(--textThemeColor1);
   content: "";
 }
 
@@ -90,19 +90,19 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border-radius: 28px;
     width: 100%;
     max-width: 684px;
     min-height: 1082px;
     margin: 30px;
+    border-radius: 28px;
   }
 
   .reg__picture {
-    border-radius: 28px 28px 0 0;
     width: 100%;
     height: 295px;
-    background: url(../components/icons/background744.svg) no-repeat;
     margin-bottom: 24px;
+    border-radius: 28px 28px 0 0;
+    background: url(../components/icons/background744.svg) no-repeat;
     background-position-y: bottom;
     background-position-x: center;
   }
@@ -126,15 +126,15 @@
 @media (max-width: $max-width-phone) {
   .reg__inner {
     min-height: 640px;
-    border-radius: 0;
     margin: 0;
+    border-radius: 0;
   }
 
   .reg__picture {
-    border-radius: 0;
     height: 143px;
-    background: url(../components/icons/background360.svg) no-repeat;
     margin-bottom: 7px;
+    border-radius: 0;
+    background: url(../components/icons/background360.svg) no-repeat;
     background-position-x: center;
   }
 

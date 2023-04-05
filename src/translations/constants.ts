@@ -1,7 +1,7 @@
 import {messages_en} from "./en.js";
 import {messages_ru} from "./ru.js";
 
-const LANGUAGES = [
+export const LANGUAGES = [
   {
     code: "en",
     messages: messages_en,
@@ -14,5 +14,3 @@ const LANGUAGES = [
     label: "Русский",
   },
 ];
-
-export default LANGUAGES;

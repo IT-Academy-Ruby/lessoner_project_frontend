@@ -1,6 +1,6 @@
-import "./Header.scss";
+import "./avatar.scss";
 import {FormattedMessage} from "react-intl";
-import Language from "./Language";
+import {Language} from "./Language";
 import {Link} from "react-router-dom";
 import Logout from "../../icons/logOut.svg";
 import {useAppSelector} from "../../../store/hooks";
@@ -14,17 +14,16 @@ type AvatarProps = {
   onSignOut: VoidFunction;
 };
 
-const Avatar = ({
+export const Avatar = ({
   onLanguageSwitch, language, setLanguage, onSignOut
 }: AvatarProps) => {
   const [isChecked, setIsChecked] = useState(false);
-  const nameDecode = useAppSelector(state => state.userDecodedName.session.name);
-  const userAvatar = useAppSelector(state => state.dataUser.user.avatar_url);
+  const user = useAppSelector(state => state.login.user);
 
   const closeMenu = (): void => setIsChecked(false);
   const ref = useOnclickOutside(() => closeMenu());
 
-  const initialName = nameDecode.split(" ")
+  const initialName = user.name.split(" ")
     .map(word => word[0]).slice(0, 2).join("").toLocaleUpperCase();
 
   const signOut = () => {
@@ -35,8 +34,8 @@ const Avatar = ({
   return (
     <>
       <label htmlFor="input-avatar" className="avatar">
-        {!userAvatar && <p className="first-letters">{initialName}</p>}
-        {userAvatar && <img src={userAvatar} alt="avatar" className="user-avatar" />}
+        {!user.avatar_url && <p className="first-letters">{initialName}</p>}
+        {user.avatar_url && <img src={user.avatar_url} alt="avatar" className="user-avatar" />}
       </label>
       <div className="clickoutside" ref={ref}>
         <input
@@ -73,5 +72,3 @@ const Avatar = ({
     </>
   );
 };
-
-export default Avatar;

@@ -3,7 +3,6 @@ import "./input.scss";
 import "./phoneNumber.scss";
 import {FieldInputProps, FormikProps} from "formik";
 import {FormattedMessage} from "react-intl";
-import Magmagnifying from "./icons/magnifying_glass.svg";
 import PhoneInput from "react-phone-input-2";
 import React from "react";
 
@@ -26,7 +25,7 @@ type countryType = {
   name: string
 }
 
-const PhoneNumber = ({
+export const PhoneNumber = ({
   field, error, form, setIsError, phoneNumber, setPhoneNumber
 }: PhoneNumberProps) => {
 
@@ -50,7 +49,6 @@ const PhoneNumber = ({
   return (
     <label className="input-label">
       <FormattedMessage id="app.phoneNumber.label"/>
-      <img src={Magmagnifying} alt="" className="magmagnifying_glas"/>
       <PhoneInput
         onChange={checkNumber}
         excludeCountries={deleteCountry}
@@ -58,11 +56,10 @@ const PhoneNumber = ({
         placeholder=""
         enableLongNumbers={true}
         inputProps={{style: error ? {border: "1px solid red"} : null}}
+        enableSearch={true}
       />
-      <div className="symbol">&#10095;</div>
+
       {error && <span className="error-message">{error}</span>}
     </label>
   );
 };
-
-export default PhoneNumber;

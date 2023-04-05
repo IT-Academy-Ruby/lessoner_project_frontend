@@ -18,8 +18,8 @@
   display: flex;
   width: 100%;
   margin: 0 0 24px 0;
-  font-family: $font;
   color: var(--textUserPageFields);
+  font-family: $font;
   font-weight: 600;
   line-height: 130%;
 }
@@ -33,21 +33,28 @@
 
 .avatar-user-page {
   position: relative;
-  width: 104px;
-  height: 104px;
-  border-radius: 50%;
   display: flex;
   flex: none;
   justify-content: center;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
 }
 
 .user-avatar {
-  border-radius: 50px;
   width: 100%;
+  border-radius: 50px;
+}
+
+.size-letters {
+  font-size: 40px;
 }
 
 .upload-field {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   bottom: 0;
   right: 8px;
   width: 24px;
@@ -57,14 +64,18 @@
   cursor: pointer;
 }
 
+.upload-avatar {
+  width: 11px;
+}
+
 .inform-avatar {
   max-width: 530px;
+  margin-left: 24px;
+  color: $greyColor;
   font-family: $font;
-  color: #757575;
   font-feature-settings: "liga" off;
   font-size: 12px;
   line-height: 150%;
-  margin-left: 24px;
   text-align: left;
 }
 
@@ -82,55 +93,53 @@
 }
 
 .label-user-page {
-  font-family: $font;
+  margin: 0;
   color: var(--textUserPageFields);
+  font-family: $font;
   font-weight: 600;
   line-height: 150%;
-  margin: 0;
 }
 
 .user-page-data {
-  font-family: $font;
-  color: var(--textUserPageFields);
   margin: 14px 0 10px 0;
+  color: var(--textUserPageFields);
+  font-family: $font;
 }
 
 .line-user-page {
-  color: $greyDefault;
-  size: 1px;
   width: 100%;
+  size: 1px;
   margin: 20px 0;
+  color: $greyDefault;
 }
 
 .wrapper-form-user-page {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .form-user-page {
   position: relative;
   width: 469px;
-  background: var(--bgPhoneNumberCountryList);
-  border-radius: 8px;
   padding: 48px;
-  box-sizing: border-box;
   margin: 22px;
+  border-radius: 8px;
+  background: var(--bgPhoneNumberCountryList);
+  box-sizing: border-box;
 }
 
 .close-modal-form {
   position: absolute;
+  top: 0;
+  right: 0;
   width: 24px;
   height: 24px;
   margin: 20px;
-  top: 0;
-  right: 0;
   cursor: pointer;
 }
 
@@ -161,15 +170,17 @@
 
 .form-title-user-page {
   margin: 0 0 25px 0;
+  color: var(--titlesFirstRegistrForm);
   font-family: $font;
   font-weight: 600;
   font-size: 32px;
   line-height: 130%;
-  color: var(--titlesFirstRegistrForm);
 }
+
 .inVisible {
   display: none;
 }
+
 @media (max-width: $max-width-phone) {
   .close-modal-form {
     margin: 8px;

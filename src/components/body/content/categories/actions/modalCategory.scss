@@ -1,10 +1,10 @@
 @import "../../../../../constants.module.scss";
 
 .wrapper-modal {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -17,20 +17,20 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: var(--bgFocusButtonSecondaryColor);
   max-width: 379px;
   width: 100%;
-  box-shadow: 0 0 4px $greySearchColor;
   border-radius: 8px;
+  background: var(--bgFocusButtonSecondaryColor);
+  box-shadow: 0 0 4px $greySearchColor;
 }
 
 .field-close {
+  position: relative;
   width: 24px;
   height: 24px;
-  margin-left: auto;
-  position: relative;
   top: 24px;
   right: 24px;
+  margin-left: auto;
   cursor: pointer;
 }
 

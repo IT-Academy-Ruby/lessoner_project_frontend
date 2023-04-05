@@ -1,13 +1,13 @@
 @import "../../../../../constants.module.scss";
 
 .add-category {
-  font-family: $font;
+  display: flex;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  font-family: $font;
 }
 
 .arrow-back {
@@ -17,37 +17,37 @@
 
 .button-back {
   position: absolute;
-  margin: 16px 24px;
   left: 0;
   top: 0;
-  text-decoration: none;
-  cursor: pointer;
+  margin: 16px 24px;
   color: $greySearchColor;
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .form-category {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   max-width: 753px;
   width: 100%;
   margin: 16px 16px 80px 16px;
-  flex-direction: column;
-  align-items: flex-start;
-  background: var(--bgFirstRegistrForm);
   padding: 36px;
-  box-shadow: var(--bgNavBarShadow);
+  background: var(--bgFirstRegistrForm);
   font-size: 14px;
+  box-shadow: var(--bgNavBarShadow);
 }
 
 .add-title {
+  margin-bottom: 32px;
+  margin-top: 0;
   color: var(--textCategoriesAdmin);
   font-weight: 700;
   line-height: 130%;
   font-size: 32px;
-  margin-bottom: 32px;
-  margin-top: 0;
 }
 
 .category-buttons {
@@ -58,8 +58,8 @@
 }
 
 .button-cancel {
-  margin-right: 8px;
   width: 154px;
+  margin-right: 8px;
 }
 
 .button-save {
@@ -74,17 +74,17 @@
 }
 
 .category-label {
-  font-family: $font;
-  color: var(--textCategoriesAdmin);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 150%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   margin-bottom: 32px;
+  color: var(--textCategoriesAdmin);
+  font-family: $font;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
 }
 
 .category-textarea {
@@ -98,38 +98,38 @@
   border: 1px solid $greySearchColor;
   border-radius: 8px;
   box-sizing: border-box;
-  font-family: $font;
-  color: var(--textCategoriesAdmin);
   background-color: var(--bgAddNewCategoryInput);
+  color: var(--textCategoriesAdmin);
+  font-family: $font;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
 
   &:active {
-    outline: none;
     border: 1px solid $blueLightColor;
+    outline: none;
   }
 
   &:focus {
-    outline: none;
     border: 1px solid $blueLightColor;
+    outline: none;
   }
 
   &:hover {
-    outline: none;
     border: 1px solid var(--bgAddNewCategoryBorderHover);
+    outline: none;
   }
 
   &::placeholder {
-    font-family: $font;
     color: var(--addNewCategoryPlaceholder);
+    font-family: $font;
   }
 }
 
 .message {
-  bottom: -22px;
-  text-align: left;
   display: block;
+  text-align: left;
+  bottom: -22px;
   margin-top: 0.5em;
   font-family: $font;
   font-weight: 400;
@@ -145,12 +145,11 @@
 .field-length {
   align-self: flex-end;
   margin: 0 10px 5px -44px;
+  color: $greySearchColor;
   font-family: $font;
-  font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 18px;
-  color: $greySearchColor;
 
   &-description {
     @extend .field-length;
@@ -171,8 +170,8 @@
   position: absolute;
   bottom: 7px;
   right: 14px;
-  font-family: $font;
   color: $greySearchColor;
+  font-family: $font;
   font-weight: 700;
   font-size: 12px;
   line-height: 150%;
@@ -186,15 +185,16 @@
   max-width: 280px;
   width: 100%;
   background: $white;
+  border-radius: 8px;
   box-shadow: 0 0 4px $greySearchColor;
 }
 
 .field-successful {
   display: flex;
   justify-content: space-between;
-  margin: 16px;
   text-align: left;
-  font-family: 'ApercuPro';
+  margin: 16px;
+  font-family: $font;
   font-weight: 600;
   font-size: 14px;
   line-height: 150%;
@@ -205,10 +205,10 @@
 }
 
 .field-close-successful {
-  margin-left: 12px;
+  text-align: end;
   width: 24px;
   height: 24px;
-  text-align: end;
+  margin-left: 12px;
 }
 
 @media (max-width: 1024px) {
@@ -217,15 +217,15 @@
   }
 
   .form-category {
-    width: 554px;
-    border-radius: 8px;
     padding: 28px;
     margin-top: 57px;
+    width: 554px;
+    border-radius: 8px;
   }
 
   .button-back {
-    margin: 0 0 0 22px;
     top: -36px;
+    margin: 0 0 0 22px;
   }
 }
 
@@ -243,8 +243,8 @@
 @media (max-width: $max-width-phone) {
   .add-title {
     display: flex;
-    font-size: 24px;
     align-self: center;
+    font-size: 24px;
   }
 
   .form-category {
@@ -253,8 +253,8 @@
   }
 
   .button-back {
-    margin: 0 0 0 75px;
     top: 20px;
+    margin: 0 0 0 75px;
   }
 
   .button-back-text {

@@ -1,12 +1,9 @@
 import "./App.scss";
-import { Route, Routes } from "react-router-dom";
 import { createContext, useState } from "react";
 import Body from "./components/body/Body";
 import { IntlProvider } from "react-intl";
 import { Snowfall } from "./components/Snowfall";
-import TranslationHelpers from "./translations/translationHelpers";
-import VideoViewPage from "./pages/videoViewPage/videoViewPage";
-
+import {TranslationHelpers} from "./translations/translationHelpers";
 type SetBooleanInnerFunction = (value: boolean) => boolean;
 
 export const snowContext = createContext<{
@@ -38,9 +35,6 @@ function App(): JSX.Element {
           }}
         >
           <Body onLanguageSwitch={setLanguageCode} />
-          <Routes>
-            <Route path="/lessons/:id" element={<VideoViewPage />} />
-          </Routes>
         </div>
       </snowContext.Provider>
     </IntlProvider>

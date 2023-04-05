@@ -3,7 +3,7 @@ import {FormattedMessage, useIntl} from "react-intl";
 import {
   useEffect, useRef, useState
 } from "react";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import Cross from "../../../../icons/video_cross.svg";
 import Download from "../../../../icons/download.svg";
 import Select from "../../../../icons/select_video.svg";
@@ -23,7 +23,7 @@ type VideoLessonProps = {
   isDisabledSelectFile: boolean;
 }
 
-const VideoLesson = ({
+export const VideoLesson = ({
   selectVideo, setSelectVideo, errorVideo, setErrorVideo, isDisabledSelectFile
 }: VideoLessonProps) => {
   const intl = useIntl();
@@ -127,5 +127,3 @@ const VideoLesson = ({
     </div>
   );
 };
-
-export default VideoLesson;

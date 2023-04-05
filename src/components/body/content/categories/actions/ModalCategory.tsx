@@ -1,5 +1,5 @@
 import "./modalCategory.scss";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import {useIntl} from "react-intl";
 
 type ModalCategoryProps = {
@@ -8,7 +8,7 @@ type ModalCategoryProps = {
   title: string;
 }
 
-const ModalCategory = ({
+export const ModalCategory = ({
   setIsClose, onClickYes, title
 }: ModalCategoryProps) => {
   const intl = useIntl();
@@ -37,4 +37,3 @@ const ModalCategory = ({
     </div>
   );
 };
-export default ModalCategory;

@@ -1,14 +1,14 @@
+import "../userPage.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {Button} from "../../../../Button";
 import {USERNAME} from "../../../../../constants";
-import UserName from "../../../../UserName";
+import {UserName} from "../../../../UserName";
 import {UserRegex} from "../../../../../validationRules";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
-import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   name: string;
@@ -23,13 +23,12 @@ type NameFormProps = {
   handleClose: () => void;
 }
 
-const NameForm = ({userName, handleClose}: NameFormProps) => {
+export const NameForm = ({userName, handleClose}: NameFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
+  const isUser = useAppSelector((state) => state.login.isLogged);
 
   const initialValues: FormValues = {name: ""};
-
   return (
     <Formik
       initialValues={initialValues}
@@ -46,13 +45,10 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
             {id: "app.YourselfPage.errorSmallName"}, {minSymbol: USERNAME.minLength});
         }
         if (values.name.length > USERNAME.maxLength) {
-          errors.name = intl.formatMessage(
-            {id: "app.YourselfPage.errorBigName"}, {maxSymbol: USERNAME.maxLength});
+          errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
         }
-        if (values.name && !errors.name) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
+        if (isUser) {
+          errors.name = intl.formatMessage({id: "app.userName.nameExists"});
         }
 
         return errors;
@@ -78,14 +74,11 @@ const NameForm = ({userName, handleClose}: NameFormProps) => {
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.button.save"})}
+              buttonText={intl.formatMessage({id: "app.userPage.form.button.username"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}
     </Formik>
   );
 };
-
-export default NameForm;

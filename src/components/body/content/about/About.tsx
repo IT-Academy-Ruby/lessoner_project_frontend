@@ -1,7 +1,7 @@
 import "./about.scss";
 import { FormattedMessage, useIntl } from "react-intl";
 import { THEME, useTheme } from "../../../../utils/useTheme";
-import Button from "../../../Button";
+import {Button} from "../../../Button";
 import { ReactComponent as Facebook } from "../../../icons/navbar/facebook.svg";
 import { ReactComponent as Instagram } from "../../../icons/navbar/instagram.svg";
 import { ReactComponent as Linkedin } from "../../../icons/navbar/linkedin.svg";
@@ -24,7 +24,7 @@ type tabProperties = {
   key: string
 }
 
-const About = () => {
+export const About = () => {
   const theme = useTheme();
   const imageLogo = theme === THEME.DARK ? aboutUsDark : aboutUsLight;
   const imageStars = theme === THEME.DARK ? starsDark : starsLight;
@@ -192,4 +192,3 @@ const About = () => {
     </div>
   );
 };
-export default About;

@@ -3,13 +3,13 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {clearError, sendPasswordResetLink} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import Button from "../components/Button";
-import Email from "../components/Email";
-import Loader from "../components/Loader";
+import {useEffect, useState} from "react";
+import {Button} from "../components/Button";
+import {Email} from "../components/Email";
 import {emailInvalidationRules} from "../validationRules";
-import {sendPasswordResetLink} from "../store/loginName/loginSlice";
-import {useNavigate} from "react-router-dom";
+import {uploadModalData} from "../store/modalSlice/modalSlice";
 
 interface FormValues {
   email: string;
@@ -19,16 +19,37 @@ interface FormErrors {
   [key: string]: string;
 }
 
-const ResetPasswordPage = () => {
+export const ResetPasswordPage = () => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const loading = useAppSelector(state => state.login.loading);
-  const isEmail = useAppSelector(state => state.login.isEmail);
+  const [isEmail, setIsEmail] = useState(false);
+  const checkEmail = useAppSelector(state => state.login.checkEmail);
+
+  useEffect(() => {
+    if (checkEmail.error) {
+      dispatch(uploadModalData({
+        text: checkEmail.error,
+        typeModal: true,
+        isOpen: true
+      }
+      ));
+      setIsEmail(true);
+      dispatch(clearError());
+    }
+    if (checkEmail.alert) {
+      dispatch(uploadModalData({
+        text: checkEmail.alert,
+        typeModal: undefined,
+        isOpen: true,
+        urlNavigate: "/user/sign_in/reset_password/reset",
+      }
+      ));
+      dispatch(clearError());
+    }
+  }, [dispatch, checkEmail]);
 
   return (
     <div className="log-content">
-      {loading && <Loader/>}
       <Formik
         initialValues={{email: ""}}
         validate={async (values: FormValues) => {
@@ -37,14 +58,10 @@ const ResetPasswordPage = () => {
             errors.email =
               intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
           }
-          if (!isEmail && isEmail !== "") {
-            errors.email = intl.formatMessage({id: "app.email.notFound"});
-          }
           return errors;
         }}
-        onSubmit={(values: { email: string }) => {
-          dispatch(sendPasswordResetLink(values.email));
-          navigate("/user/sign_in/reset_password/reset");
+        onSubmit={async (values: { email: string }) => {
+          await dispatch(sendPasswordResetLink(values.email));
         }}>
         {({errors, touched}) => {
           return (
@@ -59,6 +76,8 @@ const ResetPasswordPage = () => {
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
+                isEmail={isEmail}
+                textError={intl.formatMessage({id: "app.email.notFound"})}
               />
               <Button
                 buttonType="submit"
@@ -72,5 +91,3 @@ const ResetPasswordPage = () => {
     </div>
   );
 };
-
-export default ResetPasswordPage;

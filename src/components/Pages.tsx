@@ -1,16 +1,16 @@
 import "./pages.scss";
 import {FC,useState} from "react";
-import CodePage from "../pages/CodePage";
-import ConfirmReg from "../pages/ConfirmReg";
-import FirstRegistrationForm from "../pages/FirstRegistrationForm";
+import {CodePage} from "../pages/CodePage";
+import {ConfirmReg} from "../pages/ConfirmReg";
+import {FirstRegistrationForm} from "../pages/FirstRegistrationForm";
 import {Link} from "react-router-dom";
-import Loader from "../components/Loader";
-import LoginPage from "../pages/LoginPage";
+import {Loader} from "../components/Loader";
+import {LoginPage} from "../pages/LoginPage";
 import LogoRegistration from "./icons/logo1440.svg";
-import PhoneNumberPage from "../pages/PhoneNumberPage";
-import ResetPasswordPage from "../pages/ResetPasswordPage";
-import SetNewPasswordPage from "../pages/SetNewPasswordPage";
-import YourselfPage from "../pages/YourselfPage";
+import {PhoneNumberPage} from "../pages/PhoneNumberPage";
+import {ResetPasswordPage} from "../pages/ResetPasswordPage";
+import {SetNewPasswordPage} from "../pages/SetNewPasswordPage";
+import {YourselfPage} from "../pages/YourselfPage";
 import {useAppSelector} from "../store/hooks";
 
 interface PagesProps {
@@ -18,7 +18,7 @@ interface PagesProps {
   registration?: boolean;
 }
 
-const Pages: FC<PagesProps> = ({pageType, registration}) => {
+export const Pages: FC<PagesProps> = ({pageType, registration}) => {
   const [userPassword, setUserPassword] = useState("");
   const [userEmail, setUserEmail] = useState("");
 
@@ -69,4 +69,3 @@ const Pages: FC<PagesProps> = ({pageType, registration}) => {
     </div>
   );
 };
-export default Pages;

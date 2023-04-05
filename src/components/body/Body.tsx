@@ -1,18 +1,18 @@
-import "./Body.scss";
+import "./body.scss";
 import {
   useContext, useEffect, useState
 } from "react";
 import {useLocation, useNavigate} from "react-router-dom";
-import Footer from "./footer/Footer";
-import Header from "./header/Header";
-import Main from "./content/Main";
-import Menu from "./menu/Menu";
-import NavbarStudyStudio from "./navigation/NavbarStudyStudio";
+import {Content} from "./content/Main";
+import {Footer} from "./footer/Footer";
+import {Header} from "./header/Header";
+import {Menu} from "./menu/Menu";
+import {NavbarStudyStudio} from "./navigation/NavbarStudyStudio";
 import { RootState } from "../../store/index";
 import {buildMainSidebarConfig} from "./navigation/mainSidebarHelper";
 import {connect} from "react-redux";
 import jwt_decode from "jwt-decode";
-import {nameDecodedUser} from "../../store/header/decodeJwtSlice";
+import {resetDecodeUser} from "../../store/header/decodeJwtSlice";
 import {resetUserData} from "../../store/loginName/loginSlice";
 import { snowContext } from "../../App";
 import {useAppDispatch} from "../../store/hooks";
@@ -44,8 +44,8 @@ const Body = (props: BodyProps) => {
     } else {
       localStorage.removeItem("JWT");
     }
-    dispatch(nameDecodedUser());
     dispatch(resetUserData());
+    dispatch(resetDecodeUser());
     setIsAthorized(false);
     navigate("/");
   };
@@ -83,7 +83,7 @@ const Body = (props: BodyProps) => {
   const mainSidebarConfig = buildMainSidebarConfig(sidebarStatus, callbacks, location.pathname);
 
   return (
-    <div className="body-page">
+    <div className="body">
       <Menu setIsMenuActive={setIsMenuActive}
         isMenuActive={isMenuActive}
       />
@@ -92,7 +92,7 @@ const Body = (props: BodyProps) => {
         onSignOut={handleSignOut}
       />
       <NavbarStudyStudio config={mainSidebarConfig} isMenuActive={isMenuActive}/>
-      <Main />
+      <Content />
       <Footer />
     </div>
   );

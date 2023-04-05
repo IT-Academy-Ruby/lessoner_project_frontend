@@ -5,7 +5,7 @@ type MenuProps = {
   setIsMenuActive: (boolean: boolean) => void;
   isMenuActive: boolean;
 }
-const Menu = ({setIsMenuActive, isMenuActive}: MenuProps) => {
+export const Menu = ({setIsMenuActive, isMenuActive}: MenuProps) => {
 
   return (
     <div
@@ -18,5 +18,3 @@ const Menu = ({setIsMenuActive, isMenuActive}: MenuProps) => {
     </div>
   );
 };
-
-export default Menu;

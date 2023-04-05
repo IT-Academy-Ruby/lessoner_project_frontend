@@ -12,9 +12,9 @@
   border-radius: 28px;
   border: none;
   background: $blueLightColor;
-  font-family: $font;
   color: $white;
   text-decoration: none;
+  font-family: $font;
   cursor: pointer;
   transition: .2s;
 
@@ -32,9 +32,9 @@
 
 .button__fs16-white,
 .button__fs16-red {
-  border: 1px solid $borderColor;
-  color: var(--iconsTextButtonColor);
   background: var(--bgButtonColor);
+  color: var(--iconsTextButtonColor);
+  border: 1px solid $borderColor;
   font-weight: 600;
 }
 
@@ -48,9 +48,9 @@
 }
 
 .disabled {
+  border: 1px solid $greySearchColor;
   background: none;
   color: $greySearchColor;
-  border: 1px solid $greySearchColor;
 }
 
 .btn__temporary {
@@ -61,32 +61,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 6px 36px;
   border: 1px solid var(--iconsTextButtonColor);
   border-radius: 28px;
+  background: var(--bgButtonColor);
+  color: var(--iconsTextButtonColor);
   font-family: $font;
   font-weight: 600;
-  font-size: 16px;
-  color: var(--iconsTextButtonColor);
-  padding: 6px 36px;
-  background: var(--bgButtonColor);
-  cursor: pointer;
+  font-size: 16px; cursor: pointer;
 
   &:disabled {
-    background: var(--bgButtonColor);
-    opacity: 0.5;
-    border-radius: 28px;
     border: none;
+    border-radius: 28px;
+    background: var(--bgButtonColor);
     color: var(--shadowActiveButtonColor);
+    opacity: 0.5;
   }
 }
 
 .button-login-category {
   padding: 6px 36px;
-  font-family: $font;
-  background: $blueLightColor;
-  color: $white;
   border: none;
   border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
   font-weight: 600;
   font-size: 16px;
   box-sizing: content-box;
@@ -101,13 +100,13 @@
   padding: 10px 36px;
   margin-bottom: 28px;
   border-radius: 28px;
-  background: $blueLightColor;
   border: none;
+  background: $blueLightColor;
+  color: $white;
   font-family: $font;
   font-style: normal;
   font-weight: 300;
   font-size: 22px;
-  color: $white;
   cursor: pointer;
 
   &:active {
@@ -133,16 +132,15 @@
 }
 
 .button-login {
+  padding: 6px 26px;
+  margin-left: 12px;
   width: 100%;
-  font-size: 16px;
-  font-family: $font;
+  border: none;
   background: none;
   color: $blueLightColor;
-  border: none;
-  margin-left: 12px;
-  padding: 6px 26px;
+  font-size: 16px;
+  font-family: $font;
   cursor: pointer;
-  
 
   &:focus {
     border: 1px solid $greyDefault;
@@ -158,14 +156,14 @@
 }
 
 .button-register {
-  font-size: 16px;
-  font-family: $font;
-  background: #455FCE;
-  color: var(--bgButtonColor);
   padding: 6px 36px;
+  margin-left: 8px;
   border: none;
   border-radius: 28px;
-  margin-left: 8px;
+  background: $blueLightColor;
+  color: var(--bgButtonColor);
+  font-family: $font;
+  font-size: 16px;
   cursor: pointer;
 
   &:active {
@@ -178,28 +176,27 @@
 }
 
 .button {
+  align-self: center;
   margin-bottom: 28px;
-  font-family: $font;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  color: $blueLightColor;
+  padding: 0;
+  width: 95px;
   border: none;
   background: none;
-  width: 95px;
-  padding: 0;
-  align-self: center;
+  color: $blueLightColor;
+  font-family: $font;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .button-add-category {
   height: 32px;
   width: 187px;
-  font-family: $font;
-  background: $blueLightColor;
-  color: $white;
   border: none;
   border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-family: $font;
   font-weight: 600;
   font-size: 16px;
   box-sizing: content-box;
@@ -207,8 +204,8 @@
 }
 
 .button-delete {
-  color: $warningColor;
   border-color: $warningColor;
+  color: $warningColor;
   cursor: pointer;
 }
 
@@ -218,65 +215,80 @@
 }
 
 .button-about-team {
+  padding: 0px 24px;
+  min-height: 28px;
+  border: 1px solid var(--textThemeColor2);
+  border-radius: 28px;
+  background: none;
+  color: var(--textThemeColor2);
   font-family: $font;
-  font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  color: var(--textThemeColor2);
-  border: 1px solid var(--textThemeColor2);
-  background: none;
-  border-radius: 28px;
-  min-height: 28px;
-  padding: 0px 28px;
   text-align: center;
   line-height: 20px;
   cursor: pointer;
 
   &:focus {
-    color: var(--bgThemeColor1);
     background: var(--textThemeColor2);
+    color: var(--bgThemeColor1);
   }
 }
 
 .button-about-team-active {
-  color: var(--bgThemeColor1);
   background: var(--textThemeColor2);
+  color: var(--bgThemeColor1);
   cursor: pointer;
 }
 
 .button-about-cources {
   @extend .button-about-team;
-  color: var(--btnSignUpCourcesText);
   border: 1px solid var(--btnSignUpCourcesBorder);
+  color: var(--btnSignUpCourcesText);
   cursor: pointer;
 }
 
 .button-no {
   display: flex;
   align-items: center;
+  padding: 6px 36px;
   border: none;
   border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
   font-family: $font;
   font-weight: 600;
   font-size: 16px;
-  color: $white;
-  padding: 6px 36px;
-  background: $blueLightColor;
   cursor: pointer;
 
   &:disabled {
-    background: $white;
-    opacity: 0.5;
-    border-radius: 28px;
     border: none;
+    border-radius: 28px;
+    background: $white;
     color: $greySearchColor;
+    opacity: 0.5;
   }
+}
+
+.button-modal-response {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 202px;
+  height: 46px;
+  padding: 10px 32px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  font-family: $font;
+  font-weight: 600;
+  font-size: 22px;
+  color: $white;
 }
 
 @media (max-width: $max-width-phone) {
   .button__page {
-    font-size: 16px;
     margin-bottom: 14px;
+    font-size: 16px;
   }
 
   .button-add-category {

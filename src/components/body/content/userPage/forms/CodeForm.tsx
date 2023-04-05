@@ -1,14 +1,14 @@
+import "../userPage.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {editUserData, sendUserCode} from "../../../../../store/loginName/loginSlice";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import {CODE} from "../../../../../constants";
-import Code from "../../../../Code";
+import {Code} from "../../../../Code";
 import {CodeRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   code: string;
@@ -25,12 +25,11 @@ type CodeFormProps = {
   phoneNumber: string;
 }
 
-const CodeForm = ({
+export const CodeForm = ({
   handleClose, handleEdit, phoneNumber, userName
 }: CodeFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {code: ""};
 
@@ -44,12 +43,8 @@ const CodeForm = ({
           errors.code = intl.formatMessage({id: "app.code.invalidationRules"});
         }
         if (values.code.length < CODE.maxLength) {
-          errors.code += intl.formatMessage({id: "app.code.errorLength"});
-        }
-        if (values.code && !errors.code) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
+          errors.code +=
+            intl.formatMessage({id: "app.code.errorLength"}, {maxSymbol: CODE.maxLength});
         }
         return errors;
       }}
@@ -92,7 +87,6 @@ const CodeForm = ({
               buttonType="submit"
               buttonText={intl.formatMessage({id: "app.userPage.form.button.code"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}
@@ -100,5 +94,3 @@ const CodeForm = ({
 
   );
 };
-
-export default CodeForm;

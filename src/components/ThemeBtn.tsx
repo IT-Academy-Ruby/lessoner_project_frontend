@@ -1,8 +1,7 @@
-import "./ThemeBtn.scss";
 import { THEME, useTheme } from "../utils/useTheme";
 import useDarkMode from "use-dark-mode";
 
-const ThemeBtn = () => {
+export const ThemeBtn = () => {
   const darkMode = useDarkMode(true);
   const theme = useTheme();
   return (
@@ -11,4 +10,3 @@ const ThemeBtn = () => {
     </button>
   );
 };
-export default ThemeBtn;

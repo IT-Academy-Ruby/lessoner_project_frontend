@@ -1,12 +1,14 @@
+import "../addLesson.scss";
+
 import {DESCRIPTION_CATEGORY, THUMBNAIL_DATA} from "../../../../../constants";
 import {
   Field, Form, Formik
 } from "formik";
 import {useEffect, useState} from "react";
-import CategoryDescription from "../../categories/actions/CategoryDescription";
-import CategoryImage from "../../categories/actions/CategoryImage";
-import Checkbox from "../../../../Checkbox";
-import VideoCategory from "./VideoCategory";
+import {CategoryDescription} from "../../categories/actions/CategoryDescription";
+import {CategoryImage} from "../../categories/actions/CategoryImage";
+import {Checkbox} from "../../../../Checkbox";
+import {VideoCategory} from "./VideoCategory";
 import {descriptionCategoryRegex} from "../../../../../validationRules";
 import {useIntl} from "react-intl";
 
@@ -41,7 +43,7 @@ type StepTwoProp = {
   add: boolean;
 }
 
-const SecondStep = ({
+export const SecondStep = ({
   setVideoCategory, videoCategory, setVideoDescription, videoDescription,
   setSelectImage, selectImage, setIsDisabledStep2, editThubnail,
   setEditThubnail, lesson, add
@@ -72,8 +74,8 @@ const SecondStep = ({
     if (!add && (!videoDescription || (!selectImage.name && !editThubnail.name) || errorImage)) {
       setIsDisabledStep2(true);
     }
-  }, [add, videoCategory, videoDescription, editThubnail,
-    setIsDisabledStep2, selectImage.name, errorImage, isTerm]);
+  }, [setIsDisabledStep2, add, videoCategory, videoDescription,
+    editThubnail, selectImage.name, errorImage, isTerm]);
 
   return (<>
     {(add || lesson.description) && <Formik
@@ -152,5 +154,3 @@ const SecondStep = ({
   </>
   );
 };
-
-export default SecondStep;

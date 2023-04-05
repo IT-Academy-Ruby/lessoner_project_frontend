@@ -1,12 +1,13 @@
+import "../addLesson.scss";
 import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {RegExpVideo, nameCategoryRegex} from "../../../../../validationRules";
 import {useEffect, useState} from "react";
-import CategoryName from "../../categories/actions/CategoryName";
+import {CategoryName} from "../../categories/actions/CategoryName";
 import {VIDEO_DATA} from "../../../../../constants";
-import VideoLesson from "../lessonComponents/VideoLesson";
+import {VideoLesson} from "../lessonComponents/VideoLesson";
 
 interface FormValues {
   name: string;
@@ -43,7 +44,7 @@ type StepOneProp = {
   add: boolean;
 }
 
-const FirstStep = ({
+export const FirstStep = ({
   videoName, setVideoName, videoLink, setVideoLink, selectVideo,
   setSelectVideo, setIsDisabled, lesson, add
 }: StepOneProp) => {
@@ -118,7 +119,7 @@ const FirstStep = ({
           errors.link = "";
         }
         return (
-          <Form className="step-content">
+          <Form className="step__content">
             <Field
               name="name"
               label={intl.formatMessage({id: "app.Name"})}
@@ -154,5 +155,3 @@ const FirstStep = ({
   </>
   );
 };
-
-export default FirstStep;

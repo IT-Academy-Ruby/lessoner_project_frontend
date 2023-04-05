@@ -46,11 +46,10 @@ div > .react-datepicker {
 
 .react-datepicker__month-select, .react-datepicker__year-select {
   border: none;
-  font-family: "ApercuPro", sans-serif;
+  background-color: var(--bgCalendar);
+  color: var(--textCalendar); font-family: $font;
   font-weight: 600;
   font-size: 26px;
-  background-color: var(--bgCalendar);
-  color: var(--textCalendar);
 }
 
 .react-datepicker__header__dropdown {
@@ -66,11 +65,11 @@ div > .react-datepicker {
 .react-datepicker__month {
   display: flex;
   flex-direction: column;
-  height: 236px;
   justify-content: space-between;
-  border-top: 1px solid #D1D1D1;
+  height: 236px;
   padding-top: 10px;
   padding-bottom: 22px;
+  border-top: 1px solid $greyDefault;
 }
 
 .react-datepicker__week, .react-datepicker__day-names {
@@ -84,12 +83,12 @@ div > .react-datepicker {
 }
 
 .react-datepicker__day {
-  color: var(--textCalendar);
-  width: 32px;
-  height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--textCalendar);
 
   &:hover {
     border-radius: 50px;

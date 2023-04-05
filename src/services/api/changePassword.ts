@@ -1,4 +1,4 @@
-const changePassword = async (token: string, password: string): Promise<string> => {
+export const changePassword = async (token: string, password: string): Promise<string> => {
   const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/password/reset`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -11,5 +11,3 @@ const changePassword = async (token: string, password: string): Promise<string> 
   const data = await res.json();
   return data.status;
 };
-
-export { changePassword };

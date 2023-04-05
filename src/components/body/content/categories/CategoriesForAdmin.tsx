@@ -2,14 +2,13 @@ import "./categories.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../../../Button";
-import CategoriesAdmin from "./CategoriesAdmin";
-import {getCategory} from "../../../../store/categorySlice/categorySlice";
-import getWindowDimensions from "../../../../helpers/getWindowDimensions";
+import {Button} from "../../../Button";
+import {CategoriesAdmin} from "./CategoriesAdmin";
+import {getWindowDimensions} from "../../../../helpers/getWindowDimensions";
 import styles from "../../../../constants.module.scss";
 import {useNavigate} from "react-router-dom";
 
-const CategoriesForAdmin = () => {
+export const CategoriesForAdmin = () => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -17,10 +16,10 @@ const CategoriesForAdmin = () => {
   const admin = useAppSelector(state => state.userDecodedName.session.admin);
 
   useEffect(() => {
-    if (admin) {
-      dispatch(getCategory());
+    if (!sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {
+      navigate("/user/sign_in");
     }
-  }, [admin, dispatch]);
+  }, [navigate, admin, dispatch]);
 
   const resizeHanlder = () => {
     const pageSize = getWindowDimensions();
@@ -95,4 +94,3 @@ const CategoriesForAdmin = () => {
     </div>
   );
 };
-export default CategoriesForAdmin;

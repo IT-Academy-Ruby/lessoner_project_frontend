@@ -1,0 +1,6 @@
+.lessons{
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(317px, 317px));
+  grid-gap: 16px;
+}

@@ -5,12 +5,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 8px 5px;
-  box-sizing: content-box;
   width: 190px;
   height: 218px;
-  background: var(--bgTeamMemberCard);
+  padding: 12px 8px 5px;
   border-radius: 8px;
+  background: var(--bgTeamMemberCard);
+  box-sizing: content-box;
 
   &:hover {
     background: #455FCE;
@@ -63,12 +63,12 @@
   a {
     display: block;
     position: absolute;
-    width: 35px;
-    height: 35px;
-    background-color: $white;
-    border-radius: 32px;
     top: 55px;
     left: 55px;
+    width: 35px;
+    height: 35px;
+    border-radius: 32px;
+    background-color: $white;
     z-index: 5;
     &:hover svg {
         fill: $black;
@@ -76,13 +76,13 @@
   }
 
   svg {
+    position: absolute;
+    top: 9px;
+    left: 9px;
     width: 17px;
     height: 16px;
     fill: $dark8;
-    position: absolute;
     z-index: 10;
-    top: 9px;
-    left: 9px;
 
     &:hover {
       fill: $black;
@@ -101,6 +101,7 @@
   align-items: center;
   gap: 4px;
   height: 18px;
+  padding: 4px 0;
   color: $dark8;
   font-family: $font;
   font-size: 12px;
@@ -108,7 +109,6 @@
   line-height: 18px;
   letter-spacing: 0em;
   text-align: center;
-  padding: 4px 0;
 
   svg {
     width: 12px;
@@ -121,11 +121,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 13px;
   font-family: $font;
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
-  padding-bottom: 13px;
 
   &:hover {
     color: $white;

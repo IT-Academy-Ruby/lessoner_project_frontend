@@ -1,14 +1,14 @@
+import "../userPage.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import {PASSWORD} from "../../../../../constants";
-import PasswordAndConfirm from "../../../../PasswordAndConfirm";
+import {PasswordAndConfirm} from "../../../../PasswordAndConfirm";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   current_password: string;
@@ -25,10 +25,9 @@ type PasswordFormProps = {
   handleClose: () => void;
 }
 
-const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
+export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {
     current_password: "",
@@ -60,21 +59,17 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
             intl.formatMessage(
               {id: "app.firstRegistrationForm.passwordConfrim"});
         }
-        if (values.password && !errors.password && values.confirmPassword
-          && !errors.confirmPassword) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
-        }
 
         return errors;
       }}
 
-      onSubmit = {(values) => {
-        const items = {name: userName, object:
-          {password: values.password, current_password: values.current_password}};
+      onSubmit={(values) => {
+        const items = {name: userName,
+          object: {password: values.password, current_password: values.current_password}};
         dispatch(editUserData(items));
-        handleClose();
+        values.current_password = "";
+        values.password = "";
+        values.confirmPassword = "";
       }}>
       {({errors, touched}) => {
         return (
@@ -83,7 +78,7 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.password" />
+              <FormattedMessage id="app.userPage.form.password"/>
             </h2>
             <Field
               name="current_password"
@@ -110,14 +105,11 @@ const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.button.save"})}
+              buttonText={intl.formatMessage({id: "app.userPage.form.button.password"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}
     </Formik>
   );
 };
-
-export default PasswordForm;

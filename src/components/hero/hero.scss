@@ -4,46 +4,46 @@ $imageHeight: 340px;
 $imageWidth: 429px;
 
 .hero {
-    display: flex;
-    height: 396px;
-    justify-content: center;
-    align-items: center;
-    font-family: $font;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 28px;
+  font-family: $font;
 }
 
 .hero__body {
-    text-align: left;
+  text-align: left;
 }
 
 .hero__title {
-    font-size: 60px;
-    font-weight: bold;
-    margin: 0;
+  margin: 0;
+  font-size: 60px;
+  font-weight: bold;
 
-    & span {
-        color: $blueLightColor;
-        font-size: inherit;
-    }
+  & span {
+    color: $blueLightColor;
+    font-size: inherit;
+  }
 }
 
 .hero__subtitle {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .hero__image,
 .hero__image img {
-    height: $imageHeight;
-    width: $imageWidth;
+  height: $imageHeight;
+  width: $imageWidth;
 }
 
 .hero__button {
-    height: 40px;
-    font-size: 16px;
-    font-family: $font;
-    background: $blueLightColor;
-    color: $white;
-    padding: 6px 92px;
-    border: none;
-    border-radius: 28px;
-    cursor: pointer;
+  height: 40px;
+  padding: 6px 92px;
+  border: none;
+  border-radius: 28px;
+  background: $blueLightColor;
+  color: $white;
+  font-size: 16px;
+  font-family: $font;
+  cursor: pointer;
 }

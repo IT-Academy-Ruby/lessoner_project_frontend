@@ -1,13 +1,13 @@
+import "../userPage.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
-import Email from "../../../../Email";
+import {Button} from "../../../../Button";
+import {Email} from "../../../../Email";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {emailInvalidationRules} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 interface FormValues {
   email: string;
@@ -24,13 +24,11 @@ type EmailFormProps = {
   handleEdit: (title: string) => void;
 }
 
-const EmailForm = ({
-  userName, handleClose, setEmail, handleEdit
+export const EmailForm = ({
+  userName, handleClose, setEmail
 }: EmailFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
-  const [isError, setIsError] = useState(false);
 
   const initialValues: FormValues = {email: ""};
 
@@ -44,34 +42,22 @@ const EmailForm = ({
           errors.email =
             intl.formatMessage({id: "app.firstRegistrationForm.invalidationRules"});
         }
-        if (values.email && !errors.email) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
-        }
         return errors;
       }}
 
       onSubmit={(values) => {
         const items = {name: userName, object: {email: values.email}};
         setEmail(values.email);
-        dispatch(editUserData(items)).then((error) => {
-          if (!error.payload) {
-            setIsError(true);
-          } else {
-            setIsError(false);
-            handleEdit("infEmail");
-          }
-        });
+        dispatch(editUserData(items));
       }}>
+
       {({errors, touched}) => {
         return (
           <Form className="form-user-page">
             <div
               className="close-modal-form"
-              onClick={() =>{
+              onClick={() => {
                 handleClose();
-                setIsError(false);
               }}>
               <span className="close-form"></span>
             </div>
@@ -81,20 +67,16 @@ const EmailForm = ({
             <Field
               name="email"
               component={Email}
-              error={isError ? intl.formatMessage({id: "app.errorRequest"}) : isError ||
-              touched.email ? errors.email : undefined}
+              error={touched.email ? errors.email : undefined}
               needEmail={true}
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.button.save"})}
+              buttonText={intl.formatMessage({id: "app.userPage.form.button.email"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}
     </Formik>
   );
 };
-
-export default EmailForm;

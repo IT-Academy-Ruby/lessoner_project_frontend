@@ -1,4 +1,4 @@
-function buildVideoSrc (src: string, previewImg?: string): Plyr.SourceInfo | null {
+export const buildVideoSrc = (src: string, previewImg?: string): Plyr.SourceInfo | null => {
   return {
     type: "video" as const,
     title: "Elephants",
@@ -26,18 +26,5 @@ function buildVideoSrc (src: string, previewImg?: string): Plyr.SourceInfo | nul
         default: true,
       },
     ],
-    // Preview example
-    // previewThumbnails: {enabled: true,
-    //   src: [
-    //     "https://cdn.plyr.io/static/demo/thumbs/100p.vtt",
-    //     "https://cdn.plyr.io/static/demo/thumbs/240p.vtt",
-    //   ],},
   };
-}
-
-function isYoutubeSource (src: string): boolean {
-  return src.toLowerCase().includes("/embed/");
-}
-
-export default {buildVideoSrc,
-  isYoutubeSource,};
+};

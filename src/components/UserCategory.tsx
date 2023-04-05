@@ -1,6 +1,6 @@
-import "./UserCategory.scss";
+import "./userCategory.scss";
 import React from "react";
-import TranslationHelpers from "../translations/translationHelpers";
+import {TranslationHelpers} from "../translations/translationHelpers";
 import classNames from "classnames";
 import {useIntl} from "react-intl";
 
@@ -64,7 +64,7 @@ type UserCategoryProps = {
   description: string;
 };
 
-const UserCategory: React.FC<UserCategoryProps> = (props) => {
+export const UserCategory: React.FC<UserCategoryProps> = (props) => {
   const [isHovered, setIsHovered] = React.useState(false);
   const userCardClassName = classNames({"user_card": true,});
   const titleClassName = classNames({"user_card-title": true,
@@ -83,5 +83,3 @@ const UserCategory: React.FC<UserCategoryProps> = (props) => {
     </div>
   );
 };
-
-export default UserCategory;

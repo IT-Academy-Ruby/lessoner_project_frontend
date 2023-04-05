@@ -5,19 +5,19 @@ import {
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
 import {Link, useNavigate} from "react-router-dom";
+import {clearIsEmail, getEmail} from "../store/loginName/loginSlice";
 import {emailInvalidationRules, passwordRegex} from "../validationRules";
-import {useEffect, useState} from "react";
-import Button from "../components/Button";
-import Checkbox from "../components/Checkbox";
-import Email from "../components/Email";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
+import {Button} from "../components/Button";
+import {Checkbox} from "../components/Checkbox";
+import {Email} from "../components/Email";
 // import Facebook from "../components/icons/facebook.svg";
 // import Google from "../components/icons/google.svg";
 import {PASSWORD} from "../constants";
-import PasswordAndConfirm from "../components/PasswordAndConfirm";
+import {PasswordAndConfirm} from "../components/PasswordAndConfirm";
 // import Phone from "../components/icons/phone.svg";
 // import VK from "../components/icons/vk.svg";
-import {getEmail} from "../store/loginName/loginSlice";
-import {useAppDispatch} from "../store/hooks";
+import {useEffect} from "react";
 
 interface FormValues {
   email: string;
@@ -39,17 +39,23 @@ const minSymbol = PASSWORD.minLength;
 const maxSymbol = PASSWORD.maxLength;
 const symbols = PASSWORD.symbols;
 
-const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
+export const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistrationFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [isRegEmail, setIsRegEmail] = useState<string | unknown>("");
+  const isEmail = useAppSelector(state => state.login.isEmail);
+
+  useEffect(()=>{
+    dispatch(clearIsEmail());
+  },[dispatch]);
 
   useEffect(() => {
-    if (isRegEmail) {
+    if (isEmail===false) {
       navigate("/user/reg_in/information");
+    } else{
+      navigate("/user/sign_up");
     }
-  }, [isRegEmail, navigate]);
+  }, [isEmail, navigate]);
 
   const initialValues: FormValues = {
     email: "",
@@ -91,12 +97,8 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
         initialValues={initialValues}
         validateOnChange={false}
         validate={validate}
-        onSubmit={(values: FormValues) => {
-          dispatch(getEmail(values.email))
-            .then((data) => data.payload)
-            .then((result) =>{
-              setIsRegEmail(!result);
-            });
+        onSubmit={async (values: FormValues) => {
+          await dispatch(getEmail(values.email));
           setUserEmail(values.email);
           setUserPassword(values.password);
         }}
@@ -105,13 +107,13 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
           return (
             <Form className="wrapper-component">
               <h2 className="title">
-                <FormattedMessage id="app.firstRegistrationForm.title" />
+                <FormattedMessage id="app.firstRegistrationForm.title"/>
               </h2>
               <Field
                 name="email"
                 component={Email}
                 error={touched.email ? errors.email : undefined}
-                isEmail={isRegEmail}
+                isEmail={isEmail}
                 textError={intl.formatMessage({id: "app.firstRegistrationForm.existsInDb"})}
               />
               <Field
@@ -162,12 +164,12 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
               {/*  </Link>*/}
               {/*</div>*/}
               <p className="text">
-                <FormattedMessage id="app.firstRegistrationForm.haveAccount" />
+                <FormattedMessage id="app.firstRegistrationForm.haveAccount"/>
                 <Link
                   to={"/user/sign_in"}
                   className="link"
                 >
-                  <FormattedMessage id="app.header.login" />
+                  <FormattedMessage id="app.header.login"/>
                 </Link>
               </p>
             </Form>
@@ -177,5 +179,3 @@ const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegistratio
     </div>
   );
 };
-
-export default FirstRegistrationForm;

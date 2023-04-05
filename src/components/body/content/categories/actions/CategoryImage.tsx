@@ -3,7 +3,7 @@ import {FormattedMessage, useIntl} from "react-intl";
 import {
   useEffect, useRef, useState
 } from "react";
-import Button from "../../../../Button";
+import {Button} from "../../../../Button";
 import Change from "../../../../icons/change.svg";
 import Select from "../../../../icons/select.svg";
 
@@ -23,10 +23,10 @@ type CategoryImageProps = {
   title: string;
   inform: string;
   textButton: string;
-  imageData:{format:[],size:number};
+  imageData: { format: [], size: number };
 };
 
-const CategoryImage = ({
+export const CategoryImage = ({
   selectImage, setSelectImage, setEditCategory, editCategory, errorImage,
   setErrorImage, isCategory, title, inform, textButton, imageData
 }: CategoryImageProps) => {
@@ -51,7 +51,7 @@ const CategoryImage = ({
     if (selectImage.type) {
       const isFormat = imageData.format.some(format => format ===
         "." + selectImage.type.slice(selectImage.type.indexOf("/") + 1));
-      if (selectImage.size >imageData.size ) {
+      if (selectImage.size > imageData.size) {
         setErrorImage(intl.formatMessage({id: "app.categories.imageBigSize"}));
       } else if (!isFormat) {
         setErrorImage(intl.formatMessage({id: "app.categories.imageError"}));
@@ -72,6 +72,9 @@ const CategoryImage = ({
   return (
     <div className="category-label">
       {title}
+      <span className="category-image-inform">
+        {inform}
+      </span>
       <input
         ref={fileRef}
         type="file"
@@ -83,9 +86,7 @@ const CategoryImage = ({
         onBlur={() => setIsChange(true)}
       />
       {!selectImage.name && !editCategory.image && <>
-        <span className="category-image-inform">
-          {inform}
-        </span>
+
         <Button
           buttonType="button"
           className="button-login-category"
@@ -105,7 +106,7 @@ const CategoryImage = ({
               src={selectImage.image
                 ? URL.createObjectURL(selectImage.image) : editCategory.image}
               alt={selectImage.name || editCategory.name}
-              className="select-image" />
+              className="select-image"/>
             <div className="image-data">
               <span className="select-image-name">
                 {selectImage.name || editCategory.name}
@@ -117,7 +118,7 @@ const CategoryImage = ({
           </div>
           <Button
             buttonType="button"
-            buttonText={intl.formatMessage({ id: "app.categories.change" })}
+            buttonText={intl.formatMessage({id: "app.categories.change"})}
             className="button-select"
             buttonImage={Change}
             imageStyle="icon-button"
@@ -135,4 +136,3 @@ const CategoryImage = ({
 };
 
 CategoryImage.displayName = "CategoryImage";
-export default CategoryImage;

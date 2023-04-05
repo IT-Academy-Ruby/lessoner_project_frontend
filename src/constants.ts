@@ -1,11 +1,10 @@
-const BACKEND_URL_LESSONS = process.env.REACT_APP_BACKEND_URL + "/lessons/";
+const URL = process.env.REACT_APP_BACKEND_URL ;
 const CODE = {maxLength: 5};
 const DEFAULT_COUNTRY_CODE = "375";
 const EMAIL = {minLength: 3, maxLength: 256};
 const PASSWORD = {
   minLength: 6, maxLength: 256, symbols: "! # $ % & ' * + - / = ? ^ _  { | } ~"
 };
-const REDIRECT_URL = `${process.env.REACT_APP_BACKEND_URL}/users/sign_up`;
 const USERNAME = {minLength: 3, maxLength: 50};
 const maxNameLength = 64;
 const maxDescriptionLength = 600;
@@ -31,14 +30,16 @@ const VIDEO_DATA = {
   /* eslint-disable-next-line */
   symbols: `( )! $ % & ' " " * + - / = ? ^ _  { | } ~ ., @ [ ] < >`
 };
-const SKELETON_LESSONS_AMOUT = 15;
 const AVATAR = {size: 5 * 1024 * 1024};
+const LESSONSPAGE = 10;
+const LESSONPAGE = 7;
+const STARS = 5;
 
 export { 
-  BACKEND_URL_LESSONS, CODE, DEFAULT_COUNTRY_CODE, EMAIL,
-  PASSWORD, REDIRECT_URL, USERNAME, maxNameLength, IMAGE_DATA, THUMBNAIL_DATA,
+  CODE, DEFAULT_COUNTRY_CODE, EMAIL,
+  PASSWORD, USERNAME, maxNameLength, IMAGE_DATA, THUMBNAIL_DATA,
   maxDescriptionLength, maxDescrHTCount, NAME_CATEGORY, DESCRIPTION_CATEGORY, SKELETON_AMOUT,
-  NAVBAR_ADMIN, NAVBAR_AUTORISED, NAVBAR_NOT_AUTORISED, VIDEO_DATA, SKELETON_LESSONS_AMOUT,
-  AVATAR
+  NAVBAR_ADMIN, NAVBAR_AUTORISED, NAVBAR_NOT_AUTORISED, VIDEO_DATA,
+  AVATAR, LESSONSPAGE, LESSONPAGE, STARS, URL
 };
 

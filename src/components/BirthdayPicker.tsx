@@ -3,23 +3,29 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./birthday.scss";
 import DatePicker, {registerLocale} from "react-datepicker";
 import {FieldInputProps, FormikProps} from "formik";
+import {enGB, ru} from "date-fns/locale";
 import Birthday from "./icons/Date.svg";
-import {enGB} from "date-fns/locale";
+import {useIntl} from "react-intl";
 import {useState} from "react";
 
 type BirthdayPickerProps<V = string, FormValues = string> = {
   field: FieldInputProps<V>;
   form: FormikProps<FormValues>;
   error: string;
-  setIsWrapper: (a:boolean) => void;
+  setIsWrapper: (a: boolean) => void;
   isWrapper: boolean;
   text: string;
 }
 
-const BirthdayPicker = ({
-  form, field, error,setIsWrapper, text
+export const BirthdayPicker = ({
+  form, field, error, setIsWrapper, text
 }: BirthdayPickerProps): JSX.Element => {
-  registerLocale("enGB", enGB);
+  const intl = useIntl();
+  if (intl.locale === "en") {
+    registerLocale("lang", enGB);
+  } else {
+    registerLocale("lang", ru);
+  }
 
   const [birthday, setBirthday] = useState<Date | null>(null);
 
@@ -45,11 +51,15 @@ const BirthdayPicker = ({
         showYearDropdown
         dropdownMode="select"
         className="input"
-        locale="enGB"
+        locale="lang"
         selected={birthday}
         onChange={(value: Date) => handleChange(value)}
-        onInputClick={()=>{setIsWrapper(true);}}
-        onCalendarClose={()=>{setIsWrapper(false);}}
+        onInputClick={() => {
+          setIsWrapper(true);
+        }}
+        onCalendarClose={() => {
+          setIsWrapper(false);
+        }}
       />
       <img className="image-input" alt="Date" src={Birthday}/>
       {error && <span className="error-message">{error}</span>}
@@ -57,5 +67,3 @@ const BirthdayPicker = ({
 
   );
 };
-
-export default BirthdayPicker;

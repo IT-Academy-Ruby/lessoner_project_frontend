@@ -1,5 +1,5 @@
 import "./modal.scss";
-import Button from "../components/Button";
+import {Button} from "../components/Button";
 import {useIntl} from "react-intl";
 import {useNavigate} from "react-router-dom";
 
@@ -7,7 +7,7 @@ type ConfirmProps = {
   registration: boolean | undefined;
   userEmail: string;
 }
-const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
+export const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
 
@@ -32,4 +32,3 @@ const ConfirmReg = ({registration, userEmail}: ConfirmProps) => {
     </div>
   );
 };
-export default ConfirmReg;

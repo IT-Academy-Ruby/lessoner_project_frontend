@@ -1,5 +1,5 @@
 import "./teamMemberCard.scss";
-import Button from "../../../Button";
+import {Button} from "../../../Button";
 import { ReactComponent as Geo } from "../../../icons/geo.svg";
 import { ReactComponent as Linkedin } from "../../../icons/navbar/linkedin.svg";
 import classNames from "classnames";
@@ -15,7 +15,7 @@ export type personalData = {
   linkToCources?: string
 }
 
-const TeamMemberCard = ({
+export const TeamMemberCard = ({
   name, city, role, photo, link, secondRole, linkToCources
 }: personalData) => {
   const intl = useIntl();
@@ -81,4 +81,4 @@ const TeamMemberCard = ({
     </div>
   );
 };
-export { TeamMemberCard };
+

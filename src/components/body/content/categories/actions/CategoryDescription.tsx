@@ -12,10 +12,12 @@ type CategoryDescriptionProps = {
   },
   placeholder:string;
   error?: string;
+  descriptionRef?:()=>void;
+  isOccupiedDescription?:string;
 }
 
-const CategoryDescription = ({
-  field, placeholder, error
+export const CategoryDescription = ({
+  field, placeholder, error, descriptionRef, isOccupiedDescription
 }: CategoryDescriptionProps): JSX.Element => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
 
@@ -23,9 +25,11 @@ const CategoryDescription = ({
     <label className="category-label">
       <FormattedMessage id="app.categories.description"/>
       <textarea
-        className={classNames("category-input category-textarea", {"invalid-input": error})}
+        className={classNames("category-input category-textarea",
+          {"invalid-input": error || isOccupiedDescription})}
         placeholder={placeholder}
         onBlur={() => setIsFocus(false)}
+        ref={descriptionRef}
         {...field}
         onFocus={() => {
           setIsFocus(true);
@@ -38,7 +42,7 @@ const CategoryDescription = ({
         classNames("amount-symbols",
           {"error": error})}>{field.value.length}/{DESCRIPTION_CATEGORY.maxSymbols}</span>}
       {error && <span className="message error">{error}</span>}
+      {isOccupiedDescription && <span className="message error">{isOccupiedDescription}</span>}
     </label>
   );
 };
-export default CategoryDescription;

@@ -1,14 +1,15 @@
 @import "../../constants.module.scss";
 
 .wrapper-terms {
-  font-family: $font;
+
   position: absolute;
+  display: flex;
+  justify-content: center;
   top: 0;
   left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  background: var(--bgFirstRegistrForm);
+  background: var(--bgCategoriesButtons);
+  font-family: $font;
 }
 
 .arrow-back {
@@ -18,11 +19,11 @@
 
 .button-back {
   position: absolute;
-  margin: 16px 24px;
   left: 0;
   top: 0;
-  text-decoration: none;
+  margin: 16px 24px;
   color: $greySearchColor;
+  text-decoration: none;
   font-weight: 600;
   font-size: 16px;
   line-height: 150%;
@@ -30,32 +31,31 @@
 
 .page-terms {
   display: flex;
-  max-width: 753px;
-  width: 100%;
-  margin: 16px;
   flex-direction: column;
   align-items: flex-start;
-  background: var(--bgFirstRegistrForm);
+  max-width: 753px;
+  width: 100%;
   padding: 36px;
-  box-shadow: var(--bgNavBarShadow);
+  margin: 16px;
+  background: var(--bgFirstRegistrForm);
   font-size: 14px;
+  z-index: 10;
 }
 
 .link-terms {
+  padding: 0 8px;
   font-family: $font;
   font-weight: 600;
-  color: #455FCE;
+  color: $blueLightColor;
   text-decoration: none;
-  padding: 0 8px;
   cursor: pointer;
 }
 
 .terms {
-  margin-bottom: 16px;
-  text-align: left;
+  margin-block: 0.5rem;
   font-family: $font;
   text-align: justify;
-}
+ }
 
 .politic {
   margin-top: 20px;
@@ -66,12 +66,13 @@
 }
 
 .alignment {
-  list-style: none;
   padding: 0;
   margin-block: 0.5rem;
+  list-style: none;
 
   > li {
     margin-block: 0.5rem;
+    text-indent: 30px;
   }
 }
 
@@ -82,26 +83,26 @@
 
   > li > ul {
     margin: 16px 0 16px 0;
-    list-style: none;
     padding-left: 26px;
+    list-style: none;
 
     > li:before {
-      content: '';
+      position: relative;
       display: inline-block;
       height: 3px;
       width: 3px;
+      left: -16px;
       vertical-align: middle;
       border-radius: 50%;
       background-color: var(--titlesFirstRegistrForm);
-      left: -16px;
-      position: relative;
+      content: '';
     }
   }
 }
 
 .main-li {
-  font-weight: 700;
   margin-block: 0.5rem;
+  font-weight: 700;
 }
 
 .marker-ol {
@@ -114,15 +115,11 @@
   margin: 0 0 0.5rem -1rem;
 }
 
-.ntind {
-  text-indent: 30px;
-}
-
 @media (max-width: $max-width-tablet) {
   .page-terms {
-    border-radius: 8px;
     padding: 28px;
     margin-top: 57px;
+    border-radius: 8px;
   }
 }
 

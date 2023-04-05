@@ -12,8 +12,12 @@ type UserNameProps = {
     value: string
   };
   error?: string;
+  nameRef?:()=>void;
 }
-const UserName = ({field, error}: UserNameProps): JSX.Element => {
+
+export const UserName = ({
+  field, error, nameRef
+}: UserNameProps): JSX.Element => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
 
@@ -31,6 +35,7 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
           {"success-input": !error && field.value}
         )}
         onKeyUp={fieldHandler}
+        ref={nameRef}
         placeholder={intl.formatMessage(
           { id: "app.UserName.placeholder" },
           {minSymbol: USERNAME.minLength, maxSymbol: USERNAME.maxLength})}
@@ -40,5 +45,3 @@ const UserName = ({field, error}: UserNameProps): JSX.Element => {
     </label>
   );
 };
-
-export default UserName;

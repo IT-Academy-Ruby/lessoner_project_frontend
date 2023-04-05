@@ -1,0 +1,17 @@
+.sideBarLesson {
+  display: grid;
+  grid-template-rows: 32px 1fr;
+  grid-column: 2;
+  grid-gap: 15px;
+}
+
+.sideBarLesson__button {
+  display: flex;
+  flex-direction: row;
+}
+
+.sideBarLesson__lessons {
+  display: grid;
+  grid-auto-rows: 132px;
+  grid-gap: 12px;
+}

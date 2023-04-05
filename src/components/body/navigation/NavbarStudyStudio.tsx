@@ -1,12 +1,12 @@
-import "./NavbarStudyStudio.scss";
+import "./navbarStudyStudio.scss";
 import {Item, NavbarStudyStudioProps} from "./types.d";
 import {FC} from "react";
 import {Link} from "react-router-dom";
-import NavbarStudyStudioSVGSelector from "./NavbarStudyStudioSVGSelector";
+import {NavbarStudyStudioSVGSelector} from "./NavbarStudyStudioSVGSelector";
 import classNames from "classnames";
 import {useIntl} from "react-intl";
 
-const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) => {
+export const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) => {
   const intl = useIntl();
 
   const imageWrapperCN = classNames("image__wrapper",
@@ -146,10 +146,10 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) =
               </p>
               <p className={classNames("menu__footer-text",
                 {"menu__footer-text--active": isMenuActive})}>
-                <a className={classNames("menu__footer-text menu__footer-policy",
-                  {"menu__footer-text--active": isMenuActive})} href="/terms">
+                <Link className={classNames("menu__footer-text menu__footer-policy",
+                  {"menu__footer-text--active": isMenuActive})} to="/terms">
                   {intl.formatMessage({id: "app.navbarStudyStudio.policy"})}
-                </a>
+                </Link>
               </p>
             </div>
           </div>
@@ -158,5 +158,3 @@ const NavbarStudyStudio: FC<NavbarStudyStudioProps> = ({config, isMenuActive}) =
     </div>
   );
 };
-
-export default NavbarStudyStudio;

@@ -1,73 +1,49 @@
-import "./index.scss";
-import {useEffect, useState} from "react";
+import "./categoriesUser.scss";
+import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {FormattedMessage} from "react-intl";
 import {Link} from "react-router-dom";
 import {SKELETON_AMOUT} from "../../../../constants";
-import SkeletonCategory from "../../../SkeletonCategory";
-import UserCategory from "../../../UserCategory";
-import axios from "axios";
+import {SkeletonCategory} from "../../../SkeletonCategory";
+import {UserCategory} from "../../../UserCategory";
+import {selectedCategory} from "../../../../store/categorySlice/categorySlice";
 
 export interface Category {
   id: number;
   image_url: string;
   name: string;
   description: string;
-}
+};
 
-const CategoriesUser = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export const CategoriesUser = () => {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(state => state.categories.categories);
+  const skeleton = useAppSelector(state => state.categories.skeleton);
 
-  async function fetchCategory() {
-    try {
-      const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/categories`,);
-      setCategories(data.records);
-      setIsLoading(false);
-    } catch (error) {
-      alert("Error getting categories!!!");
-    }
-  }
-
-  useEffect(() => {
-    fetchCategory();
-  }, []);
-
-  let categorySet;
-
-  if (categories.length > 0) {
-    categorySet = categories.map((obj) => (
-      <Link to={`/categories/${obj.id}`} key={obj.id}>
-        <UserCategory
-          key={obj.id}
-          id={obj.id}
-          imagePreview={obj.image_url}
-          name={obj.name}
-          description={obj.description}
-        />
-      </Link>
-
-    ));
-  }
-
-  const skeleton = [...new Array(SKELETON_AMOUT)].map((_, index) =>
+  const shadowSkeleton = [...new Array(SKELETON_AMOUT)].map((_, index) =>
     <SkeletonCategory key={index}/>);
 
   return (
-    <div className="categories">
-      <div className="category-header">
-        <h1 className="category-title">
-          <FormattedMessage id="app.categories"/>
-        </h1>
-      </div>
-      <div className="tab">
-        <div className="wrapper__categories">
-          <div className="categories__block">
-            {isLoading ? skeleton : categorySet}
-          </div>
-        </div>
+    <div className="field__categories">
+      <h1 className="categories__title">
+        <FormattedMessage id="app.categories"/>
+      </h1>
+      <div className="categories__user">
+        {categories.length > 1 && categories.map((obj) => (
+          <Link
+            to={"/"}
+            key={obj.id}
+            onClick={() => dispatch(selectedCategory({name: obj.name, id: obj.id}))}
+          >
+            <UserCategory
+              key={obj.id}
+              id={obj.id}
+              imagePreview={obj.image_url}
+              name={obj.name}
+              description={obj.description}
+            />
+          </Link>))}
+        {skeleton && shadowSkeleton}
       </div>
     </div>
   );
 };
-
-export default CategoriesUser;

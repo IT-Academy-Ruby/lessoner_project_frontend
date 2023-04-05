@@ -3,10 +3,10 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../components/Button";
-import Checkbox from "../components/Checkbox";
+import {Button} from "../components/Button";
+import {Checkbox} from "../components/Checkbox";
 import {DEFAULT_COUNTRY_CODE} from "../constants";
-import PhoneNumber from "../components/PhoneNumber";
+import {PhoneNumber} from "../components/PhoneNumber";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 
@@ -23,7 +23,7 @@ type PhoneProps = {
   registration: boolean | undefined;
 };
 
-const PhoneNumberPage = ({registration}: PhoneProps) => {
+export const PhoneNumberPage = ({registration}: PhoneProps) => {
   const intl = useIntl();
   const [phoneNumber, setPhoneNumber] = useState(DEFAULT_COUNTRY_CODE);
   const [isError, setIsError] = useState(false);
@@ -97,5 +97,3 @@ const PhoneNumberPage = ({registration}: PhoneProps) => {
     </div>
   );
 };
-
-export default PhoneNumberPage;

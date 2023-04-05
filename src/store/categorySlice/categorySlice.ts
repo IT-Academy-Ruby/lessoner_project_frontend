@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import request from "../../services/request";
+import {URL} from "../../constants";
+import {requestApi} from "../../services/request";
 
 export const getCategory = createAsyncThunk(
   "category/getCategory",
   async () => {
-    const responce = await request(`${process.env.REACT_APP_BACKEND_URL}/categories`);
+    const responce = await requestApi(`${URL}/categories`);
     const data = await responce.json();
     if (responce.status === 200) {
       return data.records;
@@ -24,30 +25,26 @@ export const addCategory = createAsyncThunk(
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const responce = await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories`, {
+    const response = await fetch(`${URL}/categories`, {
       method: "POST",
       headers: new Headers({"Authorization": `Bearer ${token}`}),
       body: formData,
     });
-    const data = await responce.json();
-    if (responce.status === 200) {
-      return data;
-    } else {
-      return `errror ${responce.status}`;
-    }
+    const data = await response.json();
+    return data;
   }
 );
 
 export const deleteCategory = createAsyncThunk(
   "category/addCategory",
   async (id: number) => {
-    const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${id}`, "DELETE");
-    const data = await responce.json();
-    if (responce.status === 200) {
+    const response =
+      await requestApi(`${URL}/categories/${id}`, "DELETE");
+    const data = await response.json();
+    if (response.status === 200) {
       return data;
     } else {
-      return `errror ${responce.status}`;
+      return `errror ${response.status}`;
     }
   }
 );
@@ -64,18 +61,14 @@ export const updateCategory = createAsyncThunk(
     formData.append("name", dataCategory.name);
     formData.append("description", dataCategory.description);
     const token = sessionStorage.getItem("JWT") || localStorage.getItem("JWT");
-    const responce =
-      await fetch(`${process.env.REACT_APP_BACKEND_URL}/categories/${dataCategory.id}`, {
+    const response =
+      await fetch(`${URL}/categories/${dataCategory.id}`, {
         method: "PUT",
         headers: new Headers({"Authorization": `Bearer ${token}`}),
         body: formData,
       });
-    const data = await responce.json();
-    if (responce.status === 200) {
-      return data;
-    } else {
-      return `errror ${responce.status}`;
-    }
+    const data = await response.json();
+    return data;
   }
 );
 
@@ -88,65 +81,97 @@ export const archiveCategory = createAsyncThunk(
       status: value.status === "active" ? "archived" : "active",
     };
     const responce =
-      await request(`${process.env.REACT_APP_BACKEND_URL}/categories/${value.id}`, "PUT", category);
+      await requestApi(`${URL}/categories/${value.id}`, "PUT", category);
     const data = await responce.json();
     if (responce.status === 200) {
       return data;
     } else {
-      return `errror ${responce.status}`;
+      data.error = `errror ${responce.status}`;
+      return data.error;
     }
   }
 );
 
-type Categories = {
-  categories: [{
-    amount_lessons: number;
-    id: number;
-    image_url: string;
-    name: string;
-    description: string;
-    status: string;
-    created_at: string;
-    image_size: number;
-    image_name: string;
-    image_type: string;
-  }],
-  loading: boolean;
+type Category = {
+  amount_lessons: number;
+  id: number;
+  image_url: string;
+  name: string;
+  description: string;
+  status: string;
+  created_at: string;
+  image_size: number;
+  image_name: string;
+  image_type: string;
 };
 
-const initialState: Categories = {categories: [{
-  amount_lessons: 0,
-  image_url: "",
-  id: 0,
-  name: "",
-  description: "",
-  status: "",
-  created_at: "",
-  image_size: 0,
-  image_name: "",
-  image_type: "",
-}],
-loading: false};
+type Categories = {
+  categories: [Category];
+  selectedCategory: {
+    name: string;
+    id: string;
+  };
+  error?: string;
+  errors?: [];
+  loading: boolean;
+  skeleton: boolean;
+};
+
+const initialState: Categories = {
+  categories: [{
+    amount_lessons: 0,
+    image_url: "",
+    id: 0,
+    name: "",
+    description: "",
+    status: "",
+    created_at: "",
+    image_size: 0,
+    image_name: "",
+    image_type: "",
+  }],
+  selectedCategory: {name: "", id: "",},
+  errors: [],
+  error: "",
+  loading: false,
+  skeleton: false
+};
 
 const categorySlice = createSlice({
   name: "category",
   initialState,
-  reducers: {},
+  reducers: {selectedCategory: (state,action) =>{
+    state.selectedCategory=action.payload;
+  }},
   extraReducers: (builder) => {
     builder.addCase(getCategory.fulfilled, (state, action) => {
       state.categories = action.payload;
-      state.loading = false;
+      state.skeleton = false;
     });
     builder.addCase(getCategory.pending, (state) => {
-      state.loading = true;
+      state.skeleton = true;
     });
-    builder.addCase(addCategory.fulfilled, (state) => {
+    builder.addCase(addCategory.fulfilled, (state, action) => {
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else if (action.payload.errors) {
+        state.errors = action.payload.errors;
+      } else {
+        state.categories = action.payload;
+      }
       state.loading = false;
     });
     builder.addCase(addCategory.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(updateCategory.fulfilled, (state) => {
+    builder.addCase(updateCategory.fulfilled, (state, action) => {
+      if (action.payload.error) {
+        state.error = action.payload.error;
+      } else if (action.payload.errors) {
+        state.errors = action.payload.errors;
+      } else {
+        state.categories = action.payload;
+      }
       state.loading = false;
     });
     builder.addCase(updateCategory.pending, (state) => {
@@ -160,4 +185,6 @@ const categorySlice = createSlice({
     });
   }
 });
+
+export const {selectedCategory} = categorySlice.actions;
 export default categorySlice.reducer;

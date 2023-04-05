@@ -3,7 +3,7 @@ import { ReactFacebookFailureResponse, ReactFacebookLoginInfo } from "react-face
 import Facebook from "../components/icons/facebook.svg";
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
-const FacebookButton = () => {
+export const FacebookButton = () => {
   const responseFacebook = (response: ReactFacebookFailureResponse | ReactFacebookLoginInfo) => {
     console.log(response);
   };
@@ -22,5 +22,3 @@ const FacebookButton = () => {
     />
   );
 };
-
-export default FacebookButton;

@@ -1,12 +1,12 @@
+import "../userPage.scss";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import Button from "../../../../Button";
-import Gender from "../../../../GenderSelector";
+import {Button} from "../../../../Button";
+import {GenderSelector} from "../../../../GenderSelector";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {useAppDispatch} from "../../../../../store/hooks";
-import {useState} from "react";
 
 const gender = [
   {
@@ -38,29 +38,24 @@ type GenderFormProps = {
   handleClose: () => void;
 }
 
-const GenderForm = ({userName, handleClose}: GenderFormProps) => {
+export const GenderForm = ({userName, handleClose}: GenderFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const [isDisable, setIsDisable] = useState(true);
 
   const initialValues: FormValues = {gender: ""};
 
   return (
     <Formik
       initialValues={initialValues}
-      validate={async (values: FormValues) => {
+      validate={(values: FormValues) => {
         const errors: FormErrors = {};
 
         if (!values.gender) {
           errors.gender = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
         }
-        if (values.gender && !errors.gender) {
-          setIsDisable(false);
-        } else {
-          setIsDisable(true);
-        }
+        return errors;
       }}
-      onSubmit={(values) => {
+      onSubmit={(values:FormValues) => {
         const items = {name: userName, object: {gender: values.gender}};
         dispatch(editUserData(items));
         handleClose();
@@ -77,20 +72,17 @@ const GenderForm = ({userName, handleClose}: GenderFormProps) => {
             <Field
               name="name"
               options={gender}
-              component={Gender}
+              component={GenderSelector}
               error={touched.gender ? errors.gender : undefined}
               text={intl.formatMessage({id: "app.userPage.gender"})}
             />
             <Button
               buttonType="submit"
-              buttonText={intl.formatMessage({id: "app.button.save"})}
+              buttonText={intl.formatMessage({id: "app.userPage.form.button.gender"})}
               className="button__page button-form-user__page"
-              disabled={isDisable}
             />
           </Form>);
       }}
     </Formik>
   );
 };
-
-export default GenderForm;

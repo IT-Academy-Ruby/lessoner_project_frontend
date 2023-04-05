@@ -11,7 +11,7 @@ type ButtonProps = {
   imageStyle?: string;
 }
 
-const Button = ({
+export const Button = ({
   buttonType, buttonText, onClick, className, disabled = false, buttonImage, imageStyle
 }: ButtonProps) => {
   return (
@@ -28,5 +28,3 @@ const Button = ({
     </Fragment>
   );
 };
-
-export default Button;

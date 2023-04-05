@@ -3,13 +3,14 @@ import {
   Field, Form, Formik
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
+import {changePassword, clearError} from "../store/loginName/loginSlice";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
-import Button from "../components/Button";
+import {Button} from "../components/Button";
 import {PASSWORD} from "../constants";
-import PasswordAndConfirm from "../components/PasswordAndConfirm";
-import {changePassword} from "../store/loginName/loginSlice";
+import {PasswordAndConfirm} from "../components/PasswordAndConfirm";
 import {passwordRegex} from "../validationRules";
-import {useNavigate} from "react-router-dom";
+import {uploadModalData} from "../store/modalSlice/modalSlice";
+import {useEffect} from "react";
 
 interface FormValues {
   password: string;
@@ -20,15 +21,36 @@ interface FormErrors {
   [key: string]: string
 }
 
-const SetNewPasswordPage = () => {
+export const SetNewPasswordPage = () => {
   const minSymbol = PASSWORD.minLength;
   const maxSymbol = PASSWORD.maxLength;
   const symbols = PASSWORD.symbols;
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const navigate =useNavigate();
   const token = useAppSelector(state => state.login.token);
+  const responsePassword = useAppSelector(state => state.login.responsePassword);
   const initialValues: FormValues = {password: "", confirmPassword: ""};
+
+  useEffect(() => {
+    if (responsePassword.error) {
+      dispatch(uploadModalData({
+        text: responsePassword.error,
+        typeModal: true,
+        isopen: true,
+        urlNavigate: "/user/sign_in/reset_password"
+      }));
+      dispatch(clearError());
+    }
+    if (responsePassword.status) {
+      dispatch(uploadModalData({
+        text: responsePassword.status,
+        typeModal: undefined,
+        isopen: true,
+        urlNavigate: "/user/sign_in"
+      }));
+      dispatch(clearError());
+    }
+  }, [dispatch, responsePassword]);
 
   const validate = async (values: FormValues) => {
     const errors: FormErrors = {};
@@ -58,10 +80,9 @@ const SetNewPasswordPage = () => {
         initialValues={initialValues}
         validateOnChange={false}
         validate={validate}
-        onSubmit={(values: FormValues) => {
+        onSubmit={async (values: FormValues) => {
           const value = {token: token, password: values.password,};
-          dispatch(changePassword(value));
-          navigate("/");
+          await dispatch(changePassword(value));
         }}
       >
         {({errors, touched}) => {
@@ -95,4 +116,3 @@ const SetNewPasswordPage = () => {
     </div>
   );
 };
-export default SetNewPasswordPage;

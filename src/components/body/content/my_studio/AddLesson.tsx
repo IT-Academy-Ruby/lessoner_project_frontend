@@ -1,22 +1,21 @@
 import "./addLesson.scss";
 import {FormattedMessage, useIntl} from "react-intl";
-import {
-  addVideo, getLessons, updateLesson
-} from "../../../../store/lessonSlice/lessonSlice";
+import {addVideo, updateLesson} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
 import {useEffect, useState} from "react";
-import Button from "../../../Button";
-import FirstStep from "./lessonComponents/FirstStep";
-import ModalCategory from "../categories/actions/ModalCategory";
-import SecondStep from "./lessonComponents/SecondStep";
+import {Button} from "../../../Button";
+import {FirstStep} from "./lessonComponents/FirstStep";
+import {ModalCategory} from "../categories/actions/ModalCategory";
+import {SecondStep} from "./lessonComponents/SecondStep";
 import classNames from "classnames";
+import {uploadModalData} from "../../../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
 
 type AddLessonProps = {
   add: boolean;
 }
 
-const AddLesson = ({add}: AddLessonProps) => {
+export const AddLesson = ({add}: AddLessonProps) => {
   const intl = useIntl();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -34,8 +33,7 @@ const AddLesson = ({add}: AddLessonProps) => {
     name: "", type: "", size: 0, image: "",
   });
   const [isDisabledStep2, setIsDisabledStep2] = useState(true);
-
-  const author = useAppSelector(state => state.dataUser.user);
+  const author = useAppSelector(state => state.login.user);
   const allLessons = useAppSelector(state => state.lessons.records);
 
   const [lesson, setLesson] = useState({
@@ -59,9 +57,6 @@ const AddLesson = ({add}: AddLessonProps) => {
   const idLesson = parseInt(url.slice(url.lastIndexOf("/") + 1));
 
   useEffect(() => {
-    if (!add && allLessons.length <= 1) {
-      dispatch(getLessons());
-    }
     if (!add && allLessons.length > 1) {
       setLesson(allLessons.filter(videoCategory => videoCategory.id === idLesson)[0]);
     }
@@ -76,7 +71,7 @@ const AddLesson = ({add}: AddLessonProps) => {
       size: lesson.image_size,
       name: lesson.image_name,
     });
-  }, [dispatch, add, allLessons, lesson, idLesson]);
+  }, [add, allLessons, lesson, idLesson]);
 
   const handleClose = () => {
     if (isStep2) {
@@ -92,7 +87,7 @@ const AddLesson = ({add}: AddLessonProps) => {
     }
   };
 
-  const addLesson = () => {
+  const addLesson = async () => {
     const userLesson = {
       title: videoName,
       description: videoDescription,
@@ -104,12 +99,29 @@ const AddLesson = ({add}: AddLessonProps) => {
     if (!selectVideo.name) {
       userLesson.lesson_video = videoLink;
     }
-    dispatch(addVideo(userLesson));
-    navigate("/myStudio");
-    dispatch(getLessons());
+    const response = await dispatch(addVideo(userLesson));
+    if (!response.payload.errors && !response.payload.error) {
+      dispatch(uploadModalData({
+        text: intl.formatMessage({id: "app.add.lesson.successful"}),
+        urlNavigate: "/myStudio",
+        isOpen: true,
+        typeModal: undefined
+      }));
+    } else {
+      let valuerError: string[] = [];
+      for(const key in response.payload.errors){
+        const error = key + " - " + response.payload.errors[key];
+        valuerError = [...valuerError, error];
+      }
+      dispatch(uploadModalData({
+        text: valuerError.join(", ") || response.payload.error,
+        isOpen: true,
+        typeModal: true
+      }));
+    }
   };
 
-  const editLesson = () => {
+  const editLesson = async () => {
     const userLesson = {
       id: idLesson,
       author_id: author.id.toString(),
@@ -129,9 +141,8 @@ const AddLesson = ({add}: AddLessonProps) => {
       && editThubnail.image === lesson.image_link) {
       navigate("/myStudio");
     } else {
-      dispatch(updateLesson(userLesson));
+      await dispatch(updateLesson(userLesson));
       navigate("/myStudio");
-      dispatch(getLessons());
     }
   };
 
@@ -144,13 +155,13 @@ const AddLesson = ({add}: AddLessonProps) => {
   }, [add, lesson]);
 
   return (
-    <div className="add-lesson">
-      <div className="button-back" onClick={handleClose}>
-        <span className="arrow-back">&#10094;</span>
+    <div className="lesson__wrapper">
+      <div className="lesson__buttonBack" onClick={handleClose}>
+        <span className="lesson__arrowBack">&#10094;</span>
         <span><FormattedMessage id="app.categories.back"/></span>
       </div>
-      <div className="form-lesson">
-        <h1 className="title-add-lesson">
+      <div className="lesson__form">
+        <h1 className="lesson__title">
           {add && <FormattedMessage id="app.AddNewLesson"/>}
           {!add && <FormattedMessage id="app.EditLesson"/>}
         </h1>
@@ -215,7 +226,7 @@ const AddLesson = ({add}: AddLessonProps) => {
             buttonType="button"
             buttonText={
               add ? intl.formatMessage({id: "app.addNewLesson"})
-                :intl.formatMessage({id: "app.EditLesson"})}
+                : intl.formatMessage({id: "app.EditLesson"})}
             className="button-select"
             disabled={isDisabledStep2}
             onClick={add ? addLesson : editLesson}
@@ -224,12 +235,9 @@ const AddLesson = ({add}: AddLessonProps) => {
       </div>
       {isClose && <ModalCategory
         setIsClose={setIsClose}
-        onClickYes={() => navigate("/myStudio")}
+        onClickYes={() => navigate(-1)}
         title={intl.formatMessage({id: "app.categories.close.text"})}
-      />
-      }
+      />}
     </div>
   );
 };
-
-export default AddLesson;

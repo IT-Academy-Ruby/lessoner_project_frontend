@@ -1,4 +1,5 @@
-import Button from "../../../../Button";
+import "../userPage.scss";
+import {Button} from "../../../../Button";
 import {useIntl} from "react-intl";
 
 type InformEmailProps = {
@@ -6,7 +7,7 @@ type InformEmailProps = {
   email: string;
 }
 
-const InformEmail = ({handleClose, email}: InformEmailProps) => {
+export const InformEmail = ({handleClose, email}: InformEmailProps) => {
   const intl = useIntl();
 
   return (
@@ -26,5 +27,3 @@ const InformEmail = ({handleClose, email}: InformEmailProps) => {
     </div>
   );
 };
-
-export default InformEmail;

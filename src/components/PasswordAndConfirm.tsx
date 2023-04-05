@@ -17,10 +17,11 @@ type PasswordProps = {
     value: string
   };
   error?: string;
+  wrongPassword?:boolean;
 }
 
-const PasswordAndConfirm = ({
-  isConfirm, field, error
+export const PasswordAndConfirm = ({
+  isConfirm, field, error, wrongPassword
 }: PasswordProps): JSX.Element => {
   const intl = useIntl();
   const [visiblePassword, setVisiblePassword] = useState(false);
@@ -41,7 +42,7 @@ const PasswordAndConfirm = ({
         {id: "app.userPage.form.currentPassword"})}
       <input
         type={visiblePassword ? "text" : "password"}
-        className={classNames("input", {"invalid-input": error},
+        className={classNames("input", {"invalid-input": error || wrongPassword},
           {"success-input": !error && field.value})}
         {...field}
         placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
@@ -57,5 +58,3 @@ const PasswordAndConfirm = ({
     </label>
   );
 };
-
-export default PasswordAndConfirm;

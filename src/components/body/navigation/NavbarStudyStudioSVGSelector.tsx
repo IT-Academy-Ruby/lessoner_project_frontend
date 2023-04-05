@@ -24,7 +24,7 @@ type Props = {
   icon: string;
 }
 
-const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
+export const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
   switch (icon) {
   case "menu":
     return <Menu />;
@@ -72,5 +72,3 @@ const NavbarStudyStudioSVGSelector = ({ icon }: Props) => {
     return null;
   };
 };
-
-export default NavbarStudyStudioSVGSelector;

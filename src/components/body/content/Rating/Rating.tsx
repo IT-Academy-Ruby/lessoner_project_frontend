@@ -1,13 +1,14 @@
-import Raiting from "../../../../assets/reiting.png";
+import "./rating.scss";
+import Raiting from "../../../icons/reiting.png";
 
 type RatingProps = {
   rating: number;
   totalVotes: number;
 };
 
-const Rating: React.FC<RatingProps> = (props: RatingProps) => {
+export const Rating: React.FC<RatingProps> = (props: RatingProps) => {
   return (
-    <div className="raiting">
+    <div className="rating">
       <img src={Raiting} alt="rating" />
       <p>
         {props.rating} {`(${props.totalVotes})`}
@@ -15,5 +16,3 @@ const Rating: React.FC<RatingProps> = (props: RatingProps) => {
     </div>
   );
 };
-
-export default Rating;
