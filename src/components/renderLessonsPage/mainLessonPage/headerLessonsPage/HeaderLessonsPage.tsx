@@ -74,7 +74,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     dispatch(resetLessons());
     setLoading(true);
     setNumberPage(1);
-  }, [dispatch]);
+  }, [type]);
 
   const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     valueCategories.forEach(category => {
