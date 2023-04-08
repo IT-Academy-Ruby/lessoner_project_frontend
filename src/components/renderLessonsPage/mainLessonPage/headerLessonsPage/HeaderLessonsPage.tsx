@@ -2,7 +2,9 @@ import "./headerLessonsPage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {useEffect, useState} from "react";
+import {
+  useEffect, useLayoutEffect, useState
+} from "react";
 import {Button} from "../../../Button";
 import {LESSONSPAGE} from "../../../../constants";
 import Plus from "../../../icons/add.svg";
@@ -57,8 +59,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     },
   ];
   const defaultCategory = {name: intl.formatMessage(
-    {id: "app.lessons.categoryAllCategories"}
-  ), id: ""};
+    {id: "app.lessons.categoryAllCategories"}), id: ""};
   const [data, setData] = useState(defaultButton);
   const [numberPage, setNumberPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -69,12 +70,6 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const valueCategories = [defaultCategory, ...categories.map(category => {
     return {name: category.name, id: category.id.toString()};
   })];
-
-  useEffect(() => {
-    dispatch(resetLessons());
-    setLoading(true);
-    setNumberPage(1);
-  }, [dispatch]);
 
   const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     valueCategories.forEach(category => {
@@ -92,18 +87,30 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     setLoading(true);
   }, [chosenCategory]);
 
+  const requestLessons = async () => {
+    await dispatch(getLessons({
+      myStudio: type === "myStudio",
+      page: numberPage,
+      category: +chosenCategory.id,
+      sortValue: data.method,
+      perPage: LESSONSPAGE,
+      status: data.status
+    }));
+    setLoading(false);
+    setNumberPage(numberPage + 1);
+  };
+
+  useLayoutEffect(() => {
+    dispatch(resetLessons());
+    setLoading(true);
+    setNumberPage(1);
+    dispatch(selectedCategory(defaultCategory));
+    /* eslint-disable-next-line */
+  }, [type]);
+
   useEffect(() => {
     if ((loading && countPages === 0) || (loading && countPages >= numberPage)) {
-      dispatch(getLessons({
-        myStudio: type === "myStudio",
-        page: numberPage,
-        category: +chosenCategory.id,
-        sortValue: data.method,
-        perPage: LESSONSPAGE,
-        status: data.status
-      }))
-        .finally(() => setLoading(false));
-      setNumberPage(numberPage + 1);
+      requestLessons();
     }
     /* eslint-disable-next-line */
   }, [dispatch, chosenCategory, data, type, loading]);
