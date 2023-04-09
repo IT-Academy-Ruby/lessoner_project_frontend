@@ -75,11 +75,9 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     valueCategories.forEach(category => {
       if (category.name === event.target.value) {
-        // dispatch(selectedCategory({name: category.name, id: category.id}));
         setCategory({name: category.name, id: category.id});
       }
       if (defaultCategory.name === event.target.value) {
-        // dispatch(selectedCategory(defaultCategory));
         setCategory(defaultCategory);
       }
     });
@@ -109,7 +107,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     /* eslint-disable-next-line */
   }, [type]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setNumberPage(1);
     setLoading(true);
     if (category.name !== chosenCategory.name) {
@@ -118,7 +116,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     /* eslint-disable-next-line */
   }, [category]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setNumberPage(1);
     setLoading(true);
     if (category.name !== chosenCategory.name) {
@@ -128,7 +126,9 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   }, [chosenCategory]);
 
   useEffect(() => {
-    if ((loading && countPages === 0) || (loading && countPages >= numberPage)) {
+
+    if (((loading && countPages === 0) || (loading && countPages >= numberPage)
+      && chosenCategory.name === category.name) ) {
       requestLessons();
     }
     /* eslint-disable-next-line */
