@@ -2,9 +2,7 @@ import "./headerLessonsPage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {
-  useEffect, useLayoutEffect, useState
-} from "react";
+import {useEffect, useState} from "react";
 import {Button} from "../../../Button";
 import {LESSONSPAGE} from "../../../../constants";
 import Plus from "../../../icons/add.svg";
@@ -96,18 +94,16 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     setNumberPage(numberPage + 1);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(resetLessons());
     setLoading(true);
     setNumberPage(1);
-    if (defaultCategory.name !== chosenCategory.name) {
-      dispatch(selectedCategory(defaultCategory));
-      setCategory(defaultCategory);
-    }
+    dispatch(selectedCategory({name: "", id: ""}));
+    setCategory({name: "", id: ""});
     /* eslint-disable-next-line */
   }, [type]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setNumberPage(1);
     setLoading(true);
     if (category.name !== chosenCategory.name) {
@@ -116,7 +112,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     /* eslint-disable-next-line */
   }, [category]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setNumberPage(1);
     setLoading(true);
     if (category.name !== chosenCategory.name) {
@@ -126,9 +122,8 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   }, [chosenCategory]);
 
   useEffect(() => {
-
     if (((loading && countPages === 0) || (loading && countPages >= numberPage)
-      && chosenCategory.name === category.name) ) {
+      && chosenCategory.name === category.name)) {
       requestLessons();
     }
     /* eslint-disable-next-line */
