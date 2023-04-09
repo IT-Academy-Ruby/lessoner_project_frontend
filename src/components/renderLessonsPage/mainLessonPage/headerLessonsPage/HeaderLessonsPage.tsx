@@ -63,6 +63,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const [data, setData] = useState(defaultButton);
   const [numberPage, setNumberPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState({name: "", id: ""});
   const categories = useAppSelector(state => state.categories.categories);
   const chosenCategory = useAppSelector(state => state.categories.selectedCategory);
   const countPages = useAppSelector(state => state.lessons.pagy_metadata.count_pages);
@@ -74,18 +75,15 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     valueCategories.forEach(category => {
       if (category.name === event.target.value) {
-        dispatch(selectedCategory({name: category.name, id: category.id}));
+        // dispatch(selectedCategory({name: category.name, id: category.id}));
+        setCategory({name: category.name, id: category.id});
       }
       if (defaultCategory.name === event.target.value) {
-        dispatch(selectedCategory(defaultCategory));
+        // dispatch(selectedCategory(defaultCategory));
+        setCategory(defaultCategory);
       }
     });
   };
-
-  useEffect(() => {
-    setNumberPage(1);
-    setLoading(true);
-  }, [chosenCategory]);
 
   const requestLessons = async () => {
     await dispatch(getLessons({
@@ -104,16 +102,37 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     dispatch(resetLessons());
     setLoading(true);
     setNumberPage(1);
-    dispatch(selectedCategory(defaultCategory));
+    if (defaultCategory.name !== chosenCategory.name) {
+      dispatch(selectedCategory(defaultCategory));
+      setCategory(defaultCategory);
+    }
     /* eslint-disable-next-line */
   }, [type]);
+
+  useEffect(() => {
+    setNumberPage(1);
+    setLoading(true);
+    if (category.name !== chosenCategory.name) {
+      dispatch(selectedCategory(category));
+    }
+    /* eslint-disable-next-line */
+  }, [category]);
+
+  useEffect(() => {
+    setNumberPage(1);
+    setLoading(true);
+    if (category.name !== chosenCategory.name) {
+      dispatch(selectedCategory(chosenCategory));
+    }
+    /* eslint-disable-next-line */
+  }, [chosenCategory]);
 
   useEffect(() => {
     if ((loading && countPages === 0) || (loading && countPages >= numberPage)) {
       requestLessons();
     }
     /* eslint-disable-next-line */
-  }, [dispatch, chosenCategory, data, type, loading]);
+  }, [chosenCategory, data, loading]);
 
   useEffect(() => {
     if (type === "myStudio" && !sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {
