@@ -1,9 +1,10 @@
 import "./App.scss";
-import { createContext, useState } from "react";
+import {createContext, useState} from "react";
 import Body from "./components/body/Body";
-import { IntlProvider } from "react-intl";
-import { Snowfall } from "./components/Snowfall";
+import {IntlProvider} from "react-intl";
+import {Snowfall} from "./components/Snowfall";
 import {TranslationHelpers} from "./translations/translationHelpers";
+
 type SetBooleanInnerFunction = (value: boolean) => boolean;
 
 export const snowContext = createContext<{
@@ -24,8 +25,8 @@ function App(): JSX.Element {
 
   return (
     <IntlProvider locale={languageCode} messages={messages}>
-      <snowContext.Provider value={{ snow, setSnow }}>
-        {snow && <Snowfall setOpacity={setOpacity} setDisplay={setDisplay} />}
+      <snowContext.Provider value={{snow, setSnow}}>
+        {snow && <Snowfall setOpacity={setOpacity} setDisplay={setDisplay}/>}
         <div
           className="App"
           style={{
@@ -34,7 +35,7 @@ function App(): JSX.Element {
             display: display ? undefined : "none",
           }}
         >
-          <Body onLanguageSwitch={setLanguageCode} />
+          <Body onLanguageSwitch={setLanguageCode}/>
         </div>
       </snowContext.Provider>
     </IntlProvider>

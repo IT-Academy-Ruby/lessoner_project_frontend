@@ -2,7 +2,9 @@ import "./headerLessonsPage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {useEffect, useState} from "react";
+import {
+  useEffect, useLayoutEffect, useState
+} from "react";
 import {Button} from "../../../Button";
 import {LESSONSPAGE} from "../../../../constants";
 import Plus from "../../../icons/add.svg";
@@ -57,11 +59,11 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     },
   ];
   const defaultCategory = {name: intl.formatMessage(
-    {id: "app.lessons.categoryAllCategories"}
-  ), id: ""};
+    {id: "app.lessons.categoryAllCategories"}), id: ""};
   const [data, setData] = useState(defaultButton);
   const [numberPage, setNumberPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState({name: "", id: ""});
   const categories = useAppSelector(state => state.categories.categories);
   const chosenCategory = useAppSelector(state => state.categories.selectedCategory);
   const countPages = useAppSelector(state => state.lessons.pagy_metadata.count_pages);
@@ -70,44 +72,67 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     return {name: category.name, id: category.id.toString()};
   })];
 
-  useEffect(() => {
-    dispatch(resetLessons());
-    setLoading(true);
-    setNumberPage(1);
-    /* eslint-disable-next-line */
-  }, [type]);
-
   const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     valueCategories.forEach(category => {
       if (category.name === event.target.value) {
-        dispatch(selectedCategory({name: category.name, id: category.id}));
+        setCategory({name: category.name, id: category.id});
       }
       if (defaultCategory.name === event.target.value) {
-        dispatch(selectedCategory(defaultCategory));
+        setCategory(defaultCategory);
       }
     });
   };
 
-  useEffect(() => {
+  const requestLessons = async () => {
+    await dispatch(getLessons({
+      myStudio: type === "myStudio",
+      page: numberPage,
+      category: +chosenCategory.id,
+      sortValue: data.method,
+      perPage: LESSONSPAGE,
+      status: data.status
+    }));
+    setLoading(false);
+    setNumberPage(numberPage + 1);
+  };
+
+  useLayoutEffect(() => {
+    dispatch(resetLessons());
+    setLoading(true);
+    setNumberPage(1);
+    if (defaultCategory.name !== chosenCategory.name) {
+      dispatch(selectedCategory(defaultCategory));
+      setCategory(defaultCategory);
+    }
+    /* eslint-disable-next-line */
+  }, [type]);
+
+  useLayoutEffect(() => {
     setNumberPage(1);
     setLoading(true);
+    if (category.name !== chosenCategory.name) {
+      dispatch(selectedCategory(category));
+    }
+    /* eslint-disable-next-line */
+  }, [category]);
+
+  useLayoutEffect(() => {
+    setNumberPage(1);
+    setLoading(true);
+    if (category.name !== chosenCategory.name) {
+      dispatch(selectedCategory(chosenCategory));
+    }
+    /* eslint-disable-next-line */
   }, [chosenCategory]);
 
   useEffect(() => {
-    if ((loading && countPages === 0) || (loading && countPages >= numberPage)) {
-      dispatch(getLessons({
-        myStudio: type === "myStudio",
-        page: numberPage,
-        category: +chosenCategory.id,
-        sortValue: data.method,
-        perPage: LESSONSPAGE,
-        status: data.status
-      }))
-        .finally(() => setLoading(false));
-      setNumberPage(numberPage + 1);
+
+    if (((loading && countPages === 0) || (loading && countPages >= numberPage)
+      && chosenCategory.name === category.name) ) {
+      requestLessons();
     }
     /* eslint-disable-next-line */
-  }, [dispatch, chosenCategory, data, type, loading]);
+  }, [chosenCategory, data, loading]);
 
   useEffect(() => {
     if (type === "myStudio" && !sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {

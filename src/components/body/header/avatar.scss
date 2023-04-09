@@ -72,6 +72,7 @@
 #input-avatar:checked ~ .list-user {
   display: block;
   background-color: var(--bgDropDownMainPage);
+  top: 64px;
 }
 
 .user-link {
