@@ -61,7 +61,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const [data, setData] = useState(defaultButton);
   const [numberPage, setNumberPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState({name: "", id: ""});
+  const [category, setCategory] = useState(defaultCategory);
   const categories = useAppSelector(state => state.categories.categories);
   const chosenCategory = useAppSelector(state => state.categories.selectedCategory);
   const countPages = useAppSelector(state => state.lessons.pagy_metadata.count_pages);
@@ -102,29 +102,28 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   }, [data, loading, numberPage]);
 
   useEffect(() => {
-    if (category.name !== "") {
-      setCategory({name: "", id: ""});
+    if (category.name !== defaultCategory.name) {
+      setCategory(defaultCategory);
     }
     /* eslint-disable-next-line */
   }, [type]);
 
   useEffect(() => {
-    if (category.name === "") {
+    if (category.name === defaultCategory.name) {
       dispatch(resetLessons());
       requestLessons(1, NaN);
       dispatch(selectedCategory(category));
+    } else {
+      requestLessons(1, +chosenCategory.id);
     }
     /* eslint-disable-next-line */
   }, [category]);
 
   useEffect(() => {
-    if (category.name !== "") {
-      requestLessons(1, +chosenCategory.id);
-    }
     setCategory(chosenCategory);
     setNumberPage(1);
     /* eslint-disable-next-line */
-  }, [chosenCategory, category]);
+  }, [chosenCategory]);
 
   useEffect(() => {
     if (type === "myStudio" && !sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {
