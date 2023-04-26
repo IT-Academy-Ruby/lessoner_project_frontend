@@ -36,19 +36,17 @@ export const UserPage = () => {
   const formatter = new Intl.DateTimeFormat("ru");
 
   useEffect(() => {
-    if (user.error) {
+    if (user.error || user.errors) {
       dispatch(uploadModalData({
-        text: user.error,
+        text: user.error || user.errors,
         isOpen: true,
         typeModal: true
       }));
-      dispatch(clearError());
     }
     if(user.error === ""){
       if(component === "Phone number"){
         handleEdit("code");
       }
-      handleClose();
     }
     if(user.deliver){
       handleEdit("infEmail");
@@ -83,11 +81,20 @@ export const UserPage = () => {
   const element = () => {
     switch (component) {
     case (intl.formatMessage({id: "app.UserName"})):
-      return <NameForm userName={user.name} handleClose={handleClose}/>;
+      return <NameForm
+        userName={user.name}
+        handleClose={handleClose}
+      />;
     case (intl.formatMessage({id: "app.userPage.birthday"})):
-      return <BirthdayForm userName={user.name} handleClose={handleClose}/>;
+      return <BirthdayForm
+        userName={user.name}
+        handleClose={handleClose}
+      />;
     case (intl.formatMessage({id: "app.userPage.gender"})):
-      return <GenderForm userName={user.name} handleClose={handleClose}/>;
+      return <GenderForm
+        userName={user.name}
+        handleClose={handleClose}
+      />;
     case (intl.formatMessage({id: "app.email.name"})):
       return <EmailForm
         userName={user.name}
@@ -104,7 +111,10 @@ export const UserPage = () => {
         setPhoneNumber={setPhoneNumber}
       />;
     case (intl.formatMessage({id: "app.passwordAndConfirm.pass"})):
-      return <PasswordForm userName={user.name} handleClose={handleClose}/>;
+      return <PasswordForm
+        userName={user.name}
+        handleClose={handleClose}
+      />;
     case ("code"):
       return <CodeForm
         userName={user.name}
@@ -121,6 +131,7 @@ export const UserPage = () => {
   };
 
   let keyField = dataUser.length;
+
   const handleClose = () => {
     setIsVisible(false);
   };
@@ -160,7 +171,7 @@ export const UserPage = () => {
             ref={fileRef}
             type="file"
             className="category-file"
-            accept=".jpg, .gif, .png"
+            accept=".jpg, .png"
             onChange={(event) => {
               handleSelectFile(event);
             }}

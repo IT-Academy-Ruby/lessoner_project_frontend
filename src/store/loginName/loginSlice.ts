@@ -155,11 +155,7 @@ export const uploadFile = createAsyncThunk(
       body: formData,
     });
     const data = await responce.json();
-    if (responce.status === 200) {
-      return data;
-    } else {
-      return `errror ${responce.status}`;
-    }
+    return data;
   }
 );
 
@@ -202,7 +198,7 @@ const initialState: Login = {
     birthday: "",
     password: "",
     created_at: "",
-    errors: [],
+    errors: undefined,
     error: "",
     deliver: "",
   },
@@ -232,7 +228,7 @@ const loginSlice = createSlice({
         gender: "",
         birthday: "",
         password: "",
-        created_at: ""
+        created_at: "",
       };
       state.loading = false;
       state.userToken.jwt = "";
@@ -317,7 +313,11 @@ const loginSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(uploadFile.fulfilled, (state, action) => {
-      state.user = action.payload;
+      if(action.payload.errors){
+        state.user.errors = action.payload.errors.avatar;
+      } else {
+        state.user = action.payload;
+      }
     });
     builder.addCase(sendPasswordResetLink.fulfilled, (state, action) => {
       state.checkEmail = action.payload;

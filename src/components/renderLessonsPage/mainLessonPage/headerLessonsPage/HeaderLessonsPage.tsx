@@ -2,9 +2,7 @@ import "./headerLessonsPage.scss";
 import {FormattedMessage, useIntl} from "react-intl";
 import {getLessons, resetLessons} from "../../../../store/lessonSlice/lessonSlice";
 import {useAppDispatch, useAppSelector} from "../../../../store/hooks";
-import {
-  useEffect, useLayoutEffect, useState
-} from "react";
+import {useEffect, useState} from "react";
 import {Button} from "../../../Button";
 import {LESSONSPAGE} from "../../../../constants";
 import Plus from "../../../icons/add.svg";
@@ -62,8 +60,8 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
     {id: "app.lessons.categoryAllCategories"}), id: ""};
   const [data, setData] = useState(defaultButton);
   const [numberPage, setNumberPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [category, setCategory] = useState({name: "", id: ""});
+  const [loading, setLoading] = useState(false);
+  const [category, setCategory] = useState(defaultCategory);
   const categories = useAppSelector(state => state.categories.categories);
   const chosenCategory = useAppSelector(state => state.categories.selectedCategory);
   const countPages = useAppSelector(state => state.lessons.pagy_metadata.count_pages);
@@ -75,64 +73,57 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
   const selectCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     valueCategories.forEach(category => {
       if (category.name === event.target.value) {
-        setCategory({name: category.name, id: category.id});
+        dispatch(selectedCategory({name: category.name, id: category.id}));
       }
       if (defaultCategory.name === event.target.value) {
-        setCategory(defaultCategory);
+        dispatch(selectedCategory(defaultCategory));
       }
     });
   };
 
-  const requestLessons = async () => {
+  const requestLessons = async (page: number, idCategory: number) => {
     await dispatch(getLessons({
       myStudio: type === "myStudio",
-      page: numberPage,
-      category: +chosenCategory.id,
+      page: page,
+      category: idCategory,
       sortValue: data.method,
       perPage: LESSONSPAGE,
       status: data.status
     }));
-    setLoading(false);
     setNumberPage(numberPage + 1);
   };
 
-  useLayoutEffect(() => {
-    dispatch(resetLessons());
-    setLoading(true);
-    setNumberPage(1);
-    if (defaultCategory.name !== chosenCategory.name) {
-      dispatch(selectedCategory(defaultCategory));
+  useEffect(() => {
+    if ((loading && countPages === 0) || (loading && countPages >= numberPage)) {
+      requestLessons(numberPage, +chosenCategory.id);
+      setLoading(false);
+    }
+    /* eslint-disable-next-line */
+  }, [data, loading, numberPage]);
+
+  useEffect(() => {
+    if (category.name !== defaultCategory.name) {
       setCategory(defaultCategory);
     }
     /* eslint-disable-next-line */
   }, [type]);
 
-  useLayoutEffect(() => {
-    setNumberPage(1);
-    setLoading(true);
-    if (category.name !== chosenCategory.name) {
+  useEffect(() => {
+    if (category.name === defaultCategory.name) {
+      dispatch(resetLessons());
+      requestLessons(1, NaN);
       dispatch(selectedCategory(category));
+    } else {
+      requestLessons(1, +chosenCategory.id);
     }
     /* eslint-disable-next-line */
   }, [category]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    setCategory(chosenCategory);
     setNumberPage(1);
-    setLoading(true);
-    if (category.name !== chosenCategory.name) {
-      dispatch(selectedCategory(chosenCategory));
-    }
     /* eslint-disable-next-line */
   }, [chosenCategory]);
-
-  useEffect(() => {
-
-    if (((loading && countPages === 0) || (loading && countPages >= numberPage)
-      && chosenCategory.name === category.name) ) {
-      requestLessons();
-    }
-    /* eslint-disable-next-line */
-  }, [chosenCategory, data, loading]);
 
   useEffect(() => {
     if (type === "myStudio" && !sessionStorage.getItem("JWT") && !localStorage.getItem("JWT")) {
@@ -176,7 +167,7 @@ export const HeaderLessonsPage = ({type}: HeaderLessonsPageProps) => {
         />
       </div>}
       <select
-        value={chosenCategory.name}
+        value={category.name}
         className="headerLessons__select"
         onChange={(event) => {
           selectCategory(event);
