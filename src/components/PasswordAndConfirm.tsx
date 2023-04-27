@@ -9,7 +9,6 @@ import {useIntl} from "react-intl";
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
-  isConfirm: boolean | string;
   text: string;
   field: {
     name: string,
@@ -23,7 +22,7 @@ type PasswordProps = {
 }
 
 export const PasswordAndConfirm = ({
-  isConfirm, field, error, wrongPassword, isOpenEye, text
+  field, error, wrongPassword, isOpenEye, text
 }: PasswordProps): JSX.Element => {
   const intl = useIntl();
   const [visiblePassword, setVisiblePassword] = useState(false);
@@ -43,10 +42,6 @@ export const PasswordAndConfirm = ({
   return (
     <label className="input-label">
       {text}
-      {/*{isConfirm === true && intl.formatMessage({id: "app.passwordAndConfirm.pass"})}*/}
-      {/*{isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}*/}
-      {/*{isConfirm === "currentPassword" && intl.formatMessage(*/}
-      {/*  {id: "app.userPage.form.currentPassword"})}*/}
       <input
         type={visiblePassword ? "text" : "password"}
         className={classNames("input", {"invalid-input": error || wrongPassword},
