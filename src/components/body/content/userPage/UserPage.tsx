@@ -106,7 +106,6 @@ export const UserPage = () => {
       return <PhoneForm
         userName={user.name}
         handleClose={handleClose}
-        handleEdit={handleEdit}
         phoneNumber={phoneNumber}
         setPhoneNumber={setPhoneNumber}
       />;
@@ -121,6 +120,7 @@ export const UserPage = () => {
         handleClose={handleClose}
         handleEdit={handleEdit}
         phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
       />;
     case ("infEmail"):
       return <InformEmail

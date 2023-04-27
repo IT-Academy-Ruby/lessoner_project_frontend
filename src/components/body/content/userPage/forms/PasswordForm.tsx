@@ -9,6 +9,7 @@ import {PasswordAndConfirm} from "../../../../PasswordAndConfirm";
 import {editUserData} from "../../../../../store/loginName/loginSlice";
 import {passwordRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
+import {useState} from "react";
 
 interface FormValues {
   current_password: string;
@@ -28,6 +29,7 @@ type PasswordFormProps = {
 export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
+  const [isEye, setIsEye] = useState(false);
 
   const initialValues: FormValues = {
     current_password: "",
@@ -71,10 +73,20 @@ export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
         values.password = "";
         values.confirmPassword = "";
       }}>
-      {({errors, touched}) => {
+      {({
+        errors, touched, values
+      }) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={() => handleClose()}>
+            <div className="close-modal-form" onClick={() => {
+              handleClose();
+              values.current_password = "";
+              values.password = "";
+              values.confirmPassword = "";
+              errors.password = undefined;
+              errors.confirmPassword = undefined;
+              setIsEye(!isEye);
+            }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
@@ -86,6 +98,8 @@ export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               minSymbol={PASSWORD.minLength}
               maxSymbol={PASSWORD.maxLength}
               isConfirm={"currentPassword"}
+              isOpenEye={isEye}
+              text={intl.formatMessage({id: "app.userPage.form.currentPassword"})}
             />
             <Field
               name="password"
@@ -94,6 +108,8 @@ export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               maxSymbol={PASSWORD.maxLength}
               isConfirm={true}
               error={touched.password ? errors.password : undefined}
+              isOpenEye={isEye}
+              text={intl.formatMessage({id: "app.passwordAndConfirm.NewPass"})}
             />
             <Field
               name="confirmPassword"
@@ -102,6 +118,8 @@ export const PasswordForm = ({userName, handleClose}: PasswordFormProps) => {
               maxSymbol={PASSWORD.maxLength}
               isConfirm={false}
               error={touched.confirmPassword ? errors.confirmPassword : undefined}
+              isOpenEye={isEye}
+              text={intl.formatMessage({id: "app.passwordAndConfirm.NewConfirmPass"})}
             />
             <Button
               buttonType="submit"

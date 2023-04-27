@@ -1,30 +1,36 @@
 import "./input.scss";
+import {useEffect, useState} from "react";
 import {PASSWORD} from "../constants";
 import classNames from "classnames";
 import close_eye from "./icons/close_eye.svg";
 import open_eye from "./icons/open_eye.svg";
 import {useIntl} from "react-intl";
-import {useState} from "react";
 
 type PasswordProps = {
   minSymbol: number;
   maxSymbol: number;
   isConfirm: boolean | string;
+  text: string;
   field: {
     name: string,
     onBlur: React.FocusEventHandler<HTMLInputElement>,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
     value: string
   };
+  isOpenEye?: boolean;
   error?: string;
-  wrongPassword?:boolean;
+  wrongPassword?: boolean;
 }
 
 export const PasswordAndConfirm = ({
-  isConfirm, field, error, wrongPassword
+  isConfirm, field, error, wrongPassword, isOpenEye, text
 }: PasswordProps): JSX.Element => {
   const intl = useIntl();
   const [visiblePassword, setVisiblePassword] = useState(false);
+
+  useEffect(() => {
+    setVisiblePassword(false);
+  }, [isOpenEye]);
 
   const showPassword = (): void => {
     if (visiblePassword !== false) {
@@ -36,17 +42,18 @@ export const PasswordAndConfirm = ({
 
   return (
     <label className="input-label">
-      {isConfirm === true && intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
-      {isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}
-      {isConfirm === "currentPassword" && intl.formatMessage(
-        {id: "app.userPage.form.currentPassword"})}
+      {text}
+      {/*{isConfirm === true && intl.formatMessage({id: "app.passwordAndConfirm.pass"})}*/}
+      {/*{isConfirm === false && intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}*/}
+      {/*{isConfirm === "currentPassword" && intl.formatMessage(*/}
+      {/*  {id: "app.userPage.form.currentPassword"})}*/}
       <input
         type={visiblePassword ? "text" : "password"}
         className={classNames("input", {"invalid-input": error || wrongPassword},
           {"success-input": !error && field.value})}
-        {...field}
         placeholder={intl.formatMessage({id: "app.passwordAndConfirm.placeholder"},
           {minSymbol: PASSWORD.minLength})}
+        {...field}
       />
       <img
         className="image-input"

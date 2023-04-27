@@ -123,6 +123,7 @@ export const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegi
                 maxSymbol={maxSymbol}
                 isConfirm={true}
                 error={touched.password ? errors.password : undefined}
+                text={intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
               />
               <Field
                 name="confirmPassword"
@@ -131,6 +132,7 @@ export const FirstRegistrationForm = ({setUserPassword, setUserEmail}: FirstRegi
                 maxSymbol={maxSymbol}
                 isConfirm={false}
                 error={touched.confirmPassword ? errors.confirmPassword : undefined}
+                text={intl.formatMessage({id: "app.passwordAndConfirm.confirmPass"})}
               />
               <Field
                 name="hasTermsAndConditions"

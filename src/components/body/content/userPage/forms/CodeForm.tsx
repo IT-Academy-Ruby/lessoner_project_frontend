@@ -1,11 +1,13 @@
 import "../userPage.scss";
+import {CODE, DEFAULT_COUNTRY_CODE} from "../../../../../constants";
 import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {editUserData, sendUserCode} from "../../../../../store/loginName/loginSlice";
+import {
+  clearError, editUserData, sendUserCode
+} from "../../../../../store/loginName/loginSlice";
 import {Button} from "../../../../Button";
-import {CODE} from "../../../../../constants";
 import {Code} from "../../../../Code";
 import {CodeRegex} from "../../../../../validationRules";
 import {useAppDispatch} from "../../../../../store/hooks";
@@ -23,10 +25,11 @@ type CodeFormProps = {
   handleClose: () => void;
   handleEdit: (title: string) => void;
   phoneNumber: string;
+  setPhoneNumber: (phone:string) => void;
 }
 
 export const CodeForm = ({
-  handleClose, handleEdit, phoneNumber, userName
+  handleClose, handleEdit, phoneNumber, userName, setPhoneNumber
 }: CodeFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
@@ -51,23 +54,34 @@ export const CodeForm = ({
 
       onSubmit={(values) => {
         dispatch(sendUserCode({verification_code: values.code}));
+        setPhoneNumber(DEFAULT_COUNTRY_CODE);
+        dispatch(clearError());
         handleClose();
+        values.code = "";
       }}>
-      {({errors, touched}) => {
+      {({
+        errors, touched, values
+      }) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={() => handleClose()}>
+            <div className="close-modal-form" onClick={() => {
+              dispatch(clearError());
+              setPhoneNumber(DEFAULT_COUNTRY_CODE);
+              handleClose();
+              values.code = "";
+              errors.code = undefined;
+            }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.code" />
+              <FormattedMessage id="app.userPage.form.code"/>
             </h2>
             <p className="text">
-              <FormattedMessage id="app.code.inform" />
-              <span className="link" onClick={()=>{
+              <FormattedMessage id="app.code.inform"/>
+              <span className="link" onClick={() => {
                 handleEdit(intl.formatMessage({id: "app.phoneNumber.label"}));
               }}>
-                <FormattedMessage id="app.code.phoneNumber" />
+                <FormattedMessage id="app.code.phoneNumber"/>
               </span>
             </p>
             <Field
@@ -79,8 +93,8 @@ export const CodeForm = ({
               buttonType="button"
               buttonText={intl.formatMessage({id: "app.button.code"})}
               className="button"
-              onClick={()=>{
-                dispatch(editUserData({name: userName, object: {phone:"+"+phoneNumber}}));
+              onClick={() => {
+                dispatch(editUserData({name: userName, object: {phone: "+" + phoneNumber}}));
               }}
             />
             <Button

@@ -6,7 +6,6 @@ import {FieldInputProps, FormikProps} from "formik";
 import {enGB, ru} from "date-fns/locale";
 import Birthday from "./icons/Date.svg";
 import {useIntl} from "react-intl";
-import {useState} from "react";
 
 type BirthdayPickerProps<V = string, FormValues = string> = {
   field: FieldInputProps<V>;
@@ -15,10 +14,12 @@ type BirthdayPickerProps<V = string, FormValues = string> = {
   setIsWrapper: (a: boolean) => void;
   isWrapper: boolean;
   text: string;
+  birthday: Date | null;
+  setBirthday: (date: Date) => void;
 }
 
 export const BirthdayPicker = ({
-  form, field, error, setIsWrapper, text
+  form, field, error, setIsWrapper, text, birthday, setBirthday
 }: BirthdayPickerProps): JSX.Element => {
   const intl = useIntl();
   if (intl.locale === "en") {
@@ -26,8 +27,6 @@ export const BirthdayPicker = ({
   } else {
     registerLocale("lang", ru);
   }
-
-  const [birthday, setBirthday] = useState<Date | null>(null);
 
   const handleChange = (selectedDate: Date) => {
     const {setFieldValue} = form;

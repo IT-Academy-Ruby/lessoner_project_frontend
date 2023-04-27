@@ -26,7 +26,7 @@ const gender = [
   }];
 
 interface FormValues {
-  gender: string;
+  gender?: string;
 }
 
 interface FormErrors {
@@ -41,7 +41,6 @@ type GenderFormProps = {
 export const GenderForm = ({userName, handleClose}: GenderFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-
   const initialValues: FormValues = {gender: ""};
 
   return (
@@ -55,22 +54,26 @@ export const GenderForm = ({userName, handleClose}: GenderFormProps) => {
         }
         return errors;
       }}
-      onSubmit={(values:FormValues) => {
+      onSubmit={(values: FormValues) => {
         const items = {name: userName, object: {gender: values.gender}};
         dispatch(editUserData(items));
         handleClose();
+        values.gender = "";
       }}>
       {({errors, touched}) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={() => handleClose()}>
+            <div className="close-modal-form" onClick={() => {
+              handleClose();
+              errors.gender = undefined;
+            }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.gender" />
+              <FormattedMessage id="app.userPage.form.gender"/>
             </h2>
             <Field
-              name="name"
+              name="gender"
               options={gender}
               component={GenderSelector}
               error={touched.gender ? errors.gender : undefined}

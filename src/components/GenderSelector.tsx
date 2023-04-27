@@ -6,19 +6,21 @@ type GenderProps = {
     name: string;
     onChange: React.ChangeEventHandler<HTMLInputElement>;
     value: string;
-    label: boolean;
+    // label: boolean;
   };
   error: string;
   label: string;
-  text:string;
+  text: string;
 }
 
 export const GenderSelector = ({
   field, error, options, text
 }: GenderProps) => {
+
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     field.value = event.currentTarget.value;
   };
+
   return (
     <div className="input-label">
       {text}
@@ -36,9 +38,10 @@ export const GenderSelector = ({
                 className="radio"
                 value={option.genderValue}
                 onClick={handleChange}
-                checked={field.label}
-                name={option.name}
-              />{option.label}
+                // checked={field.label}
+                // name={option.name}
+              />
+              {option.label}
             </label>
           ))
         ) : null}

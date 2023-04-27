@@ -119,6 +119,7 @@ export const LoginPage = () => {
                 isConfirm={true}
                 error={touched.password ? errors.password : undefined}
                 wrongPassword={isLogEmail}
+                text={intl.formatMessage({id: "app.passwordAndConfirm.pass"})}
               />
               <Field
                 name="remember"

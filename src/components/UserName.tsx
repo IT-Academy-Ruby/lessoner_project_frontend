@@ -9,10 +9,10 @@ type UserNameProps = {
   field: {
     name: string,
     onChange: React.ChangeEventHandler<HTMLInputElement>,
-    value: string
+    value: string;
   };
   error?: string;
-  nameRef?:()=>void;
+  nameRef?: () => void;
 }
 
 export const UserName = ({
@@ -37,7 +37,7 @@ export const UserName = ({
         onKeyUp={fieldHandler}
         ref={nameRef}
         placeholder={intl.formatMessage(
-          { id: "app.UserName.placeholder" },
+          {id: "app.UserName.placeholder"},
           {minSymbol: USERNAME.minLength, maxSymbol: USERNAME.maxLength})}
         {...field}
       />

@@ -296,16 +296,15 @@ const loginSlice = createSlice({
     builder.addCase(editUserData.fulfilled, (state, action) => {
       if (!action.payload) {
         state.user.error = "unregistered user";
-      }
-      else if (action.payload.error) {
+      } else if (action.payload.deliver) {
+        state.user.deliver = action.payload.deliver;
+      } else if (action.payload.error) {
         state.user.error = action.payload.error;
-      }
-      else if (action.payload) {
+      } else if (action.payload.errors) {
+        state.user.errors = action.payload.errors.phone;
+      } else if (action.payload) {
         state.user = action.payload;
         state.user.error = "";
-      }
-      else if (action.payload.deliver) {
-        state.user.deliver = action.payload.deliver;
       }
       state.loading = false;
     });
@@ -313,7 +312,7 @@ const loginSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(uploadFile.fulfilled, (state, action) => {
-      if(action.payload.errors){
+      if (action.payload.errors) {
         state.user.errors = action.payload.errors.avatar;
       } else {
         state.user = action.payload;
