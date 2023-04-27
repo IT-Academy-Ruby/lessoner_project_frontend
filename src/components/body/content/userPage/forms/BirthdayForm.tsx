@@ -25,6 +25,7 @@ export const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
   const [isWrapper, setIsWrapper] = useState(false);
+  const [birthday, setBirthday] = useState<Date | null>(null);
 
   const initialValues: FormValues = {birthday: ""};
 
@@ -43,12 +44,18 @@ export const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
         if(typeof values.birthday !== "string") {
           const items = {name: userName, object: {birthday: values.birthday.toDateString()}};
           dispatch(editUserData(items));
+          setBirthday(null);
         }
       }}>
       {({errors, touched}) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={() => handleClose()}>
+            <div className="close-modal-form" onClick={() => {
+              handleClose();
+              errors.birthday = undefined;
+              setBirthday(null);
+              errors.birthday = undefined;
+            }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
@@ -61,6 +68,8 @@ export const BirthdayForm = ({userName, handleClose}: BirthdayFormProps) => {
               setIsWrapper={setIsWrapper}
               isWrapper={isWrapper}
               text={intl.formatMessage({id: "app.birthday"})}
+              birthday={birthday}
+              setBirthday={setBirthday}
             />
             <Button
               buttonType="submit"

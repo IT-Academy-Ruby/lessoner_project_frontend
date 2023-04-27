@@ -28,21 +28,19 @@ export const NameForm = ({userName, handleClose}: NameFormProps) => {
   const dispatch = useAppDispatch();
   const isUser = useAppSelector((state) => state.login.isLogged);
 
-  const initialValues: FormValues = {name: ""};
   return (
     <Formik
-      initialValues={initialValues}
-      validate={async (values: FormValues) => {
+      initialValues={{name: ""}}
+      validate={(values: FormValues) => {
         const errors: FormErrors = {};
         if (UserRegex.test(values.name)) {
           errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
         }
         if (values.name.length === 0) {
-          errors.name = intl.formatMessage({id: "app.YourselfPage.errorFieldEmpty"});
+          errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
         }
         if (values.name.length < USERNAME.minLength && values.name.length > 0) {
-          errors.name = intl.formatMessage(
-            {id: "app.YourselfPage.errorSmallName"}, {minSymbol: USERNAME.minLength});
+          errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
         }
         if (values.name.length > USERNAME.maxLength) {
           errors.name = intl.formatMessage({id: "app.YourselfPage.errorIncorrectName"});
@@ -50,22 +48,28 @@ export const NameForm = ({userName, handleClose}: NameFormProps) => {
         if (isUser) {
           errors.name = intl.formatMessage({id: "app.userName.nameExists"});
         }
-
         return errors;
       }}
-      onSubmit = {(values) => {
+      onSubmit={(values) => {
         const items = {name: userName, object: {name: values.name}};
         dispatch(editUserData(items));
         handleClose();
+        values.name = "";
       }}>
-      {({errors, touched}) => {
+      {({
+        errors, touched, values
+      }) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={handleClose}>
+            <div className="close-modal-form" onClick={() => {
+              handleClose();
+              values.name = "";
+              errors.name = undefined;
+            }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">
-              <FormattedMessage id="app.userPage.form.username" />
+              <FormattedMessage id="app.userPage.form.username"/>
             </h2>
             <Field
               name="name"

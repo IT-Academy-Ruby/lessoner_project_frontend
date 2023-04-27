@@ -3,43 +3,26 @@ import {
   Field, Form, Formik,
 } from "formik";
 import {FormattedMessage, useIntl} from "react-intl";
-import {clearError, editUserData} from "../../../../../store/loginName/loginSlice";
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {useEffect, useState} from "react";
 import {Button} from "../../../../Button";
+import {DEFAULT_COUNTRY_CODE} from "../../../../../constants";
 import {PhoneNumber} from "../../../../PhoneNumber";
-import {uploadModalData} from "../../../../../store/modalSlice/modalSlice";
+import {editUserData} from "../../../../../store/loginName/loginSlice";
+import {useAppDispatch} from "../../../../../store/hooks";
+import {useState} from "react";
 
 type PhoneFormProps = {
   userName: string;
   handleClose: () => void;
-  handleEdit: (title: string) => void;
   phoneNumber: string;
   setPhoneNumber: (phone: string) => void;
 }
 
 export const PhoneForm = ({
-  userName, handleClose, handleEdit, phoneNumber, setPhoneNumber
+  userName, handleClose, phoneNumber, setPhoneNumber
 }: PhoneFormProps) => {
   const intl = useIntl();
   const dispatch = useAppDispatch();
-  const user = useAppSelector(state => state.login.user);
   const [isError, setIsError] = useState(true);
-
-  useEffect(()=>{
-    if(user.error){
-      dispatch(uploadModalData({
-        text: user.error,
-        isOpen: true,
-        typeModal: true
-      }));
-      dispatch(clearError());
-    }
-    if(user.error === ""){
-      handleClose();
-      handleEdit("code");
-    }
-  },[dispatch, handleClose, handleEdit, user]);
 
   interface FormValues {
     phone: string;
@@ -71,7 +54,11 @@ export const PhoneForm = ({
       {({errors, touched}) => {
         return (
           <Form className="form-user-page">
-            <div className="close-modal-form" onClick={() => handleClose()}>
+            <div className="close-modal-form" onClick={() => {
+              handleClose();
+              setPhoneNumber(DEFAULT_COUNTRY_CODE);
+              errors.phone = undefined;
+            }}>
               <span className="close-form"></span>
             </div>
             <h2 className="form-title-user-page">

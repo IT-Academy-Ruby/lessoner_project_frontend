@@ -49,15 +49,20 @@ export const EmailForm = ({
         const items = {name: userName, object: {email: values.email}};
         setEmail(values.email);
         dispatch(editUserData(items));
+        values.email = "";
       }}>
 
-      {({errors, touched}) => {
+      {({
+        errors, touched, values
+      }) => {
         return (
           <Form className="form-user-page">
             <div
               className="close-modal-form"
               onClick={() => {
                 handleClose();
+                values.email = "";
+                errors.email = undefined;
               }}>
               <span className="close-form"></span>
             </div>

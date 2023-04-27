@@ -4,6 +4,7 @@ import Alarm from "../icons/neutral.svg";
 import {Button} from "../Button";
 import Error from "../icons/negative.svg";
 import Successful from "../icons/positive.svg";
+import {clearError} from "../../store/loginName/loginSlice";
 import {uploadModalData} from "../../store/modalSlice/modalSlice";
 import {useNavigate} from "react-router-dom";
 
@@ -28,6 +29,7 @@ export const ModalResponse = () => {
       navigate(dataModal.urlNavigate);
     }
     dispatch(uploadModalData({isOpen: false}));
+    dispatch(clearError());
   };
 
   return (
@@ -35,6 +37,7 @@ export const ModalResponse = () => {
       <div className="response-modal">
         <div className="cross" onClick={() => {
           dispatch(uploadModalData({isOpen: false}));
+          dispatch(clearError());
         }}>
           <span className="cross__element"/>
         </div>

@@ -155,11 +155,7 @@ export const uploadFile = createAsyncThunk(
       body: formData,
     });
     const data = await responce.json();
-    if (responce.status === 200) {
-      return data;
-    } else {
-      return `errror ${responce.status}`;
-    }
+    return data;
   }
 );
 
@@ -202,7 +198,7 @@ const initialState: Login = {
     birthday: "",
     password: "",
     created_at: "",
-    errors: [],
+    errors: undefined,
     error: "",
     deliver: "",
   },
@@ -232,7 +228,7 @@ const loginSlice = createSlice({
         gender: "",
         birthday: "",
         password: "",
-        created_at: ""
+        created_at: "",
       };
       state.loading = false;
       state.userToken.jwt = "";
@@ -300,16 +296,15 @@ const loginSlice = createSlice({
     builder.addCase(editUserData.fulfilled, (state, action) => {
       if (!action.payload) {
         state.user.error = "unregistered user";
-      }
-      else if (action.payload.error) {
+      } else if (action.payload.deliver) {
+        state.user.deliver = action.payload.deliver;
+      } else if (action.payload.error) {
         state.user.error = action.payload.error;
-      }
-      else if (action.payload) {
+      } else if (action.payload.errors) {
+        state.user.errors = action.payload.errors.phone;
+      } else if (action.payload) {
         state.user = action.payload;
         state.user.error = "";
-      }
-      else if (action.payload.deliver) {
-        state.user.deliver = action.payload.deliver;
       }
       state.loading = false;
     });
@@ -317,7 +312,11 @@ const loginSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(uploadFile.fulfilled, (state, action) => {
-      state.user = action.payload;
+      if (action.payload.errors) {
+        state.user.errors = action.payload.errors.avatar;
+      } else {
+        state.user = action.payload;
+      }
     });
     builder.addCase(sendPasswordResetLink.fulfilled, (state, action) => {
       state.checkEmail = action.payload;
